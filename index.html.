@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JS Jardinagem — Paisagismo e Manutenção</title>
+  <meta name="description" content="JS Jardinagem: paisagismo, manutenção de áreas verdes, podas, revitalização de gramados e limpeza em condomínios em Uberlândia e região." />
+  <meta property="og:title" content="JS Jardinagem — Paisagismo e Manutenção" />
+  <meta property="og:description" content="Paisagismo, manutenção, podas em altura, revitalização de gramados e serviços para condomínios." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/og-js.jpg" />
+  <meta name="theme-color" content="#0b4d2b" />
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root{--bg:#0c0f0d;--pri:#0b4d2b;--pri-2:#11804a;--txt:#10130f;--paper:#ffffff;--muted:#667085}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;background:#f6f7f6;color:#1a1f1a}
+    .hero{display:grid;min-height:72vh;background:linear-gradient(120deg,#0b4d2b 0%,#11804a 100%);color:#fff;align-items:center}
+    .wrap{width:min(1100px,92vw);margin-inline:auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:42px;height:42px;border-radius:10px;background:#fff;display:grid;place-items:center;color:#0b4d2b;font-weight:800}
+    nav a{color:#e8fff2;text-decoration:none;margin-left:18px;font-weight:600;opacity:.9}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;padding:36px 0 66px}
+    .hero h1{font-size:clamp(32px,4.2vw,52px);line-height:1.05;margin:0 0 14px}
+    .hero p{font-size:clamp(16px,1.6vw,19px);opacity:.95;margin:0 0 26px}
+    .cta{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer}
+    .btn-primary{background:#fff;color:#0b4d2b}
+    .btn-ghost{background:rgba(255,255,255,.15);color:#fff}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:-48px}
+    .card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(16,19,15,.08)}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:#475467;font-size:15px}
+    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}.card-grid{grid-template-columns:1fr}}
+    section{padding:56px 0}
+    .section-title{font-size:28px;margin:0 0 14px}
+    .list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+    .list li{padding:10px 14px;border:1px solid #e6e6e6;border-radius:12px;background:#fff}
+    footer{background:#0a1a12;color:#cfe8da;padding:32px 0;margin-top:40px}
+    .foot{display:grid;gap:6px}
+    .badge{display:inline-block;background:#e9f7ef;color:#0b4d2b;border:1px solid #bfe8cf;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .float-whats{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:999px;padding:14px 18px;font-weight:800;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.2)}
+    .muted{color:#667085}
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="wrap">
+      <header>
+        <div class="brand"><div class="logo">JS</div><strong>JS JARDINAGEM</strong></div>
+        <nav>
+          <a href="#servicos">Serviços</a>
+          <a href="#trabalhos">Trabalhos</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </header>
+      <div class="hero-inner">
+        <div>
+          <h1>Paisagismo e manutenção para condomínios</h1>
+          <p>Podas (inclusive em altura), revitalização de gramados, limpeza e cuidado contínuo das áreas verdes. Atuamos em Uberlândia e região com foco em segurança, organização e resultado.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="https://wa.me/5566992923029?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">Falar no WhatsApp</a>
+            <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
+          </div>
+        </div>
+        <div>
+          <div class="card-grid">
+            <div class="card"><span class="badge">Condomínio Spazio Único</span><h3>Revitalização de campo</h3><p>Aeração, correção de pH, replantio e top dressing.</p></div>
+            <div class="card"><span class="badge">Podas em Altura</span><h3>Equipe com EPI</h3><p>Isolamento de área, corte de palhas secas e segurança total.</p></div>
+            <div class="card"><span class="badge">Manutenção</span><h3>Rotinas semanais</h3><p>Roçadas, capina, bordas e limpeza de canteiros.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="servicos">
+    <div class="wrap">
+      <h2 class="section-title">Serviços</h2>
+      <ul class="list">
+        <li>Manutenção contínua de áreas verdes (condomínios e empresas)</li>
+        <li>Podas de árvores e palmeiras (inclui poda em altura com EPI)</li>
+        <li>Revitalização de gramados (aeração, top dressing, replantio)</li>
+        <li>Capina manual e química sob avaliação técnica</li>
+        <li>Limpeza, varrição e organização das áreas comuns</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="trabalhos" style="background:#f2f5f3">
+    <div class="wrap">
+      <h2 class="section-title">Trabalhos recentes</h2>
+      <p class="muted">Atualizaremos com fotos e relatos de obras em andamento.</p>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <h2 class="section-title">Contato</h2>
+      <p><strong>WhatsApp:</strong> (66) 99292-3029 &nbsp;•&nbsp; <strong>E‑mail:</strong> jsjardinagemudi@gmail.com</p>
+      <p><strong>Atendimento:</strong> Uberlândia e região</p>
+      <p class="muted">CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>© <span id="y"></span> JS Jardinagem. Todos os direitos reservados.</div>
+      <div class="muted">Feito com cuidado e foco em resultado.</div>
+    </div>
+  </footer>
+
+  <a class="float-whats" href="https://wa.me/5566992923029?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">WhatsApp</a>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
