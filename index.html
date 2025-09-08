@@ -3,32 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JS Jardinagem — Paisagismo e Manutenção</title>
-  <meta name="description" content="JS Jardinagem: paisagismo, manutenção de áreas verdes, podas, revitalização de gramados e limpeza em condomínios em Uberlândia e região." />
+  <title>JS Jardinagem — Paisagismo, Podas e Manutenção em Uberlândia</title>
+  <meta name="description" content="JS Jardinagem: paisagismo, podas (inclusive em altura), revitalização de gramados e manutenção para condomínios e empresas em Uberlândia e região." />
   <meta property="og:title" content="JS Jardinagem — Paisagismo e Manutenção" />
-  <meta property="og:description" content="Paisagismo, manutenção, podas em altura, revitalização de gramados e serviços para condomínios." />
+  <meta property="og:description" content="Paisagismo, podas em altura, roçadas e revitalização de gramados. Atendimento para condomínios e empresas." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/images/og-js.jpg" />
+  <meta property="og:image" content="/og-js.jpg" />
   <meta name="theme-color" content="#0b4d2b" />
   <link rel="icon" href="/favicon.ico" />
   <style>
     :root{--bg:#0c0f0d;--pri:#0b4d2b;--pri-2:#11804a;--txt:#10130f;--paper:#ffffff;--muted:#667085}
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;background:#f6f7f6;color:#1a1f1a}
-    .hero{display:grid;min-height:72vh;background:linear-gradient(120deg,#0b4d2b 0%,#11804a 100%);color:#fff;align-items:center}
+    a{text-decoration:none}
     .wrap{width:min(1100px,92vw);margin-inline:auto}
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:42px;height:42px;border-radius:10px;background:#fff;display:grid;place-items:center;color:#0b4d2b;font-weight:800}
-    nav a{color:#e8fff2;text-decoration:none;margin-left:18px;font-weight:600;opacity:.9}
-    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;padding:36px 0 66px}
+    header{position:sticky;top:0;z-index:50;background:#ffffffCC;backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #e9eceb}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:42px;height:42px;border-radius:10px;background:#0b4d2b;display:grid;place-items:center;color:#fff;font-weight:800}
+    .brand strong{letter-spacing:.2px}
+    .links a{color:#1a1f1a;margin-left:18px;font-weight:600;opacity:.9}
+    .hero{display:grid;min-height:68vh;background:linear-gradient(120deg,#0b4d2b 0%,#11804a 100%);color:#fff;align-items:center}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;padding:28px 0 54px}
     .hero h1{font-size:clamp(32px,4.2vw,52px);line-height:1.05;margin:0 0 14px}
     .hero p{font-size:clamp(16px,1.6vw,19px);opacity:.95;margin:0 0 26px}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
     .btn{appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer}
     .btn-primary{background:#fff;color:#0b4d2b}
     .btn-ghost{background:rgba(255,255,255,.15);color:#fff}
-    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:-48px}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(16,19,15,.08)}
     .card h3{margin:0 0 8px;font-size:18px}
     .card p{margin:0;color:#475467;font-size:15px}
@@ -37,28 +40,64 @@
     .section-title{font-size:28px;margin:0 0 14px}
     .list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
     .list li{padding:10px 14px;border:1px solid #e6e6e6;border-radius:12px;background:#fff}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .ph{aspect-ratio:4/3;border-radius:12px;background:#e9f3ec;display:grid;place-items:center;color:#0b4d2b;font-weight:700}
     footer{background:#0a1a12;color:#cfe8da;padding:32px 0;margin-top:40px}
     .foot{display:grid;gap:6px}
     .badge{display:inline-block;background:#e9f7ef;color:#0b4d2b;border:1px solid #bfe8cf;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
-    .float-whats{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:999px;padding:14px 18px;font-weight:800;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.2)}
     .muted{color:#667085}
+    .float-whats{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:999px;padding:14px 18px;font-weight:800;box-shadow:0 10px 20px rgba(0,0,0,.2)}
+    .topbar{position:sticky;top:0;background:#0b4d2b;color:#fff;text-align:center;padding:6px 10px;font-size:14px}
   </style>
+  
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GardenService",
+    "name": "JS JARDINAGEM LTDA",
+    "url": "https://jardinagemudi.com.br",
+    "logo": "https://jardinagemudi.com.br/og-js.jpg",
+    "telephone": "+55 66 99292-3029",
+    "email": "jsjardinagemudi@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. José Rezende Costa, 323, apto 804, Bairro Saraiva",
+      "addressLocality": "Uberlândia",
+      "addressRegion": "MG",
+      "postalCode": "38408-010",
+      "addressCountry": "BR"
+    },
+    "areaServed": "Uberlândia e região",
+    "sameAs": [
+      "https://www.instagram.com/",
+      "https://wa.me/5566992923029"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#">
+        <div class="logo">JS</div>
+        <strong>JS JARDINAGEM</strong>
+      </a>
+      <nav class="links">
+        <a href="#servicos">Serviços</a>
+        <a href="#trabalhos">Trabalhos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
   <div class="hero">
     <div class="wrap">
-      <header>
-        <div class="brand"><div class="logo">JS</div><strong>JS JARDINAGEM</strong></div>
-        <nav>
-          <a href="#servicos">Serviços</a>
-          <a href="#trabalhos">Trabalhos</a>
-          <a href="#contato">Contato</a>
-        </nav>
-      </header>
       <div class="hero-inner">
         <div>
           <h1>Paisagismo e manutenção para condomínios</h1>
-          <p>Podas (inclusive em altura), revitalização de gramados, limpeza e cuidado contínuo das áreas verdes. Atuamos em Uberlândia e região com foco em segurança, organização e resultado.</p>
+          <p>Podas (inclusive em altura), revitalização de gramados, limpeza e cuidado contínuo das áreas verdes. Atuamos com foco em segurança, organização e resultado.</p>
           <div class="cta">
             <a class="btn btn-primary" href="https://wa.me/5566992923029?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">Falar no WhatsApp</a>
             <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
@@ -91,14 +130,20 @@
   <section id="trabalhos" style="background:#f2f5f3">
     <div class="wrap">
       <h2 class="section-title">Trabalhos recentes</h2>
-      <p class="muted">Atualizaremos com fotos e relatos de obras em andamento.</p>
+      <div class="gallery">
+        <div class="ph">Foto 1</div>
+        <div class="ph">Foto 2</div>
+        <div class="ph">Foto 3</div>
+      </div>
+      <p class="muted" style="margin-top:10px">Substitua os blocos acima por fotos reais dos serviços (arraste para a raiz do repositório e referencie como <code>/img/nome.jpg</code>).</p>
     </div>
   </section>
 
   <section id="contato">
     <div class="wrap">
       <h2 class="section-title">Contato</h2>
-      <p><strong>WhatsApp:</strong> (66) 99292-3029 &nbsp;•&nbsp; <strong>E‑mail:</strong> jsjardinagemudi@gmail.com</p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5566992923029">(66) 99292-3029</a> &nbsp;•&nbsp; <strong>E‑mail:</strong> <a href="mailto:jsjardinagemudi@gmail.com">jsjardinagemudi@gmail.com</a></p>
+      <p><strong>Instagram:</strong> <a href="https://instagram.com/" target="_blank" rel="noopener">@jsjardinagem</a> (atualizar o link assim que quiser)</p>
       <p><strong>Atendimento:</strong> Uberlândia e região</p>
       <p class="muted">CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA</p>
     </div>
