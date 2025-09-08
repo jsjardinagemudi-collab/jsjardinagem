@@ -46,7 +46,9 @@
     .foot{display:grid;gap:6px}
     .badge{display:inline-block;background:#e9f7ef;color:#0b4d2b;border:1px solid #bfe8cf;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
     .muted{color:#667085}
-    .float-whats{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:999px;padding:14px 18px;font-weight:800;box-shadow:0 10px 20px rgba(0,0,0,.2)}
+    .float-social{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:999}
+    .float-social a{display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.25)}
+    .float-social svg{width:28px;height:28px}
     .topbar{position:sticky;top:0;background:#0b4d2b;color:#fff;text-align:center;padding:6px 10px;font-size:14px}
     .social{display:flex;gap:14px;margin-top:10px}
     .social a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#fff;color:#0b4d2b;box-shadow:0 2px 6px rgba(0,0,0,.2)}
@@ -145,8 +147,20 @@
   <section id="contato">
     <div class="wrap">
       <h2 class="section-title">Contato</h2>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5534992142960">(34) 99214-2960</a> &nbsp;•&nbsp; <strong>E‑mail:</strong> <a href="mailto:jsjardinagemudi@gmail.com">jsjardinagemudi@gmail.com</a></p>
-      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">@jardinagemudi</a></p>
+      <p>
+        <strong>WhatsApp:</strong> 
+        <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" style="vertical-align:middle;margin-right:6px"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
+          (34) 99214-2960
+        </a>
+      </p>
+      <p>
+        <strong>Instagram:</strong> 
+        <a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" style="vertical-align:middle;margin-right:6px"><path fill="#E1306C" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190c-41.6 0-75.1-33.5-75.1-75.1s33.5-75.1 75.1-75.1 75.1 33.5 75.1 75.1-33.5 75.1-75.1 75.1z"/></svg>
+          @jardinagemudi
+        </a>
+      </p>
       <div class="social">
         <a href="https://wa.me/5534992142960" title="WhatsApp" target="_blank" rel="noopener">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
@@ -167,7 +181,9 @@
     </div>
   </footer>
 
-  <a class="float-whats" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">WhatsApp</a>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</body>
-</html>
+  <!-- Ícones flutuantes -->
+  <div class="float-social">
+    <a href="https://wa.me/5534992142960" title="WhatsApp" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/direct/t/"
