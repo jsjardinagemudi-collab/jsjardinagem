@@ -23,7 +23,7 @@
     .logo {height:42px;width:auto;border-radius:6px;} 
     .brand strong{letter-spacing:.2px}
     .links a{color:#1a1f1a;margin-left:18px;font-weight:600;opacity:.9}
-    .hero{display:grid;min-height:68vh;background:linear-gradient(120deg,#0b4d2b 0%,#11804a 100%);color:#fff;align-items:center}
+    .hero {   display: grid;   min-height: 68vh;   background: url('indexwall.png') center/cover no-repeat;   color: #fff;   align-items: center;   position: relative; }  .hero::before {   content: "";   position: absolute;   inset: 0;   background: linear-gradient(120deg, rgba(11,77,43,0.85) 0%, rgba(17,128,74,0.75) 100%); } .hero-inner {   position: relative;   z-index: 1; }
     .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;padding:28px 0 54px}
     .hero h1{font-size:clamp(32px,4.2vw,52px);line-height:1.05;margin:0 0 14px}
     .hero p{font-size:clamp(16px,1.6vw,19px);opacity:.95;margin:0 0 26px}
