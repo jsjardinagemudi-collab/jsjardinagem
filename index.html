@@ -12,47 +12,69 @@
   <meta name="theme-color" content="#0b4d2b" />
   <link rel="icon" href="/favicon.ico" />
   <style>
-    :root{--bg:#0c0f0d;--pri:#0b4d2b;--pri-2:#11804a;--txt:#10130f;--paper:#ffffff;--muted:#667085}
+    :root{--pri:#0b4d2b;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--paper:#fff;--bg:#f6f7f6}
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;background:#f6f7f6;color:#1a1f1a}
-    a{text-decoration:none}
-    .wrap{width:min(1100px,92vw);margin-inline:auto}
-    header{position:sticky;top:0;z-index:50;background:#ffffffCC;backdrop-filter:saturate(180%) blur(6px);border-bottom:1px solid #e9eceb}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;gap:10px;align-items:center}
-    .logo {height:42px;width:auto;border-radius:6px;} 
-    .brand strong{letter-spacing:.2px}
-    .links a{color:#1a1f1a;margin-left:18px;font-weight:600;opacity:.9}
-    .hero {   display: grid;   min-height: 68vh;   background: url('indexwall.png') center/cover no-repeat;   color: #fff;   align-items: center;   position: relative; }  .hero::before {   content: "";   position: absolute;   inset: 0;   background: linear-gradient(120deg, rgba(11,77,43,0.85) 0%, rgba(17,128,74,0.75) 100%); } .hero-inner {   position: relative;   z-index: 1; }
-    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;padding:28px 0 54px}
-    .hero h1{font-size:clamp(32px,4.2vw,52px);line-height:1.05;margin:0 0 14px}
-    .hero p{font-size:clamp(16px,1.6vw,19px);opacity:.95;margin:0 0 26px}
-    .cta{display:flex;gap:14px;flex-wrap:wrap}
-    .btn{appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer}
-    .btn-primary{background:#fff;color:#0b4d2b}
-    .btn-ghost{background:rgba(255,255,255,.15);color:#fff}
-    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(16,19,15,.08)}
-    .card h3{margin:0 0 8px;font-size:18px}
-    .card p{margin:0;color:#475467;font-size:15px}
-    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}.card-grid{grid-template-columns:1fr}}
-    section{padding:56px 0}
-    .section-title{font-size:28px;margin:0 0 14px}
-    .list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-    .list li{padding:10px 14px;border:1px solid #e6e6e6;border-radius:12px;background:#fff}
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .ph{aspect-ratio:4/3;border-radius:12px;background:#e9f3ec;display:grid;place-items:center;color:#0b4d2b;font-weight:700}
-    footer{background:#0a1a12;color:#cfe8da;padding:32px 0;margin-top:40px}
-    .foot{display:grid;gap:6px}
-    .badge{display:inline-block;background:#e9f7ef;color:#0b4d2b;border:1px solid #bfe8cf;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}
-    .muted{color:#667085}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1120px,92vw);margin:auto}
+    .topbar{background:var(--pri);color:#fff;text-align:center;padding:6px 10px;font-size:14px}
+    header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #eef0ee;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{height:34px;width:auto}
+    .nav .links{display:flex;gap:20px;font-weight:600}
+    .nav .cta{display:flex;gap:10px}
+    .btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
+
+    /* Hero */
+    .hero{position:relative;display:grid;place-items:center;min-height:74vh;color:#fff;background:url('indexwall.png') center/cover no-repeat}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(11,77,43,.88),rgba(17,128,74,.78))}
+    .hero-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .hero h1{margin:0 0 10px;font-size:clamp(30px,4.4vw,52px);line-height:1.06}
+    .hero p{margin:0 0 20px;font-size:clamp(16px,1.5vw,19px);opacity:.95}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .badge{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:#e8f5ee;color:var(--pri);border:1px solid #cfe9da;font-weight:700}
+    .card{background:#fff;border:1px solid #eef0ee;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+
+    /* Logo cloud */
+    .cloud{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;align-items:center;opacity:.9}
+    .cloud img{max-height:34px;filter:grayscale(100%);opacity:.75}
+    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}.cloud{grid-template-columns:repeat(3,1fr)}}
+
+    section{padding:64px 0}
+    .section-title{font-size:28px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+
+    /* Feature split */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .split .feature{padding:22px}
+    .feature h3{margin:0 0 6px}
+    .feature p{margin:0;color:#475467}
+    @media (max-width:900px){.split{grid-template-columns:1fr}}
+
+    /* Cards grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid .card{padding:20px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+    /* Testimonials */
+    .quote{font-size:18px;line-height:1.5}
+    .quote mark{background:#e8f5ee;color:var(--pri);padding:2px 6px;border-radius:6px}
+
+    /* CTA band */
+    .band{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-radius:18px;padding:28px}
+    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    footer{background:#0a1a12;color:#cfe8da;padding:34px 0;margin-top:40px}
+    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
+    .foot a{color:#cfe8da}
+    @media (max-width:900px){.foot{grid-template-columns:1fr}}
+
+    /* Floating icons */
     .float-social{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:999}
     .float-social a{display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.25)}
     .float-social svg{width:28px;height:28px}
-    .topbar{position:sticky;top:0;background:#0b4d2b;color:#fff;text-align:center;padding:6px 10px;font-size:14px}
-    .social{display:flex;gap:14px;margin-top:10px}
-    .social a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#fff;color:#0b4d2b;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-    .social svg{width:22px;height:22px}
   </style>
 
   <!-- Schema.org LocalBusiness -->
@@ -62,22 +84,12 @@
     "@type": "GardenService",
     "name": "JS JARDINAGEM LTDA",
     "url": "https://jardinagemudi.com.br",
-    "logo": "https://jardinagemudi.com.br/og-js.jpg",
+    "logo": "https://jardinagemudi.com.br/logo.jpg",
     "telephone": "+55 34 99214-2960",
     "email": "jsjardinagemudi@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. José Rezende Costa, 323, apto 804, Bairro Saraiva",
-      "addressLocality": "Uberlândia",
-      "addressRegion": "MG",
-      "postalCode": "38408-010",
-      "addressCountry": "BR"
-    },
+    "address": {"@type": "PostalAddress","addressLocality": "Uberlândia","addressRegion": "MG","addressCountry": "BR"},
     "areaServed": "Uberlândia e região",
-    "sameAs": [
-      "https://www.instagram.com/jardinagemudi",
-      "https://wa.me/5534992142960"
-    ]
+    "sameAs": ["https://www.instagram.com/jardinagemudi","https://wa.me/5534992142960"]
   }
   </script>
 </head>
@@ -85,105 +97,163 @@
   <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#">
-        <img class="logo" src="logo.jpg" alt="JS Jardinagem & Manutenção" />
-        <strong>JS JARDINAGEM</strong>
-      </a>
+      <a class="brand" href="#"><img src="logo.jpg" alt="JS Jardinagem" /><strong>JS JARDINAGEM</strong></a>
       <nav class="links">
         <a href="#servicos">Serviços</a>
-        <a href="#trabalhos">Trabalhos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#clientes">Clientes</a>
         <a href="#contato">Contato</a>
       </nav>
+      <div class="cta">
+        <a class="btn" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">WhatsApp</a>
+      </div>
     </div>
   </header>
 
-  <div class="hero">
-    <div class="wrap">
-      <div class="hero-inner">
-        <div>
-          <h1>Paisagismo e manutenção para condomínios</h1>
-          <p>Podas (inclusive em altura), revitalização de gramados, limpeza e cuidado contínuo das áreas verdes. Atuamos com foco em segurança, organização e resultado.</p>
-          <div class="cta">
-            <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">Falar no WhatsApp</a>
-            <a class="btn btn-ghost" href="#servicos">Ver serviços</a>
-          </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <h1>Manutenção de Áreas Verdes para Condomínios</h1>
+        <p>Equipe especializada em <strong>podas (inclusive em altura)</strong>, revitalização de gramados, roçadas e limpeza das áreas comuns. Atendemos com foco em segurança, organização e resultado.</p>
+        <div class="badges">
+          <span class="badge">Atendimento rápido</span>
+          <span class="badge">Equipe com EPI</span>
+          <span class="badge">Orçamento sem custo</span>
         </div>
-        <div>
-          <div class="card-grid">
-            <div class="card"><span class="badge">Condomínio Spazio Único</span><h3>Revitalização de campo</h3><p>Aeração, correção de pH, replantio e top dressing.</p></div>
-            <div class="card"><span class="badge">Podas em Altura</span><h3>Equipe com EPI</h3><p>Isolamento de área, corte de palhas secas e segurança total.</p></div>
-            <div class="card"><span class="badge">Manutenção</span><h3>Rotinas semanais</h3><p>Roçadas, capina, bordas e limpeza de canteiros.</p></div>
-          </div>
+        <div style="margin-top:16px" class="cta">
+          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">Falar no WhatsApp</a>
+          <a class="btn" href="#servicos">Ver serviços</a>
         </div>
       </div>
+      <div class="card" style="padding:20px">
+        <h3 style="margin:0 0 6px">Rotina sugerida</h3>
+        <p class="muted" style="margin:0 0 12px">Exemplo de plano mensal para condomínios</p>
+        <ul style="margin:0;padding-left:18px;line-height:1.7">
+          <li>Roçadas e bordas semanais</li>
+          <li>Capina e limpeza de canteiros</li>
+          <li>Podas de manutenção e retirada de resíduos</li>
+          <li>Relatórios com fotos</li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
+  <!-- LOGO CLOUD / CLIENTES -->
+  <section id="clientes">
+    <div class="wrap">
+      <p class="muted" style="margin:0 0 10px">Alguns locais atendidos e experiências da equipe</p>
+      <div class="cloud">
+        <img src="logo.jpg" alt="JS" />
+        <img src="logo.jpg" alt="JS" />
+        <img src="logo.jpg" alt="JS" />
+        <img src="logo.jpg" alt="JS" />
+        <img src="logo.jpg" alt="JS" />
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE SPLIT -->
   <section id="servicos">
     <div class="wrap">
-      <h2 class="section-title">Serviços</h2>
-      <ul class="list">
-        <li>Manutenção contínua de áreas verdes (condomínios e empresas)</li>
-        <li>Podas de árvores e palmeiras (inclui poda em altura com EPI)</li>
-        <li>Revitalização de gramados (aeração, top dressing, replantio)</li>
-        <li>Capina manual e química sob avaliação técnica</li>
-        <li>Limpeza, varrição e organização das áreas comuns</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="trabalhos" style="background:#f2f5f3">
-    <div class="wrap">
-      <h2 class="section-title">Trabalhos recentes</h2>
-      <div class="gallery">
-        <div class="ph">Foto 1</div>
-        <div class="ph">Foto 2</div>
-        <div class="ph">Foto 3</div>
+      <h2 class="section-title">Serviços que entregam resultado</h2>
+      <p class="muted">Cuidamos do verde para valorizar o patrimônio e melhorar a experiência dos moradores.</p>
+      <div class="split">
+        <div class="card feature">
+          <h3>Manutenção contínua</h3>
+          <p>Rotinas semanais de roçada, capina, bordas e limpeza das áreas comuns. Organização e constância.</p>
+        </div>
+        <div class="card feature">
+          <h3>Podas e remoções</h3>
+          <p>Poda de árvores e palmeiras, inclusive em altura, com EPI e isolamento de área.</p>
+        </div>
+        <div class="card feature">
+          <h3>Revitalização de gramados</h3>
+          <p>Aeração, correção de pH, replantio e top dressing para recuperação de campos e jardins.</p>
+        </div>
+        <div class="card feature">
+          <h3>Relatórios com fotos</h3>
+          <p>Registro das atividades, antes e depois, para acompanhamento do síndico/gestão.</p>
+        </div>
       </div>
-      <p class="muted" style="margin-top:10px">Substitua os blocos acima por fotos reais dos serviços (arraste para a raiz do repositório e referencie como <code>/img/nome.jpg</code>).</p>
     </div>
   </section>
 
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" style="background:#f2f5f3">
+    <div class="wrap">
+      <h2 class="section-title">Como funciona</h2>
+      <div class="grid">
+        <div class="card"><h3>1) Visita técnica</h3><p>Levantamento das áreas e necessidades do condomínio.</p></div>
+        <div class="card"><h3>2) Proposta clara</h3><p>Plano de rotina, escopo e frequência conforme a demanda.</p></div>
+        <div class="card"><h3>3) Execução segura</h3><p>Equipe com EPI, isolamento de área e descarte correto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS / PROVA SOCIAL -->
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">O que nossos clientes dizem</h2>
+      <div class="card" style="padding:22px">
+        <p class="quote">“A JS transformou o gramado do nosso campo. <mark>Em poucas semanas</mark> vimos melhora real. Equipe organizada e prestativa.”</p>
+        <p class="muted" style="margin:8px 0 0">Síndico — Condomínio em Uberlândia</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section>
+    <div class="wrap band">
+      <div style="display:grid;gap:8px">
+        <h3 style="margin:0">Vamos cuidar das áreas verdes do seu condomínio?</h3>
+        <p style="margin:0;opacity:.95">Fale com a JS pelo WhatsApp e receba um orçamento sem custo.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">Pedir orçamento</a>
+          <a class="btn" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Ver Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
   <section id="contato">
     <div class="wrap">
       <h2 class="section-title">Contato</h2>
-      <p>
-        <strong>WhatsApp:</strong> 
-        <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" style="vertical-align:middle;margin-right:6px"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
-          (34) 99214-2960
-        </a>
-      </p>
-      <p>
-        <strong>Instagram:</strong> 
-        <a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" style="vertical-align:middle;margin-right:6px"><path fill="#E1306C" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190c-41.6 0-75.1-33.5-75.1-75.1s33.5-75.1 75.1-75.1 75.1 33.5 75.1 75.1-33.5 75.1-75.1 75.1z"/></svg>
-          @jardinagemudi
-        </a>
-      </p>
-      <div class="social">
-        <a href="https://wa.me/5534992142960" title="WhatsApp" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/jardinagemudi/" title="Instagram Direct" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190c-41.6 0-75.1-33.5-75.1-75.1s33.5-75.1 75.1-75.1 75.1 33.5 75.1 75.1-33.5 75.1-75.1 75.1z"/></svg>
-        </a>
-      </div>
-      <p><strong>Atendimento:</strong> Uberlândia e região</p>
-      <p class="muted">CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA</p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">(34) 99214-2960</a></p>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">@jardinagemudi</a></p>
+      <p class="muted">CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA • Uberlândia e região</p>
     </div>
   </section>
 
   <footer>
     <div class="wrap foot">
-      <div>© <span id="y"></span> JS Jardinagem. Todos os direitos reservados.</div>
-      <div class="muted">Feito com cuidado e foco em resultado.</div>
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p class="muted">Manutenção, podas e revitalização de gramados para condomínios.</p>
+      </div>
+      <div>
+        <p><a href="#servicos">Serviços</a></p>
+        <p><a href="#como-funciona">Como funciona</a></p>
+        <p><a href="#clientes">Clientes</a></p>
+      </div>
+      <div>
+        <p><a href="https://wa.me/5534992142960">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
     </div>
   </footer>
 
   <!-- Ícones flutuantes -->
   <div class="float-social">
-    <a href="https://wa.me/5534992142960" title="WhatsApp" target="_blank" rel="noopener">
+    <a href="https://wa.me/5534992142960" title="Fale pelo WhatsApp" aria-label="Fale pelo WhatsApp" target="_blank" rel="noopener">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
     </a>
-    <a href="https://www.instagram.com/jardin
+    <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75zm146-194c0 14.9-12.1 27-27 27s-27-12.1-27-27 12.1-27 27-27 27 12.1 27 27zM398.8 80C370.7 51.9 333.2 36 294.4 36H153.6C114.8 36 77.3 51.9 49.2 80 21.1 108.1 5.2 145.6 5.2 184.4v140.8C5.2 364.4 21.1 401.9 49.2 430c28.1 28.1 65.6 44 104.4 44h140.8c38.8 0 76.3-15.9 104.4-44 28.1-28.1 44-65.6 44-104.4V184.4c0-38.8-15.9-76.3-44-104.4zM224 338c-63 0-114-51-114-114S161 110 224 110s114 51 114 114-51 114-114 114z"/></svg>
+    </a>
+  </div>
+
+</body>
+</html>
