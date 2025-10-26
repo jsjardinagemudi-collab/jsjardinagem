@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
   <title>JS Jardinagem — Paisagismo, Podas e Manutenção em Uberlândia</title>
   <meta name="description" content="JS Jardinagem: paisagismo, podas (inclusive em altura), revitalização de gramados e manutenção em jardins planos especiais para condomínios e empresas em Uberlândia e região." />
   <meta property="og:title" content="JS Jardinagem — Paisagismo e Manutenção" />
@@ -12,6 +12,28 @@
   <meta name="theme-color" content="#114084b" />
   <link rel="icon" href="/favicon.ico" />
   <style>
+    :root{--pri:#114084;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--paper:#fff;--bg:#f6f7f6}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+a{text-decoration:none;color:inherit}
+.wrap{width:min(1120px,92vw);margin:auto}
+.topbar{background:var(--pri);color:#fff;text-align:center;padding:6px 10px;font-size:14px}
+header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #eef0ee;z-index:50}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;gap:14px;align-items:center}
+.brand img{height:72px;width:auto;
+  border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08);}
+.brand strong{ font-size:30pxfont-weight:900;
+  letter-spacing:1.2px;color:#114084; text-transform:uppercase;}
+.nav .links{display:flex;gap:22px;font-weight:700}
+.nav .links a{color:#0f1411}
+.nav .links a:hover{color:var(--pri)}
+.nav .cta{display:flex;gap:10px}
+.btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
+@media (max-width:900px){
+  .brand img{height:58px}
+  .brand strong{font-size:24px}}
     :root{--pri:#114084;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--paper:#fff;--bg:#f6f7f6}
     *{box-sizing:border-box}
     {display:flex;align-items:center;justify-content:space-between;padding: 10px 40px;background-color: #114084;color:#fff;box-shadow: 0 2px 8px rgba(0,0,0,0.15)}
