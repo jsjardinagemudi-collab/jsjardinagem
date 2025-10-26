@@ -26,7 +26,32 @@
     .nav .cta{display:flex;gap:10px}
     .btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
     .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
-
+gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+.gallery figure {
+  width: 180px;
+  text-align: center;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.gallery figcaption {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #555;
+}
     /* Hero */
     .hero{position:relative;display:grid;place-items:center;min-height:74vh;color:#fff;background:url('jardins.jpg') center/cover no-repeat}
     .hero h1, .hero p { text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
