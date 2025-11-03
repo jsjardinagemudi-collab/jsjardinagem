@@ -57,9 +57,14 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   border: 1px solid #e5e5e5;}
     /* Aumenta o espaço abaixo dos botões da área HERO */
+}
 .hero .cta {
+  display: flex;
+  gap: 16px;          /* aumenta o espaço entre os botões */
+  flex-wrap: wrap;    /* garante boa aparência em telas menores */
   margin-top: 20px;
-  margin-bottom: 40px; /* cria espaço antes do próximo bloco */
+  margin-bottom: 40px;
+  justify-content: flex-start; /* ou center se quiser centralizar */
 }
 
 @media (max-width:900px){
