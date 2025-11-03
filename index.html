@@ -12,6 +12,64 @@
   <meta name="theme-color" content="#114084b" />
   <link rel="icon" href="/favicon.ico" />
   <style>
+    /* ===== Ajustes para celular (telas até 600px) ===== */
+@media (max-width: 600px) {
+  /* Hero */
+  .hero {
+    min-height: 90vh; /* ocupa mais altura da tela */
+    padding: 40px 20px;
+    background-position: center center;
+  }
+  .hero h1 {
+    font-size: 26px; /* título legível no celular */
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* Botões */
+  .hero .cta {
+    flex-direction: column; /* botões um embaixo do outro */
+    align-items: stretch;
+    gap: 14px; /* distância entre botões */
+    margin-bottom: 50px;
+  }
+  .hero .btn,
+  .hero .btn-primary {
+    font-size: 15px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  /* Cards de planos */
+  .hero .card {
+    padding: 18px;
+    font-size: 15px;
+    border-radius: 14px;
+  }
+
+  /* Texto geral */
+  body {
+    font-size: 15px;
+  }
+
+  /* Grid de clientes / fotos */
+  .cloud {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .cloud img {
+    max-height: 90px;
+  }
+
+  /* Espaçamento geral */
+  section {
+    padding: 40px 0;
+  }
+}
+
     :root{--pri:#114084;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--paper:#fff;--bg:#f6f7f6}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
