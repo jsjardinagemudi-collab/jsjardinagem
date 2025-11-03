@@ -56,6 +56,18 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
     .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .badge{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:#e8f5ee;color:var(--pri);border:1px solid #cfe9da;font-weight:700}
     .card{background:#fff;border:1px solid #eef0ee;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45); /* controla a escuridão */
+  z-index: 0;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1; /* garante que o texto fique acima da camada escura */
+}
+
 
     /* Logo cloud */
     .cloud{display: grid;
