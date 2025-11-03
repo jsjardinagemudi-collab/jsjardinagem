@@ -60,12 +60,17 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.45); /* controla a escuridão */
+  /* Gradiente do azul institucional para preto translúcido */
+  background: linear-gradient(
+    120deg,
+    rgba(17,64,132,0.85) 0%,    /* azul da marca */
+    rgba(0,0,0,0.55) 100%       /* escurece no canto oposto */
+  );
   z-index: 0;
 }
 .hero-inner {
   position: relative;
-  z-index: 1; /* garante que o texto fique acima da camada escura */
+  z-index: 1; /* texto acima da camada escura */
 }
 
 
@@ -193,10 +198,10 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
      target="_blank" rel="noopener">
      Falar no WhatsApp
   </a>
-  <a class="btn"
+  <a class="btn btn-primary"
      href="https://www.instagram.com/jardinagemudi/"
      target="_blank" rel="noopener">
-     Ver Instagram
+     Página no Instagram
   </a>
 </div>
 
