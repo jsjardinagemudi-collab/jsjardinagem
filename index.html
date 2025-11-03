@@ -48,6 +48,15 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
     .btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
     .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
     /* Hero */
+    /* Garante que os cards dentro do HERO fiquem sobre a sombra escura */
+.hero .card {
+  position: relative;
+  z-index: 2;            /* Fica acima do fundo escurecido */
+  background: #ffffffee; /* Branco sólido com leve transparência */
+  color: #0f1411;        /* Texto escuro */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border: 1px solid #e5e5e5;
+}
     .hero{position:relative;display:grid;place-items:center;min-height:74vh;color:#fff;background:url('jardins.jpg') center/cover no-repeat}
     .hero h1, .hero p { text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
     .hero-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
