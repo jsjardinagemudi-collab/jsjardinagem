@@ -2,234 +2,402 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
+
   <title>JS Jardinagem — Paisagismo, Podas e Manutenção em Uberlândia</title>
-  <meta name="description" content="JS Jardinagem: paisagismo, podas (inclusive em altura), revitalização de gramados e manutenção em jardins planos especiais para condomínios e empresas em Uberlândia e região." />
+  <meta name="description" content="JS Jardinagem: paisagismo, podas (inclusive em altura), revitalização de gramados e manutenção em jardins, com planos especiais para condomínios e empresas em Uberlândia e região." />
+
   <meta property="og:title" content="JS Jardinagem — Paisagismo e Manutenção" />
-  <meta property="og:description" content="Paisagismo, podas em altura, roçadas e revitalização de gramados e Jardins. Atendimento para condomínios e empresas." />
+  <meta property="og:description" content="Paisagismo, podas em altura, roçadas e revitalização de gramados e jardins. Atendimento para condomínios e empresas." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/og-js.jpg" />
-  <meta name="theme-color" content="#114084b" />
+
   <link rel="icon" href="/favicon.ico" />
+
   <style>
-    /* ===== Ajustes para celular (telas até 600px) ===== */
-@media (max-width: 600px) {
-  /* Hero */
-  .hero {
-    min-height: 90vh; /* ocupa mais altura da tela */
-    padding: 40px 20px;
-    background-position: center center;
-  }
-  .hero h1 {
-    font-size: 26px; /* título legível no celular */
-    line-height: 1.2;
-  }
-  .hero p {
-    font-size: 15px;
-    line-height: 1.5;
-  }
+    :root {
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f6f7f6;
+    }
 
-  /* Botões */
- .hero .cta {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  margin-bottom: 80px; /* antes era 40px, agora está com mais espaço */
-  justify-content: flex-start; /* use center se quiser centralizar */
-  }
-  .hero .btn,
-  .hero .btn-primary {
-    font-size: 15px;
-    padding: 13px;
-    text-align: center;
-  }
-
-  /* Cards de planos */
-  .hero .card {
-    padding: 18px;
-    font-size: 15px;
-    border-radius: 13px;
-  }
-
-  /* Texto geral */
-  body {
-    font-size: 15px;
-  }
-
-  /* Grid de clientes / fotos */
-  .cloud {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .cloud img {
-    max-height: 90px;
-  }
-
-  /* Espaçamento geral */
-  section {
-    padding: 40px 0;
-  }
-}
-
-    :root{--pri:#114084;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--paper:#fff;--bg:#f6f7f6}
-*{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
-a{text-decoration:none;color:inherit}
-.wrap{width:min(1120px,92vw);margin:auto}
-.topbar{background:var(--pri);color:#fff;text-align:center;padding:6px 10px;font-size:14px}
-header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #eef0ee;z-index:50}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand{display:flex;gap:14px;align-items:center}
-.brand img{height: 72px;width:auto;border-radius:8px;box-shadow:02px8pxrgba(0,0,0,0.08)}
-.brand strong{ font-size: 22px;font-weight: 700;color: #114084;letter-spacing:0.5px;font-family:'Inter','Segoe UI',Roboto,sans-serif;}
-.nav .links{display:flex;gap:22px;font-weight:700}
-.nav .links a{color:#0f1411}
-.nav .links a:hover{color:var(--pri)}
-.nav .cta{display:flex;gap:10px}
-.btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
-.btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
-@media (max-width:900px){
-  .brand img{height:58px}
-  .brand strong{font-size:24px}}
-    :root{--pri:#114084;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--paper:#fff;--bg:#f6f7f6}
     *{box-sizing:border-box}
-    {display:flex;align-items:center;justify-content:space-between;padding: 10px 40px;background-color: #114084;color:#fff;box-shadow: 0 2px 8px rgba(0,0,0,0.15)}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    }
+
     a{text-decoration:none;color:inherit}
+
     .wrap{width:min(1120px,92vw);margin:auto}
-    .topbar{background:var(--pri);color:#fff;text-align:center;padding:6px 10px;font-size:14px}
-    header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #eef0ee;z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{height:34px;width:auto}
-    .nav .links{display:flex;gap:20px;font-weight:600}
-    .nav .cta{display:flex;gap:10px}
-    .btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
-    /* Hero */
-    /* Garante que os cards dentro do HERO fiquem sobre a sombra escura */
-.hero .card {
-  position: relative;
-  z-index: 2;            /* Fica acima do fundo escurecido */
-  background: #ffffffee; /* Branco sólido com leve transparência */
-  color: #0f1411;        /* Texto escuro */
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  border: 1px solid #e5e5e5;}
-    /* Aumenta o espaço abaixo dos botões da área HERO */
-}
-.hero .cta {
-  display: flex;
-  gap: 16px;          /* aumenta o espaço entre os botões */
-  flex-wrap: wrap;    /* garante boa aparência em telas menores */
-  margin-top: 30px;
-  margin-bottom: 50px;
-  justify-content: flex-start; /* ou center se quiser centralizar */
-}
 
-@media (max-width:900px){
-  .hero .cta {
-    margin-bottom: 70px; /* um pouco mais de espaço no celular */
-  }
-}
+    .topbar{
+      background:var(--pri);
+      color:#fff;
+      text-align:center;
+      padding:6px 10px;
+      font-size:14px;
+    }
 
-    .hero{position:relative;display:grid;place-items:center;min-height:74vh;color:#fff;background:url('jardins.jpg') center/cover no-repeat}
-    .hero h1, .hero p { text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
-    .hero-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
-    .hero h1{margin:0 0 10px;font-size:clamp(30px,4.4vw,52px);line-height:1.06}
-    .hero p{margin:0 0 20px;font-size:clamp(16px,1.5vw,19px);opacity:.95}
-    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .badge{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:#e8f5ee;color:var(--pri);border:1px solid #cfe9da;font-weight:700}
-    .card{background:#fff;border:1px solid #eef0ee;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
-    .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* Gradiente do azul institucional para preto translúcido */
-  background: linear-gradient(
-    120deg,
-    rgba(17,64,132,0.85) 0%,    /* azul da marca */
-    rgba(0,0,0,0.55) 100%       /* escurece no canto oposto */
-  );
-  z-index: 0;
-}
-.hero-inner {
-  position: relative;
-  z-index: 1; /* texto acima da camada escura */
-}
+    header{
+      position:sticky;
+      top:0;
+      background:#ffffffcc;
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+      z-index:50;
+    }
 
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+    }
 
-    /* Logo cloud */
-    .cloud{display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));gap: 20px; justify-items:center;align-items: center;}
-    .cloud img{width: 100%;
-  height: 160px;object-fit: cover; order-radius: 12px;filter: none;opacity: 1;box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;}
-    @media (max-width:900px){.hero-inner{grid-template-columns:1fr}.cloud{grid-template-columns:repeat(3,1fr)}}
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .brand img{
+      height:72px;
+      width:auto;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .brand strong{
+      font-size:22px;
+      font-weight:700;
+      color:#114084;
+      letter-spacing:0.5px;
+      text-transform:uppercase;
+      font-family:'Inter','Segoe UI',Roboto,sans-serif;
+    }
+
+    .nav .links{
+      display:flex;
+      gap:22px;
+      font-weight:700;
+    }
+
+    .nav .links a{color:#0f1411}
+    .nav .links a:hover{color:var(--pri)}
+
+    .nav .cta{
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:10px 14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:all .25s ease;
+    }
+
+    .btn:hover{
+      background:#f3f5f7;
+    }
+
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      display:grid;
+      place-items:center;
+      min-height:74vh;
+      color:#fff;
+      background:url('jardins.jpg') center/cover no-repeat;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        120deg,
+        rgba(17,64,132,0.85) 0%,
+        rgba(0,0,0,0.55) 100%
+      );
+      z-index:0;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:36px;
+      align-items:center;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,4.4vw,52px);
+      line-height:1.06;
+      text-shadow:0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .hero p{
+      margin:0 0 20px;
+      font-size:clamp(16px,1.5vw,19px);
+      line-height:1.5;
+      opacity:.95;
+      text-shadow:0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#e8f5ee;
+      color:var(--pri);
+      border:1px solid #cfe9da;
+      font-weight:700;
+    }
+
+    .hero .card{
+      position:relative;
+      z-index:2;
+      background:#ffffffee;
+      color:#0f1411;
+      border:1px solid #e5e5e5;
+      border-radius:16px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .hero .cta{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:30px;
+      margin-bottom:50px;
+      justify-content:flex-start;
+    }
+
+    /* LOGO CLOUD */
+    .cloud{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      justify-items:center;
+      align-items:center;
+    }
+
+    .cloud img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:12px;
+      filter:none;
+      opacity:1;
+      box-shadow:0 4px 10px rgba(0,0,0,0.12);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cloud img:hover{
+      transform:scale(1.03);
+      box-shadow:0 6px 16px rgba(0,0,0,0.18);
+    }
 
     section{padding:64px 0}
-    .section-title{font-size:28px;margin:0 0 12px}
+
+    .section-title{
+      font-size:28px;
+      margin:0 0 12px;
+    }
+
     .muted{color:var(--muted)}
 
     /* Feature split */
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+    }
+
     .split .feature{padding:22px}
     .feature h3{margin:0 0 6px}
     .feature p{margin:0;color:#475467}
-    @media (max-width:900px){.split{grid-template-columns:1fr}}
 
     /* Cards grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
     .grid .card{padding:20px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
 
     /* Testimonials */
     .quote{font-size:18px;line-height:1.5}
-    .quote mark{background:#e8f5ee;color:var(--pri);padding:2px 6px;border-radius:6px}
+    .quote mark{
+      background:#e8f5ee;
+      color:var(--pri);
+      padding:2px 6px;
+      border-radius:6px;
+    }
 
     /* CTA band */
-    .band{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-radius:18px;padding:28px}
-    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:18px;
+      padding:28px;
+    }
 
-    footer{background:#0a1a12;color:#cfe8da;padding:34px 0;margin-top:40px}
-    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
+    .band .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:34px 0;
+      margin-top:40px;
+    }
+
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+
     .foot a{color:#cfe8da}
-    @media (max-width:900px){.foot{grid-template-columns:1fr}}
 
     /* Floating icons */
-    .float-social{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:999}
-    .float-social a{display:flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.25)}
+    .float-social{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      z-index:999;
+    }
+
+    .float-social a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 6px 14px rgba(0,0,0,0.25);
+    }
+
     .float-social svg{width:28px;height:28px}
-    /* ===== Exemplos de condomínios (cards com foto + preço) ===== */
-.examples { background:#f7f9f8; }
-.examples .grid { grid-template-columns: repeat(3, 1fr); gap:22px; }
-.example-card { overflow:hidden; padding:0; }
-.example-card figure { margin:0; position:relative; height:180px; }
-.example-card img {
-  width:100%; height:100%; object-fit:cover;
-  display:block; filter:none;
-}
-.example-badge {
-  position:absolute; left:12px; top:12px;
-  background:#ffffffdd; color:#114084; font-weight:800;
-  padding:6px 10px; border-radius:10px; font-size:14px;
-  border:1px solid #e6eaeb;
-}
-.example-body { padding:18px 18px 20px; }
-.example-body h3 { margin:0 0 6px; font-size:18px; }
-.example-list { margin:10px 0 12px; padding-left:18px; line-height:1.6; color:#475467; }
-.example-price {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px 12px; background:#fff; border:1px solid #e7ece9; border-radius:12px;
-  font-weight:800; color:#114084; margin-bottom:12px;
-}
-.examples .btn { width:100%; text-align:center; }
 
-@media (max-width:900px){
-  .examples .grid { grid-template-columns:1fr; }
-  .example-card figure { height:200px; }
-}
+    /* Exemplos de condomínios */
+    .examples{background:#f7f9f8;}
+    .examples .grid{grid-template-columns:repeat(3,1fr);gap:22px;}
+    .example-card{overflow:hidden;padding:0;}
+    .example-card figure{margin:0;position:relative;height:180px;}
+    .example-card img{
+      width:100%;height:100%;object-fit:cover;display:block;filter:none;
+    }
+    .example-badge{
+      position:absolute;left:12px;top:12px;
+      background:#ffffffdd;color:#114084;font-weight:800;
+      padding:6px 10px;border-radius:10px;font-size:14px;
+      border:1px solid #e6eaeb;
+    }
+    .example-body{padding:18px 18px 20px;}
+    .example-body h3{margin:0 0 6px;font-size:18px;}
+    .example-list{margin:10px 0 12px;padding-left:18px;line-height:1.6;color:#475467;}
+    .example-price{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 12px;background:#fff;border:1px solid #e7ece9;border-radius:12px;
+      font-weight:800;color:#114084;margin-bottom:12px;
+    }
+    .examples .btn{width:100%;text-align:center;}
 
+    /* ========= RESPONSIVO ========= */
+
+    @media (max-width:900px){
+      .brand img{height:58px;}
+      .brand strong{font-size:20px;}
+      .hero-inner{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr;}
+      .split{grid-template-columns:1fr;}
+      .foot{grid-template-columns:1fr;}
+      .examples .grid{grid-template-columns:1fr;}
+      .cloud{grid-template-columns:repeat(3,1fr);}
+      .hero .cta{margin-bottom:70px;}
+    }
+
+    /* Telas pequenas (celular) */
+    @media (max-width:600px){
+      .hero{
+        min-height:90vh;
+        padding:40px 20px;
+        background-position:center center;
+      }
+      .hero h1{
+        font-size:26px;
+        line-height:1.2;
+      }
+      .hero p{
+        font-size:15px;
+        line-height:1.5;
+      }
+      .hero .cta{
+        flex-direction:column;
+        align-items:stretch;
+        gap:14px;
+        margin-bottom:60px;
+      }
+      .hero .btn,
+      .hero .btn-primary{
+        font-size:15px;
+        padding:13px;
+        text-align:center;
+      }
+      .hero .card{
+        padding:18px;
+        font-size:15px;
+        border-radius:13px;
+      }
+      body{font-size:15px;}
+      .cloud{grid-template-columns:repeat(2,1fr);gap:12px;}
+      .cloud img{max-height:90px;}
+      section{padding:40px 0;}
+    }
   </style>
 
   <!-- Schema.org LocalBusiness -->
@@ -242,17 +410,29 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
     "logo": "https://jardinagemudi.com.br/logo.jpg",
     "telephone": "+55 34 99214-2960",
     "email": "jsjardinagemudi@gmail.com",
-    "address": {"@type": "PostalAddress","addressLocality": "Uberlândia","addressRegion": "MG","addressCountry": "BR"},
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Uberlândia",
+      "addressRegion": "MG",
+      "addressCountry": "BR"
+    },
     "areaServed": "Uberlândia e região",
-    "sameAs": ["https://www.instagram.com/jardinagemudi","https://wa.me/5534992142960"]
+    "sameAs": [
+      "https://www.instagram.com/jardinagemudi",
+      "https://wa.me/5534992142960"
+    ]
   }
   </script>
 </head>
 <body>
   <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
+
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#"><img src="logo.jpg" alt="JS Jardinagem" /><strong>JS JARDINAGEM</strong></a>
+      <a class="brand" href="#">
+        <img src="logo.jpg" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
       <nav class="links">
         <a href="#servicos">Serviços</a>
         <a href="#como-funciona">Como funciona</a>
@@ -261,7 +441,7 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
       </nav>
       <div class="cta">
         <a class="btn" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">WhatsApp</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
   </header>
@@ -271,44 +451,44 @@ header{position:sticky;top:0;background:#ffffffcc;backdrop-filter:saturate(180%)
     <div class="wrap hero-inner">
       <div>
         <h1>Jardinagem e Manutenção para seu Condomínio.</h1>
-        <p>Manutenção inteligente e cuidado constante com o verde.
-Entregamos resultado visível e valorizamos o patrimônio do condomínio.<strong></p>
-        <div class="badges">
-  <span class="badge">Comercial ou Residencial </span>
-  <span class="badge">Serviço personalizado</span>
-</div>
-        <div style="margin-top:16px" class="cta">
-  <a class="btn btn-primary"
-     href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento."
-     target="_blank" rel="noopener">
-     Falar no WhatsApp
-  </a>
-  <a class="btn btn-primary"
-     href="https://www.instagram.com/jardinagemudi/"
-     target="_blank" rel="noopener">
-     Página no Instagram
-  </a>
-</div>
+        <p>Manutenção inteligente e cuidado constante com o verde. Entregamos resultado visível e valorizamos o patrimônio do condomínio.</p>
 
+        <div class="badges">
+          <span class="badge">Comercial ou Residencial</span>
+          <span class="badge">Serviço personalizado</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn btn-primary"
+             href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento."
+             target="_blank" rel="noopener">
+             Falar no WhatsApp
+          </a>
+          <a class="btn btn-primary"
+             href="https://www.instagram.com/jardinagemudi/"
+             target="_blank" rel="noopener">
+             Página no Instagram
+          </a>
         </div>
       </div>
+
       <div class="card" style="padding:24px">
-  <h3 style="margin:0 0 8px;font-size:20px;color:#114084">Planos econômicos para seu Jardim.</h3>
-  <p style="margin:0 0 12px;color:#475467">
-    Atendemos condomínios de todos os portes, com rotinas planejadas conforme o espaço e a necessidade de cada cliente.
-  </p>
-  <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
-    <li><strong>Plano Económico </strong> – Primeira visita estima quantidade de dias necessários para manter padrão JS de matutenção e acompanhamento das plantas. <strong>Planos a partir de R$180 mensal. </strong></li>
-    <li><strong>Plano Fixo</strong> – Jardineiro recorrente no seu condominio, a partir de R$1800 mensal. </li>
-    <li><strong>Projeto Pós-Landscape</strong> – Elaboração da area verde a partir do zero, ou novo paisagismo.</li>
-  </ul>
-  <p style="margin-top:14px;color:#475467">
-    Será um prazer conhecer seu condominio! Diga um oi clicando abaixo. Vamos nos conhecer e buscar a melhor forma de trabalho.
-  </p>
-  <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20saber%20mais%20sobre%20os%20planos%20mensais." style="margin-top:10px;display:inline-block">
-   Chame no WhatsApp por aqui!
-  </a>
-</div>
+        <h3 style="margin:0 0 8px;font-size:20px;color:#114084">Planos econômicos para seu Jardim.</h3>
+        <p style="margin:0 0 12px;color:#475467">
+          Atendemos condomínios de todos os portes, com rotinas planejadas conforme o espaço e a necessidade de cada cliente.
+        </p>
+        <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
+          <li><strong>Plano Econômico</strong> – Primeira visita estima quantidade de dias necessários para manter padrão JS de manutenção e acompanhamento das plantas. <strong>Planos a partir de R$180 mensais.</strong></li>
+          <li><strong>Plano Fixo</strong> – Jardineiro recorrente no seu condomínio, a partir de R$1.800 mensais.</li>
+          <li><strong>Projeto Pós-Landscape</strong> – Elaboração da área verde a partir do zero, ou novo paisagismo.</li>
+        </ul>
+        <p style="margin-top:14px;color:#475467">
+          Será um prazer conhecer seu condomínio! Diga um oi clicando abaixo. Vamos nos conhecer e buscar a melhor forma de trabalho.
+        </p>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20saber%20mais%20sobre%20os%20planos%20mensais." style="margin-top:10px;display:inline-block">
+          Chame no WhatsApp por aqui!
+        </a>
+      </div>
     </div>
   </section>
 
@@ -317,10 +497,10 @@ Entregamos resultado visível e valorizamos o patrimônio do condomínio.<strong
     <div class="wrap">
       <p class="muted" style="margin:0 0 10px">Alguns locais atendidos e experiências da equipe</p>
       <div class="cloud">
-        <img src="univercitta.jpg" alt="JS" />
-        <img src="washitonia.jpg" alt="JS" />
-        <img src="arbusto.jpg" alt="JS" />
-        <img src="condominio_qualquer tamanho.jpg" alt="JS" />
+        <img src="univercitta.jpg" alt="Condomínio atendido JS" />
+        <img src="washitonia.jpg" alt="Poda em altura" />
+        <img src="arbusto.jpg" alt="Manutenção de jardim" />
+        <img src="condominio_qualquer tamanho.jpg" alt="Condomínio JS" />
       </div>
     </div>
   </section>
@@ -329,7 +509,7 @@ Entregamos resultado visível e valorizamos o patrimônio do condomínio.<strong
   <section id="servicos">
     <div class="wrap">
       <h2 class="section-title">Serviços que entregam resultado</h2>
-      <p class="muted">Cuidados pelo jardim focado em valorizar o patrimônio e melhorar a experiência dos moradores.</p>
+      <p class="muted">Cuidados com o jardim focados em valorizar o patrimônio e melhorar a experiência dos moradores.</p>
       <div class="split">
         <div class="card feature">
           <h3>Manutenção contínua</h3>
@@ -337,15 +517,15 @@ Entregamos resultado visível e valorizamos o patrimônio do condomínio.<strong
         </div>
         <div class="card feature">
           <h3>Podas e remoções</h3>
-          <p>Poda de árvores e palmeiras, inclusive em altura,segurança para os moradores e isolamento de área.</p>
+          <p>Poda de árvores e palmeiras, inclusive em altura, com segurança para os moradores e isolamento de área.</p>
         </div>
         <div class="card feature">
-          <h3>Revitalização de gramados e Jardins</h3>
+          <h3>Revitalização de gramados e jardins</h3>
           <p>Aeração, correção de pH, fertilização, replantio e recuperação de campos e jardins.</p>
         </div>
         <div class="card feature">
           <h3>Relatórios com fotos</h3>
-          <p>Registro das atividades, antes e depois, para acompanhamento do síndico/gestão.</p>
+          <p>Registro das atividades, antes e depois, para acompanhamento do síndico e da gestão.</p>
         </div>
       </div>
     </div>
@@ -356,93 +536,118 @@ Entregamos resultado visível e valorizamos o patrimônio do condomínio.<strong
     <div class="wrap">
       <h2 class="section-title">Como funciona</h2>
       <div class="grid">
-        <div class="card"><h3>1) Visita técnica</h3><p>Levantamento das áreas e necessidades do condomínio.</p></div>
-        <div class="card"><h3>2) Proposta clara</h3><p>Atendimento rápido: início ao serviço no dia seguinte!
-Serviços a partir de R$180 na primeira visita.
-Contratos flexíveis de 3 meses a 5 anos — você escolhe o que melhor se adapta às suas necessidades.</p></div>
-        <div class="card"><h3>3) Execução segura</h3><p>Com equipamentos adequados e uma equipe ágil, transformamos o seu espaço verde em poucas horas, garantindo a manutenção ideal para o seu jardim.</p></div>
+        <div class="card">
+          <h3>1) Visita técnica</h3>
+          <p>Levantamento das áreas e necessidades do condomínio.</p>
+        </div>
+        <div class="card">
+          <h3>2) Proposta clara</h3>
+          <p>
+            Atendimento rápido: início do serviço já no dia seguinte à visita, quando possível.<br />
+            Serviços avulsos a partir de R$180 na primeira visita.<br />
+            Contratos flexíveis de 3 meses a 5 anos — você escolhe o que melhor se adapta ao seu condomínio.
+          </p>
+        </div>
+        <div class="card">
+          <h3>3) Execução segura</h3>
+          <p>Com equipamentos adequados e uma equipe ágil, transformamos o espaço verde em poucas horas, garantindo a manutenção ideal para o seu jardim.</p>
+        </div>
       </div>
     </div>
   </section>
-<!-- EXEMPLOS DE CONDOMÍNIOS -->
-<section class="examples" id="exemplos">
-  <div class="wrap">
-    <h2 class="section-title">Exemplos de tamanho e valor estimado</h2>
-    <p class="muted">Segue alguns exemplos.</p>
 
-    <div class="grid">
-      <!-- Pequeno -->
-      <div class="card example-card">
-        <figure>
-          <img src="edificio-simples.jpg.png" alt="Condomínio pequeno — jardins compactos" />
-          <span class="example-badge">Prédio Residencial </span>
-        </figure>
-        <div class="example-body">
-          <h3>Condomínio Pequeno</h3>
-          <ul class="example-list">
-            <li>até 3 blocos • jardins compactos</li>
-            <li>Rotina: 1 visita/semana (manutenção completa)</li>
-            <li>Inclui: corte, bordas, capina, limpeza e adubação básica</li>
-          </ul>
-          <div class="example-price">
-            <span>Estimativa mensal</span><span>R$ 180 – 580</span>
+  <!-- EXEMPLOS DE CONDOMÍNIOS -->
+  <section class="examples" id="exemplos">
+    <div class="wrap">
+      <h2 class="section-title">Exemplos de tamanho e valor estimado</h2>
+      <p class="muted">Segue alguns exemplos.</p>
+
+      <div class="grid">
+        <!-- Pequeno -->
+        <div class="card example-card">
+          <figure>
+            <img src="edificio-simples.jpg.png" alt="Condomínio pequeno — jardins compactos" />
+            <span class="example-badge">Prédio Residencial</span>
+          </figure>
+          <div class="example-body">
+            <h3>Condomínio Pequeno</h3>
+            <ul class="example-list">
+              <li>até 3 blocos • jardins compactos</li>
+              <li>Rotina: 1 visita/semana (manutenção completa)</li>
+              <li>Inclui: corte, bordas, capina, limpeza e adubação básica</li>
+            </ul>
+            <div class="example-price">
+              <span>Estimativa mensal</span><span>R$ 180 – 580</span>
+            </div>
+            <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20pequeno%20(eu%20vi%20o%20Exemplo%201).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">
+              Quero orçamento deste perfil
+            </a>
           </div>
-          <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20pequeno%20(eu%20vi%20o%20Exemplo%201).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">Quero orçamento deste perfil</a>
+        </div>
+
+        <!-- Médio -->
+        <div class="card example-card">
+          <figure>
+            <img src="ex-medio.jpg.png" alt="Condomínio médio — áreas comuns e canteiros" />
+            <span class="example-badge">~3 a 10 Blocos</span>
+          </figure>
+          <div class="example-body">
+            <h3>Condomínio Médio</h3>
+            <ul class="example-list">
+              <li>3 a 10 blocos • áreas comuns com canteiros</li>
+              <li>Rotina: 2 visitas/semana + inspeção quinzenal</li>
+              <li>Inclui: manutenção completa e relatórios com fotos</li>
+            </ul>
+            <div class="example-price">
+              <span>Estimativa mensal</span><span>R$ 1.800 – 2.800</span>
+            </div>
+            <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20m%C3%A9dio%20(Exemplo%202).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">
+              Quero orçamento deste perfil
+            </a>
+          </div>
+        </div>
+
+        <!-- Grande -->
+        <div class="card example-card">
+          <figure>
+            <img src="ex-grande.jpg.png" alt="Condomínio grande — gramados, palmeiras e áreas extensas" />
+            <span class="example-badge">10 a 25 blocos</span>
+          </figure>
+          <div class="example-body">
+            <h3>Condomínio Grande</h3>
+            <ul class="example-list">
+              <li>Várias torres • gramados, palmeiras e extensões</li>
+              <li>Rotina: 3 a 5 visitas/semana (cronograma por zonas)</li>
+              <li>Inclui: manutenção completa e podas programadas</li>
+            </ul>
+            <div class="example-price">
+              <span>Estimativa mensal</span><span>R$ 2.800 – 6.800</span>
+            </div>
+            <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20grande%20(Exemplo%203).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">
+              Quero orçamento deste perfil
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Médio -->
-      <div class="card example-card">
-        <figure>
-          <img src="ex-medio.jpg.png" alt="Condomínio médio — áreas comuns e canteiros" />
-          <span class="example-badge">~3 a 10 Blocos</span>
-        </figure>
-        <div class="example-body">
-          <h3>Condomínio Médio</h3>
-          <ul class="example-list">
-            <li>3 a 10 blocos • áreas comuns com canteiros</li>
-            <li>Rotina: 2 visitas/semana + inspeção quinzenal</li>
-            <li>Inclui: manutenção completa e relatórios com fotos</li>
-          </ul>
-          <div class="example-price">
-            <span>Estimativa mensal</span><span>R$ 1.800 – 2.800</span>
-          </div>
-          <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20m%C3%A9dio%20(Exemplo%202).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">Quero orçamento deste perfil</a>
-        </div>
-      </div>
-
-      <!-- Grande -->
-      <div class="card example-card">
-        <figure>
-          <img src="ex-grande.jpg.png" alt="Condomínio grande — gramados, palmeiras e áreas extensas" />
-          <span class="example-badge">10 a 25 blocos</span>
-        </figure>
-        <div class="example-body">
-          <h3>Condomínio Grande</h3>
-          <ul class="example-list">
-            <li>Várias torres • gramados, palmeiras e extensões</li>
-            <li>Rotina: 3 a 5 visitas/semana (cronograma por zonas)</li>
-            <li>Inclui: manutenção completa e podas programadas</li>
-          </ul>
-          <div class="example-price">
-            <span>Estimativa mensal</span><span>R$ 2.800 – 6.800</span>
-          </div>
-          <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20grande%20(Exemplo%203).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">Quero orçamento deste perfil</a>
-        </div>
-      </div>
+      <p class="muted" style="margin-top:10px">
+        *Os valores podem variar conforme escopo (podas em altura, revitalização de gramados, retirada de resíduos, insumos e deslocamento).
+      </p>
     </div>
-
-    <p class="muted" style="margin-top:10px">*Os valores podem variar conforme escopo (podas em altura, revitalização de gramados, retirada de resíduos, insumos e deslocamento).</p>
-  </div>
-</section>
+  </section>
 
   <!-- DEPOIMENTOS / PROVA SOCIAL -->
   <section>
     <div class="wrap">
       <h2 class="section-title">O que nossos clientes dizem</h2>
       <div class="card" style="padding:22px">
-        <p class="quote">“Um cara que realmente faz, realmente mostra resultados!<mark>Realizou podas que nunca antes foram feitas</mark> vimos melhora real. Equipe organizada e prestativa.”</p>
-        <p class="muted" style="margin:8px 0 0">\\Sr.Silvio   — Sindico - Spazio Único / Diretor - SJS Síndico e Associados</p>
+        <p class="quote">
+          “Um cara que realmente faz, realmente mostra resultados!
+          <mark>Realizou podas que nunca antes foram feitas</mark> e vimos melhora real. Equipe organizada e prestativa.”
+        </p>
+        <p class="muted" style="margin:8px 0 0">
+          Sr. Silvio — Síndico do Spazio Único / Diretor na SJS Síndico e Associados
+        </p>
       </div>
     </div>
   </section>
@@ -495,7 +700,7 @@ Contratos flexíveis de 3 meses a 5 anos — você escolhe o que melhor se adapt
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
     </a>
     <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75zm146-194c0 14.9-12.1 27-27 27s-27-12.1-27-27 12.1-27 27-27 27 12.1 27 27zM398.8 80C370.7 51.9 333.2 36 294.4 36H153.6C114.8 36 77.3 51.9 49.2 80 21.1 108.1 5.2 145.6 5.2 184.4v140.8C5.2 364.4 21.1 401.9 49.2 430c28.1 28.1 65.6 44 104.4 44h140.8c38.8 0 76.3-15.9 104.4-44 28.1-28.1 44-65.6 44-104.4V184.4c0-38.8-15.9-76.3-44-104.4zM224 338c-63 0-114-51-114-114S161 110 224 110s114 51 114 114-51 114-114 114z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75zm146-194c0 14.9-12.1 27-27 27s-27-12.1-27-27 12.1-27 27-27 27 12.1 27 27zM398.8 80C370.7 51.9 333.2 36 294.4 36H153.6C114.8 36 77.3 51.9 49.2 80 21.1 108.1 5.2 145.6 5.2 184.4v140.8C5.2 364.4 21.1 401.9 49.2 430c28.1 28.1 65.6 44 104.4 44h140.8c38.8 0 76.3-15.9 104.4-44 28.1-28.1 44-65.6 44-104.4V184.4c0-38.8-15.9-76.3-44-104.4z"/></svg>
     </a>
   </div>
 
