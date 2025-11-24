@@ -30,11 +30,13 @@
   }
 
   /* Botões */
-  .hero .cta {
-    flex-direction: column; /* botões um embaixo do outro */
-    align-items: stretch;
-    gap: 16px; /* distância entre botões */
-    margin-bottom: 50px;
+ .hero .cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 80px; /* antes era 40px, agora está com mais espaço */
+  justify-content: flex-start; /* use center se quiser centralizar */
   }
   .hero .btn,
   .hero .btn-primary {
