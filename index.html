@@ -904,15 +904,21 @@ E quando as pessoas respiram melhor, o sentido volta.</p>
     </div>
 
     <div class="ecovida-bottom">
-      <div class="band ecovida-band">
-        <div>
-          <h3 style="margin:0">EcoVida + JS = Cidade mais limpa e mais verde</h3>
-          <p style="margin:6px 0 0;opacity:.95">
-            Quer apoiar o projeto, receber coleta na sua região, ou trazer a iniciativa para o seu condomínio?
-          </p>
-        </div>
-        <div class="ecovida-band-actions">
-          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20saber%20mais%20sobre%20o%20Projeto%20EcoVida." target="_blank" rel="noopener">
+      <div class=.ecovida-band{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start; /* ⬅️ chave da correção */
+  gap:20px;
+  padding:28px;
+  flex-wrap:wrap;         /* ⬅️ permite quebrar linha */
+}
+
+.ecovida-band-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
             Falar no WhatsApp
           </a>
           <a class="btn" href="#contato">Contato</a>
