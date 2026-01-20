@@ -17,6 +17,126 @@
   <link rel="icon" href="/favicon.ico" />
 
   <style>
+    /* ===== EcoVida ===== */
+.ecovida{
+  background: radial-gradient(1200px 600px at 10% 0%, #e9f2ff 0%, transparent 60%),
+              radial-gradient(1000px 500px at 90% 30%, #eaf7ef 0%, transparent 55%),
+              #f6f7f6;
+}
+
+.ecovida .section-title{margin:10px 0 8px}
+
+.ecovida-head{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:26px;
+  align-items:start;
+}
+
+.chip{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#ffffffcc;
+  border:1px solid #e6edf5;
+  color:#114084;
+  font-weight:800;
+  font-size:13px;
+}
+
+.ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6}
+
+.ecovida-kpis{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+
+.kpi{
+  background:#ffffffcc;
+  border:1px solid #e7ecef;
+  border-radius:14px;
+  padding:12px 14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.04);
+}
+.kpi strong{display:block; color:#0f1411; font-size:14px}
+.kpi span{display:block; color:#475467; font-size:13px; margin-top:4px}
+
+.ecovida-card{padding:18px 18px 14px}
+.ecovida-card h3{margin:0 0 10px}
+.ecovida-list{margin:0; padding-left:18px; color:#475467; line-height:1.7}
+.ecovida-list li{margin:8px 0}
+.ecovida-list b{color:#0f1411}
+
+.ecovida-cta-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.ecovida-note{margin:12px 0 0}
+
+.ecovida-grid{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+}
+
+.eco-feature{
+  padding:18px;
+  border-radius:16px;
+  border:1px solid #eef0ee;
+  box-shadow:0 10px 26px rgba(0,0,0,.05);
+}
+
+.eco-ico{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:#ffffff;
+  border:1px solid #e7ecef;
+  margin-bottom:10px;
+  font-size:20px;
+}
+
+.eco-feature h3{margin:0 0 6px; font-size:18px}
+.eco-feature p{margin:0; color:#475467; line-height:1.6}
+
+.eco-highlight{
+  border-color:#d7e7ff;
+  background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
+}
+
+.ecovida-bottom{margin-top:22px}
+
+.ecovida-band{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.ecovida-band-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* Responsivo */
+@media (max-width: 900px){
+  .ecovida-head{grid-template-columns:1fr}
+  .ecovida-kpis{grid-template-columns:1fr}
+  .ecovida-grid{grid-template-columns:1fr}
+  .ecovida-band{flex-direction:column; align-items:flex-start}
+}
+
     :root {
       --pri:#114084;
       --pri2:#11804a;
