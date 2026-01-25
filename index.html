@@ -415,14 +415,33 @@
 }
 
     .hero{
-      position:relative;
-      display:grid;
-      place-items:center;
-      min-height:74vh;
-      color:#fff;
-      background:url('jardins.jpg') center/cover no-repeat;
-    }
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 74vh;
+  color: #fff;
+  background: url('jardins.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
 
+/* overlay azul por cima da imagem */
+.hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    50deg,
+    rgba(17, 64, 132, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  z-index: 1;
+}
+
+/* garante que o texto e botões fiquem acima do overlay */
+.hero > *{
+  position: relative;
+  z-index: 2;
+}
 
 
     .hero-inner{
@@ -724,25 +743,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-inner">
-      .hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.75) 0%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
-  z-index: 1;
-}
-.hero{
-  position: relative;
-}
-
-.hero-content{
-  position: relative;
-  z-index: 2;
-}
+  
 
       <div>
         <h1>Jardinagem e Manutenção para seu Condomínio.</h1>
