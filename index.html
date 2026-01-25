@@ -297,6 +297,77 @@
       background:#0d3270;
       border-color:#0d3270;
     }
+    /* ===== EcoVida: ajuste de layout para não "espalhar" ===== */
+
+/* limita largura e melhora leitura */
+.ecovida .wrap{
+  max-width: 1120px;
+}
+
+.ecovida-sub{
+  max-width: 58ch; /* texto mais bonito */
+}
+
+/* Desktop: duas colunas, mas com área direita controlada */
+.ecovida-head{
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 18px;
+  align-items:start;
+}
+
+/* Card do "Como funciona" não pode virar uma faixa infinita */
+.ecovida-actions .ecovida-card{
+  max-width: 520px;     /* controla largura */
+  width: 100%;
+  margin-left: auto;    /* encosta à direita sem esticar */
+}
+
+/* Lista com largura controlada também */
+.ecovida-actions .ecovida-list{
+  max-width: 52ch;
+}
+
+/* Reduz espaço em branco geral da seção */
+.ecovida{
+  padding: 48px 0;
+}
+
+.ecovida-grid{
+  margin-top: 18px;
+}
+
+/* ===== Mobile: vira 1 coluna e tudo ocupa 100% ===== */
+@media (max-width: 900px){
+  .ecovida{
+    padding: 34px 0;
+  }
+
+  .ecovida-head{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .ecovida-actions .ecovida-card{
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .ecovida-kpis{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Telas bem pequenas: aperta padding do card */
+@media (max-width: 600px){
+  .ecovida-actions .ecovida-card{
+    padding: 16px !important;
+  }
+  .ecovida-list{
+    line-height: 1.55;
+  }
+}
+
 
     /* HERO */
     /* ===== ECO VIDA HERO (FULL WIDTH) ===== */
