@@ -33,8 +33,8 @@
   inset: 0;
   background: linear-gradient(
     50deg,
-    rgba(17,64,132,0.85) 0%,
-    rgba(0,0,0,0.65) 100%
+    rgba(255, 122, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.65) 100%
   );
 }
 
@@ -416,15 +416,17 @@
     }
 
  .hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 122, 0, 0.65),
-    rgba(255, 122, 0, 0.35)
-  );
-}
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        120deg,
+        rgba(17,64,132,0.85) 0%,
+        rgba(0,0,0,0.55) 100%
+      );
+      z-index:0;
+    }
+
 
     .hero-inner{
       position:relative;
