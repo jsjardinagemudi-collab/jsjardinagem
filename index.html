@@ -217,6 +217,17 @@
       border-bottom:1px solid #eef0ee;
       z-index:50;
     }
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    50deg,
+    rgba(17, 64, 132, 0.75) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  z-index: 1;
+}
 
     .nav{
       display:flex;
@@ -411,18 +422,6 @@
       color:#fff;
       background:url('jardins.jpg') center/cover no-repeat;
     }
-
- .ecovida-hero-full::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.85) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-}
-
 
 
 
