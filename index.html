@@ -306,6 +306,54 @@
     }
 
     /* HERO */
+    /* ===== ECO VIDA HERO (FULL WIDTH) ===== */
+.ecovida-hero-full{
+  position: relative;
+  min-height: 70vh;
+  display: grid;
+  align-items: center;
+  color: #fff;
+  background: url("ecovida-banner.png") center/cover no-repeat;
+}
+
+.ecovida-hero-full::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(17,64,132,0.85) 0%,
+    rgba(0,0,0,0.65) 100%
+  );
+}
+
+.ecovida-hero-inner{
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.ecovida-hero-full h2{
+  font-size: clamp(30px, 4vw, 48px);
+  margin: 0 0 12px;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+
+.ecovida-hero-full p{
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  opacity: .95;
+  text-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+
+.ecovida-hero-actions{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
     .hero{
       position:relative;
       display:grid;
@@ -781,25 +829,28 @@ A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para 
   </section>
 
 
-<section id="ecovida">...</section>
-  <div class="wrap">
-    <div class="ecovida-head">
-      <div>
-        <div class="ecovida-hero">
-  <div class="content">
+<section id="ecovida-hero" class="ecovida-hero-full">
+  <div class="wrap ecovida-hero-inner">
     <h2>Projeto EcoVida JS</h2>
-    <p>Meio ambiente, dignidade e novas oportunidades — uma extensão do compromisso da JS com a cidade.</p>
+    <p>
+      Meio ambiente, dignidade e novas oportunidades.
+      Um projeto que cuida da cidade, do verde e das pessoas.
+    </p>
 
-    <div class="actions">
-      <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20conhecer%20o%20Projeto%20EcoVida." target="_blank" rel="noopener">
+    <div class="ecovida-hero-actions">
+      <a class="btn btn-primary"
+         href="https://wa.me/5534992142960?text=Olá%20JS!%20Quero%20conhecer%20o%20Projeto%20EcoVida."
+         target="_blank" rel="noopener">
         Falar no WhatsApp
       </a>
-      <a class="btn" href="#contato">
-        Apoiar / Parceria
+
+      <a class="btn" href="#ecovida">
+        Conhecer o projeto
       </a>
     </div>
   </div>
-</div>
+</section>
+
 
         <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
         <h2 class="section-title">Projeto EcoVida JS</h2>
