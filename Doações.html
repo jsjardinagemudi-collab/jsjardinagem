@@ -124,6 +124,23 @@ h1{
   border-color: var(--pri);
   box-shadow: 0 18px 40px rgba(0,0,0,.12);
 }
+/* Botões de planos/parceiros: centralizados e encaixados no card */
+.plan-btn,
+.inst-btn{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;          /* remove qualquer margin lateral */
+  padding: 14px 18px !important; /* tamanho padrão */
+}
+
+/* garante que o card não tenha alinhamento diferente */
+.plan.card,
+.inst.card{
+  box-sizing: border-box !important;
+}
 
 /* card vira coluna e força botão no fundo */
 .plan.card,
@@ -261,6 +278,21 @@ h1{
 /* (opcional) padroniza o topo para reduzir variação */
 .plans-grid > .plan.card > .plan-top{
   min-height: 120px !important;
+}
+.plan.card,
+.inst.card{
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+.plan-list,
+.inst-list{
+  flex:1 !important;
+}
+
+.plan-btn,
+.inst-btn{
+  margin-top:auto !important;
 }
 
 
