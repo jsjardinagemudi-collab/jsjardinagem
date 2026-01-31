@@ -59,7 +59,63 @@ h1{
     grid-template-columns:1fr !important;
   }
 }
+.plans-grid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
 
+.plan{
+  padding:18px;
+}
+
+.plan-top h3{
+  margin:8px 0 4px;
+  color:#114084;
+  font-size:22px;
+}
+
+.plan-badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  background:#e8f5ee;
+  border:1px solid #cfe9da;
+  color:#114084;
+}
+
+.plan-badge.featured{
+  background:#114084;
+  border-color:#114084;
+  color:#fff;
+}
+
+.plan-list{
+  margin:12px 0 16px;
+  padding-left:18px;
+  line-height:1.7;
+  color:#475467;
+}
+
+.plan-btn{
+  width:100%;
+  text-align:center;
+}
+
+.plan-featured{
+  border:2px solid #114084;
+  transform: translateY(-6px);
+}
+
+@media (max-width:900px){
+  .plans-grid{grid-template-columns:1fr;}
+  .plan-featured{transform:none;}
+}
+
+  
 </style>
 </head>
 
