@@ -233,6 +233,35 @@ h1{
 .inst-list{
   flex:1;
 }
+/* FIX FINAL: alinhar botões dos Planos Mensais */
+
+.plans-grid{
+  align-items: stretch !important;
+}
+
+.plans-grid > .plan.card{
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* garante que a lista “cresça” e empurre o botão */
+.plans-grid > .plan.card > .plan-list{
+  flex: 1 1 auto !important;
+  margin-bottom: 16px !important;
+}
+
+/* botão sempre no fundo */
+.plans-grid > .plan.card > .plan-btn{
+  margin-top: auto !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* (opcional) padroniza o topo para reduzir variação */
+.plans-grid > .plan.card > .plan-top{
+  min-height: 120px !important;
+}
 
 
 
