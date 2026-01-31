@@ -67,6 +67,18 @@ h1{
   grid-template-columns:repeat(3,1fr);
   gap:16px;
 }
+.plan,
+.inst{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.plan-list,
+.inst-list{
+  flex-grow:1;
+}
 
 .plan{
   padding:18px;
@@ -79,7 +91,7 @@ h1{
 }
 
 .plan-badge{
-  display:inline-block;
+  display:flex;
   padding:6px 10px;
   border-radius:999px;
   font-weight:900;
@@ -170,6 +182,12 @@ h1{
 @media (max-width:900px){
   .inst-grid{grid-template-columns:1fr;}
   .inst-featured{transform:none;}
+}
+.plan-btn,
+.inst-btn{
+  margin-top:auto;
+  width:100%;
+  text-align:center;
 }
 
 
