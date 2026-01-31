@@ -39,11 +39,27 @@ h1{
 }
 
 .btn{
-  display:flex-block;
-  padding:12px 18px;
-  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  padding:14px 18px;
+  border-radius:12px;
   font-weight:700;
   text-decoration:none;
+  transition:0.2s ease;
+}
+
+.btn-primary{
+  background:#114084;
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#0d3270;
+  transform:translateY(-2px);
+}
+
 }
 
 .btn-primary{
