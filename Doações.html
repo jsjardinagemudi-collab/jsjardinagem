@@ -176,19 +176,41 @@ h1{
 
 .inst-featured{
   border:2px solid #114084;
-  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
 }
+
+
 
 @media (max-width:900px){
   .inst-grid{grid-template-columns:1fr;}
   .inst-featured{transform:none;}
 }
-.plan-btn,
+.inst-grid{
+  align-items: stretch;
+}
+
+.inst{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.inst-top{
+  min-height: 120px; /* padroniza a parte de cima */
+}
+
+.inst-list{
+  flex:1;
+}
+
 .inst-btn{
   margin-top:auto;
   width:100%;
   text-align:center;
+  padding:14px 18px;  /* padroniza o tamanho */
+  line-height: 1.1;   /* evita variação */
 }
+
 
 
   
