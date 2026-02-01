@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -15,191 +14,26 @@
   <meta property="og:image" content="/og-js.jpg" />
 
   <link rel="icon" href="/favicon.ico" />
- 
 
   <style>
-/* ===== ECO VIDA HERO (FULL WIDTH) ===== */
-.ecovida-hero-full{
-  position: relative;
-  min-height: 70vh;
-  display: grid;
-  align-items: center;
-  color: #fff;
-  background: url("fundo.png") center/cover no-repeat;
-}
-
-.ecovida-hero-full::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.85) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-}
-
-
-
-.ecovida-hero-inner{
-  position: relative;
-  z-index: 2;
-  max-width: 720px;
-}
-
-.ecovida-hero-full h2{
-  font-size: clamp(30px, 4vw, 48px);
-  margin: 0 0 12px;
-  line-height: 1.1;
-  text-shadow: 0 2px 8px rgba(0,0,0,.45);
-}
-
-.ecovida-hero-full p{
-  font-size: clamp(16px, 1.6vw, 20px);
-  line-height: 1.6;
-  margin: 0 0 24px;
-  opacity: .95;
-  text-shadow: 0 2px 8px rgba(0,0,0,.45);
-}
-
-.ecovida-hero-actions{
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-/* ===== EcoVida Section ===== */
-
-.ecovida-head{
-  display:grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap:26px;
-  align-items:start;
-}
-
-.chip{
-  display:inline-flex;
-  gap:8px;
-  align-items:center;
-  padding:8px 12px;
-  border-radius:999px;
-  background:#ffffffcc;
-  border:1px solid #e6edf5;
-  color:#114084;
-  font-weight:800;
-  font-size:13px;
-}
-
-.ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6}
-
-.ecovida-kpis{
-  margin-top:18px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:12px;
-}
-
-.kpi{
-  background:#ffffffcc;
-  border:1px solid #e7ecef;
-  border-radius:14px;
-  padding:12px 14px;
-  box-shadow:0 8px 18px rgba(0,0,0,.04);
-}
-.kpi strong{display:block; color:#0f1411; font-size:14px}
-.kpi span{display:block; color:#475467; font-size:13px; margin-top:4px}
-
-.ecovida-card{padding:18px 18px 14px}
-.ecovida-card h3{margin:0 0 10px}
-.ecovida-list{margin:0; padding-left:18px; color:#475467; line-height:1.7}
-.ecovida-list li{margin:8px 0}
-.ecovida-list b{color:#0f1411}
-
-.ecovida-cta-row{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:14px;
-}
-
-.ecovida-grid{
-  margin-top:26px;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:16px;
-}
-
-.eco-feature{
-  padding:18px;
-  border-radius:16px;
-  border:1px solid #eef0ee;
-  box-shadow:0 10px 26px rgba(0,0,0,.05);
-}
-
-.eco-ico{
-  width:44px;
-  height:44px;
-  display:grid;
-  place-items:center;
-  border-radius:12px;
-  background:#ffffff;
-  border:1px solid #e7ecef;
-  margin-bottom:10px;
-  font-size:20px;
-}
-
-.eco-feature h3{margin:0 0 6px; font-size:18px}
-.eco-feature p{margin:0; color:#475467; line-height:1.6}
-
-.eco-highlight{
-  border-color:#d7e7ff;
-  background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
-}
-
-.ecovida-band{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:20px;
-  padding:28px;
-  flex-wrap:wrap;
-}
-
-.ecovida-band-actions{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-}
-
-
-/* Responsivo */
-@media (max-width: 900px){
-  .ecovida-head{grid-template-columns:1fr}
-  .ecovida-kpis{grid-template-columns:1fr}
-  .ecovida-grid{grid-template-columns:1fr}
-  .ecovida-band{flex-direction:column; align-items:flex-start}
-}
-
-    :root {
+    :root{
       --pri:#114084;
       --pri2:#11804a;
       --ink:#0f1411;
       --muted:#667085;
       --paper:#fff;
       --bg:#f6f7f6;
+      --line:#e7ecef;
     }
 
     *{box-sizing:border-box}
-
     html,body{
       margin:0;
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
     }
-
     a{text-decoration:none;color:inherit}
-
     .wrap{width:min(1120px,92vw);margin:auto}
 
     .topbar{
@@ -213,27 +47,17 @@
     header{
       position:sticky;
       top:0;
+      z-index:50;
       background:#ffffffcc;
       backdrop-filter:saturate(180%) blur(8px);
       border-bottom:1px solid #eef0ee;
-      z-index:50;
     }
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.75) 0%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
-  z-index: 1;
-}
 
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:16px;
       padding:14px 0;
     }
 
@@ -247,340 +71,184 @@
       height:72px;
       width:auto;
       border-radius:8px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
     }
 
     .brand strong{
       font-size:22px;
-      font-weight:700;
-      color:#114084;
-      letter-spacing:0.5px;
+      font-weight:800;
+      color:var(--pri);
+      letter-spacing:.4px;
       text-transform:uppercase;
-      font-family:'Inter','Segoe UI',Roboto,sans-serif;
     }
 
-    .nav .links{
+    .links{
       display:flex;
       gap:22px;
-      font-weight:700;
+      font-weight:800;
     }
+    .links a{color:var(--ink)}
+    .links a:hover{color:var(--pri)}
 
-    .nav .links a{color:#0f1411}
-    .nav .links a:hover{color:var(--pri)}
+    .cta{display:flex;gap:10px;align-items:center}
 
-    .nav .cta{
-      display:flex;
+    /* BOTÕES — padrão único (site inteiro) */
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       gap:10px;
+      color:var(--ink);
+    }
+    .btn:hover{background:#f3f5f7}
+
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
     }
 
-   /* BOTÕES — padrão único */
-.btn{
-  appearance:none;
-  border:1px solid #dfe3df;
-  background:#fff;
-  border-radius:12px;
-  padding:11px 14px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.25s ease;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
+    .btn-outline:hover{background:#eef4ff}
 
-  /* ✅ chave: força cor padrão */
-  color: var(--ink);
-}
+    section{padding:64px 0}
 
-.btn:hover{background:#f3f5f7}
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(0,0,0,.06);
+    }
 
-.btn-primary{
-  background:var(--pri);
-  border-color:var(--pri);
-  color:#fff;
-}
-
-.btn-primary:hover{
-  background:#0d3270;
-  border-color:#0d3270;
-}
-
-.btn-outline{
-  background:transparent;
-  border-color:var(--pri);
-  color:var(--pri);
-}
-
-.btn-outline:hover{background:#eef4ff}
-
-
-    /* ===== EcoVida: ajuste de layout para não "espalhar" ===== */
-
-/* limita largura e melhora leitura */
-.ecovida .wrap{
-  max-width: 1120px;
-}
-
-.ecovida-sub{
-  max-width: 58ch; /* texto mais bonito */
-}
-
-/* Desktop: duas colunas, mas com área direita controlada */
-.ecovida-head{
-  display:grid;
-  grid-template-columns: 1.05fr .95fr;
-  gap: 18px;
-  align-items:start;
-}
-
-/* Card do "Como funciona" não pode virar uma faixa infinita */
-.ecovida-actions .ecovida-card{
-  max-width: 520px;     /* controla largura */
-  width: 100%;
-  margin-left: auto;    /* encosta à direita sem esticar */
-}
-
-/* Lista com largura controlada também */
-.ecovida-actions .ecovida-list{
-  max-width: 52ch;
-}
-
-/* Reduz espaço em branco geral da seção */
-.ecovida{
-  padding: 48px 0;
-}
-
-.ecovida-grid{
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-
-/* ===== Mobile: vira 1 coluna e tudo ocupa 100% ===== */
-@media (max-width: 900px){
-  .ecovida{
-    padding: 34px 0;
-  }
-
-  .ecovida-head{
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .ecovida-actions .ecovida-card{
-    max-width: 100%;
-    margin-left: 0;
-  }
-
-  .ecovida-kpis{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Telas bem pequenas: aperta padding do card */
-@media (max-width: 600px){
-  .ecovida-actions .ecovida-card{
-    padding: 16px !important;
-  }
-  .ecovida-list{
-    line-height: 1.55;
-  }
-}
-
-
-    /* HERO */
-    /* ===== ECO VIDA HERO (FULL WIDTH) ===== */
-
-
-.ecovida-hero-full::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.85) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-}
-
-
-.ecovida-hero-inner{
-  margin-top: -60px;
-}
-
-@media (max-width: 768px){
-  .ecovida-hero-inner{
-    margin-top: -20px;
-  }
-}
-
-.ecovida-hero-full h2{
-  font-size: clamp(30px, 4vw, 48px);
-  margin: 0 0 12px;
-  line-height: 1.1;
-  text-shadow: 0 2px 8px rgba(0,0,0,.45);
-}
-
-.ecovida-hero-full p{
-  font-size: clamp(16px, 1.6vw, 20px);
-  line-height: 1.6;
-  margin-bottom: 24px;
-  opacity: .95;
-  text-shadow: 0 2px 8px rgba(0,0,0,.45);
-}
-
-.ecovida-hero-actions{
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
+    /* HERO (capa) */
     .hero{
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 74vh;
-  color: #fff;
-  background: url('jardins.jpg') center/cover no-repeat;
-  overflow: hidden;
-}
-
-/* overlay azul por cima da imagem */
-.hero::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.75) 0%,
-    rgba(0, 0, 0, 0.35) 100%
-  );
-  z-index: 1;
-}
-
-/* garante que o texto e botões fiquem acima do overlay */
-.hero > *{
-  position: relative;
-  z-index: 2;
-}
-
+      position: relative;
+      min-height: 74vh;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background: url("jardins.jpg") center/cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        50deg,
+        rgba(17, 64, 132, 0.75) 0%,
+        rgba(0, 0, 0, 0.35) 100%
+      );
+      z-index:1;
+    }
 
     .hero-inner{
       position:relative;
-      z-index:1;
+      z-index:2;
       display:grid;
       grid-template-columns:1.1fr .9fr;
       gap:36px;
       align-items:center;
+      padding:54px 0;
     }
 
     .hero h1{
       margin:0 0 10px;
       font-size:clamp(30px,4.4vw,52px);
       line-height:1.06;
-      text-shadow:0 2px 6px rgba(0,0,0,0.4);
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
     }
-
     .hero p{
       margin:0 0 20px;
       font-size:clamp(16px,1.5vw,19px);
-      line-height:1.5;
+      line-height:1.55;
       opacity:.95;
-      text-shadow:0 2px 6px rgba(0,0,0,0.4);
-    }
-
-    .badges{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .badge{
-      display:inline-block;
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#e8f5ee;
-      color:var(--pri);
-      border:1px solid #cfe9da;
-      font-weight:700;
-    }
-
-    .hero .card{
-      position:relative;
-      z-index:2;
-      background:#ffffffee;
-      color:#0f1411;
-      border:1px solid #e5e5e5;
-      border-radius:16px;
-      box-shadow:0 8px 24px rgba(0,0,0,0.15);
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
     }
 
     .hero .cta{
       display:flex;
-      gap:16px;
+      gap:14px;
       flex-wrap:wrap;
-      margin-top:30px;
-      margin-bottom:50px;
-      justify-content:flex-start;
+      margin-top:22px;
     }
 
-    /* LOGO CLOUD */
-    .cloud{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      justify-items:center;
-      align-items:center;
+    /* Botões no HERO (para não “sumir” no fundo) */
+    .hero .btn{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+      color:#fff;
+    }
+    .hero .btn:hover{background: rgba(255,255,255,.22)}
+    .hero .btn-primary{
+      background: var(--pri);
+      border-color: var(--pri);
+      color:#fff;
+    }
+    .hero .btn-outline{
+      background: transparent;
+      border-color: rgba(255,255,255,.55);
+      color:#fff;
+    }
+    .hero .btn-outline:hover{background: rgba(255,255,255,.12)}
+
+    .hero .card{
+      background:#ffffffee;
+      color:var(--ink);
+      border:1px solid #e5e5e5;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      padding:24px;
     }
 
-    .cloud img{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-      border-radius:12px;
-      filter:none;
-      opacity:1;
-      box-shadow:0 4px 10px rgba(0,0,0,0.12);
-      transition:transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .cloud img:hover{
-      transform:scale(1.03);
-      box-shadow:0 6px 16px rgba(0,0,0,0.18);
-    }
-
-    section{padding:64px 0}
-
-    .section-title{
-      font-size:28px;
-      margin:0 0 12px;
-    }
-
+    .section-title{font-size:28px;margin:0 0 12px}
     .muted{color:var(--muted)}
 
-    /* Feature split */
-    .split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:28px;
-    }
-
-    .split .feature{padding:22px}
-    .feature h3{margin:0 0 6px}
-    .feature p{margin:0;color:#475467}
-
-    /* Cards grid */
+    /* Exemplos de serviços */
+    .examples{background:#f7f9f8;}
     .grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:18px;
+      gap:22px;
+      margin-top:20px;
     }
-
-    .grid .card{padding:20px}
-
-
+    .example-card{overflow:hidden;padding:0;}
+    .example-card figure{margin:0;position:relative;height:180px;}
+    .example-card img{width:100%;height:100%;object-fit:cover;display:block;}
+    .example-badge{
+      position:absolute;left:12px;top:12px;
+      background:#ffffffdd;color:var(--pri);font-weight:900;
+      padding:6px 10px;border-radius:10px;font-size:14px;
+      border:1px solid #e6eaeb;
+    }
+    .example-body{padding:18px 18px 20px;}
+    .example-body h3{margin:0 0 6px;font-size:18px;}
+    .example-list{margin:10px 0 12px;padding-left:18px;line-height:1.6;color:#475467;}
+    .example-price{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 12px;background:#fff;border:1px solid #e7ece9;border-radius:12px;
+      font-weight:900;color:var(--pri);margin-bottom:12px;
+    }
+    .nota-valores{
+      margin-top:16px;
+      color:#667085;
+      font-size:14px;
+    }
 
     /* CTA band */
     .band{
@@ -588,27 +256,137 @@
       color:#fff;
       border-radius:18px;
       padding:28px;
-    }
-
-    .band .actions{
       display:flex;
-      gap:12px;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
       flex-wrap:wrap;
     }
+    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
 
+    /* EcoVida hero */
+    .ecovida-hero-full{
+      position: relative;
+      min-height: 70vh;
+      display: grid;
+      align-items: center;
+      color: #fff;
+      background: url("fundo.png") center/cover no-repeat;
+      overflow:hidden;
+    }
+    .ecovida-hero-full::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        50deg,
+        rgba(17, 64, 132, 0.85) 0%,
+        rgba(0, 0, 0, 0.65) 100%
+      );
+    }
+    .ecovida-hero-inner{
+      position:relative;
+      z-index:2;
+      max-width: 720px;
+      padding: 54px 0;
+    }
+    .ecovida-hero-full h2{
+      font-size: clamp(30px, 4vw, 48px);
+      margin: 0 0 12px;
+      line-height: 1.1;
+      text-shadow:0 2px 10px rgba(0,0,0,.45);
+    }
+    .ecovida-hero-full p{
+      font-size: clamp(16px, 1.6vw, 20px);
+      line-height: 1.6;
+      margin: 0;
+      opacity: .95;
+      text-shadow:0 2px 10px rgba(0,0,0,.45);
+    }
+
+    /* EcoVida conteúdo */
+    .ecovida-head{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:start;
+    }
+    .chip{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#ffffffcc;
+      border:1px solid #e6edf5;
+      color:var(--pri);
+      font-weight:900;
+      font-size:13px;
+    }
+    .ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6}
+    .ecovida-kpis{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .kpi{
+      background:#ffffffcc;
+      border:1px solid #e7ecef;
+      border-radius:14px;
+      padding:12px 14px;
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+    }
+    .kpi strong{display:block; color:#0f1411; font-size:14px}
+    .kpi span{display:block; color:#475467; font-size:13px; margin-top:4px}
+    .ecovida-card{padding:18px 18px 14px}
+    .ecovida-card h3{margin:0 0 10px}
+    .ecovida-list{margin:0; padding-left:18px; color:#475467; line-height:1.7}
+    .ecovida-list li{margin:8px 0}
+    .ecovida-list b{color:#0f1411}
+    .ecovida-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+
+    .ecovida-grid{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    .eco-feature{
+      padding:18px;
+      border-radius:16px;
+      border:1px solid #eef0ee;
+      box-shadow:0 10px 26px rgba(0,0,0,.05);
+      background:#fff;
+    }
+    .eco-ico{
+      width:44px;height:44px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      background:#ffffff;
+      border:1px solid #e7ecef;
+      margin-bottom:10px;
+      font-size:20px;
+    }
+    .eco-feature h3{margin:0 0 6px; font-size:18px}
+    .eco-feature p{margin:0; color:#475467; line-height:1.6}
+    .eco-highlight{
+      border-color:#d7e7ff;
+      background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
+    }
+
+    /* footer */
     footer{
       background:#0a1a12;
       color:#cfe8da;
       padding:34px 0;
       margin-top:40px;
     }
-
     .foot{
       display:grid;
       grid-template-columns:2fr 1fr 1fr;
       gap:22px;
     }
-
     .foot a{color:#cfe8da}
 
     /* Floating icons */
@@ -621,7 +399,6 @@
       gap:12px;
       z-index:999;
     }
-
     .float-social a{
       display:flex;
       align-items:center;
@@ -630,133 +407,27 @@
       height:54px;
       border-radius:50%;
       background:#fff;
-      box-shadow:0 6px 14px rgba(0,0,0,0.25);
+      box-shadow:0 6px 14px rgba(0,0,0,.25);
     }
-
     .float-social svg{width:28px;height:28px}
 
-    /* Exemplos de condomínios */
-    .examples{background:#f7f9f8;}
-    .examples .grid{grid-template-columns:repeat(3,1fr);gap:22px;}
-    .example-card{overflow:hidden;padding:0;}
-    .example-card figure{margin:0;position:relative;height:180px;}
-    .example-card img{
-      width:100%;height:100%;object-fit:cover;display:block;filter:none;
-    }
-    .example-badge{
-      position:absolute;left:12px;top:12px;
-      background:#ffffffdd;color:#114084;font-weight:800;
-      padding:6px 10px;border-radius:10px;font-size:14px;
-      border:1px solid #e6eaeb;
-    }
-    .example-body{padding:18px 18px 20px;}
-    .example-body h3{margin:0 0 6px;font-size:18px;}
-    .example-list{margin:10px 0 12px;padding-left:18px;line-height:1.6;color:#475467;}
-    .example-price{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:10px 12px;background:#fff;border:1px solid #e7ece9;border-radius:12px;
-      font-weight:800;color:#114084;margin-bottom:12px;
-    }
-    .examples .btn{width:100%;text-align:center;}
-
-    /* ========= RESPONSIVO ========= */
-
+    /* Responsivo */
     @media (max-width:900px){
+      .links{display:none}
       .brand img{height:58px;}
       .brand strong{font-size:20px;}
       .hero-inner{grid-template-columns:1fr;}
       .grid{grid-template-columns:1fr;}
-      .split{grid-template-columns:1fr;}
+      .ecovida-head{grid-template-columns:1fr}
+      .ecovida-kpis{grid-template-columns:1fr}
+      .ecovida-grid{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;}
-      .examples .grid{grid-template-columns:1fr;}
-      .cloud{grid-template-columns:repeat(3,1fr);}
-      .hero .cta{margin-bottom:70px;}
     }
 
-    /* Telas pequenas (celular) */
     @media (max-width:600px){
-      .hero{
-        min-height:90vh;
-        padding:40px 20px;
-        background-position:center center;
-      }
-      .hero h1{
-        font-size:26px;
-        line-height:1.2;
-      }
-      .hero p{
-        font-size:15px;
-        line-height:1.5;
-      }
-      .hero .cta{
-        flex-direction:column;
-        align-items:stretch;
-        gap:14px;
-        margin-bottom:60px;
-      }
-     .hero .btn{
-  background: rgba(255,255,255,.16);
-  border-color: rgba(255,255,255,.28);
-  color:#fff;
-}
-
-.hero .btn:hover{
-  background: rgba(255,255,255,.22);
-}
-
-/* mantém o primário forte no hero */
-.hero .btn-primary{
-  background: var(--pri);
-  border-color: var(--pri);
-  color:#fff;
-}
-
-.hero .btn-outline{
-  background: transparent;
-  border-color: rgba(255,255,255,.55);
-  color:#fff;
-}
-
-.hero .btn-outline:hover{
-  background: rgba(255,255,255,.12);
-}
-
-      .hero .card{
-        padding:18px;
-        font-size:15px;
-        border-radius:13px;
-      }
-      body{font-size:15px;}
-      .cloud{grid-template-columns:repeat(2,1fr);gap:12px;}
-      .cloud img{max-height:90px;}
-      section{padding:40px 0;}
+      .hero{min-height:90vh}
+      section{padding:40px 0}
     }
-      </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-inner">
-  header .btn{
-  background:#fff;
-  color: var(--ink);
-  border-color:#dfe3df;
-}
-header .btn:hover{
-  background:#f3f5f7;
-}
-header .btn-primary{
-  background: var(--pri);
-  border-color: var(--pri);
-  color:#fff;
-}
-header .btn-outline{
-  background: transparent;
-  border-color: var(--pri);
-  color: var(--pri);
-}
-header .btn-outline:hover{
-  background:#eef4ff;
-}
   </style>
 
   <!-- Schema.org LocalBusiness -->
@@ -783,6 +454,7 @@ header .btn-outline:hover{
   }
   </script>
 </head>
+
 <body>
   <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
 
@@ -792,32 +464,32 @@ header .btn-outline:hover{
         <img src="logo branca limpa.png" alt="JS Jardinagem" />
         <strong>JS JARDINAGEM</strong>
       </a>
-     <nav class="links">
-  <a href="#Serviços">Serviços</a>
-  <a href="ecovida.html">EcoVida</a>
-  <a href="carreira.html">Carreira</a>
-  <a href="#contato">Contato</a>
-</nav>
 
-        
+      <nav class="links">
+        <a href="#servicos">Serviços</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="#contato">Contato</a>
       </nav>
+
       <div class="cta">
         <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
+  </header>
 
-
-
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
       <div>
         <h1>Jardinagem e Manutenção para sua casa ou condomínio.</h1>
-        <p>Cuidar do verde é cuidar das pessoas.
-A JS nasce do propósito de melhorar o ambiente visual da cidade, começando pelo cuidado com o verde, com os jardins e com os espaços onde a vida acontece todos os dias.
-
-A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para uma cidade mais organizada, viva e consciente.</p>
-
-        
-        </div>
+        <p>
+          Cuidar do verde é cuidar das pessoas. A JS nasce do propósito de melhorar o ambiente visual da cidade,
+          começando pelo cuidado com os jardins e os espaços onde a vida acontece todos os dias.
+          <br><br>
+          A JS atua para valorizar espaços e contribuir para uma cidade mais organizada, viva e consciente.
+        </p>
 
         <div class="cta">
           <a class="btn btn-primary"
@@ -825,64 +497,63 @@ A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para 
              target="_blank" rel="noopener">
              Falar no WhatsApp
           </a>
-          <a class="btn btn-primary"
+          <a class="btn btn-outline"
              href="https://www.instagram.com/jardinagemudi/"
              target="_blank" rel="noopener">
-             Página no Instagram
+             Ver Instagram
           </a>
         </div>
       </div>
 
-      <div class="card" style="padding:24px">
-        <h3 style="margin:0 0 8px;font-size:20px;color:#114084">Planos econômicos para seu Jardim.</h3>
+      <div class="card">
+        <h3 style="margin:0 0 8px;font-size:20px;color:var(--pri)">Planos econômicos para seu Jardim.</h3>
         <p style="margin:0 0 12px;color:#475467">
           Atendemos condomínios de todos os portes, com rotinas planejadas conforme o espaço e a necessidade de cada cliente.
         </p>
         <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
-          <li><strong>Planos Econômico</strong> –  <strong> A partir de R$180 mensais.</strong></li>
-          <li><strong>Acompanhamento contínuo </strong> – Manutenção contínua que gera resultado visível.</li>
+          <li><strong>Planos Econômico</strong> – <strong>A partir de R$180 mensais.</strong></li>
+          <li><strong>Acompanhamento contínuo</strong> – Manutenção contínua que gera resultado visível.</li>
           <li><strong>Valorização do condomínio</strong> – Jardim bem cuidado hoje, patrimônio valorizado amanhã.</li>
         </ul>
         <p style="margin-top:14px;color:#475467">
-          Será um prazer conhecer seu condomínio! Diga um oi clicando abaixo. Vamos nos conhecer e buscar a melhor forma de trabalho.
+          Será um prazer conhecer seu condomínio! Diga um oi clicando abaixo.
         </p>
-        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20saber%20mais%20sobre%20os%20planos%20mensais." style="margin-top:10px;display:inline-block">
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20saber%20mais%20sobre%20os%20planos%20mensais."
+           style="margin-top:10px;display:inline-flex"
+           target="_blank" rel="noopener">
           Chame no WhatsApp por aqui!
         </a>
       </div>
     </div>
   </section>
 
- 
-  <!-- FEATURE SPLIT -->
-  
- 
-  <!-- EXEMPLOS DE CONDOMÍNIOS -->
-  <section class="examples" id="Serviços">
+  <!-- SERVIÇOS -->
+  <section class="examples" id="servicos">
     <div class="wrap">
       <h2 class="section-title">Serviços</h2>
-      <p class="muted">Valores apenas para referencia </p>
+      <p class="muted">Valores apenas para referência.</p>
 
       <div class="grid">
         <!-- Pequeno -->
         <div class="card example-card">
           <figure>
             <img src="edificio-simples.jpg" alt="Condomínio pequeno — jardins compactos" />
-
             <span class="example-badge">Prédio Residencial</span>
           </figure>
           <div class="example-body">
             <h3>Condomínio Pequeno</h3>
             <ul class="example-list">
               <li>Despreocupação</li>
-              <li>Proposito de manter visual positivo</li>
+              <li>Propósito de manter visual positivo</li>
               <li>Manutenções rápidas e com frequência</li>
-            
             </ul>
             <div class="example-price">
               <span>Estimativa mensal</span><span>R$180 – R$1.600</span>
             </div>
-            <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20pequeno%20(eu%20vi%20o%20Exemplo%201).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20pequeno%20(eu%20vi%20o%20Exemplo%201).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F"
+               target="_blank" rel="noopener">
               Quero orçamento deste perfil
             </a>
           </div>
@@ -898,27 +569,26 @@ A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para 
             <h3>Condomínio Médio</h3>
             <ul class="example-list">
               <li>Exige um acompanhamento em rotina</li>
-              <li>Manutenção basica e constante</li>
-              <li>Visita em multiram quando necessario</li>
-            </li>
+              <li>Manutenção básica e constante</li>
+              <li>Visita em multi-ramos quando necessário</li>
             </ul>
             <div class="example-price">
               <span>Estimativa mensal</span><span>R$1.600 – R$3.500</span>
             </div>
-            <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20m%C3%A9dio%20(Exemplo%202).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20m%C3%A9dio%20(Exemplo%202).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F"
+               target="_blank" rel="noopener">
               Quero orçamento deste perfil
             </a>
           </div>
         </div>
 
         <!-- Grande -->
-                <!-- Grande -->
         <div class="card example-card">
           <figure>
             <img src="ex-grande.jpg.png" alt="Condomínio grande — gramados, palmeiras e áreas extensas" />
             <span class="example-badge">10 a 25 blocos</span>
           </figure>
-
           <div class="example-body">
             <h3>Condomínio Grande</h3>
             <ul class="example-list">
@@ -926,193 +596,168 @@ A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para 
               <li>Rotina: 3 a 5 visitas/semana (cronograma por zonas)</li>
               <li>Inclui: manutenção completa e podas programadas</li>
             </ul>
-
             <div class="example-price">
               <span>Estimativa mensal</span><span>R$3.500 – R$12.000</span>
             </div>
-
-            <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20grande%20(Exemplo%203).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F" target="_blank" rel="noopener">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20grande%20(Exemplo%203).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F"
+               target="_blank" rel="noopener">
               Quero orçamento deste perfil
             </a>
           </div>
         </div>
-      </div> <!-- fecha .grid -->
+      </div>
 
       <p class="nota-valores">
         *Os valores podem variar conforme escopo (podas em altura, revitalização de gramados, retirada de resíduos, insumos e deslocamento).
       </p>
-    </div> <!-- fecha .wrap -->
-  </section>
-
-    
-  
+    </div>
   </section>
 
   <!-- CTA BAND -->
   <section>
     <div class="wrap band">
-      <div style="display:grid;gap:8px">
+      <div style="display:grid;gap:8px;max-width:680px">
         <h3 style="margin:0">Chega de adiar a jardinagem.</h3>
-        <p style="margin:0;opacity:.95">Fale com a JS agora e resolva isso antes que piore.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento.">Resolver agora no WhatsApp</a>
-          <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Ver Instagram</a>
-        </div>
+        <p style="margin:0;opacity:.95;line-height:1.6">Fale com a JS agora e resolva isso antes que piore.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">Resolver no WhatsApp</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Ver Instagram</a>
+      </div>
+    </div>
   </section>
 
-<!-- HERO EcoVida (banner grande) -->
-<section id="ecovida-hero" class="ecovida-hero-full">
-  <div class="wrap ecovida-hero-inner">
-    <h2>Projeto EcoVida JS</h2>
-    <p>Meio ambiente, dignidade e novas oportunidades — um projeto que cuida da cidade e das pessoas.</p>
+  <!-- HERO EcoVida -->
+  <section id="ecovida-hero" class="ecovida-hero-full">
+    <div class="wrap ecovida-hero-inner">
+      <h2>Projeto EcoVida JS</h2>
+      <p>Meio ambiente, dignidade e novas oportunidades — um projeto que cuida da cidade e das pessoas.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ECO VIDA (conteúdo alinhado e sem “buraco”) -->
-<section id="ecovida" class="ecovida">
-  <div class="wrap">
-    <div class="ecovida-head">
-      <!-- COLUNA ESQUERDA -->
-      <div>
-        <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
-        <h2 class="section-title">EcoVida</h2>
-        <p class="muted ecovida-sub">
-          Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
-        </p>
-
-        <div class="ecovida-kpis">
-          <div class="kpi">
-            <strong>Recicláveis na rota</strong>
-            <span>Plástico, papel e metal — com separação e destino correto.</span>
-          </div>
-          <div class="kpi">
-            <strong>Praças mais cuidadas</strong>
-            <span>Limpeza e organização de espaços públicos com constância.</span>
-          </div>
-          <div class="kpi">
-            <strong>Transparência</strong>
-            <span>Alinhamento do ponto, rota e boas práticas.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- COLUNA DIREITA -->
-      <div class="ecovida-actions">
-        <div class="card ecovida-card">
-          <h3>Como funciona</h3>
-          <ul class="ecovida-list">
-            <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
-            <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
-            <li><b>Coletamos apenas recicláveis</b> (não coletamos móveis/entulho por enquanto).</li>
-            <li><b>Atuação gradual</b>, conforme crescimento e parcerias.</li>
-          </ul>
-
-          <div class="ecovida-cta-row">
-            <a class="btn btn-primary" href="#contato">Quero participar</a>
-            <a class="btn btn-primary" href="#contato">Solicitar avaliação</a>
-            <a class="btn btn-primary" href="Doações.html">Doações</a>
-          </div>
-
-          <p class="muted ecovida-note">
-            *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
+  <!-- ECO VIDA -->
+  <section id="ecovida" class="ecovida">
+    <div class="wrap">
+      <div class="ecovida-head">
+        <div>
+          <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
+          <h2 class="section-title">EcoVida</h2>
+          <p class="muted ecovida-sub">
+            Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
           </p>
+
+          <div class="ecovida-kpis">
+            <div class="kpi">
+              <strong>Recicláveis na rota</strong>
+              <span>Plástico, papel e metal — com separação e destino correto.</span>
+            </div>
+            <div class="kpi">
+              <strong>Praças mais cuidadas</strong>
+              <span>Limpeza e organização de espaços públicos com constância.</span>
+            </div>
+            <div class="kpi">
+              <strong>Transparência</strong>
+              <span>Alinhamento do ponto, rota e boas práticas.</span>
+            </div>
+          </div>
         </div>
 
-       <!-- EcoVida: cards com ícones -->
-        </section>
-<section class="section">
-  <div class="container">
-    <div class="ecovida-grid">
+        <div class="ecovida-actions">
+          <div class="card ecovida-card">
+            <h3>Como funciona</h3>
+            <ul class="ecovida-list">
+              <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
+              <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
+              <li><b>Coletamos apenas recicláveis</b> (não coletamos móveis/entulho por enquanto).</li>
+              <li><b>Atuação gradual</b>, conforme crescimento e parcerias.</li>
+            </ul>
 
-      <div class="card eco-feature">
-        <div class="eco-ico">♻️</div>
-        <h3>Sustentabilidade na prática</h3>
-        <p>Reciclagem, reaproveitamento de materiais e gestão consciente de resíduos verdes e recicláveis.</p>
+            <div class="ecovida-cta-row">
+              <a class="btn btn-primary" href="#contato">Quero participar</a>
+              <a class="btn btn-outline" href="#contato">Solicitar avaliação</a>
+              <a class="btn btn-primary" href="Doações.html">Doações</a>
+            </div>
+
+            <p class="muted" style="margin-top:12px">
+              *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div class="card eco-feature">
-        <div class="eco-ico">🤝</div>
-        <h3>Oportunidade de recomeço</h3>
-        <p>Inclusão de pessoas que buscam reconstruir sua trajetória com rotina, trabalho e dignidade.</p>
-      </div>
+      <div class="ecovida-grid">
+        <div class="eco-feature">
+          <div class="eco-ico">♻️</div>
+          <h3>Sustentabilidade na prática</h3>
+          <p>Reciclagem, reaproveitamento de materiais e gestão consciente de resíduos verdes e recicláveis.</p>
+        </div>
 
-      <div class="card eco-feature">
-        <div class="eco-ico">🌱</div>
-        <h3>Impacto positivo na cidade</h3>
-        <p>Ambientes mais cuidados, fortalecimento da consciência ambiental e melhoria do visual urbano.</p>
-      </div>
+        <div class="eco-feature">
+          <div class="eco-ico">🤝</div>
+          <h3>Oportunidade de recomeço</h3>
+          <p>Inclusão de pessoas que buscam reconstruir sua trajetória com rotina, trabalho e dignidade.</p>
+        </div>
 
-      <div class="card eco-feature eco-highlight">
-        <div class="eco-ico">🏙️</div>
-        <h3>Onde atuamos</h3>
-        <p>Condomínios, praças e áreas próximas — iniciando por pontos estratégicos com maior necessidade de cuidado.</p>
-      </div>
+        <div class="eco-feature">
+          <div class="eco-ico">🌱</div>
+          <h3>Impacto positivo na cidade</h3>
+          <p>Ambientes mais cuidados, fortalecimento da consciência ambiental e melhoria do visual urbano.</p>
+        </div>
 
-      <div class="card eco-feature">
-        <div class="eco-ico">🧱</div>
-        <h3>O que coletamos</h3>
-        <p>Recicláveis (plástico, papel, metal), resíduos verdes, e sob demanda: móveis/itens volumosos para triagem.</p>
-      </div>
+        <div class="eco-feature eco-highlight">
+          <div class="eco-ico">🏙️</div>
+          <h3>Onde atuamos</h3>
+          <p>Condomínios, praças e áreas próximas — iniciando por pontos estratégicos com maior necessidade de cuidado.</p>
+        </div>
 
-      <div class="card eco-feature">
-        <div class="eco-ico">📌</div>
-        <h3>Transparência</h3>
-        <p>Processo simples, com alinhamento prévio: o que será coletado, destino e boas práticas de organização.</p>
-  </div>
-</section>
-</section>
-<section id="carreira" style="background:#f6f8f7">
-  <div class="wrap">
-    <h2 class="section-title">Carreira na JS Jardinagem</h2>
-    <p class="muted">
-      Crescimento profissional, trabalho contínuo e oportunidade real de evolução.
-    </p>
+        <div class="eco-feature">
+          <div class="eco-ico">🧱</div>
+          <h3>O que coletamos</h3>
+          <p>Recicláveis (plástico, papel, metal) e resíduos verdes (conforme alinhamento).</p>
+        </div>
 
-    <div class="grid" style="margin-top:24px">
-      <div class="card">
-        <h3>🌱 Auxiliar de Jardinagem</h3>
-        <p>
-          Ideal para quem está começando ou quer aprender na prática.
-          Trabalho em equipe, orientação diária e evolução progressiva.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🌿 Jardineiro Operacional</h3>
-        <p>
-          Para quem já tem experiência com manutenção, podas e organização de jardins.
-          Mais responsabilidade, melhor remuneração e estabilidade.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🌳 Líder Operacional</h3>
-        <p>
-          Para profissionais que sabem liderar equipe e organizar serviços.
-          Participação direta no crescimento da empresa e ganhos proporcionais.
-        </p>
+        <div class="eco-feature">
+          <div class="eco-ico">📌</div>
+          <h3>Transparência</h3>
+          <p>Processo simples, com alinhamento prévio: o que será coletado, destino e boas práticas de organização.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div style="margin-top:32px">
-      <p class="muted">
-        Nosso objetivo é formar profissionais sólidos e construir relações de longo prazo.
-        Aqui existe caminho de crescimento para quem entrega resultado.
-      </p>
+  <!-- CARREIRA (seção rápida na home) -->
+  <section id="carreira" style="background:#f6f8f7">
+    <div class="wrap">
+      <h2 class="section-title">Carreira na JS Jardinagem</h2>
+      <p class="muted">Crescimento profissional, trabalho contínuo e oportunidade real de evolução.</p>
+
+      <div class="grid" style="margin-top:24px">
+        <div class="card" style="padding:18px">
+          <h3>🌱 Auxiliar de Jardinagem</h3>
+          <p class="muted">Ideal para quem está começando ou quer aprender na prática. Trabalho em equipe e evolução progressiva.</p>
+        </div>
+
+        <div class="card" style="padding:18px">
+          <h3>🌿 Jardineiro Operacional</h3>
+          <p class="muted">Para quem já tem experiência com manutenção, podas e organização. Mais responsabilidade e estabilidade.</p>
+        </div>
+
+        <div class="card" style="padding:18px">
+          <h3>🌳 Líder Operacional</h3>
+          <p class="muted">Para profissionais que lideram equipe e organizam serviços. Ganhos proporcionais e crescimento com a empresa.</p>
+        </div>
+      </div>
 
       <a class="btn btn-primary"
-         href="https://wa.me/5534992142960?text=Olá%20JS!%20Tenho%20interesse%20em%20trabalhar%20na%20equipe%20e%20quero%20saber%20mais%20sobre%20a%20carreira."
+         href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20interesse%20em%20trabalhar%20na%20equipe%20e%20quero%20saber%20mais%20sobre%20a%20carreira."
          target="_blank" rel="noopener"
-         style="margin-top:12px;display:inline-block">
+         style="margin-top:16px;display:inline-flex">
         Quero fazer parte da equipe JS
       </a>
     </div>
-  </div>
-</section>
+  </section>
 
-</section>
-  
   <!-- CONTATO -->
   <section id="contato">
     <div class="wrap">
@@ -1127,15 +772,15 @@ A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para 
     <div class="wrap foot">
       <div>
         <strong>JS Jardinagem</strong>
-        <p class="muted">Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.</p>
+        <p class="muted" style="color:#cfe8da;opacity:.85">Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.</p>
       </div>
       <div>
         <p><a href="#servicos">Serviços</a></p>
-        <p><a href="#como-funciona">Como funciona</a></p>
-        <p><a href="#clientes">Clientes</a></p>
+        <p><a href="#ecovida">EcoVida</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
       </div>
       <div>
-        <p><a href="https://wa.me/5534992142960">WhatsApp</a></p>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
         <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
       </div>
     </div>
@@ -1144,10 +789,10 @@ A JS atua para melhorar o ambiente urbano, valorizar espaços e contribuir para 
   <!-- Ícones flutuantes -->
   <div class="float-social">
     <a href="https://wa.me/5534992142960" title="Fale pelo WhatsApp" aria-label="Fale pelo WhatsApp" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6zM224 338c-63 0-114-51-114-114s51-114 114-114 114 51 114 114-51 114-114 114z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6z"/></svg>
     </a>
     <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75zm146-194c0 14.9-12.1 27-27 27s-27-12.1-27-27 12.1-27 27-27 27 12.1 27 27zM398.8 80C370.7 51.9 333.2 36 294.4 36H153.6C114.8 36 77.3 51.9 49.2 80 21.1 108.1 5.2 145.6 5.2 184.4v140.8C5.2 364.4 21.1 401.9 49.2 430c28.1 28.1 65.6 44 104.4 44h140.8c38.8 0 76.3-15.9 104.4-44 28.1-28.1 44-65.6 44-104.4V184.4c0-38.8-15.9-76.3-44-104.4z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/></svg>
     </a>
   </div>
 
