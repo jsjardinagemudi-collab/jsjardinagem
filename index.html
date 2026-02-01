@@ -273,31 +273,52 @@
       gap:10px;
     }
 
-    .btn{
-      appearance:none;
-      border:1px solid #dfe3df;
-      background:#fff;
-      border-radius:12px;
-      padding:10px 14px;
-      font-weight:700;
-      cursor:pointer;
-      transition:all .25s ease;
-    }
+   /* BOTÕES — padrão único */
+.btn{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.12);
+  color:#fff;
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s ease;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  line-height:1;
+}
 
-    .btn:hover{
-      background:#f3f5f7;
-    }
+/* Hover padrão (para fundo escuro do hero) */
+.btn:hover{
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.5);
+}
 
-    .btn-primary{
-      background:var(--pri);
-      border-color:var(--pri);
-      color:#fff;
-    }
+/* Primário (azul sólido) */
+.btn-primary{
+  background: var(--pri);
+  border-color: var(--pri);
+  color:#fff;
+}
+.btn-primary:hover{
+  background:#0d3270;
+  border-color:#0d3270;
+}
 
-    .btn-primary:hover{
-      background:#0d3270;
-      border-color:#0d3270;
-    }
+/* Outline (transparente com borda azul) */
+.btn-outline{
+  background: transparent;
+  border-color: #9fc3ff;
+  color:#eaf2ff;
+}
+.btn-outline:hover{
+  background: rgba(17,64,132,.25);
+  border-color:#cfe1ff;
+}
+
     /* ===== EcoVida: ajuste de layout para não "espalhar" ===== */
 
 /* limita largura e melhora leitura */
@@ -748,7 +769,28 @@
   <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-inner">
-  
+  header .btn{
+  background:#fff;
+  color: var(--ink);
+  border-color:#dfe3df;
+}
+header .btn:hover{
+  background:#f3f5f7;
+}
+header .btn-primary{
+  background: var(--pri);
+  border-color: var(--pri);
+  color:#fff;
+}
+header .btn-outline{
+  background: transparent;
+  border-color: var(--pri);
+  color: var(--pri);
+}
+header .btn-outline:hover{
+  background:#eef4ff;
+}
+
 
       <div>
         <h1>Jardinagem e Manutenção para sua casa ou condomínio.</h1>
