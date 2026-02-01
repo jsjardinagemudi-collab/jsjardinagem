@@ -1,31 +1,48 @@
-<!-- ===== FORM PARCEIRO JS (HTML + CSS + JS) ===== -->
-<section id="form-parceiro" style="padding:56px 0;">
+<!-- ===== FORM PARCEIRO JS (HTML + CSS + JS) — VERSÃO CORPORATIVA ===== -->
+<section id="form-parceiro" class="parceiro-page">
   <div class="wrap">
-    <div class="card card-pad" style="padding:22px;">
-      <h2 class="section-title" style="margin:0 0 6px;">Cadastro de Parceiro • JS Jardinagem</h2>
-      <p class="muted" style="margin:0 0 18px;line-height:1.6;">
-        Preencha os dados abaixo. Ao final, você envia tudo direto no WhatsApp da JS (mensagem pronta e organizada).
-      </p>
+    <div class="parceiro-panel">
+      <!-- Cabeçalho corporativo -->
+      <div class="parceiro-head">
+        <div class="parceiro-brand">
+          <img src="logo branca limpa.png" alt="JS Jardinagem" />
+          <div>
+            <strong>Cadastro de Parceiro • JS Jardinagem</strong>
+            <small>Preencha e envie direto no WhatsApp da JS (mensagem pronta e organizada).</small>
+          </div>
+        </div>
+
+        <div class="parceiro-seal">PARCEIRO OFICIAL JS</div>
+      </div>
+
+      <!-- Texto curto e profissional -->
+      <div class="parceiro-intro">
+        <p class="muted">
+          A parceria é baseada em <b>qualidade</b>, <b>pontualidade</b> e <b>comunicação</b>.
+          Esse cadastro é para agilizar o dia a dia e manter padrão de execução.
+        </p>
+      </div>
 
       <form id="parceiroForm" class="form-grid" autocomplete="on">
         <!-- Dados básicos -->
         <div class="field">
-          <label for="nome">Nome completo *</label>
+          <label for="nome">Nome completo <span class="req">*</span></label>
           <input id="nome" name="nome" type="text" required placeholder="Ex: João da Silva" />
         </div>
 
         <div class="field">
-          <label for="cidade">Cidade/Região *</label>
+          <label for="cidade">Cidade/Região <span class="req">*</span></label>
           <input id="cidade" name="cidade" type="text" required placeholder="Ex: Uberlândia (Zona Sul)" />
         </div>
 
         <div class="field">
-          <label for="telefone">WhatsApp do parceiro *</label>
+          <label for="telefone">WhatsApp do parceiro <span class="req">*</span></label>
           <input id="telefone" name="telefone" type="tel" required placeholder="Ex: (34) 9xxxx-xxxx" />
+          <small class="hint">Pode ser só números também (DDD + número).</small>
         </div>
 
         <div class="field">
-          <label for="tempoExp">Tempo de experiência *</label>
+          <label for="tempoExp">Tempo de experiência <span class="req">*</span></label>
           <select id="tempoExp" name="tempoExp" required>
             <option value="" selected disabled>Selecione</option>
             <option>Menos de 1 ano</option>
@@ -48,22 +65,22 @@
 
         <!-- Equipamentos -->
         <div class="field field-full">
-          <label>Equipamentos que você tem *</label>
+          <label>Equipamentos que você tem <span class="req">*</span></label>
           <div class="checks">
             <label class="ck"><input type="checkbox" name="equip" value="Roçadeira" /> Roçadeira</label>
             <label class="ck"><input type="checkbox" name="equip" value="Soprador" /> Soprador</label>
             <label class="ck"><input type="checkbox" name="equip" value="Cortador de grama" /> Cortador de grama</label>
             <label class="ck"><input type="checkbox" name="equip" value="Motosserra" /> Motosserra</label>
             <label class="ck"><input type="checkbox" name="equip" value="Ferramentas manuais" /> Ferramentas manuais</label>
-            <label class="ck"><input type="checkbox" name="equip" value="EPIs completos" /> EPIs completos</label>
+            <label class="ck"><input type="checkbox" name="equip" value="EPIs completos (inclui chapéu/sol)" /> EPIs completos (inclui chapéu/sol)</label>
             <label class="ck"><input type="checkbox" name="equip" value="Veículo próprio" /> Veículo próprio</label>
           </div>
-          <small class="muted">Marque tudo que você realmente tem hoje.</small>
+          <small class="hint">Marque apenas o que você realmente tem hoje.</small>
         </div>
 
         <!-- Tipos de serviço -->
         <div class="field field-full">
-          <label>Tipos de serviço que você aceita *</label>
+          <label>Tipos de serviço que você aceita <span class="req">*</span></label>
           <div class="checks">
             <label class="ck"><input type="checkbox" name="servicos" value="Manutenção geral" /> Manutenção geral</label>
             <label class="ck"><input type="checkbox" name="servicos" value="Roçada / limpeza pesada" /> Roçada / limpeza pesada</label>
@@ -76,7 +93,7 @@
 
         <!-- Disponibilidade -->
         <div class="field field-full">
-          <label>Disponibilidade *</label>
+          <label>Disponibilidade <span class="req">*</span></label>
           <div class="checks">
             <label class="ck"><input type="checkbox" name="dias" value="Segunda" /> Seg</label>
             <label class="ck"><input type="checkbox" name="dias" value="Terça" /> Ter</label>
@@ -89,26 +106,31 @@
 
         <!-- Modelo de divisão -->
         <div class="field field-full">
-          <label>Modelo de divisão (Parceiro / JS) *</label>
+          <label>Modelo de divisão (lembrando: % do Parceiro / % da JS) <span class="req">*</span></label>
+
           <div class="radios">
             <label class="rd">
-              <input type="radio" name="divisao" value="50/50 (Parceiro 50% / JS 50%) — JS fecha e organiza / parceiro executa" required />
-              <span><b>50% Parceiro / 50% JS</b> — JS fecha e organiza / parceiro executa</span>
+              <input type="radio" name="divisao"
+                value="Parceiro 50% / JS 50% — JS fecha e organiza / parceiro executa"
+                required />
+              <span><b>Parceiro 50% / JS 50%</b> — JS fecha e organiza • parceiro executa</span>
             </label>
 
             <label class="rd">
-              <input type="radio" name="divisao" value="40/60 (Parceiro 40% / JS 60%) — JS fornece apoio, ajudante, logística e supervisão" />
-              <span><b>40% Parceiro / 60% JS</b> — JS fornece apoio, ajudante, logística e supervisão</span>
+              <input type="radio" name="divisao"
+                value="Parceiro 40% / JS 60% — JS fornece apoio, ajudante, logística e supervisão" />
+              <span><b>Parceiro 40% / JS 60%</b> — JS fornece apoio, ajudante, logística e supervisão</span>
             </label>
 
             <label class="rd">
-              <input type="radio" name="divisao" value="70/30 (Parceiro 70% / JS 30%) — parceiro traz cliente / JS oferece suporte, padrão e ajudantes se necessário" />
-              <span><b>70% Parceiro / 30% JS</b> — parceiro traz cliente / JS oferece suporte, padrão e ajudantes se necessário</span>
+              <input type="radio" name="divisao"
+                value="Parceiro 70% / JS 30% — parceiro traz cliente / JS oferece padrão e suporte" />
+              <span><b>Parceiro 70% / JS 30%</b> — parceiro traz cliente • JS oferece padrão e suporte</span>
             </label>
           </div>
 
-          <div class="card" style="margin-top:12px;padding:14px 14px;border-radius:14px;">
-            <p class="muted" style="margin:0;line-height:1.6;font-size:14px;">
+          <div class="note-box">
+            <p class="muted" style="margin:0;">
               <b>Observação:</b> a divisão final pode variar conforme complexidade, risco, distância, equipe envolvida e estrutura necessária.
               Tudo é alinhado antes do início do serviço.
             </p>
@@ -118,7 +140,8 @@
         <!-- Observações -->
         <div class="field field-full">
           <label for="obs">Observações (opcional)</label>
-          <textarea id="obs" name="obs" rows="4" placeholder="Ex: faço poda técnica, tenho escada, posso atender Zona Sul, tenho nota, etc."></textarea>
+          <textarea id="obs" name="obs" rows="4"
+            placeholder="Ex: faço poda técnica, tenho escada, posso atender Zona Sul, tenho nota, etc."></textarea>
         </div>
 
         <!-- Ações -->
@@ -127,7 +150,7 @@
           <button type="reset" class="btn btn-outline">Limpar</button>
         </div>
 
-        <p class="muted" style="margin:12px 0 0;font-size:13px;">
+        <p class="hint" style="margin:10px 0 0;">
           Ao clicar em “Enviar no WhatsApp”, será aberta uma mensagem com seus dados para a JS.
         </p>
       </form>
@@ -136,21 +159,104 @@
 </section>
 
 <style>
-  /* mantém estilo compatível com seu tema */
-  .card{
-  background:#ffffffee;
-  backdrop-filter: blur(4px);
-}
+  /* ===== Fundo aplicado SÓ na página do parceiro (não no site inteiro) ===== */
+  .parceiro-page{
+    position:relative;
+    padding:56px 0;
+    background: url('fundo parceiro.png') center/cover no-repeat;
+    overflow:hidden;
+  }
+  .parceiro-page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    /* overlay mais transparente (deixa a imagem aparecer mais) */
+    background: linear-gradient(
+      50deg,
+      rgba(17,64,132,0.45) 0%,
+      rgba(0,0,0,0.35) 100%
+    );
+    z-index:0;
+  }
+  .parceiro-page .wrap{position:relative; z-index:1;}
 
+  /* ===== Painel corporativo central ===== */
+  .parceiro-panel{
+    background: rgba(255,255,255,.93);
+    border: 1px solid rgba(255,255,255,.55);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.16);
+    padding: 0;
+    overflow:hidden;
+  }
+
+  .parceiro-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    flex-wrap:wrap;
+    padding:18px 20px 14px;
+    border-bottom:1px solid rgba(231,236,239,.9);
+    background: linear-gradient(180deg, rgba(17,64,132,.06), rgba(255,255,255,0));
+  }
+
+  .parceiro-brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .parceiro-brand img{
+    height:46px;
+    width:auto;
+    border-radius:10px;
+    background:#fff;
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+  }
+  .parceiro-brand strong{
+    display:block;
+    font-weight:1000;
+    color:#114084;
+    letter-spacing:.3px;
+  }
+  .parceiro-brand small{
+    display:block;
+    color:#667085;
+    font-weight:700;
+    margin-top:2px;
+  }
+
+  .parceiro-seal{
+    background: linear-gradient(135deg, #114084, #0d3270);
+    color:#fff;
+    font-size:12px;
+    font-weight:1000;
+    padding:8px 14px;
+    border-radius:999px;
+    letter-spacing:.6px;
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 10px 20px rgba(0,0,0,.18);
+    white-space:nowrap;
+  }
+
+  .parceiro-intro{
+    padding:14px 20px 2px;
+  }
+
+  /* ===== Form ===== */
   .form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:14px;
+    gap:14px 16px;
+    padding: 14px 20px 20px;
   }
   .field{display:flex;flex-direction:column;gap:7px;}
   .field-full{grid-column:1 / -1;}
 
   label{font-weight:900;color:#0f1411;font-size:14px;}
+  .req{color:#b42318;font-weight:1000}
+
   input,select,textarea{
     border:1px solid #e7ecef;
     border-radius:12px;
@@ -164,36 +270,49 @@
     box-shadow:0 0 0 3px rgba(17,64,132,.12);
   }
 
-  .checks,.radios{display:flex;flex-wrap:wrap;gap:10px 14px;}
-  .ck,.rd{
-    display:flex;align-items:flex-start;gap:10px;
-    padding:10px 12px;border:1px solid #e7ecef;border-radius:12px;background:#fff;
+  .checks,.radios{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 12px;
   }
+
+  .ck,.rd{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid #e7ecef;
+    border-radius:12px;
+    background:#fff;
+  }
+  .ck:hover,.rd:hover{background:#f6f8fb}
   .ck input,.rd input{margin-top:3px;}
   .rd{width:100%;}
   .rd span{line-height:1.4;color:#344054;}
 
-  .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+  .note-box{
+    margin-top:12px;
+    padding:12px 12px;
+    border-radius:14px;
+    border:1px solid #e7ecef;
+    background:#ffffffcc;
+  }
 
-  body{
-  background: url('fundo parceiro.png') center/cover no-repeat fixed;
-  position: relative;
-}
+  /* ===== Botões (mantém seu padrão) ===== */
+  .form-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:6px;
+    padding-top:10px;
+    border-top:1px solid rgba(231,236,239,.9);
+  }
 
-/* Overlay azul JS */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background: linear-gradient(
-    50deg,
-    rgba(17,64,132,0.75) 0%,
-    rgba(0,0,0,0.35) 100%
-  );
-  z-index:-1;
-}
+  /* ===== Texto auxiliar ===== */
+  .hint{color:#667085;font-size:12px;line-height:1.4;}
+  .muted{color:#667085;}
 
-
+  /* ===== Responsivo ===== */
   @media (max-width:900px){
     .form-grid{grid-template-columns:1fr;}
     .rd{width:100%;}
@@ -214,13 +333,11 @@ body::before{
     }
 
     function requiredOk(form){
-      // checa required padrão do navegador
       if(!form.checkValidity()){
         form.reportValidity();
         return false;
       }
 
-      // valida pelo menos 1 equipamento e 1 serviço e 1 dia
       const equip = getCheckedValues(form, "equip");
       const servs = getCheckedValues(form, "servicos");
       const dias  = getCheckedValues(form, "dias");
@@ -290,4 +407,3 @@ body::before{
   })();
 </script>
 <!-- ===== /FORM PARCEIRO JS ===== -->
-
