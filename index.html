@@ -276,9 +276,8 @@
    /* BOTÕES — padrão único */
 .btn{
   appearance:none;
-  border:1px solid rgba(255,255,255,.35);
-  background: rgba(255,255,255,.12);
-  color:#fff;
+  border:1px solid #dfe3df;
+  background:#fff;
   border-radius:12px;
   padding:11px 14px;
   font-weight:800;
@@ -288,36 +287,32 @@
   align-items:center;
   justify-content:center;
   gap:10px;
-  line-height:1;
+
+  /* ✅ chave: força cor padrão */
+  color: var(--ink);
 }
 
-/* Hover padrão (para fundo escuro do hero) */
-.btn:hover{
-  background: rgba(255,255,255,.18);
-  border-color: rgba(255,255,255,.5);
-}
+.btn:hover{background:#f3f5f7}
 
-/* Primário (azul sólido) */
 .btn-primary{
-  background: var(--pri);
-  border-color: var(--pri);
+  background:var(--pri);
+  border-color:var(--pri);
   color:#fff;
 }
+
 .btn-primary:hover{
   background:#0d3270;
   border-color:#0d3270;
 }
 
-/* Outline (transparente com borda azul) */
 .btn-outline{
-  background: transparent;
-  border-color: #9fc3ff;
-  color:#eaf2ff;
+  background:transparent;
+  border-color:var(--pri);
+  color:var(--pri);
 }
-.btn-outline:hover{
-  background: rgba(17,64,132,.25);
-  border-color:#cfe1ff;
-}
+
+.btn-outline:hover{background:#eef4ff}
+
 
     /* ===== EcoVida: ajuste de layout para não "espalhar" ===== */
 
@@ -699,12 +694,33 @@
         gap:14px;
         margin-bottom:60px;
       }
-      .hero .btn,
-      .hero .btn-primary{
-        font-size:15px;
-        padding:13px;
-        text-align:center;
-      }
+     .hero .btn{
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.28);
+  color:#fff;
+}
+
+.hero .btn:hover{
+  background: rgba(255,255,255,.22);
+}
+
+/* mantém o primário forte no hero */
+.hero .btn-primary{
+  background: var(--pri);
+  border-color: var(--pri);
+  color:#fff;
+}
+
+.hero .btn-outline{
+  background: transparent;
+  border-color: rgba(255,255,255,.55);
+  color:#fff;
+}
+
+.hero .btn-outline:hover{
+  background: rgba(255,255,255,.12);
+}
+
       .hero .card{
         padding:18px;
         font-size:15px;
