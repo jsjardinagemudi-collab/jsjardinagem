@@ -137,7 +137,11 @@
 
 <style>
   /* mantém estilo compatível com seu tema */
-  .card-pad{padding:18px;}
+  .card{
+  background:#ffffffee;
+  backdrop-filter: blur(4px);
+}
+
   .form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -170,6 +174,25 @@
   .rd span{line-height:1.4;color:#344054;}
 
   .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+
+  body{
+  background: url('fundo parceiro.png') center/cover no-repeat fixed;
+  position: relative;
+}
+
+/* Overlay azul JS */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: linear-gradient(
+    50deg,
+    rgba(17,64,132,0.75) 0%,
+    rgba(0,0,0,0.35) 100%
+  );
+  z-index:-1;
+}
+
 
   @media (max-width:900px){
     .form-grid{grid-template-columns:1fr;}
