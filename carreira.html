@@ -106,23 +106,62 @@
       flex:0 0 34px;
     }
 
-    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .plan{padding:18px;display:flex;flex-direction:column}
-    .plan-top{min-height:120px}
+    /* CARDS DE PARCERIA (3 colunas) */
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:18px;
+      align-items:stretch;
+    }
+
+    .plan{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    .plan-top{
+      min-height:150px; /* padroniza topo p/ botões alinharem */
+    }
+
     .badge{
       display:inline-flex;align-items:center;justify-content:center;
       padding:6px 10px;border-radius:999px;font-weight:900;font-size:12px;
       background:#e8f5ee;border:1px solid #cfe9da;color:var(--pri);
     }
     .badge.featured{background:var(--pri);border-color:var(--pri);color:#fff}
+
     .plan h3{margin:10px 0 6px;color:var(--pri);font-size:20px}
     .plan p{margin:0;color:#344054}
-    .plan ul{margin:12px 0 16px;padding-left:18px;line-height:1.7;color:#475467;flex:1}
-    .plan a{margin-top:auto;width:100%}
+
+    .plan ul{
+      margin:12px 0 16px;
+      padding-left:18px;
+      line-height:1.7;
+      color:#475467;
+      flex:1;
+    }
+
+    .plan a.btn{
+      margin-top:auto;
+      width:100%;
+      display:flex;
+      justify-content:center;
+    }
 
     .featured{
       border:2px solid var(--pri);
       box-shadow:0 18px 40px rgba(0,0,0,.12);
+    }
+
+    /* Grid interno dos modelos 50/50, 60/40, 70/30 */
+    .split-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:12px;
     }
 
     .faq{margin-top:18px;display:grid;gap:12px}
@@ -147,50 +186,9 @@
       .hero-inner{grid-template-columns:1fr}
       .grid{grid-template-columns:1fr}
       .pricing{grid-template-columns:1fr}
+      .split-grid{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr}
       .links{display:none}
-      /* Grid dos 3 cards de parceria */
-.pricing{
-  align-items: stretch;
-}
-
-/* Cada card vira coluna e o botão fica no rodapé */
-.plan{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-}
-
-/* Padroniza o topo para evitar “sobe e desce” */
-.plan-top{
-  min-height: 150px; /* pode ajustar 140–180 se quiser */
-}
-
-/* Lista ocupa o meio */
-.plan ul{
-  flex: 1;
-}
-
-/* Botão sempre embaixo e com largura total */
-.plan a.btn{
-  margin-top:auto;
-  width:100%;
-  display:flex;
-  justify-content:center;
-}
-
-/* Grid interno dos modelos 50/50, 60/40, 70/30 */
-.split-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:12px;
-}
-
-@media (max-width:900px){
-  .split-grid{grid-template-columns:1fr;}
-}
-
     }
   </style>
 </head>
@@ -333,128 +331,60 @@
     <div class="wrap">
       <h2 class="section-title">Modelos de parceria</h2>
       <p class="muted">Você escolhe o modelo conforme o tipo de serviço. Tudo alinhado antes de iniciar.</p>
-<h2 class="section-title">Modelos de parceria</h2>
-<p class="muted">Você escolhe o modelo conforme o tipo de serviço. Tudo alinhado antes de iniciar.</p>
 
-<!-- ✅ NOVO BLOCO: modelos de divisão (50/50, 60/40, 70/30) -->
-<div class="card card-pad" style="margin-top:16px">
-  <h3 style="margin:0 0 6px;color:var(--pri)">Modelos de divisão de lucro</h3>
-  <p class="muted" style="margin:0 0 12px;line-height:1.6">
-    Trabalhamos com modelos claros e justos, conforme o tipo de serviço e responsabilidade envolvida.
-    O combinado é sempre feito antes de iniciar.
-  </p>
+      <!-- MODELOS DE DIVISÃO DE LUCRO -->
+      <div class="card card-pad" style="margin-top:16px">
+        <h3 style="margin:0 0 6px;color:var(--pri)">Modelos de divisão de lucro</h3>
+        <p class="muted" style="margin:0 0 12px;line-height:1.6">
+          Trabalhamos com modelos claros e justos, conforme o tipo de serviço e responsabilidade envolvida.
+          O combinado é sempre feito antes de iniciar.
+        </p>
 
-  <div class="split-grid">
-    <div class="split card-pad" style="border:1px solid var(--line);border-radius:14px">
-      <span class="badge">EQUILÍBRIO</span>
-      <h4 style="margin:10px 0 6px;color:var(--pri)">50 / 50</h4>
-      <p class="muted" style="margin:0 0 10px">JS organiza cliente e marketing / parceiro executa.</p>
-      <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-        <li>✅ JS fecha e negocia o serviço</li>
-        <li>✅ Parceiro executa o trabalho</li>
-        <li>✅ Divisão transparente e simples</li>
-      </ul>
-    </div>
+        <div class="split-grid">
+          <div class="card-pad" style="border:1px solid var(--line);border-radius:14px">
+            <span class="badge">EQUILÍBRIO</span>
+            <h4 style="margin:10px 0 6px;color:var(--pri)">50 / 50</h4>
+            <p class="muted" style="margin:0 0 10px">JS organiza cliente e marketing / parceiro executa.</p>
+            <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
+              <li>✅ JS fecha e negocia o serviço</li>
+              <li>✅ Parceiro executa o trabalho</li>
+              <li>✅ Divisão transparente e simples</li>
+            </ul>
+          </div>
 
-    <div class="split card-pad featured" style="border-radius:14px">
-      <span class="badge featured">RECOMENDADO</span>
-      <h4 style="margin:10px 0 6px;color:var(--pri)">60 / 40</h4>
-      <p class="muted" style="margin:0 0 10px">Quando a JS fornece ajudante, logística e supervisão.</p>
-      <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-        <li>✅ JS fornece estrutura e suporte</li>
-        <li>✅ Parceiro executa com apoio</li>
-        <li>✅ Maior organização e escala</li>
-      </ul>
-    </div>
+          <div class="card-pad featured" style="border-radius:14px">
+            <span class="badge featured">RECOMENDADO</span>
+            <h4 style="margin:10px 0 6px;color:var(--pri)">60 / 40</h4>
+            <p class="muted" style="margin:0 0 10px">Quando a JS fornece ajudante, logística e supervisão.</p>
+            <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
+              <li>✅ JS fornece estrutura e suporte</li>
+              <li>✅ Parceiro executa com apoio</li>
+              <li>✅ Maior organização e escala</li>
+            </ul>
+          </div>
 
-    <div class="split card-pad" style="border:1px solid var(--line);border-radius:14px">
-      <span class="badge">CLIENTE DO PARCEIRO</span>
-      <h4 style="margin:10px 0 6px;color:var(--pri)">70 / 30</h4>
-      <p class="muted" style="margin:0 0 10px">Quando o parceiro traz o cliente, e a JS dá suporte.</p>
-      <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-        <li>✅ Parceiro traz o cliente</li>
-        <li>✅ JS dá suporte, sistema e ajudantes</li>
-        <li>✅ Crescimento conjunto</li>
-      </ul>
-    </div>
-  </div>
+          <div class="card-pad" style="border:1px solid var(--line);border-radius:14px">
+            <span class="badge">CLIENTE DO PARCEIRO</span>
+            <h4 style="margin:10px 0 6px;color:var(--pri)">70 / 30</h4>
+            <p class="muted" style="margin:0 0 10px">Quando o parceiro traz o cliente, e a JS dá suporte.</p>
+            <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
+              <li>✅ Parceiro traz o cliente</li>
+              <li>✅ JS dá suporte, sistema e ajudantes</li>
+              <li>✅ Crescimento conjunto</li>
+            </ul>
+          </div>
+        </div>
 
-  <p class="muted" style="margin:12px 0 0;font-size:14px;line-height:1.6">
-    Cada serviço pode ser ajustado conforme complexidade, risco e estrutura envolvida.
-  </p>
-</div>
+        <p class="muted" style="margin:12px 0 0;font-size:14px;line-height:1.6">
+          Cada serviço pode ser ajustado conforme complexidade, risco e estrutura envolvida.
+        </p>
+      </div>
 
-<!-- ✅ aqui começa o grid dos 3 cards -->
-<div class="pricing">
-
+      <!-- 3 MODELOS PRINCIPAIS (CARDS) -->
       <div class="pricing">
         <div class="card plan">
           <div class="plan-top">
             <span class="badge">SERVIÇO AVULSO</span>
-            
-            <section style="margin-top:40px;">
-  <div class="wrap">
-    <h2 style="color:#114084;">Modelos de divisão e parceria</h2>
-    <p style="color:#667085;margin-top:-6px;">
-      Trabalhamos com modelos claros e justos, conforme o tipo de serviço e responsabilidade envolvida.
-    </p>
-
-    <div class="plans-grid" style="margin-top:20px;">
-
-      <!-- 50/50 -->
-      <div class="card plan">
-        <div class="plan-top">
-          <span class="plan-badge">EQUILÍBRIO</span>
-          <h3>50 / 50</h3>
-          <p>JS organiza cliente e marketing / parceiro executa.</p>
-        </div>
-        <ul class="plan-list">
-          <li>✅ JS fecha e negocia o serviço</li>
-          <li>✅ Parceiro executa o trabalho</li>
-          <li>✅ Divisão transparente e simples</li>
-        </ul>
-      </div>
-
-      <!-- 60/40 -->
-      <div class="card plan plan-featured">
-        <div class="plan-top">
-          <span class="plan-badge featured">RECOMENDADO</span>
-          <h3>60 / 40</h3>
-          <p>Quando JS fornece ajudante, logística e supervisão.</p>
-        </div>
-        <ul class="plan-list">
-          <li>✅ JS fornece estrutura e suporte</li>
-          <li>✅ Parceiro executa com apoio</li>
-          <li>✅ Maior organização e escala</li>
-        </ul>
-      </div>
-
-      <!-- 70/30 -->
-      <div class="card plan">
-        <div class="plan-top">
-          <span class="plan-badge">CLIENTE DO PARCEIRO</span>
-          <h3>70 / 30</h3>
-          <p>Quando o parceiro traz o cliente.</p>
-        </div>
-        <ul class="plan-list">
-          <li>✅ Parceiro traz o cliente</li>
-          <li>✅ JS dá suporte, sistema e ajudantes</li>
-          <li>✅ Crescimento conjunto</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="card" style="margin-top:18px;">
-      <strong>Importante</strong>
-      <p style="color:#667085;margin-top:6px;">
-        Cada serviço pode ser ajustado conforme complexidade, risco e estrutura envolvida.
-        Nosso objetivo é criar parcerias sustentáveis, onde todos crescem.
-      </p>
-    </div>
-  </div>
-</section>
-
             <h3>Divisão por diária</h3>
             <p class="muted">Ideal para reforços e trabalhos pontuais.</p>
           </div>
@@ -567,4 +497,3 @@
   </footer>
 </body>
 </html>
-
