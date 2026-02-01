@@ -93,27 +93,45 @@
       gap:10px;
     }
 
-    .btn{
-      appearance:none;
-      border:1px solid #dfe3df;
-      background:#fff;
-      border-radius:12px;
-      padding:10px 14px;
-      font-weight:700;
-      cursor:pointer;
-      transition:all .25s ease;
-      display:inline-block;
-    }
-    .btn:hover{background:#f3f5f7}
-    .btn-primary{
-      background:var(--pri);
-      border-color:var(--pri);
-      color:#fff;
-    }
-    .btn-primary:hover{
-      background:#0d3270;
-      border-color:#0d3270;
-    }
+   .btn{
+  appearance:none;
+  border:1px solid #dfe3df;
+  background:#fff;
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s ease;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  /* ✅ chave: força cor padrão */
+  color: var(--ink);
+}
+
+.btn:hover{background:#f3f5f7}
+
+.btn-primary{
+  background:var(--pri);
+  border-color:var(--pri);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#0d3270;
+  border-color:#0d3270;
+}
+
+.btn-outline{
+  background:transparent;
+  border-color:var(--pri);
+  color:var(--pri);
+}
+
+.btn-outline:hover{background:#eef4ff}
+
 
     .muted{color:var(--muted)}
     section{padding:64px 0}
@@ -319,7 +337,7 @@
       </nav>
 
       <div class="cta">
-        <a class="btn" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20saber%20como%20participar." target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
@@ -337,7 +355,7 @@
 
       <div class="ecovida-hero-actions">
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20participar%20do%20projeto%20e%20entender%20como%20funciona." target="_blank" rel="noopener">Quero participar</a>
-       <a class="btn"
+       <a class="btn btn-primary" href="Doação.html" target="_blank" rel="noopener">Quero contribuir</a>
    href="Doações.html"target="_blank" rel="noopener">
    Contribuir</a>
 
@@ -386,7 +404,7 @@
    href="https://docs.google.com/forms/d/e/1FAIpQLSflkFCeEMm16N0aJn6EtjaOoJtBVMrk5EWuvcZkAliP_Bb8hw/viewform?usp=header"
    target="_blank" rel="noopener">
   Virar ponto parceiro</a>
- <a class="btn" href="#contato">Falar com a equipe</a>
+ <a class="btn btn-primary" href="#contato">Falar com a equipe</a>
         </div>
 
         <p class="muted" style="margin:12px 0 0">
@@ -443,7 +461,7 @@
       <p style="margin:0;opacity:.95">Se você é síndico, empresa ou morador e quer virar ponto parceiro, chama a gente.</p>
       <div class="actions">
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20virar%20ponto%20parceiro%20e%20organizar%20coleta%20de%20recicl%C3%A1veis." target="_blank" rel="noopener">Quero virar ponto parceiro</a>
-        <a class="btn" href="index.html">Voltar para o site JS</a>
+        <a class="btn btn-primary" href="index.html">Voltar para o site JS</a>
       </div>
     </div>
   </section>
