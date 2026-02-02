@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>EcoVida • Sobre | JS Jardinagem</title>
+  <meta name="description" content="Conheça a história e o propósito do EcoVida: meio ambiente, dignidade e novas oportunidades. Um projeto que cuida da cidade e das pessoas." />
+
+  <meta property="og:title" content="EcoVida • Sobre | JS Jardinagem" />
+  <meta property="og:description" content="Meio ambiente, dignidade e novas oportunidades — um projeto que cuida da cidade e das pessoas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-js.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#ffffff;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1120px,92vw);margin:auto}
+
+    /* Top bar + header */
+    .topbar{background:var(--pri);color:#fff;text-align:center;padding:8px 10px;font-size:14px}
+
+    header{
+      position:sticky;top:0;z-index:50;
+      background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{height:56px;width:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);background:#fff;padding:6px}
+    .brand strong{font-size:18px;font-weight:1000;color:var(--pri);letter-spacing:.4px;text-transform:uppercase}
+    .links{display:flex;gap:18px;font-weight:900}
+    .links a{color:var(--ink)}
+    .links a:hover{color:var(--pri)}
+
+    .cta{display:flex;gap:10px;align-items:center}
+    .btn{
+      appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;
+      padding:11px 14px;font-weight:1000;cursor:pointer;transition:.25s ease;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      color:var(--ink);
+    }
+    .btn:hover{background:#f3f5f7}
+    .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
+    .btn-primary:hover{background:#0d3270;border-color:#0d3270}
+    .btn-outline{background:transparent;border-color:var(--pri);color:var(--pri)}
+    .btn-outline:hover{background:#eef4ff}
+
+    /* Layout */
+    section{padding:56px 0}
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 12px 34px rgba(0,0,0,.08);
+    }
+    .card-pad{padding:20px}
+    .section-title{margin:0 0 10px;font-size:28px}
+    .muted{color:var(--muted)}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:70vh;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background: linear-gradient(50deg, rgba(17,64,132,.84), rgba(0,0,0,.42)), url("fundo.png") center/cover no-repeat;
+      overflow:hidden;
+    }
+    .hero-inner{
+      padding:54px 0;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      background:#e8f5ee;border:1px solid #cfe9da;color:var(--pri);
+      font-weight:1000;font-size:12px;
+    }
+    .hero h1{margin:12px 0 10px;font-size:clamp(28px,4vw,48px);line-height:1.08;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+    .hero p{margin:0 0 18px;font-size:clamp(15px,1.4vw,18px);line-height:1.62;opacity:.96;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+    .hero-box{
+      background:#ffffffee;color:var(--ink);
+      border:1px solid #e5e5e5;border-radius:18px;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      padding:22px;
+    }
+    .hero-box h3{margin:0 0 8px;color:var(--pri)}
+    .hero-box ul{margin:10px 0 0;padding-left:18px;line-height:1.7;color:#344054}
+
+    /* Story */
+    .two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}
+    .quote{
+      border-left:5px solid var(--pri);
+      padding:14px 16px;
+      background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
+      border-radius:14px;
+    }
+    .quote p{margin:0;color:#344054;line-height:1.7}
+    .quote strong{color:#0f1411}
+
+    /* Timeline */
+    .timeline{display:grid;gap:12px;margin-top:16px}
+    .titem{display:flex;gap:12px;align-items:flex-start}
+    .dot{
+      width:12px;height:12px;border-radius:50%;
+      background:var(--pri);margin-top:7px;flex:0 0 12px;
+      box-shadow:0 0 0 6px rgba(17,64,132,.12);
+    }
+    .titem h4{margin:0 0 4px;color:#0f1411;font-size:16px}
+    .titem p{margin:0;color:#475467;line-height:1.65}
+
+    /* Values grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .ico{
+      width:44px;height:44px;border-radius:12px;
+      display:grid;place-items:center;
+      background:#fff;border:1px solid var(--line);
+      margin-bottom:10px;font-size:20px;
+    }
+    .kpi{padding:18px}
+    .kpi h3{margin:0 0 6px;color:#0f1411;font-size:18px}
+    .kpi p{margin:0;color:#475467;line-height:1.6}
+
+    /* FAQ */
+    .faq{margin-top:18px;display:grid;gap:12px}
+    details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+    summary{cursor:pointer;font-weight:1000;color:#0f1411}
+    details p{margin:10px 0 0;color:#475467;line-height:1.65}
+
+    /* CTA band */
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;border-radius:18px;padding:28px;
+      display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;
+    }
+    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    footer{
+      background:#0a1a12;color:#cfe8da;padding:34px 0;margin-top:30px;
+    }
+    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
+    .foot a{color:#cfe8da}
+
+    @media (max-width:900px){
+      .hero-inner{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+      .links{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">EcoVida • Sobre — meio ambiente, dignidade e novas oportunidades</div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo branca limpa.png" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
+
+      <nav class="links">
+        <a href="index.html#Serviços">Serviços</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="ecovida-sobre.html">Sobre</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="index.html#contato">Contato</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn" href="ecovida.html">Voltar ao EcoVida</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida%20JS!%20Quero%20saber%20como%20participar%20do%20projeto." target="_blank" rel="noopener">Quero participar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="pill">🌱 Projeto Social • Sustentabilidade • Recomeço</span>
+        <h1>EcoVida é quando a cidade melhora — e as pessoas também.</h1>
+        <p>
+          EcoVida nasceu para unir duas coisas que andam juntas: <b>cuidar do ambiente</b> e <b>criar uma nova chance</b>.
+          Um projeto que fortalece dignidade, rotina e propósito — com trabalho real, metas claras e compromisso com o resultado.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#historia">Ler a história</a>
+          <a class="btn btn-outline" href="#valores">Nossos pilares</a>
+          <a class="btn" href="#como">Como funciona</a>
+        </div>
+      </div>
+
+      <div class="hero-box">
+        <h3>O que é o EcoVida (em 30 segundos)</h3>
+        <ul>
+          <li><b>Organização e limpeza</b> de espaços públicos e áreas parceiras.</li>
+          <li><b>Coleta e destino correto</b> de recicláveis e resíduos verdes (rotas e pontos).</li>
+          <li><b>Trabalho com propósito</b> para quem está pronto para recomeçar.</li>
+          <li><b>Regras claras</b>: pontualidade, respeito e evolução real.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTÓRIA -->
+  <section id="historia">
+    <div class="wrap">
+      <h2 class="section-title">Nossa história</h2>
+      <p class="muted" style="max-width:85ch;line-height:1.7;margin:0 0 18px;">
+        Toda empresa tem um começo. O EcoVida tem um <b>marco</b> — um dia em que a visão ficou clara e virou responsabilidade.
+      </p>
+
+      <div class="two-col">
+        <div class="card card-pad">
+          <h3 style="margin:0 0 10px;color:var(--pri);">17 de janeiro — quando tudo começou</h3>
+          <p class="muted" style="margin:0 0 12px;line-height:1.75;">
+            No dia <b>17 de janeiro</b>, eu vivi um daqueles momentos raros em que a cabeça organiza o coração.
+            Foi quando eu me senti <b>livre emocionalmente</b> — e, ao mesmo tempo, entendi que liberdade sem responsabilidade não dura.
+          </p>
+          <p class="muted" style="margin:0 0 12px;line-height:1.75;">
+            Eu tinha um carro e <b>R$ 100</b>. E eu tinha algo maior do que dinheiro: <b>decisão</b>.
+            A decisão de criar renda com dignidade, construir algo real e fazer isso do jeito certo — com disciplina, presença e trabalho.
+          </p>
+          <p class="muted" style="margin:0;line-height:1.75;">
+            A partir dali, eu passei a andar com pessoas que realmente acreditavam em mim e nas ideias grandes que eu carregava.
+            E eu aprendi uma verdade que mudou tudo: <b>todo mundo tem uma luta</b>.
+            Cada pessoa tem um peso diferente, e muitos vícios nascem de traumas e dores antigas que ficaram mal resolvidas.
+          </p>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <div class="quote">
+            <p>
+              <strong>Eu não acredito em promessa vazia.</strong><br/>
+              Eu acredito em propósito claro, regra clara e rotina clara.
+              Se alguém está disposto a trabalhar comigo, eu preciso conseguir entregar para essa pessoa algo que valha a pena:
+              <b>crescimento</b>, <b>respeito</b> e <b>resultado</b>.
+            </p>
+          </div>
+
+          <div class="card card-pad">
+            <h3 style="margin:0 0 8px;color:var(--pri);">Do propósito à empresa</h3>
+            <p class="muted" style="margin:0;line-height:1.7;">
+              Esse compromisso com trabalho e evolução virou prática. E prática vira estrutura.
+              No início de 2025, nasceu a <b>JS Jardinagem</b> — aberta cerca de <b>5 meses</b> depois do começo dessa jornada.
+              A empresa cresceu com pessoas dedicadas, que escolhem o capricho e o respeito como padrão.
+              O EcoVida nasce como extensão natural disso: cuidar do verde, cuidar da cidade e cuidar de gente.
+            </p>
+          </div>
+
+          <div class="card card-pad">
+            <h3 style="margin:0 0 8px;color:var(--pri);">O que a gente busca</h3>
+            <p class="muted" style="margin:0;line-height:1.7;">
+              Melhorar o ambiente ao redor, elevar a consciência e abrir caminho para recomeços reais.
+              Sem romantizar dor, sem maquiar dificuldade — com trabalho, rotina e metas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-pad" style="margin-top:16px;">
+        <h3 style="margin:0 0 8px;color:var(--pri);">Linha do tempo</h3>
+        <div class="timeline">
+          <div class="titem">
+            <div class="dot"></div>
+            <div>
+              <h4>17 de janeiro — virada de chave</h4>
+              <p>Liberdade emocional + responsabilidade: carro, R$ 100 e decisão de construir renda com dignidade.</p>
+            </div>
+          </div>
+          <div class="titem">
+            <div class="dot"></div>
+            <div>
+              <h4>Início de 2025 — disciplina vira estrutura</h4>
+              <p>Trabalho constante, pessoas certas por perto e metas mais claras do que nunca.</p>
+            </div>
+          </div>
+          <div class="titem">
+            <div class="dot"></div>
+            <div>
+              <h4>5 meses depois — nasce a JS</h4>
+              <p>A empresa se formaliza e começa a formar equipe com padrão, capricho e responsabilidade.</p>
+            </div>
+          </div>
+          <div class="titem">
+            <div class="dot"></div>
+            <div>
+              <h4>EcoVida — o próximo passo</h4>
+              <p>Um projeto para cuidar do ambiente e oferecer recomeços com trabalho, regra e evolução.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como">
+    <div class="wrap">
+      <h2 class="section-title">Como funciona na prática</h2>
+      <p class="muted" style="max-width:90ch;line-height:1.7;margin:0;">
+        O EcoVida funciona com um modelo simples: <b>organização + rotina + responsabilidade</b>.
+        A missão é melhorar o ambiente urbano e fortalecer uma cultura de trabalho digno.
+      </p>
+
+      <div class="grid">
+        <div class="card kpi">
+          <div class="ico">♻️</div>
+          <h3>Coleta e destino correto</h3>
+          <p>Separação e coleta de recicláveis (plástico, papel, metal) e resíduos verdes, com orientação clara do que entra na rota.</p>
+        </div>
+
+        <div class="card kpi">
+          <div class="ico">🏙️</div>
+          <h3>Ambientes mais cuidados</h3>
+          <p>Limpeza, organização e melhorias em pontos estratégicos: praças, áreas parceiras e rotas com necessidade real.</p>
+        </div>
+
+        <div class="card kpi">
+          <div class="ico">🤝</div>
+          <h3>Recomeço com dignidade</h3>
+          <p>Oportunidade para quem está pronto para trabalhar: rotina, metas, padrão e crescimento por mérito.</p>
+        </div>
+      </div>
+
+      <div class="card card-pad" style="margin-top:16px;">
+        <h3 style="margin:0 0 8px;color:var(--pri);">Regras claras (o que sustenta o projeto)</h3>
+        <p class="muted" style="margin:0;line-height:1.7;">
+          Para trabalhar junto, os <b>propósitos</b>, <b>ideias</b> e <b>metas</b> precisam estar claros.
+          Isso protege o projeto e protege as pessoas.
+          Aqui a gente constrói com base em: <b>pontualidade</b>, <b>respeito</b>, <b>capricho</b> e <b>comunicação</b>.
+          E o crescimento vem como consequência.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section id="valores">
+    <div class="wrap">
+      <h2 class="section-title">Nossos pilares</h2>
+      <p class="muted" style="margin:0;line-height:1.7;max-width:95ch;">
+        A base do EcoVida é simples: cuidar do que está fora sem esquecer do que está dentro.
+        Um projeto só é forte quando a cultura é forte.
+      </p>
+
+      <div class="grid">
+        <div class="card kpi">
+          <div class="ico">✅</div>
+          <h3>Trabalho como ponte</h3>
+          <p>Trabalho não é castigo. É ferramenta de reconstrução, disciplina e autonomia.</p>
+        </div>
+        <div class="card kpi">
+          <div class="ico">🧭</div>
+          <h3>Propósito e direção</h3>
+          <p>Sem meta clara, tudo vira esforço sem resultado. Aqui tem plano, rotina e evolução.</p>
+        </div>
+        <div class="card kpi">
+          <div class="ico">🛡️</div>
+          <h3>Respeito e padrão</h3>
+          <p>Cliente, equipe e parceiros protegidos pelo combinado: transparência e responsabilidade.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>O EcoVida é ONG?</summary>
+          <p>Não é ONG. É um projeto social e sustentável ligado à cultura de trabalho e responsabilidade da JS. O foco é gerar impacto com prática e organização.</p>
+        </details>
+        <details>
+          <summary>Quem pode participar?</summary>
+          <p>Pessoas e parceiros que tenham respeito, compromisso e vontade real de construir. Para recomeços, a regra é simples: rotina e entrega.</p>
+        </details>
+        <details>
+          <summary>Como apoiar?</summary>
+          <p>Você pode apoiar com parceria, doações (quando disponível), indicações de pontos e conectando o projeto a condomínios e locais com necessidade de cuidado.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap band">
+      <div style="display:grid;gap:8px;max-width:680px">
+        <h3 style="margin:0">Quer fazer parte do EcoVida?</h3>
+        <p style="margin:0;opacity:.95;line-height:1.6">
+          Se você acredita em trabalho com propósito e quer colaborar com a cidade e com pessoas,
+          fale com a gente no WhatsApp.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida%20JS!%20Quero%20participar%20do%20projeto%20EcoVida.%20Como%20posso%20ajudar%20ou%20entrar%20na%20equipe%3F" target="_blank" rel="noopener">Quero participar</a>
+        <a class="btn btn-outline" href="index.html">Voltar ao site</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>EcoVida • JS Jardinagem</strong>
+        <p class="muted">Meio ambiente, dignidade e novas oportunidades — um projeto que cuida da cidade e das pessoas.</p>
+      </div>
+      <div>
+        <p><a href="ecovida.html">EcoVida</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
+        <p><a href="index.html#contato">Contato</a></p>
+      </div>
+      <div>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
