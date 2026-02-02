@@ -47,7 +47,7 @@
     .links a{color:var(--ink)}
     .links a:hover{color:var(--pri)}
 
-    .cta{display:flex;gap:10px;align-items:center}
+    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .btn{
       appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;
       padding:11px 14px;font-weight:1000;cursor:pointer;transition:.25s ease;
@@ -142,6 +142,15 @@
     .kpi h3{margin:0 0 6px;color:#0f1411;font-size:18px}
     .kpi p{margin:0;color:#475467;line-height:1.6}
 
+    /* Donation block */
+    .donation-card{
+      text-align:center;
+      padding:24px;
+      background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
+      border:1px solid #d7e7ff;
+    }
+    .donation-card p{max-width:75ch;margin:0 auto 16px;line-height:1.7}
+
     /* FAQ */
     .faq{margin-top:18px;display:grid;gap:12px}
     details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
@@ -192,6 +201,10 @@
 
       <div class="cta">
         <a class="btn" href="ecovida.html">Voltar ao EcoVida</a>
+
+        <!-- ✅ (1) Botão topo: Doações -->
+        <a class="btn btn-outline" href="Doações.html">Apoiar o EcoVida</a>
+
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida%20JS!%20Quero%20saber%20como%20participar%20do%20projeto." target="_blank" rel="noopener">Quero participar</a>
       </div>
     </div>
@@ -399,8 +412,22 @@
         </details>
         <details>
           <summary>Como apoiar?</summary>
-          <p>Você pode apoiar com parceria, doações (quando disponível), indicações de pontos e conectando o projeto a condomínios e locais com necessidade de cuidado.</p>
+          <p>Você pode apoiar com parceria, doações, indicações de pontos e conectando o projeto a condomínios e locais com necessidade de cuidado.</p>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ (2) BLOCO INSTITUCIONAL: DOAÇÕES (meio da página, antes do CTA final) -->
+  <section>
+    <div class="wrap">
+      <div class="card donation-card">
+        <h3 style="margin:0 0 8px;color:#114084;">Apoie o Projeto EcoVida</h3>
+        <p class="muted">
+          O EcoVida cresce com organização, trabalho e apoio consciente.
+          Sua contribuição fortalece a estrutura, amplia o impacto e permite alcançar mais pessoas com dignidade e rotina.
+        </p>
+        <a class="btn btn-primary" href="Doações.html">Quero apoiar o EcoVida</a>
       </div>
     </div>
   </section>
@@ -412,12 +439,16 @@
         <h3 style="margin:0">Quer fazer parte do EcoVida?</h3>
         <p style="margin:0;opacity:.95;line-height:1.6">
           Se você acredita em trabalho com propósito e quer colaborar com a cidade e com pessoas,
-          fale com a gente no WhatsApp.
+          fale com a gente no WhatsApp ou apoie o projeto.
         </p>
       </div>
 
       <div class="actions">
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida%20JS!%20Quero%20participar%20do%20projeto%20EcoVida.%20Como%20posso%20ajudar%20ou%20entrar%20na%20equipe%3F" target="_blank" rel="noopener">Quero participar</a>
+
+        <!-- ✅ (3) CTA final: Doações -->
+        <a class="btn btn-outline" href="Doações.html">Fazer uma doação</a>
+
         <a class="btn btn-outline" href="index.html">Voltar ao site</a>
       </div>
     </div>
@@ -431,8 +462,8 @@
       </div>
       <div>
         <p><a href="ecovida.html">EcoVida</a></p>
-        <p><a href="carreira.html">Carreira</a></p>
-        <p><a href="index.html#contato">Contato</a></p>
+        <p><a href="ecovida-sobre.html">Sobre</a></p>
+        <p><a href="Doações.html">Doações</a></p>
       </div>
       <div>
         <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
