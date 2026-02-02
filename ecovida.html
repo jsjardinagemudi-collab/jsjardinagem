@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>EcoVida — Projeto Social e Sustentável | JS Jardinagem</title>
-  <meta name="description" content="EcoVida: projeto social e sustentável da JS Jardinagem. Coleta de recicláveis, cuidado com espaços públicos e oportunidades de recomeço com dignidade." />
+  <title>Instituto EcoVida — Projeto Social da JS Jardinagem</title>
+  <meta name="description" content="Instituto EcoVida: projeto social da JS Jardinagem em transição para Instituto. Sustentabilidade, inclusão social, trabalho digno e revitalização de espaços." />
 
-  <meta property="og:title" content="EcoVida — JS Jardinagem" />
-  <meta property="og:description" content="Meio ambiente, dignidade e novas oportunidades. Um projeto que cuida da cidade e das pessoas." />
+  <meta property="og:title" content="Instituto EcoVida — JS Jardinagem" />
+  <meta property="og:description" content="Regenerando espaços. Transformando vidas. Um projeto social da JS com impacto ambiental e oportunidades reais." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/og-js.jpg" />
 
@@ -56,12 +56,14 @@
       align-items:center;
       justify-content:space-between;
       padding:14px 0;
+      gap:14px;
     }
 
     .brand{
       display:flex;
       gap:14px;
       align-items:center;
+      min-width: 240px;
     }
 
     .brand img{
@@ -77,12 +79,15 @@
       color:#114084;
       letter-spacing:0.5px;
       text-transform:uppercase;
+      line-height:1.05;
     }
 
     .nav .links{
       display:flex;
-      gap:22px;
-      font-weight:700;
+      flex-wrap:wrap;
+      gap:18px;
+      font-weight:800;
+      justify-content:center;
     }
     .nav .links a{color:#0f1411}
     .nav .links a:hover{color:var(--pri)}
@@ -91,47 +96,47 @@
     .nav .cta{
       display:flex;
       gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width: 240px;
     }
 
-   .btn{
-  appearance:none;
-  border:1px solid #dfe3df;
-  background:#fff;
-  border-radius:12px;
-  padding:11px 14px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.25s ease;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      color: var(--ink);
+    }
 
-  /* ✅ chave: força cor padrão */
-  color: var(--ink);
-}
+    .btn:hover{background:#f3f5f7}
 
-.btn:hover{background:#f3f5f7}
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
 
-.btn-primary{
-  background:var(--pri);
-  border-color:var(--pri);
-  color:#fff;
-}
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
 
-.btn-primary:hover{
-  background:#0d3270;
-  border-color:#0d3270;
-}
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
 
-.btn-outline{
-  background:transparent;
-  border-color:var(--pri);
-  color:var(--pri);
-}
-
-.btn-outline:hover{background:#eef4ff}
-
+    .btn-outline:hover{background:#eef4ff}
 
     .muted{color:var(--muted)}
     section{padding:64px 0}
@@ -168,7 +173,7 @@
     .ecovida-hero-inner{
       position:relative;
       z-index:2;
-      max-width:760px;
+      max-width:780px;
       padding:36px 0;
     }
     .ecovida-hero-full h1{
@@ -199,7 +204,7 @@
       background:#ffffffcc;
       border:1px solid #e6edf5;
       color:#114084;
-      font-weight:800;
+      font-weight:900;
       font-size:13px;
       margin-bottom:12px;
     }
@@ -212,7 +217,7 @@
       align-items:start;
     }
 
-    .ecovida-sub{max-width:60ch; font-size:16px; line-height:1.6}
+    .ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6}
 
     .ecovida-kpis{
       margin-top:18px;
@@ -298,6 +303,10 @@
     @media (max-width:900px){
       .brand img{height:58px}
       .brand strong{font-size:20px}
+      .nav{flex-direction:column; align-items:stretch}
+      .brand{justify-content:center}
+      .nav .cta{justify-content:center}
+      .nav .links{justify-content:center}
       .ecovida-head{grid-template-columns:1fr}
       .ecovida-kpis{grid-template-columns:1fr}
       .ecovida-grid{grid-template-columns:1fr}
@@ -305,192 +314,9 @@
     }
   </style>
 
-  <!-- Schema.org (opcional, mas bom) -->
+  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "EcoVida (JS Jardinagem)",
-    "url": "https://jardinagemudi.com.br",
-    "sameAs": [
-      "https://www.instagram.com/jardinagemudi",
-      "https://wa.me/5534992142960"
-    ]
-  }
-  </script>
-</head>
-
-<body>
-  <div class="topbar">EcoVida • Sustentabilidade e recomeço • Uberlândia e região</div>
-
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="index.html">
-        <img src="logo.jpg" alt="JS Jardinagem" />
-        <strong>JS JARDINAGEM</strong>
-      </a>
-
-      <nav class="links">
-        <a href="index.html">Início</a>
-        <a class="active" href="ecovida.html">EcoVida</a>
-        <a href="index.html#contato">Contato</a>
-      </nav>
-
-      <div class="cta">
-        <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20saber%20como%20participar." target="_blank" rel="noopener">WhatsApp</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="ecovida-hero-full">
-    <div class="wrap ecovida-hero-inner">
-      <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
-      <h1>Projeto EcoVida</h1>
-      <p>
-        Meio ambiente, dignidade e novas oportunidades — um projeto que cuida da cidade e das pessoas.
-        Começando por ações simples, com crescimento gradual e parcerias sólidas.
-      </p>
-
-      <div class="ecovida-hero-actions">
-        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20participar%20do%20projeto%20e%20entender%20como%20funciona." target="_blank" rel="noopener">Quero participar</a>
-       <a class="btn btn-primary" href="Doação.html" target="_blank" rel="noopener">Quero contribuir</a>
-   href="Doações.html"target="_blank" rel="noopener">
-   Contribuir</a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTEÚDO -->
-  <section>
-    <div class="wrap ecovida-head">
-      <div>
-        <h2 class="section-title">O que é o EcoVida?</h2>
-        <p class="muted ecovida-sub">
-          O EcoVida é uma iniciativa ligada à JS que une cuidado com o espaço urbano e um caminho real de recomeço.
-          A ideia é organizar rotas e pontos parceiros para melhorar o destino de recicláveis e apoiar pessoas que querem
-          reconstruir a vida com rotina e dignidade.
-        </p>
-
-        <div class="ecovida-kpis">
-          <div class="kpi">
-            <strong>Recicláveis na rota</strong>
-            <span>Plástico, papel e metal — com organização e destino correto.</span>
-          </div>
-          <div class="kpi">
-            <strong>Praças mais cuidadas</strong>
-            <span>Limpeza e organização de espaços públicos com constância.</span>
-          </div>
-          <div class="kpi">
-            <strong>Transparência</strong>
-            <span>Alinhamento claro do que entra na rota e como é tratado.</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="como-funciona" class="card ecovida-card">
-        <h3>Como funciona</h3>
-        <ul class="ecovida-list">
-          <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
-          <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
-          <li><b>Coletamos apenas recicláveis</b> (móveis/entulho: somente se houver parceria e triagem).</li>
-          <li><b>Crescimento gradual</b>, conforme estrutura e parcerias.</li>
-        </ul>
-
-        <div class="ecovida-cta-row">
-          <a class="btn btn-primary"
-   href="https://docs.google.com/forms/d/e/1FAIpQLSflkFCeEMm16N0aJn6EtjaOoJtBVMrk5EWuvcZkAliP_Bb8hw/viewform?usp=header"
-   target="_blank" rel="noopener">
-  Virar ponto parceiro</a>
- <a class="btn btn-primary" href="#contato">Falar com a equipe</a>
-        </div>
-
-        <p class="muted" style="margin:12px 0 0">
-          *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
-        </p>
-      </div>
-    </div>
-
-    <div class="wrap">
-      <div class="ecovida-grid">
-        <div class="card eco-feature">
-          <div class="eco-ico">♻️</div>
-          <h3>Sustentabilidade na prática</h3>
-          <p>Organização, separação e destino correto — sem promessa vazia, com processo real.</p>
-        </div>
-
-        <div class="card eco-feature">
-          <div class="eco-ico">🤝</div>
-          <h3>Oportunidade de recomeço</h3>
-          <p>Trabalho, rotina e dignidade para quem quer reconstruir a trajetória.</p>
-        </div>
-
-        <div class="card eco-feature">
-          <div class="eco-ico">🌱</div>
-          <h3>Impacto positivo</h3>
-          <p>Ambientes mais cuidados, mais consciência ambiental e melhoria do visual urbano.</p>
-        </div>
-
-        <div class="card eco-feature eco-highlight">
-          <div class="eco-ico">🏙️</div>
-          <h3>Onde atuamos</h3>
-          <p>Condomínios, praças e pontos estratégicos — começando por áreas com maior necessidade.</p>
-        </div>
-
-        <div class="card eco-feature">
-          <div class="eco-ico">🧱</div>
-          <h3>O que coletamos</h3>
-          <p>Recicláveis (plástico, papel, metal). Resíduo verde pode entrar conforme logística/parceria.</p>
-        </div>
-
-        <div class="card eco-feature">
-          <div class="eco-ico">📌</div>
-          <h3>Transparência</h3>
-          <p>Alinhamento prévio: o que será coletado, destino e boas práticas de organização.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section>
-    <div class="wrap band">
-      <h3 style="margin:0 0 6px">Quer apoiar o EcoVida?</h3>
-      <p style="margin:0;opacity:.95">Se você é síndico, empresa ou morador e quer virar ponto parceiro, chama a gente.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20virar%20ponto%20parceiro%20e%20organizar%20coleta%20de%20recicl%C3%A1veis." target="_blank" rel="noopener">Quero virar ponto parceiro</a>
-        <a class="btn btn-primary" href="index.html">Voltar para o site JS</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTATO -->
-  <section id="contato">
-    <div class="wrap">
-      <h2 class="section-title">Contato</h2>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">(34) 99214-2960</a></p>
-      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">@jardinagemudi</a></p>
-      <p class="muted">CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA • Uberlândia e região</p>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <strong>EcoVida (JS Jardinagem)</strong>
-        <p class="muted">Meio ambiente, dignidade e novas oportunidades — cuidado com a cidade e com as pessoas.</p>
-      </div>
-      <div>
-        <p><a href="ecovida.html#como-funciona">Como funciona</a></p>
-        <p><a href="ecovida.html#contato">Contato</a></p>
-      </div>
-      <div>
-        <p><a href="index.html">Site JS</a></p>
-        <p><a href="https://wa.me/5534992142960">WhatsApp</a></p>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
+    "name": "Instituto EcoVida (Projeto da JS Jardinagem)",
