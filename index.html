@@ -265,7 +265,76 @@
     .band .actions{display:flex;gap:12px;flex-wrap:wrap}
 
     /* EcoVida hero */
-    
+
+    /* ECO VIDA COM FUNDO */
+
+.ecovida-bg{
+  position:relative;
+  background: url("fundo.png") center/cover no-repeat;
+  padding:80px 0;
+  color:#fff;
+}
+
+.ecovida-bg .overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    50deg,
+    rgba(17, 64, 132, 0.85) 0%,
+    rgba(0,0,0,.65) 100%
+  );
+}
+
+.ecovida-bg .wrap{
+  position:relative;
+  z-index:2;
+}
+
+/* LINKS ECO VIDA */
+
+.ecovida-links{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.eco-link-card{
+  background:#ffffffee;
+  color:var(--ink);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid #e7ecef;
+  text-decoration:none;
+  transition:.3s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.eco-link-card strong{
+  display:block;
+  font-size:16px;
+  margin-bottom:6px;
+  color:var(--pri);
+}
+
+.eco-link-card span{
+  font-size:14px;
+  color:#475467;
+}
+
+.eco-link-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
+}
+
+/* RESPONSIVO */
+
+@media (max-width:900px){
+  .ecovida-links{
+    grid-template-columns:1fr;
+  }
+}
+
     .ecovida-hero-full{
   position: relative;
   min-height: 55vh; /* antes 70vh */
@@ -649,95 +718,64 @@
     </div>
   </section>
 
-  <!-- ECO VIDA -->
-  <section id="ecovida" class="ecovida">
-    <div class="wrap">
-      <div class="ecovida-head">
-        <div>
-          <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
-          <h2 class="section-title">EcoVida</h2>
-          <p class="muted ecovida-sub">
-            Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
-          </p>
+ <!-- ECO VIDA -->
+<section id="ecovida" class="ecovida-bg">
+  <div class="overlay"></div>
 
-          <div class="ecovida-kpis">
-            <div class="kpi">
-              <strong>Recicláveis na rota</strong>
-              <span>Plástico, papel e metal — com separação e destino correto.</span>
-            </div>
-            <div class="kpi">
-              <strong>Praças mais cuidadas</strong>
-              <span>Limpeza e organização de espaços públicos com constância.</span>
-            </div>
-            <div class="kpi">
-              <strong>Transparência</strong>
-              <span>Alinhamento do ponto, rota e boas práticas.</span>
-            </div>
-          </div>
-        </div>
+  <div class="wrap">
+    <div class="ecovida-head">
+      <div>
+        <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
+        <h2 class="section-title" style="color:#fff;">EcoVida</h2>
+        <p class="ecovida-sub" style="color:#e5e7eb;">
+          Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
+        </p>
 
-        <div class="ecovida-actions">
-          <div class="card ecovida-card">
-            <h3>Como funciona</h3>
-            <ul class="ecovida-list">
-              <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
-              <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
-              <li><b>Coletamos apenas recicláveis</b> (não coletamos móveis/entulho por enquanto).</li>
-              <li><b>Atuação gradual</b>, conforme crescimento e parcerias.</li>
-            </ul>
+        <!-- CARDS COM LINKS -->
+        <div class="ecovida-links">
+          <a href="reciclaveis.html" class="eco-link-card">
+            <strong>Recicláveis na rota</strong>
+            <span>Plástico, papel e metal — com separação e destino correto.</span>
+          </a>
 
-            <div class="ecovida-cta-row">
-              <a class="btn btn-outline" href="#contato">Quero participar</a>
-              <a class="btn btn-outline" href="#contato">Solicitar avaliação</a>
-              <a class="btn btn-outline" href="Doações.html">Doações</a>
-            </div>
+          <a href="pracas.html" class="eco-link-card">
+            <strong>Praças mais cuidadas</strong>
+            <span>Limpeza e organização de espaços públicos com constância.</span>
+          </a>
 
-            <p class="muted" style="margin-top:12px">
-              *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
-            </p>
-          </div>
+          <a href="transparencia.html" class="eco-link-card">
+            <strong>Transparência</strong>
+            <span>Alinhamento do ponto, rota e boas práticas.</span>
+          </a>
         </div>
       </div>
 
-      <div class="ecovida-grid">
-        <div class="eco-feature">
-          <div class="eco-ico">♻️</div>
-          <h3>Sustentabilidade na prática</h3>
-          <p>Reciclagem, reaproveitamento de materiais e gestão consciente de resíduos verdes e recicláveis.</p>
-        </div>
+      <!-- COMO FUNCIONA -->
+      <div class="ecovida-actions">
+        <div class="card ecovida-card" style="background:#ffffffee;">
+          <h3>Como funciona</h3>
+          <ul class="ecovida-list">
+            <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
+            <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
+            <li><b>Coletamos apenas recicláveis</b> (não coletamos móveis/entulho por enquanto).</li>
+            <li><b>Atuação gradual</b>, conforme crescimento e parcerias.</li>
+          </ul>
 
-        <div class="eco-feature">
-          <div class="eco-ico">🤝</div>
-          <h3>Oportunidade de recomeço</h3>
-          <p>Inclusão de pessoas que buscam reconstruir sua trajetória com rotina, trabalho e dignidade.</p>
-        </div>
+          <div class="ecovida-cta-row">
+            <a class="btn btn-outline" href="#contato">Quero participar</a>
+            <a class="btn btn-outline" href="#contato">Solicitar avaliação</a>
+            <a class="btn btn-outline" href="Doações.html">Doações</a>
+          </div>
 
-        <div class="eco-feature">
-          <div class="eco-ico">🌱</div>
-          <h3>Impacto positivo na cidade</h3>
-          <p>Ambientes mais cuidados, fortalecimento da consciência ambiental e melhoria do visual urbano.</p>
-        </div>
-
-        <div class="eco-feature eco-highlight">
-          <div class="eco-ico">🏙️</div>
-          <h3>Onde atuamos</h3>
-          <p>Condomínios, praças e áreas próximas — iniciando por pontos estratégicos com maior necessidade de cuidado.</p>
-        </div>
-
-        <div class="eco-feature">
-          <div class="eco-ico">🧱</div>
-          <h3>O que coletamos</h3>
-          <p>Recicláveis (plástico, papel, metal) e resíduos verdes (conforme alinhamento).</p>
-        </div>
-
-        <div class="eco-feature">
-          <div class="eco-ico">📌</div>
-          <h3>Transparência</h3>
-          <p>Processo simples, com alinhamento prévio: o que será coletado, destino e boas práticas de organização.</p>
+          <p class="muted" style="margin-top:12px">
+            *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- CARREIRA (seção rápida na home) -->
   <section id="carreira" style="background:#f6f8f7">
