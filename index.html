@@ -265,14 +265,27 @@
     .band .actions{display:flex;gap:12px;flex-wrap:wrap}
 
     /* EcoVida hero */
+    
     .ecovida-hero-full{
-      position: relative;
-      min-height: 70vh;
-      display: grid;
-      align-items: center;
-      color: #fff;
-      background: url("fundo.png") center/cover no-repeat;
-      overflow:hidden;
+  position: relative;
+  min-height: 55vh; /* antes 70vh */
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background: url("fundo.png") center/cover no-repeat;
+  overflow: hidden;
+}
+@media (max-width: 900px){
+  .ecovida-hero-full{
+    min-height: 42vh;
+    padding: 40px 0;
+  }
+}
+.ecovida-hero-inner{
+  max-width: 720px;
+  padding: 0 16px;
+}
+
     }
     .ecovida-hero-full::before{
       content:"";
