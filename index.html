@@ -27,18 +27,13 @@
     }
 
     *{box-sizing:border-box}
-
     html,body{
       margin:0;
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
-      overflow-x:hidden; /* evita “estouro” no celular */
     }
-
-    img{max-width:100%;height:auto;display:block}
     a{text-decoration:none;color:inherit}
-
     .wrap{width:min(1120px,92vw);margin:auto}
 
     .topbar{
@@ -70,7 +65,6 @@
       display:flex;
       gap:14px;
       align-items:center;
-      min-width: 220px;
     }
 
     .brand img{
@@ -78,26 +72,27 @@
       width:auto;
       border-radius:8px;
       box-shadow:0 2px 8px rgba(0,0,0,.08);
+      background:#fff;
+      padding:6px;
     }
 
     .brand strong{
       font-size:22px;
-      font-weight:800;
+      font-weight:900;
       color:var(--pri);
       letter-spacing:.4px;
       text-transform:uppercase;
-      white-space:nowrap;
     }
 
     .links{
       display:flex;
       gap:22px;
-      font-weight:800;
+      font-weight:900;
     }
     .links a{color:var(--ink)}
     .links a:hover{color:var(--pri)}
 
-    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .cta{display:flex;gap:10px;align-items:center}
 
     /* BOTÕES */
     .btn{
@@ -144,7 +139,10 @@
       box-shadow:0 10px 26px rgba(0,0,0,.06);
     }
 
-    /* HERO (capa) */
+    .section-title{font-size:28px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+
+    /* HERO */
     .hero{
       position: relative;
       min-height: 74vh;
@@ -197,7 +195,6 @@
       margin-top:22px;
     }
 
-    /* Botões no HERO (para não “sumir” no fundo) */
     .hero .btn{
       background: rgba(255,255,255,.16);
       border-color: rgba(255,255,255,.28);
@@ -209,6 +206,12 @@
       border-color: var(--pri);
       color:#fff;
     }
+    .hero .btn-outline{
+      background: transparent;
+      border-color: rgba(255,255,255,.55);
+      color:#fff;
+    }
+    .hero .btn-outline:hover{background: rgba(255,255,255,.12)}
 
     .hero .card{
       background:#ffffffee;
@@ -218,17 +221,74 @@
       padding:24px;
     }
 
-    .section-title{font-size:28px;margin:0 0 12px}
-    .muted{color:var(--muted)}
-
-    /* Serviços */
-    .examples{background:#f7f9f8;}
+    /* GRID BASE */
     .grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:22px;
       margin-top:20px;
     }
+
+    /* SERVIÇOS (novo) */
+    .services{
+      background: linear-gradient(180deg, #f7f9f8 0%, #ffffff 100%);
+    }
+    .services-top{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .services-top .right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .service-card{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 220px;
+    }
+    .svc-ico{
+      width:44px;height:44px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      background:#eef4ff;
+      border:1px solid #d7e7ff;
+      font-size:20px;
+    }
+    .service-card h3{margin:0;color:var(--pri);font-size:18px}
+    .service-card p{margin:0;color:#475467;line-height:1.65}
+    .service-tags{
+      display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;
+    }
+    .tag{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #e7ecef;
+      background:#fff;
+      font-weight:900;
+      font-size:12px;
+      color:#344054;
+    }
+    .services-scope{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .scope-box{padding:18px}
+    .scope-box h3{margin:0 0 8px;color:var(--pri)}
+    .scope-list{margin:0;padding-left:18px;line-height:1.75;color:#475467}
+    .scope-list li{margin:6px 0}
+
+    /* Exemplos (mantido) */
+    .examples{background:#f7f9f8;}
     .example-card{overflow:hidden;padding:0;}
     .example-card figure{margin:0;position:relative;height:180px;}
     .example-card img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -245,7 +305,6 @@
       display:flex;align-items:center;justify-content:space-between;
       padding:10px 12px;background:#fff;border:1px solid #e7ece9;border-radius:12px;
       font-weight:900;color:var(--pri);margin-bottom:12px;
-      gap:10px;
     }
     .nota-valores{
       margin-top:16px;
@@ -267,33 +326,25 @@
     }
     .band .actions{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* ===== EcoVida (uma seção só, sem fundo duplicado) ===== */
+    /* EcoVida (novo: fundo único + overlay + cards clicáveis) */
     .ecovida-bg{
       position:relative;
-      padding:72px 0;
-      color:#fff;
       background: url("fundo.png") center/cover no-repeat;
+      color:#fff;
+      padding:80px 0;
       overflow:hidden;
     }
     .ecovida-bg::before{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(
+      background:linear-gradient(
         50deg,
-        rgba(17, 64, 132, 0.82) 0%,
-        rgba(0, 0, 0, 0.55) 100%
+        rgba(17,64,132,0.78) 0%,
+        rgba(0,0,0,0.40) 100%
       );
-      z-index:1;
     }
     .ecovida-bg .wrap{position:relative;z-index:2}
-
-    .ecovida-head{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:22px;
-      align-items:start;
-    }
 
     .chip{
       display:inline-flex;
@@ -301,23 +352,23 @@
       align-items:center;
       padding:8px 12px;
       border-radius:999px;
-      background:#ffffffd9;
+      background:#ffffffcc;
       border:1px solid #e6edf5;
       color:var(--pri);
       font-weight:900;
       font-size:13px;
     }
 
-    .ecovida-sub{
-      max-width:62ch;
-      font-size:16px;
-      line-height:1.6;
-      color:#eaf0ff;
-      opacity:.95;
-      margin:0;
+    .ecovida-head{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:start;
+      margin-top:14px;
     }
 
-    /* Cards/links estilo “bonito”, mas legível em cima do fundo */
+    .ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6;opacity:.95}
+
     .ecovida-links{
       margin-top:18px;
       display:grid;
@@ -326,13 +377,13 @@
     }
 
     .eco-link-card{
-      background: rgba(255,255,255,.95);
-      color: var(--ink);
+      background:#ffffffee;
+      color:var(--ink);
       padding:16px;
       border-radius:16px;
-      border:1px solid rgba(231,236,239,.9);
+      border:1px solid #e7ecef;
       transition:.25s ease;
-      box-shadow:0 8px 22px rgba(0,0,0,.16);
+      box-shadow:0 10px 26px rgba(0,0,0,.10);
     }
     .eco-link-card strong{
       display:block;
@@ -343,25 +394,23 @@
     .eco-link-card span{
       font-size:14px;
       color:#475467;
-      line-height:1.45;
+      line-height:1.55;
       display:block;
     }
     .eco-link-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      transform:translateY(-5px);
+      box-shadow:0 16px 34px rgba(0,0,0,.18);
     }
 
-    .ecovida-card{
-      padding:18px;
-      background: rgba(255,255,255,.96);
-      border:1px solid rgba(231,236,239,.95);
-    }
-
+    .ecovida-card{padding:18px 18px 14px;background:#ffffffee}
     .ecovida-card h3{margin:0 0 10px;color:var(--pri)}
-    .ecovida-list{margin:0;padding-left:18px;color:#475467;line-height:1.7}
+    .ecovida-list{margin:0; padding-left:18px; color:#475467; line-height:1.7}
     .ecovida-list li{margin:8px 0}
     .ecovida-list b{color:#0f1411}
     .ecovida-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+
+    /* Carreira (home) */
+    .career-mini{background:#f6f8f7}
 
     /* footer */
     footer{
@@ -402,48 +451,24 @@
     /* Responsivo */
     @media (max-width:900px){
       .links{display:none}
-      .brand img{height:56px;}
-      .brand strong{font-size:18px;}
-      .hero-inner{grid-template-columns:1fr; padding:40px 0}
+      .brand img{height:58px;}
+      .brand strong{font-size:20px;}
+      .hero-inner{grid-template-columns:1fr;}
       .grid{grid-template-columns:1fr;}
+      .services-scope{grid-template-columns:1fr;}
       .ecovida-head{grid-template-columns:1fr}
       .ecovida-links{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;}
-      .ecovida-bg{padding:52px 0;}
+      .ecovida-bg{padding:56px 0}
     }
 
     @media (max-width:600px){
+      .hero{min-height:90vh}
       section{padding:40px 0}
-      .hero{min-height:92vh}
-      .btn{width:100%}
-      .cta{width:100%}
-      .hero .cta .btn{width:auto} /* no hero deixa 2 botões lado a lado se couber */
-      .brand strong{display:none}  /* limpa espaço no topo do celular */
+      .btn{padding:10px 12px}
     }
-
-    /* ECO VIDA — descer os blocos para mostrar a placa da imagem */
-.ecovida-bg{
-  min-height: 78vh;           /* garante área suficiente do fundo */
-  padding-top: 120px;         /* DESCE os cards (ajuste fino aqui) */
-  padding-bottom: 70px;
-  background-position: center top; /* prioriza topo da imagem */
-}
-
-/* Se quiser baixar ainda mais, aumente para 210px / 240px */
-
-/* Ajuste no mobile (para não ficar baixo demais) */
-@media (max-width: 900px){
-  .ecovida-bg{
-    min-height: 64vh;
-    padding-top: 120px;
-    padding-bottom: 48px;
-    background-position: center top;
-  }
-}
-
   </style>
 
-  <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -480,9 +505,8 @@
 
       <nav class="links">
         <a href="#servicos">Serviços</a>
-        <a href="ecovida.html">EcoVida</a>
+        <a href="#ecovida">EcoVida</a>
         <a href="carreira.html">Carreira</a>
-        <a href="Doações.html">Doação </a>
         <a href="#contato">Contato</a>
       </nav>
 
@@ -511,10 +535,9 @@
              target="_blank" rel="noopener">
              Falar no WhatsApp
           </a>
-          <a class="btn btn-primary"
-             href="https://www.instagram.com/jardinagemudi/"
-             target="_blank" rel="noopener">
-             Ver Instagram
+          <a class="btn btn-outline"
+             href="#servicos">
+             Ver serviços
           </a>
         </div>
       </div>
@@ -526,7 +549,7 @@
         </p>
         <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
           <li><strong>Plano Econômico</strong> – <strong>A partir de R$180 mensais.</strong></li>
-          <li><strong>Acompanhamento contínuo</strong> – Manutenção contínua que gera resultado visível.</li>
+          <li><strong>Acompanhamento contínuo</strong> – Manutenção que gera resultado visível.</li>
           <li><strong>Valorização do condomínio</strong> – Jardim bem cuidado hoje, patrimônio valorizado amanhã.</li>
         </ul>
         <p style="margin-top:14px;color:#475467">
@@ -542,88 +565,107 @@
     </div>
   </section>
 
-  <!-- SERVIÇOS -->
-  <section class="examples" id="servicos">
+  <!-- SERVIÇOS (NOVO, mais completo) -->
+  <section class="services" id="servicos">
     <div class="wrap">
-      <h2 class="section-title">Serviços</h2>
-      <p class="muted">Valores apenas para referência.</p>
+      <div class="services-top">
+        <div style="max-width:720px">
+          <h2 class="section-title">Serviços</h2>
+          <p class="muted" style="line-height:1.65;margin:0">
+            A JS atende <b>condomínios, empresas e residências</b> com padrão, rotina e capricho.
+            Do básico ao técnico — com equipe, organização e acompanhamento.
+          </p>
+        </div>
+        <div class="right">
+          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento%20e%20uma%20visita%20t%C3%A9cnica." target="_blank" rel="noopener">Solicitar visita</a>
+          <a class="btn btn-outline" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Ver trabalhos</a>
+        </div>
+      </div>
 
       <div class="grid">
-        <!-- Pequeno -->
-        <div class="card example-card">
-          <figure>
-            <img src="edificio-simples.jpg" alt="Condomínio pequeno — jardins compactos" />
-            <span class="example-badge">Prédio Residencial</span>
-          </figure>
-          <div class="example-body">
-            <h3>Condomínio Pequeno</h3>
-            <ul class="example-list">
-              <li>Despreocupação</li>
-              <li>Propósito de manter visual positivo</li>
-              <li>Manutenções rápidas e com frequência</li>
-            </ul>
-            <div class="example-price">
-              <span>Estimativa mensal</span><span>R$180 – R$1.600</span>
-            </div>
-            <a class="btn btn-primary"
-               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20pequeno%20(eu%20vi%20o%20Exemplo%201).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F"
-               target="_blank" rel="noopener">
-              Quero orçamento deste perfil
-            </a>
+        <div class="card service-card">
+          <div class="svc-ico">🌿</div>
+          <h3>Manutenção de jardins</h3>
+          <p>Rotina planejada: canteiros, poda de arbustos, limpeza, acabamento e cuidado contínuo.</p>
+          <div class="service-tags">
+            <span class="tag">Condomínios</span><span class="tag">Residências</span><span class="tag">Planos</span>
           </div>
         </div>
 
-        <!-- Médio -->
-        <div class="card example-card">
-          <figure>
-            <img src="ex-medio.jpg.png" alt="Condomínio médio — áreas comuns e canteiros" />
-            <span class="example-badge">5 a 10 Blocos</span>
-          </figure>
-          <div class="example-body">
-            <h3>Condomínio Médio</h3>
-            <ul class="example-list">
-              <li>Exige um acompanhamento em rotina</li>
-              <li>Manutenção básica e constante</li>
-              <li>Visita em multi-ramos quando necessário</li>
-            </ul>
-            <div class="example-price">
-              <span>Estimativa mensal</span><span>R$1.600 – R$5.500</span>
-            </div>
-            <a class="btn btn-primary"
-               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20m%C3%A9dio%20(Exemplo%202).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F"
-               target="_blank" rel="noopener">
-              Quero orçamento deste perfil
-            </a>
+        <div class="card service-card">
+          <div class="svc-ico">🌱</div>
+          <h3>Gramados</h3>
+          <p>Plantio, revitalização, topdressing, correções e recuperação de áreas com falhas.</p>
+          <div class="service-tags">
+            <span class="tag">Plantio</span><span class="tag">Revitalização</span><span class="tag">Campo/áreas</span>
           </div>
         </div>
 
-        <!-- Grande -->
-        <div class="card example-card">
-          <figure>
-            <img src="ex-grande.jpg.png" alt="Condomínio grande — gramados, palmeiras e áreas extensas" />
-            <span class="example-badge">10 a 25 blocos</span>
-          </figure>
-          <div class="example-body">
-            <h3>Condomínio Grande</h3>
-            <ul class="example-list">
-              <li>Várias torres • gramados, palmeiras e extensões</li>
-              <li>Rotina: 3 a 5 visitas/semana (cronograma por zonas)</li>
-              <li>Inclui: manutenção completa e podas programadas</li>
-            </ul>
-            <div class="example-price">
-              <span>Estimativa mensal</span><span>R$3.500 – R$12.000</span>
-            </div>
-            <a class="btn btn-primary"
-               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20um%20condom%C3%ADnio%20grande%20(Exemplo%203).%20Podem%20avaliar%20e%20me%20enviar%20uma%20proposta%3F"
-               target="_blank" rel="noopener">
-              Quero orçamento deste perfil
-            </a>
+        <div class="card service-card">
+          <div class="svc-ico">✂️</div>
+          <h3>Podas e condução</h3>
+          <p>Poda ornamental, condução de plantas, controle de crescimento e formação com técnica.</p>
+          <div class="service-tags">
+            <span class="tag">Ornamental</span><span class="tag">Condução</span><span class="tag">Segurança</span>
+          </div>
+        </div>
+
+        <div class="card service-card">
+          <div class="svc-ico">🌴</div>
+          <h3>Podas em altura</h3>
+          <p>Poda de palmeiras e árvores com planejamento, segurança e equipamentos adequados.</p>
+          <div class="service-tags">
+            <span class="tag">Altura</span><span class="tag">Palmeiras</span><span class="tag">Técnico</span>
+          </div>
+        </div>
+
+        <div class="card service-card">
+          <div class="svc-ico">🧹</div>
+          <h3>Roçada e limpeza pesada</h3>
+          <p>Controle de mato alto, limpeza de áreas verdes e organização do espaço para voltar a “respirar”.</p>
+          <div class="service-tags">
+            <span class="tag">Roçada</span><span class="tag">Limpeza</span><span class="tag">Capina</span>
+          </div>
+        </div>
+
+        <div class="card service-card">
+          <div class="svc-ico">🏡</div>
+          <h3>Paisagismo e plantio</h3>
+          <p>Projeto simples + execução: melhoria visual, recomposição de canteiros e escolha de plantas.</p>
+          <div class="service-tags">
+            <span class="tag">Plantio</span><span class="tag">Canteiros</span><span class="tag">Revitalização</span>
           </div>
         </div>
       </div>
 
+      <div class="services-scope">
+        <div class="card scope-box">
+          <h3>O que a JS resolve no condomínio</h3>
+          <ul class="scope-list">
+            <li>Rotina organizada por áreas (zonas) e prioridades</li>
+            <li>Acabamento e padrão visual constante</li>
+            <li>Planejamento de podas e intervenções técnicas</li>
+            <li>Revitalizações pontuais sem “quebrar” o orçamento</li>
+            <li>Relato simples do que foi feito (quando necessário)</li>
+          </ul>
+        </div>
+        <div class="card scope-box">
+          <h3>Quando chamar a JS</h3>
+          <ul class="scope-list">
+            <li>Jardim “cansado” e sem padrão</li>
+            <li>Mato alto e áreas abandonadas</li>
+            <li>Gramado falhando / queimado</li>
+            <li>Palmeiras/árvores pedindo poda</li>
+            <li>Condomínio quer valorizar o visual</li>
+          </ul>
+          <a class="btn btn-primary" style="margin-top:12px;width:100%;"
+             href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20uma%20avalia%C3%A7%C3%A3o%20no%20meu%20jardim/condom%C3%ADnio."
+             target="_blank" rel="noopener">Pedir avaliação</a>
+        </div>
+      </div>
+
       <p class="nota-valores">
-        *Os valores podem variar conforme escopo (podas em altura, revitalização de gramados, retirada de resíduos, insumos e deslocamento).
+        *Os valores variam conforme escopo (podas em altura, revitalização, retirada de resíduos, insumos e deslocamento).
       </p>
     </div>
   </section>
@@ -642,17 +684,17 @@
     </div>
   </section>
 
-  <!-- ECO VIDA (com fundo, sem duplicar) -->
+  <!-- ECO VIDA (com fundo único e cards) -->
   <section id="ecovida" class="ecovida-bg">
     <div class="wrap">
+      <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
+      <h2 class="section-title" style="color:#fff;margin-top:12px">EcoVida</h2>
+      <p class="ecovida-sub">
+        Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
+      </p>
+
       <div class="ecovida-head">
         <div>
-          <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
-          <h2 class="section-title" style="color:#fff;margin-top:10px">EcoVida</h2>
-          <p class="ecovida-sub">
-            Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
-          </p>
-
           <div class="ecovida-links">
             <a href="reciclaveis.html" class="eco-link-card">
               <strong>Recicláveis na rota</strong>
@@ -669,6 +711,30 @@
               <span>Alinhamento do ponto, rota e boas práticas.</span>
             </a>
           </div>
+
+          <!-- TEXTO NOVO (Opção 2 + seguro) -->
+          <div class="card" style="margin-top:16px;padding:16px 16px;border-radius:16px;border:1px solid #e7ecef;background:#ffffffee;">
+            <h3 style="margin:0 0 8px;color:var(--pri);font-size:18px;">Recomeço com rotina, respeito e trabalho</h3>
+
+            <p class="muted" style="margin:0 0 10px;line-height:1.65;">
+              Além da sustentabilidade, o EcoVida nasce para apoiar pessoas que estão buscando
+              <b>cura, estabilidade e retomada da própria vida</b> — inclusive quem enfrenta ou já enfrentou dependência.
+              A proposta é simples e séria: <b>rotina, trabalho, responsabilidade e dignidade</b>, com um ambiente que respeita o processo de cada um.
+            </p>
+
+            <ul style="margin:0;padding-left:18px;line-height:1.75;color:#475467;">
+              <li><b>Entrada gradual</b>, começando por tarefas simples e supervisionadas.</li>
+              <li><b>Acompanhamento humano</b>, com orientação e limites claros.</li>
+              <li><b>Trabalho com propósito</b>, em atividades de limpeza, organização, coleta e manutenção.</li>
+              <li><b>Evolução por confiança</b>, conforme frequência, postura e responsabilidade.</li>
+              <li><b>Respeito total</b>, sem exposição e sem julgamento.</li>
+            </ul>
+
+            <p class="muted" style="margin:12px 0 0;line-height:1.6;font-size:13px;">
+              <b>*Aviso importante:</b> O EcoVida não substitui tratamento médico ou terapêutico.
+              Nosso papel é oferecer estrutura, rotina e oportunidade de trabalho, com respeito e acompanhamento — caminhando junto com a rede de apoio de cada pessoa.
+            </p>
+          </div>
         </div>
 
         <div>
@@ -682,19 +748,11 @@
             </ul>
 
             <div class="ecovida-cta-row">
-              <a class="btn btn-primary" href="https://forms.gle/5buJq3muVMFnNNHB8" target="_blank" rel="noopener">
-                Quero participar da rota
-              </a>
-
+              <a class="btn btn-primary" href="SEU_LINK_GOOGLE_FORMS" target="_blank" rel="noopener">Quero participar da rota</a>
               <a class="btn btn-outline"
                  href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20um%20or%C3%A7amento%20sobre%20o%20EcoVida."
-                 target="_blank" rel="noopener">
-                Pedir orçamento
-              </a>
-
-              <a class="btn btn-outline" href="Doações.html">
-                Doações
-              </a>
+                 target="_blank" rel="noopener">Pedir orçamento</a>
+              <a class="btn btn-outline" href="Doacoes.html">Doações</a>
             </div>
 
             <p class="muted" style="margin-top:12px">
@@ -706,34 +764,33 @@
     </div>
   </section>
 
-  <!-- CARREIRA -->
-  <section id="carreira" style="background:#f6f8f7">
+  <!-- CARREIRA (home) -->
+  <section id="carreira" class="career-mini">
     <div class="wrap">
       <h2 class="section-title">Carreira na JS Jardinagem</h2>
       <p class="muted">Crescimento profissional, trabalho contínuo e oportunidade real de evolução.</p>
 
       <div class="grid" style="margin-top:24px">
         <div class="card" style="padding:18px">
-          <h3>🌱 Auxiliar de Jardinagem</h3>
-          <p class="muted">Ideal para quem está começando ou quer aprender na prática. Trabalho em equipe e evolução progressiva.</p>
+          <h3 style="margin:0 0 8px;color:var(--pri)">🌱 Auxiliar de Jardinagem</h3>
+          <p class="muted" style="margin:0">Ideal para quem está começando ou quer aprender na prática. Trabalho em equipe e evolução progressiva.</p>
         </div>
 
         <div class="card" style="padding:18px">
-          <h3>🌿 Jardineiro Operacional</h3>
-          <p class="muted">Para quem já tem experiência com manutenção, podas e organização. Mais responsabilidade e estabilidade.</p>
+          <h3 style="margin:0 0 8px;color:var(--pri)">🌿 Jardineiro Operacional</h3>
+          <p class="muted" style="margin:0">Para quem já tem experiência com manutenção, podas e organização. Mais responsabilidade e estabilidade.</p>
         </div>
 
         <div class="card" style="padding:18px">
-          <h3>🌳 Líder Operacional</h3>
-          <p class="muted">Para profissionais que lideram equipe e organizam serviços. Ganhos proporcionais e crescimento com a empresa.</p>
+          <h3 style="margin:0 0 8px;color:var(--pri)">🌳 Líder Operacional</h3>
+          <p class="muted" style="margin:0">Para profissionais que lideram equipe e organizam serviços. Ganhos proporcionais e crescimento com a empresa.</p>
         </div>
       </div>
 
       <a class="btn btn-primary"
-        <a href="carreira.html"
-         target="_blank" rel="noopener"
+         href="carreira.html"
          style="margin-top:16px;display:inline-flex">
-        Quero fazer parte da equipe JS
+        Ver oportunidades na JS
       </a>
     </div>
   </section>
@@ -756,7 +813,7 @@
       </div>
       <div>
         <p><a href="#servicos">Serviços</a></p>
-        <p><a href="ecovida.html">EcoVida</a></p>
+        <p><a href="#ecovida">EcoVida</a></p>
         <p><a href="carreira.html">Carreira</a></p>
       </div>
       <div>
