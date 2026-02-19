@@ -25,29 +25,20 @@
       --bg:#f6f7f6;
       --line:#e7ecef;
     }
-.eco-link-card{
-  background:#ffffff;
-  padding:18px;
-  border-radius:16px;
-  border:1px solid #e7ecef;
-  text-decoration:none;
-  transition:.25s ease;
-  box-shadow:0 6px 18px rgba(0,0,0,.05);
-}
-
-.eco-link-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 14px 30px rgba(0,0,0,.10);
-}
 
     *{box-sizing:border-box}
+
     html,body{
       margin:0;
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      overflow-x:hidden; /* evita “estouro” no celular */
     }
+
+    img{max-width:100%;height:auto;display:block}
     a{text-decoration:none;color:inherit}
+
     .wrap{width:min(1120px,92vw);margin:auto}
 
     .topbar{
@@ -79,6 +70,7 @@
       display:flex;
       gap:14px;
       align-items:center;
+      min-width: 220px;
     }
 
     .brand img{
@@ -94,6 +86,7 @@
       color:var(--pri);
       letter-spacing:.4px;
       text-transform:uppercase;
+      white-space:nowrap;
     }
 
     .links{
@@ -104,9 +97,9 @@
     .links a{color:var(--ink)}
     .links a:hover{color:var(--pri)}
 
-    .cta{display:flex;gap:10px;align-items:center}
+    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-    /* BOTÕES — padrão único (site inteiro) */
+    /* BOTÕES */
     .btn{
       appearance:none;
       border:1px solid #dfe3df;
@@ -121,6 +114,7 @@
       justify-content:center;
       gap:10px;
       color:var(--ink);
+      white-space:nowrap;
     }
     .btn:hover{background:#f3f5f7}
 
@@ -215,12 +209,6 @@
       border-color: var(--pri);
       color:#fff;
     }
-    .hero .btn-outline{
-      background: transparent;
-      border-color: rgba(255,255,255,.55);
-      color:#fff;
-    }
-    .hero .btn-outline:hover{background: rgba(255,255,255,.12)}
 
     .hero .card{
       background:#ffffffee;
@@ -233,7 +221,7 @@
     .section-title{font-size:28px;margin:0 0 12px}
     .muted{color:var(--muted)}
 
-    /* Exemplos de serviços */
+    /* Serviços */
     .examples{background:#f7f9f8;}
     .grid{
       display:grid;
@@ -257,6 +245,7 @@
       display:flex;align-items:center;justify-content:space-between;
       padding:10px 12px;background:#fff;border:1px solid #e7ece9;border-radius:12px;
       font-weight:900;color:var(--pri);margin-bottom:12px;
+      gap:10px;
     }
     .nota-valores{
       margin-top:16px;
@@ -278,198 +267,101 @@
     }
     .band .actions{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* EcoVida hero */
-
-    /* ECO VIDA COM FUNDO */
-
-.ecovida-bg{
-  position:relative;
-  background: url("fundo.png") center/cover no-repeat;
-  padding:80px 0;
-  color:#fff;
-}
-
-.ecovida-bg .overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    50deg,
-    rgba(17, 64, 132, 0.85) 0%,
-    rgba(0,0,0,.65) 100%
-  );
-}
-
-.ecovida-bg .wrap{
-  position:relative;
-  z-index:2;
-}
-
-/* LINKS ECO VIDA */
-
-.ecovida-links{
-  margin-top:24px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-.eco-link-card{
-  background:#ffffffee;
-  color:var(--ink);
-  padding:18px;
-  border-radius:16px;
-  border:1px solid #e7ecef;
-  text-decoration:none;
-  transition:.3s ease;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.eco-link-card strong{
-  display:block;
-  font-size:16px;
-  margin-bottom:6px;
-  color:var(--pri);
-}
-
-.eco-link-card span{
-  font-size:14px;
-  color:#475467;
-}
-
-.eco-link-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 14px 28px rgba(0,0,0,.18);
-}
-
-/* RESPONSIVO */
-
-@media (max-width:900px){
-  .ecovida-links{
-    grid-template-columns:1fr;
-  }
-}
-
-    .ecovida-hero-full{
-  position: relative;
-  min-height: 55vh; /* antes 70vh */
-  display: flex;
-  align-items: center;
-  color: #fff;
-  background: url("fundo.png") center/cover no-repeat;
-  overflow: hidden;
-}
-@media (max-width: 900px){
-  .ecovida-hero-full{
-    min-height: 42vh;
-    padding: 40px 0;
-  }
-}
-.ecovida-hero-inner{
-  max-width: 720px;
-  padding: 0 16px;
-}
-
+    /* ===== EcoVida (uma seção só, sem fundo duplicado) ===== */
+    .ecovida-bg{
+      position:relative;
+      padding:72px 0;
+      color:#fff;
+      background: url("fundo.png") center/cover no-repeat;
+      overflow:hidden;
     }
-    .ecovida-hero-full::before{
+    .ecovida-bg::before{
       content:"";
       position:absolute;
       inset:0;
       background: linear-gradient(
         50deg,
-        rgba(17, 64, 132, 0.85) 0%,
-        rgba(0, 0, 0, 0.65) 100%
+        rgba(17, 64, 132, 0.82) 0%,
+        rgba(0, 0, 0, 0.55) 100%
       );
+      z-index:1;
     }
-    .ecovida-hero-inner{
-      position:relative;
-      z-index:2;
-      max-width: 720px;
-      padding: 54px 0;
-    }
-    .ecovida-hero-full h2{
-      font-size: clamp(30px, 4vw, 48px);
-      margin: 0 0 12px;
-      line-height: 1.1;
-      text-shadow:0 2px 10px rgba(0,0,0,.45);
-    }
-    .ecovida-hero-full p{
-      font-size: clamp(16px, 1.6vw, 20px);
-      line-height: 1.6;
-      margin: 0;
-      opacity: .95;
-      text-shadow:0 2px 10px rgba(0,0,0,.45);
-    }
+    .ecovida-bg .wrap{position:relative;z-index:2}
 
-    /* EcoVida conteúdo */
     .ecovida-head{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
-      gap:26px;
+      gap:22px;
       align-items:start;
     }
+
     .chip{
       display:inline-flex;
       gap:8px;
       align-items:center;
       padding:8px 12px;
       border-radius:999px;
-      background:#ffffffcc;
+      background:#ffffffd9;
       border:1px solid #e6edf5;
       color:var(--pri);
       font-weight:900;
       font-size:13px;
     }
-    .ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6}
-    .ecovida-kpis{
+
+    .ecovida-sub{
+      max-width:62ch;
+      font-size:16px;
+      line-height:1.6;
+      color:#eaf0ff;
+      opacity:.95;
+      margin:0;
+    }
+
+    /* Cards/links estilo “bonito”, mas legível em cima do fundo */
+    .ecovida-links{
       margin-top:18px;
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
-    .kpi{
-      background:#ffffffcc;
-      border:1px solid #e7ecef;
-      border-radius:14px;
-      padding:12px 14px;
-      box-shadow:0 8px 18px rgba(0,0,0,.04);
+
+    .eco-link-card{
+      background: rgba(255,255,255,.95);
+      color: var(--ink);
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(231,236,239,.9);
+      transition:.25s ease;
+      box-shadow:0 8px 22px rgba(0,0,0,.16);
     }
-    .kpi strong{display:block; color:#0f1411; font-size:14px}
-    .kpi span{display:block; color:#475467; font-size:13px; margin-top:4px}
-    .ecovida-card{padding:18px 18px 14px}
-    .ecovida-card h3{margin:0 0 10px}
-    .ecovida-list{margin:0; padding-left:18px; color:#475467; line-height:1.7}
+    .eco-link-card strong{
+      display:block;
+      font-size:16px;
+      margin-bottom:6px;
+      color:var(--pri);
+    }
+    .eco-link-card span{
+      font-size:14px;
+      color:#475467;
+      line-height:1.45;
+      display:block;
+    }
+    .eco-link-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+    }
+
+    .ecovida-card{
+      padding:18px;
+      background: rgba(255,255,255,.96);
+      border:1px solid rgba(231,236,239,.95);
+    }
+
+    .ecovida-card h3{margin:0 0 10px;color:var(--pri)}
+    .ecovida-list{margin:0;padding-left:18px;color:#475467;line-height:1.7}
     .ecovida-list li{margin:8px 0}
     .ecovida-list b{color:#0f1411}
     .ecovida-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
-
-    .ecovida-grid{
-      margin-top:26px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:16px;
-    }
-    .eco-feature{
-      padding:18px;
-      border-radius:16px;
-      border:1px solid #eef0ee;
-      box-shadow:0 10px 26px rgba(0,0,0,.05);
-      background:#fff;
-    }
-    .eco-ico{
-      width:44px;height:44px;
-      display:grid;place-items:center;
-      border-radius:12px;
-      background:#ffffff;
-      border:1px solid #e7ecef;
-      margin-bottom:10px;
-      font-size:20px;
-    }
-    .eco-feature h3{margin:0 0 6px; font-size:18px}
-    .eco-feature p{margin:0; color:#475467; line-height:1.6}
-    .eco-highlight{
-      border-color:#d7e7ff;
-      background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
-    }
 
     /* footer */
     footer{
@@ -510,19 +402,23 @@
     /* Responsivo */
     @media (max-width:900px){
       .links{display:none}
-      .brand img{height:58px;}
-      .brand strong{font-size:20px;}
-      .hero-inner{grid-template-columns:1fr;}
+      .brand img{height:56px;}
+      .brand strong{font-size:18px;}
+      .hero-inner{grid-template-columns:1fr; padding:40px 0}
       .grid{grid-template-columns:1fr;}
       .ecovida-head{grid-template-columns:1fr}
-      .ecovida-kpis{grid-template-columns:1fr}
-      .ecovida-grid{grid-template-columns:1fr}
+      .ecovida-links{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;}
+      .ecovida-bg{padding:52px 0;}
     }
 
     @media (max-width:600px){
-      .hero{min-height:90vh}
       section{padding:40px 0}
+      .hero{min-height:92vh}
+      .btn{width:100%}
+      .cta{width:100%}
+      .hero .cta .btn{width:auto} /* no hero deixa 2 botões lado a lado se couber */
+      .brand strong{display:none}  /* limpa espaço no topo do celular */
     }
   </style>
 
@@ -563,7 +459,7 @@
 
       <nav class="links">
         <a href="#servicos">Serviços</a>
-        <a href="ecovida.html">EcoVida</a>
+        <a href="#ecovida">EcoVida</a>
         <a href="carreira.html">Carreira</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -607,7 +503,7 @@
           Atendemos condomínios de todos os portes, com rotinas planejadas conforme o espaço e a necessidade de cada cliente.
         </p>
         <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
-          <li><strong>Planos Econômico</strong> – <strong>A partir de R$180 mensais.</strong></li>
+          <li><strong>Plano Econômico</strong> – <strong>A partir de R$180 mensais.</strong></li>
           <li><strong>Acompanhamento contínuo</strong> – Manutenção contínua que gera resultado visível.</li>
           <li><strong>Valorização do condomínio</strong> – Jardim bem cuidado hoje, patrimônio valorizado amanhã.</li>
         </ul>
@@ -724,77 +620,71 @@
     </div>
   </section>
 
-  <!-- HERO EcoVida -->
-  <section id="ecovida" style="background:#f7f9f8;">
-  <div class="wrap">
+  <!-- ECO VIDA (com fundo, sem duplicar) -->
+  <section id="ecovida" class="ecovida-bg">
+    <div class="wrap">
+      <div class="ecovida-head">
+        <div>
+          <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
+          <h2 class="section-title" style="color:#fff;margin-top:10px">EcoVida</h2>
+          <p class="ecovida-sub">
+            Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
+          </p>
 
-    <div class="ecovida-head">
-      <div>
-        <span class="chip">Projeto Social • Sustentabilidade • Recomeço</span>
-        <h2 class="section-title">EcoVida</h2>
-        <p class="muted ecovida-sub">
-          Meio ambiente, dignidade e novas oportunidades — unindo cuidado com a cidade e recomeço com propósito.
-        </p>
-
-        <div class="ecovida-links">
-
-          <a href="reciclaveis.html" class="eco-link-card">
-            <strong>Recicláveis na rota</strong>
-            <span>Plástico, papel e metal — com separação e destino correto.</span>
-          </a>
-
-          <a href="pracas.html" class="eco-link-card">
-            <strong>Praças mais cuidadas</strong>
-            <span>Limpeza e organização de espaços públicos com constância.</span>
-          </a>
-
-          <a href="transparencia.html" class="eco-link-card">
-            <strong>Transparência</strong>
-            <span>Alinhamento do ponto, rota e boas práticas.</span>
-          </a>
-
-        </div>
-      </div>
-
-      <div>
-        <div class="card ecovida-card">
-          <h3>Como funciona</h3>
-          <ul class="ecovida-list">
-            <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
-            <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
-            <li><b>Coletamos apenas recicláveis</b> (não coletamos móveis/entulho por enquanto).</li>
-            <li><b>Atuação gradual</b>, conforme crescimento e parcerias.</li>
-          </ul>
-
-          <div class="ecovida-cta-row">
-            <a class="btn btn-primary" href="SEU_LINK_GOOGLE_FORMS" target="_blank">
-              Quero participar da rota
+          <div class="ecovida-links">
+            <a href="reciclaveis.html" class="eco-link-card">
+              <strong>Recicláveis na rota</strong>
+              <span>Plástico, papel e metal — com separação e destino correto.</span>
             </a>
 
-            <a class="btn btn-outline"
-               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20um%20or%C3%A7amento%20sobre%20o%20EcoVida."
-               target="_blank">
-              Pedir orçamento
+            <a href="pracas.html" class="eco-link-card">
+              <strong>Praças mais cuidadas</strong>
+              <span>Limpeza e organização de espaços públicos com constância.</span>
             </a>
 
-            <a class="btn btn-outline" href="Doacoes.html">
-              Doações
+            <a href="transparencia.html" class="eco-link-card">
+              <strong>Transparência</strong>
+              <span>Alinhamento do ponto, rota e boas práticas.</span>
             </a>
           </div>
+        </div>
 
-          <p class="muted" style="margin-top:12px">
-            *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
-          </p>
+        <div>
+          <div class="card ecovida-card">
+            <h3>Como funciona</h3>
+            <ul class="ecovida-list">
+              <li><b>Manutenção de espaços públicos</b> (limpeza e organização).</li>
+              <li><b>Rota de coleta de recicláveis</b> para condomínios e pontos parceiros.</li>
+              <li><b>Coletamos apenas recicláveis</b> (não coletamos móveis/entulho por enquanto).</li>
+              <li><b>Atuação gradual</b>, conforme crescimento e parcerias.</li>
+            </ul>
+
+            <div class="ecovida-cta-row">
+              <a class="btn btn-primary" href="SEU_LINK_GOOGLE_FORMS" target="_blank" rel="noopener">
+                Quero participar da rota
+              </a>
+
+              <a class="btn btn-outline"
+                 href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20um%20or%C3%A7amento%20sobre%20o%20EcoVida."
+                 target="_blank" rel="noopener">
+                Pedir orçamento
+              </a>
+
+              <a class="btn btn-outline" href="Doacoes.html">
+                Doações
+              </a>
+            </div>
+
+            <p class="muted" style="margin-top:12px">
+              *O EcoVida é uma extensão do compromisso da JS com a cidade e o futuro de Uberlândia.
+            </p>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-  <!-- CARREIRA (seção rápida na home) -->
+  <!-- CARREIRA -->
   <section id="carreira" style="background:#f6f8f7">
     <div class="wrap">
       <h2 class="section-title">Carreira na JS Jardinagem</h2>
