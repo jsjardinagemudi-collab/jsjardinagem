@@ -420,6 +420,27 @@
       .hero .cta .btn{width:auto} /* no hero deixa 2 botões lado a lado se couber */
       .brand strong{display:none}  /* limpa espaço no topo do celular */
     }
+
+    /* ECO VIDA — descer os blocos para mostrar a placa da imagem */
+.ecovida-bg{
+  min-height: 78vh;           /* garante área suficiente do fundo */
+  padding-top: 190px;         /* DESCE os cards (ajuste fino aqui) */
+  padding-bottom: 70px;
+  background-position: center top; /* prioriza topo da imagem */
+}
+
+/* Se quiser baixar ainda mais, aumente para 210px / 240px */
+
+/* Ajuste no mobile (para não ficar baixo demais) */
+@media (max-width: 900px){
+  .ecovida-bg{
+    min-height: 64vh;
+    padding-top: 120px;
+    padding-bottom: 48px;
+    background-position: center top;
+  }
+}
+
   </style>
 
   <!-- Schema.org LocalBusiness -->
