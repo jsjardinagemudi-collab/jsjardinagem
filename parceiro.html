@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>Parceiro • JS Jardinagem</title>
-  <meta name="description" content="Cadastro de parceiro JS Jardinagem. Preencha e envie direto no WhatsApp." />
+  <title>Cadastro • JS Jardinagem</title>
+  <meta name="description" content="Cadastro JS Jardinagem: Parceiro com maquinário, Auxiliar de Jardinagem ou Jardineiro Operacional. Envie direto no WhatsApp." />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -140,6 +140,7 @@
       color:#0f1411;
     }
     .muted{color:var(--muted)}
+    small.muted{display:block;margin-top:6px}
 
     .form-grid{
       display:grid;
@@ -174,6 +175,13 @@
     .ck input,.rd input{margin-top:3px;}
     .rd{width:100%;}
     .rd span{line-height:1.4;color:#344054;}
+
+    .divider{
+      height:1px;
+      background:var(--line);
+      margin:10px 0;
+      opacity:.9;
+    }
 
     /* ===== BOTÕES (padronizados) ===== */
     .btn{
@@ -212,6 +220,23 @@
 
     .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
 
+    /* ===== BLOCO INFO ===== */
+    .info-box{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.85);
+    }
+    .info-box b{color:var(--pri)}
+    .info-box p{margin:8px 0 0;line-height:1.6;color:#344054}
+
+    /* ===== MODOS (mostra/oculta blocos) ===== */
+    .only-parceiro,.only-auxiliar,.only-jardineiro{display:none}
+    body.mode-parceiro .only-parceiro{display:block}
+    body.mode-auxiliar .only-auxiliar{display:block}
+    body.mode-jardineiro .only-jardineiro{display:block}
+
     @media (max-width:900px){
       .form-grid{grid-template-columns:1fr;}
       .rd{width:100%;}
@@ -220,10 +245,10 @@
   </style>
 </head>
 
-<body>
+<body class="mode-parceiro">
 
-  <!-- ===== FORM PARCEIRO JS ===== -->
-  <section id="form-parceiro">
+  <!-- ===== FORM CADASTRO JS ===== -->
+  <section id="form-cadastro">
     <div class="wrap">
       <div class="card card-pad">
 
@@ -234,21 +259,50 @@
             <div class="parceiro-brand">
               <img src="logo branca limpa.png" alt="JS Jardinagem" />
               <div>
-                <strong>Cadastro de Parceiro • JS Jardinagem</strong>
-                <small>Preencha e envie direto no WhatsApp da JS.</small>
+                <strong>Cadastro • JS Jardinagem</strong>
+                <small>Parceiro com maquinário • Auxiliar • Jardineiro Operacional</small>
               </div>
             </div>
           </div>
 
-          <div class="parceiro-seal">PARCEIRO OFICIAL JS</div>
+          <div class="parceiro-seal" id="sealText">PARCEIRO OFICIAL JS</div>
         </div>
 
         <p class="muted" style="margin:0 0 12px;line-height:1.6;">
-          Preencha os dados abaixo. Ao final, você envia tudo direto no WhatsApp da JS (mensagem pronta e organizada).
+          Preencha os dados. No final, você envia tudo direto no WhatsApp da JS (mensagem pronta e organizada).
         </p>
 
         <form id="parceiroForm" class="form-grid" autocomplete="on">
-          <!-- Dados básicos -->
+
+          <!-- TIPO DE CADASTRO -->
+          <div class="field field-full">
+            <label>Tipo de cadastro *</label>
+            <div class="radios">
+              <label class="rd">
+                <input type="radio" name="tipo" value="parceiro" checked />
+                <span><b>Parceiro com maquinário</b> — executa serviços e já tem equipamentos</span>
+              </label>
+
+              <label class="rd">
+                <input type="radio" name="tipo" value="auxiliar" />
+                <span><b>Auxiliar de Jardinagem</b> — quer entrar para aprender e trabalhar em equipe</span>
+              </label>
+
+              <label class="rd">
+                <input type="radio" name="tipo" value="jardineiro" />
+                <span><b>Jardineiro Operacional</b> — já tem prática e executa com autonomia</span>
+              </label>
+            </div>
+
+            <div class="info-box" id="infoTipo">
+              <b>Parceiro:</b> precisa informar equipamentos + tipos de serviço. <br/>
+              <b>Auxiliar/Jardineiro:</b> foco em disponibilidade, experiência e encaixe em equipe.
+            </div>
+          </div>
+
+          <div class="divider field-full"></div>
+
+          <!-- Dados básicos (COMUM) -->
           <div class="field">
             <label for="nome">Nome completo *</label>
             <input id="nome" name="nome" type="text" required placeholder="Ex: João da Silva" />
@@ -260,7 +314,7 @@
           </div>
 
           <div class="field">
-            <label for="telefone">WhatsApp do parceiro *</label>
+            <label for="telefone">Seu WhatsApp *</label>
             <input id="telefone" name="telefone" type="tel" required placeholder="Ex: (34) 9xxxx-xxxx" />
           </div>
 
@@ -276,18 +330,34 @@
             </select>
           </div>
 
-          <!-- Perfil -->
+          <!-- Perfil (COMUM) -->
           <div class="field field-full">
-            <label>Você trabalha como:</label>
+            <label>Você trabalha como (opcional):</label>
             <div class="checks">
               <label class="ck"><input type="checkbox" name="perfil" value="Sozinho" /> Sozinho</label>
               <label class="ck"><input type="checkbox" name="perfil" value="Com 1 ajudante" /> Com 1 ajudante</label>
               <label class="ck"><input type="checkbox" name="perfil" value="Equipe pequena (2+)" /> Equipe pequena (2+)</label>
+              <label class="ck"><input type="checkbox" name="perfil" value="Quero entrar como funcionário (CLT/diária)" /> Quero entrar como funcionário (CLT/diária)</label>
+            </div>
+            <small class="muted">Se for Auxiliar, pode marcar “quero entrar como funcionário”.</small>
+          </div>
+
+          <!-- DISPONIBILIDADE (COMUM) -->
+          <div class="field field-full">
+            <label>Disponibilidade (dias) *</label>
+            <div class="checks">
+              <label class="ck"><input type="checkbox" name="dias" value="Segunda" /> Seg</label>
+              <label class="ck"><input type="checkbox" name="dias" value="Terça" /> Ter</label>
+              <label class="ck"><input type="checkbox" name="dias" value="Quarta" /> Qua</label>
+              <label class="ck"><input type="checkbox" name="dias" value="Quinta" /> Qui</label>
+              <label class="ck"><input type="checkbox" name="dias" value="Sexta" /> Sex</label>
+              <label class="ck"><input type="checkbox" name="dias" value="Sábado" /> Sáb</label>
             </div>
           </div>
 
-          <!-- Equipamentos -->
-          <div class="field field-full">
+          <!-- ===== BLOCO PARCEIRO ===== -->
+          <div class="field field-full only-parceiro">
+            <div class="divider"></div>
             <label>Equipamentos que você tem *</label>
             <div class="checks">
               <label class="ck"><input type="checkbox" name="equip" value="Roçadeira" /> Roçadeira</label>
@@ -301,8 +371,7 @@
             <small class="muted">Marque tudo que você realmente tem hoje.</small>
           </div>
 
-          <!-- Tipos de serviço -->
-          <div class="field field-full">
+          <div class="field field-full only-parceiro">
             <label>Tipos de serviço que você aceita *</label>
             <div class="checks">
               <label class="ck"><input type="checkbox" name="servicos" value="Manutenção geral" /> Manutenção geral</label>
@@ -314,25 +383,11 @@
             </div>
           </div>
 
-          <!-- Disponibilidade -->
-          <div class="field field-full">
-            <label>Disponibilidade *</label>
-            <div class="checks">
-              <label class="ck"><input type="checkbox" name="dias" value="Segunda" /> Seg</label>
-              <label class="ck"><input type="checkbox" name="dias" value="Terça" /> Ter</label>
-              <label class="ck"><input type="checkbox" name="dias" value="Quarta" /> Qua</label>
-              <label class="ck"><input type="checkbox" name="dias" value="Quinta" /> Qui</label>
-              <label class="ck"><input type="checkbox" name="dias" value="Sexta" /> Sex</label>
-              <label class="ck"><input type="checkbox" name="dias" value="Sábado" /> Sáb</label>
-            </div>
-          </div>
-
-          <!-- Modelo de divisão -->
-          <div class="field field-full">
+          <div class="field field-full only-parceiro">
             <label>Modelo de divisão (Parceiro / JS) *</label>
             <div class="radios">
               <label class="rd">
-                <input type="radio" name="divisao" value="50/50 (Parceiro 50% / JS 50%) — JS fecha e organiza / parceiro executa" required />
+                <input type="radio" name="divisao" value="50/50 (Parceiro 50% / JS 50%) — JS fecha e organiza / parceiro executa" />
                 <span><b>50% Parceiro / 50% JS</b> — JS fecha e organiza / parceiro executa</span>
               </label>
 
@@ -355,16 +410,83 @@
             </div>
           </div>
 
-          <!-- Observações -->
+          <!-- ===== BLOCO AUXILIAR ===== -->
+          <div class="field field-full only-auxiliar">
+            <div class="divider"></div>
+            <label>Auxiliar • Informações rápidas</label>
+            <div class="radios">
+              <label class="rd">
+                <input type="radio" name="auxExp" value="Nunca trabalhei com jardinagem (quero aprender)" />
+                <span><b>Iniciante</b> — nunca trabalhei com jardinagem (quero aprender)</span>
+              </label>
+              <label class="rd">
+                <input type="radio" name="auxExp" value="Já fui ajudante / bicos (tenho noção)" />
+                <span><b>Já ajudei</b> — já fui ajudante / bicos (tenho noção)</span>
+              </label>
+              <label class="rd">
+                <input type="radio" name="auxExp" value="Já trabalhei fixo como auxiliar" />
+                <span><b>Experiente</b> — já trabalhei fixo como auxiliar</span>
+              </label>
+            </div>
+
+            <label style="margin-top:10px;">Consegue se deslocar?</label>
+            <div class="checks">
+              <label class="ck"><input type="checkbox" name="desloc" value="Ônibus" /> Ônibus</label>
+              <label class="ck"><input type="checkbox" name="desloc" value="Moto" /> Moto</label>
+              <label class="ck"><input type="checkbox" name="desloc" value="Carro" /> Carro</label>
+              <label class="ck"><input type="checkbox" name="desloc" value="Depende da região" /> Depende da região</label>
+            </div>
+
+            <label style="margin-top:10px;">Preferência de rotina</label>
+            <div class="checks">
+              <label class="ck"><input type="checkbox" name="rotina" value="Manhã" /> Manhã</label>
+              <label class="ck"><input type="checkbox" name="rotina" value="Tarde" /> Tarde</label>
+              <label class="ck"><input type="checkbox" name="rotina" value="Integral" /> Integral</label>
+            </div>
+          </div>
+
+          <!-- ===== BLOCO JARDINEIRO OPERACIONAL ===== -->
+          <div class="field field-full only-jardineiro">
+            <div class="divider"></div>
+            <label>Jardineiro Operacional • O que você domina?</label>
+            <div class="checks">
+              <label class="ck"><input type="checkbox" name="domina" value="Manutenção de canteiros" /> Manutenção de canteiros</label>
+              <label class="ck"><input type="checkbox" name="domina" value="Poda ornamental" /> Poda ornamental</label>
+              <label class="ck"><input type="checkbox" name="domina" value="Roçada (se tiver prática)" /> Roçada (se tiver prática)</label>
+              <label class="ck"><input type="checkbox" name="domina" value="Adubação/manejo básico" /> Adubação/manejo básico</label>
+              <label class="ck"><input type="checkbox" name="domina" value="Plantio e replantio" /> Plantio e replantio</label>
+              <label class="ck"><input type="checkbox" name="domina" value="Organização e limpeza final" /> Organização e limpeza final</label>
+              <label class="ck"><input type="checkbox" name="domina" value="Rotina em condomínio" /> Rotina em condomínio</label>
+            </div>
+            <small class="muted">Se você faz poda técnica/altura, escreva em Observações.</small>
+
+            <label style="margin-top:10px;">Você tem ferramentas próprias?</label>
+            <div class="radios">
+              <label class="rd">
+                <input type="radio" name="ferramentas" value="Sim (básicas)" />
+                <span><b>Sim</b> — básicas</span>
+              </label>
+              <label class="rd">
+                <input type="radio" name="ferramentas" value="Sim (inclui roçadeira/soprador)" />
+                <span><b>Sim</b> — inclui roçadeira/soprador</span>
+              </label>
+              <label class="rd">
+                <input type="radio" name="ferramentas" value="Não (uso da empresa)" />
+                <span><b>Não</b> — uso da empresa</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Observações (COMUM) -->
           <div class="field field-full">
             <label for="obs">Observações (opcional)</label>
-            <textarea id="obs" name="obs" rows="4" placeholder="Ex: faço poda técnica, tenho escada, posso atender Zona Sul, tenho nota, etc."></textarea>
+            <textarea id="obs" name="obs" rows="4" placeholder="Ex: poda técnica, tenho escada, posso atender Zona Sul, disponibilidade, referências, etc."></textarea>
           </div>
 
           <!-- Ações -->
           <div class="form-actions field-full">
             <button type="button" class="btn btn-primary" id="btnWhats">Enviar no WhatsApp</button>
-            <button type="reset" class="btn btn-outline">Limpar</button>
+            <button type="reset" class="btn btn-outline" id="btnReset">Limpar</button>
           </div>
 
           <p class="muted field-full" style="margin:10px 0 0;font-size:13px;">
@@ -375,39 +497,45 @@
       </div>
     </div>
   </section>
-  <!-- ===== /FORM PARCEIRO JS ===== -->
+  <!-- ===== /FORM CADASTRO JS ===== -->
 
   <script>
     (function(){
       const WHATS_NUMBER = "5534992142960"; // JS WhatsApp
 
+      function setMode(mode){
+        document.body.classList.remove("mode-parceiro","mode-auxiliar","mode-jardineiro");
+        document.body.classList.add("mode-" + mode);
+
+        const seal = document.getElementById("sealText");
+        const info = document.getElementById("infoTipo");
+
+        if(mode === "parceiro"){
+          seal.textContent = "PARCEIRO OFICIAL JS";
+          info.innerHTML = "<b>Parceiro:</b> precisa informar equipamentos + tipos de serviço + modelo de divisão.";
+        }else if(mode === "auxiliar"){
+          seal.textContent = "CANDIDATO • AUXILIAR";
+          info.innerHTML = "<b>Auxiliar:</b> foco em disponibilidade, deslocamento e vontade de aprender.";
+        }else{
+          seal.textContent = "CANDIDATO • JARDINEIRO";
+          info.innerHTML = "<b>Jardineiro Operacional:</b> foco em experiência, tarefas dominadas e rotina em condomínio.";
+        }
+      }
+
       function getCheckedValues(form, name){
         return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
       }
-
       function getRadioValue(form, name){
         const el = form.querySelector(`input[name="${name}"]:checked`);
         return el ? el.value : "";
       }
 
-      function requiredOk(form){
+      function requiredOkCommon(form){
         if(!form.checkValidity()){
           form.reportValidity();
           return false;
         }
-
-        const equip = getCheckedValues(form, "equip");
-        const servs = getCheckedValues(form, "servicos");
         const dias  = getCheckedValues(form, "dias");
-
-        if(equip.length === 0){
-          alert("Marque pelo menos 1 equipamento.");
-          return false;
-        }
-        if(servs.length === 0){
-          alert("Marque pelo menos 1 tipo de serviço.");
-          return false;
-        }
         if(dias.length === 0){
           alert("Marque pelo menos 1 dia de disponibilidade.");
           return false;
@@ -415,9 +543,50 @@
         return true;
       }
 
-      document.getElementById("btnWhats").addEventListener("click", function(){
-        const form = document.getElementById("parceiroForm");
-        if(!requiredOk(form)) return;
+      function requiredOkParceiro(form){
+        const equip = getCheckedValues(form, "equip");
+        const servs = getCheckedValues(form, "servicos");
+        const divisao = getRadioValue(form, "divisao");
+        if(equip.length === 0){
+          alert("Parceiro: marque pelo menos 1 equipamento.");
+          return false;
+        }
+        if(servs.length === 0){
+          alert("Parceiro: marque pelo menos 1 tipo de serviço.");
+          return false;
+        }
+        if(!divisao){
+          alert("Parceiro: selecione um modelo de divisão.");
+          return false;
+        }
+        return true;
+      }
+
+      function requiredOkAuxiliar(form){
+        const auxExp = getRadioValue(form, "auxExp");
+        if(!auxExp){
+          alert("Auxiliar: selecione seu nível (iniciante/ajudei/experiente).");
+          return false;
+        }
+        return true;
+      }
+
+      function requiredOkJardineiro(form){
+        const domina = getCheckedValues(form, "domina");
+        const ferramentas = getRadioValue(form, "ferramentas");
+        if(domina.length === 0){
+          alert("Jardineiro: marque pelo menos 1 item do que você domina.");
+          return false;
+        }
+        if(!ferramentas){
+          alert("Jardineiro: selecione se você tem ferramentas próprias.");
+          return false;
+        }
+        return true;
+      }
+
+      function buildMessage(form){
+        const tipo = getRadioValue(form, "tipo") || "parceiro";
 
         const nome = document.getElementById("nome").value.trim();
         const cidade = document.getElementById("cidade").value.trim();
@@ -425,14 +594,52 @@
         const tempoExp = document.getElementById("tempoExp").value;
 
         const perfil = getCheckedValues(form, "perfil").join(", ") || "—";
-        const equip  = getCheckedValues(form, "equip").join(", ");
-        const servs  = getCheckedValues(form, "servicos").join(", ");
         const dias   = getCheckedValues(form, "dias").join(", ");
-        const divisao = getRadioValue(form, "divisao");
         const obs = document.getElementById("obs").value.trim() || "—";
 
+        let header = "Olá JS! Quero me cadastrar.";
+        if(tipo === "parceiro") header = "Olá JS! Quero me cadastrar como jardineiro parceiro.";
+        if(tipo === "auxiliar") header = "Olá JS! Quero me candidatar para Auxiliar de Jardinagem.";
+        if(tipo === "jardineiro") header = "Olá JS! Quero me candidatar para Jardineiro Operacional.";
+
+        let extra = "";
+
+        if(tipo === "parceiro"){
+          const equip  = getCheckedValues(form, "equip").join(", ");
+          const servs  = getCheckedValues(form, "servicos").join(", ");
+          const divisao = getRadioValue(form, "divisao");
+
+          extra =
+`*PARCEIRO*
+• Equipamentos: ${equip}
+• Serviços que aceito: ${servs}
+• Modelo de divisão (Parceiro / JS): ${divisao}`;
+        }
+
+        if(tipo === "auxiliar"){
+          const auxExp = getRadioValue(form, "auxExp") || "—";
+          const desloc = getCheckedValues(form, "desloc").join(", ") || "—";
+          const rotina = getCheckedValues(form, "rotina").join(", ") || "—";
+
+          extra =
+`*AUXILIAR*
+• Nível: ${auxExp}
+• Deslocamento: ${desloc}
+• Preferência de rotina: ${rotina}`;
+        }
+
+        if(tipo === "jardineiro"){
+          const domina = getCheckedValues(form, "domina").join(", ") || "—";
+          const ferramentas = getRadioValue(form, "ferramentas") || "—";
+
+          extra =
+`*JARDINEIRO OPERACIONAL*
+• Domino: ${domina}
+• Ferramentas: ${ferramentas}`;
+        }
+
         const msg =
-`Olá JS! Quero me cadastrar como jardineiro parceiro.
+`${header}
 
 *DADOS*
 • Nome: ${nome}
@@ -443,22 +650,41 @@
 *PERFIL*
 • Trabalho como: ${perfil}
 
-*EQUIPAMENTOS*
-• ${equip}
-
-*SERVIÇOS QUE ACEITO*
-• ${servs}
-
 *DISPONIBILIDADE*
 • ${dias}
 
-*MODELO DE DIVISÃO (Parceiro / JS)*
-• ${divisao}
+${extra ? (extra + "\n") : ""}
 
 *OBSERVAÇÕES*
 • ${obs}
 `;
 
+        return msg;
+      }
+
+      // listeners
+      const form = document.getElementById("parceiroForm");
+
+      // mode change
+      form.querySelectorAll('input[name="tipo"]').forEach(r=>{
+        r.addEventListener("change", (e)=> setMode(e.target.value));
+      });
+      setMode(getRadioValue(form, "tipo") || "parceiro");
+
+      document.getElementById("btnReset").addEventListener("click", ()=>{
+        setTimeout(()=> setMode(getRadioValue(form, "tipo") || "parceiro"), 0);
+      });
+
+      document.getElementById("btnWhats").addEventListener("click", function(){
+        // validações comuns
+        if(!requiredOkCommon(form)) return;
+
+        const tipo = getRadioValue(form, "tipo") || "parceiro";
+        if(tipo === "parceiro" && !requiredOkParceiro(form)) return;
+        if(tipo === "auxiliar" && !requiredOkAuxiliar(form)) return;
+        if(tipo === "jardineiro" && !requiredOkJardineiro(form)) return;
+
+        const msg = buildMessage(form);
         const url = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(msg)}`;
         window.open(url, "_blank", "noopener");
       });
