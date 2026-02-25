@@ -253,6 +253,115 @@
       font-size:14px;
     }
 
+    /* NOVO: Modalidades (atalhos) */
+    .service-hub{
+      margin-top:22px;
+      padding:18px;
+      background:linear-gradient(120deg,#eef4ff,#f3fbf6);
+      border:1px solid #e6edf5;
+      border-radius:18px;
+    }
+    .service-hub h3{
+      margin:0 0 6px;
+      font-size:18px;
+      color:var(--pri);
+    }
+    .service-hub p{
+      margin:0;
+      color:#475467;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .hub-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:14px;
+    }
+
+    .hub-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
+      overflow:hidden;
+      transition:.25s ease;
+      display:flex;
+      flex-direction:column;
+      min-height:220px;
+    }
+    .hub-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 32px rgba(0,0,0,.10);
+      border-color:#dbe6ff;
+    }
+    .hub-top{
+      padding:14px 14px 12px;
+      border-bottom:1px solid #edf1f4;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .hub-tag{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#f2f6ff;
+      color:var(--pri);
+      border:1px solid #dbe6ff;
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .hub-icon{
+      width:38px;height:38px;border-radius:12px;
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:900;
+      box-shadow:0 10px 18px rgba(17,64,132,.18);
+      flex:0 0 auto;
+    }
+
+    .hub-body{
+      padding:14px;
+      display:grid;
+      gap:10px;
+      flex:1;
+    }
+    .hub-body h4{
+      margin:0;
+      font-size:17px;
+      color:#0f172a;
+    }
+    .hub-body .hub-desc{
+      margin:0;
+      color:#475467;
+      line-height:1.55;
+      font-size:14px;
+    }
+    .hub-bullets{
+      margin:0;
+      padding-left:18px;
+      color:#475467;
+      line-height:1.6;
+      font-size:14px;
+    }
+    .hub-actions{
+      padding:14px;
+      padding-top:0;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .hub-actions .btn{
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:14px;
+    }
+
     /* CTA band */
     .band{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
@@ -406,6 +515,7 @@
       .brand strong{font-size:18px;}
       .hero-inner{grid-template-columns:1fr; padding:40px 0}
       .grid{grid-template-columns:1fr;}
+      .hub-grid{grid-template-columns:1fr;}
       .ecovida-head{grid-template-columns:1fr}
       .ecovida-links{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;}
@@ -428,8 +538,6 @@
   padding-bottom: 70px;
   background-position: center top; /* prioriza topo da imagem */
 }
-
-/* Se quiser baixar ainda mais, aumente para 210px / 240px */
 
 /* Ajuste no mobile (para não ficar baixo demais) */
 @media (max-width: 900px){
@@ -622,6 +730,92 @@
         </div>
       </div>
 
+      <!-- NOVO: atalhos de modalidades / soluções -->
+      <div class="service-hub">
+        <h3>Modalidades de Serviço (atalhos)</h3>
+        <p>
+          Escolha o tipo de solução que combina com a situação do seu condomínio ou empresa.
+          Cada modalidade tem uma página com explicação clara, escopo e como funciona.
+        </p>
+
+        <div class="hub-grid">
+          <!-- 1) Implantação -->
+          <a class="hub-card" href="implantacao-padrao-js.html">
+            <div class="hub-top">
+              <div>
+                <span class="hub-tag">Serviço Inicial</span>
+              </div>
+              <div class="hub-icon">JS</div>
+            </div>
+            <div class="hub-body">
+              <h4>Implantação do Padrão Profissional JS</h4>
+              <p class="hub-desc">
+                A primeira intervenção que organiza, melhora a estética e deixa o ambiente pronto para manutenção dentro do padrão JS.
+              </p>
+              <ul class="hub-bullets">
+                <li>Corte e acabamento do gramado</li>
+                <li>Limpeza e organização dos canteiros</li>
+                <li>Poda leve (altura acessível) + limpeza final</li>
+              </ul>
+            </div>
+            <div class="hub-actions">
+              <span class="btn btn-primary">Ver detalhes</span>
+              <span class="btn btn-outline">Abrir página</span>
+            </div>
+          </a>
+
+          <!-- 2) Pontuais -->
+          <a class="hub-card" href="servicos-pontuais.html">
+            <div class="hub-top">
+              <div>
+                <span class="hub-tag">Sem contrato inicial</span>
+              </div>
+              <div class="hub-icon">+</div>
+            </div>
+            <div class="hub-body">
+              <h4>Serviços Pontuais e Flexíveis</h4>
+              <p class="hub-desc">
+                Ideal para quem quer resolver demandas específicas com clareza de escopo e investimento proporcional.
+              </p>
+              <ul class="hub-bullets">
+                <li>Serviço por demanda / por etapa</li>
+                <li>Disponibilidade por período</li>
+                <li>Implantação progressiva do padrão</li>
+              </ul>
+            </div>
+            <div class="hub-actions">
+              <span class="btn btn-primary">Ver detalhes</span>
+              <span class="btn btn-outline">Abrir página</span>
+            </div>
+          </a>
+
+          <!-- 3) Emergencial -->
+          <a class="hub-card" href="plano-emergencial.html">
+            <div class="hub-top">
+              <div>
+                <span class="hub-tag">Resultado rápido</span>
+              </div>
+              <div class="hub-icon">⚡</div>
+            </div>
+            <div class="hub-body">
+              <h4>Plano Emergencial (Organização Imediata)</h4>
+              <p class="hub-desc">
+                Para áreas verdes com desgaste visível: começamos enxuto, entregamos resultado, e evoluímos por etapas.
+              </p>
+              <ul class="hub-bullets">
+                <li>Semana intensiva de organização visual</li>
+                <li>Limpeza técnica e revitalização pontual</li>
+                <li>Sem compromisso de longo prazo inicial</li>
+              </ul>
+            </div>
+            <div class="hub-actions">
+              <span class="btn btn-primary">Ver detalhes</span>
+              <span class="btn btn-outline">Abrir página</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
       <p class="nota-valores">
         *Os valores podem variar conforme escopo (podas em altura, revitalização de gramados, retirada de resíduos, insumos e deslocamento).
       </p>
@@ -637,7 +831,7 @@
       </div>
       <div class="actions">
         <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">Resolver no WhatsApp</a>
-        <a class="btn btn-outline" href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">Ver Instagram</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Ver Instagram</a>
       </div>
     </div>
   </section>
@@ -713,23 +907,17 @@
       <p class="muted">Crescimento profissional, trabalho contínuo e oportunidade real de evolução.</p>
 
       <div class="grid" style="margin-top:24px">
-        <div class="card" 
-          href="parceiro.html"
-          style="padding:18px">
+        <div class="card" style="padding:18px">
           <h3>🌱 Auxiliar de Jardinagem</h3>
           <p class="muted">Ideal para quem está começando ou quer aprender na prática. Trabalho em equipe e evolução progressiva.</p>
         </div>
 
-        <div class="card"
-          href="parceiro.html"
-          style="padding:18px">
+        <div class="card" style="padding:18px">
           <h3>🌿 Jardineiro Operacional</h3>
           <p class="muted">Para quem já tem experiência com manutenção, podas e organização. Mais responsabilidade e estabilidade.</p>
         </div>
 
-        <div class="card" 
-          href="parceiro.html"
-          style="padding:18px">
+        <div class="card" style="padding:18px">
           <h3>🌳 Líder Operacional</h3>
           <p class="muted">Para profissionais que lideram equipe e organizam serviços. Ganhos proporcionais e crescimento com a empresa.</p>
         </div>
