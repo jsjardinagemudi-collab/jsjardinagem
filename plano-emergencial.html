@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>Plano Emergencial — Organização Imediata — JS Jardinagem</title>
+  <meta name="description" content="Plano Emergencial JS: solução rápida e enxuta para condomínios com áreas verdes em situação urgente. Começar pequeno, mostrar resultado e evoluir por etapas." />
+
+  <meta property="og:title" content="Plano Emergencial — JS Jardinagem" />
+  <meta property="og:description" content="Organização imediata para tirar o condomínio do modo abandono. Sem pressão de contrato inicial. Resultado visível na primeira intervenção." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-js.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+      --warn:#b54708;
+      --warnbg:#fff7ed;
+      --warnline:#fed7aa;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1120px,92vw);margin:auto}
+
+    .topbar{
+      background:var(--pri);
+      color:#fff;
+      text-align:center;
+      padding:6px 10px;
+      font-size:14px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:#ffffffcc;
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      min-width:220px;
+    }
+    .brand img{
+      height:64px;
+      width:auto;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+    .brand strong{
+      font-size:20px;
+      font-weight:900;
+      color:var(--pri);
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .links{
+      display:flex;
+      gap:22px;
+      font-weight:800;
+    }
+    .links a{color:var(--ink)}
+    .links a:hover{color:var(--pri)}
+    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      color:var(--ink);
+      white-space:nowrap;
+    }
+    .btn:hover{background:#f3f5f7}
+
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
+    .btn-outline:hover{background:#eef4ff}
+
+    section{padding:64px 0}
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(0,0,0,.06);
+    }
+    .section-title{font-size:28px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:60vh;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background: url("bg-plano-emergencial.jpg") center/cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        50deg,
+        rgba(17, 64, 132, 0.85) 0%,
+        rgba(0, 0, 0, 0.50) 100%
+      );
+      z-index:1;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+      padding:54px 0;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,4.2vw,48px);
+      line-height:1.06;
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
+    }
+    .hero p{
+      margin:0 0 18px;
+      font-size:clamp(16px,1.5vw,19px);
+      line-height:1.6;
+      opacity:.96;
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
+      max-width:72ch;
+    }
+    .hero .cta{gap:12px;margin-top:12px}
+    .hero .btn{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+      color:#fff;
+    }
+    .hero .btn:hover{background: rgba(255,255,255,.22)}
+    .hero .btn-primary{
+      background: var(--pri);
+      border-color: var(--pri);
+      color:#fff;
+    }
+    .hero .card{
+      background:#ffffffee;
+      color:var(--ink);
+      border:1px solid #e5e5e5;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      padding:22px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#ffffffd9;
+      border:1px solid #e6edf5;
+      color:var(--pri);
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    .alert{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:var(--warnbg);
+      border:1px solid var(--warnline);
+      color:var(--warn);
+      font-weight:900;
+      line-height:1.5;
+      font-size:14px;
+    }
+
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .kpi .mini{
+      border:1px solid #e7ecef;
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+    }
+    .kpi .mini strong{display:block;color:var(--pri);font-size:13px}
+    .kpi .mini span{display:block;color:#475467;font-weight:800;margin-top:2px}
+
+    /* CONTENT */
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:start;
+      margin-top:20px;
+    }
+    .box{padding:18px}
+    .box h3{margin:0 0 10px;color:var(--pri)}
+    .list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      color:#475467;
+    }
+    .list li{margin:8px 0}
+    .list b{color:#0f1411}
+
+    .note{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#f6fbff;
+      border:1px solid #dbe6ff;
+      color:#274b8a;
+      font-weight:800;
+      line-height:1.5;
+      font-size:14px;
+    }
+
+    /* Steps */
+    .steps{
+      display:grid;
+      gap:12px;
+      margin-top:10px;
+    }
+    .step{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#fff;
+    }
+    .step strong{
+      display:block;
+      color:var(--pri);
+      margin-bottom:4px;
+    }
+    .step span{color:#475467;line-height:1.55;display:block}
+
+    /* Blocos de soluções */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .mini-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
+      transition:.25s ease;
+    }
+    .mini-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 32px rgba(0,0,0,.10);
+      border-color:#dbe6ff;
+    }
+    .mini-card strong{
+      display:block;
+      color:var(--pri);
+      font-size:16px;
+      margin-bottom:6px;
+    }
+    .mini-card span{
+      display:block;
+      color:#475467;
+      line-height:1.55;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* Modelo de mensagem */
+    .quote{
+      padding:18px;
+    }
+    .quote h3{margin:0 0 10px;color:var(--pri)}
+    .linebox{
+      border:1px dashed #cfd8e3;
+      border-radius:12px;
+      padding:10px 12px;
+      color:#475467;
+      font-weight:900;
+      background:#fbfcff;
+      margin-top:10px;
+    }
+    .mini-cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    /* CTA band */
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:18px;
+      padding:28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .band .btn-outline{
+      border-color:#fff;
+      color:#fff;
+      background:transparent;
+    }
+    .band .btn-outline:hover{background:rgba(255,255,255,.12)}
+
+    /* footer */
+    footer{
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:34px 0;
+      margin-top:40px;
+    }
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+    .foot a{color:#cfe8da}
+
+    /* Floating icons */
+    .float-social{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      z-index:999;
+    }
+    .float-social a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 6px 14px rgba(0,0,0,.25);
+    }
+    .float-social svg{width:28px;height:28px}
+
+    /* Responsivo */
+    @media (max-width:900px){
+      .links{display:none}
+      .brand img{height:54px;}
+      .brand strong{font-size:18px;}
+      .hero-inner{grid-template-columns:1fr; padding:40px 0}
+      .grid2{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      section{padding:40px 0}
+      .btn{width:100%}
+      .cta{width:100%}
+      .hero .cta .btn{width:auto}
+      .brand strong{display:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Plano Emergencial — Organização Imediata",
+    "provider": {
+      "@type": "GardenService",
+      "name": "JS JARDINAGEM LTDA",
+      "url": "https://jardinagemudi.com.br",
+      "telephone": "+55 34 99214-2960"
+    },
+    "areaServed": "Uberlândia e região",
+    "serviceType": "Organização e revitalização emergencial de áreas verdes",
+    "url": "https://jardinagemudi.com.br/plano-emergencial.html"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo branca limpa.png" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
+
+      <nav class="links">
+        <a href="index.html#servicos">Serviços</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="Doações.html">Doação</a>
+        <a href="contatos.html">Contato</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Preciso%20de%20um%20Plano%20Emergencial%20para%20organizar%20as%20%C3%A1reas%20verdes.%20Podemos%20agendar%20uma%20visita%3F" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="pill">Situação urgente • Ação rápida • Evolução por etapas</span>
+        <h1>Plano Emergencial JS</h1>
+        <p>
+          Para condomínios que precisam de <b>organização imediata</b>, mas nem sempre têm verba (ou segurança)
+          para começar com um projeto grande.
+        </p>
+        <p>
+          A proposta é simples: <b>começar pequeno</b>, resolver o que está mais urgente, <b>mostrar resultado</b>
+          e evoluir por etapas — sem pressão de contrato inicial.
+        </p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#solucoes">Ver soluções do plano</a>
+          <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20o%20Plano%20Emergencial.%20Local%3A%20_____%20.%20Qual%20o%20melhor%20hor%C3%A1rio%20para%20visita%20t%C3%A9cnica%3F" target="_blank" rel="noopener">
+            Pedir proposta no WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px;font-size:20px;color:var(--pri)">O que resolvemos primeiro</h3>
+        <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
+          <li><strong>Visual de abandono</strong> (canteiros e gramado desorganizados).</li>
+          <li><strong>Acúmulo de resíduos</strong> e falta de acabamento.</li>
+          <li><strong>Percepção de gestão</strong> e imagem do condomínio.</li>
+        </ul>
+
+        <div class="kpi">
+          <div class="mini">
+            <strong>Formato</strong>
+            <span>Ação pontual</span>
+          </div>
+          <div class="mini">
+            <strong>Resultado</strong>
+            <span>Visível no início</span>
+          </div>
+        </div>
+
+        <div class="alert">
+          Importante: deixar piorar aumenta custo futuro para recuperação e desvaloriza a percepção do condomínio.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE EXISTE -->
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Entendemos a realidade do condomínio</h2>
+      <p class="muted">
+        Nem todo condomínio pode assumir implantação completa, contrato mensal imediato ou grandes investimentos de uma só vez.
+        E está tudo certo. O que não pode é deixar o desgaste acumular.
+      </p>
+
+      <div class="grid2">
+        <div class="card box">
+          <h3>O que acontece quando fica pra depois</h3>
+          <ul class="list">
+            <li><b>Sensação de abandono</b> para moradores e visitantes.</li>
+            <li><b>Desvalorização do imóvel</b> e da imagem do condomínio.</li>
+            <li><b>Aumento de custo futuro</b> para recuperar o que poderia ser mantido.</li>
+          </ul>
+
+          <div class="note">
+            O Plano Emergencial é um “primeiro passo inteligente”: resolve o urgente e cria base para continuidade.
+          </div>
+        </div>
+
+        <div class="card box">
+          <h3>Como a JS atua no emergencial</h3>
+          <div class="steps">
+            <div class="step">
+              <strong>1) Diagnóstico rápido</strong>
+              <span>Visita técnica objetiva para entender prioridades e pontos críticos.</span>
+            </div>
+            <div class="step">
+              <strong>2) Intervenção enxuta</strong>
+              <span>Equipe organizada para recuperar visual e organização com acabamento.</span>
+            </div>
+            <div class="step">
+              <strong>3) Próximos passos (opcional)</strong>
+              <span>Se fizer sentido, definimos evolução por etapas (sob demanda ou manutenção).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÕES -->
+  <section id="solucoes" style="background:#f7f9f8">
+    <div class="wrap">
+      <h2 class="section-title">Soluções do Plano Emergencial</h2>
+      <p class="muted">
+        Você investe apenas no que realmente precisa agora. Sem obrigatoriedade de contrato fixo inicial.
+      </p>
+
+      <div class="cards">
+        <div class="mini-card">
+          <strong>Poda de cerca viva</strong>
+          <span>Recupera o perímetro e devolve sensação de organização e cuidado.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Organização e limpeza técnica dos canteiros</strong>
+          <span>Capina, retirada de resíduos vegetais, alinhamento e acabamento visual.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Recuperação pontual do gramado</strong>
+          <span>Corte, acabamento e correções que trazem visual de “controle” imediatamente.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Semana intensiva de reorganização</strong>
+          <span>Uma semana focada em tirar o local do “modo abandono” e elevar o padrão visual.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Limpeza técnica de áreas verdes</strong>
+          <span>Remoção de resíduos, acúmulo de folhas e pontos críticos com finalização limpa.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Serviço específico por demanda</strong>
+          <span>Um problema, uma solução. Escopo claro e execução rápida, sem enrolação.</span>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:16px">
+        Serviços fora do padrão (ex.: <b>podas em altura</b>, palmeiras altas, maquinário especial) podem ser orçados à parte, com transparência.
+      </div>
+    </div>
+  </section>
+
+  <!-- VANTAGENS / COMPROMISSO -->
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Nossa vantagem</h2>
+      <p class="muted">O melhor argumento não é promessa — é resultado prático.</p>
+
+      <div class="grid2">
+        <div class="card box">
+          <h3>O que você pode esperar</h3>
+          <ul class="list">
+            <li><b>Equipe organizada</b> e execução objetiva.</li>
+            <li><b>Resultado visível</b> na primeira intervenção.</li>
+            <li><b>Planejamento</b> para reduzir custo futuro.</li>
+            <li><b>Transparência</b> no escopo e no que é extra.</li>
+            <li><b>Evolução gradual</b> conforme realidade financeira.</li>
+          </ul>
+        </div>
+
+        <div class="card box">
+          <h3>Nosso compromisso</h3>
+          <p class="muted" style="line-height:1.7;margin:0">
+            Não vendemos algo “grande” se o condomínio não está pronto para isso.
+            Oferecemos uma solução viável, proporcional à realidade atual.
+            Se após o primeiro serviço houver interesse em continuidade, avançamos.
+            Se não, o condomínio já terá melhorado significativamente sua aparência.
+          </p>
+
+          <div class="note">
+            Simples. Transparente. Profissional.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO PEDIR -->
+  <section id="pedido" style="background:#ffffff">
+    <div class="wrap">
+      <h2 class="section-title">Como pedir o Plano Emergencial</h2>
+      <p class="muted">Mensagem pronta para você copiar e enviar.</p>
+
+      <div class="grid2">
+        <div class="card quote">
+          <h3>Mensagem pronta (copiar e colar)</h3>
+          <div class="linebox">Olá JS Jardinagem! Quero o Plano Emergencial para o local: ________</div>
+          <div class="linebox">Principal urgência: _________________________________</div>
+          <div class="linebox">Melhor horário para visita/avaliação: _______________</div>
+
+          <div class="mini-cta">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20o%20Plano%20Emergencial%20para%20o%20local%3A%20_____%20.%20Principal%20urg%C3%AAncia%3A%20_____%20.%20Melhor%20hor%C3%A1rio%20para%20visita%3A%20_____%20."
+               target="_blank" rel="noopener">
+              Enviar no WhatsApp
+            </a>
+            <a class="btn btn-outline" href="index.html#servicos">Voltar para serviços</a>
+          </div>
+        </div>
+
+        <div class="card quote">
+          <h3>Quer começar mais técnico?</h3>
+          <p class="muted" style="line-height:1.7;margin:0">
+            Se você quer colocar o local dentro do padrão JS desde o início (com escopo de revitalização e base para manutenção),
+            veja também a página da <b>Implantação do Padrão Profissional JS</b>.
+          </p>
+
+          <div class="mini-cta">
+            <a class="btn btn-primary" href="implantacao-padrao-js.html">Ver Implantação do Padrão JS</a>
+            <a class="btn btn-outline"
+               href="servicos-pontuais.html">
+               Ver Serviços Pontuais
+            </a>
+          </div>
+
+          <div class="note">
+            Se você não sabe qual é o melhor caminho, manda mensagem que a gente te orienta em 2 minutos.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section>
+    <div class="wrap band">
+      <div style="display:grid;gap:8px;max-width:680px">
+        <h3 style="margin:0">Vamos tirar o condomínio do “modo abandono”</h3>
+        <p style="margin:0;opacity:.95;line-height:1.6">
+          Envie o local e a urgência. A JS monta a intervenção enxuta e entrega resultado.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20o%20Plano%20Emergencial.%20Local%3A%20_____%20.%20Urg%C3%AAncia%3A%20_____%20.%20Melhor%20hor%C3%A1rio%3A%20_____%20."
+           target="_blank" rel="noopener">
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn-outline" href="index.html#servicos">Ver todos os serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p class="muted" style="color:#cfe8da;opacity:.85">
+          Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.
+        </p>
+        <p class="muted" style="color:#cfe8da;opacity:.85;margin-top:8px">
+          🌐 www.jardinagemudi.com.br • 📞 (34) 99214-2960
+        </p>
+      </div>
+      <div>
+        <p><a href="index.html#servicos">Serviços</a></p>
+        <p><a href="ecovida.html">EcoVida</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
+      </div>
+      <div>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+        <p><a href="contatos.html">Contato</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Ícones flutuantes -->
+  <div class="float-social">
+    <a href="https://wa.me/5534992142960" title="Fale pelo WhatsApp" aria-label="Fale pelo WhatsApp" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/></svg>
+    </a>
+  </div>
+
+</body>
+</html>
