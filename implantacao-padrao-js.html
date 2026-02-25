@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>Implantação do Padrão Profissional JS — JS Jardinagem</title>
+  <meta name="description" content="Implantação do Padrão Profissional JS: primeira intervenção para organizar, revitalizar e colocar a área verde dentro do padrão técnico e estético da JS Jardinagem." />
+
+  <meta property="og:title" content="Implantação do Padrão Profissional JS — JS Jardinagem" />
+  <meta property="og:description" content="Serviço inicial de revitalização e organização: resultado visível, padrão técnico, transparência e base para manutenção contínua." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-js.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1120px,92vw);margin:auto}
+
+    .topbar{
+      background:var(--pri);
+      color:#fff;
+      text-align:center;
+      padding:6px 10px;
+      font-size:14px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:#ffffffcc;
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      min-width:220px;
+    }
+    .brand img{
+      height:64px;
+      width:auto;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+    .brand strong{
+      font-size:20px;
+      font-weight:900;
+      color:var(--pri);
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .links{
+      display:flex;
+      gap:22px;
+      font-weight:800;
+    }
+    .links a{color:var(--ink)}
+    .links a:hover{color:var(--pri)}
+    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      color:var(--ink);
+      white-space:nowrap;
+    }
+    .btn:hover{background:#f3f5f7}
+
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
+    .btn-outline:hover{background:#eef4ff}
+
+    section{padding:64px 0}
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(0,0,0,.06);
+    }
+    .section-title{font-size:28px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:62vh;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background: url("bg-implantacao-js.jpg") center/cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        50deg,
+        rgba(17, 64, 132, 0.82) 0%,
+        rgba(0, 0, 0, 0.45) 100%
+      );
+      z-index:1;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+      padding:54px 0;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,4.2vw,48px);
+      line-height:1.06;
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
+    }
+    .hero p{
+      margin:0 0 18px;
+      font-size:clamp(16px,1.5vw,19px);
+      line-height:1.6;
+      opacity:.96;
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
+      max-width:68ch;
+    }
+    .hero .cta{gap:12px;margin-top:12px}
+    .hero .btn{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+      color:#fff;
+    }
+    .hero .btn:hover{background: rgba(255,255,255,.22)}
+    .hero .btn-primary{
+      background: var(--pri);
+      border-color: var(--pri);
+      color:#fff;
+    }
+    .hero .card{
+      background:#ffffffee;
+      color:var(--ink);
+      border:1px solid #e5e5e5;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      padding:22px;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#ffffffd9;
+      border:1px solid #e6edf5;
+      color:var(--pri);
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .kpi .mini{
+      border:1px solid #e7ecef;
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+    }
+    .kpi .mini strong{display:block;color:var(--pri);font-size:13px}
+    .kpi .mini span{display:block;color:#475467;font-weight:800;margin-top:2px}
+
+    /* CONTENT */
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:start;
+      margin-top:20px;
+    }
+
+    .box{
+      padding:18px;
+    }
+    .box h3{margin:0 0 10px;color:var(--pri)}
+    .list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      color:#475467;
+    }
+    .list li{margin:8px 0}
+    .list b{color:#0f1411}
+
+    .steps{
+      display:grid;
+      gap:12px;
+      margin-top:10px;
+    }
+    .step{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#fff;
+    }
+    .step strong{
+      display:block;
+      color:var(--pri);
+      margin-bottom:4px;
+    }
+    .step span{color:#475467;line-height:1.55;display:block}
+
+    .note{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#f6fbff;
+      border:1px solid #dbe6ff;
+      color:#274b8a;
+      font-weight:800;
+      line-height:1.5;
+      font-size:14px;
+    }
+
+    /* FORM / HONORÁRIOS */
+    .form-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:20px;
+    }
+    .form-card{padding:18px}
+    .field{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+      display:grid;
+      gap:6px;
+      margin:10px 0;
+    }
+    .field label{
+      font-weight:900;
+      color:#0f172a;
+    }
+    .field .hint{
+      color:#667085;
+      font-size:14px;
+      line-height:1.45;
+    }
+    .linebox{
+      border:1px dashed #cfd8e3;
+      border-radius:12px;
+      padding:10px 12px;
+      color:#475467;
+      font-weight:900;
+      background:#fbfcff;
+    }
+
+    .mini-cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    /* CTA band */
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:18px;
+      padding:28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .band .btn-outline{
+      border-color:#fff;
+      color:#fff;
+      background:transparent;
+    }
+    .band .btn-outline:hover{background:rgba(255,255,255,.12)}
+
+    /* footer */
+    footer{
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:34px 0;
+      margin-top:40px;
+    }
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+    .foot a{color:#cfe8da}
+
+    /* Floating icons */
+    .float-social{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      z-index:999;
+    }
+    .float-social a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 6px 14px rgba(0,0,0,.25);
+    }
+    .float-social svg{width:28px;height:28px}
+
+    /* Responsivo */
+    @media (max-width:900px){
+      .links{display:none}
+      .brand img{height:54px;}
+      .brand strong{font-size:18px;}
+      .hero-inner{grid-template-columns:1fr; padding:40px 0}
+      .grid2{grid-template-columns:1fr}
+      .form-grid{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      section{padding:40px 0}
+      .btn{width:100%}
+      .cta{width:100%}
+      .hero .cta .btn{width:auto}
+      .brand strong{display:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Implantação do Padrão Profissional JS",
+    "provider": {
+      "@type": "GardenService",
+      "name": "JS JARDINAGEM LTDA",
+      "url": "https://jardinagemudi.com.br",
+      "telephone": "+55 34 99214-2960"
+    },
+    "areaServed": "Uberlândia e região",
+    "serviceType": "Revitalização e organização inicial de áreas verdes",
+    "url": "https://jardinagemudi.com.br/implantacao-padrao-js.html"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo branca limpa.png" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
+
+      <nav class="links">
+        <a href="index.html#servicos">Serviços</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="Doações.html">Doação</a>
+        <a href="contatos.html">Contato</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20entender%20a%20Implanta%C3%A7%C3%A3o%20do%20Padr%C3%A3o%20Profissional%20JS." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="pill">Serviço Inicial • Resultado visível • Padrão técnico</span>
+        <h1>Implantação do Padrão Profissional JS</h1>
+        <p>
+          A <b>Implantação do Padrão Profissional JS</b> é a primeira intervenção que organiza e revitaliza a área verde,
+          colocando o ambiente dentro do padrão técnico e estético da JS — com <b>clareza, método</b> e <b>transparência</b>.
+        </p>
+        <p>
+          É o passo ideal para condomínios e empresas que querem ver melhora real logo no início e, se desejarem,
+          dar sequência com manutenção contínua.
+        </p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#honorarios">Ver escopo e honorários</a>
+          <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20agendar%20uma%20visita%20t%C3%A9cnica%20para%20Implanta%C3%A7%C3%A3o%20do%20Padr%C3%A3o%20Profissional%20JS." target="_blank" rel="noopener">
+            Agendar visita técnica
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px;font-size:20px;color:var(--pri)">O que você ganha</h3>
+        <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
+          <li><strong>Organização imediata</strong> do visual e das áreas verdes.</li>
+          <li><strong>Padrão definido</strong> para manter o jardim saudável ao longo do tempo.</li>
+          <li><strong>Escopo claro</strong> e execução com método e responsabilidade.</li>
+        </ul>
+
+        <div class="kpi">
+          <div class="mini">
+            <strong>Indicado para</strong>
+            <span>Condomínios e empresas</span>
+          </div>
+          <div class="mini">
+            <strong>Formato</strong>
+            <span>Serviço inicial (pontual)</span>
+          </div>
+        </div>
+
+        <div class="note">
+          Importante: este serviço <b>não inclui</b> podas em altura ou intervenções estruturais.
+          Se necessário, isso pode ser orçado à parte.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Como funciona</h2>
+      <p class="muted">
+        A JS enxerga o jardim como patrimônio. A Implantação é a base para que o espaço evolua visualmente e mantenha saúde paisagística.
+      </p>
+
+      <div class="grid2">
+        <div class="card box">
+          <h3>Sobre a JS Jardinagem</h3>
+          <p class="muted" style="line-height:1.65;margin:0">
+            A JS Jardinagem é especializada na manutenção, revitalização e organização profissional de áreas verdes.
+            Trabalhamos com método, responsabilidade e padrão técnico definido, garantindo evolução visual e saúde paisagística ao longo do tempo.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <strong>1) Visita técnica</strong>
+              <span>Entendemos a realidade do local e definimos as prioridades de forma objetiva.</span>
+            </div>
+            <div class="step">
+              <strong>2) Execução por etapas</strong>
+              <span>A equipe realiza o serviço seguindo o padrão JS e finaliza com revisão visual.</span>
+            </div>
+            <div class="step">
+              <strong>3) Próximo passo (opcional)</strong>
+              <span>Se fizer sentido, sugerimos manutenção contínua ou melhorias por demanda.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card box">
+          <h3>Escopo do serviço inicial</h3>
+          <ul class="list">
+            <li><b>Corte e acabamento do gramado</b></li>
+            <li><b>Limpeza dos canteiros</b> e retirada de resíduos</li>
+            <li><b>Poda leve</b> de plantas ornamentais (altura acessível)</li>
+            <li><b>Remoção e destinação</b> de resíduos vegetais</li>
+            <li><b>Organização estética geral</b> e revisão final</li>
+            <li><b>Limpeza final</b> do ambiente</li>
+          </ul>
+
+          <div class="note">
+            Não inclui: <b>serviços em altura</b> (ex.: palmeiras altas) ou <b>intervenções estruturais</b>.
+            Quando necessário, são tratados como serviço à parte.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONORÁRIOS -->
+  <section id="honorarios">
+    <div class="wrap">
+      <h2 class="section-title">Honorários profissionais</h2>
+      <p class="muted">
+        Modelo de proposta com itens claros. Os valores são preenchidos conforme a visita técnica e a necessidade real do local.
+      </p>
+
+      <div class="form-grid">
+        <div class="card form-card">
+          <h3 style="margin:0 0 10px;color:var(--pri)">Implantação do Padrão Profissional JS</h3>
+
+          <div class="field">
+            <label>☐ Corte e acabamento do gramado</label>
+            <div class="hint">Valor: R$ ________</div>
+          </div>
+
+          <div class="field">
+            <label>☐ Limpeza e organização dos canteiros</label>
+            <div class="hint">Valor: R$ ________</div>
+          </div>
+
+          <div class="field">
+            <label>☐ Poda leve de plantas ornamentais (altura acessível)</label>
+            <div class="hint">Valor: R$ ________</div>
+          </div>
+
+          <div class="field">
+            <label>☐ Remoção e destinação de resíduos vegetais</label>
+            <div class="hint">Valor: R$ ________</div>
+          </div>
+
+          <div class="field">
+            <label>☐ Organização estética geral e revisão final</label>
+            <div class="hint">Valor: R$ ________</div>
+          </div>
+
+          <div class="linebox">Valor total da Implantação do Padrão Profissional JS: R$ ________</div>
+          <div class="linebox" style="margin-top:10px">Forma de pagamento: ________________________________</div>
+
+          <div class="mini-cta">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20uma%20proposta%20da%20Implanta%C3%A7%C3%A3o%20do%20Padr%C3%A3o%20Profissional%20JS.%20Podemos%20agendar%20uma%20visita%3F"
+               target="_blank" rel="noopener">
+              Pedir proposta no WhatsApp
+            </a>
+            <a class="btn btn-outline" href="index.html#servicos">Voltar para serviços</a>
+          </div>
+        </div>
+
+        <div class="card form-card">
+          <h3 style="margin:0 0 10px;color:var(--pri)">Condições operacionais e possíveis ajustes</h3>
+          <p class="muted" style="line-height:1.65;margin:0">
+            O valor considera as condições normais observadas na visita técnica, bem como a estimativa de equipe e tempo necessários.
+            Caso o ambiente apresente condições favoráveis que contribuam diretamente para maior eficiência e agilidade,
+            poderá ser avaliado <b>ajuste proporcional positivo</b> no valor final, após a conclusão do serviço.
+          </p>
+
+          <ul class="list" style="margin-top:10px">
+            <li>☐ Facilidade de acesso ao local de trabalho</li>
+            <li>☐ Liberação prévia das áreas, quando necessário</li>
+            <li>☐ Organização do ambiente compatível com a execução</li>
+            <li>☐ Apoio logístico básico, quando aplicável</li>
+          </ul>
+
+          <div class="note" style="margin-top:12px">
+            Da mesma forma, condições que dificultem a execução poderão exigir adequação proporcional ao serviço realizado.
+            Qualquer ajuste será realizado com transparência e critério técnico.
+          </div>
+
+          <h3 style="margin:16px 0 8px;color:var(--pri)">Termo de aceite</h3>
+          <div class="linebox">Cliente: __________________________________________</div>
+          <div class="linebox" style="margin-top:10px">Data: ____ / ____ / ______</div>
+          <div class="linebox" style="margin-top:10px">Assinatura: _______________________________________</div>
+          <p class="muted" style="margin-top:10px">JS JARDINAGEM LTDA • CNPJ: 61.617.926/0001-15</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section>
+    <div class="wrap band">
+      <div style="display:grid;gap:8px;max-width:680px">
+        <h3 style="margin:0">Quer resultado já na primeira intervenção?</h3>
+        <p style="margin:0;opacity:.95;line-height:1.6">
+          Me mande uma mensagem com o nome do local e a melhor hora para visita técnica.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20agendar%20uma%20visita%20t%C3%A9cnica%20para%20Implanta%C3%A7%C3%A3o%20do%20Padr%C3%A3o%20Profissional%20JS.%20Meu%20local%20%C3%A9%3A%20_____%20.%20Melhor%20hor%C3%A1rio%3A%20_____%20."
+           target="_blank" rel="noopener">
+          Agendar no WhatsApp
+        </a>
+        <a class="btn btn-outline" href="index.html#servicos">Ver outros serviços</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p class="muted" style="color:#cfe8da;opacity:.85">
+          Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.
+        </p>
+        <p class="muted" style="color:#cfe8da;opacity:.85;margin-top:8px">
+          🌐 www.jardinagemudi.com.br • 📞 (34) 99214-2960
+        </p>
+      </div>
+      <div>
+        <p><a href="index.html#servicos">Serviços</a></p>
+        <p><a href="ecovida.html">EcoVida</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
+      </div>
+      <div>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+        <p><a href="contatos.html">Contato</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Ícones flutuantes -->
+  <div class="float-social">
+    <a href="https://wa.me/5534992142960" title="Fale pelo WhatsApp" aria-label="Fale pelo WhatsApp" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/></svg>
+    </a>
+  </div>
+
+</body>
+</html>
