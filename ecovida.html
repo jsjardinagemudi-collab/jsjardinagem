@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#114084" />
 
   <title>Instituto EcoVida — Projeto Social da JS Jardinagem</title>
-  <meta name="description" content="Instituto EcoVida: projeto social da JS Jardinagem em transição para Instituto. Sustentabilidade, inclusão social, trabalho digno e revitalização de espaços." />
+  <meta name="description" content="Instituto EcoVida: recomeço com dignidade. Reciclagem como motor econômico para inclusão social e regeneração ambiental em Uberlândia e região." />
 
   <meta property="og:title" content="Instituto EcoVida — JS Jardinagem" />
-  <meta property="og:description" content="Regenerando espaços. Transformando vidas. Um projeto social da JS com impacto ambiental e oportunidades reais." />
+  <meta property="og:description" content="Um lugar de reconstrução humana e ambiental: trabalho digno, reciclagem e impacto real com transparência." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/og-js.jpg" />
 
@@ -22,6 +22,7 @@
       --ink:#0f1411;
       --muted:#667085;
       --bg:#f6f7f6;
+      --line:#e7ecef;
     }
 
     *{box-sizing:border-box}
@@ -33,6 +34,11 @@
     }
     a{text-decoration:none;color:inherit}
     .wrap{width:min(1120px,92vw);margin:auto}
+    .muted{color:var(--muted)}
+    section{padding:64px 0}
+    .section-title{font-size:28px;margin:0 0 12px}
+    .kicker{font-weight:900;color:var(--pri);letter-spacing:.3px;text-transform:uppercase;font-size:12px}
+    .hr{height:1px;background:#e9ece9;border:0;margin:0}
 
     .topbar{
       background:var(--pri);
@@ -115,8 +121,8 @@
       justify-content:center;
       gap:10px;
       color: var(--ink);
+      white-space:nowrap;
     }
-
     .btn:hover{background:#f3f5f7}
 
     .btn-primary{
@@ -124,7 +130,6 @@
       border-color:var(--pri);
       color:#fff;
     }
-
     .btn-primary:hover{
       background:#0d3270;
       border-color:#0d3270;
@@ -135,24 +140,19 @@
       border-color:var(--pri);
       color:var(--pri);
     }
-
     .btn-outline:hover{background:#eef4ff}
-
-    .muted{color:var(--muted)}
-    section{padding:64px 0}
-    .section-title{font-size:28px;margin:0 0 12px}
 
     .card{
       background:#fff;
-      border:1px solid #e7ecef;
+      border:1px solid var(--line);
       border-radius:16px;
       box-shadow:0 10px 26px rgba(0,0,0,.05);
     }
 
-    /* ===== HERO EcoVida ===== */
+    /* ===== HERO ===== */
     .ecovida-hero-full{
       position:relative;
-      min-height:74vh;
+      min-height:78vh;
       display:grid;
       align-items:center;
       color:#fff;
@@ -165,114 +165,148 @@
       inset:0;
       background: linear-gradient(
         50deg,
-        rgba(17, 64, 132, 0.85) 0%,
-        rgba(0, 0, 0, 0.65) 100%
+        rgba(17, 64, 132, 0.88) 0%,
+        rgba(0, 0, 0, 0.70) 100%
       );
       z-index:1;
     }
     .ecovida-hero-inner{
       position:relative;
       z-index:2;
-      max-width:780px;
+      max-width:860px;
       padding:36px 0;
     }
-    .ecovida-hero-full h1{
-      margin:0 0 10px;
-      font-size:clamp(32px,4.2vw,54px);
-      line-height:1.06;
-      text-shadow:0 2px 8px rgba(0,0,0,.45);
-    }
-    .ecovida-hero-full p{
-      margin:0 0 22px;
-      font-size:clamp(16px,1.6vw,20px);
-      line-height:1.6;
-      opacity:.95;
-      text-shadow:0 2px 8px rgba(0,0,0,.45);
-    }
-    .ecovida-hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
     .chip{
       display:inline-flex;
       gap:8px;
       align-items:center;
       padding:8px 12px;
       border-radius:999px;
-      background:#ffffffcc;
+      background:#ffffffd9;
       border:1px solid #e6edf5;
       color:#114084;
       font-weight:900;
       font-size:13px;
       margin-bottom:12px;
     }
+    .ecovida-hero-full h1{
+      margin:0 0 10px;
+      font-size:clamp(34px,4.6vw,56px);
+      line-height:1.06;
+      text-shadow:0 2px 8px rgba(0,0,0,.45);
+    }
+    .ecovida-hero-full p{
+      margin:0 0 22px;
+      font-size:clamp(16px,1.7vw,20px);
+      line-height:1.6;
+      opacity:.96;
+      text-shadow:0 2px 8px rgba(0,0,0,.45);
+      max-width:70ch;
+    }
+    .ecovida-hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
 
-    /* ===== Conteúdo EcoVida ===== */
-    .ecovida-head{
+    /* ===== SEÇÕES ===== */
+    .grid-2{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.05fr .95fr;
       gap:18px;
       align-items:start;
     }
 
-    .ecovida-sub{max-width:62ch; font-size:16px; line-height:1.6}
-
-    .ecovida-kpis{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-
-    .kpi{
-      background:#ffffff;
-      border:1px solid #e7ecef;
-      border-radius:14px;
-      padding:12px 14px;
-      box-shadow:0 8px 18px rgba(0,0,0,.04);
-    }
-    .kpi strong{display:block; color:#0f1411; font-size:14px}
-    .kpi span{display:block; color:#475467; font-size:13px; margin-top:4px}
-
-    .ecovida-card{padding:18px}
-    .ecovida-card h3{margin:0 0 10px}
-    .ecovida-list{margin:0; padding-left:18px; color:#475467; line-height:1.7}
-    .ecovida-list li{margin:8px 0}
-    .ecovida-list b{color:#0f1411}
-
-    .ecovida-cta-row{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-
-    .ecovida-grid{
-      margin-top:26px;
+    .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:16px;
     }
 
-    .eco-feature{padding:18px}
-    .eco-ico{
+    .p18{padding:18px}
+    .p22{padding:22px}
+
+    .icon{
       width:44px;height:44px;
       display:grid;place-items:center;
       border-radius:12px;
       background:#ffffff;
-      border:1px solid #e7ecef;
+      border:1px solid var(--line);
       margin-bottom:10px;
       font-size:20px;
     }
-    .eco-feature h3{margin:0 0 6px; font-size:18px}
-    .eco-feature p{margin:0; color:#475467; line-height:1.6}
-    .eco-highlight{
+
+    .feature h3{margin:0 0 6px;font-size:18px}
+    .feature p{margin:0;color:#475467;line-height:1.6}
+    .feature b{color:#0f1411}
+
+    .highlight{
       border-color:#d7e7ff;
       background:linear-gradient(180deg,#ffffff 0%, #f2f7ff 100%);
     }
 
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:#475467;
+      line-height:1.75;
+    }
+    .list li{margin:8px 0}
+    .list b{color:#0f1411}
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+      font-weight:900;
+      font-size:13px;
+      color:#0f1411;
+    }
+    .pill span{color:#475467;font-weight:700}
+
+    /* ===== “COMO TUDO SE JUNTA” ===== */
+    .flow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .step{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
+    }
+    .step .num{
+      width:34px;height:34px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      background:#eef4ff;
+      color:var(--pri);
+      font-weight:1000;
+      border:1px solid #d7e7ff;
+      flex:0 0 auto;
+    }
+    .step h4{margin:0 0 4px;font-size:16px}
+    .step p{margin:0;color:#475467;line-height:1.55}
+
+    /* ===== BAND CTA ===== */
     .band{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
@@ -307,10 +341,10 @@
       .brand{justify-content:center}
       .nav .cta{justify-content:center}
       .nav .links{justify-content:center}
-      .ecovida-head{grid-template-columns:1fr}
-      .ecovida-kpis{grid-template-columns:1fr}
-      .ecovida-grid{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr}
+      .ecovida-hero-full{min-height:72vh}
     }
   </style>
 
@@ -330,7 +364,7 @@
 </head>
 
 <body>
-  <div class="topbar">Instituto EcoVida • Sustentabilidade e recomeço • Uberlândia e região</div>
+  <div class="topbar">Instituto EcoVida • Recomeço com dignidade • Reciclagem como motor do projeto • Uberlândia e região</div>
 
   <header>
     <div class="wrap nav">
@@ -357,14 +391,14 @@
   </header>
 
   <!-- HERO -->
-  <section class="ecovida-hero-full">
+  <section class="ecovida-hero-full" aria-label="Hero Instituto EcoVida">
     <div class="wrap ecovida-hero-inner">
-      <span class="chip">Projeto em transição • Inclusão social • Sustentabilidade</span>
+      <span class="chip">Reabilitação • Trabalho digno • Reciclagem • Impacto real</span>
       <h1>Instituto EcoVida</h1>
       <p>
-        Regenerando espaços. Transformando vidas.
-        O EcoVida é um <b>projeto social da JS</b> em transição para Instituto: impacto ambiental,
-        trabalho digno e oportunidades reais — com transparência e resultados.
+        Um espaço de <b>reconstrução humana e ambiental</b>.
+        O EcoVida oferece <b>oportunidade de recomeço</b> por meio de trabalho, rotina e dignidade —
+        com a <b>reciclagem</b> como combustível do projeto e impacto direto na comunidade.
       </p>
 
       <div class="ecovida-hero-actions">
@@ -372,105 +406,208 @@
            href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20participar%20do%20projeto%20e%20entender%20como%20funciona."
            target="_blank" rel="noopener">Quero participar</a>
 
-        <a class="btn btn-primary"
-           href="ecovida-ajudar.html">Quero contribuir</a>
+        <a class="btn btn-outline"
+           href="#como-tudo-se-junta">Entender como funciona</a>
 
-        <a class="btn btn-primary"
-           href="ecovida-projetos.html">Ver projetos</a>
+        <a class="btn btn-outline"
+           href="ecovida-ajudar.html">Quero contribuir</a>
+      </div>
+
+      <div class="pill-row">
+        <div class="pill">♻️ <span>Reciclagem como motor</span></div>
+        <div class="pill">🤝 <span>Recomeço com dignidade</span></div>
+        <div class="pill">🌱 <span>Regeneração ambiental</span></div>
+        <div class="pill">📌 <span>Transparência e prestação</span></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTEÚDO -->
-  <section>
-    <div class="wrap ecovida-head">
+  <!-- 1) IDENTIDADE / PROPÓSITO -->
+  <section id="proposito">
+    <div class="wrap grid-2">
       <div>
+        <div class="kicker">O propósito</div>
         <h2 class="section-title">O que é o Instituto EcoVida?</h2>
-        <p class="muted ecovida-sub">
-          O <b>Instituto EcoVida</b> nasce como um projeto ligado à <b>JS Jardinagem</b>, em fase de implantação,
-          com objetivo claro: <b>regeneração ambiental</b>, <b>inclusão social</b> e <b>geração de renda</b>
-          por meio do trabalho sustentável.
+        <p class="muted" style="max-width:70ch;line-height:1.75;margin:0">
+          O <b>Instituto EcoVida</b> é um projeto social ligado à <b>JS Jardinagem</b>, em fase de implantação,
+          criado para ser um <b>lugar de reconstrução</b> — onde pessoas que querem recomeçar encontram
+          <b>trabalho, rotina, dignidade</b> e um caminho real de evolução.
           <br><br>
-          Aceitamos doações direcionadas para <b>mão de obra</b>, <b>coletes/uniformes</b>, <b>ferramentas</b> e <b>divulgação</b>.
-          E também atuamos com clientes e parceiros: quanto mais contratos e projetos, mais impacto o EcoVida gera.
+          Acreditamos que cada pessoa tem valor, talento e potencial únicos. Muitas vezes, o que falta não é capacidade —
+          é uma chance, um ambiente saudável e apoio consistente.
+          <br><br>
+          No EcoVida, a <b>reciclagem</b> é a principal movimentação de trabalho: ela gera renda, organiza a operação
+          e conecta comunidade, impacto ambiental e oportunidade de recomeço.
+        </p>
+      </div>
+
+      <div class="card p22 highlight">
+        <div class="kicker">Em uma frase</div>
+        <h3 style="margin:6px 0 10px">A reciclagem transforma o ambiente — e o trabalho transforma vidas.</h3>
+        <p class="muted" style="margin:0;line-height:1.7">
+          O EcoVida é um ciclo: comunidade separa, o Instituto organiza e transforma, e o resultado volta em
+          <b>inclusão, renda e melhoria real do bairro</b>.
         </p>
 
-        <div class="ecovida-kpis">
-          <div class="kpi">
-            <strong>Impacto ambiental</strong>
-            <span>Revitalização, cuidado de áreas verdes e melhoria do destino de resíduos.</span>
+        <div class="pill-row" style="margin-top:14px">
+          <div class="pill">🧭 <span>Direção e rotina</span></div>
+          <div class="pill">🧰 <span>Trabalho e capacitação</span></div>
+          <div class="pill">🏙️ <span>Impacto na cidade</span></div>
+          <div class="pill">📒 <span>Registro e prestação</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" />
+
+  <!-- 2) PILARES (o que entregamos) -->
+  <section id="pilares">
+    <div class="wrap">
+      <div class="kicker">Os pilares</div>
+      <h2 class="section-title">O que o EcoVida entrega</h2>
+
+      <div class="grid-3" style="margin-top:18px">
+        <div class="card p18 feature">
+          <div class="icon">🤝</div>
+          <h3>Recomeço com dignidade</h3>
+          <p>
+            Um espaço que acolhe com respeito, cria <b>rotina saudável</b> e oferece
+            oportunidade real para quem deseja mudar de vida.
+          </p>
+        </div>
+
+        <div class="card p18 feature">
+          <div class="icon">♻️</div>
+          <h3>Reciclagem como motor</h3>
+          <p>
+            A reciclagem é o combustível do projeto: gera renda, organiza o fluxo do trabalho e
+            fortalece a comunidade na separação correta dos recicláveis.
+          </p>
+        </div>
+
+        <div class="card p18 feature">
+          <div class="icon">🌱</div>
+          <h3>Regeneração ambiental</h3>
+          <p>
+            Destinação correta de resíduos, educação prática e ações de cuidado urbano —
+            com melhoria visível nos locais atendidos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) COMO TUDO SE JUNTA (fluxo simples e claro) -->
+  <section id="como-tudo-se-junta">
+    <div class="wrap grid-2">
+      <div>
+        <div class="kicker">O funcionamento</div>
+        <h2 class="section-title">Como tudo se junta</h2>
+        <p class="muted" style="margin:0;line-height:1.75;max-width:70ch">
+          O EcoVida não é promessa: é <b>processo</b>. A gente cria um caminho simples e repetível,
+          que transforma resíduos em valor e transforma pessoas em profissionais com direção.
+        </p>
+
+        <div class="flow">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h4>Comunidade separa e participa</h4>
+              <p>Moradores e pontos parceiros fazem a separação correta e entram no ciclo de impacto.</p>
+            </div>
           </div>
-          <div class="kpi">
-            <strong>Inclusão social</strong>
-            <span>Trabalho, rotina e dignidade para pessoas que querem recomeçar.</span>
+
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h4>Coleta, triagem e organização</h4>
+              <p>O Instituto organiza o material e cria rotina de trabalho com metas, segurança e disciplina.</p>
+            </div>
           </div>
-          <div class="kpi">
-            <strong>Transparência</strong>
-            <span>Relatório de ações e prestação de contas do “Fundo EcoVida”.</span>
+
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h4>Trabalho digno e geração de renda</h4>
+              <p>O resultado do trabalho vira renda e aprendizado. A pessoa fortalece autonomia e reconstrução.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">4</div>
+            <div>
+              <h4>Impacto ambiental e urbano</h4>
+              <p>Menos descarte irregular, mais limpeza e melhoria real nos locais atendidos e ao redor.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">5</div>
+            <div>
+              <h4>Transparência e evolução do projeto</h4>
+              <p>Registro de ações e prestação de contas do Fundo EcoVida, fortalecendo confiança e parcerias.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div id="como-funciona" class="card ecovida-card">
-        <h3>Como funciona</h3>
-        <ul class="ecovida-list">
-          <li><b>Ações comunitárias</b> e mutirões de limpeza/organização.</li>
-          <li><b>Revitalização de áreas verdes</b> e espaços públicos (quando autorizado/parceria).</li>
-          <li><b>Parcerias com condomínios e empresas</b> para apoiar o projeto e ampliar impacto.</li>
-          <li><b>Serviços maiores</b>: quando necessário, montamos equipe maior para atender operações maiores com segurança e organização.</li>
-          <li><b>Crescimento gradual</b>, com metas claras e registro dos resultados.</li>
+      <div class="card p22" id="como-funciona">
+        <div class="kicker">O que fazemos na prática</div>
+        <h3 style="margin:6px 0 10px">Frentes de atuação</h3>
+        <ul class="list">
+          <li><b>Reciclagem e logística</b>: coleta, triagem, organização e destinação correta.</li>
+          <li><b>Pontos parceiros</b>: condomínios, comércios e locais estratégicos para mobilização.</li>
+          <li><b>Ações comunitárias</b>: mutirões de limpeza, organização e conscientização.</li>
+          <li><b>Revitalização</b>: quando houver autorização/parcerias, apoio em espaços e áreas verdes.</li>
+          <li><b>Rotina e capacitação</b>: disciplina, acompanhamento e desenvolvimento de habilidades.</li>
         </ul>
 
-        <div class="ecovida-cta-row">
-          <a class="btn btn-primary"
-             href="https://docs.google.com/forms/d/e/1FAIpQLSflkFCeEMm16N0aJn6EtjaOoJtBVMrk5EWuvcZkAliP_Bb8hw/viewform?usp=header"
-             target="_blank" rel="noopener">Virar ponto parceiro</a>
+        <div style="margin-top:14px">
+          <div class="kicker">Como você pode entrar</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20participar%20do%20projeto%20como%20pessoa%20interessada%20em%20recome%C3%A7o%20e%20trabalho."
+               target="_blank" rel="noopener">Quero participar</a>
 
-          <a class="btn btn-primary" href="#contato">Falar com a equipe</a>
+            <a class="btn btn-outline"
+               href="https://docs.google.com/forms/d/e/1FAIpQLSflkFCeEMm16N0aJn6EtjaOoJtBVMrk5EWuvcZkAliP_Bb8hw/viewform?usp=header"
+               target="_blank" rel="noopener">Virar ponto parceiro</a>
+
+            <a class="btn btn-outline" href="ecovida-ajudar.html">Ver formas de ajudar</a>
+          </div>
         </div>
 
-        <p class="muted" style="margin:12px 0 0">
-          *Fase atual: projeto vinculado à JS. Próximo passo: formalização como Instituto após consolidação de resultados e parcerias.*
+        <p class="muted" style="margin:14px 0 0;line-height:1.6">
+          *Fase atual: projeto vinculado à JS. Próximo passo: consolidar resultados, ampliar parcerias e evoluir a formalização.*
         </p>
       </div>
     </div>
+  </section>
 
+  <!-- 4) O QUE PRECISAMOS (doações direcionadas) -->
+  <section id="precisamos">
     <div class="wrap">
-      <div class="ecovida-grid">
-        <div class="card eco-feature">
-          <div class="eco-ico">♻️</div>
-          <h3>Sustentabilidade na prática</h3>
-          <p>Processo real: organização, destino correto, educação e melhoria contínua — sem promessa vazia.</p>
+      <div class="kicker">Como fortalecer</div>
+      <h2 class="section-title">O que o EcoVida precisa para crescer</h2>
+
+      <div class="grid-3" style="margin-top:18px">
+        <div class="card p18 feature">
+          <div class="icon">🦺</div>
+          <h3>Uniformes e coletes</h3>
+          <p>Equipamentos para padronizar, dar segurança e identidade ao time do projeto.</p>
         </div>
 
-        <div class="card eco-feature">
-          <div class="eco-ico">🤝</div>
-          <h3>Oportunidade de recomeço</h3>
-          <p>Remuneração por resultado do trabalho, rotina e capacitação para construir uma nova trajetória.</p>
+        <div class="card p18 feature">
+          <div class="icon">🧰</div>
+          <h3>Ferramentas e estrutura</h3>
+          <p>Itens de apoio operacional para triagem, organização e melhoria do fluxo de trabalho.</p>
         </div>
 
-        <div class="card eco-feature">
-          <div class="eco-ico">🌱</div>
-          <h3>Impacto positivo</h3>
-          <p>Ambientes mais cuidados, mais consciência e melhoria real do visual urbano.</p>
-        </div>
-
-        <div class="card eco-feature eco-highlight">
-          <div class="eco-ico">🏙️</div>
-          <h3>Onde atuamos</h3>
-          <p>Condomínios, praças e pontos estratégicos — começando por áreas com maior necessidade.</p>
-        </div>
-
-        <div class="card eco-feature">
-          <div class="eco-ico">🧰</div>
-          <h3>Doações direcionadas</h3>
-          <p>Uniformes, coletes, ferramentas, divulgação e apoio operacional — com registro e prestação de contas.</p>
-        </div>
-
-        <div class="card eco-feature">
-          <div class="eco-ico">📌</div>
-          <h3>Transparência</h3>
-          <p>Relatório de ações e registro do “Fundo EcoVida” para preparar o caminho de captação pública no futuro.</p>
+        <div class="card p18 feature">
+          <div class="icon">📣</div>
+          <h3>Divulgação e parcerias</h3>
+          <p>Quanto mais parceiros e contratos, mais impacto o EcoVida gera e mais pessoas conseguem recomeçar.</p>
         </div>
       </div>
     </div>
@@ -480,8 +617,8 @@
   <section>
     <div class="wrap band">
       <h3 style="margin:0 0 6px">Quer apoiar o EcoVida?</h3>
-      <p style="margin:0;opacity:.95">
-        Se você é síndico, empresa ou morador e quer fortalecer um projeto com impacto real — chama a gente.
+      <p style="margin:0;opacity:.95;max-width:80ch">
+        Se você é síndico, empresa ou morador e quer fortalecer um projeto com impacto real — a gente organiza o modelo e te mostra o caminho.
       </p>
       <div class="actions">
         <a class="btn btn-primary"
@@ -490,7 +627,9 @@
 
         <a class="btn btn-primary" href="ecovida-ajudar.html">Quero contribuir</a>
 
-        <a class="btn btn-primary" href="index.html">Voltar para o site JS</a>
+        <a class="btn btn-outline" href="ecovida-transparencia.html">Ver transparência</a>
+
+        <a class="btn btn-outline" href="index.html">Voltar para o site JS</a>
       </div>
     </div>
   </section>
@@ -498,7 +637,8 @@
   <!-- CONTATO -->
   <section id="contato">
     <div class="wrap">
-      <h2 class="section-title">Contato</h2>
+      <div class="kicker">Contato</div>
+      <h2 class="section-title">Falar com o EcoVida</h2>
       <p><strong>WhatsApp:</strong> <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">(34) 99214-2960</a></p>
       <p><strong>Instagram:</strong> <a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">@jardinagemudi</a></p>
       <p class="muted">CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA • Uberlândia e região</p>
@@ -509,16 +649,18 @@
     <div class="wrap foot">
       <div>
         <strong>Instituto EcoVida (Projeto da JS)</strong>
-        <p class="muted">Regenerando espaços. Transformando vidas. Sustentabilidade com dignidade e oportunidades reais.</p>
+        <p class="muted">Recomeço com dignidade. Reciclagem como motor do projeto. Transparência e impacto real.</p>
       </div>
       <div>
-        <p><a href="ecovida.html#como-funciona">Como funciona</a></p>
+        <p><a href="#como-tudo-se-junta">Como funciona</a></p>
         <p><a href="ecovida-projetos.html">Projetos</a></p>
         <p><a href="ecovida-ajudar.html">Como ajudar</a></p>
+        <p><a href="ecovida-transparencia.html">Transparência</a></p>
       </div>
       <div>
         <p><a href="index.html">Site JS</a></p>
         <p><a href="https://wa.me/5534992142960">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/">Instagram</a></p>
       </div>
     </div>
   </footer>
