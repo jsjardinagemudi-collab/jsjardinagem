@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>Serviços Pontuais e Flexíveis — JS Jardinagem</title>
+  <meta name="description" content="Serviços pontuais e flexíveis para condomínios e empresas: solução por demanda, sem contrato inicial, com método, clareza e resultado visível." />
+
+  <meta property="og:title" content="Serviços Pontuais e Flexíveis — JS Jardinagem" />
+  <meta property="og:description" content="Resolva demandas específicas com escopo claro e investimento proporcional. Equipe organizada e padrão JS." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-js.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1120px,92vw);margin:auto}
+
+    .topbar{
+      background:var(--pri);
+      color:#fff;
+      text-align:center;
+      padding:6px 10px;
+      font-size:14px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:#ffffffcc;
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      min-width:220px;
+    }
+    .brand img{
+      height:64px;
+      width:auto;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+    .brand strong{
+      font-size:20px;
+      font-weight:900;
+      color:var(--pri);
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .links{
+      display:flex;
+      gap:22px;
+      font-weight:800;
+    }
+    .links a{color:var(--ink)}
+    .links a:hover{color:var(--pri)}
+    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      color:var(--ink);
+      white-space:nowrap;
+    }
+    .btn:hover{background:#f3f5f7}
+
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
+    .btn-outline:hover{background:#eef4ff}
+
+    section{padding:64px 0}
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(0,0,0,.06);
+    }
+    .section-title{font-size:28px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:58vh;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background: url("bg-servicos-pontuais.jpg") center/cover no-repeat;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(
+        50deg,
+        rgba(17, 64, 132, 0.82) 0%,
+        rgba(0, 0, 0, 0.45) 100%
+      );
+      z-index:1;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+      padding:54px 0;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,4.2vw,48px);
+      line-height:1.06;
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
+    }
+    .hero p{
+      margin:0 0 18px;
+      font-size:clamp(16px,1.5vw,19px);
+      line-height:1.6;
+      opacity:.96;
+      text-shadow:0 2px 10px rgba(0,0,0,.40);
+      max-width:70ch;
+    }
+    .hero .cta{gap:12px;margin-top:12px}
+    .hero .btn{
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+      color:#fff;
+    }
+    .hero .btn:hover{background: rgba(255,255,255,.22)}
+    .hero .btn-primary{
+      background: var(--pri);
+      border-color: var(--pri);
+      color:#fff;
+    }
+    .hero .card{
+      background:#ffffffee;
+      color:var(--ink);
+      border:1px solid #e5e5e5;
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      padding:22px;
+    }
+
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#ffffffd9;
+      border:1px solid #e6edf5;
+      color:var(--pri);
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .kpi .mini{
+      border:1px solid #e7ecef;
+      border-radius:14px;
+      padding:12px;
+      background:#fff;
+    }
+    .kpi .mini strong{display:block;color:var(--pri);font-size:13px}
+    .kpi .mini span{display:block;color:#475467;font-weight:800;margin-top:2px}
+
+    /* CONTENT */
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      align-items:start;
+      margin-top:20px;
+    }
+    .box{padding:18px}
+    .box h3{margin:0 0 10px;color:var(--pri)}
+    .list{
+      margin:0;
+      padding-left:18px;
+      line-height:1.75;
+      color:#475467;
+    }
+    .list li{margin:8px 0}
+    .list b{color:#0f1411}
+
+    .note{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#f6fbff;
+      border:1px solid #dbe6ff;
+      color:#274b8a;
+      font-weight:800;
+      line-height:1.5;
+      font-size:14px;
+    }
+
+    /* Cards de modalidades (exemplos de demandas) */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .mini-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
+      transition:.25s ease;
+    }
+    .mini-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 32px rgba(0,0,0,.10);
+      border-color:#dbe6ff;
+    }
+    .mini-card strong{
+      display:block;
+      color:var(--pri);
+      font-size:16px;
+      margin-bottom:6px;
+    }
+    .mini-card span{
+      display:block;
+      color:#475467;
+      line-height:1.55;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* Modelo de pedido (WhatsApp) */
+    .quote{
+      padding:18px;
+    }
+    .quote h3{margin:0 0 10px;color:var(--pri)}
+    .quote .linebox{
+      border:1px dashed #cfd8e3;
+      border-radius:12px;
+      padding:10px 12px;
+      color:#475467;
+      font-weight:900;
+      background:#fbfcff;
+      margin-top:10px;
+    }
+    .quote .mini-cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    /* CTA band */
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:18px;
+      padding:28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .band .btn-outline{
+      border-color:#fff;
+      color:#fff;
+      background:transparent;
+    }
+    .band .btn-outline:hover{background:rgba(255,255,255,.12)}
+
+    /* footer */
+    footer{
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:34px 0;
+      margin-top:40px;
+    }
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+    .foot a{color:#cfe8da}
+
+    /* Floating icons */
+    .float-social{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      z-index:999;
+    }
+    .float-social a{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 6px 14px rgba(0,0,0,.25);
+    }
+    .float-social svg{width:28px;height:28px}
+
+    /* Responsivo */
+    @media (max-width:900px){
+      .links{display:none}
+      .brand img{height:54px;}
+      .brand strong{font-size:18px;}
+      .hero-inner{grid-template-columns:1fr; padding:40px 0}
+      .grid2{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+    }
+    @media (max-width:600px){
+      section{padding:40px 0}
+      .btn{width:100%}
+      .cta{width:100%}
+      .hero .cta .btn{width:auto}
+      .brand strong{display:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Serviços Pontuais e Flexíveis",
+    "provider": {
+      "@type": "GardenService",
+      "name": "JS JARDINAGEM LTDA",
+      "url": "https://jardinagemudi.com.br",
+      "telephone": "+55 34 99214-2960"
+    },
+    "areaServed": "Uberlândia e região",
+    "serviceType": "Serviços de jardinagem por demanda (pontuais)",
+    "url": "https://jardinagemudi.com.br/servicos-pontuais.html"
+  }
+  </script>
+</head>
+
+<body>
+  <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo branca limpa.png" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
+
+      <nav class="links">
+        <a href="index.html#servicos">Serviços</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="Doações.html">Doação</a>
+        <a href="contatos.html">Contato</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20servi%C3%A7o%20pontual%20(sem%20contrato%20inicial).%20Pode%20me%20orientar%3F" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="pill">Sem contrato inicial • Por demanda • Escopo claro</span>
+        <h1>Serviços Pontuais e Flexíveis</h1>
+        <p>
+          Nem todo condomínio precisa (ou pode) começar com contrato mensal. Às vezes o que falta é resolver
+          <b>uma demanda específica</b>, com <b>escopo claro</b> e investimento proporcional.
+        </p>
+        <p>
+          A JS oferece serviços pontuais com método e padrão profissional, para você avançar por etapas — sem pressão,
+          e com resultado visível desde a primeira intervenção.
+        </p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#demandas">Ver demandas comuns</a>
+          <a class="btn" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20servi%C3%A7o%20pontual.%20Meu%20local%20%C3%A9%3A%20_____%20.%20Qual%20a%20melhor%20hora%20para%20voc%C3%AAs%20verem%20e%20me%20passarem%20uma%20proposta%3F" target="_blank" rel="noopener">
+            Pedir proposta no WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px;font-size:20px;color:var(--pri)">O diferencial da JS</h3>
+        <ul style="margin:0;padding-left:18px;line-height:1.7;color:#333">
+          <li><strong>Organização e método</strong> na execução.</li>
+          <li><strong>Equipe estruturada</strong> com liderança operacional.</li>
+          <li><strong>Foco em valorização</strong> do ambiente e imagem do condomínio.</li>
+        </ul>
+
+        <div class="kpi">
+          <div class="mini">
+            <strong>Formato</strong>
+            <span>Serviço pontual</span>
+          </div>
+          <div class="mini">
+            <strong>Objetivo</strong>
+            <span>Resolver o urgente</span>
+          </div>
+        </div>
+
+        <div class="note">
+          Você pode começar pequeno, ver resultado e depois decidir os próximos passos.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <section>
+    <div class="wrap">
+      <h2 class="section-title">Quando faz sentido contratar pontual</h2>
+      <p class="muted">
+        Ideal para condomínios e empresas que precisam de organização imediata, mas preferem evoluir por etapas.
+      </p>
+
+      <div class="grid2">
+        <div class="card box">
+          <h3>O que a JS entrega</h3>
+          <ul class="list">
+            <li><b>Escopo definido</b> antes de iniciar (clareza e transparência).</li>
+            <li><b>Equipe organizada</b> e execução objetiva.</li>
+            <li><b>Resultado visível</b> na primeira intervenção.</li>
+            <li><b>Planejamento</b> para evitar custo maior no futuro.</li>
+            <li><b>Possibilidade de evolução</b> (sob demanda ou manutenção).</li>
+          </ul>
+
+          <div class="note">
+            Nosso objetivo não é “empurrar contrato”, e sim entregar uma solução viável e proporcional à realidade do local.
+          </div>
+        </div>
+
+        <div class="card box">
+          <h3>Modelos flexíveis</h3>
+          <ul class="list">
+            <li><b>Serviços pontuais específicos</b> (demanda única).</li>
+            <li><b>Manutenção sob demanda</b> (quando precisar, chama).</li>
+            <li><b>Disponibilidade por período</b> (ex.: semana de organização).</li>
+            <li><b>Implantação progressiva do padrão JS</b> (melhorias por etapas).</li>
+          </ul>
+
+          <div class="note">
+            O condomínio pode evoluir por etapas, sem necessidade de alto investimento imediato.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMANDAS -->
+  <section id="demandas" style="background:#f7f9f8">
+    <div class="wrap">
+      <h2 class="section-title">Demandas comuns (exemplos)</h2>
+      <p class="muted">Escolha o tipo de necessidade e a JS monta uma proposta proporcional ao serviço.</p>
+
+      <div class="cards">
+        <div class="mini-card">
+          <strong>Poda de cerca viva</strong>
+          <span>Contenção, alinhamento estético e limpeza final para recuperar o visual do perímetro.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Limpeza técnica de canteiros</strong>
+          <span>Capina, remoção de resíduos vegetais, organização e acabamento visual.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Revitalização pontual do gramado</strong>
+          <span>Corte, nivelamento leve, correções pontuais e preparação para recuperação.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Semana intensiva de organização</strong>
+          <span>Reorganização visual para tirar o condomínio do “modo abandono” e voltar ao padrão.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Serviço por demanda</strong>
+          <span>Uma ação específica com início, meio e fim — sem contrato mensal inicial.</span>
+        </div>
+
+        <div class="mini-card">
+          <strong>Manutenção sob medida</strong>
+          <span>Rotina reduzida e inteligente para manter o visual com constância e custo controlado.</span>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:16px">
+        Se houver necessidade de <b>podas em altura</b> ou serviços fora do escopo comum, a JS separa e orça à parte com total transparência.
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO PEDIR -->
+  <section id="pedido">
+    <div class="wrap">
+      <h2 class="section-title">Como pedir um serviço pontual</h2>
+      <p class="muted">Uma mensagem simples já resolve. Se preferir, enviamos proposta após visita técnica.</p>
+
+      <div class="grid2">
+        <div class="card quote">
+          <h3>Mensagem pronta (copiar e colar)</h3>
+          <div class="linebox">Olá JS Jardinagem! Quero um serviço pontual no local: ________</div>
+          <div class="linebox">Minha necessidade principal é: __________________________</div>
+          <div class="linebox">Melhor horário para visita/avaliação: __________________</div>
+
+          <div class="mini-cta">
+            <a class="btn btn-primary"
+               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20servi%C3%A7o%20pontual%20no%20local%3A%20_____%20.%20Minha%20necessidade%20principal%20%C3%A9%3A%20_____%20.%20Melhor%20hor%C3%A1rio%20para%20avalia%C3%A7%C3%A3o%3A%20_____%20."
+               target="_blank" rel="noopener">
+              Enviar no WhatsApp
+            </a>
+            <a class="btn btn-outline" href="index.html#servicos">Voltar para serviços</a>
+          </div>
+        </div>
+
+        <div class="card quote">
+          <h3>Compromisso com resultado</h3>
+          <ul class="list">
+            <li><b>Execução objetiva</b> e organizada.</li>
+            <li><b>Acabamento visual</b> e limpeza final.</li>
+            <li><b>Critério técnico</b> para evitar retrabalho e custo futuro.</li>
+            <li><b>Transparência</b> no que está incluído e no que é extra.</li>
+          </ul>
+          <div class="note">
+            Se depois do pontual você quiser continuidade, ótimo. Se não quiser, o local já fica melhor — simples assim.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section>
+    <div class="wrap band">
+      <div style="display:grid;gap:8px;max-width:680px">
+        <h3 style="margin:0">Quer resolver o urgente essa semana?</h3>
+        <p style="margin:0;opacity:.95;line-height:1.6">
+          Envie a necessidade e o local. A JS te orienta com clareza e passa proposta proporcional.
+        </p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20resolver%20um%20servi%C3%A7o%20pontual.%20Local%3A%20_____%20.%20Necessidade%3A%20_____%20.%20Melhor%20hor%C3%A1rio%3A%20_____%20."
+           target="_blank" rel="noopener">
+          Chamar no WhatsApp
+        </a>
+        <a class="btn btn-outline" href="implantacao-padrao-js.html">Ver Implantação do Padrão JS</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p class="muted" style="color:#cfe8da;opacity:.85">
+          Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.
+        </p>
+        <p class="muted" style="color:#cfe8da;opacity:.85;margin-top:8px">
+          🌐 www.jardinagemudi.com.br • 📞 (34) 99214-2960
+        </p>
+      </div>
+      <div>
+        <p><a href="index.html#servicos">Serviços</a></p>
+        <p><a href="ecovida.html">EcoVida</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
+      </div>
+      <div>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+        <p><a href="contatos.html">Contato</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Ícones flutuantes -->
+  <div class="float-social">
+    <a href="https://wa.me/5534992142960" title="Fale pelo WhatsApp" aria-label="Fale pelo WhatsApp" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/></svg>
+    </a>
+  </div>
+
+</body>
+</html>
