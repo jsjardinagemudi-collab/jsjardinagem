@@ -548,7 +548,59 @@
     background-position: center top;
   }
 }
+/* ===== MENU MOBILE ===== */
+.menu-toggle{
+  display:none;
+  width:46px;height:42px;
+  border:1px solid #dfe3df;
+  background:#fff;
+  border-radius:12px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:10px;
+}
+.menu-toggle span{
+  display:block;
+  width:18px;height:2px;
+  background:#0f1411;
+  border-radius:2px;
+}
 
+/* No mobile: mostrar botão e transformar o menu em dropdown */
+@media (max-width:900px){
+  .menu-toggle{display:inline-flex;}
+
+  /* remove o "display:none" antigo e controla via classe */
+  .links{
+    display:none;
+    position:absolute;
+    left:0; right:0;
+    top:100%;
+    background:#ffffffee;
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid #eef0ee;
+    padding:12px 14px;
+    flex-direction:column;
+    gap:12px;
+    font-weight:900;
+  }
+
+  header .nav{position:relative;} /* para o dropdown grudar no header */
+
+  .links a{
+    padding:10px 10px;
+    border-radius:12px;
+  }
+  .links a:hover{
+    background:#eef4ff;
+    color:var(--pri);
+  }
+
+  /* quando abrir */
+  .links.is-open{display:flex;}
+}
   </style>
 
   <!-- Schema.org LocalBusiness -->
@@ -575,7 +627,39 @@
   }
   </script>
 </head>
+<script>
+  (function(){
+    const btn = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.links');
 
+    if(!btn || !menu) return;
+
+    function closeMenu(){
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+
+    btn.addEventListener('click', function(){
+      const open = menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // fecha ao clicar em um link
+    menu.addEventListener('click', function(e){
+      if(e.target && e.target.tagName === 'A') closeMenu();
+    });
+
+    // fecha ao clicar fora
+    document.addEventListener('click', function(e){
+      if(!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+    });
+
+    // fecha com ESC
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
 <body>
   <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
 
