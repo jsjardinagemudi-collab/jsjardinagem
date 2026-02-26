@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#114084" />
 
   <title>Portal do Parceiro • JS Jardinagem</title>
-  <meta name="description" content="Área exclusiva para parceiros JS cadastrarem orçamentos, acompanharem status e serviços em andamento." />
+  <meta name="description" content="Área exclusiva para parceiros JS cadastrarem compromissos, orçamentos e acompanharem agenda e status de serviços." />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -19,6 +19,8 @@
       --paper:#fff;
       --bg:#f6f7f6;
       --line:#e7ecef;
+      --warn:#b54708;
+      --good:#027a48;
     }
 
     *{box-sizing:border-box}
@@ -97,6 +99,7 @@
       align-items:center;
       justify-content:center;
       gap:8px;
+      white-space:nowrap;
     }
 
     .btn:hover{background:#f3f5f7}
@@ -112,6 +115,12 @@
       border-color:#0d3270;
     }
 
+    .btn-ghost{
+      background:transparent;
+      border-color:#cfd8dc;
+      color:var(--pri);
+    }
+
     section{padding:60px 0}
 
     .hero{
@@ -123,13 +132,33 @@
     .hero h1{
       margin:0 0 12px;
       font-size:clamp(28px,4vw,44px);
+      letter-spacing:.2px;
     }
 
     .hero p{
       margin:0;
       opacity:.95;
-      max-width:700px;
+      max-width:760px;
       line-height:1.6;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      font-weight:800;
+      font-size:13px;
     }
 
     .grid{
@@ -149,6 +178,7 @@
       flex-direction:column;
       justify-content:space-between;
       transition:.25s ease;
+      min-height:220px;
     }
 
     .card:hover{
@@ -159,12 +189,73 @@
     .card h3{
       margin:0 0 8px;
       color:var(--pri);
+      line-height:1.25;
     }
 
     .card p{
       margin:0 0 16px;
       color:#475467;
       line-height:1.6;
+    }
+
+    .note{
+      margin-top:18px;
+      background:#fff;
+      border:1px dashed #cfd8dc;
+      border-radius:16px;
+      padding:16px;
+      color:#344054;
+      line-height:1.55;
+    }
+
+    .note strong{color:var(--pri)}
+
+    .two{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      margin-top:22px;
+      align-items:start;
+    }
+
+    .mini-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 8px 18px rgba(0,0,0,.05);
+    }
+
+    .mini-card h4{
+      margin:0 0 8px;
+      color:#0b2f6b;
+    }
+
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:#475467;
+      line-height:1.6;
+    }
+
+    .inputs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    input[type="text"]{
+      width:min(420px,100%);
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #dfe3df;
+      outline:none;
+      font-weight:700;
+    }
+    input[type="text"]:focus{
+      border-color:#b7c7d6;
+      box-shadow:0 0 0 4px rgba(17,64,132,.12);
     }
 
     footer{
@@ -186,22 +277,25 @@
       .grid{grid-template-columns:1fr}
       .links{display:none}
       .foot{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
     }
-
   </style>
 </head>
 
 <body>
- <script>
-  var senha = prompt("Área exclusiva para parceiros. Digite a senha:");
+  <!-- SENHA (simples) -->
+  <script>
+    (function(){
+      var senha = prompt("Área exclusiva para parceiros. Digite a senha:");
+      if (senha !== "JS2026") {
+        alert("Senha incorreta.");
+        window.location.href = "index.html";
+      }
+    })();
+  </script>
 
-  if (senha !== "JS2026") {
-    alert("Senha incorreta.");
-    window.location.href = "index.html";
-  }
-</script>
   <div class="topbar">
-    Área exclusiva para parceiros JS
+    Área exclusiva para parceiros JS • Agenda + Orçamentos + Status
   </div>
 
   <header>
@@ -225,9 +319,24 @@
     <div class="wrap">
       <h1>Portal do Parceiro JS</h1>
       <p>
-        Aqui você cadastra novos orçamentos, acompanha o status das propostas e visualiza os serviços em andamento.
-        Organização gera crescimento. Transparência gera parceria.
+        Começo simples e profissional: <strong>cadastre compromissos</strong> (serviço, orçamento, vistoria),
+        acompanhe a <strong>agenda</strong> e mantenha o <strong>status</strong> centralizado.
+        Depois a gente evolui para mapa por bairros e ícones.
       </p>
+
+      <div class="pill-row">
+        <div class="pill">📅 Agenda</div>
+        <div class="pill">🧾 Orçamentos</div>
+        <div class="pill">🚧 Serviços</div>
+        <div class="pill">📍 Bairro</div>
+        <div class="pill">✅ Status</div>
+      </div>
+
+      <div class="note" style="background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.28); color:#fff;">
+        <strong style="color:#fff;">Padrão recomendado (Fase 1):</strong>
+        Formulário → Planilha → Visualização (agenda/lista).
+        <br/>Você cria as páginas/planilhas e só troca os links aqui.
+      </div>
     </div>
   </section>
 
@@ -237,19 +346,68 @@
 
       <div class="grid">
 
+        <!-- CADASTRAR COMPROMISSO -->
+        <div class="card">
+          <div>
+            <h3>📅 Cadastrar Compromisso (Agenda)</h3>
+            <p>
+              Registre um compromisso com <strong>data/hora</strong>, <strong>bairro</strong>, <strong>tipo</strong>
+              (serviço, orçamento, vistoria) e responsável.
+            </p>
+          </div>
+          <a class="btn btn-primary"
+             href="https://forms.gle/COLOQUE_AQUI_SEU_FORM_DA_AGENDA"
+             target="_blank"
+             rel="noopener">
+            Abrir Formulário da Agenda
+          </a>
+        </div>
+
+        <!-- VER AGENDA -->
+        <div class="card">
+          <div>
+            <h3>🗓️ Ver Agenda (Próximos Compromissos)</h3>
+            <p>
+              Visualize os compromissos por data. Use filtros por parceiro, tipo e bairro.
+              (Pode ser planilha ou dashboard).
+            </p>
+          </div>
+          <a class="btn btn-primary"
+             href="https://docs.google.com/spreadsheets/d/COLOQUE_AQUI_SUA_PLANILHA_DA_AGENDA/edit"
+             target="_blank"
+             rel="noopener">
+            Abrir Agenda
+          </a>
+        </div>
+
+        <!-- VER MAPA (FUTURO) -->
+        <div class="card">
+          <div>
+            <h3>🗺️ Mapa por Bairros (Em breve)</h3>
+            <p>
+              Próxima evolução: compromissos com ícones no mapa (serviço/orçamento/vistoria)
+              e “grau” por bairro.
+            </p>
+          </div>
+          <button class="btn btn-ghost" type="button" onclick="alert('Fase 2: vamos plugar um mapa quando a agenda estiver rodando redondinha.');">
+            Planejado (Fase 2)
+          </button>
+        </div>
+
         <!-- CADASTRAR ORÇAMENTO -->
         <div class="card">
           <div>
             <h3>📝 Cadastrar Novo Orçamento</h3>
             <p>
-              Utilize o formulário oficial da JS para enviar dados do cliente, tipo de serviço e informações necessárias para análise.
+              Utilize o formulário oficial da JS para enviar dados do cliente,
+              tipo de serviço e informações necessárias para análise.
             </p>
           </div>
           <a class="btn btn-primary"
              href="https://forms.gle/ZDPUddtrxhN33oPT6"
              target="_blank"
              rel="noopener">
-            Abrir Formulário
+            Abrir Formulário de Orçamento
           </a>
         </div>
 
@@ -258,7 +416,8 @@
           <div>
             <h3>📊 Ver Orçamentos</h3>
             <p>
-              Acesse a planilha central para visualizar todos os orçamentos cadastrados, valores estimados e status atual.
+              Acesse a planilha central para visualizar orçamentos cadastrados,
+              valores estimados e status atual.
             </p>
           </div>
           <a class="btn btn-primary"
@@ -274,8 +433,8 @@
           <div>
             <h3>🚧 Acompanhar Serviços</h3>
             <p>
-              Dentro da planilha, acompanhe os serviços em negociação, aprovados, em execução e concluídos.
-              Atualizações são feitas conforme andamento.
+              Acompanhe serviços em negociação, aprovados, em execução e concluídos.
+              Atualize o status na planilha conforme andamento.
             </p>
           </div>
           <a class="btn btn-primary"
@@ -288,6 +447,47 @@
 
       </div>
 
+      <!-- BLOCO: PADRÃO DE CAMPOS (pra você criar o Form/Planilha) -->
+      <div class="two">
+        <div class="mini-card">
+          <h4>✅ Campos recomendados para o Form da Agenda (Fase 1)</h4>
+          <ul class="list">
+            <li><strong>Data</strong> e <strong>Hora</strong></li>
+            <li><strong>Tipo</strong>: Serviço / Orçamento / Vistoria / Retorno</li>
+            <li><strong>Bairro</strong> (lista)</li>
+            <li><strong>Condomínio/Local</strong></li>
+            <li><strong>Cliente</strong> (nome)</li>
+            <li><strong>Telefone</strong></li>
+            <li><strong>Responsável</strong> (parceiro)</li>
+            <li><strong>Status</strong>: Agendado / Confirmado / Concluído / Cancelado</li>
+            <li><strong>Observações</strong></li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h4>🔒 Dica de controle (simples)</h4>
+          <p style="margin:0;color:#475467;line-height:1.6">
+            Se quiser separar por parceiro, crie uma coluna <strong>Responsável</strong>
+            e use filtros/abas por nome.
+            <br><br>
+            Depois a gente sobe o nível: login real + permissões.
+          </p>
+
+          <div class="inputs">
+            <input id="copyLink" type="text" value="https://jardinagemudi.com.br/parceiros.html" readonly>
+            <button class="btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('copyLink').value).then(()=>alert('Link copiado!'));">
+              Copiar link
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Próximo passo prático:</strong> crie o <em>Form da Agenda</em> e a <em>Planilha da Agenda</em>
+        e substitua os links onde está escrito “COLOQUE_AQUI…”.
+        Depois, se quiser, eu te passo um modelo de planilha (com colunas e validações) pra ficar padronizado.
+      </div>
+
     </div>
   </section>
 
@@ -295,8 +495,8 @@
     <div class="wrap foot">
       <div>
         <strong>JS Jardinagem</strong>
-        <p style="opacity:.8">
-          Portal interno para parceiros operacionais.
+        <p style="opacity:.8;margin:8px 0 0">
+          Portal interno para parceiros operacionais • Padrão JS.
         </p>
       </div>
       <div>
