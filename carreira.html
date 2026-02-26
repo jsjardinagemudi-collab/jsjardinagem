@@ -63,14 +63,16 @@
       box-shadow:0 10px 26px rgba(0,0,0,.06);
     }
 
-    /* HERO */
+    /* HERO (com fundo novo) */
     .hero{
       position:relative;
       min-height:68vh;
       display:grid;
       align-items:center;
       color:#fff;
-      background: linear-gradient(50deg, rgba(17,64,132,.82), rgba(0,0,0,.45)), url("condominio_qualquer_tamanho.jpg") center/cover no-repeat;
+      background:
+        linear-gradient(50deg, rgba(17,64,132,.80), rgba(0,0,0,.40)),
+        url("bg-carreira-ambiente.jpg") center/cover no-repeat;
       overflow:hidden;
     }
     .hero-inner{padding:54px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
@@ -93,7 +95,7 @@
       font-weight:900;font-size:12px;
     }
 
-    /* NOVO: DOIS PÚBLICOS (BLOCOS VISUAIS) */
+    /* DOIS PÚBLICOS */
     .audience-title{margin:0 0 10px;font-size:26px}
     .audience-sub{color:var(--muted);margin:0;line-height:1.6}
     .audience-grid{
@@ -146,7 +148,6 @@
     }
     .ladder small{display:block;color:var(--muted);font-weight:800;margin-bottom:6px}
 
-    /* SECTIONS */
     .section-title{margin:0 0 10px;font-size:26px}
     .muted{color:var(--muted)}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
@@ -159,7 +160,6 @@
       flex:0 0 34px;
     }
 
-    /* CARDS DE PARCERIA (3 colunas) */
     .pricing{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -175,9 +175,7 @@
       height:100%;
     }
 
-    .plan-top{
-      min-height:150px; /* padroniza topo p/ botões alinharem */
-    }
+    .plan-top{min-height:150px}
 
     .badge{
       display:inline-flex;align-items:center;justify-content:center;
@@ -209,7 +207,6 @@
       box-shadow:0 18px 40px rgba(0,0,0,.12);
     }
 
-    /* Grid interno dos modelos 50/50, 60/40, 70/30 */
     .split-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -258,7 +255,7 @@
       </a>
 
       <nav class="links">
-        <a href="index.html#serviços">Serviços</a>
+        <a href="index.html#servicos">Serviços</a>
         <a href="ecovida.html">EcoVida</a>
         <a href="carreira.html">Carreira</a>
         <a href="index.html#contato">Contato</a>
@@ -306,14 +303,13 @@
     </div>
   </section>
 
-  <!-- NOVO: DOIS BLOCOS VISUAIS -->
+  <!-- DOIS CAMINHOS -->
   <section id="dois-caminhos" style="padding-top:30px;">
     <div class="wrap">
       <h2 class="audience-title">Dois caminhos para crescer com a JS</h2>
       <p class="audience-sub">A mesma parceria, dois perfis diferentes. Você entra do jeito certo para o seu momento.</p>
 
       <div class="audience-grid">
-        <!-- BLOCO 1: AGENDA VAZIA -->
         <div class="card audience-card">
           <span class="audience-kicker">🧩 AGENDA VAZIA / QUER CONSTÂNCIA</span>
           <h3>Receba serviços e entre numa rotina de trabalho</h3>
@@ -332,7 +328,6 @@
           </div>
         </div>
 
-        <!-- BLOCO 2: AGENDA CHEIA / LÍDER -->
         <div class="card audience-card audience-featured">
           <span class="audience-kicker">🚀 AGENDA CHEIA / QUER ESCALAR</span>
           <h3>Vire líder de campo e assuma mais contratos</h3>
@@ -439,7 +434,7 @@
     </div>
   </section>
 
-  <!-- NOVO: INDICAÇÃO -->
+  <!-- INDICAÇÃO -->
   <section id="indicacao" style="background:#f7f9f8">
     <div class="wrap">
       <h2 class="section-title">Indicação (modalidade extra)</h2>
@@ -505,7 +500,6 @@
       <h2 class="section-title">Modelos de parceria</h2>
       <p class="muted">Você escolhe o modelo conforme o tipo de serviço. Tudo alinhado antes de iniciar.</p>
 
-      <!-- MODELOS DE DIVISÃO DE LUCRO -->
       <div class="card card-pad" style="margin-top:16px">
         <h3 style="margin:0 0 6px;color:var(--pri)">Modelos de divisão de lucro</h3>
         <p class="muted" style="margin:0 0 12px;line-height:1.6">
@@ -553,7 +547,6 @@
         </p>
       </div>
 
-      <!-- 3 MODELOS PRINCIPAIS (CARDS) -->
       <div class="pricing">
         <div class="card plan">
           <div class="plan-top">
@@ -659,7 +652,7 @@
         <p class="muted">Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.</p>
       </div>
       <div>
-        <p><a href="index.html#serviços">Serviços</a></p>
+        <p><a href="index.html#servicos">Serviços</a></p>
         <p><a href="ecovida.html">EcoVida</a></p>
         <p><a href="carreira.html">Carreira</a></p>
       </div>
