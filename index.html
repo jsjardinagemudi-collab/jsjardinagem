@@ -510,7 +510,6 @@
 
     /* Responsivo */
     @media (max-width:900px){
-      .links{display:none}
       .brand img{height:56px;}
       .brand strong{font-size:18px;}
       .hero-inner{grid-template-columns:1fr; padding:40px 0}
@@ -1058,6 +1057,43 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/></svg>
     </a>
   </div>
+  <!-- Ícones flutuantes -->
+  <div class="float-social">
+    ...
+  </div>
 
+  <script>
+    (function(){
+      const btn = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('#site-menu'); // mais seguro
+
+      if(!btn || !menu) return;
+
+      function closeMenu(){
+        menu.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        const open = menu.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      menu.addEventListener('click', function(e){
+        if(e.target && e.target.tagName === 'A') closeMenu();
+      });
+
+      document.addEventListener('click', function(e){
+        if(!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
 </body>
 </html>
