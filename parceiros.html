@@ -192,7 +192,14 @@
 </head>
 
 <body>
+ <script>
+  var senha = prompt("Área exclusiva para parceiros. Digite a senha:");
 
+  if (senha !== "JS2026") {
+    alert("Senha incorreta.");
+    window.location.href = "index.html";
+  }
+</script>
   <div class="topbar">
     Área exclusiva para parceiros JS
   </div>
