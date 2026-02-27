@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1b2b" />
+  <title>Portal do Parceiro • Serviços Disponíveis</title>
+
+  <style>
+    :root{
+      --bg:#07121e;
+      --panel:#0b1b2b;
+      --card:#0f273f;
+      --card2:#0c2136;
+      --ink:#eaf2ff;
+      --muted:#a6b7d6;
+      --line:rgba(255,255,255,.10);
+      --ok:#2bd576;
+      --warn:#ffc857;
+      --bad:#ff4d6d;
+      --pri:#3aa0ff;
+      --pri2:#35d0ff;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --r:18px;
+      --r2:24px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(58,160,255,.28), transparent 55%),
+                  radial-gradient(900px 500px at 110% 10%, rgba(43,213,118,.18), transparent 50%),
+                  linear-gradient(180deg, #06101a 0%, #050c14 100%);
+      color:var(--ink);
+    }
+
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px 14px 44px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,18,30,.92), rgba(7,18,30,.70));
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{max-width:1100px;margin:0 auto;padding:14px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{
+      width:42px;height:42px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(58,160,255,.90), rgba(53,208,255,.70));
+      box-shadow: 0 10px 24px rgba(58,160,255,.18);
+      display:grid;place-items:center;font-weight:900;letter-spacing:.5px
+    }
+    .brand h1{font-size:14px;margin:0;line-height:1.1}
+    .brand p{font-size:12px;margin:0;color:var(--muted)}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--ink);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border .12s ease;
+      display:inline-flex;align-items:center;gap:8px;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
+    .btn:active{transform: translateY(0px)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(58,160,255,.95), rgba(53,208,255,.75));
+      border-color: transparent;
+      color:#04101c;
+      box-shadow: 0 16px 32px rgba(58,160,255,.20);
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border:1px solid var(--line);
+      border-radius:999px;background: rgba(255,255,255,.03);
+      color:var(--muted);font-size:12px;
+      max-width:45vw; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:99px;background:var(--ok);box-shadow:0 0 0 4px rgba(43,213,118,.12)}
+    .dot.off{background:var(--warn);box-shadow:0 0 0 4px rgba(255,200,87,.12)}
+
+    /* Header section */
+    .hero{padding:18px 0 12px}
+    .hero h2{margin:0 0 6px;font-size:22px;letter-spacing:-.2px}
+    .hero p{margin:0;color:var(--muted);max-width:72ch}
+
+    /* KPI row */
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:10px;
+      margin:14px 0 14px;
+    }
+    .kpi{
+      background: linear-gradient(180deg, rgba(15,39,63,.88), rgba(11,27,43,.88));
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      padding:12px 12px;
+      box-shadow: var(--shadow);
+      min-height:74px;
+    }
+    .kpi .t{font-size:12px;color:var(--muted);margin:0 0 6px}
+    .kpi .v{font-size:18px;font-weight:900;margin:0}
+    .kpi .s{font-size:12px;color:var(--muted);margin:6px 0 0}
+    .kpi .v strong{color:var(--pri2)}
+
+    /* Filters */
+    .filters{
+      display:grid;
+      grid-template-columns: 1.2fr .9fr .9fr .9fr .9fr;
+      gap:10px;
+      margin:10px 0 14px;
+    }
+    .field{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding:10px 10px;
+      display:flex;gap:8px;align-items:center;
+    }
+    .field input,.field select{
+      width:100%;
+      border:0;
+      outline:0;
+      background: transparent;
+      color:var(--ink);
+      font-size:14px;
+      appearance:none;
+    }
+    .field input::placeholder{color:rgba(166,183,214,.75)}
+    .field small{color:var(--muted);font-weight:700}
+    .field .icon{opacity:.9}
+
+    /* Layout main */
+    .main{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:12px;
+      align-items:start;
+    }
+
+    /* Job list */
+    .list{
+      background: linear-gradient(180deg, rgba(11,27,43,.92), rgba(8,18,30,.92));
+      border:1px solid var(--line);
+      border-radius: var(--r2);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .list-head{
+      padding:12px 12px;
+      display:flex;justify-content:space-between;gap:10px;align-items:center;
+      border-bottom:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    .list-head h3{margin:0;font-size:14px}
+    .list-head .meta{color:var(--muted);font-size:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      font-size:12px;color:var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      padding:6px 10px;border-radius:999px;
+    }
+
+    .cards{padding:10px;display:grid;gap:10px}
+    .card{
+      background: linear-gradient(180deg, rgba(15,39,63,.95), rgba(12,33,54,.95));
+      border:1px solid var(--line);
+      border-radius: var(--r2);
+      padding:12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.22);
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:12px;
+      align-items:center;
+    }
+    .card:hover{border-color: rgba(58,160,255,.35)}
+    .title{
+      display:flex;gap:10px;align-items:flex-start;justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .title h4{margin:0;font-size:15px;letter-spacing:-.2px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{
+      font-size:11px;font-weight:900;
+      padding:5px 8px;border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .b-ok{color:#06210f;background: rgba(43,213,118,.85);border-color: transparent}
+    .b-warn{color:#2a1a00;background: rgba(255,200,87,.90);border-color: transparent}
+    .b-bad{color:#2a0009;background: rgba(255,77,109,.92);border-color: transparent}
+    .b-pri{color:#02121e;background: rgba(53,208,255,.85);border-color: transparent}
+    .b-mid{color:#051018;background: rgba(58,160,255,.78);border-color: transparent}
+    .b-low{color:#0b1420;background: rgba(255,255,255,.18);border-color: rgba(255,255,255,.18); color: var(--ink)}
+    .details{
+      margin-top:8px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:8px;
+    }
+    .kv{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius: 14px;
+      padding:8px 10px;
+    }
+    .kv .k{font-size:11px;color:var(--muted);margin:0 0 3px}
+    .kv .v{font-size:13px;font-weight:800;margin:0}
+    .kv .v strong{color:var(--pri2)}
+    .cta{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:stretch;
+      min-width: 160px;
+    }
+    .cta .price{
+      text-align:right;
+      font-size:16px;
+      font-weight:1000;
+      letter-spacing:-.2px;
+    }
+    .cta .sub{
+      text-align:right;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:-2px;
+    }
+    .cta .take{
+      width:100%;
+      border:0;
+      border-radius: 16px;
+      padding:11px 12px;
+      font-weight:1000;
+      cursor:pointer;
+      background: linear-gradient(135deg, rgba(43,213,118,.95), rgba(53,208,255,.75));
+      color:#031116;
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .cta .take:hover{transform: translateY(-1px); filter: brightness(1.03)}
+    .cta .take:active{transform: translateY(0px)}
+    .cta .ghost{
+      width:100%;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+      background: rgba(255,255,255,.03);
+      color:var(--ink);
+    }
+
+    /* Right panel */
+    .side{
+      background: linear-gradient(180deg, rgba(11,27,43,.92), rgba(8,18,30,.92));
+      border:1px solid var(--line);
+      border-radius: var(--r2);
+      padding:12px;
+      box-shadow: var(--shadow);
+      position:sticky; top:82px;
+    }
+    .side h3{margin:0 0 6px;font-size:14px}
+    .side p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .tips{margin-top:10px;display:grid;gap:10px}
+    .tip{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      padding:10px;
+    }
+    .tip b{display:block;font-size:12px;margin-bottom:4px}
+    .tip span{font-size:12px;color:var(--muted)}
+    .foot{
+      margin-top:12px;
+      border-top:1px solid var(--line);
+      padding-top:10px;
+      display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between
+    }
+    .tiny{font-size:11px;color:var(--muted)}
+    .link{
+      font-size:12px;font-weight:900;color:var(--pri2);
+      text-decoration:none;border-bottom:1px dashed rgba(53,208,255,.55)
+    }
+
+    .empty{
+      padding:14px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    @media (max-width: 920px){
+      .kpis{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .filters{grid-template-columns: 1fr 1fr; }
+      .main{grid-template-columns: 1fr}
+      .side{position:relative; top:auto}
+    }
+    @media (max-width: 560px){
+      .card{grid-template-columns: 1fr}
+      .cta{min-width:auto}
+      .cta .price,.cta .sub{text-align:left}
+      .details{grid-template-columns: repeat(2, minmax(0,1fr))}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo">JS</div>
+        <div>
+          <h1>Portal do Parceiro</h1>
+          <p>Estilo “Uber”: pegue serviços disponíveis com rapidez</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="pill" id="connPill"><span class="dot off" id="connDot"></span><span id="connText">Desconectado (demo)</span></div>
+        <button class="btn" id="btnRefresh" title="Atualizar lista">⟳ Atualizar</button>
+        <a class="btn primary" href="#" id="btnOpenFormTop" target="_blank" rel="noopener">📥 Pegar serviço</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="hero">
+      <h2>Serviços disponíveis agora</h2>
+      <p>
+        Abra, filtre e pegue um serviço em segundos. Ao clicar em <b>Pegar serviço</b>, você será levado ao formulário para registrar seu interesse.
+        A JS confirma e muda o status para “Reservado/Fechado”.
+      </p>
+    </section>
+
+    <!-- KPIs -->
+    <section class="kpis">
+      <div class="kpi">
+        <p class="t">Disponíveis</p>
+        <p class="v" id="kpiAvailable">—</p>
+        <p class="s">Atualizado: <span id="kpiUpdated">—</span></p>
+      </div>
+      <div class="kpi">
+        <p class="t">Valor total (disponível)</p>
+        <p class="v" id="kpiValue">—</p>
+        <p class="s">Somatório dos cards</p>
+      </div>
+      <div class="kpi">
+        <p class="t">Bairros</p>
+        <p class="v" id="kpiBairros">—</p>
+        <p class="s">Cobertura atual</p>
+      </div>
+      <div class="kpi">
+        <p class="t">Alta prioridade</p>
+        <p class="v" id="kpiHigh">—</p>
+        <p class="s">Pra hoje/urgente</p>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+      <div class="field">
+        <span class="icon">🔎</span>
+        <input id="qSearch" placeholder="Buscar: bairro, serviço, cliente, tipo..." />
+      </div>
+
+      <div class="field">
+        <span class="icon">📍</span>
+        <select id="fBairro">
+          <option value="">Bairro (todos)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="icon">🌿</span>
+        <select id="fCategoria">
+          <option value="">Categoria (todas)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="icon">🔥</span>
+        <select id="fPrioridade">
+          <option value="">Prioridade (todas)</option>
+          <option value="Alta">Alta</option>
+          <option value="Média">Média</option>
+          <option value="Baixa">Baixa</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="icon">✅</span>
+        <select id="fStatus">
+          <option value="Disponível">Status: Disponível</option>
+          <option value="">Status (todos)</option>
+          <option value="Reservado">Reservado</option>
+          <option value="Fechado">Fechado</option>
+          <option value="Em negociação">Em negociação</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="main">
+      <!-- LEFT: JOB LIST -->
+      <div class="list">
+        <div class="list-head">
+          <h3>Lista de ofertas</h3>
+          <div class="meta">
+            <span id="countText">—</span>
+            <div class="chips">
+              <span class="chip" id="chipSort">Ordenação: Prioridade → Valor</span>
+              <span class="chip" id="chipMode">Modo: Cards</span>
+            </div>
+          </div>
+        </div>
+        <div class="cards" id="cards"></div>
+        <div class="empty" id="empty" style="display:none;">Nenhum serviço encontrado com esses filtros.</div>
+      </div>
+
+      <!-- RIGHT: INFO / HOW IT WORKS -->
+      <aside class="side">
+        <h3>Como funciona</h3>
+        <p>
+          1) Você vê os serviços <b>Disponíveis</b>.<br/>
+          2) Clica em <b>Pegar serviço</b> no card.<br/>
+          3) Abre um <b>Formulário</b> para registrar seu interesse.<br/>
+          4) A JS confirma e atualiza o status na base.
+        </p>
+
+        <div class="tips">
+          <div class="tip">
+            <b>✅ Melhor prática (sem bagunça)</b>
+            <span>Parceiro só lê o portal. “Pegar” sempre via formulário.</span>
+          </div>
+          <div class="tip">
+            <b>⚡ Velocidade</b>
+            <span>Use os filtros por Bairro, Categoria e Prioridade.</span>
+          </div>
+          <div class="tip">
+            <b>📌 Dica JS</b>
+            <span>Cards com <b>Alta prioridade</b> devem ser tratados primeiro.</span>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span class="tiny">© JS Jardinagem • Portal do Parceiro</span>
+          <a class="link" href="#" id="linkHelp">Configurar planilha</a>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <script>
+    /************************************************************
+     * CONFIGURAÇÃO (edite só aqui)
+     ************************************************************/
+    const CONFIG = {
+      // 1) URL CSV publicado do Google Sheets (Aba/Guia com o "Banco de Dados" ou visão filtrada)
+      // Como conseguir:
+      // Google Sheets → Arquivo → Compartilhar (deixar como "qualquer pessoa com o link" para visualizar)
+      // Arquivo → Publicar na Web → Selecionar a aba → Formato "CSV" → Publicar → copiar link
+      DASH_CSV_URL: "",
+
+      // 2) URL do Google Form para "Pegar Serviço"
+      // Você pode usar o link do form normal OU um link "pré-preenchido" (melhor).
+      FORM_URL: "https://docs.google.com/forms/d/e/SEU_FORM_ID/viewform",
+
+      // 3) (Opcional) Se você tiver links pré-preenchidos com campos do Google Form:
+      // Preencha os entry ids e o portal monta o link com dados do card.
+      // Exemplo:
+      //  entryJobId: "entry.1234567890"
+      //  entryPartnerName: "entry.2345678901"
+      //  entryNotes: "entry.3456789012"
+      FORM_PREFILL: {
+        enabled: false,
+        entryJobId: "",
+        entryBairro: "",
+        entryServico: "",
+        entryValor: "",
+        entryPrioridade: ""
+      },
+
+      // 4) Mapeamento de colunas do CSV (nomes exatos do cabeçalho na sua planilha)
+      // Ajuste para bater com seus títulos.
+      COLUMNS: {
+        id: "ID",
+        status: "Status",
+        bairro: "Bairro",
+        categoria: "Categoria do serviço solicitado",
+        servico: "Descrição detalhada do serviço",
+        area: "Área aproximada (m²)",
+        valor: "PREÇO FINAL (R$)",
+        urgencia: "Urgência",
+        cliente: "Nome completo do cliente",
+        endereco: "Endereço do serviço",
+        data: "Carimbo de data/hora"
+      },
+
+      // 5) Quais status aparecem como "oferta"
+      DEFAULT_STATUS_FILTER: "Disponível"
+    };
+
+    /************************************************************
+     * DADOS (DEMO) – usado se não houver planilha conectada
+     ************************************************************/
+    const DEMO = [
+      { ID:"JS-1027", Status:"Disponível", Bairro:"Saraiva", "Categoria do serviço solicitado":"Revitalização",
+        "Descrição detalhada do serviço":"Revitalização completa + limpeza técnica de canteiros", "Área aproximada (m²)":"220",
+        "PREÇO FINAL (R$)":"1800", "Urgência":"Alta", "Nome completo do cliente":"Condomínio X", "Endereço do serviço":"Av. ...", "Carimbo de data/hora":"2026-02-27 10:15" },
+      { ID:"JS-1028", Status:"Disponível", Bairro:"Alto Umuarama", "Categoria do serviço solicitado":"Poda",
+        "Descrição detalhada do serviço":"Poda de cerca viva (perímetro) + recolhimento", "Área aproximada (m²)":"—",
+        "PREÇO FINAL (R$)":"650", "Urgência":"Média", "Nome completo do cliente":"Residencial Y", "Endereço do serviço":"Rua ...", "Carimbo de data/hora":"2026-02-27 09:10" },
+      { ID:"JS-1029", Status:"Reservado", Bairro:"Gávea", "Categoria do serviço solicitado":"Implantação",
+        "Descrição detalhada do serviço":"Implantação de canteiros + forração", "Área aproximada (m²)":"180",
+        "PREÇO FINAL (R$)":"3200", "Urgência":"Alta", "Nome completo do cliente":"Empresa Z", "Endereço do serviço":"Rua ...", "Carimbo de data/hora":"2026-02-26 16:40" }
+    ];
+
+    /************************************************************
+     * UTIL
+     ************************************************************/
+    const $ = (sel) => document.querySelector(sel);
+    const fmtBRL = (n) => {
+      const x = Number(n);
+      if (!isFinite(x)) return "—";
+      return x.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+    };
+
+    function normalize(s){
+      return String(s ?? "").trim();
+    }
+
+    function parseNumber(v){
+      // aceita "R$1.234,56", "1234,56", "1234.56"
+      const s = normalize(v)
+        .replace(/\s/g,"")
+        .replace(/[R$\u00A0]/g,"")
+        .replace(/\./g,"")
+        .replace(",",".");
+      const x = Number(s);
+      return isFinite(x) ? x : NaN;
+    }
+
+    function badgeForStatus(status){
+      const st = normalize(status).toLowerCase();
+      if (st === "disponível" || st === "disponivel") return `<span class="badge b-ok">Disponível</span>`;
+      if (st === "reservado") return `<span class="badge b-warn">Reservado</span>`;
+      if (st === "fechado") return `<span class="badge b-bad">Fechado</span>`;
+      if (st.includes("negoc")) return `<span class="badge b-warn">Em negociação</span>`;
+      return `<span class="badge">${normalize(status) || "—"}</span>`;
+    }
+
+    function badgeForPriority(urg){
+      const u = normalize(urg).toLowerCase();
+      if (u === "alta" || u.includes("urg")) return `<span class="badge b-pri">Alta</span>`;
+      if (u === "média" || u === "media") return `<span class="badge b-mid">Média</span>`;
+      if (u === "baixa") return `<span class="badge b-low">Baixa</span>`;
+      return `<span class="badge">${normalize(urg) || "—"}</span>`;
+    }
+
+    function buildFormLink(row){
+      // Se preferir só abrir o formulário padrão:
+      if (!CONFIG.FORM_PREFILL.enabled) return CONFIG.FORM_URL;
+
+      const pre = CONFIG.FORM_PREFILL;
+      const params = new URLSearchParams();
+      if (pre.entryJobId) params.set(pre.entryJobId, normalize(row[CONFIG.COLUMNS.id]));
+      if (pre.entryBairro) params.set(pre.entryBairro, normalize(row[CONFIG.COLUMNS.bairro]));
+      if (pre.entryServico) params.set(pre.entryServico, normalize(row[CONFIG.COLUMNS.servico]));
+      if (pre.entryValor) params.set(pre.entryValor, normalize(row[CONFIG.COLUMNS.valor]));
+      if (pre.entryPrioridade) params.set(pre.entryPrioridade, normalize(row[CONFIG.COLUMNS.urgencia]));
+
+      const base = CONFIG.FORM_URL.includes("?") ? CONFIG.FORM_URL + "&" : CONFIG.FORM_URL + "?";
+      return base + params.toString();
+    }
+
+    /************************************************************
+     * CSV PARSER
+     ************************************************************/
+    function parseCSV(text){
+      // CSV simples com suporte a aspas
+      const rows = [];
+      let cur = "", inQ = false;
+      const out = [];
+      for (let i=0;i<text.length;i++){
+        const ch = text[i];
+        const next = text[i+1];
+        if (ch === '"' && inQ && next === '"'){ cur += '"'; i++; continue; }
+        if (ch === '"'){ inQ = !inQ; continue; }
+        if (ch === ',' && !inQ){ out.push(cur); cur=""; continue; }
+        if ((ch === '\n' || ch === '\r') && !inQ){
+          if (ch === '\r' && next === '\n') i++;
+          out.push(cur); cur="";
+          rows.push(out.splice(0, out.length));
+          continue;
+        }
+        cur += ch;
+      }
+      if (cur.length || out.length){ out.push(cur); rows.push(out); }
+
+      // remove linhas vazias
+      const clean = rows.filter(r => r.some(c => String(c ?? "").trim() !== ""));
+      if (!clean.length) return [];
+
+      const header = clean[0].map(h => String(h ?? "").trim());
+      const data = [];
+      for (let i=1;i<clean.length;i++){
+        const obj = {};
+        for (let j=0;j<header.length;j++){
+          obj[header[j]] = clean[i][j] ?? "";
+        }
+        data.push(obj);
+      }
+      return data;
+    }
+
+    /************************************************************
+     * STATE + RENDER
+     ************************************************************/
+    let ALL = [];
+    let VIEW = [];
+
+    function getFilters(){
+      return {
+        q: normalize($("#qSearch").value).toLowerCase(),
+        bairro: $("#fBairro").value,
+        cat: $("#fCategoria").value,
+        pri: $("#fPrioridade").value,
+        st: $("#fStatus").value
+      };
+    }
+
+    function applyFilters(){
+      const f = getFilters();
+      const cols = CONFIG.COLUMNS;
+
+      VIEW = ALL.filter(r => {
+        const status = normalize(r[cols.status]);
+        if (f.st && normalize(status) !== f.st) return false;
+
+        const bairro = normalize(r[cols.bairro]);
+        if (f.bairro && bairro !== f.bairro) return false;
+
+        const cat = normalize(r[cols.categoria]);
+        if (f.cat && cat !== f.cat) return false;
+
+        const pri = normalize(r[cols.urgencia]);
+        if (f.pri && pri !== f.pri) return false;
+
+        if (f.q){
+          const hay = [
+            r[cols.id], r[cols.bairro], r[cols.categoria],
+            r[cols.servico], r[cols.cliente], r[cols.endereco],
+            r[cols.status], r[cols.urgencia]
+          ].map(x => normalize(x).toLowerCase()).join(" • ");
+          if (!hay.includes(f.q)) return false;
+        }
+        return true;
+      });
+
+      // Ordenação “Uber”: prioridade alta primeiro, depois maior valor
+      const priRank = (u) => {
+        const x = normalize(u).toLowerCase();
+        if (x === "alta" || x.includes("urg")) return 0;
+        if (x === "média" || x === "media") return 1;
+        if (x === "baixa") return 2;
+        return 3;
+      };
+
+      VIEW.sort((a,b) => {
+        const pa = priRank(a[cols.urgencia]);
+        const pb = priRank(b[cols.urgencia]);
+        if (pa !== pb) return pa - pb;
+
+        const va = parseNumber(a[cols.valor]);
+        const vb = parseNumber(b[cols.valor]);
+        if (isFinite(vb) && isFinite(va) && vb !== va) return vb - va;
+
+        // por fim, mais recente primeiro
+        const da = Date.parse(a[cols.data]) || 0;
+        const db = Date.parse(b[cols.data]) || 0;
+        return db - da;
+      });
+
+      render();
+    }
+
+    function render(){
+      const cols = CONFIG.COLUMNS;
+      const el = $("#cards");
+      el.innerHTML = "";
+
+      $("#empty").style.display = VIEW.length ? "none" : "block";
+      $("#countText").textContent = `${VIEW.length} oferta(s) no filtro`;
+
+      // KPIs (baseado nas ofertas disponíveis)
+      const available = ALL.filter(r => normalize(r[cols.status]) === "Disponível");
+      const sum = available.reduce((acc,r) => acc + (parseNumber(r[cols.valor]) || 0), 0);
+      const bairros = new Set(available.map(r => normalize(r[cols.bairro])).filter(Boolean));
+      const high = available.filter(r => {
+        const u = normalize(r[cols.urgencia]).toLowerCase();
+        return u === "alta" || u.includes("urg");
+      }).length;
+
+      $("#kpiAvailable").innerHTML = `<strong>${available.length}</strong>`;
+      $("#kpiValue").innerHTML = `<strong>${fmtBRL(sum)}</strong>`;
+      $("#kpiBairros").innerHTML = `<strong>${bairros.size}</strong>`;
+      $("#kpiHigh").innerHTML = `<strong>${high}</strong>`;
+      $("#kpiUpdated").textContent = new Date().toLocaleString("pt-BR");
+
+      // Cards
+      for (const r of VIEW){
+        const id = normalize(r[cols.id]) || "—";
+        const bairro = normalize(r[cols.bairro]) || "—";
+        const cat = normalize(r[cols.categoria]) || "—";
+        const serv = normalize(r[cols.servico]) || "—";
+        const area = normalize(r[cols.area]) || "—";
+        const urg = normalize(r[cols.urgencia]) || "—";
+        const st = normalize(r[cols.status]) || "—";
+        const cliente = normalize(r[cols.cliente]) || "—";
+        const end = normalize(r[cols.endereco]) || "—";
+        const valN = parseNumber(r[cols.valor]);
+        const val = isFinite(valN) ? fmtBRL(valN) : normalize(r[cols.valor]) || "—";
+
+        const formLink = buildFormLink(r);
+
+        const canTake = (st === "Disponível"); // botão só quando disponível
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div>
+            <div class="title">
+              <h4>${cat} • ${bairro}</h4>
+              <div class="badges">
+                ${badgeForStatus(st)}
+                <span class="badge">${id}</span>
+                ${badgeForPriority(urg)}
+              </div>
+            </div>
+
+            <div class="details">
+              <div class="kv">
+                <p class="k">Serviço</p>
+                <p class="v">${serv}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Cliente/Local</p>
+                <p class="v">${cliente}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Área</p>
+                <p class="v">${area === "—" ? "—" : `<strong>${area}</strong> m²`}</p>
+              </div>
+            </div>
+
+            <div class="details" style="margin-top:8px">
+              <div class="kv">
+                <p class="k">Endereço</p>
+                <p class="v">${end}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Urgência</p>
+                <p class="v">${urg}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Status</p>
+                <p class="v">${st}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <div>
+              <div class="price">${val}</div>
+              <div class="sub">valor estimado</div>
+            </div>
+
+            ${
+              canTake
+                ? `<button class="take" data-link="${encodeURI(formLink)}">🚀 Pegar serviço</button>`
+                : `<button class="ghost" disabled style="opacity:.6;cursor:not-allowed">Indisponível</button>`
+            }
+
+            <button class="ghost" data-copy="${id}">📋 Copiar ID</button>
+          </div>
+        `;
+
+        el.appendChild(card);
+      }
+
+      // handlers
+      el.querySelectorAll(".take").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const link = decodeURI(btn.getAttribute("data-link"));
+          window.open(link, "_blank", "noopener");
+        });
+      });
+
+      el.querySelectorAll(".ghost[data-copy]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-copy");
+          try{
+            await navigator.clipboard.writeText(id);
+            btn.textContent = "✅ Copiado!";
+            setTimeout(()=> btn.textContent = "📋 Copiar ID", 1200);
+          }catch(e){
+            alert("Não consegui copiar automaticamente. ID: " + id);
+          }
+        });
+      });
+    }
+
+    function fillFilterOptions(){
+      const cols = CONFIG.COLUMNS;
+      const bairroSet = new Set();
+      const catSet = new Set();
+
+      for (const r of ALL){
+        const b = normalize(r[cols.bairro]);
+        const c = normalize(r[cols.categoria]);
+        if (b) bairroSet.add(b);
+        if (c) catSet.add(c);
+      }
+
+      const bSel = $("#fBairro");
+      const cSel = $("#fCategoria");
+
+      // reset preserving first option
+      bSel.innerHTML = `<option value="">Bairro (todos)</option>`;
+      cSel.innerHTML = `<option value="">Categoria (todas)</option>`;
+
+      [...bairroSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+        const o = document.createElement("option");
+        o.value = v; o.textContent = v;
+        bSel.appendChild(o);
+      });
+
+      [...catSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+        const o = document.createElement("option");
+        o.value = v; o.textContent = v;
+        cSel.appendChild(o);
+      });
+    }
+
+    async function loadData(){
+      const dot = $("#connDot");
+      const text = $("#connText");
+
+      // Se não houver URL, usa demo
+      if (!CONFIG.DASH_CSV_URL){
+        ALL = DEMO.slice();
+        dot.classList.add("off");
+        text.textContent = "Desconectado (demo)";
+        $("#btnOpenFormTop").href = CONFIG.FORM_URL;
+        $("#linkHelp").href = "#";
+        fillFilterOptions();
+        $("#fStatus").value = CONFIG.DEFAULT_STATUS_FILTER;
+        applyFilters();
+        return;
+      }
+
+      try{
+        dot.classList.remove("off");
+        dot.style.background = "var(--warn)";
+        text.textContent = "Conectando…";
+
+        const res = await fetch(CONFIG.DASH_CSV_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const csv = await res.text();
+        ALL = parseCSV(csv);
+
+        dot.style.background = "var(--ok)";
+        text.textContent = "Conectado (ao vivo)";
+        $("#btnOpenFormTop").href = CONFIG.FORM_URL;
+
+        fillFilterOptions();
+        $("#fStatus").value = CONFIG.DEFAULT_STATUS_FILTER;
+        applyFilters();
+      }catch(err){
+        console.error(err);
+        ALL = DEMO.slice();
+        dot.classList.add("off");
+        text.textContent = "Falha na conexão (demo)";
+        fillFilterOptions();
+        $("#fStatus").value = CONFIG.DEFAULT_STATUS_FILTER;
+        applyFilters();
+      }
+    }
+
+    function bindUI(){
+      ["#qSearch","#fBairro","#fCategoria","#fPrioridade","#fStatus"].forEach(sel=>{
+        $(sel).addEventListener("input", applyFilters);
+        $(sel).addEventListener("change", applyFilters);
+      });
+
+      $("#btnRefresh").addEventListener("click", loadData);
+
+      $("#btnOpenFormTop").addEventListener("click", (e)=>{
+        // Se estiver usando prefill, sem card selecionado, abre form normal
+        if (!CONFIG.FORM_URL || CONFIG.FORM_URL.includes("SEU_FORM_ID")){
+          e.preventDefault();
+          alert("Configure o FORM_URL no início do arquivo (CONFIG.FORM_URL).");
+        }
+      });
+
+      $("#linkHelp").addEventListener("click", (e)=>{
+        e.preventDefault();
+        alert(
+`Como ligar à sua planilha:
+1) Publique a aba (CSV): Google Sheets → Arquivo → Publicar na Web → selecione a aba → CSV.
+2) Copie o link do CSV e cole em CONFIG.DASH_CSV_URL.
+3) Cole o link do seu Google Form em CONFIG.FORM_URL.
+4) Ajuste os nomes das colunas em CONFIG.COLUMNS para bater com seus títulos.
+
+Opcional (melhor): use link pré-preenchido do Google Form:
+- No Form → menu ⋮ → Obter link pré-preenchido
+- Preencha qualquer coisa, gere link, copie os "entry.XXXX"
+- Cole em CONFIG.FORM_PREFILL e habilite enabled:true`
+        );
+      });
+    }
+
+    // boot
+    bindUI();
+    loadData();
+  </script>
+</body>
+</html>
