@@ -345,7 +345,7 @@
     .b-id{border-color:#e7ecef;background:#f9fafb;color:#475467}
 
     .cta{
-      min-width:210px;
+      min-width:230px;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -520,14 +520,11 @@
 
       <div class="pill-row">
         <a href="parceiros.html" class="pill">🏠 Portal</a>
-        <a href="https://docs.google.com/spreadsheets/d/1s6HLuXw7lntFtBQYCuL2umRU9LFu8mS3LT-mhXeZqFs/edit?usp=sharing" class="pill" target="_blank" rel="noopener">🗓️ Agenda</a>
-        <a href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" class="pill" target="_blank" rel="noopener">📋 Orçamentos</a>
         <a href="#lista" class="pill">🛠️ Serviços</a>
       </div>
 
       <div class="note">
-        <strong>Automático:</strong> este dashboard pode ler uma aba “VIEW_PORTAL” publicada em CSV e atualizar sozinho (ex.: a cada 60s).
-        Você só cola os links em <code>CONFIG</code> lá embaixo.
+        <strong>Automático:</strong> este dashboard lê a aba <strong>SERVICOS_SITE</strong> publicada em CSV e atualiza sozinho (ex.: a cada 60s).
       </div>
     </div>
   </section>
@@ -543,7 +540,7 @@
           <p class="s">Atualizado: <span id="kpiUpdated">—</span></p>
         </div>
         <div class="kpi">
-          <p class="t">Valor total (disponível)</p>
+          <p class="t">Somatório (Preço Final)</p>
           <p class="v" id="kpiValue">—</p>
           <p class="s">Somatório dos disponíveis</p>
         </div>
@@ -575,7 +572,7 @@
           <div class="filters">
             <div class="field">
               <span>🔎</span>
-              <input id="qSearch" placeholder="Buscar: bairro, serviço, cliente, tipo..." />
+              <input id="qSearch" placeholder="Buscar: bairro, categoria, descrição..." />
             </div>
 
             <div class="field">
@@ -609,7 +606,7 @@
                 <option value="">Status (todos)</option>
                 <option value="Reservado">Reservado</option>
                 <option value="Fechado">Fechado</option>
-                <option value="Em negociação">Em negociação</option>
+                <option value="Finalizado">Finalizado</option>
               </select>
             </div>
           </div>
@@ -631,7 +628,7 @@
 
             <ul>
               <li>Use filtros por bairro/categoria para achar rápido.</li>
-              <li>Alta prioridade aparece primeiro (padrão “Uber”).</li>
+              <li>Alta prioridade aparece primeiro.</li>
               <li>Parceiro não edita planilha (mais seguro).</li>
             </ul>
 
@@ -641,7 +638,7 @@
             </div>
 
             <p style="margin-top:12px">
-              <strong>Arquivo sugerido:</strong> <code>https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pubhtml</code>)
+              <strong>Fonte:</strong> <code>SERVICOS_SITE (CSV)</code>
             </p>
           </div>
         </aside>
@@ -671,71 +668,61 @@
      * CONFIG (edite só aqui)
      ************************************************************/
     const CONFIG = {
-      // CSV publicado da aba "VIEW_PORTAL" (recomendado)
-      // Google Sheets → Arquivo → Publicar na Web → selecione a aba → CSV → Publicar → copie o link
-      DASH_CSV_URL: "",
+      // CSV publicado da aba "SERVICOS_SITE"
+      DASH_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=129530923&single=true&output=csv",
 
       // Link do Google Form (Pegar Serviço)
       FORM_URL: "https://docs.google.com/forms/d/e/SEU_FORM_ID/viewform",
 
       // (Opcional) Prefill do Form (para já abrir com dados do card)
-      // Pegue os entry.xxxxx no "Obter link pré-preenchido" do Google Form
       FORM_PREFILL: {
         enabled: false,
         entryJobId: "",
         entryBairro: "",
         entryCategoria: "",
-        entryServico: "",
-        entryValor: "",
-        entryPrioridade: ""
+        entryDescricao: "",
+        entryPrecoFinal: "",
+        entryUrgencia: ""
       },
 
-      // Mapeamento das colunas (nomes exatos do cabeçalho na sua aba/CSV)
+      // Colunas (nomes exatos do cabeçalho do SERVICOS_SITE)
       COLUMNS: {
         id: "ID",
-        status: "Status",
-        bairro: "Bairro",
-        categoria: "Categoria do serviço solicitado",
-        servico: "Descrição detalhada do serviço",
-        area: "Área aproximada (m²)",
-        valor: "PREÇO FINAL (R$)",
-        urgencia: "Urgência",
-        cliente: "Nome completo do cliente",
-        endereco: "Endereço do serviço",
-        data: "Carimbo de data/hora"
+        status: "STATUS",
+        urgencia: "URGENCIA",
+        bairro: "BAIRRO",
+        categoria: "CATEGORIA",
+        descricao: "DESCRICAO",
+        area: "AREA",
+        fotos: "FOTOS",
+
+        qtdLider: "QTD_LIDER",
+        qtdJardineiro: "QTD_JARDINEIRO",
+        qtdAuxiliar: "QTD_AUXILIAR",
+        dias: "DIAS",
+
+        valorLider: "VALOR_LIDER",
+        valorTotalLider: "VALOR_TOTAL_LIDER",
+        lucroJs: "LUCRO_JS",
+        precoFinal: "PRECO_FINAL"
       },
 
       DEFAULT_STATUS_FILTER: "Disponível",
 
-      // Auto refresh (ms). Recomendado: 60000 (60s)
       AUTO_REFRESH_MS: 60000
     };
-
-    /************************************************************
-     * DADOS DEMO (usado se DASH_CSV_URL estiver vazio ou falhar)
-     ************************************************************/
-    const DEMO = [
-      { ID:"JS-1027", Status:"Disponível", Bairro:"Saraiva", "Categoria do serviço solicitado":"Revitalização",
-        "Descrição detalhada do serviço":"Revitalização completa + limpeza técnica de canteiros", "Área aproximada (m²)":"220",
-        "PREÇO FINAL (R$)":"1800", "Urgência":"Alta", "Nome completo do cliente":"Condomínio X", "Endereço do serviço":"Av. ...", "Carimbo de data/hora":"2026-02-27 10:15" },
-      { ID:"JS-1028", Status:"Disponível", Bairro:"Alto Umuarama", "Categoria do serviço solicitado":"Poda",
-        "Descrição detalhada do serviço":"Poda de cerca viva (perímetro) + recolhimento", "Área aproximada (m²)":"—",
-        "PREÇO FINAL (R$)":"650", "Urgência":"Média", "Nome completo do cliente":"Residencial Y", "Endereço do serviço":"Rua ...", "Carimbo de data/hora":"2026-02-27 09:10" },
-      { ID:"JS-1029", Status:"Reservado", Bairro:"Gávea", "Categoria do serviço solicitado":"Implantação",
-        "Descrição detalhada do serviço":"Implantação de canteiros + forração", "Área aproximada (m²)":"180",
-        "PREÇO FINAL (R$)":"3200", "Urgência":"Alta", "Nome completo do cliente":"Empresa Z", "Endereço do serviço":"Rua ...", "Carimbo de data/hora":"2026-02-26 16:40" }
-    ];
 
     /************************************************************
      * UTIL
      ************************************************************/
     const $ = (sel) => document.querySelector(sel);
+    const norm = (s) => String(s ?? "").trim();
+
     const fmtBRL = (n) => {
       const x = Number(n);
       if (!isFinite(x)) return "—";
       return x.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
     };
-    const norm = (s) => String(s ?? "").trim();
 
     function parseNumber(v){
       const s = norm(v)
@@ -747,12 +734,17 @@
       return isFinite(x) ? x : NaN;
     }
 
+    function fmtMaybeNumber(v){
+      const n = parseNumber(v);
+      return isFinite(n) ? n : NaN;
+    }
+
     function badgeStatus(st){
       const x = norm(st).toLowerCase();
       if (x === "disponível" || x === "disponivel") return `<span class="badge b-ok">Disponível</span>`;
       if (x === "reservado") return `<span class="badge b-warn">Reservado</span>`;
       if (x === "fechado") return `<span class="badge b-bad">Fechado</span>`;
-      if (x.includes("negoc")) return `<span class="badge b-warn">Em negociação</span>`;
+      if (x === "finalizado") return `<span class="badge b-id">Finalizado</span>`;
       return `<span class="badge">${norm(st) || "—"}</span>`;
     }
 
@@ -768,15 +760,15 @@
       if (!CONFIG.FORM_PREFILL.enabled) return CONFIG.FORM_URL;
 
       const pre = CONFIG.FORM_PREFILL;
-      const cols = CONFIG.COLUMNS;
+      const c = CONFIG.COLUMNS;
       const params = new URLSearchParams();
 
-      if (pre.entryJobId) params.set(pre.entryJobId, norm(row[cols.id]));
-      if (pre.entryBairro) params.set(pre.entryBairro, norm(row[cols.bairro]));
-      if (pre.entryCategoria) params.set(pre.entryCategoria, norm(row[cols.categoria]));
-      if (pre.entryServico) params.set(pre.entryServico, norm(row[cols.servico]));
-      if (pre.entryValor) params.set(pre.entryValor, norm(row[cols.valor]));
-      if (pre.entryPrioridade) params.set(pre.entryPrioridade, norm(row[cols.urgencia]));
+      if (pre.entryJobId) params.set(pre.entryJobId, norm(row[c.id]));
+      if (pre.entryBairro) params.set(pre.entryBairro, norm(row[c.bairro]));
+      if (pre.entryCategoria) params.set(pre.entryCategoria, norm(row[c.categoria]));
+      if (pre.entryDescricao) params.set(pre.entryDescricao, norm(row[c.descricao]));
+      if (pre.entryPrecoFinal) params.set(pre.entryPrecoFinal, norm(row[c.precoFinal]));
+      if (pre.entryUrgencia) params.set(pre.entryUrgencia, norm(row[c.urgencia]));
 
       const base = CONFIG.FORM_URL.includes("?") ? CONFIG.FORM_URL + "&" : CONFIG.FORM_URL + "?";
       return base + params.toString();
@@ -840,15 +832,15 @@
     }
 
     function fillFilterOptions(){
-      const cols = CONFIG.COLUMNS;
+      const c = CONFIG.COLUMNS;
       const bairroSet = new Set();
       const catSet = new Set();
 
       for (const r of ALL){
-        const b = norm(r[cols.bairro]);
-        const c = norm(r[cols.categoria]);
+        const b = norm(r[c.bairro]);
+        const ca = norm(r[c.categoria]);
         if (b) bairroSet.add(b);
-        if (c) catSet.add(c);
+        if (ca) catSet.add(ca);
       }
 
       const bSel = $("#fBairro");
@@ -872,33 +864,32 @@
 
     function applyFilters(){
       const f = getFilters();
-      const cols = CONFIG.COLUMNS;
+      const c = CONFIG.COLUMNS;
 
       VIEW = ALL.filter(r => {
-        const status = norm(r[cols.status]);
+        const status = norm(r[c.status]);
         if (f.st && status !== f.st) return false;
 
-        const bairro = norm(r[cols.bairro]);
+        const bairro = norm(r[c.bairro]);
         if (f.bairro && bairro !== f.bairro) return false;
 
-        const cat = norm(r[cols.categoria]);
+        const cat = norm(r[c.categoria]);
         if (f.cat && cat !== f.cat) return false;
 
-        const pri = norm(r[cols.urgencia]);
+        const pri = norm(r[c.urgencia]);
         if (f.pri && pri !== f.pri) return false;
 
         if (f.q){
           const hay = [
-            r[cols.id], r[cols.bairro], r[cols.categoria],
-            r[cols.servico], r[cols.cliente], r[cols.endereco],
-            r[cols.status], r[cols.urgencia]
+            r[c.id], r[c.bairro], r[c.categoria],
+            r[c.descricao], r[c.status], r[c.urgencia]
           ].map(x => norm(x).toLowerCase()).join(" • ");
           if (!hay.includes(f.q)) return false;
         }
         return true;
       });
 
-      // Ordenação “Uber”: prioridade alta → maior valor → mais recente
+      // Ordenação “Uber”: prioridade alta → maior preço → menor equipe (opcional)
       const priRank = (u) => {
         const x = norm(u).toLowerCase();
         if (x === "alta" || x.includes("urg")) return 0;
@@ -908,40 +899,42 @@
       };
 
       VIEW.sort((a,b) => {
-        const pa = priRank(a[cols.urgencia]);
-        const pb = priRank(b[cols.urgencia]);
+        const pa = priRank(a[c.urgencia]);
+        const pb = priRank(b[c.urgencia]);
         if (pa !== pb) return pa - pb;
 
-        const va = parseNumber(a[cols.valor]);
-        const vb = parseNumber(b[cols.valor]);
+        const va = fmtMaybeNumber(a[c.precoFinal]);
+        const vb = fmtMaybeNumber(b[c.precoFinal]);
         if (isFinite(vb) && isFinite(va) && vb !== va) return vb - va;
 
-        const da = Date.parse(a[cols.data]) || 0;
-        const db = Date.parse(b[cols.data]) || 0;
-        return db - da;
+        return 0;
       });
 
       render();
     }
 
     function render(){
-      const cols = CONFIG.COLUMNS;
+      const c = CONFIG.COLUMNS;
       const el = $("#cards");
       el.innerHTML = "";
 
       $("#empty").style.display = VIEW.length ? "none" : "block";
 
-      // KPIs baseados nos disponíveis (na base total)
-      const available = ALL.filter(r => norm(r[cols.status]) === "Disponível");
-      const sum = available.reduce((acc,r) => acc + (parseNumber(r[cols.valor]) || 0), 0);
-      const bairros = new Set(available.map(r => norm(r[cols.bairro])).filter(Boolean));
+      // KPIs baseados nos DISPONÍVEIS
+      const available = ALL.filter(r => {
+        const st = norm(r[c.status]).toLowerCase();
+        return st === "disponível" || st === "disponivel";
+      });
+
+      const sumPreco = available.reduce((acc,r) => acc + (fmtMaybeNumber(r[c.precoFinal]) || 0), 0);
+      const bairros = new Set(available.map(r => norm(r[c.bairro])).filter(Boolean));
       const high = available.filter(r => {
-        const u = norm(r[cols.urgencia]).toLowerCase();
+        const u = norm(r[c.urgencia]).toLowerCase();
         return u === "alta" || u.includes("urg");
       }).length;
 
       $("#kpiAvailable").textContent = String(available.length);
-      $("#kpiValue").textContent = fmtBRL(sum);
+      $("#kpiValue").textContent = fmtBRL(sumPreco);
       $("#kpiBairros").textContent = String(bairros.size);
       $("#kpiHigh").textContent = String(high);
       $("#kpiUpdated").textContent = new Date().toLocaleString("pt-BR");
@@ -950,20 +943,31 @@
       $("#btnOpenFormTop").href = CONFIG.FORM_URL;
 
       for (const r of VIEW){
-        const id = norm(r[cols.id]) || "—";
-        const bairro = norm(r[cols.bairro]) || "—";
-        const cat = norm(r[cols.categoria]) || "—";
-        const serv = norm(r[cols.servico]) || "—";
-        const area = norm(r[cols.area]) || "—";
-        const urg = norm(r[cols.urgencia]) || "—";
-        const st = norm(r[cols.status]) || "—";
-        const cliente = norm(r[cols.cliente]) || "—";
-        const end = norm(r[cols.endereco]) || "—";
-        const valN = parseNumber(r[cols.valor]);
-        const val = isFinite(valN) ? fmtBRL(valN) : (norm(r[cols.valor]) || "—");
+        const id = norm(r[c.id]) || "—";
+        const bairro = norm(r[c.bairro]) || "—";
+        const cat = norm(r[c.categoria]) || "—";
+        const desc = norm(r[c.descricao]) || "—";
+        const area = norm(r[c.area]) || "—";
+        const urg = norm(r[c.urgencia]) || "—";
+        const st = norm(r[c.status]) || "—";
+
+        const qL = norm(r[c.qtdLider]) || "—";
+        const qJ = norm(r[c.qtdJardineiro]) || "—";
+        const qA = norm(r[c.qtdAuxiliar]) || "—";
+        const dias = norm(r[c.dias]) || "—";
+
+        const valorLiderN = fmtMaybeNumber(r[c.valorLider]);
+        const valorTotalLiderN = fmtMaybeNumber(r[c.valorTotalLider]);
+        const lucroJsN = fmtMaybeNumber(r[c.lucroJs]);
+        const precoFinalN = fmtMaybeNumber(r[c.precoFinal]);
+
+        const valorLider = isFinite(valorLiderN) ? fmtBRL(valorLiderN) : (norm(r[c.valorLider]) || "—");
+        const valorTotalLider = isFinite(valorTotalLiderN) ? fmtBRL(valorTotalLiderN) : (norm(r[c.valorTotalLider]) || "—");
+        const lucroJs = isFinite(lucroJsN) ? fmtBRL(lucroJsN) : (norm(r[c.lucroJs]) || "—");
+        const precoFinal = isFinite(precoFinalN) ? fmtBRL(precoFinalN) : (norm(r[c.precoFinal]) || "—");
 
         const formLink = buildFormLink(r);
-        const canTake = (st === "Disponível");
+        const canTake = (st === "Disponível" || st === "Disponivel");
 
         const card = document.createElement("div");
         card.className = "job";
@@ -979,34 +983,38 @@
 
             <div class="meta">
               <div class="kv">
-                <p class="k">Serviço</p>
-                <p class="v">${serv}</p>
+                <p class="k">Descrição</p>
+                <p class="v">${desc}</p>
               </div>
               <div class="kv">
-                <p class="k">Cliente/Local</p>
-                <p class="v">${cliente}</p>
+                <p class="k">Equipe</p>
+                <p class="v">Líder: ${qL} • Jard.: ${qJ} • Aux.: ${qA}</p>
               </div>
               <div class="kv">
-                <p class="k">Área</p>
-                <p class="v">${area === "—" ? "—" : area + " m²"}</p>
+                <p class="k">Dias</p>
+                <p class="v">${dias}</p>
               </div>
             </div>
 
             <div class="meta" style="margin-top:10px">
-              <div class="kv" style="grid-column: span 2;">
-                <p class="k">Endereço</p>
-                <p class="v">${end}</p>
+              <div class="kv">
+                <p class="k">Área</p>
+                <p class="v">${area === "—" ? "—" : area}</p>
               </div>
               <div class="kv">
-                <p class="k">Status</p>
-                <p class="v">${st}</p>
+                <p class="k">Pagamento Líder</p>
+                <p class="v">${valorLider} (dia) • Total: ${valorTotalLider}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Lucro JS</p>
+                <p class="v">${lucroJs}</p>
               </div>
             </div>
           </div>
 
           <div class="cta">
-            <p class="price">${val}</p>
-            <p class="sub">valor estimado</p>
+            <p class="price">${precoFinal}</p>
+            <p class="sub">Preço final do serviço</p>
 
             ${
               canTake
@@ -1051,20 +1059,23 @@
       const dot = $("#connDot");
       const text = $("#connText");
 
-      // fallback demo
-      const useDemo = (label, kind) => {
-        ALL = DEMO.slice();
-        dot.classList.remove("ok","bad");
-        dot.classList.add(kind);
-        text.textContent = label;
+      const fail = (msg) => {
+        dot.classList.remove("ok");
+        dot.classList.add("bad");
+        text.textContent = msg || "Falha na conexão";
+        ALL = [];
         fillFilterOptions();
-        $("#fStatus").value = CONFIG.DEFAULT_STATUS_FILTER;
         applyFilters();
       };
 
-      // no url => demo
-      if (https://docs.google.com/spreadsheets/d/e/2PACX-1vQmSxTZKQR7x0kx6oeBMCs9dt_mSC70mNeEe9OXWjGK10m660j9jUO7F2x7UaDsXg/pubhtml?gid=1575207195&single=true){
-        useDemo("Desconectado (demo)", "bad");
+      const ok = (msg) => {
+        dot.classList.remove("bad");
+        dot.classList.add("ok");
+        text.textContent = msg || "Conectado (ao vivo)";
+      };
+
+      if (!CONFIG.DASH_CSV_URL){
+        fail("Sem CSV (configure CONFIG.DASH_CSV_URL)");
         return;
       }
 
@@ -1072,21 +1083,21 @@
         dot.classList.remove("ok","bad");
         text.textContent = "Conectando…";
 
-        const res = await fetch(CONFIG.https://docs.google.com/spreadsheets/d/e/2PACX-1vQmSxTZKQR7x0kx6oeBMCs9dt_mSC70mNeEe9OXWjGK10m660j9jUO7F2x7UaDsXg/pubhtml?gid=1575207195&single=true, { cache:"no-store" });
+        const res = await fetch(CONFIG.DASH_CSV_URL, { cache:"no-store" });
         if (!res.ok) throw new Error("HTTP " + res.status);
 
         const csv = await res.text();
-        ALL = parseCSV(csv);
+        const data = parseCSV(csv);
 
-        dot.classList.add("ok");
-        text.textContent = "Conectado (ao vivo)";
+        ALL = Array.isArray(data) ? data : [];
+        ok("Conectado (SERVICOS_SITE)");
 
         fillFilterOptions();
         $("#fStatus").value = CONFIG.DEFAULT_STATUS_FILTER;
         applyFilters();
       }catch(err){
         console.error(err);
-        useDemo("Falha na conexão (demo)", "bad");
+        fail("Falha ao ler CSV");
       }
     }
 
@@ -1112,12 +1123,11 @@
 
       $("#btnHelp").addEventListener("click", () => {
         alert(
-`Como conectar (modo profissional):
-1) Crie uma aba na planilha chamada VIEW_PORTAL (só campos necessários).
-2) Publique essa aba em CSV: Google Sheets → Arquivo → Publicar na Web → CSV.
-3) Cole o link CSV em CONFIG.DASH_CSV_URL.
-4) Cole o link do Google Form em CONFIG.FORM_URL.
-5) (Opcional) Gere link pré-preenchido do Form para abrir com ID/bairro/valor já preenchidos e habilite CONFIG.FORM_PREFILL.enabled = true.`
+`Como conectar (modo JS):
+1) Na planilha, publique a aba SERVICOS_SITE como CSV.
+2) Cole o link CSV em CONFIG.DASH_CSV_URL (já está configurado aqui).
+3) Cole o link do Google Form em CONFIG.FORM_URL.
+4) (Opcional) Ative o Prefill para abrir o form com ID, bairro, categoria, valor etc.`
         );
       });
 
