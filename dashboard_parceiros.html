@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>Serviços Disponíveis • Portal do Parceiro • JS Jardinagem</title>
-  <meta name="description" content="Dashboard estilo Uber para parceiros: visualize serviços disponíveis, filtre rápido e clique para pegar via formulário." />
+  <title>Dashboard Operacional • Portal do Parceiro • JS Jardinagem</title>
+  <meta name="description" content="Dashboard operacional da JS Jardinagem com serviços, horas executadas, faturamento, margem e valor parceiro." />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -171,10 +171,9 @@
     }
     .note strong{color:#fff}
 
-    /* Dashboard Layout */
     .kpis{
       display:grid;
-      grid-template-columns:repeat(4,1fr);
+      grid-template-columns:repeat(5,1fr);
       gap:14px;
       margin-top:-26px;
     }
@@ -250,7 +249,7 @@
 
     .filters{
       display:grid;
-      grid-template-columns:1.2fr .9fr .9fr .9fr .9fr;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
       gap:10px;
       padding:14px 16px;
       border-bottom:1px solid var(--line);
@@ -345,7 +344,7 @@
     .b-id{border-color:#e7ecef;background:#f9fafb;color:#475467}
 
     .cta{
-      min-width:230px;
+      min-width:240px;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -397,7 +396,6 @@
       display:none;
     }
 
-    /* Side */
     .side{
       position:sticky;
       top:96px;
@@ -477,7 +475,6 @@
 </head>
 
 <body>
-  <!-- SENHA (simples) -->
   <script>
     (function(){
       var senha = prompt("Área exclusiva para parceiros. Digite a senha:");
@@ -489,7 +486,7 @@
   </script>
 
   <div class="topbar">
-    Portal do Parceiro JS • Dashboard de Serviços (estilo “Uber”)
+    Portal do Parceiro JS • Dashboard Operacional
   </div>
 
   <header>
@@ -509,22 +506,20 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap">
-      <h1>Serviços Disponíveis</h1>
+      <h1>Dashboard Operacional</h1>
       <p>
-        Abra, filtre e pegue um serviço em segundos. Ao clicar em <strong>Pegar serviço</strong>, você registra no formulário.
-        A JS confirma e muda o status para <strong>Reservado/Fechado</strong>.
+        Visualize rapidamente os serviços executados, horas trabalhadas, tamanho da equipe, faturamento, margem dos serviços e valor do parceiro.
       </p>
 
       <div class="pill-row">
         <a href="parceiros.html" class="pill">🏠 Portal</a>
-        <a href="#lista" class="pill">🛠️ Serviços</a>
+        <a href="#lista" class="pill">📊 Dashboard</a>
       </div>
 
       <div class="note">
-        <strong>Automático:</strong> este dashboard lê a aba <strong>SERVICOS_SITE</strong> publicada em CSV e atualiza sozinho (ex.: a cada 60s).
+        <strong>Automático:</strong> este painel lê a aba <strong>DASHBOARD_BASE</strong> publicada em CSV e atualiza sozinho.
       </div>
     </div>
   </section>
@@ -532,47 +527,49 @@
   <section id="lista">
     <div class="wrap">
 
-      <!-- KPIs -->
       <div class="kpis">
         <div class="kpi">
-          <p class="t">Serviços disponíveis</p>
-          <p class="v" id="kpiAvailable">—</p>
+          <p class="t">Serviços</p>
+          <p class="v" id="kpiServicos">—</p>
           <p class="s">Atualizado: <span id="kpiUpdated">—</span></p>
         </div>
         <div class="kpi">
-          <p class="t">Somatório (Preço Final)</p>
-          <p class="v" id="kpiValue">—</p>
-          <p class="s">Somatório dos disponíveis</p>
+          <p class="t">Horas executadas</p>
+          <p class="v" id="kpiHoras">—</p>
+          <p class="s">Somatório do período</p>
         </div>
         <div class="kpi">
-          <p class="t">Bairros atendidos</p>
-          <p class="v" id="kpiBairros">—</p>
-          <p class="s">Cobertura atual</p>
+          <p class="t">Faturamento</p>
+          <p class="v" id="kpiFaturamento">—</p>
+          <p class="s">Somatório de preço final</p>
         </div>
         <div class="kpi">
-          <p class="t">Alta prioridade</p>
-          <p class="v" id="kpiHigh">—</p>
-          <p class="s">Urgentes / hoje</p>
+          <p class="t">Margem dos serviços</p>
+          <p class="v" id="kpiMargem">—</p>
+          <p class="s">Base da calculadora</p>
+        </div>
+        <div class="kpi">
+          <p class="t">Valor parceiro</p>
+          <p class="v" id="kpiParceiro">—</p>
+          <p class="s">Somatório parceiro</p>
         </div>
       </div>
 
       <div class="dash">
-        <!-- LEFT -->
         <div class="panel">
           <div class="panel-head">
-            <h2>Lista de ofertas</h2>
+            <h2>Serviços consolidados</h2>
             <div class="right">
               <span class="conn"><span id="connDot" class="dot"></span><span id="connText">Conectando…</span></span>
               <button class="btn" id="btnRefresh" type="button">⟳ Atualizar</button>
-              <a class="btn btn-primary" id="btnOpenFormTop" href="#" target="_blank" rel="noopener">📥 Pegar serviço</a>
+              <a class="btn btn-primary" id="btnOpenFormTop" href="#" target="_blank" rel="noopener">📥 Abrir Form</a>
             </div>
           </div>
 
-          <!-- Filters -->
           <div class="filters">
             <div class="field">
               <span>🔎</span>
-              <input id="qSearch" placeholder="Buscar: bairro, categoria, descrição..." />
+              <input id="qSearch" placeholder="Buscar: ID, bairro, categoria..." />
             </div>
 
             <div class="field">
@@ -590,23 +587,9 @@
             </div>
 
             <div class="field">
-              <span>🔥</span>
-              <select id="fPrioridade">
-                <option value="">Prioridade (todas)</option>
-                <option value="Alta">Alta</option>
-                <option value="Média">Média</option>
-                <option value="Baixa">Baixa</option>
-              </select>
-            </div>
-
-            <div class="field">
               <span>✅</span>
               <select id="fStatus">
-                <option value="Disponível">Status: Disponível</option>
                 <option value="">Status (todos)</option>
-                <option value="Reservado">Reservado</option>
-                <option value="Fechado">Fechado</option>
-                <option value="Finalizado">Finalizado</option>
               </select>
             </div>
           </div>
@@ -615,21 +598,17 @@
           <div class="empty" id="empty">Nenhum serviço encontrado com esses filtros.</div>
         </div>
 
-        <!-- RIGHT -->
         <aside class="side">
           <div class="box">
-            <h3>Como funciona</h3>
+            <h3>Como usar</h3>
             <p>
-              1) Você vê os serviços <strong>Disponíveis</strong>.<br/>
-              2) Clica em <strong>Pegar serviço</strong> no card.<br/>
-              3) Abre um <strong>Formulário</strong> e registra seu interesse.<br/>
-              4) A JS confirma e atualiza o status na base.
+              Este painel consolida dados da operação e do financeiro para facilitar a leitura rápida da execução dos serviços.
             </p>
 
             <ul>
-              <li>Use filtros por bairro/categoria para achar rápido.</li>
-              <li>Alta prioridade aparece primeiro.</li>
-              <li>Parceiro não edita planilha (mais seguro).</li>
+              <li>Use os filtros para localizar serviços rapidamente.</li>
+              <li>Veja horas totais e tamanho da equipe por serviço.</li>
+              <li>Acompanhe faturamento, margem e valor parceiro.</li>
             </ul>
 
             <div class="row">
@@ -638,7 +617,7 @@
             </div>
 
             <p style="margin-top:12px">
-              <strong>Fonte:</strong> <code>SERVICOS_SITE (CSV)</code>
+              <strong>Fonte:</strong> <code>DASHBOARD_BASE (CSV)</code>
             </p>
           </div>
         </aside>
@@ -652,7 +631,7 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p style="opacity:.8;margin:8px 0 0">
-          Portal interno para parceiros operacionais • Padrão JS.
+          Dashboard interno de gestão operacional e financeira.
         </p>
       </div>
       <div>
@@ -664,65 +643,28 @@
   </footer>
 
   <script>
-    /************************************************************
-     * CONFIG (edite só aqui)
-     ************************************************************/
     const CONFIG = {
-      // CSV publicado da aba "SERVICOS_SITE"
-      DASH_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=129530923&single=true&output=csv",
-
-      // Link do Google Form (Pegar Serviço)
+      DASH_CSV_URL: "COLE_AQUI_O_LINK_CSV_DA_DASHBOARD_BASE",
       FORM_URL: "https://docs.google.com/forms/d/e/SEU_FORM_ID/viewform",
 
-      // (Opcional) Prefill do Form (para já abrir com dados do card)
-      FORM_PREFILL: {
-        enabled: false,
-        entryJobId: "",
-        entryBairro: "",
-        entryCategoria: "",
-        entryDescricao: "",
-        entryPrecoFinal: "",
-        entryUrgencia: ""
-      },
-
-      // Colunas (nomes exatos do cabeçalho do SERVICOS_SITE)
       COLUMNS: {
-        id: "ID",
-        status: "STATUS",
-        urgencia: "URGENCIA",
+        id: "ID_SERVICO",
+        data: "DATA",
         bairro: "BAIRRO",
         categoria: "CATEGORIA",
-        descricao: "DESCRICAO",
-        area: "AREA",
-        fotos: "FOTOS",
-
-        qtdLider: "QTD_LIDER",
-        qtdJardineiro: "QTD_JARDINEIRO",
-        qtdAuxiliar: "QTD_AUXILIAR",
-        horas: "HORAS",
-
-        valorLider: "VALOR_LIDER",
-        valorTotalLider: "VALOR_TOTAL_LIDER",
-        lucroJs: "LUCRO_JS",
-        precoFinal: "PRECO_FINAL"
+        status: "STATUS",
+        horas: "HORAS_EXECUTADAS",
+        equipe: "EQUIPE_TOTAL",
+        precoFinal: "PRECO_FINAL",
+        margem: "MARGEM_LUCRO_SERVICO",
+        parceiro: "VALOR_PARCEIRO"
       },
-
-      DEFAULT_STATUS_FILTER: "Disponível",
 
       AUTO_REFRESH_MS: 60000
     };
 
-    /************************************************************
-     * UTIL
-     ************************************************************/
     const $ = (sel) => document.querySelector(sel);
     const norm = (s) => String(s ?? "").trim();
-
-    const fmtBRL = (n) => {
-      const x = Number(n);
-      if (!isFinite(x)) return "—";
-      return x.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
-    };
 
     function parseNumber(v){
       const s = norm(v)
@@ -734,49 +676,18 @@
       return isFinite(x) ? x : NaN;
     }
 
-    function fmtMaybeNumber(v){
-      const n = parseNumber(v);
-      return isFinite(n) ? n : NaN;
+    function fmtBRL(n){
+      const x = Number(n);
+      if (!isFinite(x)) return "—";
+      return x.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
     }
 
-    function badgeStatus(st){
-      const x = norm(st).toLowerCase();
-      if (x === "disponível" || x === "disponivel") return `<span class="badge b-ok">Disponível</span>`;
-      if (x === "reservado") return `<span class="badge b-warn">Reservado</span>`;
-      if (x === "fechado") return `<span class="badge b-bad">Fechado</span>`;
-      if (x === "finalizado") return `<span class="badge b-id">Finalizado</span>`;
-      return `<span class="badge">${norm(st) || "—"}</span>`;
+    function fmtNum(n){
+      const x = Number(n);
+      if (!isFinite(x)) return "—";
+      return x.toLocaleString("pt-BR");
     }
 
-    function badgePriority(u){
-      const x = norm(u).toLowerCase();
-      if (x === "alta" || x.includes("urg")) return `<span class="badge b-pri">Alta</span>`;
-      if (x === "média" || x === "media") return `<span class="badge b-id">Média</span>`;
-      if (x === "baixa") return `<span class="badge b-id">Baixa</span>`;
-      return `<span class="badge b-id">${norm(u) || "—"}</span>`;
-    }
-
-    function buildFormLink(row){
-      if (!CONFIG.FORM_PREFILL.enabled) return CONFIG.FORM_URL;
-
-      const pre = CONFIG.FORM_PREFILL;
-      const c = CONFIG.COLUMNS;
-      const params = new URLSearchParams();
-
-      if (pre.entryJobId) params.set(pre.entryJobId, norm(row[c.id]));
-      if (pre.entryBairro) params.set(pre.entryBairro, norm(row[c.bairro]));
-      if (pre.entryCategoria) params.set(pre.entryCategoria, norm(row[c.categoria]));
-      if (pre.entryDescricao) params.set(pre.entryDescricao, norm(row[c.descricao]));
-      if (pre.entryPrecoFinal) params.set(pre.entryPrecoFinal, norm(row[c.precoFinal]));
-      if (pre.entryUrgencia) params.set(pre.entryUrgencia, norm(row[c.urgencia]));
-
-      const base = CONFIG.FORM_URL.includes("?") ? CONFIG.FORM_URL + "&" : CONFIG.FORM_URL + "?";
-      return base + params.toString();
-    }
-
-    /************************************************************
-     * CSV parser (simples com aspas)
-     ************************************************************/
     function parseCSV(text){
       const rows = [];
       let cur = "", inQ = false;
@@ -813,41 +724,42 @@
       return data;
     }
 
-    /************************************************************
-     * STATE
-     ************************************************************/
+    function badgeStatus(st){
+      const x = norm(st).toLowerCase();
+      if (x === "executado") return `<span class="badge b-ok">Executado</span>`;
+      if (x === "finalizada" || x === "finalizado") return `<span class="badge b-pri">Finalizado</span>`;
+      if (x === "reservado") return `<span class="badge b-warn">Reservado</span>`;
+      if (x === "cancelado") return `<span class="badge b-bad">Cancelado</span>`;
+      return `<span class="badge b-id">${norm(st) || "—"}</span>`;
+    }
+
     let ALL = [];
     let VIEW = [];
     let autoOn = true;
     let autoTimer = null;
 
-    function getFilters(){
-      return {
-        q: norm($("#qSearch").value).toLowerCase(),
-        bairro: $("#fBairro").value,
-        cat: $("#fCategoria").value,
-        pri: $("#fPrioridade").value,
-        st: $("#fStatus").value
-      };
-    }
-
     function fillFilterOptions(){
       const c = CONFIG.COLUMNS;
       const bairroSet = new Set();
       const catSet = new Set();
+      const stSet = new Set();
 
       for (const r of ALL){
         const b = norm(r[c.bairro]);
         const ca = norm(r[c.categoria]);
+        const st = norm(r[c.status]);
         if (b) bairroSet.add(b);
         if (ca) catSet.add(ca);
+        if (st) stSet.add(st);
       }
 
       const bSel = $("#fBairro");
       const cSel = $("#fCategoria");
+      const sSel = $("#fStatus");
 
       bSel.innerHTML = `<option value="">Bairro (todos)</option>`;
       cSel.innerHTML = `<option value="">Categoria (todas)</option>`;
+      sSel.innerHTML = `<option value="">Status (todos)</option>`;
 
       [...bairroSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
         const o = document.createElement("option");
@@ -860,6 +772,21 @@
         o.value = v; o.textContent = v;
         cSel.appendChild(o);
       });
+
+      [...stSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+        const o = document.createElement("option");
+        o.value = v; o.textContent = v;
+        sSel.appendChild(o);
+      });
+    }
+
+    function getFilters(){
+      return {
+        q: norm($("#qSearch").value).toLowerCase(),
+        bairro: $("#fBairro").value,
+        cat: $("#fCategoria").value,
+        st: $("#fStatus").value
+      };
     }
 
     function applyFilters(){
@@ -876,38 +803,13 @@
         const cat = norm(r[c.categoria]);
         if (f.cat && cat !== f.cat) return false;
 
-        const pri = norm(r[c.urgencia]);
-        if (f.pri && pri !== f.pri) return false;
-
         if (f.q){
           const hay = [
-            r[c.id], r[c.bairro], r[c.categoria],
-            r[c.descricao], r[c.status], r[c.urgencia]
+            r[c.id], r[c.data], r[c.bairro], r[c.categoria], r[c.status]
           ].map(x => norm(x).toLowerCase()).join(" • ");
           if (!hay.includes(f.q)) return false;
         }
         return true;
-      });
-
-      // Ordenação “Uber”: prioridade alta → maior preço → menor equipe (opcional)
-      const priRank = (u) => {
-        const x = norm(u).toLowerCase();
-        if (x === "alta" || x.includes("urg")) return 0;
-        if (x === "média" || x === "media") return 1;
-        if (x === "baixa") return 2;
-        return 3;
-      };
-
-      VIEW.sort((a,b) => {
-        const pa = priRank(a[c.urgencia]);
-        const pb = priRank(b[c.urgencia]);
-        if (pa !== pb) return pa - pb;
-
-        const va = fmtMaybeNumber(a[c.precoFinal]);
-        const vb = fmtMaybeNumber(b[c.precoFinal]);
-        if (isFinite(vb) && isFinite(va) && vb !== va) return vb - va;
-
-        return 0;
       });
 
       render();
@@ -917,57 +819,41 @@
       const c = CONFIG.COLUMNS;
       const el = $("#cards");
       el.innerHTML = "";
-
       $("#empty").style.display = VIEW.length ? "none" : "block";
 
-      // KPIs baseados nos DISPONÍVEIS
-      const available = ALL.filter(r => {
-        const st = norm(r[c.status]).toLowerCase();
-        return st === "disponível" || st === "disponivel";
-      });
+      const totalServicos = ALL.length;
+      const totalHoras = ALL.reduce((acc,r) => acc + (parseNumber(r[c.horas]) || 0), 0);
+      const totalFaturamento = ALL.reduce((acc,r) => acc + (parseNumber(r[c.precoFinal]) || 0), 0);
+      const totalMargem = ALL.reduce((acc,r) => acc + (parseNumber(r[c.margem]) || 0), 0);
+      const totalParceiro = ALL.reduce((acc,r) => acc + (parseNumber(r[c.parceiro]) || 0), 0);
 
-      const sumPreco = available.reduce((acc,r) => acc + (fmtMaybeNumber(r[c.precoFinal]) || 0), 0);
-      const bairros = new Set(available.map(r => norm(r[c.bairro])).filter(Boolean));
-      const high = available.filter(r => {
-        const u = norm(r[c.urgencia]).toLowerCase();
-        return u === "alta" || u.includes("urg");
-      }).length;
-
-      $("#kpiAvailable").textContent = String(available.length);
-      $("#kpiValue").textContent = fmtBRL(sumPreco);
-      $("#kpiBairros").textContent = String(bairros.size);
-      $("#kpiHigh").textContent = String(high);
+      $("#kpiServicos").textContent = fmtNum(totalServicos);
+      $("#kpiHoras").textContent = fmtNum(totalHoras);
+      $("#kpiFaturamento").textContent = fmtBRL(totalFaturamento);
+      $("#kpiMargem").textContent = fmtBRL(totalMargem);
+      $("#kpiParceiro").textContent = fmtBRL(totalParceiro);
       $("#kpiUpdated").textContent = new Date().toLocaleString("pt-BR");
 
-      // Top form button
       $("#btnOpenFormTop").href = CONFIG.FORM_URL;
 
-      for (const r of VIEW){
+      VIEW.forEach(r => {
         const id = norm(r[c.id]) || "—";
+        const data = norm(r[c.data]) || "—";
         const bairro = norm(r[c.bairro]) || "—";
         const cat = norm(r[c.categoria]) || "—";
-        const desc = norm(r[c.descricao]) || "—";
-        const area = norm(r[c.area]) || "—";
-        const urg = norm(r[c.urgencia]) || "—";
         const st = norm(r[c.status]) || "—";
 
-        const qL = norm(r[c.qtdLider]) || "—";
-        const qJ = norm(r[c.qtdJardineiro]) || "—";
-        const qA = norm(r[c.qtdAuxiliar]) || "—";
-        const dias = norm(r[c.dias]) || "—";
+        const horasN = parseNumber(r[c.horas]);
+        const equipeN = parseNumber(r[c.equipe]);
+        const precoN = parseNumber(r[c.precoFinal]);
+        const margemN = parseNumber(r[c.margem]);
+        const parceiroN = parseNumber(r[c.parceiro]);
 
-        const valorLiderN = fmtMaybeNumber(r[c.valorLider]);
-        const valorTotalLiderN = fmtMaybeNumber(r[c.valorTotalLider]);
-        const lucroJsN = fmtMaybeNumber(r[c.lucroJs]);
-        const precoFinalN = fmtMaybeNumber(r[c.precoFinal]);
-
-        const valorLider = isFinite(valorLiderN) ? fmtBRL(valorLiderN) : (norm(r[c.valorLider]) || "—");
-        const valorTotalLider = isFinite(valorTotalLiderN) ? fmtBRL(valorTotalLiderN) : (norm(r[c.valorTotalLider]) || "—");
-        const lucroJs = isFinite(lucroJsN) ? fmtBRL(lucroJsN) : (norm(r[c.lucroJs]) || "—");
-        const precoFinal = isFinite(precoFinalN) ? fmtBRL(precoFinalN) : (norm(r[c.precoFinal]) || "—");
-
-        const formLink = buildFormLink(r);
-        const canTake = (st === "Disponível" || st === "Disponivel");
+        const horas = isFinite(horasN) ? fmtNum(horasN) : "—";
+        const equipe = isFinite(equipeN) ? fmtNum(equipeN) : "—";
+        const preco = isFinite(precoN) ? fmtBRL(precoN) : "—";
+        const margem = isFinite(margemN) ? fmtBRL(margemN) : "—";
+        const parceiro = isFinite(parceiroN) ? fmtBRL(parceiroN) : "—";
 
         const card = document.createElement("div");
         card.className = "job";
@@ -978,66 +864,49 @@
             <div class="badges">
               ${badgeStatus(st)}
               <span class="badge b-id">ID: ${id}</span>
-              ${badgePriority(urg)}
+              <span class="badge b-id">Data: ${data}</span>
             </div>
 
             <div class="meta">
               <div class="kv">
-                <p class="k">Descrição</p>
-                <p class="v">${desc}</p>
+                <p class="k">Horas Executadas</p>
+                <p class="v">${horas}</p>
               </div>
               <div class="kv">
-                <p class="k">Equipe</p>
-                <p class="v">Líder: ${qL} • Jard.: ${qJ} • Aux.: ${qA}</p>
+                <p class="k">Equipe Total</p>
+                <p class="v">${equipe}</p>
               </div>
               <div class="kv">
-                <p class="k">Dias</p>
-                <p class="v">${dias}</p>
+                <p class="k">Status</p>
+                <p class="v">${st}</p>
               </div>
             </div>
 
             <div class="meta" style="margin-top:10px">
               <div class="kv">
-                <p class="k">Área</p>
-                <p class="v">${area === "—" ? "—" : area}</p>
+                <p class="k">Preço Final</p>
+                <p class="v">${preco}</p>
               </div>
               <div class="kv">
-                <p class="k">Pagamento Líder</p>
-                <p class="v">${valorLider} (dia) • Total: ${valorTotalLider}</p>
+                <p class="k">Margem do Serviço</p>
+                <p class="v">${margem}</p>
               </div>
               <div class="kv">
-                <p class="k">Lucro JS</p>
-                <p class="v">${lucroJs}</p>
+                <p class="k">Valor Parceiro</p>
+                <p class="v">${parceiro}</p>
               </div>
             </div>
           </div>
 
           <div class="cta">
-            <p class="price">${precoFinal}</p>
+            <p class="price">${preco}</p>
             <p class="sub">Preço final do serviço</p>
 
-            ${
-              canTake
-                ? `<button class="btn-take" data-link="${encodeURI(formLink)}">🚀 Pegar serviço</button>`
-                : `<button class="btn-mini" disabled style="opacity:.6;cursor:not-allowed">Indisponível</button>`
-            }
-
             <button class="btn-mini" data-copy="${id}">📋 Copiar ID</button>
+            <button class="btn-mini" data-copy-row='${JSON.stringify(r).replace(/'/g, "&apos;")}'>📄 Copiar resumo</button>
           </div>
         `;
-
         el.appendChild(card);
-      }
-
-      el.querySelectorAll(".btn-take").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const link = decodeURI(btn.getAttribute("data-link"));
-          if (!CONFIG.FORM_URL || CONFIG.FORM_URL.includes("SEU_FORM_ID")){
-            alert("Configure o CONFIG.FORM_URL (link do Google Form) no fim do arquivo.");
-            return;
-          }
-          window.open(link, "_blank", "noopener");
-        });
       });
 
       el.querySelectorAll(".btn-mini[data-copy]").forEach(btn => {
@@ -1050,6 +919,34 @@
             setTimeout(()=> btn.textContent = old, 1200);
           }catch(e){
             alert("Não consegui copiar automaticamente. ID: " + id);
+          }
+        });
+      });
+
+      el.querySelectorAll(".btn-mini[data-copy-row]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          try{
+            const raw = btn.getAttribute("data-copy-row").replace(/&apos;/g, "'");
+            const row = JSON.parse(raw);
+            const txt = [
+              `ID: ${row[CONFIG.COLUMNS.id] || ""}`,
+              `Data: ${row[CONFIG.COLUMNS.data] || ""}`,
+              `Bairro: ${row[CONFIG.COLUMNS.bairro] || ""}`,
+              `Categoria: ${row[CONFIG.COLUMNS.categoria] || ""}`,
+              `Status: ${row[CONFIG.COLUMNS.status] || ""}`,
+              `Horas: ${row[CONFIG.COLUMNS.horas] || ""}`,
+              `Equipe: ${row[CONFIG.COLUMNS.equipe] || ""}`,
+              `Preço Final: ${row[CONFIG.COLUMNS.precoFinal] || ""}`,
+              `Margem: ${row[CONFIG.COLUMNS.margem] || ""}`,
+              `Valor Parceiro: ${row[CONFIG.COLUMNS.parceiro] || ""}`
+            ].join("\n");
+
+            await navigator.clipboard.writeText(txt);
+            const old = btn.textContent;
+            btn.textContent = "✅ Resumo copiado!";
+            setTimeout(()=> btn.textContent = old, 1400);
+          }catch(e){
+            alert("Não consegui copiar o resumo.");
           }
         });
       });
@@ -1074,8 +971,8 @@
         text.textContent = msg || "Conectado (ao vivo)";
       };
 
-      if (!CONFIG.DASH_CSV_URL){
-        fail("Sem CSV (configure CONFIG.DASH_CSV_URL)");
+      if (!CONFIG.DASH_CSV_URL || CONFIG.DASH_CSV_URL.includes("COLE_AQUI")){
+        fail("Configure o CSV do DASHBOARD_BASE");
         return;
       }
 
@@ -1090,10 +987,9 @@
         const data = parseCSV(csv);
 
         ALL = Array.isArray(data) ? data : [];
-        ok("Conectado (SERVICOS_SITE)");
+        ok("Conectado (DASHBOARD_BASE)");
 
         fillFilterOptions();
-        $("#fStatus").value = CONFIG.DEFAULT_STATUS_FILTER;
         applyFilters();
       }catch(err){
         console.error(err);
@@ -1114,7 +1010,7 @@
     }
 
     function bindUI(){
-      ["#qSearch","#fBairro","#fCategoria","#fPrioridade","#fStatus"].forEach(sel=>{
+      ["#qSearch","#fBairro","#fCategoria","#fStatus"].forEach(sel=>{
         $(sel).addEventListener("input", applyFilters);
         $(sel).addEventListener("change", applyFilters);
       });
@@ -1123,18 +1019,16 @@
 
       $("#btnHelp").addEventListener("click", () => {
         alert(
-`Como conectar (modo JS):
-1) Na planilha, publique a aba SERVICOS_SITE como CSV.
-2) Cole o link CSV em CONFIG.DASH_CSV_URL (já está configurado aqui).
-3) Cole o link do Google Form em CONFIG.FORM_URL.
-4) (Opcional) Ative o Prefill para abrir o form com ID, bairro, categoria, valor etc.`
+`Como conectar:
+1) Publique a aba DASHBOARD_BASE como CSV.
+2) Cole o link em CONFIG.DASH_CSV_URL.
+3) Se quiser, atualize o link do formulário em CONFIG.FORM_URL.`
         );
       });
 
       $("#btnAuto").addEventListener("click", () => setAuto(!autoOn));
     }
 
-    // BOOT
     bindUI();
     setAuto(true);
     loadData();
