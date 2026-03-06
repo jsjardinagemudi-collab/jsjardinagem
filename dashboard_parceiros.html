@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>Dashboard Operacional • Portal do Parceiro • JS Jardinagem</title>
-  <meta name="description" content="Dashboard operacional da JS Jardinagem com serviços, horas executadas, faturamento, margem e valor parceiro." />
+  <title>View Portal • Portal do Parceiro • JS Jardinagem</title>
+  <meta name="description" content="Painel para parceiros analisarem e aceitarem serviços da JS Jardinagem, com dados operacionais e financeiros." />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -22,6 +22,7 @@
       --warn:#b54708;
       --good:#027a48;
       --bad:#b42318;
+      --soft:#f8fafc;
       --shadow:0 10px 26px rgba(0,0,0,.06);
     }
 
@@ -34,7 +35,7 @@
     }
 
     a{text-decoration:none;color:inherit}
-    .wrap{width:min(1120px,92vw);margin:auto}
+    .wrap{width:min(1180px,92vw);margin:auto}
 
     .topbar{
       background:var(--pri);
@@ -42,14 +43,14 @@
       text-align:center;
       padding:8px 10px;
       font-size:14px;
-      font-weight:800;
+      font-weight:900;
     }
 
     header{
       position:sticky;
       top:0;
       z-index:50;
-      background:#ffffffcc;
+      background:#ffffffd9;
       backdrop-filter:saturate(180%) blur(8px);
       border-bottom:1px solid #eef0ee;
     }
@@ -66,19 +67,22 @@
       display:flex;
       gap:12px;
       align-items:center;
+      min-width:0;
     }
 
     .brand img{
       height:56px;
       border-radius:8px;
       box-shadow:0 2px 8px rgba(0,0,0,.08);
+      background:#fff;
     }
 
     .brand strong{
       font-size:18px;
-      font-weight:900;
+      font-weight:1000;
       color:var(--pri);
       text-transform:uppercase;
+      line-height:1.1;
     }
 
     .links{
@@ -94,7 +98,7 @@
       background:#fff;
       border-radius:12px;
       padding:12px 16px;
-      font-weight:800;
+      font-weight:900;
       cursor:pointer;
       transition:.25s ease;
       display:inline-flex;
@@ -114,13 +118,24 @@
       background:#0d3270;
       border-color:#0d3270;
     }
+
     .btn-ghost{
       background:transparent;
       border-color:#cfd8dc;
       color:var(--pri);
     }
 
-    section{padding:44px 0}
+    .btn-success{
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+      border-color:#0f8f52;
+      color:#fff;
+    }
+    .btn-success:hover{
+      filter:brightness(.98);
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+    }
+
+    section{padding:42px 0}
 
     .hero{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
@@ -130,14 +145,14 @@
 
     .hero h1{
       margin:0 0 10px;
-      font-size:clamp(26px,3.6vw,40px);
+      font-size:clamp(28px,3.8vw,42px);
       letter-spacing:.2px;
     }
 
     .hero p{
       margin:0;
-      opacity:.95;
-      max-width:860px;
+      opacity:.96;
+      max-width:940px;
       line-height:1.6;
     }
 
@@ -156,7 +171,7 @@
       border:1px solid rgba(255,255,255,.28);
       border-radius:999px;
       background:rgba(255,255,255,.12);
-      font-weight:800;
+      font-weight:900;
       font-size:13px;
     }
 
@@ -169,7 +184,6 @@
       color:#fff;
       line-height:1.55;
     }
-    .note strong{color:#fff}
 
     .kpis{
       display:grid;
@@ -184,16 +198,16 @@
       border-radius:16px;
       box-shadow:var(--shadow);
       padding:16px;
-      min-height:92px;
+      min-height:94px;
     }
-    .kpi .t{margin:0 0 6px;color:var(--muted);font-weight:800;font-size:12px}
+    .kpi .t{margin:0 0 6px;color:var(--muted);font-weight:900;font-size:12px}
     .kpi .v{margin:0;font-weight:1000;font-size:20px;color:var(--pri)}
     .kpi .s{margin:8px 0 0;color:var(--muted);font-weight:700;font-size:12px}
 
     .dash{
       margin-top:18px;
       display:grid;
-      grid-template-columns:1.25fr .75fr;
+      grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);
       gap:18px;
       align-items:start;
     }
@@ -255,6 +269,7 @@
       border-bottom:1px solid var(--line);
       background:#fff;
     }
+
     .field{
       display:flex;
       align-items:center;
@@ -278,22 +293,24 @@
     .cards{
       padding:14px 16px 18px;
       display:grid;
-      gap:12px;
+      gap:14px;
     }
 
     .job{
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       box-shadow:0 8px 18px rgba(0,0,0,.05);
       padding:14px;
       display:grid;
-      grid-template-columns:1fr auto;
+      grid-template-columns:minmax(0,1fr) 290px;
       gap:14px;
-      align-items:center;
+      align-items:start;
       transition:.2s ease;
+      background:#fff;
     }
+
     .job:hover{
-      transform:translateY(-4px);
+      transform:translateY(-3px);
       box-shadow:0 18px 40px rgba(0,0,0,.12);
       border-color:#cfe0f5;
     }
@@ -302,22 +319,16 @@
       margin:0;
       color:var(--pri);
       line-height:1.2;
-      font-size:15px;
+      font-size:16px;
+      font-weight:1000;
     }
-    .job .meta{
-      margin-top:8px;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:10px;
+
+    .job-sub{
+      margin:6px 0 0;
+      color:#475467;
+      font-weight:800;
+      font-size:13px;
     }
-    .kv{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:10px 10px;
-      background:#fbfcfd;
-    }
-    .kv .k{margin:0 0 4px;color:var(--muted);font-weight:900;font-size:11px}
-    .kv .v{margin:0;font-weight:900;font-size:13px;color:#344054}
 
     .badges{
       display:flex;
@@ -325,6 +336,7 @@
       flex-wrap:wrap;
       margin-top:10px;
     }
+
     .badge{
       display:inline-flex;
       align-items:center;
@@ -337,38 +349,158 @@
       background:#fff;
       color:#344054;
     }
+
     .b-ok{border-color:#b7ebc8;background:#ecfdf3;color:var(--good)}
     .b-warn{border-color:#ffd7aa;background:#fffaeb;color:#b54708}
     .b-bad{border-color:#fecdca;background:#fef3f2;color:var(--bad)}
     .b-pri{border-color:#cfe0f5;background:#eff8ff;color:var(--pri)}
     .b-id{border-color:#e7ecef;background:#f9fafb;color:#475467}
 
+    .grid2{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .grid3{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .kv{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 10px;
+      background:#fbfcfd;
+      min-height:72px;
+    }
+
+    .kv .k{
+      margin:0 0 4px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .kv .v{
+      margin:0;
+      font-weight:900;
+      font-size:13px;
+      color:#344054;
+      line-height:1.35;
+      word-break:break-word;
+    }
+
+    .desc{
+      margin-top:10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:var(--soft);
+    }
+
+    .desc .k{
+      margin:0 0 6px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:11px;
+      text-transform:uppercase;
+    }
+
+    .desc .v{
+      margin:0;
+      color:#344054;
+      font-weight:800;
+      line-height:1.55;
+      font-size:13px;
+      white-space:pre-wrap;
+    }
+
+    .fin-title{
+      margin:14px 0 8px;
+      color:var(--pri);
+      font-size:12px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.25px;
+    }
+
     .cta{
-      min-width:240px;
       display:flex;
       flex-direction:column;
       gap:10px;
       align-items:stretch;
+      position:sticky;
+      top:88px;
     }
-    .price{
-      text-align:right;
-      font-weight:1000;
-      color:var(--pri);
-      font-size:18px;
-      margin:0;
+
+    .pricebox{
+      border:1px solid #cfe0f5;
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg,#f8fbff,#eef7ff);
     }
-    .sub{
-      margin:-6px 0 0;
-      text-align:right;
+
+    .pricebox .label{
+      margin:0 0 4px;
       color:var(--muted);
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .price{
+      margin:0;
+      color:var(--pri);
+      font-size:26px;
+      line-height:1.1;
+      font-weight:1000;
+    }
+
+    .sub{
+      margin:6px 0 0;
+      color:#475467;
       font-weight:800;
       font-size:12px;
+      line-height:1.45;
+    }
+
+    .mini{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      background:#fff;
+    }
+
+    .mini .k{
+      margin:0 0 4px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .mini .v{
+      margin:0;
+      color:#101828;
+      font-size:14px;
+      font-weight:1000;
+    }
+
+    .btn-stack{
+      display:grid;
+      gap:10px;
     }
 
     .btn-take{
       border:0;
       border-radius:14px;
-      padding:12px 14px;
+      padding:13px 14px;
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
       font-weight:1000;
@@ -382,7 +514,7 @@
       border:1px solid #dfe3df;
       background:#fff;
       border-radius:12px;
-      padding:10px 12px;
+      padding:11px 12px;
       font-weight:900;
       cursor:pointer;
     }
@@ -409,6 +541,7 @@
       box-shadow:var(--shadow);
       padding:16px;
     }
+
     .side h3{
       margin:0 0 8px;
       color:var(--pri);
@@ -417,6 +550,7 @@
       text-transform:uppercase;
       letter-spacing:.2px;
     }
+
     .side p{
       margin:0;
       color:#475467;
@@ -424,6 +558,7 @@
       font-weight:700;
       font-size:13px;
     }
+
     .side ul{
       margin:10px 0 0;
       padding-left:18px;
@@ -432,19 +567,22 @@
       font-weight:700;
       font-size:13px;
     }
+
     .side .row{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       margin-top:12px;
     }
+
     .side code{
-      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
       font-size:12px;
       background:#f2f4f7;
       border:1px solid #e4e7ec;
       padding:2px 6px;
       border-radius:8px;
+      word-break:break-all;
     }
 
     footer{
@@ -453,6 +591,7 @@
       padding:30px 0;
       margin-top:40px;
     }
+
     .foot{
       display:grid;
       grid-template-columns:2fr 1fr;
@@ -460,16 +599,23 @@
     }
     .foot a{color:#cfe8da}
 
-    @media(max-width:980px){
+    @media(max-width:1080px){
       .kpis{grid-template-columns:repeat(2,1fr); margin-top:0}
       .dash{grid-template-columns:1fr}
       .side{position:relative; top:auto}
       .filters{grid-template-columns:1fr 1fr}
       .job{grid-template-columns:1fr}
-      .cta{min-width:auto}
-      .price,.sub{text-align:left}
+      .cta{position:relative; top:auto}
       .links{display:none}
       .foot{grid-template-columns:1fr}
+    }
+
+    @media(max-width:720px){
+      .filters{grid-template-columns:1fr}
+      .grid2,.grid3{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr}
+      .brand strong{font-size:15px}
+      .brand img{height:48px}
     }
   </style>
 </head>
@@ -486,7 +632,7 @@
   </script>
 
   <div class="topbar">
-    Portal do Parceiro JS • Dashboard Operacional
+    Portal do Parceiro JS • View Portal de Serviços
   </div>
 
   <header>
@@ -508,18 +654,19 @@
 
   <section class="hero">
     <div class="wrap">
-      <h1>Dashboard Operacional</h1>
+      <h1>View Portal do Parceiro</h1>
       <p>
-        Visualize rapidamente os serviços executados, horas trabalhadas, tamanho da equipe, faturamento, margem dos serviços e valor do parceiro.
+        Analise cada serviço com visão operacional e financeira antes de aceitar. Veja cliente, local, equipe, custos, margem, lucro JS e o valor final que o parceiro pode receber.
       </p>
 
       <div class="pill-row">
         <a href="parceiros.html" class="pill">🏠 Portal</a>
-        <a href="#lista" class="pill">📊 Dashboard</a>
+        <a href="#lista" class="pill">📋 Serviços disponíveis</a>
+        <span class="pill">💰 Valor parceiro destacado</span>
       </div>
 
       <div class="note">
-        <strong>Automático:</strong> este painel lê a aba <strong>DASHBOARD_BASE</strong> publicada em CSV e atualiza sozinho.
+        <strong>Automático:</strong> este painel lê a aba <strong>VIEW PORTAL</strong> publicada em CSV e atualiza sozinho.
       </div>
     </div>
   </section>
@@ -529,36 +676,36 @@
 
       <div class="kpis">
         <div class="kpi">
-          <p class="t">Serviços</p>
+          <p class="t">Serviços visíveis</p>
           <p class="v" id="kpiServicos">—</p>
           <p class="s">Atualizado: <span id="kpiUpdated">—</span></p>
         </div>
         <div class="kpi">
-          <p class="t">Horas executadas</p>
-          <p class="v" id="kpiHoras">—</p>
-          <p class="s">Somatório do período</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Faturamento</p>
+          <p class="t">Preço final total</p>
           <p class="v" id="kpiFaturamento">—</p>
-          <p class="s">Somatório de preço final</p>
+          <p class="s">Somatório visível</p>
         </div>
         <div class="kpi">
-          <p class="t">Margem dos serviços</p>
+          <p class="t">Custo total</p>
+          <p class="v" id="kpiCusto">—</p>
+          <p class="s">Base operacional</p>
+        </div>
+        <div class="kpi">
+          <p class="t">Margem / lucro</p>
           <p class="v" id="kpiMargem">—</p>
-          <p class="s">Base da calculadora</p>
+          <p class="s">Somatório do lucro</p>
         </div>
         <div class="kpi">
           <p class="t">Valor parceiro</p>
           <p class="v" id="kpiParceiro">—</p>
-          <p class="s">Somatório parceiro</p>
+          <p class="s">Potencial do parceiro</p>
         </div>
       </div>
 
       <div class="dash">
         <div class="panel">
           <div class="panel-head">
-            <h2>Serviços consolidados</h2>
+            <h2>Serviços para análise e aceite</h2>
             <div class="right">
               <span class="conn"><span id="connDot" class="dot"></span><span id="connText">Conectando…</span></span>
               <button class="btn" id="btnRefresh" type="button">⟳ Atualizar</button>
@@ -569,7 +716,7 @@
           <div class="filters">
             <div class="field">
               <span>🔎</span>
-              <input id="qSearch" placeholder="Buscar: ID, bairro, categoria..." />
+              <input id="qSearch" placeholder="Buscar: ID, bairro, cliente, categoria..." />
             </div>
 
             <div class="field">
@@ -600,15 +747,16 @@
 
         <aside class="side">
           <div class="box">
-            <h3>Como usar</h3>
+            <h3>Leitura rápida do parceiro</h3>
             <p>
-              Este painel consolida dados da operação e do financeiro para facilitar a leitura rápida da execução dos serviços.
+              O objetivo deste painel é ajudar o parceiro a tomar decisão rápida e consciente sobre cada serviço.
             </p>
 
             <ul>
-              <li>Use os filtros para localizar serviços rapidamente.</li>
-              <li>Veja horas totais e tamanho da equipe por serviço.</li>
-              <li>Acompanhe faturamento, margem e valor parceiro.</li>
+              <li>Leia primeiro o <strong>tipo de serviço</strong>, <strong>bairro</strong> e <strong>status</strong>.</li>
+              <li>Confira <strong>equipe, horas e urgência</strong>.</li>
+              <li>Depois olhe o bloco financeiro: <strong>preço final, custo, imposto, margem e valor parceiro</strong>.</li>
+              <li>Se fizer sentido, clique em <strong>Aceitar serviço</strong>.</li>
             </ul>
 
             <div class="row">
@@ -617,7 +765,13 @@
             </div>
 
             <p style="margin-top:12px">
-              <strong>Fonte:</strong> <code>DASHBOARD_BASE (CSV)</code>
+              <strong>Fonte:</strong><br>
+              <code>VIEW PORTAL (CSV)</code>
+            </p>
+
+            <p style="margin-top:12px">
+              <strong>Aceite recomendado:</strong><br>
+              use o ID do serviço ao responder no formulário.
             </p>
           </div>
         </aside>
@@ -631,7 +785,7 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p style="opacity:.8;margin:8px 0 0">
-          Dashboard interno de gestão operacional e financeira.
+          Painel interno para análise e aceite de serviços por parceiros da operação.
         </p>
       </div>
       <div>
@@ -644,20 +798,44 @@
 
   <script>
     const CONFIG = {
-      DASH_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pubhtml?gid=208592668&single=true",
+      VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1654982230&single=true&output=csv",
       FORM_URL: "https://docs.google.com/forms/d/e/SEU_FORM_ID/viewform",
 
       COLUMNS: {
-        id: "ID_SERVICO",
-        data: "DATA",
-        bairro: "BAIRRO",
-        categoria: "CATEGORIA",
-        status: "STATUS",
-        horas: "HORAS_EXECUTADAS",
-        equipe: "EQUIPE_TOTAL",
-        precoFinal: "PRECO_FINAL",
-        margem: "MARGEM_LUCRO_SERVICO",
-        parceiro: "VALOR_PARCEIRO"
+        id: ["ID_SERVICO","ID","ID DE CÁLCULO","ID_CALCULO","ID_CALC"],
+        data: ["DATA","DATA_ORCAMENTO","DATA/HORA","DATA_HORA"],
+        cliente: ["CLIENTE","NOME_CLIENTE","NOME COMPLETO DO CLIENTE","NOME DO CLIENTE"],
+        telefone: ["TELEFONE","TELEFONE_CLIENTE","WHATSAPP","TELEFONE DO CLIENTE (WHATSAPP)"],
+        endereco: ["ENDERECO","ENDEREÇO","ENDERECO_SERVICO","ENDEREÇO DO SERVIÇO"],
+        bairro: ["BAIRRO"],
+        categoria: ["CATEGORIA","CATEGORIA_SERVICO","CATEGORIA DO SERVIÇO SOLICITADO"],
+        descricao: ["DESCRICAO","DESCRIÇÃO","DESCRICAO_DETALHADA","DESCRIÇÃO DETALHADA DO SERVIÇO"],
+        area: ["AREA","ÁREA","AREA_M2","ÁREA APROXIMADA (M²)"],
+        urgencia: ["URGENCIA","URGÊNCIA"],
+        status: ["STATUS"],
+
+        qtdLider: ["QTD_LIDER","QTD_LÍDER","QUANTIDADE_LIDER","LIDER"],
+        qtdJardineiro: ["QTD_JARDINEIRO","QUANTIDADE DE JARDINEIRO NECESSARIO?","QTD JARDINEIRO"],
+        qtdAuxiliar: ["QTD_AUXILIAR","QUANTIDADE DE AUXILIAR NECESSARIO?","QTD AUXILIAR"],
+        horas: ["HORAS","HORAS_EXECUTADAS","HORAS DE SERVIÇO (EX. 3,  6, 12)","HORAS_ESTIMADAS","HORAS DE SERVIÇO"],
+        equipe: ["EQUIPE_TOTAL","TOTAL_EQUIPE"],
+
+        custoMao: ["CUSTO_MAO_OBRA","CUSTO MÃO DE OBRA","CUSTO TOTAL MÃO DE OBRA"],
+        custoRisco: ["CUSTO_RISCOS","CUSTO RISCOS","CUSTO DE RISCOS"],
+        custoOperacional: ["CUSTO_OPERACIONAL","CUSTO OPERACIONAL TOTAL","CUSTO_OPERACIONAL_TOTAL","CUSTO OPERACIONAL TOTAL ( CALCULADORA )"],
+        gasolina: ["GASOLINA","CUSTO_GASOLINA"],
+        lixo: ["RETIRADA_LIXO","RETIRADA DE LIXO","LIXO"],
+        custoTotal: ["CUSTO_TOTAL","CUSTO TOTAL","CUSTO_OPERACIONAL_TOTAL_FINAL"],
+
+        precoFinal: ["PRECO_FINAL","PREÇO FINAL","PREÇO FINAL (R$)"],
+        imposto: ["IMPOSTO","VALOR_IMPOSTO"],
+        comissao: ["COMISSAO_IND","COMISSAO_IND","COMISSÃO INDICAÇÃO","COMISSÃO INDICAÇÃO %","COMISSÃO"],
+        margem: ["MARGEM_LUCRO_SERVICO","MARGEM","MARGEM LUCRO %","MARGEM LUCRO"],
+        lucroJS: ["LUCRO_JS","LUCRO JS"],
+        valorParceiro: ["VALOR_PARCEIRO","GANHO_PARCEIRO","VALOR PARCEIRO"],
+
+        tipoParceria: ["TIPO_PARCERIA","PARCERIA","TIPO DE PARCERIA"],
+        proximaAcao: ["PROXIMA_ACAO","PRÓXIMA AÇÃO","PRÓXIMA_ACAO"]
       },
 
       AUTO_REFRESH_MS: 60000
@@ -666,11 +844,20 @@
     const $ = (sel) => document.querySelector(sel);
     const norm = (s) => String(s ?? "").trim();
 
+    function escapeHtml(str){
+      return String(str ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+    }
+
     function parseNumber(v){
       const s = norm(v)
         .replace(/\s/g,"")
         .replace(/[R$\u00A0]/g,"")
-        .replace(/\./g,"")
+        .replace(/\.(?=\d{3}(\D|$))/g,"")
         .replace(",",".");
       const x = Number(s);
       return isFinite(x) ? x : NaN;
@@ -688,6 +875,12 @@
       return x.toLocaleString("pt-BR");
     }
 
+    function fmtPercent(v){
+      const n = parseNumber(v);
+      if (!isFinite(n)) return norm(v) || "—";
+      return n.toLocaleString("pt-BR") + "%";
+    }
+
     function parseCSV(text){
       const rows = [];
       let cur = "", inQ = false;
@@ -696,24 +889,31 @@
       for (let i=0;i<text.length;i++){
         const ch = text[i];
         const next = text[i+1];
+
         if (ch === '"' && inQ && next === '"'){ cur += '"'; i++; continue; }
         if (ch === '"'){ inQ = !inQ; continue; }
-        if (ch === ',' && !inQ){ out.push(cur); cur=""; continue; }
+        if (ch === ',' && !inQ){ out.push(cur); cur = ""; continue; }
+
         if ((ch === '\n' || ch === '\r') && !inQ){
           if (ch === '\r' && next === '\n') i++;
-          out.push(cur); cur="";
+          out.push(cur); cur = "";
           rows.push(out.splice(0, out.length));
           continue;
         }
         cur += ch;
       }
-      if (cur.length || out.length){ out.push(cur); rows.push(out); }
+
+      if (cur.length || out.length){
+        out.push(cur);
+        rows.push(out);
+      }
 
       const clean = rows.filter(r => r.some(c => String(c ?? "").trim() !== ""));
       if (!clean.length) return [];
 
       const header = clean[0].map(h => String(h ?? "").trim());
       const data = [];
+
       for (let i=1;i<clean.length;i++){
         const obj = {};
         for (let j=0;j<header.length;j++){
@@ -724,13 +924,23 @@
       return data;
     }
 
+    function getValue(row, aliases){
+      if (!Array.isArray(aliases)) aliases = [aliases];
+      for (const key of aliases){
+        if (Object.prototype.hasOwnProperty.call(row, key) && norm(row[key]) !== ""){
+          return row[key];
+        }
+      }
+      return "";
+    }
+
     function badgeStatus(st){
       const x = norm(st).toLowerCase();
-      if (x === "executado") return `<span class="badge b-ok">Executado</span>`;
-      if (x === "finalizada" || x === "finalizado") return `<span class="badge b-pri">Finalizado</span>`;
-      if (x === "reservado") return `<span class="badge b-warn">Reservado</span>`;
-      if (x === "cancelado") return `<span class="badge b-bad">Cancelado</span>`;
-      return `<span class="badge b-id">${norm(st) || "—"}</span>`;
+      if (["disponivel","disponível","aberto","aguardando parceiro"].includes(x)) return `<span class="badge b-ok">Disponível</span>`;
+      if (["reservado","em análise","analise"].includes(x)) return `<span class="badge b-warn">${escapeHtml(norm(st) || "Reservado")}</span>`;
+      if (["executado","finalizado","finalizada","concluido","concluído"].includes(x)) return `<span class="badge b-pri">${escapeHtml(norm(st))}</span>`;
+      if (["cancelado","cancelada"].includes(x)) return `<span class="badge b-bad">${escapeHtml(norm(st))}</span>`;
+      return `<span class="badge b-id">${escapeHtml(norm(st) || "—")}</span>`;
     }
 
     let ALL = [];
@@ -738,19 +948,67 @@
     let autoOn = true;
     let autoTimer = null;
 
-    function fillFilterOptions(){
+    function normalizeRow(raw){
       const c = CONFIG.COLUMNS;
+
+      const qtdLider = parseNumber(getValue(raw, c.qtdLider));
+      const qtdJardineiro = parseNumber(getValue(raw, c.qtdJardineiro));
+      const qtdAuxiliar = parseNumber(getValue(raw, c.qtdAuxiliar));
+      const equipe = parseNumber(getValue(raw, c.equipe));
+      const equipeFinal = isFinite(equipe) ? equipe :
+        (isFinite(qtdLider) || isFinite(qtdJardineiro) || isFinite(qtdAuxiliar))
+          ? (isFinite(qtdLider)?qtdLider:0) + (isFinite(qtdJardineiro)?qtdJardineiro:0) + (isFinite(qtdAuxiliar)?qtdAuxiliar:0)
+          : NaN;
+
+      return {
+        id: norm(getValue(raw, c.id)),
+        data: norm(getValue(raw, c.data)),
+        cliente: norm(getValue(raw, c.cliente)),
+        telefone: norm(getValue(raw, c.telefone)),
+        endereco: norm(getValue(raw, c.endereco)),
+        bairro: norm(getValue(raw, c.bairro)),
+        categoria: norm(getValue(raw, c.categoria)),
+        descricao: norm(getValue(raw, c.descricao)),
+        area: norm(getValue(raw, c.area)),
+        urgencia: norm(getValue(raw, c.urgencia)),
+        status: norm(getValue(raw, c.status)),
+
+        qtdLider,
+        qtdJardineiro,
+        qtdAuxiliar,
+        horas: parseNumber(getValue(raw, c.horas)),
+        equipe: equipeFinal,
+
+        custoMao: parseNumber(getValue(raw, c.custoMao)),
+        custoRisco: parseNumber(getValue(raw, c.custoRisco)),
+        custoOperacional: parseNumber(getValue(raw, c.custoOperacional)),
+        gasolina: parseNumber(getValue(raw, c.gasolina)),
+        lixo: parseNumber(getValue(raw, c.lixo)),
+        custoTotal: parseNumber(getValue(raw, c.custoTotal)),
+
+        precoFinal: parseNumber(getValue(raw, c.precoFinal)),
+        imposto: parseNumber(getValue(raw, c.imposto)),
+        comissao: parseNumber(getValue(raw, c.comissao)),
+        margem: getValue(raw, c.margem),
+        lucroJS: parseNumber(getValue(raw, c.lucroJS)),
+        valorParceiro: parseNumber(getValue(raw, c.valorParceiro)),
+
+        tipoParceria: norm(getValue(raw, c.tipoParceria)),
+        proximaAcao: norm(getValue(raw, c.proximaAcao)),
+
+        raw
+      };
+    }
+
+    function fillFilterOptions(){
       const bairroSet = new Set();
       const catSet = new Set();
       const stSet = new Set();
 
       for (const r of ALL){
-        const b = norm(r[c.bairro]);
-        const ca = norm(r[c.categoria]);
-        const st = norm(r[c.status]);
-        if (b) bairroSet.add(b);
-        if (ca) catSet.add(ca);
-        if (st) stSet.add(st);
+        if (r.bairro) bairroSet.add(r.bairro);
+        if (r.categoria) catSet.add(r.categoria);
+        if (r.status) stSet.add(r.status);
       }
 
       const bSel = $("#fBairro");
@@ -791,22 +1049,18 @@
 
     function applyFilters(){
       const f = getFilters();
-      const c = CONFIG.COLUMNS;
 
       VIEW = ALL.filter(r => {
-        const status = norm(r[c.status]);
-        if (f.st && status !== f.st) return false;
-
-        const bairro = norm(r[c.bairro]);
-        if (f.bairro && bairro !== f.bairro) return false;
-
-        const cat = norm(r[c.categoria]);
-        if (f.cat && cat !== f.cat) return false;
+        if (f.st && r.status !== f.st) return false;
+        if (f.bairro && r.bairro !== f.bairro) return false;
+        if (f.cat && r.categoria !== f.cat) return false;
 
         if (f.q){
           const hay = [
-            r[c.id], r[c.data], r[c.bairro], r[c.categoria], r[c.status]
+            r.id, r.data, r.cliente, r.telefone, r.endereco, r.bairro,
+            r.categoria, r.descricao, r.urgencia, r.status, r.tipoParceria
           ].map(x => norm(x).toLowerCase()).join(" • ");
+
           if (!hay.includes(f.q)) return false;
         }
         return true;
@@ -815,132 +1069,273 @@
       render();
     }
 
+    function buildCopyText(r){
+      return [
+        `ID: ${r.id || ""}`,
+        `Data: ${r.data || ""}`,
+        `Cliente: ${r.cliente || ""}`,
+        `Telefone: ${r.telefone || ""}`,
+        `Endereço: ${r.endereco || ""}`,
+        `Bairro: ${r.bairro || ""}`,
+        `Categoria: ${r.categoria || ""}`,
+        `Descrição: ${r.descricao || ""}`,
+        `Área: ${r.area || ""}`,
+        `Urgência: ${r.urgencia || ""}`,
+        `Status: ${r.status || ""}`,
+        `Qtd Líder: ${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : ""}`,
+        `Qtd Jardineiro: ${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : ""}`,
+        `Qtd Auxiliar: ${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : ""}`,
+        `Horas: ${isFinite(r.horas) ? fmtNum(r.horas) : ""}`,
+        `Equipe Total: ${isFinite(r.equipe) ? fmtNum(r.equipe) : ""}`,
+        `Custo Mão de Obra: ${isFinite(r.custoMao) ? fmtBRL(r.custoMao) : ""}`,
+        `Custo Riscos: ${isFinite(r.custoRisco) ? fmtBRL(r.custoRisco) : ""}`,
+        `Custo Operacional: ${isFinite(r.custoOperacional) ? fmtBRL(r.custoOperacional) : ""}`,
+        `Gasolina: ${isFinite(r.gasolina) ? fmtBRL(r.gasolina) : ""}`,
+        `Retirada Lixo: ${isFinite(r.lixo) ? fmtBRL(r.lixo) : ""}`,
+        `Custo Total: ${isFinite(r.custoTotal) ? fmtBRL(r.custoTotal) : ""}`,
+        `Preço Final: ${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : ""}`,
+        `Imposto: ${isFinite(r.imposto) ? fmtBRL(r.imposto) : ""}`,
+        `Comissão: ${isFinite(r.comissao) ? fmtBRL(r.comissao) : (r.comissao || "")}`,
+        `Margem: ${fmtPercent(r.margem)}`,
+        `Lucro JS: ${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : ""}`,
+        `Valor Parceiro: ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : ""}`,
+        `Tipo de Parceria: ${r.tipoParceria || ""}`,
+        `Próxima ação: ${r.proximaAcao || ""}`
+      ].join("\n");
+    }
+
     function render(){
-      const c = CONFIG.COLUMNS;
       const el = $("#cards");
       el.innerHTML = "";
       $("#empty").style.display = VIEW.length ? "none" : "block";
 
-      const totalServicos = ALL.length;
-      const totalHoras = ALL.reduce((acc,r) => acc + (parseNumber(r[c.horas]) || 0), 0);
-      const totalFaturamento = ALL.reduce((acc,r) => acc + (parseNumber(r[c.precoFinal]) || 0), 0);
-      const totalMargem = ALL.reduce((acc,r) => acc + (parseNumber(r[c.margem]) || 0), 0);
-      const totalParceiro = ALL.reduce((acc,r) => acc + (parseNumber(r[c.parceiro]) || 0), 0);
+      const totalServicos = VIEW.length;
+      const totalPreco = VIEW.reduce((acc,r)=>acc + (isFinite(r.precoFinal)?r.precoFinal:0), 0);
+      const totalCusto = VIEW.reduce((acc,r)=>{
+        if (isFinite(r.custoTotal)) return acc + r.custoTotal;
+        const soma = (isFinite(r.custoMao)?r.custoMao:0)
+          + (isFinite(r.custoRisco)?r.custoRisco:0)
+          + (isFinite(r.custoOperacional)?r.custoOperacional:0)
+          + (isFinite(r.gasolina)?r.gasolina:0)
+          + (isFinite(r.lixo)?r.lixo:0);
+        return acc + soma;
+      }, 0);
+      const totalLucro = VIEW.reduce((acc,r)=>acc + (isFinite(r.lucroJS)?r.lucroJS:0), 0);
+      const totalParceiro = VIEW.reduce((acc,r)=>acc + (isFinite(r.valorParceiro)?r.valorParceiro:0), 0);
 
       $("#kpiServicos").textContent = fmtNum(totalServicos);
-      $("#kpiHoras").textContent = fmtNum(totalHoras);
-      $("#kpiFaturamento").textContent = fmtBRL(totalFaturamento);
-      $("#kpiMargem").textContent = fmtBRL(totalMargem);
+      $("#kpiFaturamento").textContent = fmtBRL(totalPreco);
+      $("#kpiCusto").textContent = fmtBRL(totalCusto);
+      $("#kpiMargem").textContent = fmtBRL(totalLucro);
       $("#kpiParceiro").textContent = fmtBRL(totalParceiro);
       $("#kpiUpdated").textContent = new Date().toLocaleString("pt-BR");
 
       $("#btnOpenFormTop").href = CONFIG.FORM_URL;
 
       VIEW.forEach(r => {
-        const id = norm(r[c.id]) || "—";
-        const data = norm(r[c.data]) || "—";
-        const bairro = norm(r[c.bairro]) || "—";
-        const cat = norm(r[c.categoria]) || "—";
-        const st = norm(r[c.status]) || "—";
-
-        const horasN = parseNumber(r[c.horas]);
-        const equipeN = parseNumber(r[c.equipe]);
-        const precoN = parseNumber(r[c.precoFinal]);
-        const margemN = parseNumber(r[c.margem]);
-        const parceiroN = parseNumber(r[c.parceiro]);
-
-        const horas = isFinite(horasN) ? fmtNum(horasN) : "—";
-        const equipe = isFinite(equipeN) ? fmtNum(equipeN) : "—";
-        const preco = isFinite(precoN) ? fmtBRL(precoN) : "—";
-        const margem = isFinite(margemN) ? fmtBRL(margemN) : "—";
-        const parceiro = isFinite(parceiroN) ? fmtBRL(parceiroN) : "—";
+        const custoTotalCalculado = isFinite(r.custoTotal)
+          ? r.custoTotal
+          : (isFinite(r.custoMao)?r.custoMao:0)
+            + (isFinite(r.custoRisco)?r.custoRisco:0)
+            + (isFinite(r.custoOperacional)?r.custoOperacional:0)
+            + (isFinite(r.gasolina)?r.gasolina:0)
+            + (isFinite(r.lixo)?r.lixo:0);
 
         const card = document.createElement("div");
         card.className = "job";
+
+        const resumo = buildCopyText(r);
+        const acceptLink = CONFIG.FORM_URL && !CONFIG.FORM_URL.includes("SEU_FORM_ID")
+          ? `${CONFIG.FORM_URL}?usp=pp_url`
+          : "#";
+
         card.innerHTML = `
           <div>
-            <h3>${cat} • ${bairro}</h3>
+            <h3>${escapeHtml(r.categoria || "Serviço")} • ${escapeHtml(r.bairro || "Sem bairro")}</h3>
+            <p class="job-sub">${escapeHtml(r.cliente || "Cliente não informado")} • ${escapeHtml(r.endereco || "Endereço não informado")}</p>
 
             <div class="badges">
-              ${badgeStatus(st)}
-              <span class="badge b-id">ID: ${id}</span>
-              <span class="badge b-id">Data: ${data}</span>
+              ${badgeStatus(r.status)}
+              <span class="badge b-id">ID: ${escapeHtml(r.id || "—")}</span>
+              <span class="badge b-id">Data: ${escapeHtml(r.data || "—")}</span>
+              ${r.tipoParceria ? `<span class="badge b-pri">${escapeHtml(r.tipoParceria)}</span>` : ``}
+              ${r.urgencia ? `<span class="badge b-warn">Urgência: ${escapeHtml(r.urgencia)}</span>` : ``}
             </div>
 
-            <div class="meta">
+            <div class="grid2">
               <div class="kv">
-                <p class="k">Horas Executadas</p>
-                <p class="v">${horas}</p>
+                <p class="k">Cliente</p>
+                <p class="v">${escapeHtml(r.cliente || "—")}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Telefone</p>
+                <p class="v">${escapeHtml(r.telefone || "—")}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Endereço</p>
+                <p class="v">${escapeHtml(r.endereco || "—")}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Bairro</p>
+                <p class="v">${escapeHtml(r.bairro || "—")}</p>
+              </div>
+            </div>
+
+            <div class="desc">
+              <p class="k">Descrição do serviço</p>
+              <p class="v">${escapeHtml(r.descricao || "Sem descrição detalhada.")}</p>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Qtd Líder</p>
+                <p class="v">${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Qtd Jardineiro</p>
+                <p class="v">${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Qtd Auxiliar</p>
+                <p class="v">${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : "—"}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Horas</p>
+                <p class="v">${isFinite(r.horas) ? fmtNum(r.horas) : "—"}</p>
               </div>
               <div class="kv">
                 <p class="k">Equipe Total</p>
-                <p class="v">${equipe}</p>
+                <p class="v">${isFinite(r.equipe) ? fmtNum(r.equipe) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Status</p>
-                <p class="v">${st}</p>
+                <p class="k">Área</p>
+                <p class="v">${escapeHtml(r.area || "—")}</p>
               </div>
             </div>
 
-            <div class="meta" style="margin-top:10px">
+            <p class="fin-title">Financeiro do serviço</p>
+
+            <div class="grid3">
               <div class="kv">
-                <p class="k">Preço Final</p>
-                <p class="v">${preco}</p>
+                <p class="k">Custo mão de obra</p>
+                <p class="v">${isFinite(r.custoMao) ? fmtBRL(r.custoMao) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Margem do Serviço</p>
-                <p class="v">${margem}</p>
+                <p class="k">Custo riscos</p>
+                <p class="v">${isFinite(r.custoRisco) ? fmtBRL(r.custoRisco) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Valor Parceiro</p>
-                <p class="v">${parceiro}</p>
+                <p class="k">Custo operacional</p>
+                <p class="v">${isFinite(r.custoOperacional) ? fmtBRL(r.custoOperacional) : "—"}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Gasolina</p>
+                <p class="v">${isFinite(r.gasolina) ? fmtBRL(r.gasolina) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Retirada lixo</p>
+                <p class="v">${isFinite(r.lixo) ? fmtBRL(r.lixo) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Custo total</p>
+                <p class="v">${isFinite(custoTotalCalculado) && custoTotalCalculado > 0 ? fmtBRL(custoTotalCalculado) : "—"}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Preço final</p>
+                <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Imposto</p>
+                <p class="v">${isFinite(r.imposto) ? fmtBRL(r.imposto) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Comissão</p>
+                <p class="v">${isFinite(r.comissao) ? fmtBRL(r.comissao) : "—"}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Margem</p>
+                <p class="v">${fmtPercent(r.margem)}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Lucro JS</p>
+                <p class="v">${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Próxima ação</p>
+                <p class="v">${escapeHtml(r.proximaAcao || "—")}</p>
               </div>
             </div>
           </div>
 
           <div class="cta">
-            <p class="price">${preco}</p>
-            <p class="sub">Preço final do serviço</p>
+            <div class="pricebox">
+              <p class="label">Valor do parceiro</p>
+              <p class="price">${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
+              <p class="sub">Valor estimado para o parceiro neste serviço.</p>
+            </div>
 
-            <button class="btn-mini" data-copy="${id}">📋 Copiar ID</button>
-            <button class="btn-mini" data-copy-row='${JSON.stringify(r).replace(/'/g, "&apos;")}'>📄 Copiar resumo</button>
+            <div class="mini">
+              <p class="k">Preço final do cliente</p>
+              <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Custo total do serviço</p>
+              <p class="v">${isFinite(custoTotalCalculado) && custoTotalCalculado > 0 ? fmtBRL(custoTotalCalculado) : "—"}</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Lucro JS</p>
+              <p class="v">${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : "—"}</p>
+            </div>
+
+            <div class="btn-stack">
+              <a class="btn btn-success" href="${acceptLink}" target="_blank" rel="noopener">✅ Aceitar serviço</a>
+              <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.id || "")}">📋 Copiar ID</button>
+              <button class="btn-mini" type="button" data-copy-summary="${escapeHtml(resumo)}">📄 Copiar resumo</button>
+            </div>
           </div>
         `;
+
         el.appendChild(card);
       });
 
-      el.querySelectorAll(".btn-mini[data-copy]").forEach(btn => {
+      el.querySelectorAll("[data-copy-id]").forEach(btn => {
         btn.addEventListener("click", async () => {
-          const id = btn.getAttribute("data-copy");
+          const txt = btn.getAttribute("data-copy-id");
           try{
-            await navigator.clipboard.writeText(id);
+            await navigator.clipboard.writeText(txt);
             const old = btn.textContent;
-            btn.textContent = "✅ Copiado!";
+            btn.textContent = "✅ ID copiado!";
             setTimeout(()=> btn.textContent = old, 1200);
           }catch(e){
-            alert("Não consegui copiar automaticamente. ID: " + id);
+            alert("Não consegui copiar automaticamente. ID: " + txt);
           }
         });
       });
 
-      el.querySelectorAll(".btn-mini[data-copy-row]").forEach(btn => {
+      el.querySelectorAll("[data-copy-summary]").forEach(btn => {
         btn.addEventListener("click", async () => {
-          try{
-            const raw = btn.getAttribute("data-copy-row").replace(/&apos;/g, "'");
-            const row = JSON.parse(raw);
-            const txt = [
-              `ID: ${row[CONFIG.COLUMNS.id] || ""}`,
-              `Data: ${row[CONFIG.COLUMNS.data] || ""}`,
-              `Bairro: ${row[CONFIG.COLUMNS.bairro] || ""}`,
-              `Categoria: ${row[CONFIG.COLUMNS.categoria] || ""}`,
-              `Status: ${row[CONFIG.COLUMNS.status] || ""}`,
-              `Horas: ${row[CONFIG.COLUMNS.horas] || ""}`,
-              `Equipe: ${row[CONFIG.COLUMNS.equipe] || ""}`,
-              `Preço Final: ${row[CONFIG.COLUMNS.precoFinal] || ""}`,
-              `Margem: ${row[CONFIG.COLUMNS.margem] || ""}`,
-              `Valor Parceiro: ${row[CONFIG.COLUMNS.parceiro] || ""}`
-            ].join("\n");
+          const txt = btn.getAttribute("data-copy-summary")
+            .replace(/&quot;/g,'"')
+            .replace(/&#39;/g,"'")
+            .replace(/&lt;/g,"<")
+            .replace(/&gt;/g,">")
+            .replace(/&amp;/g,"&");
 
+          try{
             await navigator.clipboard.writeText(txt);
             const old = btn.textContent;
             btn.textContent = "✅ Resumo copiado!";
@@ -968,11 +1363,11 @@
       const ok = (msg) => {
         dot.classList.remove("bad");
         dot.classList.add("ok");
-        text.textContent = msg || "Conectado (ao vivo)";
+        text.textContent = msg || "Conectado";
       };
 
-      if (!CONFIG.DASH_CSV_URL || CONFIG.DASH_CSV_URL.includes("COLE_AQUI")){
-        fail("Configure o CSV do DASHBOARD_BASE");
+      if (!CONFIG.VIEW_CSV_URL){
+        fail("Configure o CSV do VIEW PORTAL");
         return;
       }
 
@@ -980,15 +1375,14 @@
         dot.classList.remove("ok","bad");
         text.textContent = "Conectando…";
 
-        const res = await fetch(CONFIG.DASH_CSV_URL, { cache:"no-store" });
+        const res = await fetch(CONFIG.VIEW_CSV_URL, { cache:"no-store" });
         if (!res.ok) throw new Error("HTTP " + res.status);
 
         const csv = await res.text();
         const data = parseCSV(csv);
+        ALL = Array.isArray(data) ? data.map(normalizeRow) : [];
 
-        ALL = Array.isArray(data) ? data : [];
-        ok("Conectado (DASHBOARD_BASE)");
-
+        ok("Conectado (VIEW PORTAL)");
         fillFilterOptions();
         applyFilters();
       }catch(err){
@@ -1020,9 +1414,10 @@
       $("#btnHelp").addEventListener("click", () => {
         alert(
 `Como conectar:
-1) Publique a aba DASHBOARD_BASE como CSV.
-2) Cole o link em CONFIG.DASH_CSV_URL.
-3) Se quiser, atualize o link do formulário em CONFIG.FORM_URL.`
+1) Publique a aba VIEW PORTAL.
+2) Use o link CSV no CONFIG.VIEW_CSV_URL.
+3) Coloque seu link real do Google Forms em CONFIG.FORM_URL.
+4) Se os nomes das colunas estiverem diferentes, ajuste em CONFIG.COLUMNS.`
         );
       });
 
