@@ -800,7 +800,7 @@
   <script>
     const CONFIG = {
   VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1157840584&single=true&output=csv",
-  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
+  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSfWZ0LGzQg0u6lJHmM-NrfSEoi-VJbw9CjHenRnqSz7kBsEKg/viewform?usp=header",
 
   COLUMNS: {
     id: ["ID_SERVICO","ID","ID DE CÁLCULO","ID_CALCULO","ID_CALC"],
@@ -1131,7 +1131,7 @@
       $("#kpiParceiro").textContent = fmtBRL(totalParceiro);
       $("#kpiUpdated").textContent = new Date().toLocaleString("pt-BR");
 
-      $("#btnOpenFormTop").href = CONFIG.FORM_URL;
+      $("#btnOpenFormTop").href = CONFIG.FORM_URL:"https://forms.gle/RSxKWq4dmJ5Fdw8aA";
 
       VIEW.forEach(r => {
         const custoTotalCalculado = isFinite(r.custoTotal)
@@ -1146,7 +1146,7 @@
         card.className = "job";
 
         const resumo = buildCopyText(r);
-        const acceptLink = CONFIG.FORM_URL && !CONFIG.FORM_URL.includes("SEU_FORM_ID")
+        const acceptLink = CONFIG.FORM_URL && !CONFIG.FORM_URL.includes(""https://forms.gle/RSxKWq4dmJ5Fdw8aA"")
           ? `${CONFIG.FORM_URL}?usp=pp_url`
           : "#";
 
