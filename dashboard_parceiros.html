@@ -692,7 +692,7 @@
           <p class="s">Base operacional</p>
         </div>
         <div class="kpi">
-          <p class="t">Margem / lucro</p>
+          <p class="t">Margem / Lucro Base</p>
           <p class="v" id="kpiMargem">—</p>
           <p class="s">Somatório do lucro</p>
         </div>
@@ -799,48 +799,48 @@
 
   <script>
     const CONFIG = {
-      VIEW_CSV_URL: "VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1157840584&single=true&output=csv",",
-      FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
+  VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1157840584&single=true&output=csv",
+  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
 
-      COLUMNS: {
-        id: ["ID_SERVICO","ID","ID DE CÁLCULO","ID_CALCULO","ID_CALC"],
-        data: ["DATA","DATA_ORCAMENTO","DATA/HORA","DATA_HORA"],
-        cliente: ["CLIENTE","NOME_CLIENTE","NOME COMPLETO DO CLIENTE","NOME DO CLIENTE"],
-        telefone: ["TELEFONE","TELEFONE_CLIENTE","WHATSAPP","TELEFONE DO CLIENTE (WHATSAPP)"],
-        endereco: ["ENDERECO","ENDEREÇO","ENDERECO_SERVICO","ENDEREÇO DO SERVIÇO"],
-        bairro: ["BAIRRO"],
-        categoria: ["CATEGORIA","CATEGORIA_SERVICO","CATEGORIA DO SERVIÇO SOLICITADO"],
-        descricao: ["DESCRICAO","DESCRIÇÃO","DESCRICAO_DETALHADA","DESCRIÇÃO DETALHADA DO SERVIÇO"],
-        area: ["AREA","ÁREA","AREA_M2","ÁREA APROXIMADA (M²)"],
-        urgencia: ["URGENCIA","URGÊNCIA"],
-        status: ["STATUS"],
+  COLUMNS: {
+    id: ["ID_SERVICO","ID","ID DE CÁLCULO","ID_CALCULO","ID_CALC"],
+    data: ["DATA","DATA_ORCAMENTO","DATA/HORA","DATA_HORA"],
+    cliente: ["CLIENTE","NOME_CLIENTE","NOME COMPLETO DO CLIENTE","NOME DO CLIENTE"],
+    telefone: ["TELEFONE","TELEFONE_CLIENTE","WHATSAPP","TELEFONE DO CLIENTE (WHATSAPP)"],
+    endereco: ["ENDERECO","ENDEREÇO","ENDERECO_SERVICO","ENDEREÇO DO SERVIÇO"],
+    bairro: ["BAIRRO"],
+    categoria: ["CATEGORIA","CATEGORIA_SERVICO","CATEGORIA DO SERVIÇO SOLICITADO"],
+    descricao: ["DESCRICAO","DESCRIÇÃO","DESCRICAO_DETALHADA","DESCRIÇÃO DETALHADA DO SERVIÇO"],
+    area: ["AREA","ÁREA","AREA_M2","ÁREA APROXIMADA (M²)"],
+    urgencia: ["URGENCIA","URGÊNCIA"],
+    status: ["STATUS"],
 
-        qtdLider: ["QTD_LIDER","QTD_LÍDER","QUANTIDADE_LIDER","LIDER"],
-        qtdJardineiro: ["QTD_JARDINEIRO","QUANTIDADE DE JARDINEIRO NECESSARIO?","QTD JARDINEIRO"],
-        qtdAuxiliar: ["QTD_AUXILIAR","QUANTIDADE DE AUXILIAR NECESSARIO?","QTD AUXILIAR"],
-        horas: ["HORAS","HORAS_EXECUTADAS","HORAS DE SERVIÇO (EX. 3,  6, 12)","HORAS_ESTIMADAS","HORAS DE SERVIÇO"],
-        equipe: ["EQUIPE_TOTAL","TOTAL_EQUIPE"],
+    qtdLider: ["QTD_LIDER","QTD_LÍDER","QUANTIDADE_LIDER","LIDER"],
+    qtdJardineiro: ["QTD_JARDINEIRO","QUANTIDADE DE JARDINEIRO NECESSARIO?","QTD JARDINEIRO"],
+    qtdAuxiliar: ["QTD_AUXILIAR","QUANTIDADE DE AUXILIAR NECESSARIO?","QTD AUXILIAR"],
+    horas: ["HORAS","HORAS_EXECUTADAS","HORAS DE SERVIÇO (EX. 3,  6, 12)","HORAS_ESTIMADAS","HORAS DE SERVIÇO"],
+    equipe: ["EQUIPE_TOTAL","TOTAL_EQUIPE"],
 
-        custoMao: ["CUSTO_MAO_OBRA","CUSTO MÃO DE OBRA","CUSTO TOTAL MÃO DE OBRA"],
-        custoRisco: ["CUSTO_RISCOS","CUSTO RISCOS","CUSTO DE RISCOS"],
-        custoOperacional: ["CUSTO_OPERACIONAL","CUSTO OPERACIONAL TOTAL","CUSTO_OPERACIONAL_TOTAL","CUSTO OPERACIONAL TOTAL ( CALCULADORA )"],
-        gasolina: ["GASOLINA","CUSTO_GASOLINA"],
-        lixo: ["RETIRADA_LIXO","RETIRADA DE LIXO","LIXO"],
-        custoTotal: ["CUSTO_TOTAL","CUSTO TOTAL","CUSTO_OPERACIONAL_TOTAL_FINAL"],
+    custoMao: ["CUSTO_MAO_OBRA","CUSTO MÃO DE OBRA","CUSTO TOTAL MÃO DE OBRA"],
+    custoRisco: ["CUSTO_RISCOS","CUSTO RISCOS","CUSTO DE RISCOS"],
+    custoOperacional: ["CUSTO_OPERACIONAL","CUSTO OPERACIONAL TOTAL","CUSTO_OPERACIONAL_TOTAL","CUSTO OPERACIONAL TOTAL ( CALCULADORA )"],
+    gasolina: ["GASOLINA","CUSTO_GASOLINA"],
+    lixo: ["RETIRADA_LIXO","RETIRADA DE LIXO","LIXO"],
+    custoTotal: ["CUSTO_TOTAL","CUSTO TOTAL","CUSTO_OPERACIONAL_TOTAL_FINAL"],
 
-        precoFinal: ["PRECO_FINAL","PREÇO FINAL","PREÇO FINAL (R$)"],
-        imposto: ["IMPOSTO","VALOR_IMPOSTO"],
-        comissao: ["COMISSAO_IND","COMISSAO_IND","COMISSÃO INDICAÇÃO","COMISSÃO INDICAÇÃO %","COMISSÃO"],
-        margem: ["MARGEM_LUCRO_SERVICO","MARGEM","MARGEM LUCRO %","MARGEM LUCRO"],
-        lucroJS: ["LUCRO_JS","LUCRO JS","Lucro Base","LUCRO BASE"],,
-        valorParceiro: ["VALOR_PARCEIRO","GANHO_PARCEIRO","VALOR PARCEIRO"],
+    precoFinal: ["PRECO_FINAL","PREÇO FINAL","PREÇO FINAL (R$)"],
+    imposto: ["IMPOSTO","VALOR_IMPOSTO"],
+    comissao: ["COMISSAO_IND","COMISSÃO INDICAÇÃO","COMISSÃO INDICAÇÃO %","COMISSÃO"],
+    margem: ["MARGEM_LUCRO_SERVICO","MARGEM","MARGEM LUCRO %","MARGEM LUCRO"],
+    lucroJS: ["LUCRO_JS","LUCRO JS","Lucro Base","LUCRO BASE"],
+    valorParceiro: ["VALOR_PARCEIRO","GANHO_PARCEIRO","VALOR PARCEIRO","VR_PARCEIRO"],
 
-        tipoParceria: ["TIPO_PARCERIA","PARCERIA","TIPO DE PARCERIA"],
-        proximaAcao: ["PROXIMA_ACAO","PRÓXIMA AÇÃO","PRÓXIMA_ACAO"]
-      },
+    tipoParceria: ["TIPO_PARCERIA","PARCERIA","TIPO DE PARCERIA","MODELO DE PARCERIA"],
+    proximaAcao: ["PROXIMA_ACAO","PRÓXIMA AÇÃO","PRÓXIMA_ACAO","PROXIMA ACAO"]
+  },
 
-      AUTO_REFRESH_MS: 60000
-    };
+  AUTO_REFRESH_MS: 60000
+};
 
     const $ = (sel) => document.querySelector(sel);
     const norm = (s) => String(s ?? "").trim();
@@ -1098,7 +1098,7 @@
         `Imposto: ${isFinite(r.imposto) ? fmtBRL(r.imposto) : ""}`,
         `Comissão: ${isFinite(r.comissao) ? fmtBRL(r.comissao) : (r.comissao || "")}`,
         `Margem: ${fmtPercent(r.margem)}`,
-        `Lucro JS: ${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : ""}`,
+        `Lucro Base: ${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : ""}`,
         `Valor Parceiro: ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : ""}`,
         `Tipo de Parceria: ${r.tipoParceria || ""}`,
         `Próxima ação: ${r.proximaAcao || ""}`
