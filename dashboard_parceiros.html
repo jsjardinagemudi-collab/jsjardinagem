@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>View Portal • Portal do Parceiro • JS Jardinagem</title>
-  <meta name="description" content="Painel para parceiros analisarem e aceitarem serviços da JS Jardinagem, com dados operacionais e financeiros." />
+  <title>Portal do Jardineiro • JS Jardinagem</title>
+  <meta
+    name="description"
+    content="Central do Portal do Jardineiro da JS Jardinagem com calculadora, formulários, dashboards e serviços disponíveis."
+  />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -23,7 +26,9 @@
       --good:#027a48;
       --bad:#b42318;
       --soft:#f8fafc;
+      --chip:#eef4ff;
       --shadow:0 10px 26px rgba(0,0,0,.06);
+      --radius:18px;
     }
 
     *{box-sizing:border-box}
@@ -35,23 +40,24 @@
     }
 
     a{text-decoration:none;color:inherit}
-    .wrap{width:min(1180px,92vw);margin:auto}
+    .wrap{width:min(1220px,92vw);margin:auto}
 
     .topbar{
-      background:var(--pri);
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
       text-align:center;
-      padding:8px 10px;
+      padding:9px 10px;
       font-size:14px;
       font-weight:900;
+      letter-spacing:.2px;
     }
 
     header{
       position:sticky;
       top:0;
-      z-index:50;
-      background:#ffffffd9;
-      backdrop-filter:saturate(180%) blur(8px);
+      z-index:60;
+      background:#ffffffde;
+      backdrop-filter:saturate(180%) blur(10px);
       border-bottom:1px solid #eef0ee;
     }
 
@@ -59,37 +65,56 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:18px;
       padding:14px 0;
-      gap:16px;
     }
 
     .brand{
       display:flex;
-      gap:12px;
       align-items:center;
+      gap:12px;
       min-width:0;
     }
 
     .brand img{
       height:56px;
-      border-radius:8px;
+      width:auto;
+      border-radius:10px;
       box-shadow:0 2px 8px rgba(0,0,0,.08);
       background:#fff;
+      object-fit:contain;
     }
 
-    .brand strong{
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-text strong{
+      display:block;
+      color:var(--pri);
       font-size:18px;
       font-weight:1000;
-      color:var(--pri);
+      line-height:1.05;
       text-transform:uppercase;
-      line-height:1.1;
+    }
+
+    .brand-text span{
+      display:block;
+      color:#475467;
+      font-size:12px;
+      font-weight:900;
+      margin-top:3px;
+      letter-spacing:.2px;
     }
 
     .links{
       display:flex;
       gap:18px;
-      font-weight:800;
+      align-items:center;
+      font-weight:900;
+      flex-wrap:wrap;
     }
+
     .links a:hover{color:var(--pri)}
 
     .btn{
@@ -100,15 +125,15 @@
       padding:12px 16px;
       font-weight:900;
       cursor:pointer;
-      transition:.25s ease;
+      transition:.22s ease;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:8px;
       white-space:nowrap;
     }
-    .btn:hover{background:#f3f5f7}
 
+    .btn:hover{background:#f3f5f7}
     .btn-primary{
       background:var(--pri);
       border-color:var(--pri);
@@ -117,12 +142,6 @@
     .btn-primary:hover{
       background:#0d3270;
       border-color:#0d3270;
-    }
-
-    .btn-ghost{
-      background:transparent;
-      border-color:#cfd8dc;
-      color:var(--pri);
     }
 
     .btn-success{
@@ -135,32 +154,47 @@
       background:linear-gradient(120deg,var(--pri2),#0f9b57);
     }
 
-    section{padding:42px 0}
+    .btn-ghost{
+      background:transparent;
+      border-color:#cfd8dc;
+      color:var(--pri);
+    }
+
+    section{padding:40px 0}
 
     .hero{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
-      padding:54px 0;
+      padding:56px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+      gap:20px;
+      align-items:stretch;
     }
 
     .hero h1{
       margin:0 0 10px;
-      font-size:clamp(28px,3.8vw,42px);
-      letter-spacing:.2px;
+      font-size:clamp(28px,3.8vw,44px);
+      line-height:1.05;
+      letter-spacing:.15px;
     }
 
     .hero p{
       margin:0;
       opacity:.96;
-      max-width:940px;
-      line-height:1.6;
+      max-width:900px;
+      line-height:1.65;
+      font-weight:700;
     }
 
     .pill-row{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:16px;
+      margin-top:18px;
     }
 
     .pill{
@@ -168,28 +202,144 @@
       align-items:center;
       gap:8px;
       padding:8px 12px;
-      border:1px solid rgba(255,255,255,.28);
+      border:1px solid rgba(255,255,255,.25);
       border-radius:999px;
       background:rgba(255,255,255,.12);
       font-weight:900;
       font-size:13px;
     }
 
-    .note{
+    .hero-note{
       margin-top:16px;
       background:rgba(255,255,255,.14);
       border:1px dashed rgba(255,255,255,.28);
       border-radius:16px;
       padding:14px;
-      color:#fff;
       line-height:1.55;
+      font-weight:700;
     }
 
-    .kpis{
+    .hero-card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 20px 40px rgba(0,0,0,.14);
+      align-self:start;
+    }
+
+    .hero-card h3{
+      margin:0 0 10px;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:.3px;
+      font-weight:1000;
+    }
+
+    .hero-card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.65;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .grid-tools{
       display:grid;
-      grid-template-columns:repeat(5,1fr);
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .card-head{
+      padding:15px 16px;
+      border-bottom:1px solid var(--line);
+      background:#fbfcfd;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .card-head h2{
+      margin:0;
+      font-size:14px;
+      font-weight:1000;
+      color:var(--pri);
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .card-body{
+      padding:16px;
+    }
+
+    .tool{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      height:100%;
+    }
+
+    .tool .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:26px;
+      background:linear-gradient(135deg,#eef4ff,#e7f8ee);
+    }
+
+    .tool h3{
+      margin:0;
+      font-size:18px;
+      font-weight:1000;
+      color:var(--pri);
+      line-height:1.15;
+    }
+
+    .tool p{
+      margin:0;
+      color:#475467;
+      line-height:1.6;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .tool .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid #dbe5ec;
+      background:var(--chip);
+      color:#344054;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .tool .actions{
+      display:grid;
+      gap:10px;
+      margin-top:auto;
+    }
+
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
       gap:14px;
-      margin-top:-26px;
     }
 
     .kpi{
@@ -200,14 +350,33 @@
       padding:16px;
       min-height:94px;
     }
-    .kpi .t{margin:0 0 6px;color:var(--muted);font-weight:900;font-size:12px}
-    .kpi .v{margin:0;font-weight:1000;font-size:20px;color:var(--pri)}
-    .kpi .s{margin:8px 0 0;color:var(--muted);font-weight:700;font-size:12px}
 
-    .dash{
-      margin-top:18px;
+    .kpi .t{
+      margin:0 0 6px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .kpi .v{
+      margin:0;
+      font-weight:1000;
+      font-size:22px;
+      color:var(--pri);
+    }
+
+    .kpi .s{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-weight:800;
+      font-size:12px;
+    }
+
+    .portal-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);
+      grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);
       gap:18px;
       align-items:start;
     }
@@ -229,6 +398,7 @@
       border-bottom:1px solid var(--line);
       background:#fbfcfd;
     }
+
     .panel-head h2{
       margin:0;
       font-size:14px;
@@ -237,6 +407,7 @@
       letter-spacing:.2px;
       text-transform:uppercase;
     }
+
     .panel-head .right{
       display:flex;
       gap:10px;
@@ -257,7 +428,13 @@
       font-weight:900;
       font-size:12px;
     }
-    .dot{width:10px;height:10px;border-radius:99px;background:#f59f00}
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:99px;
+      background:#f59f00;
+    }
     .dot.ok{background:var(--good)}
     .dot.bad{background:var(--bad)}
 
@@ -280,6 +457,7 @@
       background:#fff;
       font-weight:800;
     }
+
     .field input,.field select{
       width:100%;
       border:0;
@@ -288,6 +466,7 @@
       font-weight:800;
       color:var(--ink);
     }
+
     .field input::placeholder{color:#98a2b3}
 
     .cards{
@@ -302,7 +481,7 @@
       box-shadow:0 8px 18px rgba(0,0,0,.05);
       padding:14px;
       display:grid;
-      grid-template-columns:minmax(0,1fr) 290px;
+      grid-template-columns:minmax(0,1fr) 300px;
       gap:14px;
       align-items:start;
       transition:.2s ease;
@@ -356,24 +535,18 @@
     .b-pri{border-color:#cfe0f5;background:#eff8ff;color:var(--pri)}
     .b-id{border-color:#e7ecef;background:#f9fafb;color:#475467}
 
-    .grid2{
-      margin-top:12px;
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-    }
-
-    .grid3{
+    .grid2,.grid3{
       margin-top:10px;
       display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
       gap:10px;
     }
+    .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
 
     .kv{
       border:1px solid var(--line);
       border-radius:14px;
-      padding:10px 10px;
+      padding:10px;
       background:#fbfcfd;
       min-height:72px;
     }
@@ -457,7 +630,7 @@
     .price{
       margin:0;
       color:var(--pri);
-      font-size:26px;
+      font-size:28px;
       line-height:1.1;
       font-weight:1000;
     }
@@ -506,9 +679,11 @@
       font-weight:1000;
       cursor:pointer;
       transition:.2s ease;
+      text-align:center;
     }
+
     .btn-take:hover{filter:brightness(.98); transform:translateY(-1px)}
-    .btn-take:active{transform:translateY(0px)}
+    .btn-take:active{transform:translateY(0)}
 
     .btn-mini{
       border:1px solid #dfe3df;
@@ -518,6 +693,7 @@
       font-weight:900;
       cursor:pointer;
     }
+
     .btn-mini:hover{background:#f3f5f7}
 
     .empty{
@@ -585,6 +761,85 @@
       word-break:break-all;
     }
 
+    .embed-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .embed-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .embed-card .head{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      background:#fbfcfd;
+    }
+
+    .embed-card .head h3{
+      margin:0;
+      color:var(--pri);
+      font-size:14px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .iframe-wrap{
+      position:relative;
+      min-height:520px;
+      background:#fff;
+    }
+
+    .iframe-wrap iframe{
+      width:100%;
+      height:520px;
+      border:0;
+      display:block;
+      background:#fff;
+    }
+
+    .embed-actions{
+      padding:14px 16px;
+      border-top:1px solid var(--line);
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:24px;
+      color:var(--pri);
+      font-weight:1000;
+      line-height:1.1;
+    }
+
+    .section-title p{
+      margin:0;
+      color:#475467;
+      font-weight:700;
+      line-height:1.6;
+      max-width:840px;
+    }
+
     footer{
       background:#0a1a12;
       color:#cfe8da;
@@ -597,33 +852,49 @@
       grid-template-columns:2fr 1fr;
       gap:20px;
     }
+
     .foot a{color:#cfe8da}
 
-    @media(max-width:1080px){
-      .kpis{grid-template-columns:repeat(2,1fr); margin-top:0}
-      .dash{grid-template-columns:1fr}
-      .side{position:relative; top:auto}
-      .filters{grid-template-columns:1fr 1fr}
+    @media(max-width:1100px){
+      .grid-tools,
+      .kpi-grid,
+      .embed-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .hero-grid,
+      .portal-grid{
+        grid-template-columns:1fr;
+      }
+      .side,.cta{position:relative;top:auto}
       .job{grid-template-columns:1fr}
-      .cta{position:relative; top:auto}
       .links{display:none}
       .foot{grid-template-columns:1fr}
+      .filters{grid-template-columns:1fr 1fr}
     }
 
-    @media(max-width:720px){
-      .filters{grid-template-columns:1fr}
-      .grid2,.grid3{grid-template-columns:1fr}
-      .kpis{grid-template-columns:1fr}
-      .brand strong{font-size:15px}
+    @media(max-width:760px){
+      .grid-tools,
+      .kpi-grid,
+      .embed-grid{
+        grid-template-columns:1fr;
+      }
+      .filters,
+      .grid2,
+      .grid3{
+        grid-template-columns:1fr;
+      }
       .brand img{height:48px}
+      .brand-text strong{font-size:15px}
+      .section-title{display:block}
+      .section-title p{margin-top:8px}
     }
   </style>
 </head>
 
 <body>
   <script>
-    (function(){
-      var senha = prompt("Área exclusiva para parceiros. Digite a senha:");
+    (function () {
+      var senha = prompt("Área exclusiva do Portal do Jardineiro. Digite a senha:");
       if (senha !== "JS2026") {
         alert("Senha incorreta.");
         window.location.href = "index.html";
@@ -632,20 +903,23 @@
   </script>
 
   <div class="topbar">
-    Portal do Parceiro JS • View Portal de Serviços
+    Portal do Jardineiro JS • Central de orçamento, operação e aceite de serviços
   </div>
 
   <header>
     <div class="wrap nav">
       <a class="brand" href="index.html">
         <img src="logo branca limpa.png" alt="JS Jardinagem" />
-        <strong>JS JARDINAGEM</strong>
+        <div class="brand-text">
+          <strong>JS Jardinagem</strong>
+          <span>Portal do Jardineiro • Operação digital</span>
+        </div>
       </a>
 
       <nav class="links">
         <a href="index.html">Início</a>
         <a href="carreira.html">Carreira</a>
-         <a href="ecovida.html">EcoVida</a>
+        <a href="ecovida.html">EcoVida</a>
         <a href="parceiros.html">Portal</a>
       </nav>
 
@@ -654,70 +928,200 @@
   </header>
 
   <section class="hero">
-    <div class="wrap">
-      <h1>View Portal do Parceiro</h1>
-      <p>
-        Analise cada serviço com visão operacional e financeira antes de aceitar. Veja cliente, local, equipe, custos, margem, lucro JS e o valor final que o parceiro pode receber.
-      </p>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Central do Portal do Jardineiro</h1>
+        <p>
+          Esta página reúne as novas ferramentas da JS Jardinagem para orçamento, atualização, execução,
+          acompanhamento operacional e leitura dos serviços disponíveis para parceiros.
+        </p>
 
-      <div class="pill-row">
-        <a href="parceiros.html" class="pill">🏠 Portal</a>
-        <a href="#lista" class="pill">📋 Serviços disponíveis</a>
-        <span class="pill">💰 Valor parceiro destacado</span>
+        <div class="pill-row">
+          <a class="pill" href="#ferramentas">🧰 Ferramentas</a>
+          <a class="pill" href="#servicos">📋 Serviços disponíveis</a>
+          <a class="pill" href="#paineis">📊 Painéis JS</a>
+          <a class="pill" href="#integracoes">🔗 Integrações</a>
+        </div>
+
+        <div class="hero-note">
+          <strong>Fluxo atual da operação:</strong><br>
+          Calculadora → Novo orçamento → Atualização → Registro de execução → Banco de dados →
+          Dashboards → Portal do Jardineiro.
+        </div>
       </div>
 
-      <div class="note">
-        <strong>Automático:</strong> este painel lê a aba <strong>VIEW PORTAL</strong> publicada em CSV e atualiza sozinho.
+      <div class="hero-card">
+        <h3>Leitura rápida da nova estrutura</h3>
+        <ul>
+          <li><strong>Calculadora App:</strong> cria o pacote técnico e financeiro.</li>
+          <li><strong>Novo orçamento:</strong> registra o serviço inicial no sistema.</li>
+          <li><strong>Atualização:</strong> gera nova versão do orçamento com histórico.</li>
+          <li><strong>Execução:</strong> registra avanço operacional do serviço.</li>
+          <li><strong>Dashboards:</strong> mostram disponível, operacional e controle interno.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section id="lista">
+  <section id="ferramentas">
     <div class="wrap">
-
-      <div class="kpis">
-        <div class="kpi">
-          <p class="t">Serviços visíveis</p>
-          <p class="v" id="kpiServicos">—</p>
-          <p class="s">Atualizado: <span id="kpiUpdated">—</span></p>
-        </div>
-        <div class="kpi">
-          <p class="t">Preço final total</p>
-          <p class="v" id="kpiFaturamento">—</p>
-          <p class="s">Somatório visível</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Custo total</p>
-          <p class="v" id="kpiCusto">—</p>
-          <p class="s">Base operacional</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Margem / Lucro Base</p>
-          <p class="v" id="kpiMargem">—</p>
-          <p class="s">Somatório do lucro</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Valor parceiro</p>
-          <p class="v" id="kpiParceiro">—</p>
-          <p class="s">Potencial do parceiro</p>
+      <div class="section-title">
+        <div>
+          <h2>Ferramentas principais</h2>
+          <p>
+            Aqui estão os atalhos principais do novo fluxo de trabalho do Portal do Jardineiro.
+          </p>
         </div>
       </div>
 
-      <div class="dash">
+      <div class="grid-tools">
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">🧮</div>
+            <h3>Nova Calculadora App</h3>
+            <p>
+              Use a calculadora para gerar o pacote completo do orçamento, incluindo custos, lucro,
+              horas, equipe e lógica de parceria.
+            </p>
+            <div class="chips">
+              <span class="chip">Pacote técnico</span>
+              <span class="chip">Versão manual</span>
+              <span class="chip">Base do orçamento</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec" target="_blank" rel="noopener">Abrir calculadora</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">📝</div>
+            <h3>Novo Orçamento</h3>
+            <p>
+              Formulário principal para criar um serviço novo a partir do pacote da calculadora,
+              com cliente, endereço, data e dados do serviço.
+            </p>
+            <div class="chips">
+              <span class="chip">Entrada oficial</span>
+              <span class="chip">Cliente</span>
+              <span class="chip">Pacote</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header" target="_blank" rel="noopener">Abrir novo orçamento</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">🔁</div>
+            <h3>Atualização de Orçamento</h3>
+            <p>
+              Use quando o serviço precisar de nova versão. Mantém o mesmo ID de cálculo e cria
+              histórico de revisão sem apagar a versão anterior.
+            </p>
+            <div class="chips">
+              <span class="chip">Versão 2+</span>
+              <span class="chip">Histórico</span>
+              <span class="chip">Revisão</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header" target="_blank" rel="noopener">Abrir atualização</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">✅</div>
+            <h3>Registro de Execução</h3>
+            <p>
+              Formulário para registrar a execução operacional do serviço em campo, acompanhar avanço
+              e alimentar os controles da JS.
+            </p>
+            <div class="chips">
+              <span class="chip">Campo</span>
+              <span class="chip">Execução</span>
+              <span class="chip">Operação</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSdwtShpcpk4RR8R2_OKSh6J2kyizSYLeSQG3C7oNr7jReoJ3g/viewform?usp=header" target="_blank" rel="noopener">Abrir registro</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="paineis">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Painéis e base da JS</h2>
+          <p>
+            A planilha central da JS concentra o banco de dados, dashboards, calendário, apontamento
+            de equipe e painel financeiro.
+          </p>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <p class="t">Base oficial</p>
+          <p class="v">1 planilha</p>
+          <p class="s">Banco, dashboards e operação</p>
+        </div>
+        <div class="kpi">
+          <p class="t">Fluxo</p>
+          <p class="v">4 entradas</p>
+          <p class="s">Calculadora, novo, atualização e execução</p>
+        </div>
+        <div class="kpi">
+          <p class="t">Versões</p>
+          <p class="v">Histórico</p>
+          <p class="s">Serviço atual e histórico separados</p>
+        </div>
+        <div class="kpi">
+          <p class="t">Operação</p>
+          <p class="v">Ao vivo</p>
+          <p class="s">Portal e dashboards conectados</p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir banco de dados e dashboards</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Serviços disponíveis para parceiros</h2>
+          <p>
+            Painel filtrável para leitura rápida do parceiro: bairro, equipe, horas, descrição,
+            valor e tipo de parceria.
+          </p>
+        </div>
+      </div>
+
+      <div class="portal-grid">
         <div class="panel">
           <div class="panel-head">
-            <h2>Serviços para análise e aceite</h2>
+            <h2>View Portal • serviços para análise e aceite</h2>
             <div class="right">
               <span class="conn"><span id="connDot" class="dot"></span><span id="connText">Conectando…</span></span>
               <button class="btn" id="btnRefresh" type="button">⟳ Atualizar</button>
-              <a class="btn btn-primary" id="btnOpenFormTop" href="#" target="_blank" rel="noopener">📥 Abrir Form</a>
+              <a class="btn btn-primary" id="btnOpenFormTop" href="#" target="_blank" rel="noopener">📥 Abrir formulário</a>
             </div>
           </div>
 
           <div class="filters">
             <div class="field">
               <span>🔎</span>
-              <input id="qSearch" placeholder="Buscar: ID, bairro, cliente, categoria..." />
+              <input id="qSearch" placeholder="Buscar por ID, bairro, cliente, categoria..." />
             </div>
 
             <div class="field">
@@ -748,16 +1152,17 @@
 
         <aside class="side">
           <div class="box">
-            <h3>Leitura rápida do parceiro</h3>
+            <h3>Leitura do parceiro</h3>
             <p>
-              O objetivo deste painel é ajudar o parceiro a tomar decisão rápida e consciente sobre cada serviço.
+              Use este painel para decidir se o serviço faz sentido para sua equipe e sua capacidade
+              de execução.
             </p>
 
             <ul>
-              <li>Leia primeiro o <strong>tipo de serviço</strong>, <strong>bairro</strong> e <strong>status</strong>.</li>
-              <li>Confira <strong>equipe, horas e urgência</strong>.</li>
-              <li>Depois olhe o bloco financeiro: <strong>preço final, custo, imposto, margem e valor parceiro</strong>.</li>
-              <li>Se fizer sentido, clique em <strong>Aceitar serviço</strong>.</li>
+              <li>Leia <strong>bairro, descrição e status</strong>.</li>
+              <li>Confira <strong>qtd líder, jardineiro, auxiliar, horas e equipe total</strong>.</li>
+              <li>Depois olhe <strong>preço final, lucro JS e valor parceiro</strong>.</li>
+              <li>Se fizer sentido, clique em <strong>Abrir formulário</strong> para seguir o fluxo.</li>
             </ul>
 
             <div class="row">
@@ -766,18 +1171,68 @@
             </div>
 
             <p style="margin-top:12px">
-              <strong>Fonte:</strong><br>
-              <code>SERVICOS_DISPONIVEIS (CSV)</code>
+              <strong>Fonte atual:</strong><br>
+              <code>DASH_SERVICOS_DISPONIVEIS_JS (CSV publicado)</code>
             </p>
 
             <p style="margin-top:12px">
-              <strong>Aceite recomendado:</strong><br>
-              use o ID do serviço ao responder no formulário.
+              <strong>Prática recomendada:</strong><br>
+              sempre use o <code>ID_SHORT</code> e o <code>ID_SERVICO</code> ao interagir com a operação.
             </p>
           </div>
         </aside>
       </div>
+    </div>
+  </section>
 
+  <section id="integracoes">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Integrações rápidas</h2>
+          <p>
+            Área para ligar os painéis certos no site da JS e no Portal do Jardineiro sem expor dados internos.
+          </p>
+        </div>
+      </div>
+
+      <div class="embed-grid">
+        <div class="embed-card">
+          <div class="head">
+            <h3>Painel público do Portal</h3>
+            <span class="chip">Recomendado para parceiros</span>
+          </div>
+          <div class="iframe-wrap">
+            <iframe
+              title="Serviços disponíveis"
+              src="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing"
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="embed-actions">
+            <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir planilha</a>
+            <button class="btn" type="button" data-copy-link="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing">Copiar link</button>
+          </div>
+        </div>
+
+        <div class="embed-card">
+          <div class="head">
+            <h3>App da Calculadora</h3>
+            <span class="chip">Entrada de orçamento</span>
+          </div>
+          <div class="iframe-wrap">
+            <iframe
+              title="Calculadora JS"
+              src="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec"
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="embed-actions">
+            <a class="btn btn-success" href="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec" target="_blank" rel="noopener">Abrir app</a>
+            <button class="btn" type="button" data-copy-link="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec">Copiar link</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -786,7 +1241,7 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p style="opacity:.8;margin:8px 0 0">
-          Painel interno para análise e aceite de serviços por parceiros da operação.
+          Portal do Jardineiro • Central atualizada com calculadora, formulários, execução e dashboards da JS.
         </p>
       </div>
       <div>
@@ -799,51 +1254,37 @@
 
   <script>
     const CONFIG = {
-  VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1157840584&single=true&output=csv",
-  FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSfWZ0LGzQg0u6lJHmM-NrfSEoi-VJbw9CjHenRnqSz7kBsEKg/viewform?usp=header",
+      VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1157840584&single=true&output=csv",
+      FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
+      AUTO_REFRESH_MS: 60000,
 
-  COLUMNS: {
-    id: ["ID_SERVICO","ID","ID DE CÁLCULO","ID_CALCULO","ID_CALC"],
-    data: ["DATA","DATA_ORCAMENTO","DATA/HORA","DATA_HORA"],
-    cliente: ["CLIENTE","NOME_CLIENTE","NOME COMPLETO DO CLIENTE","NOME DO CLIENTE"],
-    telefone: ["TELEFONE","TELEFONE_CLIENTE","WHATSAPP","TELEFONE DO CLIENTE (WHATSAPP)"],
-    endereco: ["ENDERECO","ENDEREÇO","ENDERECO_SERVICO","ENDEREÇO DO SERVIÇO"],
-    bairro: ["BAIRRO"],
-    categoria: ["CATEGORIA","CATEGORIA_SERVICO","CATEGORIA DO SERVIÇO SOLICITADO"],
-    descricao: ["DESCRICAO","DESCRIÇÃO","DESCRICAO_DETALHADA","DESCRIÇÃO DETALHADA DO SERVIÇO"],
-    area: ["AREA","ÁREA","AREA_M2","ÁREA APROXIMADA (M²)"],
-    urgencia: ["URGENCIA","URGÊNCIA"],
-    status: ["STATUS"],
-
-    qtdLider: ["QTD_LIDER","QTD_LÍDER","QUANTIDADE_LIDER","LIDER"],
-    qtdJardineiro: ["QTD_JARDINEIRO","QUANTIDADE DE JARDINEIRO NECESSARIO?","QTD JARDINEIRO"],
-    qtdAuxiliar: ["QTD_AUXILIAR","QUANTIDADE DE AUXILIAR NECESSARIO?","QTD AUXILIAR"],
-    horas: ["HORAS","HORAS_EXECUTADAS","HORAS DE SERVIÇO (EX. 3,  6, 12)","HORAS_ESTIMADAS","HORAS DE SERVIÇO"],
-    equipe: ["EQUIPE_TOTAL","TOTAL_EQUIPE"],
-
-    custoMao: ["CUSTO_MAO_OBRA","CUSTO MÃO DE OBRA","CUSTO TOTAL MÃO DE OBRA"],
-    custoRisco: ["CUSTO_RISCOS","CUSTO RISCOS","CUSTO DE RISCOS"],
-    custoOperacional: ["CUSTO_OPERACIONAL","CUSTO OPERACIONAL TOTAL","CUSTO_OPERACIONAL_TOTAL","CUSTO OPERACIONAL TOTAL ( CALCULADORA )"],
-    gasolina: ["GASOLINA","CUSTO_GASOLINA"],
-    lixo: ["RETIRADA_LIXO","RETIRADA DE LIXO","LIXO"],
-    custoTotal: ["CUSTO_TOTAL","CUSTO TOTAL","CUSTO_OPERACIONAL_TOTAL_FINAL"],
-
-    precoFinal: ["PRECO_FINAL","PREÇO FINAL","PREÇO FINAL (R$)"],
-    imposto: ["IMPOSTO","VALOR_IMPOSTO"],
-    comissao: ["COMISSAO_IND","COMISSÃO INDICAÇÃO","COMISSÃO INDICAÇÃO %","COMISSÃO"],
-    margem: ["MARGEM_LUCRO_SERVICO","MARGEM","MARGEM LUCRO %","MARGEM LUCRO"],
-    lucroJS: ["LUCRO_JS","LUCRO JS","Lucro Base","LUCRO BASE"],
-    valorParceiro: ["VALOR_PARCEIRO","GANHO_PARCEIRO","VALOR PARCEIRO","VR_PARCEIRO"],
-
-    tipoParceria: ["TIPO_PARCERIA","PARCERIA","TIPO DE PARCERIA","MODELO DE PARCERIA"],
-    proximaAcao: ["PROXIMA_ACAO","PRÓXIMA AÇÃO","PRÓXIMA_ACAO","PROXIMA ACAO"]
-  },
-
-  AUTO_REFRESH_MS: 60000
-};
+      COLUMNS: {
+        idServico: ["ID_SERVICO"],
+        idShort: ["ID_SHORT"],
+        dataServico: ["DATA_SERVICO"],
+        cliente: ["CLIENTE"],
+        bairro: ["BAIRRO"],
+        descricao: ["DESCRICAO"],
+        responsavel: ["RESPONSAVEL_ENVIO"],
+        status: ["STATUS"],
+        qtdLider: ["QTD_LIDER"],
+        qtdJardineiro: ["QTD_JARDINEIRO"],
+        qtdAuxiliar: ["QTD_AUXILIAR"],
+        equipeTotal: ["EQUIPE_TOTAL"],
+        horas: ["HORAS"],
+        precoFinal: ["PRECO_FINAL"],
+        lucroLiquido: ["LUCRO_LIQUIDO_JS"],
+        tipoParceria: ["TIPO_PARCERIA"],
+        proximaAcao: ["PROXIMA_ACAO"],
+        servicoAtivo: ["SERVICO_ATIVO"]
+      }
+    };
 
     const $ = (sel) => document.querySelector(sel);
-    const norm = (s) => String(s ?? "").trim();
+
+    function norm(v){
+      return String(v ?? "").trim();
+    }
 
     function escapeHtml(str){
       return String(str ?? "")
@@ -874,12 +1315,6 @@
       const x = Number(n);
       if (!isFinite(x)) return "—";
       return x.toLocaleString("pt-BR");
-    }
-
-    function fmtPercent(v){
-      const n = parseNumber(v);
-      if (!isFinite(n)) return norm(v) || "—";
-      return n.toLocaleString("pt-BR") + "%";
     }
 
     function parseCSV(text){
@@ -926,8 +1361,8 @@
     }
 
     function getValue(row, aliases){
-      if (!Array.isArray(aliases)) aliases = [aliases];
-      for (const key of aliases){
+      const list = Array.isArray(aliases) ? aliases : [aliases];
+      for (const key of list){
         if (Object.prototype.hasOwnProperty.call(row, key) && norm(row[key]) !== ""){
           return row[key];
         }
@@ -937,10 +1372,10 @@
 
     function badgeStatus(st){
       const x = norm(st).toLowerCase();
-      if (["disponivel","disponível","aberto","aguardando parceiro"].includes(x)) return `<span class="badge b-ok">Disponível</span>`;
-      if (["reservado","em análise","analise"].includes(x)) return `<span class="badge b-warn">${escapeHtml(norm(st) || "Reservado")}</span>`;
-      if (["executado","finalizado","finalizada","concluido","concluído"].includes(x)) return `<span class="badge b-pri">${escapeHtml(norm(st))}</span>`;
-      if (["cancelado","cancelada"].includes(x)) return `<span class="badge b-bad">${escapeHtml(norm(st))}</span>`;
+      if (["disponivel","disponível"].includes(x)) return `<span class="badge b-ok">Disponível</span>`;
+      if (["em serviço","em servico"].includes(x)) return `<span class="badge b-pri">Em serviço</span>`;
+      if (["finalizado"].includes(x)) return `<span class="badge b-pri">Finalizado</span>`;
+      if (["em análise","em analise","reservado"].includes(x)) return `<span class="badge b-warn">${escapeHtml(norm(st))}</span>`;
       return `<span class="badge b-id">${escapeHtml(norm(st) || "—")}</span>`;
     }
 
@@ -952,51 +1387,25 @@
     function normalizeRow(raw){
       const c = CONFIG.COLUMNS;
 
-      const qtdLider = parseNumber(getValue(raw, c.qtdLider));
-      const qtdJardineiro = parseNumber(getValue(raw, c.qtdJardineiro));
-      const qtdAuxiliar = parseNumber(getValue(raw, c.qtdAuxiliar));
-      const equipe = parseNumber(getValue(raw, c.equipe));
-      const equipeFinal = isFinite(equipe) ? equipe :
-        (isFinite(qtdLider) || isFinite(qtdJardineiro) || isFinite(qtdAuxiliar))
-          ? (isFinite(qtdLider)?qtdLider:0) + (isFinite(qtdJardineiro)?qtdJardineiro:0) + (isFinite(qtdAuxiliar)?qtdAuxiliar:0)
-          : NaN;
-
       return {
-        id: norm(getValue(raw, c.id)),
-        data: norm(getValue(raw, c.data)),
+        idServico: norm(getValue(raw, c.idServico)),
+        idShort: norm(getValue(raw, c.idShort)),
+        dataServico: norm(getValue(raw, c.dataServico)),
         cliente: norm(getValue(raw, c.cliente)),
-        telefone: norm(getValue(raw, c.telefone)),
-        endereco: norm(getValue(raw, c.endereco)),
         bairro: norm(getValue(raw, c.bairro)),
-        categoria: norm(getValue(raw, c.categoria)),
         descricao: norm(getValue(raw, c.descricao)),
-        area: norm(getValue(raw, c.area)),
-        urgencia: norm(getValue(raw, c.urgencia)),
+        responsavel: norm(getValue(raw, c.responsavel)),
         status: norm(getValue(raw, c.status)),
-
-        qtdLider,
-        qtdJardineiro,
-        qtdAuxiliar,
+        qtdLider: parseNumber(getValue(raw, c.qtdLider)),
+        qtdJardineiro: parseNumber(getValue(raw, c.qtdJardineiro)),
+        qtdAuxiliar: parseNumber(getValue(raw, c.qtdAuxiliar)),
+        equipeTotal: parseNumber(getValue(raw, c.equipeTotal)),
         horas: parseNumber(getValue(raw, c.horas)),
-        equipe: equipeFinal,
-
-        custoMao: parseNumber(getValue(raw, c.custoMao)),
-        custoRisco: parseNumber(getValue(raw, c.custoRisco)),
-        custoOperacional: parseNumber(getValue(raw, c.custoOperacional)),
-        gasolina: parseNumber(getValue(raw, c.gasolina)),
-        lixo: parseNumber(getValue(raw, c.lixo)),
-        custoTotal: parseNumber(getValue(raw, c.custoTotal)),
-
         precoFinal: parseNumber(getValue(raw, c.precoFinal)),
-        imposto: parseNumber(getValue(raw, c.imposto)),
-        comissao: parseNumber(getValue(raw, c.comissao)),
-        margem: getValue(raw, c.margem),
-        lucroJS: parseNumber(getValue(raw, c.lucroJS)),
-        valorParceiro: parseNumber(getValue(raw, c.valorParceiro)),
-
+        lucroLiquido: parseNumber(getValue(raw, c.lucroLiquido)),
         tipoParceria: norm(getValue(raw, c.tipoParceria)),
         proximaAcao: norm(getValue(raw, c.proximaAcao)),
-
+        servicoAtivo: norm(getValue(raw, c.servicoAtivo)),
         raw
       };
     }
@@ -1008,7 +1417,7 @@
 
       for (const r of ALL){
         if (r.bairro) bairroSet.add(r.bairro);
-        if (r.categoria) catSet.add(r.categoria);
+        if (r.descricao) catSet.add(r.descricao);
         if (r.status) stSet.add(r.status);
       }
 
@@ -1017,7 +1426,7 @@
       const sSel = $("#fStatus");
 
       bSel.innerHTML = `<option value="">Bairro (todos)</option>`;
-      cSel.innerHTML = `<option value="">Categoria (todas)</option>`;
+      cSel.innerHTML = `<option value="">Descrição (todas)</option>`;
       sSel.innerHTML = `<option value="">Status (todos)</option>`;
 
       [...bairroSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
@@ -1054,12 +1463,12 @@
       VIEW = ALL.filter(r => {
         if (f.st && r.status !== f.st) return false;
         if (f.bairro && r.bairro !== f.bairro) return false;
-        if (f.cat && r.categoria !== f.cat) return false;
+        if (f.cat && r.descricao !== f.cat) return false;
 
         if (f.q){
           const hay = [
-            r.id, r.data, r.cliente, r.telefone, r.endereco, r.bairro,
-            r.categoria, r.descricao, r.urgencia, r.status, r.tipoParceria
+            r.idServico, r.idShort, r.dataServico, r.cliente, r.bairro,
+            r.descricao, r.status, r.tipoParceria, r.proximaAcao
           ].map(x => norm(x).toLowerCase()).join(" • ");
 
           if (!hay.includes(f.q)) return false;
@@ -1072,36 +1481,24 @@
 
     function buildCopyText(r){
       return [
-        `ID: ${r.id || ""}`,
-        `Data: ${r.data || ""}`,
-        `Cliente: ${r.cliente || ""}`,
-        `Telefone: ${r.telefone || ""}`,
-        `Endereço: ${r.endereco || ""}`,
-        `Bairro: ${r.bairro || ""}`,
-        `Categoria: ${r.categoria || ""}`,
-        `Descrição: ${r.descricao || ""}`,
-        `Área: ${r.area || ""}`,
-        `Urgência: ${r.urgencia || ""}`,
-        `Status: ${r.status || ""}`,
-        `Qtd Líder: ${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : ""}`,
-        `Qtd Jardineiro: ${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : ""}`,
-        `Qtd Auxiliar: ${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : ""}`,
-        `Horas: ${isFinite(r.horas) ? fmtNum(r.horas) : ""}`,
-        `Equipe Total: ${isFinite(r.equipe) ? fmtNum(r.equipe) : ""}`,
-        `Custo Mão de Obra: ${isFinite(r.custoMao) ? fmtBRL(r.custoMao) : ""}`,
-        `Custo Riscos: ${isFinite(r.custoRisco) ? fmtBRL(r.custoRisco) : ""}`,
-        `Custo Operacional: ${isFinite(r.custoOperacional) ? fmtBRL(r.custoOperacional) : ""}`,
-        `Gasolina: ${isFinite(r.gasolina) ? fmtBRL(r.gasolina) : ""}`,
-        `Retirada Lixo: ${isFinite(r.lixo) ? fmtBRL(r.lixo) : ""}`,
-        `Custo Total: ${isFinite(r.custoTotal) ? fmtBRL(r.custoTotal) : ""}`,
-        `Preço Final: ${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : ""}`,
-        `Imposto: ${isFinite(r.imposto) ? fmtBRL(r.imposto) : ""}`,
-        `Comissão: ${isFinite(r.comissao) ? fmtBRL(r.comissao) : (r.comissao || "")}`,
-        `Margem: ${fmtPercent(r.margem)}`,
-        `Lucro Base: ${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : ""}`,
-        `Valor Parceiro: ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : ""}`,
-        `Tipo de Parceria: ${r.tipoParceria || ""}`,
-        `Próxima ação: ${r.proximaAcao || ""}`
+        `ID_SERVICO: ${r.idServico || ""}`,
+        `ID_SHORT: ${r.idShort || ""}`,
+        `DATA_SERVICO: ${r.dataServico || ""}`,
+        `CLIENTE: ${r.cliente || ""}`,
+        `BAIRRO: ${r.bairro || ""}`,
+        `DESCRICAO: ${r.descricao || ""}`,
+        `RESPONSAVEL_ENVIO: ${r.responsavel || ""}`,
+        `STATUS: ${r.status || ""}`,
+        `QTD_LIDER: ${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : ""}`,
+        `QTD_JARDINEIRO: ${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : ""}`,
+        `QTD_AUXILIAR: ${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : ""}`,
+        `EQUIPE_TOTAL: ${isFinite(r.equipeTotal) ? fmtNum(r.equipeTotal) : ""}`,
+        `HORAS: ${isFinite(r.horas) ? fmtNum(r.horas) : ""}`,
+        `PRECO_FINAL: ${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : ""}`,
+        `LUCRO_LIQUIDO_JS: ${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : ""}`,
+        `TIPO_PARCERIA: ${r.tipoParceria || ""}`,
+        `PROXIMA_ACAO: ${r.proximaAcao || ""}`,
+        `SERVICO_ATIVO: ${r.servicoAtivo || ""}`
       ].join("\n");
     }
 
@@ -1112,199 +1509,110 @@
 
       const totalServicos = VIEW.length;
       const totalPreco = VIEW.reduce((acc,r)=>acc + (isFinite(r.precoFinal)?r.precoFinal:0), 0);
-      const totalCusto = VIEW.reduce((acc,r)=>{
-        if (isFinite(r.custoTotal)) return acc + r.custoTotal;
-        const soma = (isFinite(r.custoMao)?r.custoMao:0)
-          + (isFinite(r.custoRisco)?r.custoRisco:0)
-          + (isFinite(r.custoOperacional)?r.custoOperacional:0)
-          + (isFinite(r.gasolina)?r.gasolina:0)
-          + (isFinite(r.lixo)?r.lixo:0);
-        return acc + soma;
-      }, 0);
-      const totalLucro = VIEW.reduce((acc,r)=>acc + (isFinite(r.lucroJS)?r.lucroJS:0), 0);
-      const totalParceiro = VIEW.reduce((acc,r)=>acc + (isFinite(r.valorParceiro)?r.valorParceiro:0), 0);
+      const totalLucro = VIEW.reduce((acc,r)=>acc + (isFinite(r.lucroLiquido)?r.lucroLiquido:0), 0);
 
-      $("#kpiServicos").textContent = fmtNum(totalServicos);
-      $("#kpiFaturamento").textContent = fmtBRL(totalPreco);
-      $("#kpiCusto").textContent = fmtBRL(totalCusto);
-      $("#kpiMargem").textContent = fmtBRL(totalLucro);
-      $("#kpiParceiro").textContent = fmtBRL(totalParceiro);
-      $("#kpiUpdated").textContent = new Date().toLocaleString("pt-BR");
+      $("#connText").textContent = ALL.length ? "Conectado" : "Sem dados";
+      $("#kpiServicos") && ($("#kpiServicos").textContent = fmtNum(totalServicos));
+      $("#kpiFaturamento") && ($("#kpiFaturamento").textContent = fmtBRL(totalPreco));
+      $("#kpiParceiro") && ($("#kpiParceiro").textContent = fmtBRL(totalLucro));
 
-      $("#btnOpenFormTop").href = CONFIG.FORM_URL:"https://forms.gle/RSxKWq4dmJ5Fdw8aA";
+      $("#btnOpenFormTop").href = CONFIG.FORM_URL;
 
       VIEW.forEach(r => {
-        const custoTotalCalculado = isFinite(r.custoTotal)
-          ? r.custoTotal
-          : (isFinite(r.custoMao)?r.custoMao:0)
-            + (isFinite(r.custoRisco)?r.custoRisco:0)
-            + (isFinite(r.custoOperacional)?r.custoOperacional:0)
-            + (isFinite(r.gasolina)?r.gasolina:0)
-            + (isFinite(r.lixo)?r.lixo:0);
+        const resumo = buildCopyText(r);
 
         const card = document.createElement("div");
         card.className = "job";
 
-        const resumo = buildCopyText(r);
-        const acceptLink = CONFIG.FORM_URL && !CONFIG.FORM_URL.includes(""https://forms.gle/RSxKWq4dmJ5Fdw8aA"")
-          ? `${CONFIG.FORM_URL}?usp=pp_url`
-          : "#";
-
         card.innerHTML = `
           <div>
-            <h3>${escapeHtml(r.categoria || "Serviço")} • ${escapeHtml(r.bairro || "Sem bairro")}</h3>
-            <p class="job-sub">${escapeHtml(r.cliente || "Cliente não informado")} • ${escapeHtml(r.endereco || "Endereço não informado")}</p>
+            <h3>${escapeHtml(r.idShort || r.idServico || "Serviço")} • ${escapeHtml(r.bairro || "Sem bairro")}</h3>
+            <p class="job-sub">${escapeHtml(r.cliente || "Cliente não informado")} • ${escapeHtml(r.dataServico || "Sem data")}</p>
 
             <div class="badges">
               ${badgeStatus(r.status)}
-              <span class="badge b-id">ID: ${escapeHtml(r.id || "—")}</span>
-              <span class="badge b-id">Data: ${escapeHtml(r.data || "—")}</span>
+              <span class="badge b-id">ID: ${escapeHtml(r.idServico || "—")}</span>
+              <span class="badge b-id">Data: ${escapeHtml(r.dataServico || "—")}</span>
               ${r.tipoParceria ? `<span class="badge b-pri">${escapeHtml(r.tipoParceria)}</span>` : ``}
-              ${r.urgencia ? `<span class="badge b-warn">Urgência: ${escapeHtml(r.urgencia)}</span>` : ``}
-            </div>
-
-            <div class="grid2">
-              <div class="kv">
-                <p class="k">Cliente</p>
-                <p class="v">${escapeHtml(r.cliente || "—")}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Telefone</p>
-                <p class="v">${escapeHtml(r.telefone || "—")}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Endereço</p>
-                <p class="v">${escapeHtml(r.endereco || "—")}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Bairro</p>
-                <p class="v">${escapeHtml(r.bairro || "—")}</p>
-              </div>
             </div>
 
             <div class="desc">
               <p class="k">Descrição do serviço</p>
-              <p class="v">${escapeHtml(r.descricao || "Sem descrição detalhada.")}</p>
+              <p class="v">${escapeHtml(r.descricao || "Sem descrição.")}</p>
             </div>
 
             <div class="grid3">
               <div class="kv">
-                <p class="k">Qtd Líder</p>
+                <p class="k">Qtd líder</p>
                 <p class="v">${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Qtd Jardineiro</p>
+                <p class="k">Qtd jardineiro</p>
                 <p class="v">${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Qtd Auxiliar</p>
+                <p class="k">Qtd auxiliar</p>
                 <p class="v">${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : "—"}</p>
               </div>
             </div>
 
             <div class="grid3">
               <div class="kv">
+                <p class="k">Equipe total</p>
+                <p class="v">${isFinite(r.equipeTotal) ? fmtNum(r.equipeTotal) : "—"}</p>
+              </div>
+              <div class="kv">
                 <p class="k">Horas</p>
                 <p class="v">${isFinite(r.horas) ? fmtNum(r.horas) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Equipe Total</p>
-                <p class="v">${isFinite(r.equipe) ? fmtNum(r.equipe) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Área</p>
-                <p class="v">${escapeHtml(r.area || "—")}</p>
+                <p class="k">Responsável</p>
+                <p class="v">${escapeHtml(r.responsavel || "—")}</p>
               </div>
             </div>
 
-            <p class="fin-title">Financeiro do serviço</p>
-
-            <div class="grid3">
-              <div class="kv">
-                <p class="k">Custo mão de obra</p>
-                <p class="v">${isFinite(r.custoMao) ? fmtBRL(r.custoMao) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Custo riscos</p>
-                <p class="v">${isFinite(r.custoRisco) ? fmtBRL(r.custoRisco) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Custo operacional</p>
-                <p class="v">${isFinite(r.custoOperacional) ? fmtBRL(r.custoOperacional) : "—"}</p>
-              </div>
-            </div>
-
-            <div class="grid3">
-              <div class="kv">
-                <p class="k">Gasolina</p>
-                <p class="v">${isFinite(r.gasolina) ? fmtBRL(r.gasolina) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Retirada lixo</p>
-                <p class="v">${isFinite(r.lixo) ? fmtBRL(r.lixo) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Custo total</p>
-                <p class="v">${isFinite(custoTotalCalculado) && custoTotalCalculado > 0 ? fmtBRL(custoTotalCalculado) : "—"}</p>
-              </div>
-            </div>
-
-            <div class="grid3">
+            <div class="grid2">
               <div class="kv">
                 <p class="k">Preço final</p>
                 <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Imposto</p>
-                <p class="v">${isFinite(r.imposto) ? fmtBRL(r.imposto) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Comissão</p>
-                <p class="v">${isFinite(r.comissao) ? fmtBRL(r.comissao) : "—"}</p>
+                <p class="k">Lucro líquido JS</p>
+                <p class="v">${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : "—"}</p>
               </div>
             </div>
 
-            <div class="grid3">
-              <div class="kv">
-                <p class="k">Margem</p>
-                <p class="v">${fmtPercent(r.margem)}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Lucro JS</p>
-                <p class="v">${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : "—"}</p>
-              </div>
-              <div class="kv">
-                <p class="k">Próxima ação</p>
-                <p class="v">${escapeHtml(r.proximaAcao || "—")}</p>
-              </div>
+            <div class="desc">
+              <p class="k">Próxima ação</p>
+              <p class="v">${escapeHtml(r.proximaAcao || "—")}</p>
             </div>
           </div>
 
           <div class="cta">
             <div class="pricebox">
-              <p class="label">Valor do parceiro</p>
-              <p class="price">${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
-              <p class="sub">Valor estimado para o parceiro neste serviço.</p>
+              <p class="label">Preço final do serviço</p>
+              <p class="price">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+              <p class="sub">Use os dados de equipe, horas e parceria para decidir rapidamente.</p>
             </div>
 
             <div class="mini">
-              <p class="k">Preço final do cliente</p>
-              <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+              <p class="k">Lucro líquido JS</p>
+              <p class="v">${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : "—"}</p>
             </div>
 
             <div class="mini">
-              <p class="k">Custo total do serviço</p>
-              <p class="v">${isFinite(custoTotalCalculado) && custoTotalCalculado > 0 ? fmtBRL(custoTotalCalculado) : "—"}</p>
+              <p class="k">Serviço ativo</p>
+              <p class="v">${escapeHtml(r.servicoAtivo || "—")}</p>
             </div>
 
             <div class="mini">
-              <p class="k">Lucro JS</p>
-              <p class="v">${isFinite(r.lucroJS) ? fmtBRL(r.lucroJS) : "—"}</p>
+              <p class="k">Tipo de parceria</p>
+              <p class="v">${escapeHtml(r.tipoParceria || "—")}</p>
             </div>
 
             <div class="btn-stack">
-              <a class="btn btn-success" href="${acceptLink}" target="_blank" rel="noopener">✅ Aceitar serviço</a>
-              <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.id || "")}">📋 Copiar ID</button>
+              <a class="btn-take" href="${CONFIG.FORM_URL}" target="_blank" rel="noopener">✅ Abrir formulário</a>
+              <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.idServico || "")}">📋 Copiar ID</button>
               <button class="btn-mini" type="button" data-copy-summary="${escapeHtml(resumo)}">📄 Copiar resumo</button>
             </div>
           </div>
@@ -1367,11 +1675,6 @@
         text.textContent = msg || "Conectado";
       };
 
-      if (!CONFIG.VIEW_CSV_URL){
-        fail("Configure o CSV do VIEW PORTAL");
-        return;
-      }
-
       try{
         dot.classList.remove("ok","bad");
         text.textContent = "Conectando…";
@@ -1383,7 +1686,7 @@
         const data = parseCSV(csv);
         ALL = Array.isArray(data) ? data.map(normalizeRow) : [];
 
-        ok("Conectado (VIEW PORTAL)");
+        ok("Conectado (serviços disponíveis)");
         fillFilterOptions();
         applyFilters();
       }catch(err){
@@ -1415,14 +1718,29 @@
       $("#btnHelp").addEventListener("click", () => {
         alert(
 `Como conectar:
-1) Publique a aba VIEW PORTAL.
-2) Use o link CSV no CONFIG.VIEW_CSV_URL.
-3) Coloque seu link real do Google Forms em CONFIG.FORM_URL.
-4) Se os nomes das colunas estiverem diferentes, ajuste em CONFIG.COLUMNS.`
+1) Publique a aba DASH_SERVICOS_DISPONIVEIS_JS em CSV.
+2) Troque o link em CONFIG.VIEW_CSV_URL.
+3) Defina o link certo do formulário em CONFIG.FORM_URL.
+4) Se mudar os nomes das colunas, ajuste em CONFIG.COLUMNS.
+5) Nunca publique o Banco de Dados completo no portal.`
         );
       });
 
       $("#btnAuto").addEventListener("click", () => setAuto(!autoOn));
+
+      document.querySelectorAll("[data-copy-link]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const txt = btn.getAttribute("data-copy-link");
+          try{
+            await navigator.clipboard.writeText(txt);
+            const old = btn.textContent;
+            btn.textContent = "✅ Link copiado!";
+            setTimeout(()=> btn.textContent = old, 1200);
+          }catch(e){
+            alert("Não consegui copiar o link.");
+          }
+        });
+      });
     }
 
     bindUI();
