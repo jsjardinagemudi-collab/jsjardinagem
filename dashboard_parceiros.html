@@ -626,6 +626,7 @@
       padding:11px 12px;
       font-weight:900;
       cursor:pointer;
+      text-align:center;
     }
 
     .btn-mini:hover{background:#f3f5f7}
@@ -1008,7 +1009,7 @@
           <h2>Serviços disponíveis para parceiros</h2>
           <p>
             Painel filtrável para leitura rápida do parceiro: bairro, equipe, horas, descrição,
-            valor e tipo de parceria.
+            ganho do parceiro, tipo de parceria e acesso rápido ao mapa.
           </p>
         </div>
       </div>
@@ -1060,14 +1061,15 @@
           <div class="box">
             <h3>Leitura do parceiro</h3>
             <p>
-              Use este painel para decidir se o serviço faz sentido para sua equipe e sua capacidade
-              de execução.
+              Use este painel para decidir rápido se o serviço faz sentido para sua equipe,
+              tempo disponível e ganho estimado.
             </p>
 
             <ul>
               <li>Leia <strong>bairro, descrição e status</strong>.</li>
               <li>Confira <strong>qtd líder, jardineiro, auxiliar, horas e equipe total</strong>.</li>
-              <li>Depois olhe <strong>preço final, lucro líquido JS e tipo de parceria</strong>.</li>
+              <li>Olhe primeiro o <strong>ganho do parceiro</strong> e depois o <strong>preço final</strong>.</li>
+              <li>Use <strong>Ver no mapa</strong> e <strong>Street View</strong> para analisar o local.</li>
               <li>Se fizer sentido, clique em <strong>Abrir formulário</strong> para seguir o fluxo.</li>
             </ul>
 
@@ -1168,6 +1170,8 @@
         idShort: ["ID_SHORT"],
         dataServico: ["DATA_SERVICO"],
         cliente: ["CLIENTE"],
+        telefone: ["TELEFONE"],
+        endereco: ["ENDERECO"],
         bairro: ["BAIRRO"],
         descricao: ["DESCRICAO"],
         responsavel: ["RESPONSAVEL_ENVIO"],
@@ -1178,7 +1182,7 @@
         equipeTotal: ["EQUIPE_TOTAL"],
         horas: ["HORAS"],
         precoFinal: ["PRECO_FINAL"],
-        lucroLiquido: ["LUCRO_LIQUIDO_JS"],
+        valorParceiro: ["VALOR_PARCEIRO"],
         tipoParceria: ["TIPO_PARCERIA"],
         proximaAcao: ["PROXIMA_ACAO"]
       }
@@ -1279,7 +1283,7 @@
       if (["disponivel","disponível"].includes(x)) return `<span class="badge b-ok">Disponível</span>`;
       if (["em serviço","em servico"].includes(x)) return `<span class="badge b-pri">Em serviço</span>`;
       if (["finalizado"].includes(x)) return `<span class="badge b-pri">Finalizado</span>`;
-      if (["em análise","em analise","reservado"].includes(x)) return `<span class="badge b-warn">${escapeHtml(norm(st))}</span>`;
+      if (["em análise","em analise","reservado","aprovado"].includes(x)) return `<span class="badge b-warn">${escapeHtml(norm(st))}</span>`;
       return `<span class="badge b-id">${escapeHtml(norm(st) || "—")}</span>`;
     }
 
@@ -1288,14 +1292,34 @@
     let autoOn = true;
     let autoTimer = null;
 
+    function buildAddress(r){
+      const parts = [r.endereco, r.bairro].filter(Boolean);
+      return parts.join(", ");
+    }
+
+    function mapsUrl(address){
+      if (!address) return "";
+      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
+    }
+
+    function streetViewUrl(address){
+      if (!address) return "";
+      return "https://www.google.com/maps?q=" + encodeURIComponent(address) + "&layer=c";
+    }
+
     function normalizeRow(raw){
       const c = CONFIG.COLUMNS;
+      const endereco = norm(getValue(raw, c.endereco));
+      const bairro = norm(getValue(raw, c.bairro));
+      const fullAddress = buildAddress({ endereco, bairro });
 
       return {
         idShort: norm(getValue(raw, c.idShort)),
         dataServico: norm(getValue(raw, c.dataServico)),
         cliente: norm(getValue(raw, c.cliente)),
-        bairro: norm(getValue(raw, c.bairro)),
+        telefone: norm(getValue(raw, c.telefone)),
+        endereco,
+        bairro,
         descricao: norm(getValue(raw, c.descricao)),
         responsavel: norm(getValue(raw, c.responsavel)),
         status: norm(getValue(raw, c.status)),
@@ -1305,9 +1329,12 @@
         equipeTotal: parseNumber(getValue(raw, c.equipeTotal)),
         horas: parseNumber(getValue(raw, c.horas)),
         precoFinal: parseNumber(getValue(raw, c.precoFinal)),
-        lucroLiquido: parseNumber(getValue(raw, c.lucroLiquido)),
+        valorParceiro: parseNumber(getValue(raw, c.valorParceiro)),
         tipoParceria: norm(getValue(raw, c.tipoParceria)),
         proximaAcao: norm(getValue(raw, c.proximaAcao)),
+        addressText: fullAddress,
+        mapsLink: mapsUrl(fullAddress),
+        streetLink: streetViewUrl(fullAddress),
         raw
       };
     }
@@ -1372,7 +1399,7 @@
 
         if (f.q){
           const hay = [
-            r.idShort, r.dataServico, r.cliente, r.bairro,
+            r.idShort, r.dataServico, r.cliente, r.bairro, r.endereco,
             r.descricao, r.status, r.tipoParceria, r.proximaAcao
           ].map(x => norm(x).toLowerCase()).join(" • ");
 
@@ -1389,6 +1416,7 @@
         `ID_SHORT: ${r.idShort || ""}`,
         `DATA_SERVICO: ${r.dataServico || ""}`,
         `CLIENTE: ${r.cliente || ""}`,
+        `ENDERECO: ${r.endereco || ""}`,
         `BAIRRO: ${r.bairro || ""}`,
         `DESCRICAO: ${r.descricao || ""}`,
         `RESPONSAVEL_ENVIO: ${r.responsavel || ""}`,
@@ -1399,9 +1427,11 @@
         `EQUIPE_TOTAL: ${isFinite(r.equipeTotal) ? fmtNum(r.equipeTotal) : ""}`,
         `HORAS: ${isFinite(r.horas) ? fmtNum(r.horas) : ""}`,
         `PRECO_FINAL: ${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : ""}`,
-        `LUCRO_LIQUIDO_JS: ${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : ""}`,
+        `VALOR_PARCEIRO: ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : ""}`,
         `TIPO_PARCERIA: ${r.tipoParceria || ""}`,
-        `PROXIMA_ACAO: ${r.proximaAcao || ""}`
+        `PROXIMA_ACAO: ${r.proximaAcao || ""}`,
+        `LINK_MAPS: ${r.mapsLink || ""}`,
+        `LINK_STREET_VIEW: ${r.streetLink || ""}`
       ].join("\n");
     }
 
@@ -1413,6 +1443,8 @@
 
       VIEW.forEach(r => {
         const resumo = buildCopyText(r);
+        const hasMaps = !!r.mapsLink;
+        const hasStreet = !!r.streetLink;
 
         const card = document.createElement("div");
         card.className = "job";
@@ -1432,6 +1464,17 @@
             <div class="desc">
               <p class="k">Descrição do serviço</p>
               <p class="v">${escapeHtml(r.descricao || "Sem descrição.")}</p>
+            </div>
+
+            <div class="grid2">
+              <div class="kv">
+                <p class="k">Endereço</p>
+                <p class="v">${escapeHtml(r.endereco || "—")}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Bairro</p>
+                <p class="v">${escapeHtml(r.bairro || "—")}</p>
+              </div>
             </div>
 
             <div class="grid3">
@@ -1466,12 +1509,12 @@
 
             <div class="grid2">
               <div class="kv">
-                <p class="k">Preço final</p>
-                <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+                <p class="k">Ganho do parceiro</p>
+                <p class="v">${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
               </div>
               <div class="kv">
-                <p class="k">Lucro líquido JS</p>
-                <p class="v">${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : "—"}</p>
+                <p class="k">Preço final</p>
+                <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
               </div>
             </div>
 
@@ -1483,14 +1526,14 @@
 
           <div class="cta">
             <div class="pricebox">
-              <p class="label">Preço final do serviço</p>
-              <p class="price">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
-              <p class="sub">Use os dados de equipe, horas e parceria para decidir rapidamente.</p>
+              <p class="label">Ganho do parceiro</p>
+              <p class="price">${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
+              <p class="sub">Use equipe, horas, tipo de parceria e localização para decidir rapidamente.</p>
             </div>
 
             <div class="mini">
-              <p class="k">Lucro líquido JS</p>
-              <p class="v">${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : "—"}</p>
+              <p class="k">Preço final do serviço</p>
+              <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
             </div>
 
             <div class="mini">
@@ -1500,6 +1543,8 @@
 
             <div class="btn-stack">
               <a class="btn-take" href="${CONFIG.FORM_URL}" target="_blank" rel="noopener">✅ Abrir formulário</a>
+              ${hasMaps ? `<a class="btn-mini" href="${r.mapsLink}" target="_blank" rel="noopener">📍 Ver no mapa</a>` : `<button class="btn-mini" type="button" disabled>📍 Ver no mapa</button>`}
+              ${hasStreet ? `<a class="btn-mini" href="${r.streetLink}" target="_blank" rel="noopener">👁 Street View</a>` : `<button class="btn-mini" type="button" disabled>👁 Street View</button>`}
               <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.idShort || "")}">📋 Copiar ID</button>
               <button class="btn-mini" type="button" data-copy-summary="${escapeHtml(resumo)}">📄 Copiar resumo</button>
             </div>
@@ -1609,7 +1654,8 @@
 1) Publique a aba DASH_SERVICOS_DISPONIVEIS_JS em CSV.
 2) Use o link CSV correto no CONFIG.VIEW_CSV_URL.
 3) Defina o link certo do formulário em CONFIG.FORM_URL.
-4) Confirme se os nomes da linha 1 batem com CONFIG.COLUMNS.`
+4) Confirme se os nomes da linha 1 batem com CONFIG.COLUMNS.
+5) Para mapa e Street View, a coluna ENDERECO precisa estar preenchida.`
         );
       });
 
