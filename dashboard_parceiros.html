@@ -258,25 +258,6 @@
       overflow:hidden;
     }
 
-    .card-head{
-      padding:15px 16px;
-      border-bottom:1px solid var(--line);
-      background:#fbfcfd;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .card-head h2{
-      margin:0;
-      font-size:14px;
-      font-weight:1000;
-      color:var(--pri);
-      text-transform:uppercase;
-      letter-spacing:.2px;
-    }
-
     .card-body{
       padding:16px;
     }
@@ -334,44 +315,6 @@
       display:grid;
       gap:10px;
       margin-top:auto;
-    }
-
-    .kpi-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:14px;
-    }
-
-    .kpi{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:16px;
-      box-shadow:var(--shadow);
-      padding:16px;
-      min-height:94px;
-    }
-
-    .kpi .t{
-      margin:0 0 6px;
-      color:var(--muted);
-      font-weight:900;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.2px;
-    }
-
-    .kpi .v{
-      margin:0;
-      font-weight:1000;
-      font-size:22px;
-      color:var(--pri);
-    }
-
-    .kpi .s{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-weight:800;
-      font-size:12px;
     }
 
     .portal-grid{
@@ -592,15 +535,6 @@
       line-height:1.55;
       font-size:13px;
       white-space:pre-wrap;
-    }
-
-    .fin-title{
-      margin:14px 0 8px;
-      color:var(--pri);
-      font-size:12px;
-      font-weight:1000;
-      text-transform:uppercase;
-      letter-spacing:.25px;
     }
 
     .cta{
@@ -857,7 +791,6 @@
 
     @media(max-width:1100px){
       .grid-tools,
-      .kpi-grid,
       .embed-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
@@ -874,7 +807,6 @@
 
     @media(max-width:760px){
       .grid-tools,
-      .kpi-grid,
       .embed-grid{
         grid-template-columns:1fr;
       }
@@ -957,7 +889,7 @@
           <li><strong>Novo orçamento:</strong> registra o serviço inicial no sistema.</li>
           <li><strong>Atualização:</strong> gera nova versão do orçamento com histórico.</li>
           <li><strong>Execução:</strong> registra avanço operacional do serviço.</li>
-          <li><strong>Dashboards:</strong> mostram disponível, operacional e controle interno.</li>
+          <li><strong>Dashboard:</strong> mostra serviços disponíveis em tempo real.</li>
         </ul>
       </div>
     </div>
@@ -999,8 +931,7 @@
             <div class="icon">📝</div>
             <h3>Novo Orçamento</h3>
             <p>
-              Formulário principal para criar um serviço novo a partir do pacote da calculadora,
-              com cliente, endereço, data e dados do serviço.
+              Formulário principal para criar um serviço novo a partir do pacote da calculadora.
             </p>
             <div class="chips">
               <span class="chip">Entrada oficial</span>
@@ -1018,8 +949,7 @@
             <div class="icon">🔁</div>
             <h3>Atualização de Orçamento</h3>
             <p>
-              Use quando o serviço precisar de nova versão. Mantém o mesmo ID de cálculo e cria
-              histórico de revisão sem apagar a versão anterior.
+              Use quando o serviço precisar de nova versão. Mantém o mesmo ID de cálculo e cria histórico.
             </p>
             <div class="chips">
               <span class="chip">Versão 2+</span>
@@ -1037,8 +967,7 @@
             <div class="icon">✅</div>
             <h3>Registro de Execução</h3>
             <p>
-              Formulário para registrar a execução operacional do serviço em campo, acompanhar avanço
-              e alimentar os controles da JS.
+              Formulário para registrar a execução operacional do serviço em campo.
             </p>
             <div class="chips">
               <span class="chip">Campo</span>
@@ -1066,29 +995,6 @@
         </div>
       </div>
 
-      <div class="kpi-grid">
-        <div class="kpi">
-          <p class="t">Base oficial</p>
-          <p class="v">1 planilha</p>
-          <p class="s">Banco, dashboards e operação</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Fluxo</p>
-          <p class="v">4 entradas</p>
-          <p class="s">Calculadora, novo, atualização e execução</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Versões</p>
-          <p class="v">Histórico</p>
-          <p class="s">Serviço atual e histórico separados</p>
-        </div>
-        <div class="kpi">
-          <p class="t">Operação</p>
-          <p class="v">Ao vivo</p>
-          <p class="s">Portal e dashboards conectados</p>
-        </div>
-      </div>
-
       <div style="margin-top:18px">
         <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir banco de dados e dashboards</a>
       </div>
@@ -1110,7 +1016,7 @@
       <div class="portal-grid">
         <div class="panel">
           <div class="panel-head">
-            <h2>View Portal • serviços para análise e aceite</h2>
+            <h2>Serviços para análise e aceite</h2>
             <div class="right">
               <span class="conn"><span id="connDot" class="dot"></span><span id="connText">Conectando…</span></span>
               <button class="btn" id="btnRefresh" type="button">⟳ Atualizar</button>
@@ -1121,7 +1027,7 @@
           <div class="filters">
             <div class="field">
               <span>🔎</span>
-              <input id="qSearch" placeholder="Buscar por ID, bairro, cliente, categoria..." />
+              <input id="qSearch" placeholder="Buscar por ID, bairro, cliente, descrição..." />
             </div>
 
             <div class="field">
@@ -1132,9 +1038,9 @@
             </div>
 
             <div class="field">
-              <span>🌿</span>
-              <select id="fCategoria">
-                <option value="">Categoria (todas)</option>
+              <span>📝</span>
+              <select id="fDescricao">
+                <option value="">Descrição (todas)</option>
               </select>
             </div>
 
@@ -1161,7 +1067,7 @@
             <ul>
               <li>Leia <strong>bairro, descrição e status</strong>.</li>
               <li>Confira <strong>qtd líder, jardineiro, auxiliar, horas e equipe total</strong>.</li>
-              <li>Depois olhe <strong>preço final, lucro JS e valor parceiro</strong>.</li>
+              <li>Depois olhe <strong>preço final, lucro líquido JS e tipo de parceria</strong>.</li>
               <li>Se fizer sentido, clique em <strong>Abrir formulário</strong> para seguir o fluxo.</li>
             </ul>
 
@@ -1177,7 +1083,7 @@
 
             <p style="margin-top:12px">
               <strong>Prática recomendada:</strong><br>
-              sempre use o <code>ID_SHORT</code> e o <code>ID_SERVICO</code> ao interagir com a operação.
+              sempre use o <code>ID_SHORT</code> ao interagir com a operação.
             </p>
           </div>
         </aside>
@@ -1254,12 +1160,11 @@
 
   <script>
     const CONFIG = {
-      VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pubhtml?gid=1879002658&single=true",
+      VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pubhtml?gid=1879002658&single=true=csv",
       FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
       AUTO_REFRESH_MS: 60000,
 
       COLUMNS: {
-        idServico: ["ID_SERVICO"],
         idShort: ["ID_SHORT"],
         dataServico: ["DATA_SERVICO"],
         cliente: ["CLIENTE"],
@@ -1275,8 +1180,7 @@
         precoFinal: ["PRECO_FINAL"],
         lucroLiquido: ["LUCRO_LIQUIDO_JS"],
         tipoParceria: ["TIPO_PARCERIA"],
-        proximaAcao: ["PROXIMA_ACAO"],
-        servicoAtivo: ["SERVICO_ATIVO"]
+        proximaAcao: ["PROXIMA_ACAO"]
       }
     };
 
@@ -1388,7 +1292,6 @@
       const c = CONFIG.COLUMNS;
 
       return {
-        idServico: norm(getValue(raw, c.idServico)),
         idShort: norm(getValue(raw, c.idShort)),
         dataServico: norm(getValue(raw, c.dataServico)),
         cliente: norm(getValue(raw, c.cliente)),
@@ -1405,45 +1308,47 @@
         lucroLiquido: parseNumber(getValue(raw, c.lucroLiquido)),
         tipoParceria: norm(getValue(raw, c.tipoParceria)),
         proximaAcao: norm(getValue(raw, c.proximaAcao)),
-        servicoAtivo: norm(getValue(raw, c.servicoAtivo)),
         raw
       };
     }
 
     function fillFilterOptions(){
       const bairroSet = new Set();
-      const catSet = new Set();
+      const descSet = new Set();
       const stSet = new Set();
 
       for (const r of ALL){
         if (r.bairro) bairroSet.add(r.bairro);
-        if (r.descricao) catSet.add(r.descricao);
+        if (r.descricao) descSet.add(r.descricao);
         if (r.status) stSet.add(r.status);
       }
 
       const bSel = $("#fBairro");
-      const cSel = $("#fCategoria");
+      const dSel = $("#fDescricao");
       const sSel = $("#fStatus");
 
       bSel.innerHTML = `<option value="">Bairro (todos)</option>`;
-      cSel.innerHTML = `<option value="">Descrição (todas)</option>`;
+      dSel.innerHTML = `<option value="">Descrição (todas)</option>`;
       sSel.innerHTML = `<option value="">Status (todos)</option>`;
 
       [...bairroSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
         const o = document.createElement("option");
-        o.value = v; o.textContent = v;
+        o.value = v;
+        o.textContent = v;
         bSel.appendChild(o);
       });
 
-      [...catSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+      [...descSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
         const o = document.createElement("option");
-        o.value = v; o.textContent = v;
-        cSel.appendChild(o);
+        o.value = v;
+        o.textContent = v;
+        dSel.appendChild(o);
       });
 
       [...stSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
         const o = document.createElement("option");
-        o.value = v; o.textContent = v;
+        o.value = v;
+        o.textContent = v;
         sSel.appendChild(o);
       });
     }
@@ -1452,7 +1357,7 @@
       return {
         q: norm($("#qSearch").value).toLowerCase(),
         bairro: $("#fBairro").value,
-        cat: $("#fCategoria").value,
+        descricao: $("#fDescricao").value,
         st: $("#fStatus").value
       };
     }
@@ -1463,11 +1368,11 @@
       VIEW = ALL.filter(r => {
         if (f.st && r.status !== f.st) return false;
         if (f.bairro && r.bairro !== f.bairro) return false;
-        if (f.cat && r.descricao !== f.cat) return false;
+        if (f.descricao && r.descricao !== f.descricao) return false;
 
         if (f.q){
           const hay = [
-            r.idServico, r.idShort, r.dataServico, r.cliente, r.bairro,
+            r.idShort, r.dataServico, r.cliente, r.bairro,
             r.descricao, r.status, r.tipoParceria, r.proximaAcao
           ].map(x => norm(x).toLowerCase()).join(" • ");
 
@@ -1481,7 +1386,6 @@
 
     function buildCopyText(r){
       return [
-        `ID_SERVICO: ${r.idServico || ""}`,
         `ID_SHORT: ${r.idShort || ""}`,
         `DATA_SERVICO: ${r.dataServico || ""}`,
         `CLIENTE: ${r.cliente || ""}`,
@@ -1497,8 +1401,7 @@
         `PRECO_FINAL: ${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : ""}`,
         `LUCRO_LIQUIDO_JS: ${isFinite(r.lucroLiquido) ? fmtBRL(r.lucroLiquido) : ""}`,
         `TIPO_PARCERIA: ${r.tipoParceria || ""}`,
-        `PROXIMA_ACAO: ${r.proximaAcao || ""}`,
-        `SERVICO_ATIVO: ${r.servicoAtivo || ""}`
+        `PROXIMA_ACAO: ${r.proximaAcao || ""}`
       ].join("\n");
     }
 
@@ -1506,16 +1409,6 @@
       const el = $("#cards");
       el.innerHTML = "";
       $("#empty").style.display = VIEW.length ? "none" : "block";
-
-      const totalServicos = VIEW.length;
-      const totalPreco = VIEW.reduce((acc,r)=>acc + (isFinite(r.precoFinal)?r.precoFinal:0), 0);
-      const totalLucro = VIEW.reduce((acc,r)=>acc + (isFinite(r.lucroLiquido)?r.lucroLiquido:0), 0);
-
-      $("#connText").textContent = ALL.length ? "Conectado" : "Sem dados";
-      $("#kpiServicos") && ($("#kpiServicos").textContent = fmtNum(totalServicos));
-      $("#kpiFaturamento") && ($("#kpiFaturamento").textContent = fmtBRL(totalPreco));
-      $("#kpiParceiro") && ($("#kpiParceiro").textContent = fmtBRL(totalLucro));
-
       $("#btnOpenFormTop").href = CONFIG.FORM_URL;
 
       VIEW.forEach(r => {
@@ -1526,12 +1419,12 @@
 
         card.innerHTML = `
           <div>
-            <h3>${escapeHtml(r.idShort || r.idServico || "Serviço")} • ${escapeHtml(r.bairro || "Sem bairro")}</h3>
+            <h3>${escapeHtml(r.idShort || "Serviço")} • ${escapeHtml(r.bairro || "Sem bairro")}</h3>
             <p class="job-sub">${escapeHtml(r.cliente || "Cliente não informado")} • ${escapeHtml(r.dataServico || "Sem data")}</p>
 
             <div class="badges">
               ${badgeStatus(r.status)}
-              <span class="badge b-id">ID: ${escapeHtml(r.idServico || "—")}</span>
+              <span class="badge b-id">ID: ${escapeHtml(r.idShort || "—")}</span>
               <span class="badge b-id">Data: ${escapeHtml(r.dataServico || "—")}</span>
               ${r.tipoParceria ? `<span class="badge b-pri">${escapeHtml(r.tipoParceria)}</span>` : ``}
             </div>
@@ -1601,18 +1494,13 @@
             </div>
 
             <div class="mini">
-              <p class="k">Serviço ativo</p>
-              <p class="v">${escapeHtml(r.servicoAtivo || "—")}</p>
-            </div>
-
-            <div class="mini">
               <p class="k">Tipo de parceria</p>
               <p class="v">${escapeHtml(r.tipoParceria || "—")}</p>
             </div>
 
             <div class="btn-stack">
               <a class="btn-take" href="${CONFIG.FORM_URL}" target="_blank" rel="noopener">✅ Abrir formulário</a>
-              <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.idServico || "")}">📋 Copiar ID</button>
+              <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.idShort || "")}">📋 Copiar ID</button>
               <button class="btn-mini" type="button" data-copy-summary="${escapeHtml(resumo)}">📄 Copiar resumo</button>
             </div>
           </div>
@@ -1708,7 +1596,7 @@
     }
 
     function bindUI(){
-      ["#qSearch","#fBairro","#fCategoria","#fStatus"].forEach(sel=>{
+      ["#qSearch","#fBairro","#fDescricao","#fStatus"].forEach(sel=>{
         $(sel).addEventListener("input", applyFilters);
         $(sel).addEventListener("change", applyFilters);
       });
@@ -1719,10 +1607,9 @@
         alert(
 `Como conectar:
 1) Publique a aba DASH_SERVICOS_DISPONIVEIS_JS em CSV.
-2) Troque o link em CONFIG.VIEW_CSV_URL.
+2) Use o link CSV correto no CONFIG.VIEW_CSV_URL.
 3) Defina o link certo do formulário em CONFIG.FORM_URL.
-4) Se mudar os nomes das colunas, ajuste em CONFIG.COLUMNS.
-5) Nunca publique o Banco de Dados completo no portal.`
+4) Confirme se os nomes da linha 1 batem com CONFIG.COLUMNS.`
         );
       });
 
