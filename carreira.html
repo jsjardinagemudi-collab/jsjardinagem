@@ -6,7 +6,10 @@
   <meta name="theme-color" content="#114084" />
 
   <title>Carreira • JS Jardinagem</title>
-  <meta name="description" content="Parceria para jardineiros profissionais: receba serviços com constância ou escale sua operação e lidere equipes com apoio da JS." />
+  <meta
+    name="description"
+    content="Trabalhe com a JS Jardinagem. Página de entrada para jardineiros, líderes de campo, parceiros com maquinário e profissionais que querem crescer no Portal do Jardineiro."
+  />
 
   <link rel="icon" href="/favicon.ico" />
 
@@ -19,83 +22,263 @@
       --paper:#fff;
       --bg:#f6f7f6;
       --line:#e7ecef;
+      --soft:#f8fafc;
+      --shadow:0 10px 26px rgba(0,0,0,.06);
+      --shadow-strong:0 20px 40px rgba(0,0,0,.12);
+      --good:#027a48;
+      --warn:#b54708;
+      --bad:#b42318;
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
-    a{text-decoration:none;color:inherit}
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    }
 
-    .wrap{width:min(1120px,92vw);margin:auto}
-    .topbar{background:var(--pri);color:#fff;text-align:center;padding:8px 10px;font-size:14px}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .wrap{width:min(1160px,92vw);margin:auto}
+
+    .topbar{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      text-align:center;
+      padding:8px 10px;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
 
     header{
-      position:sticky;top:0;z-index:50;
-      background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:#ffffffd9;
+      backdrop-filter:saturate(180%) blur(8px);
       border-bottom:1px solid #eef0ee;
     }
 
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{height:56px;width:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-    .brand strong{font-size:18px;font-weight:900;color:var(--pri);letter-spacing:.4px;text-transform:uppercase}
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
 
-    .links{display:flex;gap:18px;font-weight:800}
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      min-width:0;
+    }
+
+    .brand img{
+      height:56px;
+      width:auto;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      background:#fff;
+    }
+
+    .brand-block{
+      min-width:0;
+    }
+
+    .brand strong{
+      display:block;
+      font-size:18px;
+      font-weight:1000;
+      color:var(--pri);
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      line-height:1.05;
+    }
+
+    .brand span{
+      display:block;
+      font-size:12px;
+      color:#475467;
+      font-weight:900;
+      margin-top:4px;
+    }
+
+    .links{
+      display:flex;
+      gap:18px;
+      font-weight:900;
+      flex-wrap:wrap;
+    }
+
     .links a{color:var(--ink)}
     .links a:hover{color:var(--pri)}
 
-    .cta{display:flex;gap:10px;align-items:center}
-    .btn{
-      appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:12px;
-      padding:11px 14px;font-weight:800;cursor:pointer;transition:.25s ease;
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    .cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
     }
+
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.24s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+
     .btn:hover{background:#f3f5f7}
-    .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
-    .btn-primary:hover{background:#0d3270;border-color:#0d3270}
-    .btn-outline{background:transparent;border-color:var(--pri);color:var(--pri)}
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
     .btn-outline:hover{background:#eef4ff}
+    .btn-success{
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+      border-color:#0f8f52;
+      color:#fff;
+    }
+    .btn-success:hover{filter:brightness(.98)}
+    .btn-soft{
+      background:#eef4ff;
+      border-color:#d7e7ff;
+      color:var(--pri);
+    }
+    .btn-soft:hover{background:#e5f0ff}
 
     section{padding:56px 0}
+
     .card{
       background:var(--paper);
       border:1px solid var(--line);
       border-radius:18px;
-      box-shadow:0 10px 26px rgba(0,0,0,.06);
+      box-shadow:var(--shadow);
     }
 
-    /* HERO */
     .hero{
       position:relative;
-      min-height:68vh;
+      min-height:72vh;
       display:grid;
       align-items:center;
       color:#fff;
-      background: linear-gradient(50deg, rgba(17,64,132,.82), rgba(0,0,0,.45)), url("condominio_qualquer_tamanho.jpg") center/cover no-repeat;
+      background:
+        linear-gradient(50deg, rgba(17,64,132,.84), rgba(0,0,0,.42)),
+        url("condominio_qualquer_tamanho.jpg") center/cover no-repeat;
       overflow:hidden;
     }
-    .hero-inner{padding:54px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-    .hero h1{margin:0 0 10px;font-size:clamp(28px,4vw,48px);line-height:1.08;text-shadow:0 2px 10px rgba(0,0,0,.35)}
-    .hero p{margin:0 0 18px;font-size:clamp(15px,1.4vw,18px);line-height:1.55;opacity:.95;text-shadow:0 2px 10px rgba(0,0,0,.35)}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+
+    .hero-inner{
+      padding:58px 0;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#e8f5ee;
+      border:1px solid #cfe9da;
+      color:var(--pri);
+      font-weight:1000;
+      font-size:12px;
+    }
+
+    .hero h1{
+      margin:12px 0 12px;
+      font-size:clamp(30px,4vw,50px);
+      line-height:1.05;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+      letter-spacing:.1px;
+    }
+
+    .hero p{
+      margin:0 0 18px;
+      font-size:clamp(15px,1.35vw,18px);
+      line-height:1.65;
+      opacity:.98;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+      max-width:760px;
+      font-weight:700;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
 
     .hero-box{
-      background:#ffffffee;color:var(--ink);
-      border:1px solid #e5e5e5;border-radius:18px;
-      box-shadow:0 10px 26px rgba(0,0,0,.18);
+      background:#ffffffee;
+      color:var(--ink);
+      border:1px solid #e5e5e5;
+      border-radius:20px;
+      box-shadow:var(--shadow-strong);
       padding:22px;
     }
-    .hero-box h3{margin:0 0 8px;color:var(--pri)}
-    .hero-box ul{margin:10px 0 0;padding-left:18px;line-height:1.7;color:#344054}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:7px 10px;border-radius:999px;
-      background:#e8f5ee;border:1px solid #cfe9da;color:var(--pri);
-      font-weight:900;font-size:12px;
+
+    .hero-box h3{
+      margin:0 0 8px;
+      color:var(--pri);
+      font-size:18px;
     }
 
-    /* NOVO: DOIS PÚBLICOS (BLOCOS VISUAIS) */
-    .audience-title{margin:0 0 10px;font-size:26px}
-    .audience-sub{color:var(--muted);margin:0;line-height:1.6}
+    .hero-box p{
+      color:#344054;
+      text-shadow:none;
+      font-size:14px;
+      margin:0;
+      line-height:1.65;
+    }
+
+    .hero-box ul{
+      margin:12px 0 0;
+      padding-left:18px;
+      line-height:1.75;
+      color:#344054;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .section-title{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.08;
+    }
+
+    .muted{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
     .audience-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
@@ -103,37 +286,62 @@
       margin-top:18px;
       align-items:stretch;
     }
+
     .audience-card{
-      padding:18px;
+      padding:20px;
       display:flex;
       flex-direction:column;
       height:100%;
     }
+
     .audience-kicker{
-      display:inline-flex;align-items:center;gap:8px;
-      font-weight:900;font-size:12px;
-      padding:6px 10px;border-radius:999px;
-      border:1px solid #d7e7ff;background:#eef4ff;color:var(--pri);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:1000;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #d7e7ff;
+      background:#eef4ff;
+      color:var(--pri);
       width:fit-content;
     }
-    .audience-card h3{margin:10px 0 8px;color:var(--pri);font-size:20px}
-    .audience-card p{margin:0;color:#344054;line-height:1.7}
+
+    .audience-card h3{
+      margin:12px 0 8px;
+      color:var(--pri);
+      font-size:22px;
+      line-height:1.15;
+    }
+
+    .audience-card p{
+      margin:0;
+      color:#344054;
+      line-height:1.7;
+      font-weight:700;
+    }
+
     .audience-card ul{
       margin:12px 0 0;
       padding-left:18px;
-      line-height:1.75;
+      line-height:1.8;
       color:#475467;
+      font-weight:700;
     }
+
     .audience-cta{
       margin-top:14px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
     }
+
     .audience-featured{
       border:2px solid var(--pri);
       box-shadow:0 18px 40px rgba(0,0,0,.10);
     }
+
     .ladder{
       margin-top:12px;
       padding:12px 14px;
@@ -141,25 +349,80 @@
       border:1px solid var(--line);
       background:#fbfcff;
       color:#344054;
-      line-height:1.7;
+      line-height:1.75;
       font-weight:700;
     }
-    .ladder small{display:block;color:var(--muted);font-weight:800;margin-bottom:6px}
 
-    /* SECTIONS */
-    .section-title{margin:0 0 10px;font-size:26px}
-    .muted{color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .card-pad{padding:18px}
-
-    .step{display:flex;gap:12px;align-items:flex-start}
-    .num{
-      width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-      background:#eef4ff;border:1px solid #d7e7ff;color:var(--pri);font-weight:900;
-      flex:0 0 34px;
+    .ladder small{
+      display:block;
+      color:var(--muted);
+      font-weight:900;
+      margin-bottom:6px;
+      text-transform:uppercase;
+      letter-spacing:.2px;
     }
 
-    /* CARDS DE PARCERIA (3 colunas) */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .card-pad{padding:18px}
+
+    .step{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .num{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:#eef4ff;
+      border:1px solid #d7e7ff;
+      color:var(--pri);
+      font-weight:1000;
+      flex:0 0 36px;
+    }
+
+    .path-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .path-card{
+      padding:16px;
+      text-align:center;
+    }
+
+    .path-card strong{
+      display:block;
+      color:var(--pri);
+      font-size:15px;
+      margin-bottom:6px;
+    }
+
+    .path-card span{
+      color:#475467;
+      line-height:1.55;
+      font-weight:700;
+      font-size:13px;
+    }
+
     .pricing{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -175,26 +438,48 @@
       height:100%;
     }
 
-    .plan-top{
-      min-height:150px; /* padroniza topo p/ botões alinharem */
-    }
+    .plan-top{min-height:160px}
 
     .badge{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:6px 10px;border-radius:999px;font-weight:900;font-size:12px;
-      background:#e8f5ee;border:1px solid #cfe9da;color:var(--pri);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:1000;
+      font-size:12px;
+      background:#e8f5ee;
+      border:1px solid #cfe9da;
+      color:var(--pri);
     }
-    .badge.featured{background:var(--pri);border-color:var(--pri);color:#fff}
 
-    .plan h3{margin:10px 0 6px;color:var(--pri);font-size:20px}
-    .plan p{margin:0;color:#344054}
+    .badge.featured{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+
+    .plan h3{
+      margin:10px 0 6px;
+      color:var(--pri);
+      font-size:20px;
+      line-height:1.15;
+    }
+
+    .plan p{
+      margin:0;
+      color:#344054;
+      line-height:1.65;
+      font-weight:700;
+    }
 
     .plan ul{
       margin:12px 0 16px;
       padding-left:18px;
-      line-height:1.7;
+      line-height:1.75;
       color:#475467;
       flex:1;
+      font-weight:700;
     }
 
     .plan a.btn{
@@ -209,7 +494,6 @@
       box-shadow:0 18px 40px rgba(0,0,0,.12);
     }
 
-    /* Grid interno dos modelos 50/50, 60/40, 70/30 */
     .split-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -217,168 +501,279 @@
       margin-top:12px;
     }
 
-    .faq{margin-top:18px;display:grid;gap:12px}
-    details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-    summary{cursor:pointer;font-weight:900;color:#0f1411}
-    details p{margin:10px 0 0;color:#475467;line-height:1.6}
+    .icon-list{
+      margin:12px 0 0;
+      padding-left:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+
+    .icon-list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#475467;
+      line-height:1.65;
+      font-weight:700;
+    }
+
+    .icon-list li span{
+      width:24px;
+      height:24px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      background:#eef4ff;
+      color:var(--pri);
+      font-size:12px;
+      flex:0 0 24px;
+      font-weight:1000;
+    }
+
+    .faq{
+      margin-top:18px;
+      display:grid;
+      gap:12px;
+    }
+
+    details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px 16px;
+      box-shadow:var(--shadow);
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:1000;
+      color:#0f1411;
+    }
+
+    details p{
+      margin:10px 0 0;
+      color:#475467;
+      line-height:1.65;
+      font-weight:700;
+    }
 
     .band{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
-      color:#fff;border-radius:18px;padding:28px;
-      display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;
+      color:#fff;
+      border-radius:18px;
+      padding:28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      box-shadow:var(--shadow-strong);
     }
-    .band .actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    .band h3{
+      margin:0;
+      font-size:24px;
+      line-height:1.1;
+    }
+
+    .band p{
+      margin:0;
+      opacity:.98;
+      line-height:1.7;
+      font-weight:700;
+      max-width:760px;
+    }
+
+    .band .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
 
     footer{
-      background:#0a1a12;color:#cfe8da;padding:34px 0;margin-top:30px;
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:34px 0;
+      margin-top:30px;
     }
-    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}
-    .foot a{color:#cfe8da}
 
-    @media (max-width:900px){
-      .hero-inner{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .pricing{grid-template-columns:1fr}
-      .split-grid{grid-template-columns:1fr}
-      .foot{grid-template-columns:1fr}
-      .links{display:none}
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+
+    .foot a{color:#cfe8da}
+    .foot p{line-height:1.7}
+
+    @media (max-width:980px){
+      .hero-inner,
+      .grid,
+      .grid-2,
+      .pricing,
+      .split-grid,
+      .path-grid,
+      .foot{
+        grid-template-columns:1fr;
+      }
       .audience-grid{grid-template-columns:1fr}
+      .links{display:none}
     }
   </style>
 </head>
 
 <body>
- 
-  <div class="topbar">Carreira • Trabalhe com a JS — oportunidade para jardineiros profissionais com maquinário</div>
-  
+  <div class="topbar">
+    Carreira JS • Entrada para parceiros, líderes e profissionais do Portal do Jardineiro
+  </div>
 
   <header>
     <div class="wrap nav">
       <a class="brand" href="index.html">
         <img src="logo branca limpa.png" alt="JS Jardinagem" />
-        <strong>JS JARDINAGEM</strong>
+        <div class="brand-block">
+          <strong>JS JARDINAGEM</strong>
+          <span>Carreira • Crescimento operacional</span>
+        </div>
       </a>
 
       <nav class="links">
         <a href="index.html#serviços">Serviços</a>
         <a href="ecovida.html">EcoVida</a>
         <a href="carreira.html">Carreira</a>
-        <a href="parceiros.html">Portal do Parceiro</a>
+        <a href="parceiros.html">Portal do Jardineiro</a>
         <a href="index.html#contato">Contato</a>
       </nav>
 
       <div class="cta">
-        <a class="btn btn-primary" href="index.html">Voltar ao site</a>
-        <a class="btn btn-primary" href="parceiro.html" target="_blank" rel="noopener">Cadastrar pelo WhatsApp</a>
+        <a class="btn btn-outline" href="index.html">Voltar ao site</a>
+        <a class="btn btn-primary" href="parceiros.html">Abrir Portal</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
-        <span class="pill">📌 Jardineiro profissional + maquinário = oportunidade imediata</span>
-        <h1>Quer preencher sua agenda ou escalar e liderar equipe? A JS tem demanda.</h1>
+        <span class="pill">📌 Jardineiro profissional + maquinário = oportunidade real de crescimento</span>
+        <h1>Entre na JS para receber serviços, crescer com estrutura e evoluir dentro do Portal do Jardineiro.</h1>
         <p>
-          Se você trabalha sozinho (ou com 1 ajudante) e quer rodar serviço com constância, a JS conecta você à demanda.
-          E se você já está com agenda cheia, a JS ajuda a crescer com equipe, organização e padrão — para você assumir mais contratos com menos dor de cabeça.
+          A página de carreira da JS é a porta de entrada para jardineiros, parceiros, futuros líderes
+          de campo e profissionais que querem constância, escala e padrão operacional.
+          Aqui o objetivo não é só pegar serviço: é construir posição, confiança e crescimento.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="parceiro.html">Cadastrar agora</a>
-          <a class="btn btn-outline" href="parceiros.html">Portal do Parceiro</a>
-          <a class="btn btn-outline" href="#dois-caminhos">Dois caminhos na JS</a>
-          <a class="btn btn-outline" href="#como-funciona">Como funciona</a>
-          <a class="btn btn-outline" href="#modelos">Ver modelos de parceria</a>
-          <a class="btn btn-outline" href="#indicacao">Indicação</a>
-
-          <a class="btn btn-outline" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Sou%20jardineiro%20profissional%2C%20tenho%20maquin%C3%A1rio%20e%20quero%20crescer%20com%20a%20JS.%20Como%20funciona%3F" target="_blank" rel="noopener">Falar com a JS</a>
+          <a class="btn btn-primary" href="parceiros.html">Quero entrar no Portal</a>
+          <a class="btn btn-success" href="parceiro.html" target="_blank" rel="noopener">Quero me cadastrar</a>
+          <a class="btn btn-outline" href="#como-entrar">Como entrar</a>
+          <a class="btn btn-outline" href="#modelos">Modelos de parceria</a>
         </div>
       </div>
 
       <div class="hero-box">
-        <h3>O que você ganha</h3>
+        <h3>O que a JS oferece hoje</h3>
+        <p>
+          A JS já está estruturando uma operação real com orçamento, atualização de serviços,
+          execução, dashboards e Portal do Jardineiro.
+        </p>
         <ul>
-          <li><b>Serviços disponíveis</b> (condomínios, residências e empresas).</li>
-          <li><b>Ajudantes e reforço</b> quando precisar escalar equipe.</li>
-          <li><b>Orçamentos mais rápidos</b> com padrões e ferramentas da JS.</li>
-          <li><b>Divisão justa e transparente</b> (modelo combinado antes).</li>
-          <li><b>Trilha de crescimento</b> para quem quer virar referência e liderar.</li>
+          <li><strong>Serviços disponíveis</strong> para parceiros e reforço de agenda</li>
+          <li><strong>Padronização</strong> de orçamento, execução e comunicação</li>
+          <li><strong>Apoio operacional</strong> para crescer com equipe</li>
+          <li><strong>Trilha de evolução</strong> até liderança de campo</li>
+          <li><strong>Entrada no Portal</strong> para profissionais alinhados com a JS</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- NOVO: DOIS BLOCOS VISUAIS -->
   <section id="dois-caminhos" style="padding-top:30px;">
     <div class="wrap">
-      <h2 class="audience-title">Dois caminhos para crescer com a JS</h2>
-      <p class="audience-sub">A mesma parceria, dois perfis diferentes. Você entra do jeito certo para o seu momento.</p>
+      <h2 class="section-title">Escolha seu caminho de entrada na JS</h2>
+      <p class="muted">
+        O mesmo ecossistema, dois perfis de entrada. A JS quer encaixar cada profissional no estágio certo,
+        sem prometer demais e sem misturar recrutamento com operação.
+      </p>
 
       <div class="audience-grid">
-        <!-- BLOCO 1: AGENDA VAZIA -->
         <div class="card audience-card">
-          <span class="audience-kicker">🧩 AGENDA VAZIA / QUER CONSTÂNCIA</span>
-          <h3>Receba serviços e entre numa rotina de trabalho</h3>
+          <span class="audience-kicker">🧩 QUERO CONSTÂNCIA</span>
+          <h3>Receber serviços e preencher a agenda</h3>
           <p>
-            Se você já é profissional, tem maquinário e quer preencher dias vazios, a JS organiza a demanda e te conecta aos serviços certos.
+            Ideal para jardineiros com maquinário que querem mais constância, mais demanda
+            e uma forma organizada de entrar em novos serviços.
           </p>
+
           <ul>
-            <li>Serviços recorrentes e avulsos</li>
-            <li>Padrão, prazo e organização</li>
-            <li>Apoio com ajudantes quando precisar</li>
+            <li>Serviços avulsos e recorrentes</li>
+            <li>Entrada mais rápida para começar a operar</li>
+            <li>Possibilidade de apoio com ajudantes e reforço</li>
+            <li>Uso do Portal do Jardineiro para acompanhar oportunidades</li>
           </ul>
 
           <div class="audience-cta">
             <a class="btn btn-primary" href="parceiro.html">Quero receber serviços</a>
-            <a class="btn btn-outline" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Minha%20agenda%20tem%20dias%20vazios%20e%20quero%20receber%20servi%C3%A7os%20com%20const%C3%A2ncia.%20Como%20me%20cadastrar%3F" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a
+              class="btn btn-outline"
+              href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Sou%20jardineiro%20profissional%2C%20tenho%20maquin%C3%A1rio%20e%20quero%20receber%20servi%C3%A7os%20com%20mais%20const%C3%A2ncia.%20Como%20entro%20na%20JS%3F"
+              target="_blank"
+              rel="noopener"
+            >Falar no WhatsApp</a>
           </div>
         </div>
 
-        <!-- BLOCO 2: AGENDA CHEIA / LÍDER -->
         <div class="card audience-card audience-featured">
-          <span class="audience-kicker">🚀 AGENDA CHEIA / QUER ESCALAR</span>
-          <h3>Vire líder de campo e assuma mais contratos</h3>
+          <span class="audience-kicker">🚀 QUERO ESCALAR</span>
+          <h3>Virar líder de campo e crescer com a JS</h3>
           <p>
-            Se você já tem serviço, mas trava por falta de equipe, liderança ou estrutura, a JS te ajuda a escalar com padrão operacional.
-            Aqui você não entra só para executar — entra para crescer e liderar.
+            Ideal para quem já tem capacidade técnica, quer assumir mais contratos e precisa de
+            estrutura, padrão, equipe e processo para subir de nível.
           </p>
 
           <div class="ladder">
-            <small>Trilha de evolução (JS):</small>
+            <small>Trilha oficial da JS</small>
             Auxiliar → Jardineiro Operacional → Líder Operacional JS → Operador JS → Master JS
           </div>
 
           <ul>
-            <li>Equipe, logística e padrão de execução</li>
-            <li>Organização para aumentar capacidade e margem</li>
-            <li>Compromisso, comunicação e responsabilidade</li>
+            <li>Mais organização para assumir serviços maiores</li>
+            <li>Possibilidade de liderar equipe com padrão JS</li>
+            <li>Escala com operação, não só com esforço individual</li>
+            <li>Entrada mais estratégica dentro do ecossistema da empresa</li>
           </ul>
 
           <div class="audience-cta">
-            <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20agenda%20cheia%20e%20quero%20escalar%20minha%20opera%C3%A7%C3%A3o%20com%20equipe%20e%20estrutura.%20Quero%20entrar%20como%20futuro%20l%C3%ADder%20de%20campo.%20Como%20funciona%3F" target="_blank" rel="noopener">Quero virar líder</a>
-            <a class="btn btn-outline" href="#modelos">Ver modelos de parceria</a>
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20na%20JS%20como%20futuro%20l%C3%ADder%20de%20campo%20e%20crescer%20com%20estrutura%2C%20equipe%20e%20opera%C3%A7%C3%A3o.%20Como%20funciona%3F"
+              target="_blank"
+              rel="noopener"
+            >Quero virar líder</a>
+            <a class="btn btn-soft" href="parceiros.html">Ver o Portal</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- COMO FUNCIONA -->
-  <section id="como-funciona">
+  <section id="como-entrar">
     <div class="wrap">
-      <h2 class="section-title">Como funciona a parceria</h2>
-      <p class="muted">Um fluxo simples, direto e com transparência. A ideia é você trabalhar e receber com clareza.</p>
+      <h2 class="section-title">Como entrar na JS</h2>
+      <p class="muted">
+        A ideia é simples: cadastro, análise, encaixe correto e começo de operação com clareza.
+      </p>
 
       <div class="grid">
         <div class="card card-pad">
           <div class="step">
             <div class="num">1</div>
             <div>
-              <h3 style="margin:0 0 6px;color:var(--pri)">Cadastro rápido</h3>
-              <p class="muted" style="margin:0;line-height:1.6">
-                Você envia dados básicos: experiência, bairro/região, equipamentos, dias disponíveis e tipo de serviço.
+              <h3 style="margin:0 0 6px;color:var(--pri)">Cadastro e perfil</h3>
+              <p class="muted" style="margin:0">
+                Você envia seus dados, experiência, região, maquinário, disponibilidade e interesse
+                em parceria, reforço ou liderança.
               </p>
             </div>
           </div>
@@ -388,9 +783,10 @@
           <div class="step">
             <div class="num">2</div>
             <div>
-              <h3 style="margin:0 0 6px;color:var(--pri)">Oferta de serviços</h3>
-              <p class="muted" style="margin:0;line-height:1.6">
-                Quando surgir serviço compatível, a JS te chama e você confirma disponibilidade.
+              <h3 style="margin:0 0 6px;color:var(--pri)">Análise da JS</h3>
+              <p class="muted" style="margin:0">
+                A JS avalia seu perfil para entender se você entra melhor como parceiro operacional,
+                reforço de campo ou futuro líder.
               </p>
             </div>
           </div>
@@ -400,9 +796,10 @@
           <div class="step">
             <div class="num">3</div>
             <div>
-              <h3 style="margin:0 0 6px;color:var(--pri)">Execução com apoio</h3>
-              <p class="muted" style="margin:0;line-height:1.6">
-                Você executa o serviço. Se precisar, a JS organiza ajudantes e suporte operacional.
+              <h3 style="margin:0 0 6px;color:var(--pri)">Entrada no fluxo certo</h3>
+              <p class="muted" style="margin:0">
+                Você começa a receber oportunidades, participar de testes, reforços ou entrar no Portal
+                do Jardineiro conforme seu momento.
               </p>
             </div>
           </div>
@@ -410,248 +807,298 @@
       </div>
 
       <div class="card card-pad" style="margin-top:16px">
-        <strong>Importante:</strong>
-        <p class="muted" style="margin:8px 0 0;line-height:1.7">
-          A parceria só funciona com <b>pontualidade, capricho e comunicação</b>. A JS protege o cliente e protege o parceiro:
-          o combinado é claro antes e o objetivo é construir relação de longo prazo.
-          <b>A JS é para quem assume compromisso — não só para quem quer “pegar serviço”.</b>
+        <strong>Regra da casa:</strong>
+        <p class="muted" style="margin:8px 0 0">
+          A JS quer profissionais que valorizem compromisso, comunicação, capricho e constância.
+          A empresa está construindo estrutura, processo e reputação. Quem entra precisa entrar para somar.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- PARA QUEM É -->
   <section>
     <div class="wrap">
-      <h2 class="section-title">Para quem é essa oportunidade</h2>
-      <p class="muted">Se você se encaixa em 3 ou mais itens abaixo, você é forte candidato.</p>
-
-      <div class="grid">
-        <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Profissional e responsável</h3>
-          <p class="muted" style="margin:0;line-height:1.6">Sabe executar, tem padrão de qualidade e respeita horários.</p>
-        </div>
-        <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Tem maquinário</h3>
-          <p class="muted" style="margin:0;line-height:1.6">Roçadeira, soprador, cortador, ferramentas básicas e EPI.</p>
-        </div>
-        <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Quer crescer (não só trabalhar)</h3>
-          <p class="muted" style="margin:0;line-height:1.6">Quer constância hoje e evolução para liderança amanhã.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOVO: INDICAÇÃO -->
-  <section id="indicacao" style="background:#f7f9f8">
-    <div class="wrap">
-      <h2 class="section-title">Indicação (modalidade extra)</h2>
-      <p class="muted" style="max-width:78ch;line-height:1.7">
-        Você pode ajudar a JS a crescer indicando <b>clientes</b> (condomínios, empresas e residências) ou indicando <b>profissionais</b> (jardineiros e ajudantes).
-        Se a indicação virar serviço, a JS reconhece e recompensa — de forma clara e combinada.
+      <h2 class="section-title">Quem pode entrar agora</h2>
+      <p class="muted">
+        Esses são os perfis mais alinhados com o estágio atual da operação da JS.
       </p>
 
       <div class="grid">
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">🏢 Indicar cliente</h3>
-          <p class="muted" style="margin:0;line-height:1.6">
-            Você aponta o contato (síndico, gerente ou responsável) e a JS faz a abordagem profissional, orçamento e fechamento.
+          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Jardineiro com maquinário</h3>
+          <p class="muted" style="margin:0">
+            Tem roçadeira, soprador, cortador ou kit básico e quer transformar isso em agenda, renda e continuidade.
           </p>
-          <ul style="margin:12px 0 0;padding-left:18px;line-height:1.75;color:#475467">
-            <li>Condomínios, empresas e residências</li>
-            <li>JS cuida do atendimento e proposta</li>
-            <li>Reconhecimento quando fechar</li>
-          </ul>
         </div>
 
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">🧑‍🌾 Indicar profissional</h3>
-          <p class="muted" style="margin:0;line-height:1.6">
-            Indicou um jardineiro/ajudante bom? A JS valida, testa e coloca na operação. Se virar peça fixa, você ganha por ter fortalecido a equipe.
+          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Parceiro que quer crescer</h3>
+          <p class="muted" style="margin:0">
+            Já trabalha bem, mas quer estrutura, mais demanda, padrão e possibilidade de escala com a JS.
           </p>
-          <ul style="margin:12px 0 0;padding-left:18px;line-height:1.75;color:#475467">
-            <li>Jardineiros com maquinário</li>
-            <li>Ajudantes confiáveis</li>
-            <li>Recompensa quando firmar</li>
-          </ul>
         </div>
 
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">📌 Como indicar</h3>
-          <p class="muted" style="margin:0;line-height:1.6">
-            Envie no WhatsApp: <b>nome</b>, <b>bairro</b>, <b>tipo</b> (cliente/profissional) e <b>melhor horário</b>. A JS confirma e dá retorno do andamento.
+          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Futuro líder de campo</h3>
+          <p class="muted" style="margin:0">
+            Tem postura, organização e quer evoluir de executor para referência operacional dentro da empresa.
           </p>
-          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn btn-primary"
-               href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20fazer%20uma%20INDICA%C3%87%C3%83O.%0A%0ATipo%3A%20(Cliente%20ou%20Profissional)%0ANome%3A%20%0ABairro%2FRegi%C3%A3o%3A%20%0AContato%3A%20%0AHor%C3%A1rio%20bom%20para%20falar%3A%20"
-               target="_blank" rel="noopener">
-              Fazer indicação no WhatsApp
-            </a>
-            <a class="btn btn-outline" href="parceiro.html">Quero ser parceiro</a>
-          </div>
         </div>
-      </div>
-
-      <div class="card card-pad" style="margin-top:16px">
-        <strong>Regra simples:</strong>
-        <p class="muted" style="margin:8px 0 0;line-height:1.7">
-          A indicação precisa ser <b>real</b> e com <b>contato válido</b>. A recompensa é confirmada quando o serviço é fechado (ou quando o profissional entra e firma).
-          Tudo alinhado com transparência, sem conversa enrolada.
-        </p>
       </div>
     </div>
   </section>
 
-  <!-- MODELOS -->
+  <section style="background:#f7f9f8">
+    <div class="wrap">
+      <h2 class="section-title">Caminho de crescimento na JS</h2>
+      <p class="muted">
+        A JS não quer só mão de obra. Quer construir pessoas fortes dentro da operação.
+      </p>
+
+      <div class="path-grid">
+        <div class="card path-card">
+          <strong>Auxiliar</strong>
+          <span>Entrada, apoio, aprendizado e adaptação ao padrão de execução.</span>
+        </div>
+
+        <div class="card path-card">
+          <strong>Jardineiro Operacional</strong>
+          <span>Execução com autonomia e padrão técnico no campo.</span>
+        </div>
+
+        <div class="card path-card">
+          <strong>Líder Operacional JS</strong>
+          <span>Coordena equipe, organiza frente de serviço e responde pela entrega.</span>
+        </div>
+
+        <div class="card path-card">
+          <strong>Operador JS</strong>
+          <span>Mais responsabilidade, mais leitura operacional e maior capacidade de execução.</span>
+        </div>
+
+        <div class="card path-card">
+          <strong>Master JS</strong>
+          <span>Referência, braço forte da operação e possível sócio/franqueado no futuro.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="modelos" style="padding-top:10px;">
     <div class="wrap">
       <h2 class="section-title">Modelos de parceria</h2>
-      <p class="muted">Você escolhe o modelo conforme o tipo de serviço. Tudo alinhado antes de iniciar.</p>
+      <p class="muted">
+        A parceria certa depende do tipo de serviço, do nível de apoio da JS e da origem do cliente.
+      </p>
 
-      <!-- MODELOS DE DIVISÃO DE LUCRO -->
       <div class="card card-pad" style="margin-top:16px">
-        <h3 style="margin:0 0 6px;color:var(--pri)">Modelos de divisão de lucro</h3>
-        <p class="muted" style="margin:0 0 12px;line-height:1.6">
-          Trabalhamos com modelos claros e justos, conforme o tipo de serviço e responsabilidade envolvida.
-          O combinado é sempre feito antes de iniciar.
+        <h3 style="margin:0 0 6px;color:var(--pri)">Modelos principais de divisão</h3>
+        <p class="muted" style="margin:0 0 12px">
+          O combinado é feito antes. A JS quer clareza, não enrolação.
         </p>
 
         <div class="split-grid">
           <div class="card-pad" style="border:1px solid var(--line);border-radius:14px">
-            <span class="badge">EQUILÍBRIO</span>
+            <span class="badge">SERVIÇO DA JS</span>
             <h4 style="margin:10px 0 6px;color:var(--pri)">50% Parceiro / 50% JS</h4>
-            <p class="muted" style="margin:0 0 10px">JS organiza cliente e marketing / parceiro executa.</p>
+            <p class="muted" style="margin:0 0 10px">Quando o serviço está aberto para parceria e a estrutura é equilibrada.</p>
             <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-              <li>✅ JS fecha e negocia o serviço</li>
-              <li>✅ Parceiro executa o trabalho</li>
-              <li>✅ Divisão transparente e simples</li>
+              <li>JS organiza cliente e operação</li>
+              <li>Parceiro entra na execução</li>
+              <li>Modelo simples e direto</li>
             </ul>
           </div>
 
           <div class="card-pad featured" style="border-radius:14px">
             <span class="badge featured">RECOMENDADO</span>
             <h4 style="margin:10px 0 6px;color:var(--pri)">40% Parceiro / 60% JS</h4>
-            <p class="muted" style="margin:0 0 10px">Quando a JS fornece ajudante, logística e supervisão.</p>
+            <p class="muted" style="margin:0 0 10px">Quando a JS fornece mais estrutura, apoio, ajudantes ou logística.</p>
             <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-              <li>✅ JS fornece estrutura e suporte</li>
-              <li>✅ Parceiro executa com apoio</li>
-              <li>✅ Maior organização e escala</li>
+              <li>Mais estrutura da JS</li>
+              <li>Mais organização e padrão</li>
+              <li>Ideal para crescimento com suporte</li>
             </ul>
           </div>
 
           <div class="card-pad" style="border:1px solid var(--line);border-radius:14px">
             <span class="badge">CLIENTE DO PARCEIRO</span>
             <h4 style="margin:10px 0 6px;color:var(--pri)">70% Parceiro / 30% JS</h4>
-            <p class="muted" style="margin:0 0 10px">Quando o parceiro traz o cliente, e a JS dá suporte.</p>
+            <p class="muted" style="margin:0 0 10px">Quando o parceiro traz o cliente e a JS entra com apoio, sistema e padrão.</p>
             <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-              <li>✅ Parceiro traz o cliente</li>
-              <li>✅ JS dá suporte, sistema e ajudantes</li>
-              <li>✅ Crescimento conjunto</li>
+              <li>Parceiro traz oportunidade</li>
+              <li>JS fortalece a execução</li>
+              <li>Modelo de crescimento conjunto</li>
             </ul>
           </div>
         </div>
-
-        <p class="muted" style="margin:12px 0 0;font-size:14px;line-height:1.6">
-          Cada serviço pode ser ajustado conforme complexidade, risco e estrutura envolvida.
-        </p>
       </div>
 
-      <!-- 3 MODELOS PRINCIPAIS (CARDS) -->
       <div class="pricing">
         <div class="card plan">
           <div class="plan-top">
-            <span class="badge">SERVIÇO AVULSO</span>
-            <h3>Divisão por diária</h3>
-            <p class="muted">Ideal para reforços e trabalhos pontuais.</p>
+            <span class="badge">ENTRADA RÁPIDA</span>
+            <h3>Serviço avulso</h3>
+            <p>Bom para quem quer começar, testar a operação e entrar em reforços ou demandas pontuais.</p>
           </div>
           <ul>
-            <li>✅ Pagamento por diária ou por entrega</li>
-            <li>✅ Ajudantes opcionais</li>
-            <li>✅ Direto e simples</li>
+            <li>Pagamento por entrega/diária</li>
+            <li>Mais simples para começar</li>
+            <li>Boa porta de entrada para novos parceiros</li>
           </ul>
-          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20interesse%20no%20modelo%20de%20parceria%20por%20di%C3%A1ria%20(servi%C3%A7o%20avulso).%20Podem%20me%20explicar%20como%20funciona%3F" target="_blank" rel="noopener">Quero esse modelo</a>
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20interesse%20em%20entrar%20em%20servi%C3%A7os%20avulsos%20para%20come%C3%A7ar%20na%20opera%C3%A7%C3%A3o."
+            target="_blank"
+            rel="noopener"
+          >Quero começar</a>
         </div>
 
         <div class="card plan featured">
           <div class="plan-top">
-            <span class="badge featured">RECOMENDADO</span>
-            <h3>Divisão por serviço</h3>
-            <p class="muted">Quando você executa e a JS organiza cliente/escopo.</p>
+            <span class="badge featured">PORTAL DO JARDINEIRO</span>
+            <h3>Serviços com apoio e padrão JS</h3>
+            <p>Modelo ideal para parceiros que querem entrar no sistema da empresa com mais estrutura e visão de crescimento.</p>
           </div>
           <ul>
-            <li>✅ JS fecha o cliente e organiza a demanda</li>
-            <li>✅ Você executa com padrão e prazo</li>
-            <li>✅ Divisão combinada e transparente</li>
+            <li>Leitura dos serviços disponíveis</li>
+            <li>Entrada no fluxo com portal e operação</li>
+            <li>Mais clareza de equipe, horas e parceria</li>
           </ul>
-          <a class="btn btn-primary" href="parceiro.html" target="_blank" rel="noopener">Quero ser parceiro</a>
+          <a class="btn btn-primary" href="parceiros.html">Abrir Portal do Jardineiro</a>
         </div>
 
         <div class="card plan">
           <div class="plan-top">
-            <span class="badge">RECORRENTE</span>
-            <h3>Rotina / Plano</h3>
-            <p class="muted">Para quem quer entrar numa rotina mensal.</p>
+            <span class="badge">ROTINA / ESCALA</span>
+            <h3>Plano de crescimento</h3>
+            <p>Para profissionais que querem entrar de verdade na estrutura, ganhar constância e crescer até liderança.</p>
           </div>
           <ul>
-            <li>✅ Serviços recorrentes (condomínios e empresas)</li>
-            <li>✅ Possibilidade de crescer com a JS</li>
-            <li>✅ Padrão e constância</li>
+            <li>Maior continuidade de serviço</li>
+            <li>Mais alinhado com crescimento na empresa</li>
+            <li>Base para assumir mais contratos no futuro</li>
           </ul>
-          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20interesse%20em%20entrar%20numa%20rotina%20mensal%20(recorrente).%20Como%20funciona%20a%20parceria%3F" target="_blank" rel="noopener">Quero conversar</a>
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20num%20plano%20de%20crescimento%20com%20a%20empresa%20e%20evoluir%20na%20opera%C3%A7%C3%A3o."
+            target="_blank"
+            rel="noopener"
+          >Quero crescer</a>
         </div>
       </div>
 
       <p class="muted" style="margin-top:12px;font-size:14px">
-        Observação: a divisão exata varia conforme serviço (distância, risco, tamanho, equipe e materiais). O combinado é feito antes.
+        A divisão exata depende do escopo, distância, risco, equipe, apoio da JS e origem do cliente.
       </p>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <section id="indicacao" style="background:#f7f9f8">
+    <div class="wrap">
+      <h2 class="section-title">Indicação também conta como entrada</h2>
+      <p class="muted" style="max-width:78ch">
+        Você também pode entrar fortalecendo a operação da JS através de indicação. Isso vale tanto para clientes quanto para profissionais.
+      </p>
+
+      <div class="grid">
+        <div class="card card-pad">
+          <h3 style="margin:0 0 8px;color:var(--pri)">🏢 Indicar cliente</h3>
+          <p class="muted" style="margin:0">
+            Condomínios, empresas e residências podem virar novas frentes de trabalho para a JS.
+          </p>
+          <ul class="icon-list">
+            <li><span>✓</span> A JS cuida da abordagem, proposta e fechamento</li>
+            <li><span>✓</span> Você ajuda a abrir a porta certa</li>
+            <li><span>✓</span> Indicação válida gera reconhecimento</li>
+          </ul>
+        </div>
+
+        <div class="card card-pad">
+          <h3 style="margin:0 0 8px;color:var(--pri)">🧑‍🌾 Indicar profissional</h3>
+          <p class="muted" style="margin:0">
+            Jardineiros bons, ajudantes confiáveis e pessoas alinhadas com trabalho sério fortalecem a estrutura da JS.
+          </p>
+          <ul class="icon-list">
+            <li><span>✓</span> Reforça a base da operação</li>
+            <li><span>✓</span> Ajuda a JS a escalar com confiança</li>
+            <li><span>✓</span> Pode gerar retorno quando firmar</li>
+          </ul>
+        </div>
+
+        <div class="card card-pad">
+          <h3 style="margin:0 0 8px;color:var(--pri)">📌 Como indicar</h3>
+          <p class="muted" style="margin:0">
+            Envie no WhatsApp o nome, bairro, contato e contexto da indicação. A JS responde e acompanha o andamento.
+          </p>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20fazer%20uma%20indica%C3%A7%C3%A3o.%0A%0ATipo%3A%20(Cliente%20ou%20Profissional)%0ANome%3A%20%0ABairro%2FRegi%C3%A3o%3A%20%0AContato%3A%20%0AHor%C3%A1rio%20bom%20para%20falar%3A%20"
+              target="_blank"
+              rel="noopener"
+            >Fazer indicação</a>
+            <a class="btn btn-outline" href="parceiros.html">Ver Portal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="wrap">
       <h2 class="section-title">Dúvidas comuns</h2>
 
       <div class="faq">
         <details>
-          <summary>Preciso ter ajudante?</summary>
-          <p>Não. Se você trabalha sozinho, pode se cadastrar. Quando o serviço exigir, a JS pode ajudar a montar equipe com ajudantes disponíveis.</p>
+          <summary>Preciso ter maquinário para entrar?</summary>
+          <p>
+            Para entrar como parceiro de execução, sim, o ideal é ter maquinário básico. Para funções de apoio e crescimento interno, a JS pode avaliar outros formatos de entrada.
+          </p>
         </details>
 
         <details>
-          <summary>Como funciona o pagamento?</summary>
-          <p>Depende do tipo de serviço e do modelo combinado. O importante é que o combinado é claro antes de iniciar e o parceiro entrega com padrão e comunicação.</p>
+          <summary>Posso entrar mesmo sem agenda cheia?</summary>
+          <p>
+            Sim. A página de carreira também é para quem quer constância e está com espaço na agenda.
+          </p>
         </details>
 
         <details>
-          <summary>Que tipo de serviço aparece?</summary>
-          <p>Manutenção, roçada, podas, jardinagem em geral e demandas para condomínios/empresas. Se tiver experiência com podas técnicas, avise no cadastro.</p>
+          <summary>O Portal do Jardineiro é para todos?</summary>
+          <p>
+            Não. O portal é uma ferramenta operacional. A entrada nele faz mais sentido para quem já está alinhado com a JS ou está em processo de integração.
+          </p>
         </details>
 
         <details>
-          <summary>Posso trabalhar só alguns dias da semana?</summary>
-          <p>Sim. No cadastro você informa sua disponibilidade. A JS te chama quando surgir serviço compatível com seus dias e região.</p>
+          <summary>Posso crescer até virar líder?</summary>
+          <p>
+            Sim. Esse é um dos objetivos da JS. Mas liderança vem com consistência, postura, comunicação e capacidade de sustentar padrão.
+          </p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
   <section>
     <div class="wrap band">
-      <div style="display:grid;gap:8px;max-width:720px">
-        <h3 style="margin:0">Quer entrar para crescer com a JS?</h3>
-        <p style="margin:0;opacity:.95;line-height:1.6">
-          Se você é jardineiro profissional e tem maquinário, a JS pode te conectar com serviços e construir um caminho de evolução.
-          Entre para rodar com constância — ou para escalar e virar líder de campo.
+      <div style="display:grid;gap:8px;max-width:760px">
+        <h3>Quer entrar na JS do jeito certo?</h3>
+        <p>
+          A carreira da JS é a porta de entrada. O Portal do Jardineiro é a operação.
+          Se você quer receber serviços, crescer com estrutura ou caminhar para liderança, esse é o momento certo para se apresentar.
         </p>
       </div>
 
       <div class="actions">
-        <a class="btn btn-primary" href="parceiro.html" target="_blank" rel="noopener">Quero receber serviços</a>
-        <a class="btn btn-outline" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20como%20futuro%20l%C3%ADder%20de%20campo%20e%20escalar%20opera%C3%A7%C3%A3o%20com%20equipe%20e%20estrutura.%20Podemos%20conversar%3F" target="_blank" rel="noopener">Quero virar líder</a>
-        <a class="btn btn-outline" href="index.html">Voltar ao site</a>
+        <a class="btn btn-primary" href="parceiro.html" target="_blank" rel="noopener">Quero me cadastrar</a>
+        <a class="btn btn-outline" href="parceiros.html">Abrir Portal do Jardineiro</a>
+        <a
+          class="btn btn-outline"
+          href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20na%20empresa%20e%20entender%20qual%20%C3%A9%20o%20melhor%20caminho%20para%20mim%20dentro%20da%20opera%C3%A7%C3%A3o."
+          target="_blank"
+          rel="noopener"
+        >Falar com a JS</a>
       </div>
     </div>
   </section>
@@ -660,14 +1107,18 @@
     <div class="wrap foot">
       <div>
         <strong>JS Jardinagem</strong>
-        <p class="muted">Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.</p>
+        <p class="muted">
+          Entrada para parceiros, profissionais operacionais e futuros líderes de campo da JS Jardinagem.
+        </p>
       </div>
+
       <div>
         <p><a href="index.html#serviços">Serviços</a></p>
         <p><a href="ecovida.html">EcoVida</a></p>
         <p><a href="carreira.html">Carreira</a></p>
-        <p><a href="parceiros.html">Portal do Parceiro</a></p>
+        <p><a href="parceiros.html">Portal do Jardineiro</a></p>
       </div>
+
       <div>
         <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
         <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
