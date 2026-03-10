@@ -170,7 +170,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+      grid-template-:minmax(0,1.15fr) minmax(300px,.85fr);
       gap:20px;
       align-items:stretch;
     }
@@ -246,7 +246,7 @@
 
     .grid-tools{
       display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
+      grid-template-:repeat(4,minmax(0,1fr));
       gap:16px;
     }
 
@@ -319,7 +319,7 @@
 
     .portal-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);
+      grid-template-:minmax(0,1.35fr) minmax(310px,.65fr);
       gap:18px;
       align-items:start;
     }
@@ -383,7 +383,7 @@
 
     .filters{
       display:grid;
-      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      grid-template-:1.2fr 1fr 1fr 1fr;
       gap:10px;
       padding:14px 16px;
       border-bottom:1px solid var(--line);
@@ -424,7 +424,7 @@
       box-shadow:0 8px 18px rgba(0,0,0,.05);
       padding:14px;
       display:grid;
-      grid-template-columns:minmax(0,1fr) 300px;
+      grid-template-:minmax(0,1fr) 300px;
       gap:14px;
       align-items:start;
       transition:.2s ease;
@@ -483,8 +483,8 @@
       display:grid;
       gap:10px;
     }
-    .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid2{grid-template-:repeat(2,minmax(0,1fr))}
+    .grid3{grid-template-:repeat(3,minmax(0,1fr))}
 
     .kv{
       border:1px solid var(--line);
@@ -698,7 +698,7 @@
 
     .embed-grid{
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-:repeat(2,minmax(0,1fr));
       gap:18px;
     }
 
@@ -784,7 +784,7 @@
 
     .foot{
       display:grid;
-      grid-template-columns:2fr 1fr;
+      grid-template-:2fr 1fr;
       gap:20px;
     }
 
@@ -793,28 +793,28 @@
     @media(max-width:1100px){
       .grid-tools,
       .embed-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+        grid-template-:repeat(2,minmax(0,1fr));
       }
       .hero-grid,
       .portal-grid{
-        grid-template-columns:1fr;
+        grid-template-:1fr;
       }
       .side,.cta{position:relative;top:auto}
-      .job{grid-template-columns:1fr}
+      .job{grid-template-:1fr}
       .links{display:none}
-      .foot{grid-template-columns:1fr}
-      .filters{grid-template-columns:1fr 1fr}
+      .foot{grid-template-:1fr}
+      .filters{grid-template-:1fr 1fr}
     }
 
     @media(max-width:760px){
       .grid-tools,
       .embed-grid{
-        grid-template-columns:1fr;
+        grid-template-:1fr;
       }
       .filters,
       .grid2,
       .grid3{
-        grid-template-columns:1fr;
+        grid-template-:1fr;
       }
       .brand img{height:48px}
       .brand-text strong{font-size:15px}
@@ -1167,27 +1167,28 @@
       TAKE_SERVICE_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
       AUTO_REFRESH_MS: 60000,
 
-      COLUMNS: {
-        idShort: ["ID_SHORT"],
-        dataServico: ["DATA_SERVICO"],
-        cliente: ["CLIENTE"],
-        telefone: ["TELEFONE"],
-        linkMaps: ["LINK_MAPS"],
-        enderecoTexto: ["ENDERECO_TEXTO"],
-        bairro: ["BAIRRO"],
-        descricao: ["DESCRICAO"],
-        responsavel: ["RESPONSAVEL_ENVIO"],
-        status: ["STATUS"],
-        qtdLider: ["QTD_LIDER"],
-        qtdJardineiro: ["QTD_JARDINEIRO"],
-        qtdAuxiliar: ["QTD_AUXILIAR"],
-        equipeTotal: ["EQUIPE_TOTAL"],
-        horas: ["HORAS"],
-        precoFinal: ["PRECO_FINAL"],
-        valorParceiro: ["VALOR_PARCEIRO"],
-        ganhoHora: ["GANHO_POR_HORA"],
-        tipoParceria: ["TIPO_PARCERIA"],
-        proximaAcao: ["PROXIMA_ACAO"]
+      
+        COLUMNS: {
+  idShort: ["ID_SHORT"],
+  dataServico: ["DATA_SERVICO"],
+  cliente: ["CLIENTE"],
+  enderecoTexto: ["ENDERECO_TEXTO"],
+  linkMaps: ["LINK_MAPS"],
+  bairro: ["BAIRRO"],
+  descricao: ["DESCRICAO"],
+  responsavel: ["RESPONSAVEL_ENVIO"],
+  status: ["STATUS"],
+  qtdLider: ["QTD_LIDER"],
+  qtdJardineiro: ["QTD_JARDINEIRO"],
+  qtdAuxiliar: ["QTD_AUXILIAR"],
+  equipeTotal: ["EQUIPE_TOTAL"],
+  horas: ["HORAS"],
+  precoFinal: ["PRECO_FINAL"],
+  valorParceiro: ["VALOR_PARCEIRO"],
+  ganhoHora: ["GANHO_POR_HORA"],
+  tipoParceria: ["TIPO_PARCERIA"],
+  proximaAcao: ["PROXIMA_ACAO"]
+}
       }
     };
 
