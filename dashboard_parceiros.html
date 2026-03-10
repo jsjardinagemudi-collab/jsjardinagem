@@ -1008,8 +1008,8 @@
         <div>
           <h2>Serviços disponíveis para parceiros</h2>
           <p>
-            Painel filtrável para leitura rápida do parceiro: bairro, equipe, horas, descrição,
-            ganho do parceiro, tipo de parceria e acesso rápido ao mapa.
+            Painel filtrável para leitura rápida do parceiro: endereço, equipe necessária, horas,
+            ganho estimado, ganho por hora e acesso rápido ao mapa.
           </p>
         </div>
       </div>
@@ -1062,15 +1062,15 @@
             <h3>Leitura do parceiro</h3>
             <p>
               Use este painel para decidir rápido se o serviço faz sentido para sua equipe,
-              tempo disponível e ganho estimado.
+              seu tempo e seu ganho.
             </p>
 
             <ul>
-              <li>Leia <strong>bairro, descrição e status</strong>.</li>
-              <li>Confira <strong>qtd líder, jardineiro, auxiliar, horas e equipe total</strong>.</li>
-              <li>Olhe primeiro o <strong>ganho do parceiro</strong> e depois o <strong>preço final</strong>.</li>
-              <li>Use <strong>Ver no mapa</strong> e <strong>Street View</strong> para analisar o local.</li>
-              <li>Se fizer sentido, clique em <strong>Abrir formulário</strong> para seguir o fluxo.</li>
+              <li>Leia <strong>endereço, bairro, descrição e status</strong>.</li>
+              <li>Confira a <strong>equipe necessária</strong> e as <strong>horas</strong>.</li>
+              <li>Olhe primeiro o <strong>ganho do parceiro</strong> e o <strong>ganho por hora</strong>.</li>
+              <li>Use <strong>Ver no mapa</strong> e <strong>Street View</strong> para avaliar o local.</li>
+              <li>Quando decidir, clique em <strong>Pegar serviço</strong>.</li>
             </ul>
 
             <div class="row">
@@ -1164,6 +1164,7 @@
     const CONFIG = {
       VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv",
       FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
+      TAKE_SERVICE_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
       AUTO_REFRESH_MS: 60000,
 
       COLUMNS: {
@@ -1171,7 +1172,8 @@
         dataServico: ["DATA_SERVICO"],
         cliente: ["CLIENTE"],
         telefone: ["TELEFONE"],
-        endereco: ["ENDERECO", "ENDERECO_TEXTO"],
+        linkMaps: ["LINK_MAPS"],
+        enderecoTexto: ["ENDERECO_TEXTO"],
         bairro: ["BAIRRO"],
         descricao: ["DESCRICAO"],
         responsavel: ["RESPONSAVEL_ENVIO"],
@@ -1320,12 +1322,7 @@
     let autoOn = true;
     let autoTimer = null;
 
-    function buildAddress(r){
-      const parts = [r.endereco, r.bairro].filter(Boolean);
-      return parts.join(", ");
-    }
-
-    function mapsUrl(address){
+    function mapsSearchUrl(address){
       if (!address) return "";
       return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
     }
@@ -1345,17 +1342,21 @@
 
     function normalizeRow(raw){
       const c = CONFIG.COLUMNS;
-      const endereco = norm(getValue(raw, c.endereco));
+
+      const enderecoTexto = norm(getValue(raw, c.enderecoTexto));
       const bairro = norm(getValue(raw, c.bairro));
-      const fullAddress = buildAddress({ endereco, bairro });
+      const linkMaps = norm(getValue(raw, c.linkMaps));
+      const mapsLink = linkMaps || mapsSearchUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
+      const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
 
       return {
         idShort: norm(getValue(raw, c.idShort)),
         dataServico: norm(getValue(raw, c.dataServico)),
         cliente: norm(getValue(raw, c.cliente)),
         telefone: norm(getValue(raw, c.telefone)),
-        endereco,
+        enderecoTexto,
         bairro,
+        linkMaps,
         descricao: norm(getValue(raw, c.descricao)),
         responsavel: norm(getValue(raw, c.responsavel)),
         status: norm(getValue(raw, c.status)),
@@ -1369,9 +1370,8 @@
         ganhoHora: parseNumber(getValue(raw, c.ganhoHora)),
         tipoParceria: norm(getValue(raw, c.tipoParceria)),
         proximaAcao: norm(getValue(raw, c.proximaAcao)),
-        addressText: fullAddress,
-        mapsLink: mapsUrl(fullAddress),
-        streetLink: streetViewUrl(fullAddress),
+        mapsLink,
+        streetLink,
         raw
       };
     }
@@ -1436,7 +1436,7 @@
 
         if (f.q){
           const hay = [
-            r.idShort, r.dataServico, r.cliente, r.bairro, r.endereco,
+            r.idShort, r.dataServico, r.cliente, r.bairro, r.enderecoTexto,
             r.descricao, r.status, r.tipoParceria, r.proximaAcao
           ].map(x => norm(x).toLowerCase()).join(" • ");
 
@@ -1448,12 +1448,22 @@
       render();
     }
 
+    function buildTakeServiceUrl(r){
+      const params = new URLSearchParams({
+        entry_id_short: r.idShort || "",
+        entry_cliente: r.cliente || "",
+        entry_bairro: r.bairro || "",
+        entry_endereco: r.enderecoTexto || ""
+      });
+      return `${CONFIG.TAKE_SERVICE_URL}&${params.toString()}`;
+    }
+
     function buildCopyText(r){
       return [
         `ID_SHORT: ${r.idShort || ""}`,
         `DATA_SERVICO: ${r.dataServico || ""}`,
         `CLIENTE: ${r.cliente || ""}`,
-        `ENDERECO: ${r.endereco || ""}`,
+        `ENDERECO_TEXTO: ${r.enderecoTexto || ""}`,
         `BAIRRO: ${r.bairro || ""}`,
         `DESCRICAO: ${r.descricao || ""}`,
         `RESPONSAVEL_ENVIO: ${r.responsavel || ""}`,
@@ -1481,8 +1491,15 @@
 
       VIEW.forEach(r => {
         const resumo = buildCopyText(r);
+        const takeUrl = buildTakeServiceUrl(r);
         const hasMaps = !!r.mapsLink;
         const hasStreet = !!r.streetLink;
+
+        const equipeNecessaria = [
+          isFinite(r.qtdLider) && r.qtdLider > 0 ? `${fmtNum(r.qtdLider)} líder` + (r.qtdLider > 1 ? "es" : "") : "",
+          isFinite(r.qtdJardineiro) && r.qtdJardineiro > 0 ? `${fmtNum(r.qtdJardineiro)} jardineiro` + (r.qtdJardineiro > 1 ? "s" : "") : "",
+          isFinite(r.qtdAuxiliar) && r.qtdAuxiliar > 0 ? `${fmtNum(r.qtdAuxiliar)} auxiliar` + (r.qtdAuxiliar > 1 ? "es" : "") : ""
+        ].filter(Boolean).join(" • ");
 
         const card = document.createElement("div");
         card.className = "job";
@@ -1506,13 +1523,18 @@
 
             <div class="grid2">
               <div class="kv">
-                <p class="k">Endereço</p>
-                <p class="v">${escapeHtml(r.endereco || "—")}</p>
+                <p class="k">Endereço do serviço</p>
+                <p class="v">${escapeHtml(r.enderecoTexto || "—")}</p>
               </div>
               <div class="kv">
                 <p class="k">Bairro</p>
                 <p class="v">${escapeHtml(r.bairro || "—")}</p>
               </div>
+            </div>
+
+            <div class="desc">
+              <p class="k">Equipe necessária</p>
+              <p class="v">${escapeHtml(equipeNecessaria || "Não informada")}</p>
             </div>
 
             <div class="grid3">
@@ -1570,7 +1592,7 @@
             <div class="pricebox">
               <p class="label">Ganho do parceiro</p>
               <p class="price">💰 ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
-              <p class="sub">Use equipe, horas, tipo de parceria e localização para decidir rapidamente.</p>
+              <p class="sub">Avalie equipe necessária, endereço, horas e ganho por hora antes de decidir.</p>
             </div>
 
             <div class="mini">
@@ -1579,8 +1601,8 @@
             </div>
 
             <div class="mini">
-              <p class="k">Preço final do serviço</p>
-              <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+              <p class="k">Equipe necessária</p>
+              <p class="v">${escapeHtml(equipeNecessaria || "Não informada")}</p>
             </div>
 
             <div class="mini">
@@ -1589,7 +1611,8 @@
             </div>
 
             <div class="btn-stack">
-              <a class="btn-take" href="${CONFIG.FORM_URL}" target="_blank" rel="noopener">✅ Abrir formulário</a>
+              <a class="btn-take" href="${takeUrl}" target="_blank" rel="noopener">🚀 Pegar serviço</a>
+              <a class="btn-mini" href="${CONFIG.FORM_URL}" target="_blank" rel="noopener">📥 Abrir formulário</a>
               ${hasMaps ? `<a class="btn-mini" href="${r.mapsLink}" target="_blank" rel="noopener">📍 Ver no mapa</a>` : `<button class="btn-mini" type="button" disabled>📍 Ver no mapa</button>`}
               ${hasStreet ? `<a class="btn-mini" href="${r.streetLink}" target="_blank" rel="noopener">👁 Street View</a>` : `<button class="btn-mini" type="button" disabled>👁 Street View</button>`}
               <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.idShort || "")}">📋 Copiar ID</button>
@@ -1711,7 +1734,8 @@
 2) Use o link CSV correto no CONFIG.VIEW_CSV_URL.
 3) Defina o link certo do formulário em CONFIG.FORM_URL.
 4) Confirme se os nomes da linha 1 batem com CONFIG.COLUMNS.
-5) Para mapa e Street View, a coluna ENDERECO ou ENDERECO_TEXTO precisa estar preenchida.`
+5) LINK_MAPS deve vir da planilha para o botão Ver no mapa.
+6) ENDERECO_TEXTO deve vir da planilha para mostrar endereço e gerar Street View.`
         );
       });
 
