@@ -1345,10 +1345,10 @@
       const c = CONFIG.COLUMNS;
 
       const enderecoTexto = norm(getValue(raw, c.enderecoTexto));
-      const bairro = norm(getValue(raw, c.bairro));
-      const linkMaps = norm(getValue(raw, c.linkMaps));
-      const mapsLink = linkMaps || mapsSearchUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
-      const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
+const bairro = norm(getValue(raw, c.bairro));
+const linkMaps = norm(getValue(raw, c.linkMaps));
+const mapsLink = linkMaps || mapsSearchUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
+const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
 
       return {
         idShort: norm(getValue(raw, c.idShort)),
