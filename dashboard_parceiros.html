@@ -1,332 +1,1740 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portal do Jardineiro • JS</title>
+  <title>Portal do Jardineiro • JS Jardinagem</title>
+  <meta
+    name="description"
+    content="Central do Portal do Jardineiro da JS Jardinagem com calculadora, formulários, dashboards e serviços disponíveis."
+  />
 
-<style>
+  <link rel="icon" href="/favicon.ico" />
 
-body{
-font-family:Arial;
-background:#f5f7f8;
-margin:0;
-}
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+      --warn:#b54708;
+      --good:#027a48;
+      --bad:#b42318;
+      --soft:#f8fafc;
+      --chip:#eef4ff;
+      --shadow:0 10px 26px rgba(0,0,0,.06);
+      --radius:18px;
+    }
 
-header{
-background:#114084;
-color:white;
-padding:16px;
-font-size:20px;
-font-weight:bold;
-}
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    }
 
-.wrap{
-width:95%;
-max-width:1200px;
-margin:auto;
-}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1220px,92vw);margin:auto}
 
-.panel{
-background:white;
-border-radius:10px;
-margin-top:20px;
-padding:16px;
-}
+    .topbar{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      text-align:center;
+      padding:9px 10px;
+      font-size:14px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
 
-.filters{
-display:flex;
-gap:10px;
-margin-bottom:12px;
-}
+    header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background:#ffffffde;
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid #eef0ee;
+    }
 
-input,select{
-padding:8px;
-border:1px solid #ddd;
-border-radius:6px;
-}
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:14px 0;
+    }
 
-.cards{
-display:grid;
-gap:14px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
 
-.job{
-display:grid;
-grid-template-columns:1fr 260px;
-gap:14px;
-padding:14px;
-border:1px solid #e5e7ea;
-border-radius:12px;
-background:white;
-}
+    .brand img{
+      height:56px;
+      width:auto;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      background:#fff;
+      object-fit:contain;
+    }
 
-.badge{
-padding:4px 8px;
-border-radius:8px;
-font-size:12px;
-font-weight:bold;
-}
+    .brand-text{
+      min-width:0;
+    }
 
-.ok{background:#e7f7ee;color:#027a48}
-.warn{background:#fff3cd;color:#b54708}
-.bad{background:#fdecea;color:#b42318}
+    .brand-text strong{
+      display:block;
+      color:var(--pri);
+      font-size:18px;
+      font-weight:1000;
+      line-height:1.05;
+      text-transform:uppercase;
+    }
 
-.kv{
-border:1px solid #eee;
-border-radius:10px;
-padding:8px;
-}
+    .brand-text span{
+      display:block;
+      color:#475467;
+      font-size:12px;
+      font-weight:900;
+      margin-top:3px;
+      letter-spacing:.2px;
+    }
 
-.price{
-font-size:26px;
-color:#114084;
-font-weight:bold;
-}
+    .links{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      font-weight:900;
+      flex-wrap:wrap;
+    }
 
-.btn{
-display:block;
-padding:10px;
-border-radius:8px;
-text-align:center;
-text-decoration:none;
-background:#114084;
-color:white;
-font-weight:bold;
-margin-top:8px;
-}
+    .links a:hover{color:var(--pri)}
 
-</style>
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:12px 16px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.22s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+
+    .btn:hover{background:#f3f5f7}
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+
+    .btn-success{
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+      border-color:#0f8f52;
+      color:#fff;
+    }
+    .btn-success:hover{
+      filter:brightness(.98);
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+    }
+
+    .btn-ghost{
+      background:transparent;
+      border-color:#cfd8dc;
+      color:var(--pri);
+    }
+
+    section{padding:40px 0}
+
+    .hero{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      padding:56px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,3.8vw,44px);
+      line-height:1.05;
+      letter-spacing:.15px;
+    }
+
+    .hero p{
+      margin:0;
+      opacity:.96;
+      max-width:900px;
+      line-height:1.65;
+      font-weight:700;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      font-weight:900;
+      font-size:13px;
+    }
+
+    .hero-note{
+      margin-top:16px;
+      background:rgba(255,255,255,.14);
+      border:1px dashed rgba(255,255,255,.28);
+      border-radius:16px;
+      padding:14px;
+      line-height:1.55;
+      font-weight:700;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:22px;
+      padding:18px;
+      box-shadow:0 20px 40px rgba(0,0,0,.14);
+      align-self:start;
+    }
+
+    .hero-card h3{
+      margin:0 0 10px;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:.3px;
+      font-weight:1000;
+    }
+
+    .hero-card ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.65;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .grid-tools{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .card-body{
+      padding:16px;
+    }
+
+    .tool{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      height:100%;
+    }
+
+    .tool .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:26px;
+      background:linear-gradient(135deg,#eef4ff,#e7f8ee);
+    }
+
+    .tool h3{
+      margin:0;
+      font-size:18px;
+      font-weight:1000;
+      color:var(--pri);
+      line-height:1.15;
+    }
+
+    .tool p{
+      margin:0;
+      color:#475467;
+      line-height:1.6;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .tool .chips{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .chip{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid #dbe5ec;
+      background:var(--chip);
+      color:#344054;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .tool .actions{
+      display:grid;
+      gap:10px;
+      margin-top:auto;
+    }
+
+    .portal-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);
+      gap:18px;
+      align-items:start;
+    }
+
+    .panel{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      background:#fbfcfd;
+    }
+
+    .panel-head h2{
+      margin:0;
+      font-size:14px;
+      font-weight:1000;
+      color:var(--pri);
+      letter-spacing:.2px;
+      text-transform:uppercase;
+    }
+
+    .panel-head .right{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .conn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+      font-weight:900;
+      font-size:12px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:99px;
+      background:#f59f00;
+    }
+    .dot.ok{background:var(--good)}
+    .dot.bad{background:var(--bad)}
+
+    .filters{
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      background:#fff;
+    }
+
+    .field{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid #dfe3df;
+      border-radius:12px;
+      padding:10px 12px;
+      background:#fff;
+      font-weight:800;
+    }
+
+    .field input,.field select{
+      width:100%;
+      border:0;
+      outline:none;
+      background:transparent;
+      font-weight:800;
+      color:var(--ink);
+    }
+
+    .field input::placeholder{color:#98a2b3}
+
+    .cards{
+      padding:14px 16px 18px;
+      display:grid;
+      gap:14px;
+    }
+
+    .job{
+      border:1px solid var(--line);
+      border-radius:20px;
+      box-shadow:0 8px 18px rgba(0,0,0,.05);
+      padding:14px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:14px;
+      align-items:start;
+      transition:.2s ease;
+      background:#fff;
+    }
+
+    .job:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 40px rgba(0,0,0,.12);
+      border-color:#cfe0f5;
+    }
+
+    .job h3{
+      margin:0;
+      color:var(--pri);
+      line-height:1.2;
+      font-size:16px;
+      font-weight:1000;
+    }
+
+    .job-sub{
+      margin:6px 0 0;
+      color:#475467;
+      font-weight:800;
+      font-size:13px;
+    }
+
+    .badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:1000;
+      font-size:11px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:#344054;
+    }
+
+    .b-ok{border-color:#b7ebc8;background:#ecfdf3;color:var(--good)}
+    .b-warn{border-color:#ffd7aa;background:#fffaeb;color:#b54708}
+    .b-bad{border-color:#fecdca;background:#fef3f2;color:var(--bad)}
+    .b-pri{border-color:#cfe0f5;background:#eff8ff;color:var(--pri)}
+    .b-id{border-color:#e7ecef;background:#f9fafb;color:#475467}
+
+    .grid2,.grid3{
+      margin-top:10px;
+      display:grid;
+      gap:10px;
+    }
+    .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .kv{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px;
+      background:#fbfcfd;
+      min-height:72px;
+    }
+
+    .kv .k{
+      margin:0 0 4px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .kv .v{
+      margin:0;
+      font-weight:900;
+      font-size:13px;
+      color:#344054;
+      line-height:1.35;
+      word-break:break-word;
+    }
+
+    .desc{
+      margin-top:10px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:var(--soft);
+    }
+
+    .desc .k{
+      margin:0 0 6px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:11px;
+      text-transform:uppercase;
+    }
+
+    .desc .v{
+      margin:0;
+      color:#344054;
+      font-weight:800;
+      line-height:1.55;
+      font-size:13px;
+      white-space:pre-wrap;
+    }
+
+    .cta{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:stretch;
+      position:sticky;
+      top:88px;
+    }
+
+    .pricebox{
+      border:1px solid #cfe0f5;
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg,#f8fbff,#eef7ff);
+    }
+
+    .pricebox .label{
+      margin:0 0 4px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .price{
+      margin:0;
+      color:var(--pri);
+      font-size:28px;
+      line-height:1.1;
+      font-weight:1000;
+    }
+
+    .sub{
+      margin:6px 0 0;
+      color:#475467;
+      font-weight:800;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .mini{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      background:#fff;
+    }
+
+    .mini .k{
+      margin:0 0 4px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .mini .v{
+      margin:0;
+      color:#101828;
+      font-size:14px;
+      font-weight:1000;
+    }
+
+    .btn-stack{
+      display:grid;
+      gap:10px;
+    }
+
+    .btn-take{
+      border:0;
+      border-radius:14px;
+      padding:13px 14px;
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      font-weight:1000;
+      cursor:pointer;
+      transition:.2s ease;
+      text-align:center;
+    }
+
+    .btn-take:hover{filter:brightness(.98); transform:translateY(-1px)}
+    .btn-take:active{transform:translateY(0)}
+
+    .btn-mini{
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 12px;
+      font-weight:900;
+      cursor:pointer;
+      text-align:center;
+    }
+
+    .btn-mini:hover{background:#f3f5f7}
+
+    .empty{
+      padding:18px 16px;
+      color:var(--muted);
+      font-weight:800;
+      text-align:center;
+      display:none;
+    }
+
+    .side{
+      position:sticky;
+      top:96px;
+      padding:14px;
+    }
+
+    .side .box{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .side h3{
+      margin:0 0 8px;
+      color:var(--pri);
+      font-size:14px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .side p{
+      margin:0;
+      color:#475467;
+      line-height:1.6;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    .side ul{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#475467;
+      line-height:1.6;
+      font-weight:700;
+      font-size:13px;
+    }
+
+    .side .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .side code{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      font-size:12px;
+      background:#f2f4f7;
+      border:1px solid #e4e7ec;
+      padding:2px 6px;
+      border-radius:8px;
+      word-break:break-all;
+    }
+
+    .embed-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .embed-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .embed-card .head{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      background:#fbfcfd;
+    }
+
+    .embed-card .head h3{
+      margin:0;
+      color:var(--pri);
+      font-size:14px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .iframe-wrap{
+      position:relative;
+      min-height:520px;
+      background:#fff;
+    }
+
+    .iframe-wrap iframe{
+      width:100%;
+      height:520px;
+      border:0;
+      display:block;
+      background:#fff;
+    }
+
+    .embed-actions{
+      padding:14px 16px;
+      border-top:1px solid var(--line);
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .section-title h2{
+      margin:0;
+      font-size:24px;
+      color:var(--pri);
+      font-weight:1000;
+      line-height:1.1;
+    }
+
+    .section-title p{
+      margin:0;
+      color:#475467;
+      font-weight:700;
+      line-height:1.6;
+      max-width:840px;
+    }
+
+    footer{
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:30px 0;
+      margin-top:40px;
+    }
+
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:20px;
+    }
+
+    .foot a{color:#cfe8da}
+
+    @media(max-width:1100px){
+      .grid-tools,
+      .embed-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .hero-grid,
+      .portal-grid{
+        grid-template-columns:1fr;
+      }
+      .side,.cta{position:relative;top:auto}
+      .job{grid-template-columns:1fr}
+      .links{display:none}
+      .foot{grid-template-columns:1fr}
+      .filters{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:760px){
+      .grid-tools,
+      .embed-grid{
+        grid-template-columns:1fr;
+      }
+      .filters,
+      .grid2,
+      .grid3{
+        grid-template-columns:1fr;
+      }
+      .brand img{height:48px}
+      .brand-text strong{font-size:15px}
+      .section-title{display:block}
+      .section-title p{margin-top:8px}
+    }
+  </style>
 </head>
 
 <body>
-
-<header>Portal do Jardineiro • Serviços disponíveis</header>
-
-<div class="wrap">
-
-<div class="panel">
-
-<div class="filters">
-
-<input id="search" placeholder="Buscar serviço">
-
-<select id="bairro">
-<option value="">Bairro</option>
-</select>
-
-<select id="status">
-<option value="">Status</option>
-</select>
-
-<button onclick="loadData()">Atualizar</button>
-
-</div>
-
-<div id="cards" class="cards"></div>
-
-</div>
-
-</div>
-
-<script>
-
-const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv"
-
-let DATA=[]
-let VIEW=[]
-
-function parseCSV(text){
-
-const lines=text.trim().split("\n")
-
-const header=lines.shift().split(",")
-
-return lines.map(l=>{
-const obj={}
-const row=l.split(",")
-header.forEach((h,i)=>obj[h]=row[i])
-return obj
-})
-
-}
-
-function num(v){
-
-if(!v) return NaN
-
-v=v.replace(/[R$]/g,"")
-v=v.replace(/\./g,"")
-v=v.replace(",",".")
-return Number(v)
-
-}
-
-function money(v){
-
-if(!v) return "—"
-
-return Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})
-
-}
-
-function badge(status){
-
-status=(status||"").toLowerCase()
-
-if(status.includes("dispon"))
-return `<span class="badge ok">Disponível</span>`
-
-if(status.includes("urgente"))
-return `<span class="badge bad">Urgente</span>`
-
-return `<span class="badge warn">${status}</span>`
-
-}
-
-function normalize(r){
-
-return{
-
-id:r.ID_SHORT,
-
-data:r.DATA_SERVICO,
-
-cliente:r.CLIENTE,
-
-bairro:r.BAIRRO,
-
-descricao:r.DESCRICAO,
-
-status:r.STATUS,
-
-qL:r.QTD_LIDER,
-
-qJ:r.QTD_JARDINEIRO,
-
-qA:r.QTD_AUXILIAR,
-
-equipe:r.EQUIPE_TOTAL,
-
-horas:r.HORAS,
-
-preco:num(r.PRECO_FINAL),
-
-parceiro:num(r.VALOR_PARCEIRO),
-
-hora:num(r.GANHO_POR_HORA),
-
-endereco:r.ENDERECO,
-
-tipo:r.TIPO_PARCERIA,
-
-acao:r.PROXIMA_ACAO
-
-}
-
-}
-
-function applyFilters(){
-
-const q=document.getElementById("search").value.toLowerCase()
-
-VIEW=DATA.filter(r=>{
-
-let text=(r.id+" "+r.bairro+" "+r.cliente+" "+r.descricao).toLowerCase()
-
-if(q && !text.includes(q)) return false
-
-return true
-
-})
-
-render()
-
-}
-
-function render(){
-
-const el=document.getElementById("cards")
-
-el.innerHTML=""
-
-VIEW.forEach(r=>{
-
-const maps=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.endereco||r.bairro)}`
-
-const card=document.createElement("div")
-
-card.className="job"
-
-card.innerHTML=`
-
-<div>
-
-<b>${r.id}</b> • ${r.bairro}<br>
-${r.cliente} • ${r.data}
-
-<br><br>
-
-${badge(r.status)}
-
-<p>${r.descricao}</p>
-
-<div class="kv">Equipe: ${r.equipe}</div>
-<div class="kv">Horas: ${r.horas}</div>
-
-<div class="kv">Ganho parceiro: ${money(r.parceiro)}</div>
-<div class="kv">Ganho hora: ${money(r.hora)}</div>
-
-<div class="kv">Preço final: ${money(r.preco)}</div>
-
-</div>
-
-<div>
-
-<div class="price">${money(r.parceiro)}</div>
-
-<a class="btn" href="${maps}" target="_blank">Ver mapa</a>
-
-</div>
-
-`
-
-el.appendChild(card)
-
-})
-
-}
-
-async function loadData(){
-
-const res=await fetch(CSV_URL)
-
-const text=await res.text()
-
-DATA=parseCSV(text).map(normalize)
-
-DATA.sort((a,b)=>{
-
-const d1=new Date(a.data.split("/").reverse().join("-"))
-
-const d2=new Date(b.data.split("/").reverse().join("-"))
-
-return d1-d2
-
-})
-
-applyFilters()
-
-}
-
-document.getElementById("search").addEventListener("input",applyFilters)
-
-loadData()
-
-setInterval(loadData,60000)
-
-</script>
-
+  <script>
+    (function () {
+      var senha = prompt("Área exclusiva do Portal do Jardineiro. Digite a senha:");
+      if (senha !== "JS2026") {
+        alert("Senha incorreta.");
+        window.location.href = "index.html";
+      }
+    })();
+  </script>
+
+  <div class="topbar">
+    Portal do Jardineiro JS • Central de orçamento, operação e aceite de serviços
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo branca limpa.png" alt="JS Jardinagem" />
+        <div class="brand-text">
+          <strong>JS Jardinagem</strong>
+          <span>Portal do Jardineiro • Operação digital</span>
+        </div>
+      </a>
+
+      <nav class="links">
+        <a href="index.html">Início</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="parceiros.html">Portal</a>
+      </nav>
+
+      <a class="btn btn-primary" href="parceiros.html">Voltar ao Portal</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Central do Portal do Jardineiro</h1>
+        <p>
+          Esta página reúne as novas ferramentas da JS Jardinagem para orçamento, atualização, execução,
+          acompanhamento operacional e leitura dos serviços disponíveis para parceiros.
+        </p>
+
+        <div class="pill-row">
+          <a class="pill" href="#ferramentas">🧰 Ferramentas</a>
+          <a class="pill" href="#servicos">📋 Serviços disponíveis</a>
+          <a class="pill" href="#paineis">📊 Painéis JS</a>
+          <a class="pill" href="#integracoes">🔗 Integrações</a>
+        </div>
+
+        <div class="hero-note">
+          <strong>Fluxo atual da operação:</strong><br>
+          Calculadora → Novo orçamento → Atualização → Registro de execução → Banco de dados →
+          Dashboards → Portal do Jardineiro.
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Leitura rápida da nova estrutura</h3>
+        <ul>
+          <li><strong>Calculadora App:</strong> cria o pacote técnico e financeiro.</li>
+          <li><strong>Novo orçamento:</strong> registra o serviço inicial no sistema.</li>
+          <li><strong>Atualização:</strong> gera nova versão do orçamento com histórico.</li>
+          <li><strong>Execução:</strong> registra avanço operacional do serviço.</li>
+          <li><strong>Dashboard:</strong> mostra serviços disponíveis em tempo real.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ferramentas">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Ferramentas principais</h2>
+          <p>
+            Aqui estão os atalhos principais do novo fluxo de trabalho do Portal do Jardineiro.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-tools">
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">🧮</div>
+            <h3>Nova Calculadora App</h3>
+            <p>
+              Use a calculadora para gerar o pacote completo do orçamento, incluindo custos, lucro,
+              horas, equipe e lógica de parceria.
+            </p>
+            <div class="chips">
+              <span class="chip">Pacote técnico</span>
+              <span class="chip">Versão manual</span>
+              <span class="chip">Base do orçamento</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec" target="_blank" rel="noopener">Abrir calculadora</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">📝</div>
+            <h3>Novo Orçamento</h3>
+            <p>
+              Formulário principal para criar um serviço novo a partir do pacote da calculadora.
+            </p>
+            <div class="chips">
+              <span class="chip">Entrada oficial</span>
+              <span class="chip">Cliente</span>
+              <span class="chip">Pacote</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header" target="_blank" rel="noopener">Abrir novo orçamento</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">🔁</div>
+            <h3>Atualização de Orçamento</h3>
+            <p>
+              Use quando o serviço precisar de nova versão. Mantém o mesmo ID de cálculo e cria histórico.
+            </p>
+            <div class="chips">
+              <span class="chip">Versão 2+</span>
+              <span class="chip">Histórico</span>
+              <span class="chip">Revisão</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header" target="_blank" rel="noopener">Abrir atualização</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body tool">
+            <div class="icon">✅</div>
+            <h3>Registro de Execução</h3>
+            <p>
+              Formulário para registrar a execução operacional do serviço em campo.
+            </p>
+            <div class="chips">
+              <span class="chip">Campo</span>
+              <span class="chip">Execução</span>
+              <span class="chip">Operação</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSdwtShpcpk4RR8R2_OKSh6J2kyizSYLeSQG3C7oNr7jReoJ3g/viewform?usp=header" target="_blank" rel="noopener">Abrir registro</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="paineis">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Painéis e base da JS</h2>
+          <p>
+            A planilha central da JS concentra o banco de dados, dashboards, calendário, apontamento
+            de equipe e painel financeiro.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir banco de dados e dashboards</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Serviços disponíveis para parceiros</h2>
+          <p>
+            Painel filtrável para leitura rápida do parceiro: bairro, equipe, horas, descrição,
+            ganho do parceiro, tipo de parceria e acesso rápido ao mapa.
+          </p>
+        </div>
+      </div>
+
+      <div class="portal-grid">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Serviços para análise e aceite</h2>
+            <div class="right">
+              <span class="conn"><span id="connDot" class="dot"></span><span id="connText">Conectando…</span></span>
+              <button class="btn" id="btnRefresh" type="button">⟳ Atualizar</button>
+              <a class="btn btn-primary" id="btnOpenFormTop" href="#" target="_blank" rel="noopener">📥 Abrir formulário</a>
+            </div>
+          </div>
+
+          <div class="filters">
+            <div class="field">
+              <span>🔎</span>
+              <input id="qSearch" placeholder="Buscar por ID, bairro, cliente, descrição..." />
+            </div>
+
+            <div class="field">
+              <span>📍</span>
+              <select id="fBairro">
+                <option value="">Bairro (todos)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <span>📝</span>
+              <select id="fDescricao">
+                <option value="">Descrição (todas)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <span>✅</span>
+              <select id="fStatus">
+                <option value="">Status (todos)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cards" id="cards"></div>
+          <div class="empty" id="empty">Nenhum serviço encontrado com esses filtros.</div>
+        </div>
+
+        <aside class="side">
+          <div class="box">
+            <h3>Leitura do parceiro</h3>
+            <p>
+              Use este painel para decidir rápido se o serviço faz sentido para sua equipe,
+              tempo disponível e ganho estimado.
+            </p>
+
+            <ul>
+              <li>Leia <strong>bairro, descrição e status</strong>.</li>
+              <li>Confira <strong>qtd líder, jardineiro, auxiliar, horas e equipe total</strong>.</li>
+              <li>Olhe primeiro o <strong>ganho do parceiro</strong> e depois o <strong>preço final</strong>.</li>
+              <li>Use <strong>Ver no mapa</strong> e <strong>Street View</strong> para analisar o local.</li>
+              <li>Se fizer sentido, clique em <strong>Abrir formulário</strong> para seguir o fluxo.</li>
+            </ul>
+
+            <div class="row">
+              <button class="btn btn-ghost" type="button" id="btnHelp">Como conectar</button>
+              <button class="btn" type="button" id="btnAuto">Auto: ON</button>
+            </div>
+
+            <p style="margin-top:12px">
+              <strong>Fonte atual:</strong><br>
+              <code>DASH_SERVICOS_DISPONIVEIS_JS (CSV publicado)</code>
+            </p>
+
+            <p style="margin-top:12px">
+              <strong>Prática recomendada:</strong><br>
+              sempre use o <code>ID_SHORT</code> ao interagir com a operação.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="integracoes">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Integrações rápidas</h2>
+          <p>
+            Área para ligar os painéis certos no site da JS e no Portal do Jardineiro sem expor dados internos.
+          </p>
+        </div>
+      </div>
+
+      <div class="embed-grid">
+        <div class="embed-card">
+          <div class="head">
+            <h3>Painel público do Portal</h3>
+            <span class="chip">Recomendado para parceiros</span>
+          </div>
+          <div class="iframe-wrap">
+            <iframe
+              title="Serviços disponíveis"
+              src="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing"
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="embed-actions">
+            <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir planilha</a>
+            <button class="btn" type="button" data-copy-link="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing">Copiar link</button>
+          </div>
+        </div>
+
+        <div class="embed-card">
+          <div class="head">
+            <h3>App da Calculadora</h3>
+            <span class="chip">Entrada de orçamento</span>
+          </div>
+          <div class="iframe-wrap">
+            <iframe
+              title="Calculadora JS"
+              src="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec"
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="embed-actions">
+            <a class="btn btn-success" href="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec" target="_blank" rel="noopener">Abrir app</a>
+            <button class="btn" type="button" data-copy-link="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec">Copiar link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p style="opacity:.8;margin:8px 0 0">
+          Portal do Jardineiro • Central atualizada com calculadora, formulários, execução e dashboards da JS.
+        </p>
+      </div>
+      <div>
+        <p><a href="index.html">Início</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
+        <p><a href="parceiros.html">Portal</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv",
+      FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
+      AUTO_REFRESH_MS: 60000,
+
+      COLUMNS: {
+        idShort: ["ID_SHORT"],
+        dataServico: ["DATA_SERVICO"],
+        cliente: ["CLIENTE"],
+        telefone: ["TELEFONE"],
+        endereco: ["ENDERECO", "ENDERECO_TEXTO"],
+        bairro: ["BAIRRO"],
+        descricao: ["DESCRICAO"],
+        responsavel: ["RESPONSAVEL_ENVIO"],
+        status: ["STATUS"],
+        qtdLider: ["QTD_LIDER"],
+        qtdJardineiro: ["QTD_JARDINEIRO"],
+        qtdAuxiliar: ["QTD_AUXILIAR"],
+        equipeTotal: ["EQUIPE_TOTAL"],
+        horas: ["HORAS"],
+        precoFinal: ["PRECO_FINAL"],
+        valorParceiro: ["VALOR_PARCEIRO"],
+        ganhoHora: ["GANHO_POR_HORA"],
+        tipoParceria: ["TIPO_PARCERIA"],
+        proximaAcao: ["PROXIMA_ACAO"]
+      }
+    };
+
+    const $ = (sel) => document.querySelector(sel);
+
+    function norm(v){
+      return String(v ?? "").trim();
+    }
+
+    function escapeHtml(str){
+      return String(str ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#39;");
+    }
+
+    function parseNumber(v){
+      const raw = norm(v);
+      if (!raw) return NaN;
+
+      const s = raw
+        .replace(/\u00A0/g, " ")
+        .replace(/\s/g,"")
+        .replace(/R\$/gi,"")
+        .replace(/%/g,"")
+        .replace(/^"+|"+$/g,"")
+        .replace(/\.(?=\d{3}(\D|$))/g,"")
+        .replace(",", ".");
+
+      const x = Number(s);
+      return isFinite(x) ? x : NaN;
+    }
+
+    function fmtBRL(n){
+      const x = Number(n);
+      if (!isFinite(x)) return "—";
+      return x.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+    }
+
+    function fmtNum(n){
+      const x = Number(n);
+      if (!isFinite(x)) return "—";
+      return x.toLocaleString("pt-BR");
+    }
+
+    function parseCSV(text){
+      const rows = [];
+      let row = [];
+      let cur = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++){
+        const ch = text[i];
+        const next = text[i + 1];
+
+        if (ch === '"'){
+          if (inQuotes && next === '"'){
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+          continue;
+        }
+
+        if (ch === "," && !inQuotes){
+          row.push(cur);
+          cur = "";
+          continue;
+        }
+
+        if ((ch === "\n" || ch === "\r") && !inQuotes){
+          if (ch === "\r" && next === "\n") i++;
+          row.push(cur);
+          rows.push(row);
+          row = [];
+          cur = "";
+          continue;
+        }
+
+        cur += ch;
+      }
+
+      if (cur.length || row.length){
+        row.push(cur);
+        rows.push(row);
+      }
+
+      const clean = rows.filter(r => r.some(c => String(c ?? "").trim() !== ""));
+      if (!clean.length) return [];
+
+      const header = clean[0].map(h => String(h ?? "").trim());
+      const data = [];
+
+      for (let i = 1; i < clean.length; i++){
+        const obj = {};
+        for (let j = 0; j < header.length; j++){
+          obj[header[j]] = clean[i][j] ?? "";
+        }
+        data.push(obj);
+      }
+
+      return data;
+    }
+
+    function getValue(row, aliases){
+      const list = Array.isArray(aliases) ? aliases : [aliases];
+      for (const key of list){
+        if (Object.prototype.hasOwnProperty.call(row, key) && norm(row[key]) !== ""){
+          return row[key];
+        }
+      }
+      return "";
+    }
+
+    function badgeStatus(st){
+      const x = norm(st).toLowerCase();
+
+      if (["urgente"].includes(x)) return `<span class="badge b-bad">Urgente</span>`;
+      if (["disponivel","disponível"].includes(x)) return `<span class="badge b-ok">Disponível</span>`;
+      if (["em serviço","em servico"].includes(x)) return `<span class="badge b-pri">Em serviço</span>`;
+      if (["finalizado"].includes(x)) return `<span class="badge b-pri">Finalizado</span>`;
+      if (["em análise","em analise","reservado","aprovado"].includes(x)) return `<span class="badge b-warn">${escapeHtml(norm(st))}</span>`;
+
+      return `<span class="badge b-id">${escapeHtml(norm(st) || "—")}</span>`;
+    }
+
+    let ALL = [];
+    let VIEW = [];
+    let autoOn = true;
+    let autoTimer = null;
+
+    function buildAddress(r){
+      const parts = [r.endereco, r.bairro].filter(Boolean);
+      return parts.join(", ");
+    }
+
+    function mapsUrl(address){
+      if (!address) return "";
+      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(address);
+    }
+
+    function streetViewUrl(address){
+      if (!address) return "";
+      return "https://www.google.com/maps?q=" + encodeURIComponent(address) + "&layer=c";
+    }
+
+    function parseDateBR(v){
+      const s = norm(v);
+      const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (!m) return null;
+      const [, dd, mm, yyyy] = m;
+      return new Date(`${yyyy}-${mm}-${dd}T00:00:00`);
+    }
+
+    function normalizeRow(raw){
+      const c = CONFIG.COLUMNS;
+      const endereco = norm(getValue(raw, c.endereco));
+      const bairro = norm(getValue(raw, c.bairro));
+      const fullAddress = buildAddress({ endereco, bairro });
+
+      return {
+        idShort: norm(getValue(raw, c.idShort)),
+        dataServico: norm(getValue(raw, c.dataServico)),
+        cliente: norm(getValue(raw, c.cliente)),
+        telefone: norm(getValue(raw, c.telefone)),
+        endereco,
+        bairro,
+        descricao: norm(getValue(raw, c.descricao)),
+        responsavel: norm(getValue(raw, c.responsavel)),
+        status: norm(getValue(raw, c.status)),
+        qtdLider: parseNumber(getValue(raw, c.qtdLider)),
+        qtdJardineiro: parseNumber(getValue(raw, c.qtdJardineiro)),
+        qtdAuxiliar: parseNumber(getValue(raw, c.qtdAuxiliar)),
+        equipeTotal: parseNumber(getValue(raw, c.equipeTotal)),
+        horas: parseNumber(getValue(raw, c.horas)),
+        precoFinal: parseNumber(getValue(raw, c.precoFinal)),
+        valorParceiro: parseNumber(getValue(raw, c.valorParceiro)),
+        ganhoHora: parseNumber(getValue(raw, c.ganhoHora)),
+        tipoParceria: norm(getValue(raw, c.tipoParceria)),
+        proximaAcao: norm(getValue(raw, c.proximaAcao)),
+        addressText: fullAddress,
+        mapsLink: mapsUrl(fullAddress),
+        streetLink: streetViewUrl(fullAddress),
+        raw
+      };
+    }
+
+    function fillFilterOptions(){
+      const bairroSet = new Set();
+      const descSet = new Set();
+      const stSet = new Set();
+
+      for (const r of ALL){
+        if (r.bairro) bairroSet.add(r.bairro);
+        if (r.descricao) descSet.add(r.descricao);
+        if (r.status) stSet.add(r.status);
+      }
+
+      const bSel = $("#fBairro");
+      const dSel = $("#fDescricao");
+      const sSel = $("#fStatus");
+
+      bSel.innerHTML = `<option value="">Bairro (todos)</option>`;
+      dSel.innerHTML = `<option value="">Descrição (todas)</option>`;
+      sSel.innerHTML = `<option value="">Status (todos)</option>`;
+
+      [...bairroSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+        const o = document.createElement("option");
+        o.value = v;
+        o.textContent = v;
+        bSel.appendChild(o);
+      });
+
+      [...descSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+        const o = document.createElement("option");
+        o.value = v;
+        o.textContent = v;
+        dSel.appendChild(o);
+      });
+
+      [...stSet].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>{
+        const o = document.createElement("option");
+        o.value = v;
+        o.textContent = v;
+        sSel.appendChild(o);
+      });
+    }
+
+    function getFilters(){
+      return {
+        q: norm($("#qSearch").value).toLowerCase(),
+        bairro: $("#fBairro").value,
+        descricao: $("#fDescricao").value,
+        st: $("#fStatus").value
+      };
+    }
+
+    function applyFilters(){
+      const f = getFilters();
+
+      VIEW = ALL.filter(r => {
+        if (f.st && r.status !== f.st) return false;
+        if (f.bairro && r.bairro !== f.bairro) return false;
+        if (f.descricao && r.descricao !== f.descricao) return false;
+
+        if (f.q){
+          const hay = [
+            r.idShort, r.dataServico, r.cliente, r.bairro, r.endereco,
+            r.descricao, r.status, r.tipoParceria, r.proximaAcao
+          ].map(x => norm(x).toLowerCase()).join(" • ");
+
+          if (!hay.includes(f.q)) return false;
+        }
+        return true;
+      });
+
+      render();
+    }
+
+    function buildCopyText(r){
+      return [
+        `ID_SHORT: ${r.idShort || ""}`,
+        `DATA_SERVICO: ${r.dataServico || ""}`,
+        `CLIENTE: ${r.cliente || ""}`,
+        `ENDERECO: ${r.endereco || ""}`,
+        `BAIRRO: ${r.bairro || ""}`,
+        `DESCRICAO: ${r.descricao || ""}`,
+        `RESPONSAVEL_ENVIO: ${r.responsavel || ""}`,
+        `STATUS: ${r.status || ""}`,
+        `QTD_LIDER: ${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : ""}`,
+        `QTD_JARDINEIRO: ${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : ""}`,
+        `QTD_AUXILIAR: ${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : ""}`,
+        `EQUIPE_TOTAL: ${isFinite(r.equipeTotal) ? fmtNum(r.equipeTotal) : ""}`,
+        `HORAS: ${isFinite(r.horas) ? fmtNum(r.horas) : ""}`,
+        `PRECO_FINAL: ${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : ""}`,
+        `VALOR_PARCEIRO: ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : ""}`,
+        `GANHO_POR_HORA: ${isFinite(r.ganhoHora) ? fmtBRL(r.ganhoHora) : ""}`,
+        `TIPO_PARCERIA: ${r.tipoParceria || ""}`,
+        `PROXIMA_ACAO: ${r.proximaAcao || ""}`,
+        `LINK_MAPS: ${r.mapsLink || ""}`,
+        `LINK_STREET_VIEW: ${r.streetLink || ""}`
+      ].join("\n");
+    }
+
+    function render(){
+      const el = $("#cards");
+      el.innerHTML = "";
+      $("#empty").style.display = VIEW.length ? "none" : "block";
+      $("#btnOpenFormTop").href = CONFIG.FORM_URL;
+
+      VIEW.forEach(r => {
+        const resumo = buildCopyText(r);
+        const hasMaps = !!r.mapsLink;
+        const hasStreet = !!r.streetLink;
+
+        const card = document.createElement("div");
+        card.className = "job";
+
+        card.innerHTML = `
+          <div>
+            <h3>${escapeHtml(r.idShort || "Serviço")} • ${escapeHtml(r.bairro || "Sem bairro")}</h3>
+            <p class="job-sub">${escapeHtml(r.cliente || "Cliente não informado")} • ${escapeHtml(r.dataServico || "Sem data")}</p>
+
+            <div class="badges">
+              ${badgeStatus(r.status)}
+              <span class="badge b-id">ID: ${escapeHtml(r.idShort || "—")}</span>
+              <span class="badge b-id">Data: ${escapeHtml(r.dataServico || "—")}</span>
+              ${r.tipoParceria ? `<span class="badge b-pri">${escapeHtml(r.tipoParceria)}</span>` : ``}
+            </div>
+
+            <div class="desc">
+              <p class="k">Descrição do serviço</p>
+              <p class="v">${escapeHtml(r.descricao || "Sem descrição.")}</p>
+            </div>
+
+            <div class="grid2">
+              <div class="kv">
+                <p class="k">Endereço</p>
+                <p class="v">${escapeHtml(r.endereco || "—")}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Bairro</p>
+                <p class="v">${escapeHtml(r.bairro || "—")}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Qtd líder</p>
+                <p class="v">${isFinite(r.qtdLider) ? fmtNum(r.qtdLider) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Qtd jardineiro</p>
+                <p class="v">${isFinite(r.qtdJardineiro) ? fmtNum(r.qtdJardineiro) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Qtd auxiliar</p>
+                <p class="v">${isFinite(r.qtdAuxiliar) ? fmtNum(r.qtdAuxiliar) : "—"}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Equipe total</p>
+                <p class="v">${isFinite(r.equipeTotal) ? fmtNum(r.equipeTotal) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Horas</p>
+                <p class="v">${isFinite(r.horas) ? fmtNum(r.horas) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Responsável</p>
+                <p class="v">${escapeHtml(r.responsavel || "—")}</p>
+              </div>
+            </div>
+
+            <div class="grid3">
+              <div class="kv">
+                <p class="k">Ganho do parceiro</p>
+                <p class="v">${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Ganho por hora</p>
+                <p class="v">${isFinite(r.ganhoHora) ? fmtBRL(r.ganhoHora) : "—"}</p>
+              </div>
+              <div class="kv">
+                <p class="k">Preço final</p>
+                <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+              </div>
+            </div>
+
+            <div class="desc">
+              <p class="k">Próxima ação</p>
+              <p class="v">${escapeHtml(r.proximaAcao || "—")}</p>
+            </div>
+          </div>
+
+          <div class="cta">
+            <div class="pricebox">
+              <p class="label">Ganho do parceiro</p>
+              <p class="price">💰 ${isFinite(r.valorParceiro) ? fmtBRL(r.valorParceiro) : "—"}</p>
+              <p class="sub">Use equipe, horas, tipo de parceria e localização para decidir rapidamente.</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Ganho por hora</p>
+              <p class="v">${isFinite(r.ganhoHora) ? fmtBRL(r.ganhoHora) : "—"}</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Preço final do serviço</p>
+              <p class="v">${isFinite(r.precoFinal) ? fmtBRL(r.precoFinal) : "—"}</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Tipo de parceria</p>
+              <p class="v">${escapeHtml(r.tipoParceria || "—")}</p>
+            </div>
+
+            <div class="btn-stack">
+              <a class="btn-take" href="${CONFIG.FORM_URL}" target="_blank" rel="noopener">✅ Abrir formulário</a>
+              ${hasMaps ? `<a class="btn-mini" href="${r.mapsLink}" target="_blank" rel="noopener">📍 Ver no mapa</a>` : `<button class="btn-mini" type="button" disabled>📍 Ver no mapa</button>`}
+              ${hasStreet ? `<a class="btn-mini" href="${r.streetLink}" target="_blank" rel="noopener">👁 Street View</a>` : `<button class="btn-mini" type="button" disabled>👁 Street View</button>`}
+              <button class="btn-mini" type="button" data-copy-id="${escapeHtml(r.idShort || "")}">📋 Copiar ID</button>
+              <button class="btn-mini" type="button" data-copy-summary="${escapeHtml(resumo)}">📄 Copiar resumo</button>
+            </div>
+          </div>
+        `;
+
+        el.appendChild(card);
+      });
+
+      el.querySelectorAll("[data-copy-id]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const txt = btn.getAttribute("data-copy-id");
+          try{
+            await navigator.clipboard.writeText(txt);
+            const old = btn.textContent;
+            btn.textContent = "✅ ID copiado!";
+            setTimeout(()=> btn.textContent = old, 1200);
+          }catch(e){
+            alert("Não consegui copiar automaticamente. ID: " + txt);
+          }
+        });
+      });
+
+      el.querySelectorAll("[data-copy-summary]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const txt = btn.getAttribute("data-copy-summary")
+            .replace(/&quot;/g,'"')
+            .replace(/&#39;/g,"'")
+            .replace(/&lt;/g,"<")
+            .replace(/&gt;/g,">")
+            .replace(/&amp;/g,"&");
+
+          try{
+            await navigator.clipboard.writeText(txt);
+            const old = btn.textContent;
+            btn.textContent = "✅ Resumo copiado!";
+            setTimeout(()=> btn.textContent = old, 1400);
+          }catch(e){
+            alert("Não consegui copiar o resumo.");
+          }
+        });
+      });
+    }
+
+    async function loadData(){
+      const dot = $("#connDot");
+      const text = $("#connText");
+
+      const fail = (msg) => {
+        dot.classList.remove("ok");
+        dot.classList.add("bad");
+        text.textContent = msg || "Falha na conexão";
+        ALL = [];
+        fillFilterOptions();
+        applyFilters();
+      };
+
+      const ok = (msg) => {
+        dot.classList.remove("bad");
+        dot.classList.add("ok");
+        text.textContent = msg || "Conectado";
+      };
+
+      try{
+        dot.classList.remove("ok","bad");
+        text.textContent = "Conectando…";
+
+        const res = await fetch(CONFIG.VIEW_CSV_URL, { cache:"no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+
+        const csv = await res.text();
+        const data = parseCSV(csv);
+        ALL = Array.isArray(data) ? data.map(normalizeRow) : [];
+
+        ALL.sort((a,b)=>{
+          const da = parseDateBR(a.dataServico);
+          const db = parseDateBR(b.dataServico);
+          if (!da && !db) return 0;
+          if (!da) return 1;
+          if (!db) return -1;
+          return da - db;
+        });
+
+        ok("Conectado (serviços disponíveis)");
+        fillFilterOptions();
+        applyFilters();
+      }catch(err){
+        console.error(err);
+        fail("Falha ao ler CSV");
+      }
+    }
+
+    function setAuto(on){
+      autoOn = on;
+      const btn = $("#btnAuto");
+      btn.textContent = autoOn ? "Auto: ON" : "Auto: OFF";
+      btn.className = autoOn ? "btn btn-primary" : "btn btn-ghost";
+
+      if (autoTimer) clearInterval(autoTimer);
+      if (autoOn){
+        autoTimer = setInterval(loadData, CONFIG.AUTO_REFRESH_MS);
+      }
+    }
+
+    function bindUI(){
+      ["#qSearch","#fBairro","#fDescricao","#fStatus"].forEach(sel=>{
+        $(sel).addEventListener("input", applyFilters);
+        $(sel).addEventListener("change", applyFilters);
+      });
+
+      $("#btnRefresh").addEventListener("click", loadData);
+
+      $("#btnHelp").addEventListener("click", () => {
+        alert(
+`Como conectar:
+1) Publique a aba DASH_SERVICOS_DISPONIVEIS_JS em CSV.
+2) Use o link CSV correto no CONFIG.VIEW_CSV_URL.
+3) Defina o link certo do formulário em CONFIG.FORM_URL.
+4) Confirme se os nomes da linha 1 batem com CONFIG.COLUMNS.
+5) Para mapa e Street View, a coluna ENDERECO ou ENDERECO_TEXTO precisa estar preenchida.`
+        );
+      });
+
+      $("#btnAuto").addEventListener("click", () => setAuto(!autoOn));
+
+      document.querySelectorAll("[data-copy-link]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const txt = btn.getAttribute("data-copy-link");
+          try{
+            await navigator.clipboard.writeText(txt);
+            const old = btn.textContent;
+            btn.textContent = "✅ Link copiado!";
+            setTimeout(()=> btn.textContent = old, 1200);
+          }catch(e){
+            alert("Não consegui copiar o link.");
+          }
+        });
+      });
+    }
+
+    bindUI();
+    setAuto(true);
+    loadData();
+  </script>
 </body>
 </html>
