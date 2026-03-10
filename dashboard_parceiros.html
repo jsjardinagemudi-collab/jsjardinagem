@@ -8,7 +8,7 @@
   <title>Portal do Jardineiro • JS Jardinagem</title>
   <meta
     name="description"
-    content="Central do Portal do Jardineiro da JS Jardinagem com calculadora, formulários, dashboards e serviços disponíveis."
+    content="Central do Portal do Jardineiro da JS Jardinagem com formulários operacionais e painel de serviços disponíveis."
   />
 
   <link rel="icon" href="/favicon.ico" />
@@ -170,7 +170,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-:minmax(0,1.15fr) minmax(300px,.85fr);
+      grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
       gap:20px;
       align-items:stretch;
     }
@@ -246,7 +246,7 @@
 
     .grid-tools{
       display:grid;
-      grid-template-:repeat(4,minmax(0,1fr));
+      grid-template-columns:repeat(3,minmax(0,1fr));
       gap:16px;
     }
 
@@ -319,7 +319,7 @@
 
     .portal-grid{
       display:grid;
-      grid-template-:minmax(0,1.35fr) minmax(310px,.65fr);
+      grid-template-columns:minmax(0,1.35fr) minmax(310px,.65fr);
       gap:18px;
       align-items:start;
     }
@@ -383,7 +383,7 @@
 
     .filters{
       display:grid;
-      grid-template-:1.2fr 1fr 1fr 1fr;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
       gap:10px;
       padding:14px 16px;
       border-bottom:1px solid var(--line);
@@ -424,7 +424,7 @@
       box-shadow:0 8px 18px rgba(0,0,0,.05);
       padding:14px;
       display:grid;
-      grid-template-:minmax(0,1fr) 300px;
+      grid-template-columns:minmax(0,1fr) 300px;
       gap:14px;
       align-items:start;
       transition:.2s ease;
@@ -483,8 +483,8 @@
       display:grid;
       gap:10px;
     }
-    .grid2{grid-template-:repeat(2,minmax(0,1fr))}
-    .grid3{grid-template-:repeat(3,minmax(0,1fr))}
+    .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
 
     .kv{
       border:1px solid var(--line);
@@ -696,61 +696,6 @@
       word-break:break-all;
     }
 
-    .embed-grid{
-      display:grid;
-      grid-template-:repeat(2,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .embed-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .embed-card .head{
-      padding:14px 16px;
-      border-bottom:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      background:#fbfcfd;
-    }
-
-    .embed-card .head h3{
-      margin:0;
-      color:var(--pri);
-      font-size:14px;
-      font-weight:1000;
-      text-transform:uppercase;
-      letter-spacing:.2px;
-    }
-
-    .iframe-wrap{
-      position:relative;
-      min-height:520px;
-      background:#fff;
-    }
-
-    .iframe-wrap iframe{
-      width:100%;
-      height:520px;
-      border:0;
-      display:block;
-      background:#fff;
-    }
-
-    .embed-actions{
-      padding:14px 16px;
-      border-top:1px solid var(--line);
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
     .section-title{
       display:flex;
       justify-content:space-between;
@@ -784,37 +729,35 @@
 
     .foot{
       display:grid;
-      grid-template-:2fr 1fr;
+      grid-template-columns:2fr 1fr;
       gap:20px;
     }
 
     .foot a{color:#cfe8da}
 
     @media(max-width:1100px){
-      .grid-tools,
-      .embed-grid{
-        grid-template-:repeat(2,minmax(0,1fr));
+      .grid-tools{
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
       .hero-grid,
       .portal-grid{
-        grid-template-:1fr;
+        grid-template-columns:1fr;
       }
       .side,.cta{position:relative;top:auto}
-      .job{grid-template-:1fr}
+      .job{grid-template-columns:1fr}
       .links{display:none}
-      .foot{grid-template-:1fr}
-      .filters{grid-template-:1fr 1fr}
+      .foot{grid-template-columns:1fr}
+      .filters{grid-template-columns:1fr 1fr}
     }
 
     @media(max-width:760px){
-      .grid-tools,
-      .embed-grid{
-        grid-template-:1fr;
+      .grid-tools{
+        grid-template-columns:1fr;
       }
       .filters,
       .grid2,
       .grid3{
-        grid-template-:1fr;
+        grid-template-columns:1fr;
       }
       .brand img{height:48px}
       .brand-text strong{font-size:15px}
@@ -836,7 +779,7 @@
   </script>
 
   <div class="topbar">
-    Portal do Jardineiro JS • Central de orçamento, operação e aceite de serviços
+    Portal do Jardineiro JS • Central operacional e aceite de serviços
   </div>
 
   <header>
@@ -865,33 +808,34 @@
       <div>
         <h1>Central do Portal do Jardineiro</h1>
         <p>
-          Esta página reúne as novas ferramentas da JS Jardinagem para orçamento, atualização, execução,
-          acompanhamento operacional e leitura dos serviços disponíveis para parceiros.
+          Esta área reúne os formulários operacionais da JS Jardinagem e a leitura dos serviços disponíveis
+          para análise, aceite e execução com mais agilidade e organização.
         </p>
 
         <div class="pill-row">
           <a class="pill" href="#ferramentas">🧰 Ferramentas</a>
           <a class="pill" href="#servicos">📋 Serviços disponíveis</a>
-          <a class="pill" href="#paineis">📊 Painéis JS</a>
-          <a class="pill" href="#integracoes">🔗 Integrações</a>
         </div>
 
         <div class="hero-note">
           <strong>Fluxo atual da operação:</strong><br>
-          Calculadora → Novo orçamento → Atualização → Registro de execução → Banco de dados →
-          Dashboards → Portal do Jardineiro.
+          Novo orçamento → Atualização → Registro de execução → Serviços disponíveis → Aceite operacional.
         </div>
       </div>
 
       <div class="hero-card">
-        <h3>Leitura rápida da nova estrutura</h3>
+        <h3>Base de referência da operação</h3>
         <ul>
-          <li><strong>Calculadora App:</strong> cria o pacote técnico e financeiro.</li>
-          <li><strong>Novo orçamento:</strong> registra o serviço inicial no sistema.</li>
-          <li><strong>Atualização:</strong> gera nova versão do orçamento com histórico.</li>
-          <li><strong>Execução:</strong> registra avanço operacional do serviço.</li>
-          <li><strong>Dashboard:</strong> mostra serviços disponíveis em tempo real.</li>
+          <li><strong>Auxiliar:</strong> diária base de R$ 120</li>
+          <li><strong>Jardineiro:</strong> diária base de R$ 170</li>
+          <li><strong>Líder:</strong> diária base de R$ 240</li>
+          <li>Dentro de cada diária, <strong>R$ 20 são considerados para alimentação</strong>.</li>
+          <li><strong>Transporte é de responsabilidade do trabalhador</strong>.</li>
         </ul>
+        <p style="margin:12px 0 0; line-height:1.55; font-weight:700; font-size:13px;">
+          A JS busca manter uma base justa, objetiva e sustentável, valorizando o trabalhador e ajudando
+          a operação a continuar saudável para todos.
+        </p>
       </div>
     </div>
   </section>
@@ -902,7 +846,7 @@
         <div>
           <h2>Ferramentas principais</h2>
           <p>
-            Aqui estão os atalhos principais do novo fluxo de trabalho do Portal do Jardineiro.
+            Aqui estão os atalhos principais do fluxo atual do Portal do Jardineiro.
           </p>
         </div>
       </div>
@@ -910,37 +854,18 @@
       <div class="grid-tools">
         <div class="card">
           <div class="card-body tool">
-            <div class="icon">🧮</div>
-            <h3>Nova Calculadora App</h3>
-            <p>
-              Use a calculadora para gerar o pacote completo do orçamento, incluindo custos, lucro,
-              horas, equipe e lógica de parceria.
-            </p>
-            <div class="chips">
-              <span class="chip">Pacote técnico</span>
-              <span class="chip">Versão manual</span>
-              <span class="chip">Base do orçamento</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn-primary" href="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec" target="_blank" rel="noopener">Abrir calculadora</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body tool">
             <div class="icon">📝</div>
             <h3>Novo Orçamento</h3>
             <p>
-              Formulário principal para criar um serviço novo a partir do pacote da calculadora.
+              Formulário principal para registrar um serviço novo no sistema da JS.
             </p>
             <div class="chips">
               <span class="chip">Entrada oficial</span>
               <span class="chip">Cliente</span>
-              <span class="chip">Pacote</span>
+              <span class="chip">Cadastro</span>
             </div>
             <div class="actions">
-              <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header" target="_blank" rel="noopener">Abrir novo orçamento</a>
+              <a class="btn btn-success" href="https://docs.google.com/forms/d/1MHCHQT7pryE28JJpjbv9v6oXLmvQkpjj_EUGVFVWuIY/prefill" target="_blank" rel="noopener">Abrir formulário</a>
             </div>
           </div>
         </div>
@@ -950,7 +875,7 @@
             <div class="icon">🔁</div>
             <h3>Atualização de Orçamento</h3>
             <p>
-              Use quando o serviço precisar de nova versão. Mantém o mesmo ID de cálculo e cria histórico.
+              Use quando o serviço precisar de revisão, ajuste ou nova etapa operacional.
             </p>
             <div class="chips">
               <span class="chip">Versão 2+</span>
@@ -958,7 +883,7 @@
               <span class="chip">Revisão</span>
             </div>
             <div class="actions">
-              <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header" target="_blank" rel="noopener">Abrir atualização</a>
+              <a class="btn btn-primary" href="https://docs.google.com/forms/d/1MHCHQT7pryE28JJpjbv9v6oXLmvQkpjj_EUGVFVWuIY/prefill" target="_blank" rel="noopener">Abrir atualização</a>
             </div>
           </div>
         </div>
@@ -968,7 +893,7 @@
             <div class="icon">✅</div>
             <h3>Registro de Execução</h3>
             <p>
-              Formulário para registrar a execução operacional do serviço em campo.
+              Formulário para registrar andamento, execução e avanço operacional do serviço em campo.
             </p>
             <div class="chips">
               <span class="chip">Campo</span>
@@ -980,24 +905,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="paineis">
-    <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>Painéis e base da JS</h2>
-          <p>
-            A planilha central da JS concentra o banco de dados, dashboards, calendário, apontamento
-            de equipe e painel financeiro.
-          </p>
-        </div>
-      </div>
-
-      <div style="margin-top:18px">
-        <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir banco de dados e dashboards</a>
       </div>
     </div>
   </section>
@@ -1087,59 +994,19 @@
               <strong>Prática recomendada:</strong><br>
               sempre use o <code>ID_SHORT</code> ao interagir com a operação.
             </p>
+
+            <p style="margin-top:12px">
+              <strong>Base de diária usada como referência nos orçamentos:</strong><br>
+              Auxiliar <strong>R$ 120</strong> • Jardineiro <strong>R$ 170</strong> • Líder <strong>R$ 240</strong>.
+            </p>
+
+            <p style="margin-top:12px">
+              <strong>Observação:</strong><br>
+              dentro de cada diária, <strong>R$ 20</strong> são considerados para alimentação.
+              O transporte permanece por conta do trabalhador.
+            </p>
           </div>
         </aside>
-      </div>
-    </div>
-  </section>
-
-  <section id="integracoes">
-    <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>Integrações rápidas</h2>
-          <p>
-            Área para ligar os painéis certos no site da JS e no Portal do Jardineiro sem expor dados internos.
-          </p>
-        </div>
-      </div>
-
-      <div class="embed-grid">
-        <div class="embed-card">
-          <div class="head">
-            <h3>Painel público do Portal</h3>
-            <span class="chip">Recomendado para parceiros</span>
-          </div>
-          <div class="iframe-wrap">
-            <iframe
-              title="Serviços disponíveis"
-              src="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="embed-actions">
-            <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing" target="_blank" rel="noopener">Abrir planilha</a>
-            <button class="btn" type="button" data-copy-link="https://docs.google.com/spreadsheets/d/1y8U5iFLGK1W9RBrHXT5i-Tj_ioPDFAEPtyqm5dPdPRM/edit?usp=sharing">Copiar link</button>
-          </div>
-        </div>
-
-        <div class="embed-card">
-          <div class="head">
-            <h3>App da Calculadora</h3>
-            <span class="chip">Entrada de orçamento</span>
-          </div>
-          <div class="iframe-wrap">
-            <iframe
-              title="Calculadora JS"
-              src="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec"
-              loading="lazy">
-            </iframe>
-          </div>
-          <div class="embed-actions">
-            <a class="btn btn-success" href="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec" target="_blank" rel="noopener">Abrir app</a>
-            <button class="btn" type="button" data-copy-link="https://script.google.com/macros/s/AKfycbxnTasOe6g62czzE6m0tNuw55hopd690c4ho48wufIsvAgUZ4ge6-AEwNGWdyS7Bo3N/exec">Copiar link</button>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1149,7 +1016,7 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p style="opacity:.8;margin:8px 0 0">
-          Portal do Jardineiro • Central atualizada com calculadora, formulários, execução e dashboards da JS.
+          Portal do Jardineiro • Central atualizada com formulários operacionais e leitura de serviços disponíveis da JS.
         </p>
       </div>
       <div>
@@ -1163,32 +1030,31 @@
   <script>
     const CONFIG = {
       VIEW_CSV_URL: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv",
-      FORM_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
-      TAKE_SERVICE_URL: "https://docs.google.com/forms/d/e/1FAIpQLSeVNqbXkVVa36NiHq0JO-l5_zl6rLdXPb-nweoQNfyfuXkaTg/viewform?usp=header",
+      FORM_URL: "https://docs.google.com/forms/d/1MHCHQT7pryE28JJpjbv9v6oXLmvQkpjj_EUGVFVWuIY/prefill",
+      TAKE_SERVICE_URL: "https://docs.google.com/forms/d/1MHCHQT7pryE28JJpjbv9v6oXLmvQkpjj_EUGVFVWuIY/prefill",
       AUTO_REFRESH_MS: 60000,
 
-      
-        COLUMNS: {
-  idShort: ["ID_SHORT"],
-  dataServico: ["DATA_SERVICO"],
-  cliente: ["CLIENTE"],
-  enderecoTexto: ["ENDERECO_TEXTO"],
-  linkMaps: ["LINK_MAPS"],
-  bairro: ["BAIRRO"],
-  descricao: ["DESCRICAO"],
-  responsavel: ["RESPONSAVEL_ENVIO"],
-  status: ["STATUS"],
-  qtdLider: ["QTD_LIDER"],
-  qtdJardineiro: ["QTD_JARDINEIRO"],
-  qtdAuxiliar: ["QTD_AUXILIAR"],
-  equipeTotal: ["EQUIPE_TOTAL"],
-  horas: ["HORAS"],
-  precoFinal: ["PRECO_FINAL"],
-  valorParceiro: ["VALOR_PARCEIRO"],
-  ganhoHora: ["GANHO_POR_HORA"],
-  tipoParceria: ["TIPO_PARCERIA"],
-  proximaAcao: ["PROXIMA_ACAO"]
-}
+      COLUMNS: {
+        idShort: ["ID_SHORT"],
+        dataServico: ["DATA_SERVICO"],
+        cliente: ["CLIENTE"],
+        telefone: ["TELEFONE"],
+        enderecoTexto: ["ENDERECO_TEXTO"],
+        linkMaps: ["LINK_MAPS"],
+        bairro: ["BAIRRO"],
+        descricao: ["DESCRICAO"],
+        responsavel: ["RESPONSAVEL_ENVIO"],
+        status: ["STATUS"],
+        qtdLider: ["QTD_LIDER"],
+        qtdJardineiro: ["QTD_JARDINEIRO"],
+        qtdAuxiliar: ["QTD_AUXILIAR"],
+        equipeTotal: ["EQUIPE_TOTAL"],
+        horas: ["HORAS"],
+        precoFinal: ["PRECO_FINAL"],
+        valorParceiro: ["VALOR_PARCEIRO"],
+        ganhoHora: ["GANHO_POR_HORA"],
+        tipoParceria: ["TIPO_PARCERIA"],
+        proximaAcao: ["PROXIMA_ACAO"]
       }
     };
 
@@ -1345,10 +1211,10 @@
       const c = CONFIG.COLUMNS;
 
       const enderecoTexto = norm(getValue(raw, c.enderecoTexto));
-const bairro = norm(getValue(raw, c.bairro));
-const linkMaps = norm(getValue(raw, c.linkMaps));
-const mapsLink = linkMaps || mapsSearchUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
-const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
+      const bairro = norm(getValue(raw, c.bairro));
+      const linkMaps = norm(getValue(raw, c.linkMaps));
+      const mapsLink = linkMaps || mapsSearchUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
+      const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(", "));
 
       return {
         idShort: norm(getValue(raw, c.idShort)),
@@ -1450,13 +1316,7 @@ const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(",
     }
 
     function buildTakeServiceUrl(r){
-      const params = new URLSearchParams({
-        entry_id_short: r.idShort || "",
-        entry_cliente: r.cliente || "",
-        entry_bairro: r.bairro || "",
-        entry_endereco: r.enderecoTexto || ""
-      });
-      return `${CONFIG.TAKE_SERVICE_URL}&${params.toString()}`;
+      return CONFIG.TAKE_SERVICE_URL;
     }
 
     function buildCopyText(r){
@@ -1741,20 +1601,6 @@ const streetLink = streetViewUrl([enderecoTexto, bairro].filter(Boolean).join(",
       });
 
       $("#btnAuto").addEventListener("click", () => setAuto(!autoOn));
-
-      document.querySelectorAll("[data-copy-link]").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          const txt = btn.getAttribute("data-copy-link");
-          try{
-            await navigator.clipboard.writeText(txt);
-            const old = btn.textContent;
-            btn.textContent = "✅ Link copiado!";
-            setTimeout(()=> btn.textContent = old, 1200);
-          }catch(e){
-            alert("Não consegui copiar o link.");
-          }
-        });
-      });
     }
 
     bindUI();
