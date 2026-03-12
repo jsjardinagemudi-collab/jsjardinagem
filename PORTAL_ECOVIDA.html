@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>Portal EcoVida • Cadastros, parceiros e operação</title>
+  <meta name="description" content="Portal EcoVida: central de formulários, cadastros, parceiros de coleta, mapa de pontos, colaboradores e operação social do Instituto EcoVida." />
+
+  <meta property="og:title" content="Portal EcoVida • Instituto EcoVida" />
+  <meta property="og:description" content="Central de operação do EcoVida com formulários, parceiros, cadastros, coleta, mapa e impacto social." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-js.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --ink:#0f1411;
+      --muted:#667085;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+      --paper:#ffffff;
+      --soft:#f2f7ff;
+      --soft2:#eefaf3;
+      --warn:#b54708;
+      --good:#027a48;
+      --shadow:0 10px 26px rgba(0,0,0,.05);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .wrap{width:min(1140px,92vw);margin:auto}
+    .muted{color:var(--muted)}
+    .hr{height:1px;background:#e9ece9;border:0;margin:0}
+    section{padding:64px 0}
+    .section-title{font-size:30px;line-height:1.15;margin:0 0 10px}
+    .section-text{margin:0;color:#475467;line-height:1.75}
+    .kicker{
+      font-weight:900;
+      color:var(--pri);
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      font-size:12px;
+      margin-bottom:8px;
+    }
+
+    .topbar{
+      background:var(--pri);
+      color:#fff;
+      text-align:center;
+      padding:7px 10px;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      background:#ffffffcc;
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+      z-index:50;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      min-width:240px;
+    }
+
+    .brand img{
+      height:72px;
+      width:auto;
+      border-radius:8px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .brand strong{
+      font-size:22px;
+      font-weight:800;
+      color:#114084;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      line-height:1.05;
+    }
+
+    .nav .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      font-weight:800;
+      justify-content:center;
+    }
+
+    .nav .links a{color:#0f1411}
+    .nav .links a:hover{color:var(--pri)}
+    .nav .links a.active{
+      color:var(--pri);
+      text-decoration:underline;
+      text-underline-offset:6px;
+    }
+
+    .nav .cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width:240px;
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      padding:11px 14px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      color:var(--ink);
+      white-space:nowrap;
+      box-shadow:none;
+    }
+
+    .btn:hover{background:#f3f5f7}
+    .btn-primary{
+      background:var(--pri);
+      border-color:var(--pri);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background:#0d3270;
+      border-color:#0d3270;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border-color:var(--pri);
+      color:var(--pri);
+    }
+    .btn-outline:hover{background:#eef4ff}
+
+    .btn-success{
+      background:var(--pri2);
+      border-color:var(--pri2);
+      color:#fff;
+    }
+    .btn-success:hover{
+      background:#0d6f40;
+      border-color:#0d6f40;
+    }
+
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .p18{padding:18px}
+    .p22{padding:22px}
+    .p26{padding:26px}
+
+    .hero{
+      position:relative;
+      min-height:78vh;
+      display:grid;
+      align-items:center;
+      color:#fff;
+      background:url("fundoreal.png") center/cover no-repeat;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        50deg,
+        rgba(17,64,132,.58) 0%,
+        rgba(0,0,0,.72) 100%
+      );
+      z-index:1;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      max-width:900px;
+      padding:40px 0;
+    }
+
+    .chip{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#ffffffd9;
+      border:1px solid #e6edf5;
+      color:#114084;
+      font-weight:900;
+      font-size:13px;
+      margin-bottom:12px;
+    }
+
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(34px,4.8vw,58px);
+      line-height:1.05;
+      text-shadow:0 2px 8px rgba(0,0,0,.45);
+    }
+
+    .hero p{
+      margin:0 0 22px;
+      font-size:clamp(16px,1.7vw,20px);
+      line-height:1.65;
+      opacity:.97;
+      text-shadow:0 2px 8px rgba(0,0,0,.45);
+      max-width:72ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+      font-weight:900;
+      font-size:13px;
+      color:#0f1411;
+    }
+
+    .pill span{
+      color:#475467;
+      font-weight:700;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .icon{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid var(--line);
+      margin-bottom:10px;
+      font-size:21px;
+    }
+
+    .feature h3{
+      margin:0 0 6px;
+      font-size:18px;
+    }
+
+    .feature p{
+      margin:0;
+      color:#475467;
+      line-height:1.65;
+    }
+
+    .feature b{color:#0f1411}
+
+    .soft{
+      background:linear-gradient(180deg,#ffffff 0%, #f5f9ff 100%);
+      border-color:#d7e7ff;
+    }
+
+    .soft-green{
+      background:linear-gradient(180deg,#ffffff 0%, #f1fbf5 100%);
+      border-color:#d7efe1;
+    }
+
+    .list{
+      margin:0;
+      padding-left:18px;
+      color:#475467;
+      line-height:1.75;
+    }
+
+    .list li{margin:8px 0}
+    .list b{color:#0f1411}
+
+    .step-list{
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .step{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:0 10px 22px rgba(0,0,0,.04);
+    }
+
+    .num{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:#eef4ff;
+      color:var(--pri);
+      font-weight:1000;
+      border:1px solid #d7e7ff;
+      flex:0 0 auto;
+    }
+
+    .step h4{
+      margin:0 0 4px;
+      font-size:16px;
+    }
+
+    .step p{
+      margin:0;
+      color:#475467;
+      line-height:1.55;
+    }
+
+    .portal-links{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .portal-box{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      padding:18px;
+      box-shadow:0 10px 20px rgba(0,0,0,.04);
+    }
+
+    .portal-box h3{
+      margin:0 0 8px;
+      font-size:19px;
+    }
+
+    .portal-box p{
+      margin:0 0 14px;
+      color:#475467;
+      line-height:1.65;
+    }
+
+    .portal-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .stat{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 8px 18px rgba(0,0,0,.04);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:28px;
+      color:var(--pri);
+      line-height:1;
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      display:block;
+      color:#475467;
+      font-weight:700;
+      line-height:1.4;
+    }
+
+    .map-box{
+      min-height:380px;
+      border-radius:18px;
+      border:1px dashed #b8c7d8;
+      background:linear-gradient(180deg,#f9fbfd 0%, #edf4fb 100%);
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:24px;
+    }
+
+    .map-box h3{
+      margin:0 0 8px;
+      color:var(--pri);
+    }
+
+    .map-box p{
+      margin:0;
+      color:#475467;
+      max-width:60ch;
+      line-height:1.7;
+    }
+
+    .tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      justify-content:center;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:9px 12px;
+      background:#fff;
+      border:1px solid var(--line);
+      font-weight:800;
+      color:#344054;
+    }
+
+    .note{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#9a3412;
+      line-height:1.6;
+      font-weight:700;
+    }
+
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:20px;
+      padding:30px;
+    }
+
+    .band h3{
+      margin:0 0 8px;
+      font-size:28px;
+    }
+
+    .band p{
+      margin:0;
+      opacity:.96;
+      max-width:82ch;
+      line-height:1.7;
+    }
+
+    .band .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    footer{
+      background:#0a1a12;
+      color:#cfe8da;
+      padding:36px 0;
+      margin-top:40px;
+    }
+
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+
+    .foot a{color:#cfe8da}
+
+    @media (max-width:980px){
+      .nav{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .brand{justify-content:center}
+      .nav .cta{justify-content:center}
+      .nav .links{justify-content:center}
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .portal-links,
+      .stats,
+      .foot{
+        grid-template-columns:1fr;
+      }
+      .brand img{height:58px}
+      .brand strong{font-size:20px}
+      .hero{min-height:72vh}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    Portal EcoVida • Cadastros • Parceiros • Reciclagem • Recomeço com dignidade • Uberlândia e região
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo.jpg" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
+
+      <nav class="links">
+        <a href="index.html">Início</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a class="active" href="PORTAL_ECOVIDA.html">Portal EcoVida</a>
+        <a href="#formularios">Formulários</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20participar%20do%20portal." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero Portal EcoVida">
+    <div class="wrap hero-inner">
+      <span class="chip">Central operacional • Cadastros • Coleta • Parceiros • Impacto social</span>
+      <h1>Portal EcoVida</h1>
+      <p>
+        Uma central para organizar o <b>cadastro de pessoas, parceiros de coleta, colaboradores e pontos de reciclagem</b>.
+        Aqui o EcoVida começa a ganhar estrutura real para unir <b>recomeço humano, logística de reciclagem e impacto na cidade</b>.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#formularios">Abrir formulários</a>
+        <a class="btn btn-success" href="#mapa">Ver pontos e mapa</a>
+        <a class="btn btn-outline" href="ecovida.html">Voltar para página EcoVida</a>
+      </div>
+
+      <div class="pill-row">
+        <div class="pill">📋 <span>Cadastro de pessoa</span></div>
+        <div class="pill">♻️ <span>Parceiro de coleta</span></div>
+        <div class="pill">🤝 <span>Colaboradores EcoVida</span></div>
+        <div class="pill">🗺️ <span>Mapa de pontos parceiros</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPÓSITO DO PORTAL -->
+  <section id="proposito">
+    <div class="wrap grid-2">
+      <div>
+        <div class="kicker">A missão do portal</div>
+        <h2 class="section-title">Uma central para organizar o crescimento do EcoVida</h2>
+        <p class="section-text">
+          O Portal EcoVida foi pensado para se tornar a base digital do projeto. Ele reúne os formulários,
+          organiza os pontos parceiros, facilita o cadastro de pessoas interessadas em apoio e cria uma base
+          sólida para o acompanhamento social e operacional.
+          <br><br>
+          A ideia é transformar informações soltas em <b>estrutura prática</b>: planilhas, mapas, agenda de coleta,
+          cadastro de interessados, rede de parceiros e visão clara de evolução.
+        </p>
+      </div>
+
+      <div class="card p26 soft">
+        <div class="kicker">O que nasce daqui</div>
+        <h3 style="margin:6px 0 10px">Este portal prepara o EcoVida para operar de verdade</h3>
+        <ul class="list">
+          <li><b>Cadastro social:</b> pessoas que precisam de apoio, documentos e reconexão familiar.</li>
+          <li><b>Rede de coleta:</b> condomínios, empresas e prédios com potencial de parceria.</li>
+          <li><b>Mapa operacional:</b> visualização dos pontos parceiros e distribuição geográfica.</li>
+          <li><b>Banco de dados:</b> integração com planilhas para registrar tudo com clareza.</li>
+          <li><b>Triagem futura:</b> base para ficha técnica, acompanhamento e pré-diagnóstico social.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr" />
+
+  <!-- FORMULÁRIOS -->
+  <section id="formularios">
+    <div class="wrap">
+      <div class="kicker">Formulários principais</div>
+      <h2 class="section-title">Cadastros que estruturam o projeto</h2>
+      <p class="section-text" style="max-width:80ch">
+        Esses formulários serão a porta de entrada do EcoVida. Eles alimentam a planilha, ajudam na organização
+        do projeto e criam as bases para o mapa, a logística e o acompanhamento das pessoas e parceiros.
+      </p>
+
+      <div class="portal-links">
+        <div class="portal-box">
+          <div class="icon">🧍</div>
+          <h3>Cadastro de Pessoa</h3>
+          <p>
+            Para pessoas interessadas em receber apoio, renovar documentos, retomar contato com familiares,
+            registrar a situação atual e iniciar uma futura ficha técnica social.
+          </p>
+          <div class="portal-actions">
+            <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Abrir formulário</a>
+            <a class="btn btn-outline" href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20saber%20mais%20sobre%20o%20cadastro%20de%20pessoa." target="_blank" rel="noopener">Falar no WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="portal-box">
+          <div class="icon">♻️</div>
+          <h3>Cadastro de Parceiro de Coleta</h3>
+          <p>
+            Para condomínios, prédios, empresas e parceiros que desejam entrar na rede de reciclagem do EcoVida,
+            informando dias, horários, frequência e condições da retirada.
+          </p>
+          <div class="portal-actions">
+            <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Abrir formulário</a>
+            <a class="btn btn-outline" href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Tenho%20interesse%20em%20ser%20parceiro%20de%20coleta." target="_blank" rel="noopener">Quero ser parceiro</a>
+          </div>
+        </div>
+
+        <div class="portal-box">
+          <div class="icon">🤝</div>
+          <h3>Cadastro de Colaborador</h3>
+          <p>
+            Para voluntários, apoiadores, trabalhadores e pessoas interessadas em colaborar com o EcoVida
+            em ações sociais, coleta, organização, comunicação ou apoio operacional.
+          </p>
+          <div class="portal-actions">
+            <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Abrir formulário</a>
+            <a class="btn btn-outline" href="#colaboradores">Ver área de colaboradores</a>
+          </div>
+        </div>
+
+        <div class="portal-box">
+          <div class="icon">📌</div>
+          <h3>Formulário futuro de triagem</h3>
+          <p>
+            Espaço reservado para a etapa seguinte do projeto, com perguntas mais profundas para compor ficha técnica,
+            histórico social e avaliação inicial do futuro paciente do Instituto.
+          </p>
+          <div class="portal-actions">
+            <a class="btn btn-outline" href="#proximos-passos">Ver próximos passos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Substitua cada <b>href="#"</b> pelo link real do Google Forms quando terminar os formulários.
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="funcionamento">
+    <div class="wrap grid-2">
+      <div>
+        <div class="kicker">Fluxo do portal</div>
+        <h2 class="section-title">Como o Portal EcoVida vai funcionar na prática</h2>
+        <p class="section-text">
+          O objetivo não é só captar informações, mas criar um processo. Cada envio deve alimentar uma base organizada,
+          facilitar a leitura da operação e gerar clareza sobre quem precisa de apoio, onde estão os pontos de coleta e
+          quais parceiros estão ativos.
+        </p>
+
+        <div class="step-list">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h4>Formulário é preenchido online</h4>
+              <p>A pessoa, parceiro ou colaborador entra pelo portal e envia os dados iniciais.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h4>Script organiza os dados na planilha</h4>
+              <p>As respostas são levadas para o Excel/Google Sheets com colunas padronizadas.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h4>Pacote de dados resume o cadastro</h4>
+              <p>Os campos mais importantes podem gerar um pacote para leitura rápida e uso no dashboard.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">4</div>
+            <div>
+              <h4>Mapa e operação ficam mais claros</h4>
+              <p>Com endereço, bairro e link maps, os pontos parceiros passam a ser visualizados no mapa.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="num">5</div>
+            <div>
+              <h4>Triagem e evolução do EcoVida</h4>
+              <p>Com base organizada, o projeto avança para acompanhamento, logística e impacto real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p26 soft-green">
+        <div class="kicker">Estrutura ideal de integração</div>
+        <h3 style="margin:6px 0 10px">O que essa base pode gerar depois</h3>
+        <ul class="list">
+          <li><b>Painel de parceiros ativos</b> por bairro e frequência de coleta.</li>
+          <li><b>Agenda semanal de retirada</b> por dia e horário.</li>
+          <li><b>Mapa com pontos de reciclagem</b> e localização dos parceiros.</li>
+          <li><b>Painel social</b> com situação das pessoas cadastradas.</li>
+          <li><b>Triagem documental</b> para renovação de RG, CPF e outros dados.</li>
+          <li><b>Contato com familiares</b> com autorização registrada.</li>
+          <li><b>Dashboard de impacto</b> com quantidade de parceiros, pessoas atendidas e volume estimado.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCEIROS -->
+  <section id="parceiros">
+    <div class="wrap">
+      <div class="kicker">Rede EcoVida</div>
+      <h2 class="section-title">Parceiros que podem fazer parte da rede de coleta</h2>
+      <p class="section-text" style="max-width:78ch">
+        O EcoVida pode atuar junto de condomínios, prédios, empresas e pontos estratégicos para formar uma rede prática
+        de coleta seletiva e apoio social. A ideia é facilitar a separação, aproveitar a janela curta antes da coleta pública
+        e transformar isso em oportunidade.
+      </p>
+
+      <div class="grid-4" style="margin-top:18px">
+        <div class="card p18 feature">
+          <div class="icon">🏢</div>
+          <h3>Condomínios</h3>
+          <p>Locais com rotina de descarte previsível, bom potencial de volume e organização por portaria.</p>
+        </div>
+
+        <div class="card p18 feature">
+          <div class="icon">🏬</div>
+          <h3>Empresas</h3>
+          <p>Parceiros com volume constante de materiais e possibilidade de campanhas internas.</p>
+        </div>
+
+        <div class="card p18 feature">
+          <div class="icon">🏫</div>
+          <h3>Escolas e instituições</h3>
+          <p>Ótimos pontos para educação ambiental, engajamento e formação de consciência coletiva.</p>
+        </div>
+
+        <div class="card p18 feature">
+          <div class="icon">🛒</div>
+          <h3>Comércios</h3>
+          <p>Pontos menores, mas estratégicos, com potencial para criar capilaridade e presença local.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>01</strong>
+          <span>Formulário de parceiro para mapear rotina, frequência e janela de retirada</span>
+        </div>
+        <div class="stat">
+          <strong>02</strong>
+          <span>Cadastro com endereço e bairro para organizar mapa e rota</span>
+        </div>
+        <div class="stat">
+          <strong>03</strong>
+          <span>Leitura do volume estimado e materiais mais comuns</span>
+        </div>
+        <div class="stat">
+          <strong>04</strong>
+          <span>Base pronta para agenda semanal e expansão do projeto</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section id="mapa">
+    <div class="wrap grid-2">
+      <div>
+        <div class="kicker">Visualização futura</div>
+        <h2 class="section-title">Mapa de pontos parceiros e coleta</h2>
+        <p class="section-text">
+          Essa área foi pensada para receber o mapa do EcoVida. Depois, você pode integrar com Google Maps,
+          Looker Studio, planilha publicada ou outro sistema visual para mostrar onde estão os parceiros cadastrados.
+          <br><br>
+          Com isso, o projeto ganha visão territorial, prioriza bairros, entende concentração de pontos e melhora a logística.
+        </p>
+
+        <div class="tag-row" style="justify-content:flex-start">
+          <div class="tag">Condomínios</div>
+          <div class="tag">Empresas</div>
+          <div class="tag">Escolas</div>
+          <div class="tag">Comércios</div>
+          <div class="tag">Rotas futuras</div>
+        </div>
+      </div>
+
+      <div class="map-box">
+        <div>
+          <h3>Área reservada para o mapa EcoVida</h3>
+          <p>
+            Aqui você poderá colocar no futuro um mapa incorporado com os pontos parceiros cadastrados,
+            regiões atendidas, bairros estratégicos e possíveis rotas de coleta.
+          </p>
+          <div class="tag-row">
+            <div class="tag">Embed Google Maps</div>
+            <div class="tag">Mapa por bairros</div>
+            <div class="tag">Pontos parceiros</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLABORADORES -->
+  <section id="colaboradores">
+    <div class="wrap grid-2">
+      <div class="card p26 soft">
+        <div class="kicker">Colaboradores EcoVida</div>
+        <h3 style="margin:6px 0 10px">Uma área para reunir quem constrói o projeto</h3>
+        <p class="section-text">
+          O Portal EcoVida também pode ser a base dos colaboradores. Aqui você pode mostrar os parceiros,
+          os prédios cadastrados, os pontos de coleta, áreas de apoio, voluntários e orientações práticas.
+        </p>
+
+        <ul class="list" style="margin-top:14px">
+          <li><b>Colaboradores operacionais:</b> coleta, separação, apoio e organização.</li>
+          <li><b>Apoiadores sociais:</b> pessoas que ajudam com documentação, escuta e reconexão familiar.</li>
+          <li><b>Parceiros institucionais:</b> condomínios, prédios e empresas da rede.</li>
+          <li><b>Voluntários:</b> comunicação, campanhas, ações e suporte geral.</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="kicker">O que pode entrar aqui depois</div>
+        <h2 class="section-title">Expansões naturais do Portal EcoVida</h2>
+
+        <div class="step-list">
+          <div class="step">
+            <div class="num">A</div>
+            <div>
+              <h4>Painel de parceiros</h4>
+              <p>Listagem viva com nome, bairro, frequência de coleta e status do parceiro.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">B</div>
+            <div>
+              <h4>Agenda de coleta</h4>
+              <p>Calendário ou painel semanal com horários curtos de retirada por ponto cadastrado.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">C</div>
+            <div>
+              <h4>Área de treinamento</h4>
+              <p>Instruções práticas para colaboradores, segurança, separação e fluxo operacional.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">D</div>
+            <div>
+              <h4>Dashboard de impacto</h4>
+              <p>Número de pessoas apoiadas, parceiros ativos, materiais coletados e evolução do projeto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <section id="proximos-passos">
+    <div class="wrap">
+      <div class="band">
+        <h3>Próximos passos do Portal EcoVida</h3>
+        <p>
+          A base já está pronta para crescer. Agora o ideal é conectar os formulários reais, montar a planilha central,
+          criar os scripts para organizar as respostas e depois evoluir para mapa, dashboard e painel de operação.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#formularios">Revisar formulários</a>
+          <a class="btn btn-primary" href="#mapa">Planejar mapa</a>
+          <a class="btn btn-primary" href="ecovida.html">Ver página principal</a>
+          <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20ajudar%20na%20implantação%20do%20projeto." target="_blank" rel="noopener">Falar com EcoVida</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="wrap">
+      <div class="kicker">Contato</div>
+      <h2 class="section-title">Falar com o EcoVida</h2>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">(34) 99214-2960</a></p>
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">@ecovidajs</a></p>
+      <p class="muted">Portal operacional do Instituto EcoVida • Projeto ligado à JS Jardinagem • Uberlândia e região</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>Portal EcoVida</strong>
+        <p class="muted">
+          Central de formulários, parceiros, colaboradores e operação social do EcoVida.
+          Estrutura para transformar impacto em organização real.
+        </p>
+      </div>
+
+      <div>
+        <p><a href="#formularios">Formulários</a></p>
+        <p><a href="#parceiros">Parceiros</a></p>
+        <p><a href="#mapa">Mapa</a></p>
+        <p><a href="ecovida.html">EcoVida</a></p>
+      </div>
+
+      <div>
+        <p><a href="index.html">Site JS</a></p>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
