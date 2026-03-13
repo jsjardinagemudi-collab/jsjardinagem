@@ -8,7 +8,7 @@
   <title>Carreira • JS Jardinagem</title>
   <meta
     name="description"
-    content="Trabalhe com a JS Jardinagem. Página de entrada para jardineiros, líderes de campo, parceiros com maquinário e profissionais que querem crescer no Portal do Jardineiro."
+    content="Página de carreira da JS Jardinagem para trabalhadores disponíveis para diárias, auxiliares, jardineiros, líderes operacionais e profissionais que querem crescer com a empresa."
   />
 
   <link rel="icon" href="/favicon.ico" />
@@ -23,6 +23,9 @@
       --bg:#f6f7f6;
       --line:#e7ecef;
       --soft:#f8fafc;
+      --soft-green:#eefaf2;
+      --soft-blue:#eef4ff;
+      --soft-gold:#fff8e8;
       --shadow:0 10px 26px rgba(0,0,0,.06);
       --shadow-strong:0 20px 40px rgba(0,0,0,.12);
       --good:#027a48;
@@ -31,11 +34,13 @@
     }
 
     *{box-sizing:border-box}
+
     html,body{
       margin:0;
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      scroll-behavior:smooth;
     }
 
     a{text-decoration:none;color:inherit}
@@ -85,9 +90,7 @@
       background:#fff;
     }
 
-    .brand-block{
-      min-width:0;
-    }
+    .brand-block{min-width:0}
 
     .brand strong{
       display:block;
@@ -138,36 +141,53 @@
       justify-content:center;
       gap:10px;
       white-space:nowrap;
+      text-align:center;
     }
 
     .btn:hover{background:#f3f5f7}
+
     .btn-primary{
       background:var(--pri);
       border-color:var(--pri);
       color:#fff;
     }
+
     .btn-primary:hover{
       background:#0d3270;
       border-color:#0d3270;
     }
+
     .btn-outline{
       background:transparent;
       border-color:var(--pri);
       color:var(--pri);
     }
+
     .btn-outline:hover{background:#eef4ff}
+
     .btn-success{
       background:linear-gradient(120deg,var(--pri2),#0f9b57);
       border-color:#0f8f52;
       color:#fff;
     }
+
     .btn-success:hover{filter:brightness(.98)}
+
     .btn-soft{
       background:#eef4ff;
       border-color:#d7e7ff;
       color:var(--pri);
     }
+
     .btn-soft:hover{background:#e5f0ff}
+
+    .btn-gold{
+      background:#fff8e8;
+      border-color:#f0dfad;
+      color:#8a6500;
+    }
+
+    .btn-gold:hover{background:#fff2c8}
 
     section{padding:56px 0}
 
@@ -257,6 +277,7 @@
       font-size:14px;
       margin:0;
       line-height:1.65;
+      font-weight:700;
     }
 
     .hero-box ul{
@@ -281,7 +302,7 @@
 
     .audience-grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:repeat(3,1fr);
       gap:16px;
       margin-top:18px;
       align-items:stretch;
@@ -328,6 +349,7 @@
       line-height:1.8;
       color:#475467;
       font-weight:700;
+      flex:1;
     }
 
     .audience-cta{
@@ -340,26 +362,6 @@
     .audience-featured{
       border:2px solid var(--pri);
       box-shadow:0 18px 40px rgba(0,0,0,.10);
-    }
-
-    .ladder{
-      margin-top:12px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:#fbfcff;
-      color:#344054;
-      line-height:1.75;
-      font-weight:700;
-    }
-
-    .ladder small{
-      display:block;
-      color:var(--muted);
-      font-weight:900;
-      margin-bottom:6px;
-      text-transform:uppercase;
-      letter-spacing:.2px;
     }
 
     .grid{
@@ -397,6 +399,32 @@
       flex:0 0 36px;
     }
 
+    .roles-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .role-card{
+      padding:18px;
+      text-align:left;
+    }
+
+    .role-card strong{
+      display:block;
+      color:var(--pri);
+      font-size:16px;
+      margin-bottom:6px;
+    }
+
+    .role-card span{
+      color:#475467;
+      line-height:1.6;
+      font-weight:700;
+      font-size:14px;
+    }
+
     .path-grid{
       display:grid;
       grid-template-columns:repeat(5,1fr);
@@ -423,82 +451,37 @@
       font-size:13px;
     }
 
-    .pricing{
+    .tool-grid{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+      grid-template-columns:1.1fr .9fr;
       gap:16px;
       margin-top:18px;
       align-items:stretch;
     }
 
-    .plan{
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      height:100%;
+    .tool-box{
+      padding:22px;
     }
 
-    .plan-top{min-height:160px}
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:1000;
-      font-size:12px;
-      background:#e8f5ee;
-      border:1px solid #cfe9da;
+    .tool-box h3{
+      margin:0 0 8px;
       color:var(--pri);
+      font-size:22px;
     }
 
-    .badge.featured{
-      background:var(--pri);
-      border-color:var(--pri);
-      color:#fff;
-    }
-
-    .plan h3{
-      margin:10px 0 6px;
-      color:var(--pri);
-      font-size:20px;
-      line-height:1.15;
-    }
-
-    .plan p{
+    .tool-box p{
       margin:0;
       color:#344054;
-      line-height:1.65;
+      line-height:1.7;
       font-weight:700;
     }
 
-    .plan ul{
-      margin:12px 0 16px;
+    .tool-list{
+      margin:14px 0 0;
       padding-left:18px;
-      line-height:1.75;
+      line-height:1.8;
       color:#475467;
-      flex:1;
       font-weight:700;
-    }
-
-    .plan a.btn{
-      margin-top:auto;
-      width:100%;
-      display:flex;
-      justify-content:center;
-    }
-
-    .featured{
-      border:2px solid var(--pri);
-      box-shadow:0 18px 40px rgba(0,0,0,.12);
-    }
-
-    .split-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:12px;
     }
 
     .icon-list{
@@ -607,25 +590,43 @@
     .foot a{color:#cfe8da}
     .foot p{line-height:1.7}
 
+    @media (max-width:1024px){
+      .roles-grid{grid-template-columns:repeat(2,1fr)}
+      .path-grid{grid-template-columns:1fr}
+      .tool-grid{grid-template-columns:1fr}
+    }
+
     @media (max-width:980px){
       .hero-inner,
       .grid,
       .grid-2,
-      .pricing,
-      .split-grid,
-      .path-grid,
       .foot{
         grid-template-columns:1fr;
       }
       .audience-grid{grid-template-columns:1fr}
       .links{display:none}
     }
+
+    @media (max-width:640px){
+      .hero-actions,
+      .audience-cta,
+      .band .actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .hero-actions .btn,
+      .audience-cta .btn,
+      .band .actions .btn{
+        width:100%;
+      }
+      .roles-grid{grid-template-columns:1fr}
+    }
   </style>
 </head>
 
 <body>
   <div class="topbar">
-    Carreira JS • Entrada para parceiros, líderes e profissionais do Portal do Jardineiro
+    Carreira JS • Banco de trabalhadores • Diárias • Cargos operacionais • Crescimento real no campo
   </div>
 
   <header>
@@ -634,7 +635,7 @@
         <img src="logo branca limpa.png" alt="JS Jardinagem" />
         <div class="brand-block">
           <strong>JS JARDINAGEM</strong>
-          <span>Carreira • Crescimento operacional</span>
+          <span>Carreira • Trabalhadores e oportunidades</span>
         </div>
       </a>
 
@@ -642,13 +643,14 @@
         <a href="index.html#serviços">Serviços</a>
         <a href="ecovida.html">EcoVida</a>
         <a href="carreira.html">Carreira</a>
-        <a href="parceiros.html">Portal do Jardineiro</a>
-        <a href="index.html#contato">Contato</a>
+        <a href="#cargos">Cargos</a>
+        <a href="#curriculo">Currículo</a>
+        <a href="#contato">Contato</a>
       </nav>
 
       <div class="cta">
         <a class="btn btn-outline" href="index.html">Voltar ao site</a>
-        <a class="btn btn-primary" href="parceiros.html">Abrir Portal</a>
+        <a class="btn btn-primary" href="#cadastro">Quero trabalhar</a>
       </div>
     </div>
   </header>
@@ -656,68 +658,68 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
-        <span class="pill">📌 Jardineiro profissional + maquinário = oportunidade real de crescimento</span>
-        <h1>Entre na JS para receber serviços, crescer com estrutura e evoluir dentro do Portal do Jardineiro.</h1>
+        <span class="pill">📌 Entrada para diárias, banco de talentos e crescimento operacional</span>
+        <h1>Entre para a base de trabalhadores da JS e fique disponível para diárias, frentes de serviço e crescimento no campo.</h1>
         <p>
-          A página de carreira da JS é a porta de entrada para jardineiros, parceiros, futuros líderes
-          de campo e profissionais que querem constância, escala e padrão operacional.
-          Aqui o objetivo não é só pegar serviço: é construir posição, confiança e crescimento.
+          A página de carreira da JS é voltada para pessoas que querem trabalhar de verdade:
+          auxiliar em serviços, entrar em diárias, se disponibilizar para funções operacionais
+          e crescer conforme os cargos que aparecem nos orçamentos da empresa.
+          Aqui o foco é simples: oportunidade, organização e evolução.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="parceiros.html">Quero entrar no Portal</a>
-          <a class="btn btn-success" href="parceiro.html" target="_blank" rel="noopener">Quero me cadastrar</a>
-          <a class="btn btn-outline" href="#como-entrar">Como entrar</a>
-          <a class="btn btn-outline" href="#modelos">Modelos de parceria</a>
+          <a class="btn btn-primary" href="#cadastro">Quero me cadastrar</a>
+          <a class="btn btn-success" href="#cargos">Ver cargos da JS</a>
+          <a class="btn btn-soft" href="#curriculo">Montar currículo grátis</a>
         </div>
       </div>
 
       <div class="hero-box">
-        <h3>O que a JS oferece hoje</h3>
+        <h3>O que a JS procura hoje</h3>
         <p>
-          A JS já está estruturando uma operação real com orçamento, atualização de serviços,
-          execução, dashboards e Portal do Jardineiro.
+          A JS quer montar uma base forte de trabalhadores disponíveis, comprometidos
+          e prontos para entrar em serviços conforme a necessidade da operação.
         </p>
         <ul>
-          <li><strong>Serviços disponíveis</strong> para parceiros e reforço de agenda</li>
-          <li><strong>Padronização</strong> de orçamento, execução e comunicação</li>
-          <li><strong>Apoio operacional</strong> para crescer com equipe</li>
-          <li><strong>Trilha de evolução</strong> até liderança de campo</li>
-          <li><strong>Entrada no Portal</strong> para profissionais alinhados com a JS</li>
+          <li><strong>Auxiliares</strong> para apoio operacional e execução básica</li>
+          <li><strong>Jardineiros</strong> para serviços de campo e manutenção</li>
+          <li><strong>Líderes operacionais</strong> para organizar frente de serviço</li>
+          <li><strong>Profissionais por diária</strong> para reforço de equipe</li>
+          <li><strong>Pessoas com vontade de crescer</strong> dentro da estrutura da JS</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section id="dois-caminhos" style="padding-top:30px;">
+  <section id="entrada" style="padding-top:30px;">
     <div class="wrap">
-      <h2 class="section-title">Escolha seu caminho de entrada na JS</h2>
+      <h2 class="section-title">Qual tipo de entrada faz mais sentido para você?</h2>
       <p class="muted">
-        O mesmo ecossistema, dois perfis de entrada. A JS quer encaixar cada profissional no estágio certo,
-        sem prometer demais e sem misturar recrutamento com operação.
+        A JS quer encaixar cada trabalhador no momento certo. Nem todo mundo entra no mesmo nível,
+        mas quem mostra disponibilidade, postura e vontade pode crescer rápido.
       </p>
 
       <div class="audience-grid">
         <div class="card audience-card">
-          <span class="audience-kicker">🧩 QUERO CONSTÂNCIA</span>
-          <h3>Receber serviços e preencher a agenda</h3>
+          <span class="audience-kicker">🧰 DIÁRIAS</span>
+          <h3>Quero ficar disponível para trabalhos por diária</h3>
           <p>
-            Ideal para jardineiros com maquinário que querem mais constância, mais demanda
-            e uma forma organizada de entrar em novos serviços.
+            Ideal para quem quer entrar em serviços pontuais, reforçar agenda,
+            começar a trabalhar com a JS e mostrar serviço no campo.
           </p>
 
           <ul>
-            <li>Serviços avulsos e recorrentes</li>
-            <li>Entrada mais rápida para começar a operar</li>
-            <li>Possibilidade de apoio com ajudantes e reforço</li>
-            <li>Uso do Portal do Jardineiro para acompanhar oportunidades</li>
+            <li>Entrada mais rápida</li>
+            <li>Boa para reforço de equipe</li>
+            <li>Ótima porta de entrada para novos trabalhadores</li>
+            <li>Possibilidade de virar recorrente conforme desempenho</li>
           </ul>
 
           <div class="audience-cta">
-            <a class="btn btn-primary" href="parceiro.html">Quero receber serviços</a>
+            <a class="btn btn-primary" href="#cadastro">Quero entrar nas diárias</a>
             <a
               class="btn btn-outline"
-              href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Sou%20jardineiro%20profissional%2C%20tenho%20maquin%C3%A1rio%20e%20quero%20receber%20servi%C3%A7os%20com%20mais%20const%C3%A2ncia.%20Como%20entro%20na%20JS%3F"
+              href="https://wa.me/5534992142960?text=Olá%20JS!%20Quero%20me%20colocar%20disponível%20para%20trabalhos%20por%20diária.%20Como%20faço%20para%20entrar%20na%20base?"
               target="_blank"
               rel="noopener"
             >Falar no WhatsApp</a>
@@ -725,34 +727,81 @@
         </div>
 
         <div class="card audience-card audience-featured">
-          <span class="audience-kicker">🚀 QUERO ESCALAR</span>
-          <h3>Virar líder de campo e crescer com a JS</h3>
+          <span class="audience-kicker">🌱 CRESCIMENTO</span>
+          <h3>Quero crescer dentro da operação da JS</h3>
           <p>
-            Ideal para quem já tem capacidade técnica, quer assumir mais contratos e precisa de
-            estrutura, padrão, equipe e processo para subir de nível.
+            Ideal para quem quer sair do nível mais básico, assumir mais responsabilidade
+            e subir de cargo com o tempo dentro da empresa.
           </p>
 
-          <div class="ladder">
-            <small>Trilha oficial da JS</small>
-            Auxiliar → Jardineiro Operacional → Líder Operacional JS → Operador JS → Master JS
-          </div>
-
           <ul>
-            <li>Mais organização para assumir serviços maiores</li>
-            <li>Possibilidade de liderar equipe com padrão JS</li>
-            <li>Escala com operação, não só com esforço individual</li>
-            <li>Entrada mais estratégica dentro do ecossistema da empresa</li>
+            <li>Entrada com visão de continuidade</li>
+            <li>Chance de subir para jardineiro e liderança</li>
+            <li>Mais alinhado com constância e responsabilidade</li>
+            <li>Bom para quem quer construir posição, não só pegar um dia de serviço</li>
           </ul>
 
           <div class="audience-cta">
             <a
               class="btn btn-primary"
-              href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20na%20JS%20como%20futuro%20l%C3%ADder%20de%20campo%20e%20crescer%20com%20estrutura%2C%20equipe%20e%20opera%C3%A7%C3%A3o.%20Como%20funciona%3F"
+              href="https://wa.me/5534992142960?text=Olá%20JS!%20Quero%20entrar%20na%20empresa%20com%20foco%20em%20crescimento%20operacional.%20Como%20funciona?"
               target="_blank"
               rel="noopener"
-            >Quero virar líder</a>
-            <a class="btn btn-soft" href="parceiros.html">Ver o Portal</a>
+            >Quero crescer na JS</a>
+            <a class="btn btn-soft" href="#trilha">Ver trilha de crescimento</a>
           </div>
+        </div>
+
+        <div class="card audience-card">
+          <span class="audience-kicker">📄 APOIO</span>
+          <h3>Preciso organizar meu currículo primeiro</h3>
+          <p>
+            Mesmo quem ainda não tem currículo pronto pode começar por aqui.
+            A JS quer oferecer uma ferramenta simples e gratuita para ajudar o trabalhador a se apresentar melhor.
+          </p>
+
+          <ul>
+            <li>Ferramenta útil para o próprio trabalhador</li>
+            <li>Ajuda a organizar experiência e funções</li>
+            <li>Gera valor e traz movimento para a página</li>
+            <li>Bom para quem está se preparando para entrar</li>
+          </ul>
+
+          <div class="audience-cta">
+            <a class="btn btn-gold" href="#curriculo">Montar currículo grátis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cargos">
+    <div class="wrap">
+      <h2 class="section-title">Cargos mais comuns na operação da JS</h2>
+      <p class="muted">
+        Esses são os cargos que mais fazem sentido dentro da rotina dos orçamentos e serviços da empresa.
+        A ideia é formar uma base pronta para entrar quando a demanda aparecer.
+      </p>
+
+      <div class="roles-grid">
+        <div class="card role-card">
+          <strong>Auxiliar de Jardinagem</strong>
+          <span>Apoio geral no serviço, limpeza, organização, retirada de resíduos, auxílio de campo e execução básica.</span>
+        </div>
+
+        <div class="card role-card">
+          <strong>Jardineiro Operacional</strong>
+          <span>Execução de poda, acabamento, manutenção, roçagem, limpeza técnica e rotina operacional de jardim.</span>
+        </div>
+
+        <div class="card role-card">
+          <strong>Líder Operacional</strong>
+          <span>Organiza frente de trabalho, distribui tarefas, cuida da execução e responde pela entrega no campo.</span>
+        </div>
+
+        <div class="card role-card">
+          <strong>Reforço por Diária</strong>
+          <span>Profissional disponível para entrar em serviços específicos quando a equipe precisa de reforço rápido.</span>
         </div>
       </div>
     </div>
@@ -760,9 +809,9 @@
 
   <section id="como-entrar">
     <div class="wrap">
-      <h2 class="section-title">Como entrar na JS</h2>
+      <h2 class="section-title">Como funciona a entrada na base da JS</h2>
       <p class="muted">
-        A ideia é simples: cadastro, análise, encaixe correto e começo de operação com clareza.
+        O processo precisa ser simples: cadastro, leitura do perfil, encaixe no tipo de serviço e chamada conforme necessidade.
       </p>
 
       <div class="grid">
@@ -770,10 +819,9 @@
           <div class="step">
             <div class="num">1</div>
             <div>
-              <h3 style="margin:0 0 6px;color:var(--pri)">Cadastro e perfil</h3>
+              <h3 style="margin:0 0 6px;color:var(--pri)">Cadastro do trabalhador</h3>
               <p class="muted" style="margin:0">
-                Você envia seus dados, experiência, região, maquinário, disponibilidade e interesse
-                em parceria, reforço ou liderança.
+                A pessoa informa nome, telefone, bairro, experiência, função de interesse e disponibilidade para diária ou rotina.
               </p>
             </div>
           </div>
@@ -783,10 +831,9 @@
           <div class="step">
             <div class="num">2</div>
             <div>
-              <h3 style="margin:0 0 6px;color:var(--pri)">Análise da JS</h3>
+              <h3 style="margin:0 0 6px;color:var(--pri)">Leitura do perfil</h3>
               <p class="muted" style="margin:0">
-                A JS avalia seu perfil para entender se você entra melhor como parceiro operacional,
-                reforço de campo ou futuro líder.
+                A JS analisa onde o trabalhador encaixa melhor: apoio, diária, função operacional ou caminho de crescimento.
               </p>
             </div>
           </div>
@@ -796,10 +843,9 @@
           <div class="step">
             <div class="num">3</div>
             <div>
-              <h3 style="margin:0 0 6px;color:var(--pri)">Entrada no fluxo certo</h3>
+              <h3 style="margin:0 0 6px;color:var(--pri)">Entrada nas oportunidades</h3>
               <p class="muted" style="margin:0">
-                Você começa a receber oportunidades, participar de testes, reforços ou entrar no Portal
-                do Jardineiro conforme seu momento.
+                Conforme os serviços aparecem, a empresa chama quem estiver mais alinhado com o tipo de trabalho e disponibilidade.
               </p>
             </div>
           </div>
@@ -809,14 +855,14 @@
       <div class="card card-pad" style="margin-top:16px">
         <strong>Regra da casa:</strong>
         <p class="muted" style="margin:8px 0 0">
-          A JS quer profissionais que valorizem compromisso, comunicação, capricho e constância.
-          A empresa está construindo estrutura, processo e reputação. Quem entra precisa entrar para somar.
+          A JS valoriza compromisso, presença, comunicação, capricho e respeito ao trabalho.
+          Quem quer crescer precisa mostrar constância, não só interesse.
         </p>
       </div>
     </div>
   </section>
 
-  <section>
+  <section style="background:#f7f9f8">
     <div class="wrap">
       <h2 class="section-title">Quem pode entrar agora</h2>
       <p class="muted">
@@ -825,220 +871,165 @@
 
       <div class="grid">
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Jardineiro com maquinário</h3>
+          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Quem quer fazer diária</h3>
           <p class="muted" style="margin:0">
-            Tem roçadeira, soprador, cortador ou kit básico e quer transformar isso em agenda, renda e continuidade.
+            Pessoa disponível para serviços pontuais, reforço de equipe ou entradas rápidas conforme a demanda da semana.
           </p>
         </div>
 
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Parceiro que quer crescer</h3>
+          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Quem já trabalhou com jardinagem</h3>
           <p class="muted" style="margin:0">
-            Já trabalha bem, mas quer estrutura, mais demanda, padrão e possibilidade de escala com a JS.
+            Mesmo que não esteja com rotina fixa, pode entrar na base se tiver experiência e disposição para campo.
           </p>
         </div>
 
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Futuro líder de campo</h3>
+          <h3 style="margin:0 0 8px;color:var(--pri)">✅ Quem quer crescer de verdade</h3>
           <p class="muted" style="margin:0">
-            Tem postura, organização e quer evoluir de executor para referência operacional dentro da empresa.
+            Pessoas que querem sair do nível básico e construir posição dentro da empresa com o tempo.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="background:#f7f9f8">
+  <section id="trilha">
     <div class="wrap">
-      <h2 class="section-title">Caminho de crescimento na JS</h2>
+      <h2 class="section-title">Trilha de crescimento na JS</h2>
       <p class="muted">
-        A JS não quer só mão de obra. Quer construir pessoas fortes dentro da operação.
+        A JS não quer só mão de obra solta. Quer fortalecer pessoas dentro da operação.
       </p>
 
       <div class="path-grid">
         <div class="card path-card">
           <strong>Auxiliar</strong>
-          <span>Entrada, apoio, aprendizado e adaptação ao padrão de execução.</span>
+          <span>Entrada, apoio, adaptação à rotina e entendimento do padrão de execução.</span>
         </div>
 
         <div class="card path-card">
           <strong>Jardineiro Operacional</strong>
-          <span>Execução com autonomia e padrão técnico no campo.</span>
+          <span>Mais autonomia, mais técnica e mais confiança na execução dos serviços.</span>
         </div>
 
         <div class="card path-card">
           <strong>Líder Operacional JS</strong>
-          <span>Coordena equipe, organiza frente de serviço e responde pela entrega.</span>
+          <span>Coordena equipe, organiza a frente de trabalho e responde melhor pela entrega.</span>
         </div>
 
         <div class="card path-card">
           <strong>Operador JS</strong>
-          <span>Mais responsabilidade, mais leitura operacional e maior capacidade de execução.</span>
+          <span>Mais leitura operacional, mais responsabilidade e capacidade de assumir serviços maiores.</span>
         </div>
 
         <div class="card path-card">
           <strong>Master JS</strong>
-          <span>Referência, braço forte da operação e possível sócio/franqueado no futuro.</span>
+          <span>Referência forte da operação, braço de confiança e posição de alta responsabilidade.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="modelos" style="padding-top:10px;">
+  <section id="curriculo" style="background:#f7f9f8">
     <div class="wrap">
-      <h2 class="section-title">Modelos de parceria</h2>
+      <h2 class="section-title">Ferramenta grátis para ajudar no currículo</h2>
       <p class="muted">
-        A parceria certa depende do tipo de serviço, do nível de apoio da JS e da origem do cliente.
+        A ideia aqui é simples: muitos bons trabalhadores não têm currículo organizado.
+        A JS pode ajudar nisso com uma ferramenta útil, gratuita e prática.
       </p>
 
-      <div class="card card-pad" style="margin-top:16px">
-        <h3 style="margin:0 0 6px;color:var(--pri)">Modelos principais de divisão</h3>
-        <p class="muted" style="margin:0 0 12px">
-          O combinado é feito antes. A JS quer clareza, não enrolação.
-        </p>
+      <div class="tool-grid">
+        <div class="card tool-box">
+          <h3>Monte seu currículo de forma simples</h3>
+          <p>
+            Mesmo que a pessoa ainda não tenha um modelo pronto, ela pode usar esta área para
+            entender o que precisa colocar e sair mais preparada para buscar oportunidades.
+          </p>
 
-        <div class="split-grid">
-          <div class="card-pad" style="border:1px solid var(--line);border-radius:14px">
-            <span class="badge">SERVIÇO DA JS</span>
-            <h4 style="margin:10px 0 6px;color:var(--pri)">50% Parceiro / 50% JS</h4>
-            <p class="muted" style="margin:0 0 10px">Quando o serviço está aberto para parceria e a estrutura é equilibrada.</p>
-            <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-              <li>JS organiza cliente e operação</li>
-              <li>Parceiro entra na execução</li>
-              <li>Modelo simples e direto</li>
-            </ul>
+          <ul class="tool-list">
+            <li>Nome completo e contato atualizado</li>
+            <li>Funções que já exerceu</li>
+            <li>Experiência com diária, jardinagem, limpeza, apoio ou liderança</li>
+            <li>Bairros ou regiões onde pode trabalhar</li>
+            <li>Disponibilidade de dias e horários</li>
+          </ul>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+            <a class="btn btn-gold" href="#modelo-curriculo">Ver modelo rápido</a>
+            <a
+              class="btn btn-outline"
+              href="https://wa.me/5534992142960?text=Olá%20JS!%20Quero%20ajuda%20para%20organizar%20meu%20currículo."
+              target="_blank"
+              rel="noopener"
+            >Pedir ajuda</a>
           </div>
+        </div>
 
-          <div class="card-pad featured" style="border-radius:14px">
-            <span class="badge featured">RECOMENDADO</span>
-            <h4 style="margin:10px 0 6px;color:var(--pri)">40% Parceiro / 60% JS</h4>
-            <p class="muted" style="margin:0 0 10px">Quando a JS fornece mais estrutura, apoio, ajudantes ou logística.</p>
-            <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-              <li>Mais estrutura da JS</li>
-              <li>Mais organização e padrão</li>
-              <li>Ideal para crescimento com suporte</li>
-            </ul>
-          </div>
+        <div class="card tool-box gold-highlight" id="modelo-curriculo">
+          <h3>Modelo básico de currículo</h3>
+          <ul class="icon-list">
+            <li><span>1</span> Nome completo e telefone</li>
+            <li><span>2</span> Bairro e cidade</li>
+            <li><span>3</span> Objetivo: diária, auxiliar, jardineiro ou líder</li>
+            <li><span>4</span> Experiência anterior</li>
+            <li><span>5</span> Habilidades principais</li>
+            <li><span>6</span> Dias disponíveis para trabalhar</li>
+          </ul>
 
-          <div class="card-pad" style="border:1px solid var(--line);border-radius:14px">
-            <span class="badge">CLIENTE DO PARCEIRO</span>
-            <h4 style="margin:10px 0 6px;color:var(--pri)">70% Parceiro / 30% JS</h4>
-            <p class="muted" style="margin:0 0 10px">Quando o parceiro traz o cliente e a JS entra com apoio, sistema e padrão.</p>
-            <ul style="margin:0;padding-left:18px;line-height:1.7;color:#475467">
-              <li>Parceiro traz oportunidade</li>
-              <li>JS fortalece a execução</li>
-              <li>Modelo de crescimento conjunto</li>
-            </ul>
+          <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="#cadastro">Quero entrar na base da JS</a>
           </div>
         </div>
       </div>
-
-      <div class="pricing">
-        <div class="card plan">
-          <div class="plan-top">
-            <span class="badge">ENTRADA RÁPIDA</span>
-            <h3>Serviço avulso</h3>
-            <p>Bom para quem quer começar, testar a operação e entrar em reforços ou demandas pontuais.</p>
-          </div>
-          <ul>
-            <li>Pagamento por entrega/diária</li>
-            <li>Mais simples para começar</li>
-            <li>Boa porta de entrada para novos parceiros</li>
-          </ul>
-          <a
-            class="btn btn-primary"
-            href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Tenho%20interesse%20em%20entrar%20em%20servi%C3%A7os%20avulsos%20para%20come%C3%A7ar%20na%20opera%C3%A7%C3%A3o."
-            target="_blank"
-            rel="noopener"
-          >Quero começar</a>
-        </div>
-
-        <div class="card plan featured">
-          <div class="plan-top">
-            <span class="badge featured">PORTAL DO JARDINEIRO</span>
-            <h3>Serviços com apoio e padrão JS</h3>
-            <p>Modelo ideal para parceiros que querem entrar no sistema da empresa com mais estrutura e visão de crescimento.</p>
-          </div>
-          <ul>
-            <li>Leitura dos serviços disponíveis</li>
-            <li>Entrada no fluxo com portal e operação</li>
-            <li>Mais clareza de equipe, horas e parceria</li>
-          </ul>
-          <a class="btn btn-primary" href="parceiros.html">Abrir Portal do Jardineiro</a>
-        </div>
-
-        <div class="card plan">
-          <div class="plan-top">
-            <span class="badge">ROTINA / ESCALA</span>
-            <h3>Plano de crescimento</h3>
-            <p>Para profissionais que querem entrar de verdade na estrutura, ganhar constância e crescer até liderança.</p>
-          </div>
-          <ul>
-            <li>Maior continuidade de serviço</li>
-            <li>Mais alinhado com crescimento na empresa</li>
-            <li>Base para assumir mais contratos no futuro</li>
-          </ul>
-          <a
-            class="btn btn-primary"
-            href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20num%20plano%20de%20crescimento%20com%20a%20empresa%20e%20evoluir%20na%20opera%C3%A7%C3%A3o."
-            target="_blank"
-            rel="noopener"
-          >Quero crescer</a>
-        </div>
-      </div>
-
-      <p class="muted" style="margin-top:12px;font-size:14px">
-        A divisão exata depende do escopo, distância, risco, equipe, apoio da JS e origem do cliente.
-      </p>
     </div>
   </section>
 
-  <section id="indicacao" style="background:#f7f9f8">
+  <section id="cadastro">
     <div class="wrap">
-      <h2 class="section-title">Indicação também conta como entrada</h2>
-      <p class="muted" style="max-width:78ch">
-        Você também pode entrar fortalecendo a operação da JS através de indicação. Isso vale tanto para clientes quanto para profissionais.
+      <h2 class="section-title">Quero me cadastrar para trabalhar</h2>
+      <p class="muted" style="max-width:80ch">
+        Nesta fase, a carreira da JS funciona como uma base de trabalhadores disponíveis.
+        O ideal é o candidato já deixar claro se quer diária, função operacional ou crescimento dentro da empresa.
       </p>
 
-      <div class="grid">
+      <div class="grid-2">
         <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">🏢 Indicar cliente</h3>
+          <h3 style="margin:0 0 8px;color:var(--pri)">📲 Entrada rápida pelo WhatsApp</h3>
           <p class="muted" style="margin:0">
-            Condomínios, empresas e residências podem virar novas frentes de trabalho para a JS.
+            Esse é o caminho mais rápido até termos o formulário final ligado à página.
           </p>
-          <ul class="icon-list">
-            <li><span>✓</span> A JS cuida da abordagem, proposta e fechamento</li>
-            <li><span>✓</span> Você ajuda a abrir a porta certa</li>
-            <li><span>✓</span> Indicação válida gera reconhecimento</li>
-          </ul>
-        </div>
 
-        <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">🧑‍🌾 Indicar profissional</h3>
-          <p class="muted" style="margin:0">
-            Jardineiros bons, ajudantes confiáveis e pessoas alinhadas com trabalho sério fortalecem a estrutura da JS.
-          </p>
           <ul class="icon-list">
-            <li><span>✓</span> Reforça a base da operação</li>
-            <li><span>✓</span> Ajuda a JS a escalar com confiança</li>
-            <li><span>✓</span> Pode gerar retorno quando firmar</li>
+            <li><span>✓</span> Nome completo</li>
+            <li><span>✓</span> Bairro</li>
+            <li><span>✓</span> Telefone</li>
+            <li><span>✓</span> Função de interesse</li>
+            <li><span>✓</span> Disponibilidade para diária</li>
           </ul>
-        </div>
 
-        <div class="card card-pad">
-          <h3 style="margin:0 0 8px;color:var(--pri)">📌 Como indicar</h3>
-          <p class="muted" style="margin:0">
-            Envie no WhatsApp o nome, bairro, contato e contexto da indicação. A JS responde e acompanha o andamento.
-          </p>
           <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
             <a
               class="btn btn-primary"
-              href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20fazer%20uma%20indica%C3%A7%C3%A3o.%0A%0ATipo%3A%20(Cliente%20ou%20Profissional)%0ANome%3A%20%0ABairro%2FRegi%C3%A3o%3A%20%0AContato%3A%20%0AHor%C3%A1rio%20bom%20para%20falar%3A%20"
+              href="https://wa.me/5534992142960?text=Olá%20JS!%20Quero%20me%20cadastrar%20para%20trabalhar.%0A%0ANome:%20%0ABairro:%20%0ATelefone:%20%0AFunção%20de%20interesse:%20%0ADisponibilidade:%20"
               target="_blank"
               rel="noopener"
-            >Fazer indicação</a>
-            <a class="btn btn-outline" href="parceiros.html">Ver Portal</a>
+            >Quero me cadastrar agora</a>
           </div>
+        </div>
+
+        <div class="card card-pad">
+          <h3 style="margin:0 0 8px;color:var(--pri)">📌 O que a JS quer saber no cadastro</h3>
+          <p class="muted" style="margin:0">
+            Quanto mais claro o trabalhador for, mais fácil encaixar ele no serviço certo.
+          </p>
+
+          <ul class="icon-list">
+            <li><span>✓</span> Se já trabalhou com jardinagem ou campo</li>
+            <li><span>✓</span> Se aceita diária ou busca rotina</li>
+            <li><span>✓</span> Se tem experiência com liderança</li>
+            <li><span>✓</span> Se consegue se deslocar</li>
+            <li><span>✓</span> Se quer só renda rápida ou crescimento real</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1050,30 +1041,30 @@
 
       <div class="faq">
         <details>
-          <summary>Preciso ter maquinário para entrar?</summary>
+          <summary>Preciso ter experiência para entrar?</summary>
           <p>
-            Para entrar como parceiro de execução, sim, o ideal é ter maquinário básico. Para funções de apoio e crescimento interno, a JS pode avaliar outros formatos de entrada.
+            Não necessariamente. Para algumas frentes, experiência ajuda muito. Para outras, a postura e a disposição contam bastante.
           </p>
         </details>
 
         <details>
-          <summary>Posso entrar mesmo sem agenda cheia?</summary>
+          <summary>Posso entrar só para fazer diária?</summary>
           <p>
-            Sim. A página de carreira também é para quem quer constância e está com espaço na agenda.
+            Sim. A base da JS também quer pessoas disponíveis para diárias e reforços de equipe.
           </p>
         </details>
 
         <details>
-          <summary>O Portal do Jardineiro é para todos?</summary>
+          <summary>Posso crescer dentro da empresa?</summary>
           <p>
-            Não. O portal é uma ferramenta operacional. A entrada nele faz mais sentido para quem já está alinhado com a JS ou está em processo de integração.
+            Sim. Esse é um dos objetivos. Mas crescimento vem com constância, responsabilidade e entrega no campo.
           </p>
         </details>
 
         <details>
-          <summary>Posso crescer até virar líder?</summary>
+          <summary>Preciso de currículo pronto para falar com a JS?</summary>
           <p>
-            Sim. Esse é um dos objetivos da JS. Mas liderança vem com consistência, postura, comunicação e capacidade de sustentar padrão.
+            Não. A página já foi pensada justamente para ajudar quem ainda está organizando isso.
           </p>
         </details>
       </div>
@@ -1083,19 +1074,19 @@
   <section>
     <div class="wrap band">
       <div style="display:grid;gap:8px;max-width:760px">
-        <h3>Quer entrar na JS do jeito certo?</h3>
+        <h3>Quer entrar na base da JS do jeito certo?</h3>
         <p>
-          A carreira da JS é a porta de entrada. O Portal do Jardineiro é a operação.
-          Se você quer receber serviços, crescer com estrutura ou caminhar para liderança, esse é o momento certo para se apresentar.
+          A carreira da JS foi feita para trabalhadores que querem oportunidade real:
+          diária, função operacional, entrada organizada e possibilidade de crescimento com o tempo.
         </p>
       </div>
 
       <div class="actions">
-        <a class="btn btn-primary" href="parceiro.html" target="_blank" rel="noopener">Quero me cadastrar</a>
-        <a class="btn btn-outline" href="parceiros.html">Abrir Portal do Jardineiro</a>
+        <a class="btn btn-primary" href="#cadastro">Quero me cadastrar</a>
+        <a class="btn btn-soft" href="#curriculo">Montar currículo grátis</a>
         <a
           class="btn btn-outline"
-          href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20na%20empresa%20e%20entender%20qual%20%C3%A9%20o%20melhor%20caminho%20para%20mim%20dentro%20da%20opera%C3%A7%C3%A3o."
+          href="https://wa.me/5534992142960?text=Olá%20JS!%20Quero%20entrar%20na%20base%20de%20trabalhadores%20da%20empresa%20e%20entender%20qual%20é%20o%20melhor%20caminho%20para%20mim."
           target="_blank"
           rel="noopener"
         >Falar com a JS</a>
@@ -1103,12 +1094,12 @@
     </div>
   </section>
 
-  <footer>
+  <footer id="contato">
     <div class="wrap foot">
       <div>
         <strong>JS Jardinagem</strong>
         <p class="muted">
-          Entrada para parceiros, profissionais operacionais e futuros líderes de campo da JS Jardinagem.
+          Página de carreira para trabalhadores, diárias e crescimento operacional dentro da JS Jardinagem.
         </p>
       </div>
 
@@ -1116,7 +1107,7 @@
         <p><a href="index.html#serviços">Serviços</a></p>
         <p><a href="ecovida.html">EcoVida</a></p>
         <p><a href="carreira.html">Carreira</a></p>
-        <p><a href="parceiros.html">Portal do Jardineiro</a></p>
+        <p><a href="#curriculo">Currículo grátis</a></p>
       </div>
 
       <div>
