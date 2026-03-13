@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#11804a" />
+  <title>EcoVida — Participar, apoiar, voluntariado e oportunidades</title>
+  <meta name="description" content="Participe do EcoVida: apoio, voluntariado, banco de talentos, cadastro para trabalhar e oportunidades futuras ligadas à comunidade e ao meio ambiente." />
+  <style>
+    :root{--pri:#114084;--pri2:#11804a;--ink:#0f1411;--muted:#667085;--bg:#f6f7f6;--line:#e7ecef;--shadow:0 14px 34px rgba(0,0,0,.06)}
+    *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;scroll-behavior:smooth}
+    a{text-decoration:none;color:inherit}.wrap{width:min(1140px,92vw);margin:auto}.muted{color:var(--muted)}section{padding:68px 0}.section-title{font-size:30px;margin:0 0 12px;line-height:1.15}.kicker{font-weight:900;color:var(--pri);letter-spacing:.35px;text-transform:uppercase;font-size:12px;margin-bottom:8px}
+    .topbar{background:var(--pri2);color:#fff;text-align:center;padding:7px 10px;font-size:14px}
+    header{position:sticky;top:0;background:#ffffffd9;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid #eef0ee;z-index:50}.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:14px}.brand{display:flex;gap:14px;align-items:center;min-width:240px}.brand img{height:72px;width:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}.brand strong{font-size:22px;font-weight:800;color:#114084;letter-spacing:.4px;text-transform:uppercase;line-height:1.05}.nav .links{display:flex;flex-wrap:wrap;gap:18px;font-weight:800;justify-content:center}.nav .links a.active{color:var(--pri2);text-decoration:underline;text-underline-offset:6px}.nav .cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;min-width:240px}
+    .btn{appearance:none;border:1px solid #dfe3df;background:#fff;border-radius:14px;padding:12px 16px;font-weight:800;cursor:pointer;transition:.25s ease;display:inline-flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap}.btn:hover{background:#f3f5f7}.btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}.btn-primary:hover{background:#0d3270}.btn-green{background:var(--pri2);border-color:var(--pri2);color:#fff}.btn-green:hover{background:#0d6a3d}.btn-outline{border-color:var(--pri);color:var(--pri);background:transparent}
+    .hero{position:relative;min-height:76vh;display:grid;align-items:center;color:#fff;background:linear-gradient(135deg, rgba(17,64,132,.94), rgba(17,128,74,.88)), url('fundoreal.png') center/cover no-repeat;overflow:hidden}.hero-inner{position:relative;z-index:2;max-width:930px;padding:36px 0}.chip-head{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#ffffffdc;border:1px solid #e6edf5;color:#114084;font-weight:900;font-size:13px;margin-bottom:14px}.hero h1{margin:0 0 12px;font-size:clamp(34px,4.8vw,58px);line-height:1.04}.hero p{margin:0 0 22px;font-size:clamp(16px,1.65vw,20px);line-height:1.68;max-width:76ch}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:start}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}.p18{padding:18px}.p22{padding:22px}.p26{padding:26px}.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#fff;border:1px solid var(--line);margin-bottom:12px;font-size:22px}.feature h3{margin:0 0 6px;font-size:18px}.feature p{margin:0;color:#475467;line-height:1.66}.list{margin:0;padding-left:18px;color:#475467;line-height:1.82}.list li{margin:8px 0}.flow{display:grid;gap:12px}.step{display:flex;gap:12px;align-items:flex-start;padding:15px;border-radius:16px;border:1px solid var(--line);background:#fff;box-shadow:0 10px 22px rgba(0,0,0,.04)}.step .num{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:#eefaf2;color:var(--pri2);font-weight:1000;border:1px solid #cfe9da;flex:0 0 auto}.step h4{margin:0 0 4px;font-size:16px}.step p{margin:0;color:#475467;line-height:1.58}.band{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-radius:22px;padding:30px;box-shadow:0 16px 34px rgba(17,64,132,.16)}.band .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}footer{background:#0a1a12;color:#cfe8da;padding:36px 0;margin-top:40px}.foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}.foot a{color:#cfe8da}
+    @media (max-width:920px){.brand img{height:58px}.brand strong{font-size:20px}.nav{flex-direction:column;align-items:stretch}.brand,.nav .cta,.nav .links{justify-content:center}.grid-2,.grid-3,.foot{grid-template-columns:1fr}.hero{min-height:70vh}}
+    @media (max-width:640px){section{padding:54px 0}.section-title{font-size:26px}.hero-actions,.band .actions{flex-direction:column;align-items:stretch}.hero-actions .btn,.band .actions .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="topbar">EcoVida • Apoio, voluntariado, oportunidades e participação comunitária</div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html"><img src="logo.jpg" alt="JS Jardinagem" /><strong>JS JARDINAGEM</strong></a>
+      <nav class="links">
+        <a href="ecovida.html">EcoVida</a>
+        <a class="active" href="ecovida-participar.html">Participar</a>
+        <a href="ecovida-projetos.html">Projetos</a>
+        <a href="Doacoes.html">Como ajudar</a>
+        <a href="ecovida-transparencia.html">Transparência</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-green" href="https://script.google.com/macros/s/COLE_AQUI_O_LINK_DO_FORM_PARTICIPACAO/exec" target="_blank" rel="noopener">Abrir cadastro</a>
+      </div>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="chip-head">🌱 apoio • 🤝 voluntariado • 📋 cadastro • 🚀 oportunidades futuras</span>
+      <h1>Participe do EcoVida</h1>
+      <p>Esta é a página para quem quer entrar mais a fundo no projeto. Aqui ficam os caminhos para <b>apoiar</b>, <b>ser voluntário</b>, se <b>cadastrar para oportunidades futuras</b> e caminhar junto com o EcoVida em ações ligadas ao meio ambiente, comunidade e organização local.</p>
+      <div class="hero-actions">
+        <a class="btn btn-green" href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec" target="_blank" rel="noopener">Quero me cadastrar</a>
+        <a class="btn btn-primary" href="#formas">Ver formas de participar</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20entender%20como%20posso%20participar%20do%20projeto." target="_blank" rel="noopener">Falar com a equipe</a>
+      </div>
+    </div>
+  </section>
+  <section id="formas">
+    <div class="wrap">
+      <div class="kicker">Como você pode entrar</div>
+      <h2 class="section-title">Quatro portas principais para participar</h2>
+      <div class="grid-3" style="margin-top:18px">
+        <div class="card p22 feature"><div class="icon">🤝</div><h3>Apoiar o projeto</h3><p>Empresas, moradores e parceiros podem apoiar com divulgação, estrutura, materiais, conexões ou recursos.</p></div>
+        <div class="card p22 feature"><div class="icon">🙌</div><h3>Voluntariado</h3><p>Pessoas interessadas em ações, mutirões, organização e mobilização comunitária podem se cadastrar.</p></div>
+        <div class="card p22 feature"><div class="icon">📋</div><h3>Cadastro para oportunidades</h3><p>Quem quer trabalhar no futuro, fazer parte de atividades ou entrar no banco de talentos do EcoVida também pode entrar por aqui.</p></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap grid-2">
+      <div>
+        <div class="kicker">Benefícios</div>
+        <h2 class="section-title">Por que vale a pena participar</h2>
+        <ul class="list">
+          <li><b>Entrar em uma causa real</b> com impacto ambiental e comunitário.</li>
+          <li><b>Desenvolver experiência prática</b> em organização, participação e ações locais.</li>
+          <li><b>Construir relacionamento</b> com pessoas, parceiros e oportunidades futuras.</li>
+          <li><b>Fazer parte de algo maior</b> do que apenas uma ação pontual.</li>
+          <li><b>Fortalecer rotina e direção</b> para quem deseja crescer junto com o projeto.</li>
+        </ul>
+      </div>
+      <div class="card p26">
+        <div class="kicker">Quem pode se cadastrar</div>
+        <h3 style="margin:6px 0 10px">Perfil aberto e acolhedor</h3>
+        <p class="muted" style="line-height:1.75;margin:0 0 14px">O EcoVida quer manter uma porta aberta para diversos perfis: moradores, parceiros, apoiadores, jovens, pessoas em busca de oportunidade, voluntários e cidadãos que simplesmente desejam contribuir.</p>
+        <a class="btn btn-green" href="https://script.google.com/macros/s/COLE_AQUI_O_LINK_DO_FORM_PARTICIPACAO/exec" target="_blank" rel="noopener">Abrir cadastro de interesse</a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="kicker">Como funciona</div>
+      <h2 class="section-title">Fluxo simples para organizar os interessados</h2>
+      <div class="flow" style="margin-top:16px">
+        <div class="step"><div class="num">1</div><div><h4>A pessoa se cadastra</h4><p>O interessado preenche um formulário simples com dados básicos, forma de apoio e disponibilidade.</p></div></div>
+        <div class="step"><div class="num">2</div><div><h4>O EcoVida organiza a base</h4><p>As informações entram no banco de interessados para acompanhamento e futuras ativações.</p></div></div>
+        <div class="step"><div class="num">3</div><div><h4>A equipe ativa por prioridade</h4><p>Conforme as necessidades do projeto, a equipe pode entrar em contato com voluntários, apoiadores ou candidatos.</p></div></div>
+        <div class="step"><div class="num">4</div><div><h4>A rede cresce com mais estrutura</h4><p>O cadastro deixa de ser apenas intenção e vira base real para expansão do projeto.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap band">
+      <h3 style="margin:0 0 6px">Quer entrar para essa próxima etapa?</h3>
+      <p style="margin:0;opacity:.96;max-width:84ch;line-height:1.72">Se você quer apoiar, voluntariar, receber futuras oportunidades ou simplesmente se aproximar do EcoVida, faça seu cadastro e entre na base do projeto.</p>
+      <div class="actions">
+        <a class="btn btn-green" href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec" target="_blank" rel="noopener">Fazer cadastro</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20participar%20do%20projeto." target="_blank" rel="noopener">Falar com a equipe</a>
+        <a class="btn btn-primary" href="ecovida.html">Voltar para EcoVida</a>
+      </div>
+    </div>
+  </section>
+  <section id="contato"><div class="wrap"><div class="kicker">Contato</div><h2 class="section-title">Falar com o EcoVida</h2><p><strong>WhatsApp:</strong> <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">(34) 99214-2960</a></p><p><strong>Instagram:</strong> <a href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">@ecovidajs</a></p></div></section>
+  <footer><div class="wrap foot"><div><strong>Instituto EcoVida (Projeto da JS)</strong><p class="muted">Página dedicada a apoio, voluntariado, banco de talentos e oportunidades futuras do EcoVida.</p></div><div><p><a href="ecovida.html">EcoVida</a></p><p><a href="#formas">Como participar</a></p><p><a href="https://script.google.com/macros/s/COLE_AQUI_O_LINK_DO_FORM_PARTICIPACAO/exec" target="_blank" rel="noopener">Cadastro</a></p></div><div><p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p><p><a href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">Instagram</a></p></div></div></footer>
+</body>
+</html>
