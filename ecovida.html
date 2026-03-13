@@ -69,7 +69,7 @@
       display:flex;
       gap:14px;
       align-items:center;
-      min-width: 240px;
+      min-width:240px;
     }
 
     .brand img{
@@ -104,7 +104,7 @@
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
-      min-width: 240px;
+      min-width:240px;
     }
 
     .btn{
@@ -120,7 +120,7 @@
       align-items:center;
       justify-content:center;
       gap:10px;
-      color: var(--ink);
+      color:var(--ink);
       white-space:nowrap;
     }
     .btn:hover{background:#f3f5f7}
@@ -149,21 +149,21 @@
       box-shadow:0 10px 26px rgba(0,0,0,.05);
     }
 
-    /* ===== HERO ===== */
+    /* HERO */
     .ecovida-hero-full{
       position:relative;
       min-height:78vh;
       display:grid;
       align-items:center;
       color:#fff;
-      background: url("fundoreal.png") center/cover no-repeat;
+      background:url("fundoreal.png") center/cover no-repeat;
       overflow:hidden;
     }
     .ecovida-hero-full::before{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(
+      background:linear-gradient(
         50deg,
         rgba(17, 64, 132, 0.55) 0%,
         rgba(0, 0, 0, 0.70) 100%
@@ -210,17 +210,16 @@
       align-items:center;
     }
 
-    /* ===== SEÇÕES ===== */
     .grid-2{
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns:1.05fr .95fr;
       gap:18px;
       align-items:start;
     }
 
     .grid-3{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:repeat(3, 1fr);
       gap:16px;
     }
 
@@ -276,10 +275,9 @@
     }
     .pill span{color:#475467;font-weight:700}
 
-    /* ===== “COMO TUDO SE JUNTA” ===== */
     .flow{
       display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns:1fr;
       gap:12px;
       margin-top:12px;
     }
@@ -306,7 +304,46 @@
     .step h4{margin:0 0 4px;font-size:16px}
     .step p{margin:0;color:#475467;line-height:1.55}
 
-    /* ===== BAND CTA ===== */
+    .portal-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .portal-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 10px 24px rgba(0,0,0,.05);
+    }
+
+    .portal-card h3{
+      margin:8px 0 8px;
+      font-size:20px;
+    }
+
+    .portal-card p{
+      margin:0 0 16px;
+      color:#475467;
+      line-height:1.65;
+    }
+
+    .portal-tag{
+      display:inline-block;
+      font-size:12px;
+      font-weight:900;
+      color:var(--pri);
+      text-transform:uppercase;
+      letter-spacing:.4px;
+      margin-bottom:6px;
+    }
+
+    .portal-card .btn{
+      width:100%;
+    }
+
     .band{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
@@ -333,7 +370,6 @@
     }
     .foot a{color:#cfe8da}
 
-    /* Responsivo */
     @media (max-width:900px){
       .brand img{height:58px}
       .brand strong{font-size:20px}
@@ -343,12 +379,12 @@
       .nav .links{justify-content:center}
       .grid-2{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
+      .portal-grid{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr}
       .ecovida-hero-full{min-height:72vh}
     }
   </style>
 
-  <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -380,6 +416,7 @@
         <a href="ecovida-projetos.html">Projetos</a>
         <a href="Doações.html">Como ajudar</a>
         <a href="ecovida-transparencia.html">Transparência</a>
+        <a href="#portal-ecovida">Portal</a>
         <a href="index.html#contato">Contato</a>
       </nav>
 
@@ -390,7 +427,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="ecovida-hero-full" aria-label="Hero Instituto EcoVida">
     <div class="wrap ecovida-hero-inner">
       <span class="chip">Reabilitação • Trabalho digno • Reciclagem • Impacto real</span>
@@ -403,11 +439,10 @@
 
       <div class="ecovida-hero-actions">
         <a class="btn btn-primary"
-           href="https://jardinagemudi.com.br/Doa%C3%A7%C3%B5es.html#parceiro-institucional"
-           target="_blank" rel="noopener">Quero participar</a>
+           href="#portal-ecovida">Acessar portal</a>
 
         <a class="btn btn-primary"
-           href="#Planos-mensais-EcoVida">Entender como funciona</a>
+           href="#como-tudo-se-junta">Entender como funciona</a>
 
         <a class="btn btn-primary"
            href="Doações.html">Quero contribuir</a>
@@ -422,7 +457,63 @@
     </div>
   </section>
 
-  <!-- 1) IDENTIDADE / PROPÓSITO -->
+  <!-- NOVA SEÇÃO: PORTAL -->
+  <section id="portal-ecovida">
+    <div class="wrap">
+      <div class="kicker">Portal EcoVida</div>
+      <h2 class="section-title">Acessos rápidos para operação e acompanhamento</h2>
+      <p class="muted" style="max-width:78ch;line-height:1.75;margin:0">
+        Esta área concentra os acessos principais do projeto. Aqui ficam os formulários de cadastro,
+        abertura de novos pontos de coleta e, na próxima etapa, o portal operacional para acompanhamento
+        das ações do EcoVida.
+      </p>
+
+      <div class="portal-grid">
+        <div class="portal-card">
+          <span class="portal-tag">Cadastro social</span>
+          <h3>Cadastro de pessoas</h3>
+          <p>
+            Formulário para registrar participantes, histórico básico, situação atual e informações
+            importantes para acompanhamento social.
+          </p>
+          <a class="btn btn-primary"
+             href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec"
+             target="_blank" rel="noopener">
+            Abrir cadastro social
+          </a>
+        </div>
+
+        <div class="portal-card">
+          <span class="portal-tag">Pontos de coleta</span>
+          <h3>Cadastro de pontos parceiros</h3>
+          <p>
+            Formulário para cadastrar escolas, comércios, condomínios, igrejas e outros locais que
+            desejam participar da rede de coleta e impacto do EcoVida.
+          </p>
+          <a class="btn btn-outline"
+             href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec"
+             target="_blank" rel="noopener">
+            Abrir cadastro de pontos
+          </a>
+        </div>
+
+        <div class="portal-card">
+          <span class="portal-tag">Operação</span>
+          <h3>Portal operacional</h3>
+          <p>
+            Área pensada para acompanhamento, organização, rotinas de coleta, evolução dos cadastros
+            e visão prática da operação do projeto.
+          </p>
+          <a class="btn btn-outline"
+             href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20acessar%20o%20portal%20operacional."
+             target="_blank" rel="noopener">
+            Falar sobre o portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="proposito">
     <div class="wrap grid-2">
       <div>
@@ -461,7 +552,6 @@
 
   <hr class="hr" />
 
-  <!-- 2) PILARES (o que entregamos) -->
   <section id="pilares">
     <div class="wrap">
       <div class="kicker">Os pilares</div>
@@ -498,7 +588,6 @@
     </div>
   </section>
 
-  <!-- 3) COMO TUDO SE JUNTA (fluxo simples e claro) -->
   <section id="como-tudo-se-junta">
     <div class="wrap grid-2">
       <div>
@@ -571,10 +660,11 @@
                target="_blank" rel="noopener">Quero participar</a>
 
             <a class="btn btn-outline"
-               href="https://forms.gle/vL3MnSqL4S5zyTJj8"
-               target="_blank" rel="noopener">Virar ponto parceiro</a>
+               href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec"
+               target="_blank" rel="noopener">Cadastrar ponto parceiro</a>
 
-            <a class="btn btn-outline" href="Doações.html">Ver formas de ajudar</a>
+            <a class="btn btn-outline"
+               href="#portal-ecovida">Acessar portal EcoVida</a>
           </div>
         </div>
 
@@ -585,7 +675,6 @@
     </div>
   </section>
 
-  <!-- 4) O QUE PRECISAMOS (doações direcionadas) -->
   <section id="precisamos">
     <div class="wrap">
       <div class="kicker">Como fortalecer</div>
@@ -613,7 +702,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section>
     <div class="wrap band">
       <h3 style="margin:0 0 6px">Quer apoiar o EcoVida?</h3>
@@ -622,7 +710,7 @@
       </p>
       <div class="actions">
         <a class="btn btn-primary"
-           href="https://jardinagemudi.com.br/Doa%C3%A7%C3%B5es.html#parceiro-institucional"
+           href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec"
            target="_blank" rel="noopener">Quero virar ponto parceiro</a>
 
         <a class="btn btn-primary" href="Doações.html">Quero contribuir</a>
@@ -634,7 +722,6 @@
     </div>
   </section>
 
-  <!-- CONTATO -->
   <section id="contato">
     <div class="wrap">
       <div class="kicker">Contato</div>
@@ -653,8 +740,8 @@
       </div>
       <div>
         <p><a href="#como-tudo-se-junta">Como funciona</a></p>
+        <p><a href="#portal-ecovida">Portal EcoVida</a></p>
         <p><a href="ecovida-projetos.html">Projetos</a></p>
-        <p><a href="ecovida-ajudar.html">Como ajudar</a></p>
         <p><a href="ecovida-transparencia.html">Transparência</a></p>
       </div>
       <div>
