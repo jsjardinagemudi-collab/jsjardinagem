@@ -30,28 +30,33 @@
       --bg:#f6f7f6;
       --line:#e7ecef;
       --soft:#eef4ff;
-      --soft2:#eefaf2;
+      --soft-green:#eefaf2;
+      --paper:#ffffff;
+      --shadow:0 14px 34px rgba(0,0,0,.06);
     }
 
     *{box-sizing:border-box}
+
     html,body{
       margin:0;
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      scroll-behavior:smooth;
     }
 
     a{text-decoration:none;color:inherit}
-    .wrap{width:min(1120px,92vw);margin:auto}
+    .wrap{width:min(1140px,92vw);margin:auto}
     .muted{color:var(--muted)}
-    section{padding:64px 0}
-    .section-title{font-size:30px;margin:0 0 12px}
+    section{padding:68px 0}
+    .section-title{font-size:30px;margin:0 0 12px;line-height:1.15}
     .kicker{
       font-weight:900;
       color:var(--pri);
-      letter-spacing:.3px;
+      letter-spacing:.35px;
       text-transform:uppercase;
       font-size:12px;
+      margin-bottom:8px;
     }
     .hr{height:1px;background:#e9ece9;border:0;margin:0}
 
@@ -90,15 +95,15 @@
     .brand img{
       height:72px;
       width:auto;
-      border-radius:8px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
     }
 
     .brand strong{
       font-size:22px;
-      font-weight:700;
+      font-weight:800;
       color:#114084;
-      letter-spacing:0.4px;
+      letter-spacing:.4px;
       text-transform:uppercase;
       line-height:1.05;
     }
@@ -131,8 +136,8 @@
       appearance:none;
       border:1px solid #dfe3df;
       background:#fff;
-      border-radius:12px;
-      padding:12px 15px;
+      border-radius:14px;
+      padding:12px 16px;
       font-weight:800;
       cursor:pointer;
       transition:.25s ease;
@@ -179,17 +184,17 @@
     .card{
       background:#fff;
       border:1px solid var(--line);
-      border-radius:18px;
-      box-shadow:0 10px 26px rgba(0,0,0,.05);
+      border-radius:20px;
+      box-shadow:var(--shadow);
     }
 
     .p18{padding:18px}
     .p22{padding:22px}
     .p26{padding:26px}
 
-    .ecovida-hero-full{
+    .hero{
       position:relative;
-      min-height:78vh;
+      min-height:80vh;
       display:grid;
       align-items:center;
       color:#fff;
@@ -197,26 +202,26 @@
       overflow:hidden;
     }
 
-    .ecovida-hero-full::before{
+    .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(
-        50deg,
-        rgba(17, 64, 132, 0.56) 0%,
-        rgba(0, 0, 0, 0.68) 100%
-      );
+      background:
+        linear-gradient(55deg,
+        rgba(17,64,132,.68) 0%,
+        rgba(12,24,18,.56) 52%,
+        rgba(17,128,74,.30) 100%);
       z-index:1;
     }
 
-    .ecovida-hero-inner{
+    .hero-inner{
       position:relative;
       z-index:2;
-      max-width:920px;
+      max-width:930px;
       padding:36px 0;
     }
 
-    .chip{
+    .chip-head{
       display:inline-flex;
       gap:8px;
       align-items:center;
@@ -227,31 +232,31 @@
       color:#114084;
       font-weight:900;
       font-size:13px;
-      margin-bottom:12px;
+      margin-bottom:14px;
     }
 
-    .ecovida-hero-full h1{
-      margin:0 0 10px;
-      font-size:clamp(34px,4.6vw,58px);
-      line-height:1.05;
-      text-shadow:0 2px 8px rgba(0,0,0,.45);
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(34px,4.8vw,60px);
+      line-height:1.04;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
     }
 
-    .ecovida-hero-full p{
+    .hero p{
       margin:0 0 22px;
-      font-size:clamp(16px,1.7vw,20px);
-      line-height:1.65;
+      font-size:clamp(16px,1.65vw,20px);
+      line-height:1.68;
       opacity:.98;
-      text-shadow:0 2px 8px rgba(0,0,0,.45);
-      max-width:74ch;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+      max-width:76ch;
     }
 
-    .ecovida-hero-actions{
+    .hero-actions{
       display:flex;
       gap:12px;
       flex-wrap:wrap;
       align-items:center;
-      margin-bottom:14px;
+      margin-bottom:16px;
     }
 
     .pill-row{
@@ -283,7 +288,7 @@
     .grid-2{
       display:grid;
       grid-template-columns:1.05fr .95fr;
-      gap:18px;
+      gap:20px;
       align-items:start;
     }
 
@@ -295,20 +300,20 @@
 
     .grid-4{
       display:grid;
-      grid-template-columns:repeat(4, 1fr);
+      grid-template-columns:repeat(4,1fr);
       gap:16px;
     }
 
     .icon{
-      width:46px;
-      height:46px;
+      width:48px;
+      height:48px;
       display:grid;
       place-items:center;
-      border-radius:12px;
+      border-radius:14px;
       background:#fff;
       border:1px solid var(--line);
-      margin-bottom:10px;
-      font-size:20px;
+      margin-bottom:12px;
+      font-size:22px;
     }
 
     .feature h3{
@@ -319,10 +324,8 @@
     .feature p{
       margin:0;
       color:#475467;
-      line-height:1.65;
+      line-height:1.66;
     }
-
-    .feature b{color:#0f1411}
 
     .highlight{
       border-color:#d7e7ff;
@@ -338,7 +341,7 @@
       margin:0;
       padding-left:18px;
       color:#475467;
-      line-height:1.8;
+      line-height:1.82;
     }
 
     .list li{margin:8px 0}
@@ -346,25 +349,24 @@
 
     .flow{
       display:grid;
-      grid-template-columns:1fr;
       gap:12px;
-      margin-top:12px;
+      margin-top:14px;
     }
 
     .step{
       display:flex;
       gap:12px;
       align-items:flex-start;
-      padding:14px;
-      border-radius:14px;
+      padding:15px;
+      border-radius:16px;
       border:1px solid var(--line);
       background:#fff;
       box-shadow:0 10px 22px rgba(0,0,0,.04);
     }
 
     .step .num{
-      width:34px;
-      height:34px;
+      width:36px;
+      height:36px;
       border-radius:12px;
       display:grid;
       place-items:center;
@@ -383,7 +385,7 @@
     .step p{
       margin:0;
       color:#475467;
-      line-height:1.55;
+      line-height:1.58;
     }
 
     .portal-grid{
@@ -396,7 +398,7 @@
     .portal-card{
       background:#fff;
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:20px;
       padding:22px;
       box-shadow:0 10px 24px rgba(0,0,0,.05);
     }
@@ -409,7 +411,7 @@
     .portal-card p{
       margin:0 0 16px;
       color:#475467;
-      line-height:1.65;
+      line-height:1.66;
     }
 
     .portal-tag{
@@ -430,21 +432,33 @@
       margin-top:10px;
       font-size:13px;
       color:#667085;
-      line-height:1.55;
+      line-height:1.56;
     }
 
-    .band{
-      background:linear-gradient(120deg,var(--pri),var(--pri2));
-      color:#fff;
+    .audience-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .audience-card{
+      background:#fff;
+      border:1px solid var(--line);
       border-radius:18px;
-      padding:30px;
+      padding:20px;
+      box-shadow:0 10px 22px rgba(0,0,0,.05);
     }
 
-    .band .actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:14px;
+    .audience-card h3{
+      margin:8px 0 8px;
+      font-size:19px;
+    }
+
+    .audience-card p{
+      margin:0 0 14px;
+      color:#475467;
+      line-height:1.65;
     }
 
     .faq{
@@ -469,13 +483,28 @@
     .faq .item p{
       margin:0;
       color:#475467;
-      line-height:1.65;
+      line-height:1.66;
+    }
+
+    .band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:22px;
+      padding:30px;
+      box-shadow:0 16px 34px rgba(17,64,132,.16);
+    }
+
+    .band .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:14px;
     }
 
     footer{
       background:#0a1a12;
       color:#cfe8da;
-      padding:34px 0;
+      padding:36px 0;
       margin-top:40px;
     }
 
@@ -487,31 +516,43 @@
 
     .foot a{color:#cfe8da}
 
-    @media (max-width:980px){
-      .grid-2{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr}
-      .grid-4{grid-template-columns:1fr 1fr}
-      .portal-grid{grid-template-columns:1fr}
-      .foot{grid-template-columns:1fr}
+    @media (max-width: 1024px){
+      .grid-4{grid-template-columns:repeat(2,1fr)}
     }
 
-    @media (max-width:900px){
+    @media (max-width: 920px){
       .brand img{height:58px}
       .brand strong{font-size:20px}
-      .nav{flex-direction:column;align-items:stretch}
+      .nav{
+        flex-direction:column;
+        align-items:stretch;
+      }
       .brand{justify-content:center}
       .nav .cta{justify-content:center}
       .nav .links{justify-content:center}
-      .ecovida-hero-full{min-height:72vh}
+      .grid-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .portal-grid{grid-template-columns:1fr}
+      .audience-grid{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+      .hero{min-height:74vh}
     }
 
-    @media (max-width:640px){
-      .grid-4{grid-template-columns:1fr}
-      section{padding:52px 0}
+    @media (max-width: 640px){
+      section{padding:54px 0}
       .section-title{font-size:26px}
-      .btn{width:100%}
-      .ecovida-hero-actions{flex-direction:column;align-items:stretch}
-      .band .actions{flex-direction:column}
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+      .hero-actions .btn{width:100%}
+      .band .actions{
+        flex-direction:column;
+      }
+      .band .actions .btn{
+        width:100%;
+      }
+      .grid-4{grid-template-columns:1fr}
     }
   </style>
 
@@ -530,7 +571,7 @@
 </head>
 
 <body>
-  <div class="topbar">Instituto EcoVida • Meio ambiente, comunidade e reciclagem com participação real • Uberlândia e região</div>
+  <div class="topbar">Instituto EcoVida • Comunidade, reciclagem e cuidado com a natureza • Uberlândia e região</div>
 
   <header>
     <div class="wrap nav">
@@ -558,23 +599,21 @@
   </header>
 
   <!-- HERO -->
-  <section class="ecovida-hero-full" aria-label="Hero Instituto EcoVida">
-    <div class="wrap ecovida-hero-inner">
-      <span class="chip">Reciclagem • Comunidade • Cuidado ambiental • Ação local</span>
+  <section class="hero" aria-label="Hero Instituto EcoVida">
+    <div class="wrap hero-inner">
+      <span class="chip-head">♻️ Rede local de reciclagem • participação comunitária • impacto ambiental</span>
 
       <h1>Instituto EcoVida</h1>
 
       <p>
-        O EcoVida é uma iniciativa da <b>JS Jardinagem</b> voltada para o
-        <b>cuidado com o meio ambiente</b>, a <b>conscientização comunitária</b>
-        e a criação de uma rede de <b>pontos de coleta e participação local</b>.
-        <br><br>
-        Acreditamos que a reciclagem é algo que podemos fortalecer juntos,
-        de forma prática, organizada e acessível. Quando moradores, condomínios,
-        comércios, escolas e parceiros se unem, a cidade melhora e a natureza agradece.
+        O EcoVida é uma iniciativa da <b>JS Jardinagem</b> criada para fortalecer a
+        <b>reciclagem com participação da comunidade</b>. A proposta é simples:
+        unir moradores, condomínios, comércios, escolas, igrejas e parceiros em uma rede
+        local que ajude a dar <b>destino mais consciente aos recicláveis</b> e a cuidar
+        melhor da nossa mãe terra.
       </p>
 
-      <div class="ecovida-hero-actions">
+      <div class="hero-actions">
         <a class="btn btn-green"
            href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec"
            target="_blank" rel="noopener">
@@ -591,51 +630,49 @@
       </div>
 
       <div class="pill-row">
-        <div class="pill">♻️ <span>Destino mais consciente</span></div>
-        <div class="pill">🏢 <span>Condomínios e parceiros</span></div>
+        <div class="pill">🏢 <span>Condomínios e empresas</span></div>
+        <div class="pill">🏘️ <span>Moradores e bairros</span></div>
         <div class="pill">🌱 <span>Cuidado com a natureza</span></div>
         <div class="pill">🤝 <span>União da comunidade</span></div>
       </div>
     </div>
   </section>
 
-  <!-- POSICIONAMENTO -->
+  <!-- PROPÓSITO -->
   <section id="proposito">
     <div class="wrap grid-2">
       <div>
         <div class="kicker">Nosso propósito</div>
-        <h2 class="section-title">Uma rede local de cuidado com o meio ambiente</h2>
-        <p class="muted" style="max-width:74ch;line-height:1.78;margin:0">
-          O <b>Instituto EcoVida</b> nasce com uma ideia simples e forte:
-          <b>fazer a nossa parte</b> no cuidado com a natureza e incentivar outras pessoas
-          a fazerem o mesmo.
+        <h2 class="section-title">Fazer a nossa parte e facilitar a participação de quem quer colaborar</h2>
+        <p class="muted" style="max-width:74ch;line-height:1.8;margin:0">
+          O <b>Instituto EcoVida</b> nasceu com uma visão prática: existem muitos desafios ambientais
+          e urbanos, mas a reciclagem é uma área em que a comunidade pode agir com mais consciência,
+          organização e união.
           <br><br>
-          Sabemos que existem muitos desafios urbanos e ambientais, mas a reciclagem é uma área
-          em que a comunidade pode agir com mais união, consciência e organização.
+          Em vez de depender apenas de grandes estruturas, queremos ajudar a criar uma rede local em que
+          cada pessoa e cada espaço participante fortalece o outro. Um ponto de coleta em um condomínio,
+          comércio ou instituição já pode gerar impacto real quando entra em sintonia com a comunidade.
           <br><br>
-          Em vez de esperar tudo mudar de fora para dentro, queremos fortalecer um movimento
-          em que <b>moradores, condomínios, empresas, escolas, igrejas e parceiros</b>
-          possam colaborar entre si, criando pontos de coleta, bons hábitos e ações que gerem
-          impacto positivo real.
+          O EcoVida quer ser esse elo: aproximar pessoas, apoiar bons hábitos e tornar mais fácil para o
+          cidadão encontrar ou criar um local que colabore com um destino mais correto para os recicláveis.
         </p>
       </div>
 
       <div class="card p26 highlight">
         <div class="kicker">Em uma frase</div>
         <h3 style="margin:6px 0 10px;font-size:24px">
-          Cuidar da natureza é cuidar da nossa própria comunidade.
+          Cuidar da natureza também é cuidar da comunidade onde vivemos.
         </h3>
         <p class="muted" style="margin:0;line-height:1.72">
-          O EcoVida quer facilitar esse caminho, conectando pessoas e locais que desejam
-          dar um destino melhor aos recicláveis, fortalecer a consciência ambiental e gerar
-          melhorias visíveis no entorno.
+          O EcoVida conecta participação local, consciência ambiental e organização prática,
+          ajudando a transformar boa vontade em ação concreta.
         </p>
 
         <div class="pill-row" style="margin-top:14px">
-          <div class="pill">🌍 <span>Consciência ambiental</span></div>
           <div class="pill">📍 <span>Pontos de coleta</span></div>
-          <div class="pill">🏘️ <span>Impacto no bairro</span></div>
-          <div class="pill">🫱🏼‍🫲🏽 <span>Cooperação local</span></div>
+          <div class="pill">♻️ <span>Reciclagem consciente</span></div>
+          <div class="pill">🌍 <span>Impacto local</span></div>
+          <div class="pill">🫱🏼‍🫲🏽 <span>Cooperação</span></div>
         </div>
       </div>
     </div>
@@ -643,24 +680,24 @@
 
   <hr class="hr" />
 
-  <!-- PORTAL -->
+  <!-- ACESSOS -->
   <section id="portal-ecovida">
     <div class="wrap">
       <div class="kicker">Portal EcoVida</div>
       <h2 class="section-title">Acessos principais do projeto</h2>
-      <p class="muted" style="max-width:78ch;line-height:1.75;margin:0">
-        Aqui estão os acessos rápidos para cadastro, participação e organização da rede EcoVida.
-        A proposta é tornar a entrada simples para quem quer colaborar com a reciclagem e com
-        o cuidado ambiental da cidade.
+      <p class="muted" style="max-width:80ch;line-height:1.78;margin:0">
+        Aqui ficam os caminhos mais importantes para entrar na rede EcoVida. Nesta fase,
+        o principal objetivo é facilitar o cadastro de novos pontos de coleta e o contato
+        com a equipe para ampliar a participação local.
       </p>
 
       <div class="portal-grid">
         <div class="portal-card">
-          <span class="portal-tag">Pontos de coleta</span>
-          <h3>Cadastrar local de coleta</h3>
+          <span class="portal-tag">Ponto de coleta</span>
+          <h3>Cadastrar local parceiro</h3>
           <p>
-            Ideal para condomínios, escolas, comércios, igrejas, empresas e moradores
-            que querem registrar um local participante da rede EcoVida.
+            Ideal para condomínios, comércios, escolas, igrejas, empresas e moradores
+            que queiram registrar um local na base EcoVida.
           </p>
           <a class="btn btn-green"
              href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec"
@@ -668,24 +705,7 @@
             Abrir cadastro de ponto
           </a>
           <div class="mini-note">
-            Quanto mais pontos conectados, mais força a rede ganha.
-          </div>
-        </div>
-
-        <div class="portal-card">
-          <span class="portal-tag">Cadastro social</span>
-          <h3>Cadastrar participante</h3>
-          <p>
-            Área de registro social e acompanhamento de pessoas ligadas ao projeto,
-            usada na parte organizacional e operacional do EcoVida.
-          </p>
-          <a class="btn btn-outline"
-             href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec"
-             target="_blank" rel="noopener">
-            Abrir cadastro social
-          </a>
-          <div class="mini-note">
-            Uso mais interno e organizacional do projeto.
+            Esse é o acesso principal para ampliar a rede de coleta.
           </div>
         </div>
 
@@ -693,17 +713,84 @@
           <span class="portal-tag">Atendimento</span>
           <h3>Falar com a equipe EcoVida</h3>
           <p>
-            Para dúvidas, apoio, parceria, informações sobre coleta, participação
-            comunitária ou orientação sobre o projeto.
+            Para tirar dúvidas, entender o projeto, falar sobre participação comunitária,
+            pontos de coleta ou parceria ambiental.
           </p>
           <a class="btn btn-primary"
-             href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20falar%20sobre%20reciclagem,%20ponto%20de%20coleta%20ou%20participação%20no%20projeto."
+             href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20entender%20como%20participar%20ou%20cadastrar%20um%20ponto%20de%20coleta."
              target="_blank" rel="noopener">
             Chamar no WhatsApp
           </a>
           <div class="mini-note">
-            Bom para quem quer entender antes de se cadastrar.
+            Bom para quem prefere conversar antes de se cadastrar.
           </div>
+        </div>
+
+        <div class="portal-card">
+          <span class="portal-tag">Apoio</span>
+          <h3>Ver formas de ajudar</h3>
+          <p>
+            Conheça caminhos para fortalecer o EcoVida, apoiar a divulgação,
+            estimular a rede e ampliar o alcance do projeto.
+          </p>
+          <a class="btn btn-outline" href="Doações.html">
+            Ver formas de apoio
+          </a>
+          <div class="mini-note">
+            Apoio financeiro, institucional, estrutural ou de divulgação.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÚBLICOS -->
+  <section id="publicos">
+    <div class="wrap">
+      <div class="kicker">Quem pode participar</div>
+      <h2 class="section-title">O EcoVida foi pensado para vários tipos de público</h2>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="icon">🏢</div>
+          <h3>Condomínios</h3>
+          <p>
+            Perfeito para condomínios que querem organizar melhor a separação de materiais
+            e oferecer aos moradores um ponto mais claro de participação.
+          </p>
+          <a class="btn btn-outline"
+             href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec"
+             target="_blank" rel="noopener">
+            Cadastrar condomínio
+          </a>
+        </div>
+
+        <div class="audience-card">
+          <div class="icon">🛍️</div>
+          <h3>Comércios e empresas</h3>
+          <p>
+            Um comércio ou empresa pode se tornar ponto parceiro, fortalecer a imagem local
+            e colaborar com uma ação ambiental simples e visível.
+          </p>
+          <a class="btn btn-outline"
+             href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec"
+             target="_blank" rel="noopener">
+            Cadastrar empresa
+          </a>
+        </div>
+
+        <div class="audience-card">
+          <div class="icon">🏠</div>
+          <h3>Moradores e cidadãos</h3>
+          <p>
+            Quem deseja colaborar também pode indicar ou registrar um local, se conectar com
+            a rede e fortalecer uma cultura de cuidado com o bairro e com a natureza.
+          </p>
+          <a class="btn btn-outline"
+             href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Sou%20morador%20e%20quero%20entender%20como%20participar."
+             target="_blank" rel="noopener">
+            Quero participar
+          </a>
         </div>
       </div>
     </div>
@@ -720,8 +807,7 @@
           <div class="icon">♻️</div>
           <h3>Reciclagem com direção</h3>
           <p>
-            Estimular o descarte mais consciente e a criação de uma rede local mais organizada
-            para recebimento e encaminhamento dos materiais.
+            Tornar mais claro onde, como e com quem os materiais podem ser direcionados.
           </p>
         </div>
 
@@ -729,8 +815,7 @@
           <div class="icon">🏘️</div>
           <h3>Engajamento comunitário</h3>
           <p>
-            Aproximar moradores, condomínios, comércios e instituições de uma causa prática
-            que melhora o ambiente e fortalece o bairro.
+            Unir moradores, bairros, condomínios e parceiros em torno de uma ação positiva.
           </p>
         </div>
 
@@ -738,17 +823,15 @@
           <div class="icon">🌱</div>
           <h3>Cuidado com a natureza</h3>
           <p>
-            Incentivar hábitos que respeitem nossa mãe terra, reduzindo descarte inadequado
-            e valorizando atitudes simples do dia a dia.
+            Incentivar hábitos simples que respeitem nossa mãe terra e reduzam o descarte incorreto.
           </p>
         </div>
 
         <div class="card p18 feature">
           <div class="icon">🤝</div>
-          <h3>Cooperação entre pessoas</h3>
+          <h3>Cooperação local</h3>
           <p>
-            Criar uma cultura de ajuda mútua, em que cada pessoa ou local participante
-            fortalece o outro dentro da rede.
+            Criar uma rede em que cada participante fortalece o projeto e ajuda o outro a participar.
           </p>
         </div>
       </div>
@@ -760,57 +843,57 @@
     <div class="wrap grid-2">
       <div>
         <div class="kicker">Como funciona</div>
-        <h2 class="section-title">Um caminho simples para participar</h2>
-        <p class="muted" style="margin:0;line-height:1.75;max-width:70ch">
-          O EcoVida quer facilitar a entrada de quem deseja colaborar.
-          O foco é tornar a participação prática, clara e acessível.
+        <h2 class="section-title">Um caminho simples para entrar e colaborar</h2>
+        <p class="muted" style="margin:0;line-height:1.78;max-width:72ch">
+          O EcoVida quer transformar boa intenção em movimento prático. O processo é simples,
+          acessível e feito para crescer em rede.
         </p>
 
         <div class="flow">
           <div class="step">
             <div class="num">1</div>
             <div>
-              <h4>O cidadão ou parceiro manifesta interesse</h4>
-              <p>Morador, condomínio, comércio, escola ou instituição entra em contato ou faz o cadastro.</p>
+              <h4>O interessado entra em contato ou faz o cadastro</h4>
+              <p>Morador, condomínio, escola, comércio ou parceiro pode iniciar pelo formulário ou WhatsApp.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="num">2</div>
             <div>
-              <h4>O local entra na rede EcoVida</h4>
-              <p>O ponto é registrado e passa a fazer parte do mapa e da organização do projeto.</p>
+              <h4>O local entra na base EcoVida</h4>
+              <p>O ponto passa a ser registrado, organizado e preparado para fazer parte da rede.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="num">3</div>
             <div>
-              <h4>A comunidade começa a colaborar</h4>
-              <p>As pessoas passam a ter uma referência mais clara de onde entregar recicláveis e como participar.</p>
+              <h4>A comunidade passa a ter uma nova referência</h4>
+              <p>Mais clareza sobre onde colaborar, como separar e como participar melhor.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="num">4</div>
             <div>
-              <h4>O impacto local cresce</h4>
-              <p>Mais organização, mais consciência ambiental e mais força para ampliar a rede.</p>
+              <h4>O impacto local aumenta</h4>
+              <p>Mais organização, mais educação ambiental e mais força para ampliar a rede.</p>
             </div>
           </div>
         </div>
       </div>
 
       <div class="card p26 green-highlight">
-        <div class="kicker">Para quem é</div>
-        <h3 style="margin:6px 0 10px">Quem pode participar do EcoVida</h3>
+        <div class="kicker">Na prática</div>
+        <h3 style="margin:6px 0 10px">O que pode nascer a partir dessa rede</h3>
 
         <ul class="list">
-          <li><b>Moradores</b> que querem um destino mais consciente para recicláveis.</li>
-          <li><b>Condomínios</b> que desejam organizar e incentivar a coleta em seu espaço.</li>
-          <li><b>Comércios e empresas</b> interessados em colaborar com o meio ambiente e com a comunidade.</li>
-          <li><b>Escolas e igrejas</b> que queiram desenvolver participação e conscientização local.</li>
-          <li><b>Parceiros comunitários</b> que desejam fortalecer uma rede de impacto positivo.</li>
+          <li><b>Pontos de coleta melhor identificados</b> em condomínios, comércios e instituições.</li>
+          <li><b>Mais orientação para moradores</b> sobre descarte e participação.</li>
+          <li><b>Fortalecimento da consciência ambiental</b> no bairro e na cidade.</li>
+          <li><b>Mais visibilidade para parceiros locais</b> que desejam colaborar com a causa.</li>
+          <li><b>Base organizada para expansão futura</b> do projeto EcoVida.</li>
         </ul>
 
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
@@ -821,49 +904,15 @@
           </a>
 
           <a class="btn btn-outline"
-             href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20entender%20como%20funciona%20a%20participação%20na%20rede."
+             href="https://wa.me/5534992142960?text=Olá%20EcoVida!%20Quero%20tirar%20uma%20dúvida%20sobre%20o%20cadastro%20de%20ponto%20de%20coleta."
              target="_blank" rel="noopener">
             Tirar dúvidas
           </a>
         </div>
 
-        <p class="muted" style="margin:14px 0 0;line-height:1.6">
-          *O projeto está em fase de expansão e organização da rede local de participação.*
+        <p class="muted" style="margin:14px 0 0;line-height:1.62">
+          *Nesta fase, o cadastro de pontos de coleta é uma das frentes mais importantes para consolidar a rede.*
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- AÇÕES PRÁTICAS -->
-  <section id="acoes">
-    <div class="wrap">
-      <div class="kicker">Na prática</div>
-      <h2 class="section-title">O que queremos construir ao redor do EcoVida</h2>
-
-      <div class="grid-3" style="margin-top:18px">
-        <div class="card p18 feature">
-          <div class="icon">📍</div>
-          <h3>Rede de pontos de coleta</h3>
-          <p>
-            Locais parceiros distribuídos pela cidade para facilitar o acesso e ampliar a colaboração.
-          </p>
-        </div>
-
-        <div class="card p18 feature">
-          <div class="icon">📣</div>
-          <h3>Conscientização e mobilização</h3>
-          <p>
-            Ações de informação e incentivo para que mais pessoas entendam o valor da reciclagem.
-          </p>
-        </div>
-
-        <div class="card p18 feature">
-          <div class="icon">🌿</div>
-          <h3>Melhoria do ambiente local</h3>
-          <p>
-            Menos descarte errado, mais cuidado com o entorno e uma cultura mais forte de responsabilidade compartilhada.
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -878,45 +927,45 @@
         <div class="item">
           <h3>Sou morador comum. Posso participar?</h3>
           <p>
-            Sim. O EcoVida quer justamente facilitar a participação de cidadãos que desejam colaborar
-            com a reciclagem e com o cuidado ambiental local.
+            Sim. O EcoVida quer facilitar a participação de cidadãos que desejam colaborar com a reciclagem
+            e com o cuidado ambiental do seu entorno.
           </p>
         </div>
 
         <div class="item">
           <h3>Meu condomínio pode virar ponto de coleta?</h3>
           <p>
-            Pode. Condomínios são ótimos parceiros para fortalecer a rede, organizar a separação
-            e incentivar a participação dos moradores.
+            Pode. Condomínios são ótimos parceiros para organizar a separação dos materiais
+            e fortalecer a participação dos moradores.
           </p>
         </div>
 
         <div class="item">
           <h3>Preciso falar com alguém antes de cadastrar?</h3>
           <p>
-            Não obrigatoriamente. Você pode cadastrar direto pelo formulário. Mas, se preferir,
-            também pode chamar no WhatsApp para entender melhor primeiro.
+            Não obrigatoriamente. Você pode cadastrar direto pelo formulário.
+            Mas também pode chamar no WhatsApp antes, se preferir entender melhor.
           </p>
         </div>
 
         <div class="item">
-          <h3>O EcoVida depende de grandes estruturas para começar?</h3>
+          <h3>O EcoVida é só para grandes parceiros?</h3>
           <p>
-            Não. A proposta é começar com organização, união local e participação prática.
-            Um ponto de coleta bem ativado já é um passo importante.
+            Não. A rede pode começar com ações simples. Um local bem organizado e disposto a colaborar
+            já pode fazer diferença.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- CTA FINAL -->
   <section>
     <div class="wrap band">
       <h3 style="margin:0 0 6px">Quer fortalecer essa rede com a gente?</h3>
-      <p style="margin:0;opacity:.96;max-width:80ch;line-height:1.7">
-        Se você quer criar ou indicar um ponto de coleta, colaborar como parceiro ou simplesmente
-        ajudar o EcoVida a crescer de forma organizada, esse é o momento de entrar.
+      <p style="margin:0;opacity:.96;max-width:84ch;line-height:1.72">
+        Se você quer criar ou indicar um ponto de coleta, participar como parceiro ou apenas
+        ajudar o EcoVida a crescer de forma organizada, este é o melhor momento para entrar.
       </p>
       <div class="actions">
         <a class="btn btn-green"
@@ -932,7 +981,7 @@
         </a>
 
         <a class="btn btn-outline" href="Doações.html">
-          Ver como ajudar
+          Ver como apoiar
         </a>
       </div>
     </div>
@@ -955,7 +1004,7 @@
         <strong>Instituto EcoVida (Projeto da JS)</strong>
         <p class="muted">
           Reciclagem, comunidade e cuidado com a natureza. Uma iniciativa da JS Jardinagem
-          voltada para impacto local e participação real.
+          voltada para impacto local, participação real e construção de uma rede consciente.
         </p>
       </div>
 
