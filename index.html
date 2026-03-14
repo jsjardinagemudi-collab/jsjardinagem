@@ -33,7 +33,7 @@
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
-      overflow-x:hidden; /* evita “estouro” no celular */
+      overflow-x:hidden;
     }
 
     img{max-width:100%;height:auto;display:block}
@@ -70,7 +70,7 @@
       display:flex;
       gap:14px;
       align-items:center;
-      min-width: 220px;
+      min-width:220px;
     }
 
     .brand img{
@@ -93,13 +93,19 @@
       display:flex;
       gap:22px;
       font-weight:800;
+      align-items:center;
     }
+
     .links a{color:var(--ink)}
     .links a:hover{color:var(--pri)}
 
-    .cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
 
-    /* BOTÕES */
     .btn{
       appearance:none;
       border:1px solid #dfe3df;
@@ -116,6 +122,7 @@
       color:var(--ink);
       white-space:nowrap;
     }
+
     .btn:hover{background:#f3f5f7}
 
     .btn-primary{
@@ -123,6 +130,7 @@
       border-color:var(--pri);
       color:#fff;
     }
+
     .btn-primary:hover{
       background:#0d3270;
       border-color:#0d3270;
@@ -133,6 +141,7 @@
       border-color:var(--pri);
       color:var(--pri);
     }
+
     .btn-outline:hover{background:#eef4ff}
 
     section{padding:64px 0}
@@ -144,21 +153,21 @@
       box-shadow:0 10px 26px rgba(0,0,0,.06);
     }
 
-    /* HERO (capa) */
     .hero{
-      position: relative;
-      min-height: 74vh;
+      position:relative;
+      min-height:74vh;
       display:grid;
       align-items:center;
       color:#fff;
-      background: url("jardins.jpg") center/cover no-repeat;
+      background:url("jardins.jpg") center/cover no-repeat;
       overflow:hidden;
     }
+
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(
+      background:linear-gradient(
         50deg,
         rgba(17, 64, 132, 0.75) 0%,
         rgba(0, 0, 0, 0.35) 100%
@@ -182,6 +191,7 @@
       line-height:1.06;
       text-shadow:0 2px 10px rgba(0,0,0,.40);
     }
+
     .hero p{
       margin:0 0 20px;
       font-size:clamp(16px,1.5vw,19px);
@@ -197,16 +207,17 @@
       margin-top:22px;
     }
 
-    /* Botões no HERO (para não “sumir” no fundo) */
     .hero .btn{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.28);
+      background:rgba(255,255,255,.16);
+      border-color:rgba(255,255,255,.28);
       color:#fff;
     }
-    .hero .btn:hover{background: rgba(255,255,255,.22)}
+
+    .hero .btn:hover{background:rgba(255,255,255,.22)}
+
     .hero .btn-primary{
-      background: var(--pri);
-      border-color: var(--pri);
+      background:var(--pri);
+      border-color:var(--pri);
       color:#fff;
     }
 
@@ -218,42 +229,82 @@
       padding:24px;
     }
 
+    .hero-shortcuts{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .hero-shortcuts a{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:800;
+      color:#fff;
+      transition:.25s ease;
+      text-align:center;
+    }
+
+    .hero-shortcuts a:hover{
+      background:rgba(255,255,255,.20);
+      transform:translateY(-2px);
+    }
+
     .section-title{font-size:28px;margin:0 0 12px}
     .muted{color:var(--muted)}
 
-    /* Serviços */
     .examples{background:#f7f9f8;}
+
     .grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:22px;
       margin-top:20px;
     }
+
     .example-card{overflow:hidden;padding:0;}
     .example-card figure{margin:0;position:relative;height:180px;}
     .example-card img{width:100%;height:100%;object-fit:cover;display:block;}
+
     .example-badge{
       position:absolute;left:12px;top:12px;
       background:#ffffffdd;color:var(--pri);font-weight:900;
       padding:6px 10px;border-radius:10px;font-size:14px;
       border:1px solid #e6eaeb;
     }
+
     .example-body{padding:18px 18px 20px;}
     .example-body h3{margin:0 0 6px;font-size:18px;}
-    .example-list{margin:10px 0 12px;padding-left:18px;line-height:1.6;color:#475467;}
+
+    .example-list{
+      margin:10px 0 12px;
+      padding-left:18px;
+      line-height:1.6;
+      color:#475467;
+    }
+
     .example-price{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:10px 12px;background:#fff;border:1px solid #e7ece9;border-radius:12px;
-      font-weight:900;color:var(--pri);margin-bottom:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 12px;
+      background:#fff;
+      border:1px solid #e7ece9;
+      border-radius:12px;
+      font-weight:900;
+      color:var(--pri);
+      margin-bottom:12px;
       gap:10px;
     }
+
     .nota-valores{
       margin-top:16px;
       color:#667085;
       font-size:14px;
     }
 
-    /* NOVO: Modalidades (atalhos) */
     .service-hub{
       margin-top:22px;
       padding:18px;
@@ -261,11 +312,13 @@
       border:1px solid #e6edf5;
       border-radius:18px;
     }
+
     .service-hub h3{
       margin:0 0 6px;
       font-size:18px;
       color:var(--pri);
     }
+
     .service-hub p{
       margin:0;
       color:#475467;
@@ -291,11 +344,13 @@
       flex-direction:column;
       min-height:220px;
     }
+
     .hub-card:hover{
       transform:translateY(-4px);
       box-shadow:0 16px 32px rgba(0,0,0,.10);
       border-color:#dbe6ff;
     }
+
     .hub-top{
       padding:14px 14px 12px;
       border-bottom:1px solid #edf1f4;
@@ -304,6 +359,7 @@
       align-items:flex-start;
       gap:10px;
     }
+
     .hub-tag{
       display:inline-flex;
       align-items:center;
@@ -316,6 +372,7 @@
       font-size:12px;
       white-space:nowrap;
     }
+
     .hub-icon{
       width:38px;height:38px;border-radius:12px;
       background:linear-gradient(120deg,var(--pri),var(--pri2));
@@ -331,17 +388,20 @@
       gap:10px;
       flex:1;
     }
+
     .hub-body h4{
       margin:0;
       font-size:17px;
       color:#0f172a;
     }
+
     .hub-body .hub-desc{
       margin:0;
       color:#475467;
       line-height:1.55;
       font-size:14px;
     }
+
     .hub-bullets{
       margin:0;
       padding-left:18px;
@@ -349,6 +409,7 @@
       line-height:1.6;
       font-size:14px;
     }
+
     .hub-actions{
       padding:14px;
       padding-top:0;
@@ -356,13 +417,13 @@
       gap:10px;
       flex-wrap:wrap;
     }
+
     .hub-actions .btn{
       padding:10px 12px;
       border-radius:12px;
       font-size:14px;
     }
 
-    /* CTA band */
     .band{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
@@ -374,32 +435,35 @@
       gap:18px;
       flex-wrap:wrap;
     }
+
     .band .actions{display:flex;gap:12px;flex-wrap:wrap}
 
-    /* ===== EcoVida (uma seção só, sem fundo duplicado) ===== */
     .ecovida-bg{
       position:relative;
-      padding:72px 0;
+      min-height:78vh;
+      padding:120px 0 70px;
       color:#fff;
-      background: url("fundoreal.png") center/cover no-repeat;
+      background:url("fundoreal.png") center top/cover no-repeat;
       overflow:hidden;
     }
+
     .ecovida-bg::before{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(
+      background:linear-gradient(
         50deg,
         rgba(17, 64, 132, 0.82) 0%,
         rgba(0, 0, 0, 0.55) 100%
       );
       z-index:1;
     }
+
     .ecovida-bg .wrap{position:relative;z-index:2}
 
     .ecovida-head{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns:1.1fr .9fr;
       gap:22px;
       align-items:start;
     }
@@ -426,7 +490,6 @@
       margin:0;
     }
 
-    /* Cards/links estilo “bonito”, mas legível em cima do fundo */
     .ecovida-links{
       margin-top:18px;
       display:grid;
@@ -435,26 +498,29 @@
     }
 
     .eco-link-card{
-      background: rgba(255,255,255,.95);
-      color: var(--ink);
+      background:rgba(255,255,255,.95);
+      color:var(--ink);
       padding:16px;
       border-radius:16px;
       border:1px solid rgba(231,236,239,.9);
       transition:.25s ease;
       box-shadow:0 8px 22px rgba(0,0,0,.16);
     }
+
     .eco-link-card strong{
       display:block;
       font-size:16px;
       margin-bottom:6px;
       color:var(--pri);
     }
+
     .eco-link-card span{
       font-size:14px;
       color:#475467;
       line-height:1.45;
       display:block;
     }
+
     .eco-link-card:hover{
       transform:translateY(-4px);
       box-shadow:0 14px 30px rgba(0,0,0,.22);
@@ -462,31 +528,38 @@
 
     .ecovida-card{
       padding:18px;
-      background: rgba(255,255,255,.96);
+      background:rgba(255,255,255,.96);
       border:1px solid rgba(231,236,239,.95);
     }
 
     .ecovida-card h3{margin:0 0 10px;color:var(--pri)}
-    .ecovida-list{margin:0;padding-left:18px;color:#475467;line-height:1.7}
+
+    .ecovida-list{
+      margin:0;
+      padding-left:18px;
+      color:#475467;
+      line-height:1.7;
+    }
+
     .ecovida-list li{margin:8px 0}
     .ecovida-list b{color:#0f1411}
     .ecovida-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
 
-    /* footer */
     footer{
       background:#0a1a12;
       color:#cfe8da;
       padding:34px 0;
       margin-top:40px;
     }
+
     .foot{
       display:grid;
       grid-template-columns:2fr 1fr 1fr;
       gap:22px;
     }
+
     .foot a{color:#cfe8da}
 
-    /* Floating icons */
     .float-social{
       position:fixed;
       right:18px;
@@ -496,6 +569,7 @@
       gap:12px;
       z-index:999;
     }
+
     .float-social a{
       display:flex;
       align-items:center;
@@ -506,19 +580,74 @@
       background:#fff;
       box-shadow:0 6px 14px rgba(0,0,0,.25);
     }
+
     .float-social svg{width:28px;height:28px}
 
-    /* Responsivo */
+    .menu-toggle{
+      display:none;
+      width:46px;height:42px;
+      border:1px solid #dfe3df;
+      background:#fff;
+      border-radius:12px;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:10px;
+    }
+
+    .menu-toggle span{
+      display:block;
+      width:18px;height:2px;
+      background:#0f1411;
+      border-radius:2px;
+    }
+
     @media (max-width:900px){
       .brand img{height:56px;}
       .brand strong{font-size:18px;}
-      .hero-inner{grid-template-columns:1fr; padding:40px 0}
+      .hero-inner{grid-template-columns:1fr;padding:40px 0}
       .grid{grid-template-columns:1fr;}
       .hub-grid{grid-template-columns:1fr;}
       .ecovida-head{grid-template-columns:1fr}
       .ecovida-links{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;}
-      .ecovida-bg{padding:52px 0;}
+      .ecovida-bg{
+        min-height:64vh;
+        padding-top:120px;
+        padding-bottom:48px;
+        background-position:center top;
+      }
+
+      .menu-toggle{display:inline-flex;}
+
+      .links{
+        display:none;
+        position:absolute;
+        left:0; right:0;
+        top:100%;
+        background:#ffffffee;
+        backdrop-filter:saturate(180%) blur(10px);
+        border-bottom:1px solid #eef0ee;
+        padding:12px 14px;
+        flex-direction:column;
+        gap:12px;
+        font-weight:900;
+      }
+
+      header .nav{position:relative;}
+
+      .links a{
+        padding:10px 10px;
+        border-radius:12px;
+      }
+
+      .links a:hover{
+        background:#eef4ff;
+        color:var(--pri);
+      }
+
+      .links.is-open{display:flex;}
     }
 
     @media (max-width:600px){
@@ -526,83 +655,12 @@
       .hero{min-height:92vh}
       .btn{width:100%}
       .cta{width:100%}
-      .hero .cta .btn{width:auto} /* no hero deixa 2 botões lado a lado se couber */
-      .brand strong{display:none}  /* limpa espaço no topo do celular */
+      .hero .cta .btn{width:auto}
+      .brand strong{display:none}
+      .hero-shortcuts{grid-template-columns:1fr;}
     }
-
-    /* ECO VIDA — descer os blocos para mostrar a placa da imagem */
-.ecovida-bg{
-  min-height: 78vh;           /* garante área suficiente do fundo */
-  padding-top: 120px;         /* DESCE os cards (ajuste fino aqui) */
-  padding-bottom: 70px;
-  background-position: center top; /* prioriza topo da imagem */
-}
-
-/* Ajuste no mobile (para não ficar baixo demais) */
-@media (max-width: 900px){
-  .ecovida-bg{
-    min-height: 64vh;
-    padding-top: 120px;
-    padding-bottom: 48px;
-    background-position: center top;
-  }
-}
-/* ===== MENU MOBILE ===== */
-.menu-toggle{
-  display:none;
-  width:46px;height:42px;
-  border:1px solid #dfe3df;
-  background:#fff;
-  border-radius:12px;
-  cursor:pointer;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  padding:10px;
-}
-.menu-toggle span{
-  display:block;
-  width:18px;height:2px;
-  background:#0f1411;
-  border-radius:2px;
-}
-
-/* No mobile: mostrar botão e transformar o menu em dropdown */
-@media (max-width:900px){
-  .menu-toggle{display:inline-flex;}
-
-  /* remove o "display:none" antigo e controla via classe */
-  .links{
-    display:none;
-    position:absolute;
-    left:0; right:0;
-    top:100%;
-    background:#ffffffee;
-    backdrop-filter:saturate(180%) blur(10px);
-    border-bottom:1px solid #eef0ee;
-    padding:12px 14px;
-    flex-direction:column;
-    gap:12px;
-    font-weight:900;
-  }
-
-  header .nav{position:relative;} /* para o dropdown grudar no header */
-
-  .links a{
-    padding:10px 10px;
-    border-radius:12px;
-  }
-  .links a:hover{
-    background:#eef4ff;
-    color:var(--pri);
-  }
-
-  /* quando abrir */
-  .links.is-open{display:flex;}
-}
   </style>
 
-  <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -626,70 +684,38 @@
   }
   </script>
 </head>
-<script>
-  (function(){
-    const btn = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.links');
-
-    if(!btn || !menu) return;
-
-    function closeMenu(){
-      menu.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-    }
-
-    btn.addEventListener('click', function(){
-      const open = menu.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-
-    // fecha ao clicar em um link
-    menu.addEventListener('click', function(e){
-      if(e.target && e.target.tagName === 'A') closeMenu();
-    });
-
-    // fecha ao clicar fora
-    document.addEventListener('click', function(e){
-      if(!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
-    });
-
-    // fecha com ESC
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeMenu();
-    });
-  })();
-</script>
 <body>
   <div class="topbar">Atendimento em Uberlândia e região • Orçamentos pelo WhatsApp</div>
 
- <header>
-  <div class="wrap nav">
-    <a class="brand" href="#">
-      <img src="logo branca limpa.png" alt="JS Jardinagem" />
-      <strong>JS JARDINAGEM</strong>
-    </a>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <img src="logo branca limpa.png" alt="JS Jardinagem" />
+        <strong>JS JARDINAGEM</strong>
+      </a>
 
-    <!-- BOTÃO MOBILE -->
-    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">
-      <span></span><span></span><span></span>
-    </button>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">
+        <span></span><span></span><span></span>
+      </button>
 
-    <nav class="links" id="site-menu">
-      <a href="#servicos">Serviços</a> 
-      <a href="carreira.html">Carreira</a>
-      <a href="ecovida.html">EcoVida</a>
-      <a href="parceiros.html">Parceiros</a>
-      <a href="contatos.html">Contato</a>
-    </nav>
+      <nav class="links" id="site-menu">
+        <a href="#servicos">Serviços</a>
+        <a href="implantacao-padrao-js.html">Implantação</a>
+        <a href="servicos-pontuais.html">Pontuais</a>
+        <a href="plano-emergencial.html">Emergencial</a>
+        <a href="parceiros.html">Parceiros</a>
+        <a href="carreira.html">Carreira</a>
+        <a href="ecovida.html">EcoVida</a>
+        <a href="#contato">Contato</a>
+      </nav>
 
-    <div class="cta">
-      <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS%20Jardinagem!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
@@ -712,6 +738,13 @@
              target="_blank" rel="noopener">
              Ver Instagram
           </a>
+        </div>
+
+        <div class="hero-shortcuts">
+          <a href="implantacao-padrao-js.html">Implantação do padrão JS</a>
+          <a href="servicos-pontuais.html">Serviços pontuais</a>
+          <a href="plano-emergencial.html">Plano emergencial</a>
+          <a href="parceiros.html">Portal / Parceiros</a>
         </div>
       </div>
 
@@ -738,11 +771,10 @@
     </div>
   </section>
 
-  <!-- SERVIÇOS -->
   <section class="examples" id="servicos">
     <div class="wrap">
       <h2 class="section-title">Serviços</h2>
-<!-- NOVO: atalhos de modalidades / soluções -->
+
       <div class="service-hub">
         <h3>Modalidades de Serviço (atalhos)</h3>
         <p>
@@ -751,12 +783,9 @@
         </p>
 
         <div class="hub-grid">
-          <!-- 1) Implantação -->
           <a class="hub-card" href="implantacao-padrao-js.html">
             <div class="hub-top">
-              <div>
-                <span class="hub-tag">Serviço Inicial</span>
-              </div>
+              <div><span class="hub-tag">Serviço Inicial</span></div>
               <div class="hub-icon">JS</div>
             </div>
             <div class="hub-body">
@@ -776,12 +805,9 @@
             </div>
           </a>
 
-          <!-- 2) Pontuais -->
           <a class="hub-card" href="servicos-pontuais.html">
             <div class="hub-top">
-              <div>
-                <span class="hub-tag">Sem contrato inicial</span>
-              </div>
+              <div><span class="hub-tag">Sem contrato inicial</span></div>
               <div class="hub-icon">+</div>
             </div>
             <div class="hub-body">
@@ -801,12 +827,9 @@
             </div>
           </a>
 
-          <!-- 3) Emergencial -->
           <a class="hub-card" href="plano-emergencial.html">
             <div class="hub-top">
-              <div>
-                <span class="hub-tag">Resultado rápido</span>
-              </div>
+              <div><span class="hub-tag">Resultado rápido</span></div>
               <div class="hub-icon">⚡</div>
             </div>
             <div class="hub-body">
@@ -831,11 +854,10 @@
       <p class="nota-valores">
         *Os valores podem variar conforme escopo (podas em altura, revitalização de gramados, retirada de resíduos, insumos e deslocamento).
       </p>
-      
+
       <p class="muted">Valores apenas para referência.</p>
 
       <div class="grid">
-        <!-- Pequeno -->
         <div class="card example-card">
           <figure>
             <img src="edificio-simples.jpg" alt="Condomínio pequeno — jardins compactos" />
@@ -859,7 +881,6 @@
           </div>
         </div>
 
-        <!-- Médio -->
         <div class="card example-card">
           <figure>
             <img src="ex-medio.jpg.png" alt="Condomínio médio — áreas comuns e canteiros" />
@@ -883,7 +904,6 @@
           </div>
         </div>
 
-        <!-- Grande -->
         <div class="card example-card">
           <figure>
             <img src="ex-grande.jpg.png" alt="Condomínio grande — gramados, palmeiras e áreas extensas" />
@@ -907,12 +927,9 @@
           </div>
         </div>
       </div>
-
-      
     </div>
   </section>
 
-  <!-- CTA BAND -->
   <section>
     <div class="wrap band">
       <div style="display:grid;gap:8px;max-width:680px">
@@ -926,7 +943,6 @@
     </div>
   </section>
 
-  <!-- ECO VIDA (com fundo, sem duplicar) -->
   <section id="ecovida" class="ecovida-bg">
     <div class="wrap">
       <div class="ecovida-head">
@@ -990,7 +1006,6 @@
     </div>
   </section>
 
-  <!-- CARREIRA -->
   <section id="carreira" style="background:#f6f8f7">
     <div class="wrap">
       <h2 class="section-title">Carreira na JS Jardinagem</h2>
@@ -1015,14 +1030,12 @@
 
       <a class="btn btn-primary"
          href="carreira.html"
-         target="_blank" rel="noopener"
          style="margin-top:16px;display:inline-flex">
         Quero fazer parte da equipe JS
       </a>
     </div>
   </section>
 
-  <!-- CONTATO -->
   <section id="contato">
     <div class="wrap">
       <h2 class="section-title">Contato</h2>
@@ -1036,38 +1049,42 @@
     <div class="wrap foot">
       <div>
         <strong>JS Jardinagem</strong>
-        <p class="muted" style="color:#cfe8da;opacity:.85">Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.</p>
+        <p class="muted" style="color:#cfe8da;opacity:.85">
+          Manutenção, podas, revitalização de gramados e jardins para condomínios e comércios.
+        </p>
       </div>
       <div>
         <p><a href="#servicos">Serviços</a></p>
-        <p><a href="ecovida.html">EcoVida</a></p>
-        <p><a href="carreira.html">Carreira</a></p>
+        <p><a href="implantacao-padrao-js.html">Implantação</a></p>
+        <p><a href="servicos-pontuais.html">Pontuais</a></p>
+        <p><a href="plano-emergencial.html">Emergencial</a></p>
       </div>
       <div>
+        <p><a href="ecovida.html">EcoVida</a></p>
+        <p><a href="carreira.html">Carreira</a></p>
+        <p><a href="parceiros.html">Parceiros</a></p>
         <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
-        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Ícones flutuantes -->
   <div class="float-social">
     <a href="https://wa.me/5534992142960" title="Fale pelo WhatsApp" aria-label="Fale pelo WhatsApp" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path fill="#25D366" d="M380.9 97.1C339-18.9 210.3-33.4 119.1 57.7 28 148.8 13.5 277.5 129.5 319.4l-33.2 96.1 99.2-31.4c105.9 29.7 221.2-56.5 221.2-169.9 0-28.2-7.2-55.4-21.8-79.6z"/>
+      </svg>
     </a>
     <a href="https://www.instagram.com/jardinagemudi/" title="Mensagem no Instagram" aria-label="Mensagem no Instagram" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path fill="#E1306C" d="M224 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115S287.6 141 224 141zm0 190c-41.4 0-75-33.6-75-75s33.6-75 75-75 75 33.6 75 75-33.6 75-75 75z"/>
+      </svg>
     </a>
-  </div>
-  <!-- Ícones flutuantes -->
-  <div class="float-social">
-    ...
   </div>
 
   <script>
     (function(){
       const btn = document.querySelector('.menu-toggle');
-      const menu = document.querySelector('#site-menu'); // mais seguro
+      const menu = document.querySelector('#site-menu');
 
       if(!btn || !menu) return;
 
@@ -1095,7 +1112,5 @@
       });
     })();
   </script>
-</body>
-</html>
 </body>
 </html>
