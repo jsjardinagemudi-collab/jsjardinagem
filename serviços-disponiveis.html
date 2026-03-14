@@ -43,9 +43,17 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
     }
 
+    body.locked{
+      overflow:hidden;
+    }
+
     a{text-decoration:none;color:inherit}
     button{font:inherit}
     .wrap{width:min(1240px,92vw);margin:auto}
+
+    .page-shell{
+      min-height:100vh;
+    }
 
     .topbar{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
@@ -260,6 +268,13 @@
       line-height:1.75;
       font-weight:700;
       font-size:14px;
+    }
+
+    .quick-links{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:16px;
     }
 
     section{padding:28px 0}
@@ -593,6 +608,90 @@
       background:#f5f7fa;
     }
 
+    .auth-overlay{
+      position:fixed;
+      inset:0;
+      z-index:200;
+      background:
+        linear-gradient(135deg, rgba(17,64,132,.92), rgba(17,128,74,.88)),
+        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 28%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .auth-card{
+      width:min(460px,96vw);
+      background:#ffffffee;
+      border:1px solid #e6ebf0;
+      border-radius:24px;
+      box-shadow:var(--shadow-strong);
+      padding:24px;
+    }
+
+    .auth-logo{
+      width:68px;
+      height:68px;
+      margin:0 auto 14px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--pri),var(--pri2));
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-weight:1000;
+      font-size:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .auth-card h2{
+      margin:0 0 8px;
+      text-align:center;
+      color:var(--pri);
+      font-size:28px;
+      line-height:1.05;
+    }
+
+    .auth-card p{
+      margin:0 0 18px;
+      text-align:center;
+      color:#475467;
+      line-height:1.65;
+      font-weight:700;
+    }
+
+    .auth-form{
+      display:grid;
+      gap:12px;
+    }
+
+    .auth-error{
+      display:none;
+      border:1px solid #f4c7c3;
+      background:#fff5f4;
+      color:#b42318;
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .auth-error.show{
+      display:block;
+    }
+
+    .auth-note{
+      margin-top:10px;
+      text-align:center;
+      color:#667085;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
     footer{
       background:#0a1a12;
       color:#fff;
@@ -642,189 +741,233 @@
     }
   </style>
 </head>
-<body>
+<body class="locked">
 
-  <div class="topbar">
-    Portal do Jardineiro JS • Serviços disponíveis conectados ao banco publicado
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <div class="auth-logo">JS</div>
+      <h2>Acesso restrito</h2>
+      <p>
+        Digite a senha para abrir a página de serviços disponíveis do Portal do Jardineiro.
+      </p>
+
+      <form class="auth-form" id="authForm">
+        <div class="field">
+          <label for="passwordInput">Senha de acesso</label>
+          <input id="passwordInput" type="password" placeholder="Digite a senha" autocomplete="current-password" />
+        </div>
+
+        <div class="auth-error" id="authError">
+          Senha incorreta. Tente novamente.
+        </div>
+
+        <button class="btn btn-primary" type="submit">Entrar</button>
+        <a class="btn btn-soft" href="portal_jardineiro.html">Voltar ao Portal do Jardineiro</a>
+      </form>
+
+      <div class="auth-note">
+        Altere a constante <strong>ACCESS_PASSWORD</strong> no script para definir sua senha.
+      </div>
+    </div>
   </div>
 
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <div class="brand-logo">JS</div>
+  <div class="page-shell" id="pageShell">
+    <div class="topbar">
+      Portal do Jardineiro JS • Serviços disponíveis conectados ao banco publicado
+    </div>
+
+    <header>
+      <div class="wrap nav">
+        <div class="brand">
+          <div class="brand-logo">JS</div>
+          <div>
+            <strong>JS JARDINAGEM</strong>
+            <span>Portal do Jardineiro • Serviços Disponíveis V2</span>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <a href="portal_jardineiro.html" class="btn btn-soft">Portal do Jardineiro</a>
+          <a href="index.html" class="btn btn-soft">Index</a>
+          <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Atualizar orçamento</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="wrap hero-grid">
         <div>
-          <strong>JS JARDINAGEM</strong>
-          <span>Portal do Jardineiro • Serviços Disponíveis V2</span>
-        </div>
-      </div>
-
-      <div class="nav-actions">
-        <a href="?page=dashboard_parceiros" class="btn btn-soft">Voltar ao dashboard</a>
-        <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo orçamento</a>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <h1>Serviços Disponíveis</h1>
-        <p>
-          Esta página lê a aba <strong>DASH_SERVICOS_DISPONIVEIS_JS</strong> publicada e mostra
-          os serviços disponíveis em um formato mais operacional, com ações rápidas para mapa,
-          Street View, cópia de resumo e captura do serviço.
-        </p>
-
-        <div class="hero-pills">
-          <span class="pill">📍 Abrir no mapa</span>
-          <span class="pill">🚗 Ver Street View</span>
-          <span class="pill">🆔 Copiar ID</span>
-          <span class="pill">📋 Copiar resumo</span>
-          <span class="pill">🤝 Pegar serviço</span>
-        </div>
-      </div>
-
-      <div class="hero-side">
-        <h3>O que esta V2 entrega</h3>
-        <ul>
-          <li>Busca e filtros operacionais</li>
-          <li>Cards mais claros para leitura rápida</li>
-          <li>Botão de mapa e Street View</li>
-          <li>Cópia rápida de ID e resumo</li>
-          <li>Botão pronto para fluxo de aceite</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="card toolbar">
-        <div class="field">
-          <label for="searchInput">Buscar</label>
-          <input id="searchInput" type="text" placeholder="Cliente, bairro, descrição, responsável..." />
-        </div>
-
-        <div class="field">
-          <label for="bairroFilter">Bairro</label>
-          <select id="bairroFilter">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="parceriaFilter">Tipo de parceria</label>
-          <select id="parceriaFilter">
-            <option value="">Todos</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="sortFilter">Ordenar por</label>
-          <select id="sortFilter">
-            <option value="dateAsc">Data mais próxima</option>
-            <option value="dateDesc">Data mais distante</option>
-            <option value="partnerDesc">Maior valor parceiro</option>
-            <option value="hourDesc">Maior ganho por hora</option>
-            <option value="priceDesc">Maior preço final</option>
-          </select>
-        </div>
-
-        <button id="reloadBtn" class="btn btn-success" type="button">Atualizar lista</button>
-      </div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="stats">
-        <div class="card stat">
-          <p class="k">Serviços disponíveis</p>
-          <p class="v" id="statTotal">0</p>
-          <p class="s">Quantidade atual de cards exibidos no painel.</p>
-        </div>
-
-        <div class="card stat">
-          <p class="k">Maior valor parceiro</p>
-          <p class="v" id="statMaiorParceiro">R$ 0,00</p>
-          <p class="s">Melhor valor parceiro encontrado na lista filtrada.</p>
-        </div>
-
-        <div class="card stat">
-          <p class="k">Maior ganho por hora</p>
-          <p class="v" id="statMaiorHora">R$ 0,00</p>
-          <p class="s">Maior ganho por hora entre os serviços exibidos.</p>
-        </div>
-
-        <div class="card stat">
-          <p class="k">Média valor parceiro</p>
-          <p class="v" id="statMediaParceiro">R$ 0,00</p>
-          <p class="s">Média dos valores parceiro dos cards filtrados.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>Painel de oportunidades</h2>
+          <h1>Serviços Disponíveis</h1>
           <p>
-            Lista alimentada automaticamente pela planilha publicada. Mudou o banco, atualizou a página.
+            Esta página lê a aba <strong>DASH_SERVICOS_DISPONIVEIS_JS</strong> publicada e mostra
+            os serviços disponíveis em um formato mais operacional, com ações rápidas para mapa,
+            Street View, cópia de resumo e captura do serviço.
+          </p>
+
+          <div class="hero-pills">
+            <span class="pill">📍 Abrir no mapa</span>
+            <span class="pill">🚗 Ver Street View</span>
+            <span class="pill">🆔 Copiar ID</span>
+            <span class="pill">📋 Copiar resumo</span>
+            <span class="pill">🤝 Pegar serviço</span>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <h3>Atalhos rápidos</h3>
+          <ul>
+            <li>Voltar direto para o Portal do Jardineiro</li>
+            <li>Voltar para a página inicial da JS</li>
+            <li>Abrir o link de atualizar orçamento</li>
+            <li>Trabalhar os serviços com mais agilidade</li>
+          </ul>
+
+          <div class="quick-links">
+            <a href="portal_jardineiro.html" class="btn btn-soft">Voltar para o Portal do Jardineiro</a>
+            <a href="index.html" class="btn btn-soft">Ir para o Index</a>
+            <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Atualizar orçamento</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="card toolbar">
+          <div class="field">
+            <label for="searchInput">Buscar</label>
+            <input id="searchInput" type="text" placeholder="Cliente, bairro, descrição, responsável..." />
+          </div>
+
+          <div class="field">
+            <label for="bairroFilter">Bairro</label>
+            <select id="bairroFilter">
+              <option value="">Todos</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="parceriaFilter">Tipo de parceria</label>
+            <select id="parceriaFilter">
+              <option value="">Todos</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="sortFilter">Ordenar por</label>
+            <select id="sortFilter">
+              <option value="dateAsc">Data mais próxima</option>
+              <option value="dateDesc">Data mais distante</option>
+              <option value="partnerDesc">Maior valor parceiro</option>
+              <option value="hourDesc">Maior ganho por hora</option>
+              <option value="priceDesc">Maior preço final</option>
+            </select>
+          </div>
+
+          <button id="reloadBtn" class="btn btn-success" type="button">Atualizar lista</button>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="stats">
+          <div class="card stat">
+            <p class="k">Serviços disponíveis</p>
+            <p class="v" id="statTotal">0</p>
+            <p class="s">Quantidade atual de cards exibidos no painel.</p>
+          </div>
+
+          <div class="card stat">
+            <p class="k">Maior valor parceiro</p>
+            <p class="v" id="statMaiorParceiro">R$ 0,00</p>
+            <p class="s">Melhor valor parceiro encontrado na lista filtrada.</p>
+          </div>
+
+          <div class="card stat">
+            <p class="k">Maior ganho por hora</p>
+            <p class="v" id="statMaiorHora">R$ 0,00</p>
+            <p class="s">Maior ganho por hora entre os serviços exibidos.</p>
+          </div>
+
+          <div class="card stat">
+            <p class="k">Média valor parceiro</p>
+            <p class="v" id="statMediaParceiro">R$ 0,00</p>
+            <p class="s">Média dos valores parceiro dos cards filtrados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <h2>Painel de oportunidades</h2>
+            <p>
+              Lista alimentada automaticamente pela planilha publicada. Mudou o banco, atualizou a página.
+            </p>
+          </div>
+        </div>
+
+        <div id="listContainer" class="list-wrap">
+          <div class="loading">Carregando serviços disponíveis...</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          <strong>JS Jardinagem</strong>
+          <p>
+            Painel de serviços disponíveis conectado ao banco publicado da operação,
+            já preparado para aceite de serviço.
           </p>
         </div>
-      </div>
 
-      <div id="listContainer" class="list-wrap">
-        <div class="loading">Carregando serviços disponíveis...</div>
-      </div>
-    </div>
-  </section>
+        <div>
+          <p><a href="portal_jardineiro.html">Portal do Jardineiro</a></p>
+          <p><a href="index.html">Index</a></p>
+          <p><a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" target="_blank" rel="noopener">Atualizar orçamento</a></p>
+        </div>
 
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <strong>JS Jardinagem</strong>
-        <p>
-          Painel de serviços disponíveis conectado ao banco publicado da operação,
-          já preparado para aceite de serviço.
-        </p>
+        <div>
+          <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+          <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+        </div>
       </div>
+    </footer>
 
-      <div>
-        <p><a href="?page=dashboard_parceiros">Dashboard</a></p>
-        <p><a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" target="_blank" rel="noopener">Novo orçamento</a></p>
-      </div>
+    <div class="toast-wrap" id="toastWrap"></div>
 
-      <div>
-        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
-        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
-      </div>
-    </div>
-  </footer>
-
-  <div class="toast-wrap" id="toastWrap"></div>
-
-  <div class="modal" id="streetModal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h3 id="streetTitle">Street View</h3>
-        <button class="btn btn-dark btn-sm" id="closeStreetModal" type="button">Fechar</button>
-      </div>
-      <div class="modal-body">
-        <iframe id="streetFrame" class="street-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="modal" id="streetModal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3 id="streetTitle">Street View</h3>
+          <button class="btn btn-dark btn-sm" id="closeStreetModal" type="button">Fechar</button>
+        </div>
+        <div class="modal-body">
+          <iframe id="streetFrame" class="street-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
+    const ACCESS_PASSWORD = 'JS2026';
+    const SESSION_KEY = 'js_servicos_disponiveis_autorizado';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
 
     let allRows = [];
     let filteredRows = [];
 
     const els = {
+      pageShell: document.getElementById('pageShell'),
+      authOverlay: document.getElementById('authOverlay'),
+      authForm: document.getElementById('authForm'),
+      passwordInput: document.getElementById('passwordInput'),
+      authError: document.getElementById('authError'),
       listContainer: document.getElementById('listContainer'),
       searchInput: document.getElementById('searchInput'),
       bairroFilter: document.getElementById('bairroFilter'),
@@ -841,6 +984,38 @@
       streetTitle: document.getElementById('streetTitle'),
       closeStreetModal: document.getElementById('closeStreetModal')
     };
+
+    function unlockPage() {
+      sessionStorage.setItem(SESSION_KEY, 'ok');
+      document.body.classList.remove('locked');
+      els.authOverlay.classList.add('hidden');
+      els.passwordInput.value = '';
+      els.authError.classList.remove('show');
+      loadData();
+    }
+
+    function checkSessionAccess() {
+      const allowed = sessionStorage.getItem(SESSION_KEY) === 'ok';
+      if (allowed) {
+        unlockPage();
+      } else {
+        document.body.classList.add('locked');
+        els.authOverlay.classList.remove('hidden');
+        els.passwordInput.focus();
+      }
+    }
+
+    els.authForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const typed = (els.passwordInput.value || '').trim();
+
+      if (typed === ACCESS_PASSWORD) {
+        unlockPage();
+      } else {
+        els.authError.classList.add('show');
+        els.passwordInput.select();
+      }
+    });
 
     function parseCSV(text) {
       const rows = [];
@@ -1038,7 +1213,7 @@
 
     function buildPegarServicoLink(row) {
       const base = window.location.origin + window.location.pathname;
-      const params = new URLSearchParams();
+      const params = new URLSearchParams(window.location.search);
       params.set('page', 'aceite-servico');
       params.set('id', row.ID_SHORT || '');
       params.set('cliente', row.CLIENTE || '');
@@ -1308,7 +1483,7 @@
       }
     });
 
-    loadData();
+    checkSessionAccess();
   </script>
 </body>
 </html>
