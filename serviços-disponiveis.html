@@ -17,6 +17,7 @@
       --pri2:#11804a;
       --pri3:#0d3270;
       --gold:#d89b00;
+      --gold2:#f4b400;
       --ink:#0f1411;
       --muted:#667085;
       --paper:#fff;
@@ -43,7 +44,8 @@
     }
 
     a{text-decoration:none;color:inherit}
-    .wrap{width:min(1220px,92vw);margin:auto}
+    button{font:inherit}
+    .wrap{width:min(1240px,92vw);margin:auto}
 
     .topbar{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
@@ -58,7 +60,7 @@
     header{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:60;
       background:#ffffffde;
       backdrop-filter:saturate(180%) blur(8px);
       border-bottom:1px solid #eef0ee;
@@ -161,10 +163,29 @@
       border-color:#0f8f52;
     }
 
+    .btn-success:hover{filter:brightness(.98)}
+
     .btn-gold{
-      background:linear-gradient(120deg,#f4b400,#d89b00);
+      background:linear-gradient(120deg,var(--gold2),var(--gold));
       color:#1f1600;
-      border-color:#d89b00;
+      border-color:var(--gold);
+    }
+
+    .btn-gold:hover{filter:brightness(.98)}
+
+    .btn-dark{
+      background:#101828;
+      color:#fff;
+      border-color:#101828;
+    }
+
+    .btn-dark:hover{background:#0b1220}
+
+    .btn-sm{
+      min-height:40px;
+      padding:10px 12px;
+      font-size:13px;
+      border-radius:10px;
     }
 
     .hero{
@@ -354,9 +375,10 @@
     }
 
     .service-card{
-      padding:18px;
+      padding:20px;
       display:grid;
       gap:16px;
+      border-left:6px solid var(--pri);
     }
 
     .service-top{
@@ -454,16 +476,20 @@
       font-size:15px;
       line-height:1.5;
       font-weight:900;
+      word-break:break-word;
     }
 
     .service-actions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
+      border-top:1px solid #edf1f5;
+      padding-top:14px;
     }
 
-    .muted{
-      color:var(--muted);
+    .highlight-money{
+      color:var(--good);
+      font-weight:1000;
     }
 
     .empty,
@@ -482,6 +508,94 @@
       border-color:#f4c7c3;
       background:#fff5f4;
       color:#b42318;
+    }
+
+    .toast-wrap{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:100;
+      display:grid;
+      gap:10px;
+    }
+
+    .toast{
+      min-width:240px;
+      max-width:340px;
+      background:#101828;
+      color:#fff;
+      padding:14px 16px;
+      border-radius:14px;
+      box-shadow:var(--shadow-strong);
+      font-size:14px;
+      font-weight:800;
+      opacity:0;
+      transform:translateY(10px);
+      animation:toastIn .18s ease forwards;
+    }
+
+    @keyframes toastIn{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:120;
+      background:rgba(16,24,40,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .modal.show{display:flex}
+
+    .modal-card{
+      width:min(1040px,96vw);
+      max-height:88vh;
+      overflow:auto;
+      background:#fff;
+      border-radius:22px;
+      box-shadow:var(--shadow-strong);
+      border:1px solid #e7ecef;
+    }
+
+    .modal-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:16px 18px;
+      border-bottom:1px solid #edf1f5;
+      position:sticky;
+      top:0;
+      background:#fff;
+      z-index:2;
+    }
+
+    .modal-head h3{
+      margin:0;
+      color:var(--pri);
+      font-size:22px;
+      line-height:1.05;
+    }
+
+    .modal-body{
+      padding:18px;
+      display:grid;
+      gap:14px;
+    }
+
+    .street-frame{
+      width:100%;
+      min-height:520px;
+      border:0;
+      border-radius:16px;
+      background:#f5f7fa;
     }
 
     footer{
@@ -526,6 +640,10 @@
       .service-actions{
         flex-direction:column;
       }
+
+      .street-frame{
+        min-height:360px;
+      }
     }
   </style>
 </head>
@@ -541,7 +659,7 @@
         <div class="brand-logo">JS</div>
         <div>
           <strong>JS JARDINAGEM</strong>
-          <span>Portal do Jardineiro • Serviços Disponíveis</span>
+          <span>Portal do Jardineiro • Serviços Disponíveis V2</span>
         </div>
       </div>
 
@@ -557,27 +675,28 @@
       <div>
         <h1>Serviços Disponíveis</h1>
         <p>
-          Esta página lê a aba publicada <strong>DASH_SERVICOS_DISPONIVEIS_JS</strong> e mostra
-          os serviços com status disponível em um formato mais profissional para o parceiro analisar.
+          Esta página lê a aba <strong>DASH_SERVICOS_DISPONIVEIS_JS</strong> publicada e mostra
+          os serviços disponíveis em um formato mais operacional, com ações rápidas para mapa,
+          Street View, cópia de resumo e captura do serviço.
         </p>
 
         <div class="hero-pills">
-          <span class="pill">📍 Oportunidades abertas</span>
-          <span class="pill">💰 Valor parceiro</span>
-          <span class="pill">⏱ Ganho por hora</span>
-          <span class="pill">🧭 Próxima ação</span>
-          <span class="pill">🗺 Link Maps</span>
+          <span class="pill">📍 Abrir no mapa</span>
+          <span class="pill">🚗 Ver Street View</span>
+          <span class="pill">🆔 Copiar ID</span>
+          <span class="pill">📋 Copiar resumo</span>
+          <span class="pill">🤝 Pegar serviço</span>
         </div>
       </div>
 
       <div class="hero-side">
-        <h3>Como esta página funciona</h3>
+        <h3>O que esta V2 entrega</h3>
         <ul>
-          <li>Lê o CSV publicado da planilha</li>
-          <li>Filtra apenas serviços disponíveis</li>
-          <li>Ordena por data do serviço</li>
-          <li>Mostra cards mais claros para análise rápida</li>
-          <li>Já prepara a base para futuro botão de aceite</li>
+          <li>Busca e filtros operacionais</li>
+          <li>Cards mais claros para leitura rápida</li>
+          <li>Botão de mapa e Street View</li>
+          <li>Cópia rápida de ID e resumo</li>
+          <li>Botão pronto para fluxo de aceite</li>
         </ul>
       </div>
     </div>
@@ -657,8 +776,7 @@
         <div>
           <h2>Painel de oportunidades</h2>
           <p>
-            Lista alimentada automaticamente a partir da planilha publicada. Se o banco mudar,
-            a página reflete na próxima atualização.
+            Lista alimentada automaticamente pela planilha publicada. Mudou o banco, atualizou a página.
           </p>
         </div>
       </div>
@@ -674,8 +792,8 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p>
-          Painel de serviços disponíveis conectado ao banco publicado da operação, pronto para evoluir
-          depois para aceite de serviço e fluxo mais avançado.
+          Painel de serviços disponíveis conectado ao banco publicado da operação,
+          já preparado para aceite de serviço.
         </p>
       </div>
 
@@ -690,6 +808,20 @@
       </div>
     </div>
   </footer>
+
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <div class="modal" id="streetModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="streetTitle">Street View</h3>
+        <button class="btn btn-dark btn-sm" id="closeStreetModal" type="button">Fechar</button>
+      </div>
+      <div class="modal-body">
+        <iframe id="streetFrame" class="street-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
 
   <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
@@ -707,7 +839,12 @@
       statTotal: document.getElementById('statTotal'),
       statMaiorParceiro: document.getElementById('statMaiorParceiro'),
       statMaiorHora: document.getElementById('statMaiorHora'),
-      statMediaParceiro: document.getElementById('statMediaParceiro')
+      statMediaParceiro: document.getElementById('statMediaParceiro'),
+      toastWrap: document.getElementById('toastWrap'),
+      streetModal: document.getElementById('streetModal'),
+      streetFrame: document.getElementById('streetFrame'),
+      streetTitle: document.getElementById('streetTitle'),
+      closeStreetModal: document.getElementById('closeStreetModal')
     };
 
     function parseCSV(text) {
@@ -840,6 +977,81 @@
       populateSelect(els.parceriaFilter, data.map(r => r.TIPO_PARCERIA), 'Todos');
     }
 
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      els.toastWrap.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(8px)';
+        toast.style.transition = 'all .18s ease';
+        setTimeout(() => toast.remove(), 220);
+      }, 2200);
+    }
+
+    async function copyText(text, okMessage) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(okMessage);
+      } catch (error) {
+        showToast('Não foi possível copiar agora.');
+      }
+    }
+
+    function normalizePhoneBR(phone) {
+      const digits = String(phone || '').replace(/\D/g, '');
+      if (!digits) return '';
+      return digits.startsWith('55') ? digits : `55${digits}`;
+    }
+
+    function buildResumo(row) {
+      return [
+        `ID: ${row.ID_SHORT || '—'}`,
+        `Data: ${row.DATA_SERVICO || '—'}`,
+        `Cliente: ${row.CLIENTE || '—'}`,
+        `Bairro: ${row.BAIRRO || '—'}`,
+        `Descrição: ${row.DESCRICAO || '—'}`,
+        `Status: ${row.STATUS || '—'}`,
+        `Equipe total: ${row.EQUIPE_TOTAL || '0'}`,
+        `Horas: ${row.HORAS || '0'}`,
+        `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
+        `Valor parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
+        `Ganho por hora: ${row.GANHO_POR_HORA || 'R$ 0,00'}`,
+        `Tipo de parceria: ${row.TIPO_PARCERIA || '—'}`,
+        `Próxima ação: ${row.PROXIMA_ACAO || '—'}`,
+        `Endereço: ${row.ENDERECO_TEXTO || '—'}`,
+        `Responsável: ${row.RESPONSAVEL || '—'}`
+      ].join('\n');
+    }
+
+    function buildStreetViewUrl(row) {
+      const query = row.ENDERECO_TEXTO || row.LINK_MAPS || `${row.CLIENTE || ''} ${row.BAIRRO || ''}`.trim();
+      return `https://www.google.com/maps?q=${encodeURIComponent(query)}&layer=c&cbll=`;
+    }
+
+    function openStreetView(row) {
+      const query = row.ENDERECO_TEXTO || row.LINK_MAPS || `${row.CLIENTE || ''} ${row.BAIRRO || ''}`.trim();
+      const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed&layer=c`;
+      els.streetTitle.textContent = `Street View • ${row.CLIENTE || 'Serviço'}`;
+      els.streetFrame.src = src;
+      els.streetModal.classList.add('show');
+      els.streetModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeStreetView() {
+      els.streetModal.classList.remove('show');
+      els.streetModal.setAttribute('aria-hidden', 'true');
+      els.streetFrame.src = '';
+    }
+
+    function buildPegarServicoLink(row) {
+      const id = encodeURIComponent(row.ID_SHORT || '');
+      const cliente = encodeURIComponent(row.CLIENTE || '');
+      return `aceite-servico.html?id=${id}&cliente=${cliente}`;
+    }
+
     function applyFilters() {
       const query = els.searchInput.value.trim().toLowerCase();
       const bairro = els.bairroFilter.value;
@@ -908,19 +1120,29 @@
         return;
       }
 
-      els.listContainer.innerHTML = rows.map(row => {
+      els.listContainer.innerHTML = rows.map((row, index) => {
         const mapsLink = row.LINK_MAPS ? row.LINK_MAPS : '';
-        const partnerPhone = row.TELEFONE_PARCEIRO ? String(row.TELEFONE_PARCEIRO).replace(/\D/g, '') : '';
-        const whatsappLink = partnerPhone ? `https://wa.me/55${partnerPhone}` : '';
+        const enderecoQuery = row.ENDERECO_TEXTO || `${row.CLIENTE || ''} ${row.BAIRRO || ''}`.trim();
+        const mapsFallback = enderecoQuery
+          ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoQuery)}`
+          : '';
+        const finalMapsLink = mapsLink || mapsFallback;
+
+        const partnerPhone = normalizePhoneBR(row.TELEFONE_PARCEIRO);
+        const whatsappLink = partnerPhone ? `https://wa.me/${partnerPhone}` : '';
         const precoFinal = formatBRL(parseBRNumber(row.PRECO_FINAL));
         const valorParceiro = formatBRL(parseBRNumber(row.VALOR_PARCEIRO));
         const ganhoHora = formatBRL(parseBRNumber(row.GANHO_POR_HORA));
+
+        const safeResumo = escapeHtml(buildResumo(row));
+        const safeId = escapeHtml(row.ID_SHORT || '');
+        const pegarLink = buildPegarServicoLink(row);
 
         return `
           <article class="card service-card">
             <div class="service-top">
               <div>
-                <div class="service-id">ID ${escapeHtml(row.ID_SHORT || '—')}</div>
+                <div class="service-id">ID ${safeId || '—'}</div>
                 <h3>${escapeHtml(row.CLIENTE || 'Serviço sem cliente')}</h3>
                 <p class="service-sub">
                   <strong>${escapeHtml(row.BAIRRO || 'Bairro não informado')}</strong> •
@@ -952,12 +1174,12 @@
 
               <div class="mini">
                 <p class="k">Valor parceiro</p>
-                <p class="v">${valorParceiro}</p>
+                <p class="v" style="color:#027a48">${valorParceiro}</p>
               </div>
 
               <div class="mini">
                 <p class="k">Ganho por hora</p>
-                <p class="v">${ganhoHora}</p>
+                <p class="v" style="color:#027a48">${ganhoHora}</p>
               </div>
 
               <div class="mini">
@@ -982,13 +1204,75 @@
             </div>
 
             <div class="service-actions">
-              ${mapsLink ? `<a class="btn btn-soft" href="${escapeHtml(mapsLink)}" target="_blank" rel="noopener">Abrir no Maps</a>` : ''}
-              ${whatsappLink ? `<a class="btn btn-success" href="${escapeHtml(whatsappLink)}" target="_blank" rel="noopener">Falar com parceiro</a>` : ''}
-              <a class="btn btn-gold" href="dashboard_parceiros.html">Voltar ao portal</a>
+              <button class="btn btn-soft btn-sm" type="button" data-copy-id="${safeId}">Copiar ID</button>
+
+              <button
+                class="btn btn-soft btn-sm"
+                type="button"
+                data-copy-resumo="${safeResumo}"
+              >
+                Copiar resumo
+              </button>
+
+              ${finalMapsLink ? `
+                <a class="btn btn-soft btn-sm" href="${escapeHtml(finalMapsLink)}" target="_blank" rel="noopener">
+                  Abrir localização
+                </a>
+              ` : ''}
+
+              <button
+                class="btn btn-dark btn-sm"
+                type="button"
+                data-street="${index}"
+              >
+                Ver Street View
+              </button>
+
+              ${whatsappLink ? `
+                <a class="btn btn-success btn-sm" href="${escapeHtml(whatsappLink)}" target="_blank" rel="noopener">
+                  WhatsApp
+                </a>
+              ` : ''}
+
+              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}">
+                Pegar serviço
+              </a>
             </div>
           </article>
         `;
       }).join('');
+
+      bindCardActions(rows);
+    }
+
+    function bindCardActions(rows) {
+      document.querySelectorAll('[data-copy-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-copy-id') || '';
+          copyText(id, `ID ${id} copiado.`);
+        });
+      });
+
+      document.querySelectorAll('[data-copy-resumo]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const resumo = btn.getAttribute('data-copy-resumo')
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'")
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&');
+          copyText(resumo, 'Resumo copiado.');
+        });
+      });
+
+      document.querySelectorAll('[data-street]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = Number(btn.getAttribute('data-street'));
+          const row = rows[index];
+          if (!row) return;
+          openStreetView(row);
+        });
+      });
     }
 
     async function loadData() {
@@ -1019,6 +1303,17 @@
     els.parceriaFilter.addEventListener('change', applyFilters);
     els.sortFilter.addEventListener('change', applyFilters);
     els.reloadBtn.addEventListener('click', loadData);
+
+    els.closeStreetModal.addEventListener('click', closeStreetView);
+    els.streetModal.addEventListener('click', (e) => {
+      if (e.target === els.streetModal) closeStreetView();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && els.streetModal.classList.contains('show')) {
+        closeStreetView();
+      }
+    });
 
     loadData();
   </script>
