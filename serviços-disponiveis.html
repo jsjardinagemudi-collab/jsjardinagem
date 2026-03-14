@@ -487,11 +487,6 @@
       padding-top:14px;
     }
 
-    .highlight-money{
-      color:var(--good);
-      font-weight:1000;
-    }
-
     .empty,
     .loading,
     .error{
@@ -664,7 +659,7 @@
       </div>
 
       <div class="nav-actions">
-        <a href="dashboard_parceiros.html" class="btn btn-soft">Voltar ao dashboard</a>
+        <a href="?page=dashboard_parceiros" class="btn btn-soft">Voltar ao dashboard</a>
         <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo orçamento</a>
       </div>
     </div>
@@ -798,7 +793,7 @@
       </div>
 
       <div>
-        <p><a href="dashboard_parceiros.html">Dashboard</a></p>
+        <p><a href="?page=dashboard_parceiros">Dashboard</a></p>
         <p><a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" target="_blank" rel="noopener">Novo orçamento</a></p>
       </div>
 
@@ -1026,11 +1021,6 @@
       ].join('\n');
     }
 
-    function buildStreetViewUrl(row) {
-      const query = row.ENDERECO_TEXTO || row.LINK_MAPS || `${row.CLIENTE || ''} ${row.BAIRRO || ''}`.trim();
-      return `https://www.google.com/maps?q=${encodeURIComponent(query)}&layer=c&cbll=`;
-    }
-
     function openStreetView(row) {
       const query = row.ENDERECO_TEXTO || row.LINK_MAPS || `${row.CLIENTE || ''} ${row.BAIRRO || ''}`.trim();
       const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed&layer=c`;
@@ -1049,7 +1039,7 @@
     function buildPegarServicoLink(row) {
       const id = encodeURIComponent(row.ID_SHORT || '');
       const cliente = encodeURIComponent(row.CLIENTE || '');
-      return `aceite-servico.html?id=${id}&cliente=${cliente}`;
+      return `?page=aceite-servico&id=${id}&cliente=${cliente}`;
     }
 
     function applyFilters() {
