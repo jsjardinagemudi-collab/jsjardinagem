@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>Parceiros JS • Boas-vindas ao Portal do Jardineiro</title>
+  <title>Portal do Jardineiro • Dashboard do Parceiro • JS Jardinagem</title>
   <meta
     name="description"
-    content="Página de boas-vindas para jardineiros parceiros da JS Jardinagem: apresentação do sistema, ferramentas, pontuação, cadastro de perfil e acesso ao Portal do Jardineiro."
+    content="Dashboard de entrada do Portal do Jardineiro da JS Jardinagem com acesso ao cadastro de parceiros, novo orçamento, atualização de orçamentos, pontuação, benefícios e serviços disponíveis."
   />
 
   <link rel="icon" href="/favicon.ico" />
@@ -29,6 +29,7 @@
       --bad:#b42318;
       --shadow:0 10px 26px rgba(0,0,0,.06);
       --shadow-strong:0 18px 40px rgba(0,0,0,.12);
+      --radius:18px;
     }
 
     *{box-sizing:border-box}
@@ -37,6 +38,7 @@
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      scroll-behavior:smooth;
     }
 
     a{text-decoration:none;color:inherit}
@@ -48,7 +50,7 @@
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
       text-align:center;
-      padding:8px;
+      padding:9px 12px;
       font-weight:900;
       font-size:14px;
       letter-spacing:.2px;
@@ -171,6 +173,14 @@
 
     .btn-soft:hover{background:#e4efff}
 
+    .btn-dark{
+      background:#101828;
+      border-color:#101828;
+      color:#fff;
+    }
+
+    .btn-dark:hover{background:#0b1220}
+
     section{padding:52px 0}
 
     .hero{
@@ -183,7 +193,7 @@
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1.12fr .88fr;
       gap:22px;
       align-items:stretch;
     }
@@ -197,7 +207,7 @@
 
     .hero p{
       margin:0;
-      max-width:800px;
+      max-width:820px;
       line-height:1.7;
       font-size:16px;
       font-weight:700;
@@ -284,120 +294,56 @@
       color:var(--muted);
       line-height:1.7;
       font-weight:700;
-      max-width:820px;
+      max-width:860px;
     }
 
     .card{
       background:#fff;
       border:1px solid var(--line);
-      border-radius:18px;
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
     }
 
     .card-pad{padding:18px}
 
-    .intro-grid{
+    .kpi-grid{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-      align-items:start;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
     }
 
-    .intro-main{
-      padding:22px;
-    }
-
-    .intro-main h3{
-      margin:0 0 10px;
-      color:var(--pri);
-      font-size:24px;
-      line-height:1.08;
-    }
-
-    .intro-main p{
-      margin:0;
-      color:#475467;
-      font-weight:700;
-      line-height:1.72;
-    }
-
-    .intro-list{
-      display:grid;
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .intro-item{
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:var(--soft);
-    }
-
-    .intro-item strong{
-      display:block;
-      color:var(--pri);
-      margin-bottom:4px;
-    }
-
-    .intro-item span{
-      color:#475467;
-      line-height:1.6;
-      font-weight:700;
-      font-size:14px;
-    }
-
-    .member-box{
-      padding:20px;
-      background:linear-gradient(135deg,#eef4ff,#eef9f2);
-    }
-
-    .member-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
+    .kpi{
+      padding:18px;
       background:#fff;
-      border:1px solid #d8e5f5;
-      color:var(--pri);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+    }
+
+    .kpi .k{
+      margin:0 0 8px;
+      color:#667085;
       font-size:12px;
       font-weight:1000;
-      margin-bottom:12px;
+      text-transform:uppercase;
+      letter-spacing:.2px;
     }
 
-    .member-price{
-      font-size:42px;
-      line-height:1;
-      color:var(--pri);
-      font-weight:1000;
-      margin:6px 0;
-    }
-
-    .member-box p{
+    .kpi .v{
       margin:0;
-      color:#344054;
-      font-weight:700;
-      line-height:1.7;
+      color:var(--pri);
+      font-size:28px;
+      font-weight:1000;
+      line-height:1.05;
     }
 
-    .member-list{
-      display:grid;
-      gap:10px;
-      margin:14px 0 0;
-      padding:0;
-      list-style:none;
-    }
-
-    .member-list li{
-      background:#fff;
-      border:1px solid #dbe7ec;
-      border-radius:14px;
-      padding:12px;
-      color:#344054;
+    .kpi .s{
+      margin:8px 0 0;
+      color:#475467;
       line-height:1.6;
       font-weight:700;
-      font-size:14px;
+      font-size:13px;
     }
 
     .grid-tools{
@@ -415,13 +361,13 @@
     }
 
     .tool .icon{
-      width:54px;
-      height:54px;
+      width:56px;
+      height:56px;
       border-radius:16px;
       display:grid;
       place-items:center;
       background:linear-gradient(135deg,#eef4ff,#e7f8ee);
-      font-size:26px;
+      font-size:27px;
     }
 
     .tool h3{
@@ -459,6 +405,32 @@
       margin-top:auto;
       display:grid;
       gap:10px;
+    }
+
+    .benefit-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .benefit{
+      padding:20px;
+      height:100%;
+    }
+
+    .benefit h3{
+      margin:0 0 8px;
+      color:var(--pri);
+      font-size:20px;
+      line-height:1.1;
+    }
+
+    .benefit p{
+      margin:0;
+      color:#475467;
+      line-height:1.68;
+      font-weight:700;
+      font-size:14px;
     }
 
     .steps-grid{
@@ -506,7 +478,7 @@
       box-shadow:var(--shadow-strong);
       padding:28px;
       display:grid;
-      grid-template-columns:1.1fr .9fr;
+      grid-template-columns:1.08fr .92fr;
       gap:18px;
       align-items:center;
     }
@@ -559,6 +531,41 @@
       line-height:1.5;
       font-weight:700;
       opacity:.95;
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .service{
+      padding:18px;
+      height:100%;
+    }
+
+    .service h3{
+      margin:0 0 8px;
+      color:var(--pri);
+      font-size:19px;
+      line-height:1.1;
+    }
+
+    .service p{
+      margin:0;
+      color:#475467;
+      line-height:1.68;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .service ul{
+      margin:12px 0 0;
+      padding-left:18px;
+      color:#344054;
+      line-height:1.7;
+      font-weight:700;
+      font-size:14px;
     }
 
     .faq-grid{
@@ -635,14 +642,24 @@
 
     .foot a{color:#fff}
 
+    .small-note{
+      font-size:12px;
+      color:#98a2b3;
+      font-weight:700;
+      margin-top:10px;
+      line-height:1.6;
+    }
+
     @media(max-width:1020px){
       .hero-grid,
-      .intro-grid,
       .grid-tools,
+      .benefit-grid,
       .steps-grid,
       .score-band,
       .faq-grid,
-      .foot{
+      .service-grid,
+      .foot,
+      .kpi-grid{
         grid-template-columns:1fr;
       }
 
@@ -653,6 +670,16 @@
       .mini-kpis{
         grid-template-columns:1fr;
       }
+
+      .hero-actions,
+      .final-band .actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
     }
   </style>
 </head>
@@ -660,7 +687,7 @@
 <body>
 
   <div class="topbar">
-    Bem-vindo ao Portal do Jardineiro JS • Convite aberto para jardineiros parceiros
+    Portal do Jardineiro JS • Dashboard do Parceiro • Acesso rápido às ferramentas oficiais
   </div>
 
   <header>
@@ -669,117 +696,90 @@
         <img src="logo branca limpa.png" alt="JS Jardinagem">
         <div class="brand-box">
           <strong>JS JARDINAGEM</strong>
-          <span>Parceiros JS • Boas-vindas ao portal</span>
+          <span>Portal do Jardineiro • Dashboard do Parceiro</span>
         </div>
       </div>
 
       <nav class="links">
-        <a href="index.html">Início</a>
-        <a href="#como-funciona">Como funciona</a>
+        <a href="#inicio">Início</a>
         <a href="#ferramentas">Ferramentas</a>
+        <a href="#beneficios">Benefícios</a>
         <a href="#pontuacao">Pontuação</a>
-        <a href="#cadastro">Cadastro</a>
+        <a href="#servicos">Serviços</a>
       </nav>
 
       <a href="index.html" class="btn btn-primary">Voltar ao site</a>
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero" id="inicio">
     <div class="wrap hero-grid">
       <div>
-        <h1>Entre para o Portal do Jardineiro JS</h1>
+        <h1>Bem-vindo ao novo Portal do Jardineiro</h1>
         <p>
-          Esta é a porta de entrada para jardineiros parceiros que querem trabalhar com mais organização,
-          mais acesso a ferramentas, mais padrão operacional e mais oportunidade real dentro da JS Jardinagem.
+          Esta é a página principal de entrada do parceiro JS. Aqui você acessa as ferramentas
+          oficiais, acompanha a lógica de evolução dentro do sistema, entende os benefícios
+          do portal e se posiciona para receber mais oportunidades com organização e padrão.
         </p>
 
         <div class="pill-row">
-          <span class="pill">🌿 Cadastro de perfil</span>
-          <span class="pill">📋 Ferramentas em Script</span>
-          <span class="pill">🏅 Sistema de pontuação</span>
-          <span class="pill">🚀 Crescimento no portal</span>
+          <span class="pill">🌿 Cadastro oficial</span>
+          <span class="pill">📋 Novo orçamento</span>
+          <span class="pill">♻️ Atualização de orçamento</span>
+          <span class="pill">🏅 Pontuação do parceiro</span>
+          <span class="pill">🚀 Crescimento dentro da JS</span>
         </div>
 
         <div class="hero-actions">
-          <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-success" target="_blank" rel="noopener">Fazer cadastro agora</a>
-          <a href="#como-funciona" class="btn btn-outline">Entender a plataforma</a>
-          <a href="#ferramentas" class="btn btn-soft">Ver ferramentas</a>
+          <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-success" target="_blank" rel="noopener">Cadastro de parceiros</a>
+          <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo orçamento</a>
+          <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-soft" target="_blank" rel="noopener">Atualização de orçamentos</a>
         </div>
       </div>
 
       <div class="hero-side">
-        <h3>Para quem é esta página</h3>
+        <h3>O que você encontra aqui</h3>
         <p>
-          Para jardineiros, líderes de campo e parceiros que querem entrar no ecossistema JS e operar com um sistema mais profissional.
+          O dashboard do parceiro foi montado para centralizar a entrada do jardineiro dentro
+          do sistema JS, deixando o processo mais profissional, mais claro e mais escalável.
         </p>
         <ul>
-          <li>Conhecer como funciona o Portal do Jardineiro</li>
-          <li>Entender as ferramentas e o fluxo operacional</li>
-          <li>Fazer o cadastro de perfil parceiro</li>
-          <li>Começar a construir pontuação e reputação</li>
-          <li>Ter acesso a oportunidades e futura área de membros</li>
+          <li>Cadastro parceiro oficial</li>
+          <li>Acesso ao novo formulário de orçamento</li>
+          <li>Atualização e revisão de orçamentos já criados</li>
+          <li>Visualização dos benefícios do portal</li>
+          <li>Entendimento da pontuação e reputação</li>
+          <li>Lista dos tipos de serviços disponíveis na operação JS</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section id="como-funciona">
+  <section style="padding-top:28px">
     <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>Como funciona o sistema JS</h2>
-          <p>
-            O Portal do Jardineiro foi pensado para transformar o parceiro em alguém mais bem posicionado,
-            mais organizado e mais valioso dentro da operação.
-          </p>
-        </div>
-      </div>
-
-      <div class="intro-grid">
-        <div class="card intro-main">
-          <h3>Uma plataforma para gerar trabalho e evolução</h3>
-          <p>
-            O parceiro entra, faz seu cadastro, organiza seu perfil, começa a utilizar as ferramentas da JS
-            e passa a ter uma trilha de reputação dentro do portal. Isso cria base para receber oportunidades,
-            crescer em nível e participar mais ativamente da estrutura da empresa.
-          </p>
-
-          <div class="intro-list">
-            <div class="intro-item">
-              <strong>1. Cadastro de perfil</strong>
-              <span>Seu perfil entra no sistema com seus dados, sua fase atual e sua intenção de participação.</span>
-            </div>
-            <div class="intro-item">
-              <strong>2. Uso das ferramentas</strong>
-              <span>As ferramentas em formulário Script ajudam a registrar, organizar e profissionalizar a operação.</span>
-            </div>
-            <div class="intro-item">
-              <strong>3. Pontuação e reputação</strong>
-              <span>Constância, postura, participação e padrão de trabalho fortalecem sua posição dentro do portal.</span>
-            </div>
-            <div class="intro-item">
-              <strong>4. Mais acesso e oportunidades</strong>
-              <span>O parceiro que evolui tende a ter mais confiança, mais visibilidade e mais espaço dentro da JS.</span>
-            </div>
-          </div>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <p class="k">Entrada oficial</p>
+          <p class="v">Cadastro</p>
+          <p class="s">O parceiro começa pelo perfil oficial dentro do sistema JS.</p>
         </div>
 
-        <div class="card member-box">
-          <span class="member-badge">💠 Proposta inicial de membro parceiro</span>
-          <div class="member-price">R$ 29,90<span style="font-size:18px;font-weight:900">/mês</span></div>
-          <p>
-            Valor sugerido para acesso ao ambiente de membro do Portal do Jardineiro, com ferramentas,
-            prioridade em novidades, fortalecimento de perfil e evolução dentro do sistema JS.
-          </p>
+        <div class="kpi">
+          <p class="k">Ferramenta ativa</p>
+          <p class="v">Orçamento</p>
+          <p class="s">Nova versão do orçamento para registrar oportunidades com mais padrão.</p>
+        </div>
 
-          <ul class="member-list">
-            <li>Acesso ao ambiente parceiro da JS</li>
-            <li>Cadastro e perfil ativo no sistema</li>
-            <li>Participação na lógica de pontuação e reputação</li>
-            <li>Entrada prioritária em novas fases do portal</li>
-            <li>Base para acesso a ferramentas, oportunidades e futura área exclusiva</li>
-          </ul>
+        <div class="kpi">
+          <p class="k">Gestão</p>
+          <p class="v">Atualização</p>
+          <p class="s">Permite revisar e atualizar informações dos orçamentos lançados.</p>
+        </div>
+
+        <div class="kpi">
+          <p class="k">Evolução</p>
+          <p class="v">Pontuação</p>
+          <p class="s">A reputação do parceiro tende a crescer com constância e postura.</p>
         </div>
       </div>
     </div>
@@ -789,10 +789,10 @@
     <div class="wrap">
       <div class="section-title">
         <div>
-          <h2>Ferramentas do Portal</h2>
+          <h2>Ferramentas principais do Portal</h2>
           <p>
-            Nesta nova fase vamos trabalhar apenas com formulários em Script, deixando tudo mais limpo,
-            mais profissional e mais alinhado com a estrutura que a JS quer construir.
+            Aqui ficam os acessos centrais da operação atual. O objetivo é deixar o parceiro
+            com entrada rápida nas rotinas mais importantes do sistema.
           </p>
         </div>
       </div>
@@ -801,53 +801,56 @@
         <div class="card">
           <div class="tool">
             <div class="icon">👤</div>
-            <h3>Cadastro de perfil parceiro</h3>
+            <h3>Cadastro de parceiros</h3>
             <p>
-              Este é o primeiro formulário oficial do novo sistema. Ele abre a porta de entrada para o jardineiro dentro do portal.
+              Formulário oficial de entrada do jardineiro parceiro na estrutura JS. É aqui que
+              começa o perfil dentro do portal.
             </p>
             <div class="chips">
-              <span class="chip">Script</span>
               <span class="chip">Perfil</span>
               <span class="chip">Entrada oficial</span>
+              <span class="chip">Script App</span>
             </div>
             <div class="actions">
-              <a class="btn btn-success" href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" target="_blank" rel="noopener">Abrir cadastro parceiro</a>
+              <a class="btn btn-success" href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" target="_blank" rel="noopener">Abrir cadastro</a>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="tool">
-            <div class="icon">🧰</div>
-            <h3>Ferramentas operacionais JS</h3>
+            <div class="icon">🧮</div>
+            <h3>Novo orçamento</h3>
             <p>
-              Os próximos formulários em Script vão organizar orçamento, execução, aceite e movimentação operacional dos parceiros.
+              Ferramenta para abrir um novo orçamento com mais organização, mais clareza de
+              custos e melhor padrão de apresentação.
             </p>
             <div class="chips">
-              <span class="chip">Script</span>
-              <span class="chip">Operação</span>
+              <span class="chip">Orçamento</span>
+              <span class="chip">Novo serviço</span>
               <span class="chip">Padrão JS</span>
             </div>
             <div class="actions">
-              <a class="btn btn-soft" href="#cadastro">Começar pelo cadastro</a>
+              <a class="btn btn-primary" href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" target="_blank" rel="noopener">Abrir novo orçamento</a>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="tool">
-            <div class="icon">📲</div>
-            <h3>Portal em evolução contínua</h3>
+            <div class="icon">♻️</div>
+            <h3>Atualização de orçamentos</h3>
             <p>
-              O parceiro entra agora em uma fase inicial, mas já dentro de uma estrutura pensada para crescer com a JS ao longo do tempo.
+              Página para revisar, complementar ou ajustar informações de orçamentos já criados
+              dentro da operação.
             </p>
             <div class="chips">
-              <span class="chip">Beta</span>
-              <span class="chip">Expansão</span>
-              <span class="chip">Comunidade</span>
+              <span class="chip">Revisão</span>
+              <span class="chip">Atualização</span>
+              <span class="chip">Gestão</span>
             </div>
             <div class="actions">
-              <a class="btn btn-outline" href="#pontuacao">Entender a pontuação</a>
+              <a class="btn btn-soft" href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" target="_blank" rel="noopener">Atualizar orçamento</a>
             </div>
           </div>
         </div>
@@ -855,13 +858,78 @@
     </div>
   </section>
 
-  <section id="etapas" style="background:#f7f9f8">
+  <section id="beneficios" style="background:#f7f9f8">
     <div class="wrap">
       <div class="section-title">
         <div>
-          <h2>Etapas para entrar no portal</h2>
+          <h2>Benefícios para o parceiro JS</h2>
           <p>
-            A jornada foi desenhada para ser simples: entrar, se posicionar, aprender a usar e crescer junto com a plataforma.
+            O portal não é só um conjunto de links. Ele foi pensado para aumentar organização,
+            melhorar a posição do parceiro dentro da operação e abrir espaço para crescimento real.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-grid">
+        <div class="card benefit">
+          <h3>Mais organização</h3>
+          <p>
+            O parceiro passa a trabalhar com ferramentas mais claras, com melhor registro de dados,
+            histórico operacional e mais padrão nas informações.
+          </p>
+        </div>
+
+        <div class="card benefit">
+          <h3>Mais visibilidade</h3>
+          <p>
+            Quem participa do sistema de forma correta tende a ser mais visto dentro da estrutura
+            da JS e ganhar mais confiança para futuras oportunidades.
+          </p>
+        </div>
+
+        <div class="card benefit">
+          <h3>Mais profissionalismo</h3>
+          <p>
+            O uso do portal fortalece postura, apresentação, leitura de serviço, entrada de orçamento
+            e relacionamento com a operação.
+          </p>
+        </div>
+
+        <div class="card benefit">
+          <h3>Base para reputação</h3>
+          <p>
+            O parceiro deixa de ser apenas alguém disponível e passa a construir histórico,
+            reputação e posicionamento dentro do ecossistema JS.
+          </p>
+        </div>
+
+        <div class="card benefit">
+          <h3>Melhor acesso a oportunidades</h3>
+          <p>
+            Um parceiro alinhado com o sistema tende a entrar com mais força nas novas fases do portal,
+            nos serviços disponíveis e nas futuras áreas exclusivas.
+          </p>
+        </div>
+
+        <div class="card benefit">
+          <h3>Crescimento junto com a JS</h3>
+          <p>
+            A intenção do portal é criar uma trilha onde o parceiro evolui junto com a empresa,
+            com mais padrão, mais estrutura e mais chance de avanço.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Como entrar e operar no portal</h2>
+          <p>
+            A lógica do sistema foi desenhada para ser simples: entrar, se organizar, começar a usar
+            as ferramentas e crescer em reputação.
           </p>
         </div>
       </div>
@@ -871,15 +939,15 @@
           <div class="step-number">1</div>
           <h3>Fazer o cadastro</h3>
           <p>
-            Preencha seu perfil parceiro no novo formulário em Script e registre sua entrada oficial.
+            Registrar o perfil parceiro no sistema oficial da JS.
           </p>
         </div>
 
         <div class="card step-card">
           <div class="step-number">2</div>
-          <h3>Entender as regras</h3>
+          <h3>Usar as ferramentas</h3>
           <p>
-            Conheça o padrão da JS, a lógica da plataforma e como a operação será organizada.
+            Entrar no fluxo de orçamento, atualização e demais etapas operacionais.
           </p>
         </div>
 
@@ -887,15 +955,15 @@
           <div class="step-number">3</div>
           <h3>Construir pontuação</h3>
           <p>
-            Participação, constância, postura e qualidade ajudam a formar reputação dentro do portal.
+            Atitude, constância, padrão e entrega tendem a fortalecer o perfil do parceiro.
           </p>
         </div>
 
         <div class="card step-card">
           <div class="step-number">4</div>
-          <h3>Crescer como membro</h3>
+          <h3>Crescer no sistema</h3>
           <p>
-            O parceiro ativo e bem posicionado tende a acessar mais ferramentas, mais visibilidade e mais oportunidades.
+            O parceiro melhor posicionado tende a ganhar prioridade e novas oportunidades.
           </p>
         </div>
       </div>
@@ -906,10 +974,10 @@
     <div class="wrap">
       <div class="score-band">
         <div>
-          <h3>Pontuação, perfil e reputação</h3>
+          <h3>Pontuação, reputação e evolução</h3>
           <p>
-            O objetivo do sistema não é apenas cadastrar pessoas, mas identificar quem realmente constrói valor dentro da JS.
-            O parceiro que participa, responde bem, trabalha com padrão e cresce junto, sobe de nível.
+            O sistema de pontuação do parceiro existe para identificar quem realmente soma valor
+            à operação. O foco é premiar postura, comprometimento, qualidade e alinhamento com o padrão JS.
           </p>
         </div>
 
@@ -917,62 +985,166 @@
           <div class="mini-kpi">
             <p class="k">Perfil ativo</p>
             <p class="v">Entrada</p>
-            <p class="s">Quem entra no sistema começa a construir presença oficial.</p>
+            <p class="s">Cadastro completo e participação real no sistema.</p>
           </div>
 
           <div class="mini-kpi">
             <p class="k">Pontuação</p>
             <p class="v">Reputação</p>
-            <p class="s">Postura, constância e padrão vão contar na evolução do parceiro.</p>
+            <p class="s">Constância, resposta, postura e padrão fortalecem a imagem do parceiro.</p>
           </div>
 
           <div class="mini-kpi">
-            <p class="k">Membro JS</p>
-            <p class="v">Prioridade</p>
-            <p class="s">Mais alinhamento com o portal pode significar mais acesso e mais destaque.</p>
+            <p class="k">Prioridade</p>
+            <p class="v">Destaque</p>
+            <p class="s">Quem cresce no portal tende a ter mais visibilidade nas oportunidades.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="cadastro">
+  <section id="servicos">
     <div class="wrap">
       <div class="section-title">
         <div>
-          <h2>Primeiro passo: cadastro do jardineiro parceiro</h2>
+          <h2>Lista de serviços disponíveis na operação JS</h2>
           <p>
-            Este é o formulário oficial que inaugura a nova fase do Portal do Jardineiro. Ele já está em Script e funcionando.
+            Abaixo está uma base dos tipos de serviços que normalmente fazem parte da estrutura
+            da JS Jardinagem e que ajudam o parceiro a entender o perfil das oportunidades.
+          </p>
+        </div>
+      </div>
+
+      <div class="service-grid">
+        <div class="card service">
+          <h3>Manutenção de rotina</h3>
+          <p>
+            Serviços recorrentes em condomínios, empresas e áreas verdes com foco em manutenção contínua.
+          </p>
+          <ul>
+            <li>Corte de grama</li>
+            <li>Roçagem</li>
+            <li>Limpeza de canteiros</li>
+            <li>Retirada de mato</li>
+            <li>Acabamento geral</li>
+          </ul>
+        </div>
+
+        <div class="card service">
+          <h3>Revitalização e recuperação</h3>
+          <p>
+            Serviços com foco em transformar áreas degradadas, melhorar visual e recuperar jardins.
+          </p>
+          <ul>
+            <li>Revitalização de jardim</li>
+            <li>Replantio</li>
+            <li>Reposição de terra</li>
+            <li>Adubação</li>
+            <li>Correção visual de áreas verdes</li>
+          </ul>
+        </div>
+
+        <div class="card service">
+          <h3>Serviços técnicos e especiais</h3>
+          <p>
+            Atividades que exigem mais atenção, mais análise de risco ou apoio específico de equipe e equipamento.
+          </p>
+          <ul>
+            <li>Poda de árvores</li>
+            <li>Poda de palmeiras</li>
+            <li>Aplicação de defensivos</li>
+            <li>Controle de pragas básicas</li>
+            <li>Serviços com risco operacional</li>
+          </ul>
+        </div>
+
+        <div class="card service">
+          <h3>Implantação e melhoria</h3>
+          <p>
+            Serviços voltados à criação, reformulação ou expansão de áreas verdes.
+          </p>
+          <ul>
+            <li>Plantio de grama</li>
+            <li>Plantio ornamental</li>
+            <li>Formação de canteiros</li>
+            <li>Acabamento com pedras e cobertura</li>
+            <li>Melhoria estética do espaço</li>
+          </ul>
+        </div>
+
+        <div class="card service">
+          <h3>Apoio operacional parceiro</h3>
+          <p>
+            Modalidades em que o parceiro atua junto da JS dentro dos modelos de parceria da operação.
+          </p>
+          <ul>
+            <li>Serviço captado pelo parceiro</li>
+            <li>Serviço aberto pela JS para parceria</li>
+            <li>Serviço recorrente com apoio do sistema JS</li>
+            <li>Execução conjunta</li>
+            <li>Apoio em demandas especiais</li>
+          </ul>
+        </div>
+
+        <div class="card service">
+          <h3>Expansão futura do portal</h3>
+          <p>
+            A estrutura foi feita para crescer. Novas telas e rotinas podem entrar conforme a operação evoluir.
+          </p>
+          <ul>
+            <li>Aceite de serviço</li>
+            <li>Dashboard de serviços disponíveis</li>
+            <li>Área de membros</li>
+            <li>Histórico parceiro</li>
+            <li>Painéis financeiros e operacionais</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="acessos-rapidos" style="background:#f7f9f8">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Acessos rápidos</h2>
+          <p>
+            Esta seção deixa os botões principais visíveis de forma direta para facilitar o uso no dia a dia.
           </p>
         </div>
       </div>
 
       <div class="faq-grid">
         <div class="card faq-card">
-          <h3>O que este cadastro faz?</h3>
+          <h3>Cadastro de parceiros</h3>
           <p>
-            Ele registra seu perfil dentro da estrutura parceira da JS e abre a base para futuras integrações no portal.
+            Registre ou atualize a entrada do jardineiro parceiro no sistema oficial.
           </p>
+          <div style="margin-top:14px">
+            <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-success" target="_blank" rel="noopener">Abrir cadastro</a>
+          </div>
         </div>
 
         <div class="card faq-card">
-          <h3>Por que começar por ele?</h3>
+          <h3>Novo orçamento</h3>
           <p>
-            Porque sem perfil organizado não existe reputação, pontuação, acesso inteligente nem evolução dentro do sistema.
+            Lance novos serviços e novas oportunidades com mais padrão de preenchimento.
           </p>
+          <div style="margin-top:14px">
+            <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Abrir orçamento</a>
+          </div>
         </div>
 
         <div class="card faq-card">
-          <h3>Qual o próximo passo?</h3>
+          <h3>Atualização de orçamentos</h3>
           <p>
-            Depois do cadastro, o parceiro entra na trilha do portal e passa a acompanhar as próximas etapas e ferramentas.
+            Revise, corrija ou complemente informações de orçamentos já cadastrados.
           </p>
+          <div style="margin-top:14px">
+            <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-soft" target="_blank" rel="noopener">Atualizar agora</a>
+          </div>
         </div>
-      </div>
-
-      <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-        <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-success" target="_blank" rel="noopener">Abrir formulário de cadastro</a>
-        <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20no%20Portal%20do%20Jardineiro%20como%20parceiro." class="btn btn-outline" target="_blank" rel="noopener">Falar com a JS</a>
       </div>
     </div>
   </section>
@@ -980,17 +1152,21 @@
   <section>
     <div class="wrap final-band">
       <div>
-        <h3>O Portal do Jardineiro começa aqui</h3>
+        <h3>O parceiro forte entra por aqui</h3>
         <p>
-          Esta é a página de boas-vindas para os jardineiros parceiros da JS. O foco agora é claro:
-          cadastro, entendimento da plataforma, entrada em um sistema organizado e construção de reputação real.
+          Este dashboard é a nova porta de entrada do Portal do Jardineiro. O foco agora é centralizar
+          os principais acessos, apresentar a lógica do sistema e preparar a base para as próximas fases
+          da operação JS.
         </p>
+        <div class="small-note">
+          Sugestão: salvar esta página como <strong>dashboard_parceiros.html</strong>.
+        </div>
       </div>
 
       <div class="actions">
-        <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-primary" target="_blank" rel="noopener">Quero me cadastrar</a>
-        <a href="index.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)">Voltar ao site</a>
-        <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Vi%20a%20p%C3%A1gina%20de%20boas-vindas%20do%20Portal%20do%20Jardineiro%20e%20quero%20participar." class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-success" target="_blank" rel="noopener">Quero me cadastrar</a>
+        <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Abrir novo orçamento</a>
+        <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20falar%20sobre%20o%20Portal%20do%20Jardineiro." class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)" target="_blank" rel="noopener">Falar no WhatsApp</a>
       </div>
     </div>
   </section>
@@ -1000,15 +1176,16 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p>
-          Portal do Jardineiro • Página de boas-vindas para parceiros, com entrada no sistema, ferramentas em Script e construção de reputação.
+          Portal do Jardineiro • Dashboard do Parceiro com acessos rápidos,
+          ferramentas em Script, benefícios, pontuação e visão dos serviços da operação.
         </p>
       </div>
 
       <div>
-        <p><a href="index.html">Início</a></p>
-        <p><a href="#como-funciona">Como funciona</a></p>
+        <p><a href="#inicio">Início</a></p>
         <p><a href="#ferramentas">Ferramentas</a></p>
-        <p><a href="#cadastro">Cadastro</a></p>
+        <p><a href="#beneficios">Benefícios</a></p>
+        <p><a href="#servicos">Serviços</a></p>
       </div>
 
       <div>
