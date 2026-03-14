@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>JS • Aceite de Serviço</title>
+  <meta
+    name="description"
+    content="Página de aceite de serviço do Portal do Jardineiro da JS Jardinagem."
+  />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --pri3:#0d3270;
+      --gold:#d89b00;
+      --gold2:#f4b400;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f6f7f6;
+      --line:#e7ecef;
+      --soft:#f8fafc;
+      --soft2:#eef4ff;
+      --good:#027a48;
+      --warn:#b54708;
+      --bad:#b42318;
+      --dark:#101828;
+      --shadow:0 10px 26px rgba(0,0,0,.06);
+      --shadow-strong:0 18px 40px rgba(0,0,0,.12);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+
+    .wrap{width:min(980px,92vw);margin:auto}
+
+    .topbar{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      text-align:center;
+      padding:10px 12px;
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:#ffffffde;
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid #eef0ee;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--pri),var(--pri2));
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-weight:1000;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .brand strong{
+      display:block;
+      color:var(--pri);
+      font-size:18px;
+      font-weight:1000;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+      line-height:1.05;
+    }
+
+    .brand span{
+      display:block;
+      color:#475467;
+      font-size:12px;
+      font-weight:900;
+      margin-top:4px;
+    }
+
+    .nav-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      appearance:none;
+      border-radius:12px;
+      padding:12px 16px;
+      font-weight:900;
+      cursor:pointer;
+      border:1px solid #dfe3df;
+      background:#fff;
+      transition:.22s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+      min-height:46px;
+      text-decoration:none;
+    }
+
+    .btn:hover{background:#f3f5f7}
+
+    .btn-primary{
+      background:var(--pri);
+      color:#fff;
+      border-color:var(--pri);
+    }
+
+    .btn-primary:hover{
+      background:var(--pri3);
+      border-color:var(--pri3);
+    }
+
+    .btn-soft{
+      background:#eef4ff;
+      border-color:#d7e7ff;
+      color:var(--pri);
+    }
+
+    .btn-soft:hover{background:#e4efff}
+
+    .btn-success{
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+      color:#fff;
+      border-color:#0f8f52;
+    }
+
+    .btn-success:hover{filter:brightness(.98)}
+
+    .btn-gold{
+      background:linear-gradient(120deg,var(--gold2),var(--gold));
+      color:#1f1600;
+      border-color:var(--gold);
+    }
+
+    .btn-gold:hover{filter:brightness(.98)}
+
+    section{padding:28px 0}
+
+    .hero{
+      background:
+        linear-gradient(120deg, rgba(17,64,132,.94), rgba(17,128,74,.88)),
+        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 28%);
+      color:#fff;
+      padding:42px 0 24px;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.02;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:760px;
+      line-height:1.72;
+      font-size:16px;
+      font-weight:700;
+      opacity:.98;
+    }
+
+    .pill-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,.25);
+      background:rgba(255,255,255,.12);
+      color:#fff;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .card-pad{padding:20px}
+
+    .card h2{
+      margin:0 0 10px;
+      color:var(--pri);
+      font-size:24px;
+      line-height:1.08;
+    }
+
+    .card p{
+      margin:0;
+      color:#475467;
+      line-height:1.7;
+      font-weight:700;
+    }
+
+    .service-id{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#eef4ff;
+      color:var(--pri);
+      border:1px solid #d7e7ff;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:12px;
+      font-weight:1000;
+      margin-bottom:12px;
+    }
+
+    .status-ok{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      background:#ecfdf3;
+      color:#027a48;
+      border:1px solid #abefc6;
+      margin-bottom:12px;
+    }
+
+    .status-bad{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      background:#fff5f4;
+      color:#b42318;
+      border:1px solid #f4c7c3;
+      margin-bottom:12px;
+    }
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .mini{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:var(--soft);
+      padding:14px;
+    }
+
+    .mini .k{
+      margin:0 0 6px;
+      color:#667085;
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .mini .v{
+      margin:0;
+      color:var(--ink);
+      font-size:15px;
+      line-height:1.5;
+      font-weight:900;
+      word-break:break-word;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .field{
+      display:grid;
+      gap:6px;
+    }
+
+    .field label{
+      font-size:12px;
+      font-weight:900;
+      color:#475467;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .field input,
+    .field textarea{
+      width:100%;
+      min-height:46px;
+      border-radius:12px;
+      border:1px solid #dbe5ec;
+      padding:11px 13px;
+      font:inherit;
+      background:#fff;
+      color:var(--ink);
+      outline:none;
+    }
+
+    .field textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus{
+      border-color:var(--pri);
+      box-shadow:0 0 0 4px rgba(17,64,132,.08);
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .loading,
+    .error,
+    .success{
+      padding:18px;
+      border-radius:16px;
+      font-weight:800;
+      line-height:1.6;
+    }
+
+    .loading{
+      background:#eef4ff;
+      border:1px solid #d7e7ff;
+      color:var(--pri);
+    }
+
+    .error{
+      background:#fff5f4;
+      border:1px solid #f4c7c3;
+      color:#b42318;
+    }
+
+    .success{
+      background:#ecfdf3;
+      border:1px solid #abefc6;
+      color:#027a48;
+    }
+
+    .hidden{display:none !important}
+
+    footer{
+      background:#0a1a12;
+      color:#fff;
+      padding:30px;
+      margin-top:40px;
+    }
+
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:22px;
+    }
+
+    .foot a{color:#fff}
+
+    @media(max-width:900px){
+      .grid,
+      .mini-grid,
+      .foot{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:760px){
+      .nav{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .nav-actions{
+        width:100%;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .actions{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    Portal do Jardineiro JS • Aceite de serviço
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="brand-logo">JS</div>
+        <div>
+          <strong>JS JARDINAGEM</strong>
+          <span>Portal do Jardineiro • Aceite de Serviço</span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="serviços-disponiveis.html" class="btn btn-soft">Voltar aos serviços</a>
+        <a href="dashboard_parceiros.html" class="btn btn-primary">Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Aceite de Serviço</h1>
+      <p>
+        Confirme abaixo os dados do serviço e registre o parceiro que está pegando essa oportunidade dentro do sistema JS.
+      </p>
+
+      <div class="pill-row">
+        <span class="pill">🆔 ID do serviço</span>
+        <span class="pill">👤 Nome do parceiro</span>
+        <span class="pill">📞 Telefone</span>
+        <span class="pill">✅ Registro oficial</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div id="loadingBox" class="loading">Carregando dados do serviço...</div>
+      <div id="errorBox" class="error hidden"></div>
+      <div id="successBox" class="success hidden"></div>
+
+      <div id="mainGrid" class="grid hidden">
+        <div class="card card-pad">
+          <div id="statusBadge" class="status-ok">● Serviço disponível para aceite</div>
+          <div class="service-id" id="serviceIdBadge">ID —</div>
+
+          <h2 id="serviceTitle">Serviço</h2>
+          <p id="serviceSubtitle">Carregando...</p>
+
+          <div class="mini-grid">
+            <div class="mini">
+              <p class="k">Data do serviço</p>
+              <p class="v" id="vDataServico">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Bairro</p>
+              <p class="v" id="vBairro">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Descrição</p>
+              <p class="v" id="vDescricao">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Status</p>
+              <p class="v" id="vStatus">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Equipe total</p>
+              <p class="v" id="vEquipe">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Horas</p>
+              <p class="v" id="vHoras">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Preço final</p>
+              <p class="v" id="vPrecoFinal">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Valor parceiro</p>
+              <p class="v" id="vValorParceiro">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Ganho por hora</p>
+              <p class="v" id="vGanhoHora">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Tipo de parceria</p>
+              <p class="v" id="vParceria">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Próxima ação</p>
+              <p class="v" id="vProximaAcao">—</p>
+            </div>
+
+            <div class="mini">
+              <p class="k">Endereço</p>
+              <p class="v" id="vEndereco">—</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a id="mapsBtn" href="#" class="btn btn-soft" target="_blank" rel="noopener">Abrir localização</a>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <h2>Confirmar parceiro que pegou</h2>
+          <p>
+            Preencha os dados abaixo para registrar oficialmente o aceite deste serviço.
+          </p>
+
+          <form id="aceiteForm" class="form-grid">
+            <div class="field">
+              <label for="nomeParceiro">Nome do parceiro</label>
+              <input id="nomeParceiro" name="nomeParceiro" type="text" placeholder="Ex.: Aldo" required />
+            </div>
+
+            <div class="field">
+              <label for="telefoneParceiro">Telefone do parceiro</label>
+              <input id="telefoneParceiro" name="telefoneParceiro" type="text" placeholder="Ex.: 34992142960" required />
+            </div>
+
+            <div class="field">
+              <label for="observacao">Observação</label>
+              <textarea id="observacao" name="observacao" placeholder="Ex.: PARCEIRO_QUE_PEGOU"></textarea>
+            </div>
+
+            <div class="actions">
+              <button id="submitBtn" type="submit" class="btn btn-gold">Confirmar aceite</button>
+              <a href="serviços-disponiveis.html" class="btn btn-soft">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p>
+          Página de aceite de serviço integrada à planilha da operação.
+        </p>
+      </div>
+
+      <div>
+        <p><a href="dashboard_parceiros.html">Dashboard</a></p>
+        <p><a href="serviços-disponiveis.html">Serviços disponíveis</a></p>
+      </div>
+
+      <div>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><a href="https://www.instagram.com/jardinagemudi/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentService = null;
+    let currentId = '';
+
+    const els = {
+      loadingBox: document.getElementById('loadingBox'),
+      errorBox: document.getElementById('errorBox'),
+      successBox: document.getElementById('successBox'),
+      mainGrid: document.getElementById('mainGrid'),
+      statusBadge: document.getElementById('statusBadge'),
+      serviceIdBadge: document.getElementById('serviceIdBadge'),
+      serviceTitle: document.getElementById('serviceTitle'),
+      serviceSubtitle: document.getElementById('serviceSubtitle'),
+      vDataServico: document.getElementById('vDataServico'),
+      vBairro: document.getElementById('vBairro'),
+      vDescricao: document.getElementById('vDescricao'),
+      vStatus: document.getElementById('vStatus'),
+      vEquipe: document.getElementById('vEquipe'),
+      vHoras: document.getElementById('vHoras'),
+      vPrecoFinal: document.getElementById('vPrecoFinal'),
+      vValorParceiro: document.getElementById('vValorParceiro'),
+      vGanhoHora: document.getElementById('vGanhoHora'),
+      vParceria: document.getElementById('vParceria'),
+      vProximaAcao: document.getElementById('vProximaAcao'),
+      vEndereco: document.getElementById('vEndereco'),
+      mapsBtn: document.getElementById('mapsBtn'),
+      aceiteForm: document.getElementById('aceiteForm'),
+      nomeParceiro: document.getElementById('nomeParceiro'),
+      telefoneParceiro: document.getElementById('telefoneParceiro'),
+      observacao: document.getElementById('observacao'),
+      submitBtn: document.getElementById('submitBtn')
+    };
+
+    function getParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name) || '';
+    }
+
+    function showError(message) {
+      els.errorBox.textContent = message;
+      els.errorBox.classList.remove('hidden');
+    }
+
+    function hideError() {
+      els.errorBox.classList.add('hidden');
+      els.errorBox.textContent = '';
+    }
+
+    function showSuccess(message) {
+      els.successBox.textContent = message;
+      els.successBox.classList.remove('hidden');
+    }
+
+    function hideSuccess() {
+      els.successBox.classList.add('hidden');
+      els.successBox.textContent = '';
+    }
+
+    function setLoading(message) {
+      els.loadingBox.textContent = message;
+      els.loadingBox.classList.remove('hidden');
+    }
+
+    function hideLoading() {
+      els.loadingBox.classList.add('hidden');
+    }
+
+    function setDisponibilidade(disponivel, statusTexto) {
+      if (disponivel) {
+        els.statusBadge.className = 'status-ok';
+        els.statusBadge.textContent = '● Serviço disponível para aceite';
+        els.aceiteForm.classList.remove('hidden');
+      } else {
+        els.statusBadge.className = 'status-bad';
+        els.statusBadge.textContent = `● ${statusTexto || 'Serviço não disponível para aceite'}`;
+        els.aceiteForm.classList.add('hidden');
+      }
+    }
+
+    function fillService(servico, disponivel) {
+      currentService = servico;
+
+      els.serviceIdBadge.textContent = `ID ${servico.ID_SHORT || '—'}`;
+      els.serviceTitle.textContent = servico.CLIENTE || 'Serviço';
+      els.serviceSubtitle.textContent = `${servico.BAIRRO || 'Bairro não informado'} • ${servico.ENDERECO_TEXTO || 'Endereço não informado'}`;
+
+      els.vDataServico.textContent = servico.DATA_SERVICO || '—';
+      els.vBairro.textContent = servico.BAIRRO || '—';
+      els.vDescricao.textContent = servico.DESCRICAO || '—';
+      els.vStatus.textContent = servico.STATUS || '—';
+      els.vEquipe.textContent = servico.EQUIPE_TOTAL || '—';
+      els.vHoras.textContent = servico.HORAS || '—';
+      els.vPrecoFinal.textContent = servico.PRECO_FINAL || '—';
+      els.vValorParceiro.textContent = servico.VALOR_PARCEIRO || '—';
+      els.vGanhoHora.textContent = servico.GANHO_POR_HORA || '—';
+      els.vParceria.textContent = servico.TIPO_PARCERIA || '—';
+      els.vProximaAcao.textContent = servico.PROXIMA_ACAO || '—';
+      els.vEndereco.textContent = servico.ENDERECO_TEXTO || '—';
+
+      const mapsLink = servico.LINK_MAPS
+        ? servico.LINK_MAPS
+        : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(servico.ENDERECO_TEXTO || `${servico.CLIENTE || ''} ${servico.BAIRRO || ''}`)}`;
+
+      els.mapsBtn.href = mapsLink;
+
+      setDisponibilidade(disponivel, servico.DATA_ACEITE ? 'Serviço já aceito' : 'Serviço não disponível');
+    }
+
+    function carregarServico() {
+      currentId = getParam('id');
+
+      if (!currentId) {
+        hideLoading();
+        showError('ID do serviço não informado na URL.');
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler((res) => {
+          hideLoading();
+
+          if (!res || !res.ok) {
+            showError((res && res.message) || 'Não foi possível buscar o serviço.');
+            return;
+          }
+
+          hideError();
+          fillService(res.servico, res.disponivel);
+          els.mainGrid.classList.remove('hidden');
+
+          const clienteUrl = getParam('cliente');
+          if (clienteUrl && !res.servico.CLIENTE) {
+            els.serviceTitle.textContent = clienteUrl;
+          }
+        })
+        .buscarServicoParaAceite(currentId);
+    }
+
+    els.aceiteForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      hideError();
+      hideSuccess();
+
+      const nomeParceiro = els.nomeParceiro.value.trim();
+      const telefoneParceiro = els.telefoneParceiro.value.trim();
+      const observacao = els.observacao.value.trim();
+
+      if (!currentId) {
+        showError('ID do serviço inválido.');
+        return;
+      }
+
+      if (!nomeParceiro) {
+        showError('Informe o nome do parceiro.');
+        return;
+      }
+
+      if (!telefoneParceiro) {
+        showError('Informe o telefone do parceiro.');
+        return;
+      }
+
+      els.submitBtn.disabled = true;
+      els.submitBtn.textContent = 'Confirmando...';
+
+      google.script.run
+        .withSuccessHandler((res) => {
+          els.submitBtn.disabled = false;
+          els.submitBtn.textContent = 'Confirmar aceite';
+
+          if (!res || !res.ok) {
+            showError((res && res.message) || 'Não foi possível registrar o aceite.');
+            return;
+          }
+
+          showSuccess(`Aceite confirmado com sucesso. Parceiro: ${res.aceite.nomeParceiro} • ID: ${res.aceite.idShort}`);
+          setDisponibilidade(false, 'Serviço já aceito');
+          els.aceiteForm.classList.add('hidden');
+
+          if (currentService) {
+            currentService.STATUS = 'Aceito';
+            currentService.DATA_ACEITE = res.aceite.timestamp;
+            fillService(currentService, false);
+          }
+        })
+        .registrarAceiteServico({
+          idShort: currentId,
+          nomeParceiro,
+          telefoneParceiro,
+          observacao
+        });
+    });
+
+    carregarServico();
+  </script>
+</body>
+</html>
