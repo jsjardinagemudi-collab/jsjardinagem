@@ -1037,9 +1037,12 @@
     }
 
     function buildPegarServicoLink(row) {
-      const id = encodeURIComponent(row.ID_SHORT || '');
-      const cliente = encodeURIComponent(row.CLIENTE || '');
-      return `?page=aceite-servico&id=${id}&cliente=${cliente}`;
+      const base = window.location.origin + window.location.pathname;
+      const params = new URLSearchParams();
+      params.set('page', 'aceite-servico');
+      params.set('id', row.ID_SHORT || '');
+      params.set('cliente', row.CLIENTE || '');
+      return `${base}?${params.toString()}`;
     }
 
     function applyFilters() {
