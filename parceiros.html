@@ -37,6 +37,7 @@
       background:var(--bg);
       color:var(--ink);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      scroll-behavior:smooth;
     }
 
     a{text-decoration:none;color:inherit}
@@ -587,6 +588,36 @@
       font-size:14px;
     }
 
+    .quick-access{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .quick-card{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      height:100%;
+    }
+
+    .quick-card h3{
+      margin:0;
+      color:var(--pri);
+      font-size:19px;
+      line-height:1.12;
+    }
+
+    .quick-card p{
+      margin:0;
+      color:#475467;
+      line-height:1.68;
+      font-weight:700;
+      font-size:14px;
+    }
+
     .final-band{
       background:linear-gradient(120deg,var(--pri),var(--pri2));
       color:#fff;
@@ -642,6 +673,7 @@
       .steps-grid,
       .score-band,
       .faq-grid,
+      .quick-access,
       .foot{
         grid-template-columns:1fr;
       }
@@ -675,13 +707,15 @@
 
       <nav class="links">
         <a href="index.html">Início</a>
+        <a href="portal-do-jardineiro.html">Portal do Jardineiro</a>
+        <a href="servicos-disponiveis.html">Serviços Disponíveis</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#ferramentas">Ferramentas</a>
         <a href="#pontuacao">Pontuação</a>
         <a href="#cadastro">Cadastro</a>
       </nav>
 
-      <a href="index.html" class="btn btn-primary">Voltar ao site</a>
+      <a href="portal-do-jardineiro.html" class="btn btn-primary">Entrar no Portal</a>
     </div>
   </header>
 
@@ -703,8 +737,8 @@
 
         <div class="hero-actions">
           <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-success" target="_blank" rel="noopener">Fazer cadastro agora</a>
-          <a href="#como-funciona" class="btn btn-outline">Entender a plataforma</a>
-          <a href="#ferramentas" class="btn btn-soft">Ver ferramentas</a>
+          <a href="portal-do-jardineiro.html" class="btn btn-outline">Ir para o Portal</a>
+          <a href="servicos-disponiveis.html" class="btn btn-soft">Ver serviços disponíveis</a>
         </div>
       </div>
 
@@ -819,35 +853,35 @@
         <div class="card">
           <div class="tool">
             <div class="icon">🧰</div>
-            <h3>Ferramentas operacionais JS</h3>
+            <h3>Portal do Jardineiro</h3>
             <p>
-              Os próximos formulários em Script vão organizar orçamento, execução, aceite e movimentação operacional dos parceiros.
+              Acesse o ambiente principal do parceiro para navegar pelas áreas da operação, acompanhar recursos e evoluir dentro da estrutura JS.
             </p>
             <div class="chips">
-              <span class="chip">Script</span>
-              <span class="chip">Operação</span>
-              <span class="chip">Padrão JS</span>
+              <span class="chip">Portal</span>
+              <span class="chip">Área do parceiro</span>
+              <span class="chip">Acesso central</span>
             </div>
             <div class="actions">
-              <a class="btn btn-soft" href="#cadastro">Começar pelo cadastro</a>
+              <a class="btn btn-primary" href="portal-do-jardineiro.html">Entrar no Portal</a>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="tool">
-            <div class="icon">📲</div>
-            <h3>Portal em evolução contínua</h3>
+            <div class="icon">📋</div>
+            <h3>Serviços disponíveis</h3>
             <p>
-              O parceiro entra agora em uma fase inicial, mas já dentro de uma estrutura pensada para crescer com a JS ao longo do tempo.
+              Veja os serviços abertos para parceria, avalie oportunidades e entre no fluxo operacional da JS com mais rapidez.
             </p>
             <div class="chips">
-              <span class="chip">Beta</span>
-              <span class="chip">Expansão</span>
-              <span class="chip">Comunidade</span>
+              <span class="chip">Oportunidades</span>
+              <span class="chip">Parcerias</span>
+              <span class="chip">Agenda ativa</span>
             </div>
             <div class="actions">
-              <a class="btn btn-outline" href="#pontuacao">Entender a pontuação</a>
+              <a class="btn btn-soft" href="servicos-disponiveis.html">Abrir serviços disponíveis</a>
             </div>
           </div>
         </div>
@@ -877,17 +911,17 @@
 
         <div class="card step-card">
           <div class="step-number">2</div>
-          <h3>Entender as regras</h3>
+          <h3>Entrar no Portal</h3>
           <p>
-            Conheça o padrão da JS, a lógica da plataforma e como a operação será organizada.
+            Acesse a área principal do Portal do Jardineiro e conheça melhor o ambiente criado para parceiros.
           </p>
         </div>
 
         <div class="card step-card">
           <div class="step-number">3</div>
-          <h3>Construir pontuação</h3>
+          <h3>Ver serviços disponíveis</h3>
           <p>
-            Participação, constância, postura e qualidade ajudam a formar reputação dentro do portal.
+            Consulte as oportunidades abertas para parceria e acompanhe os serviços liberados no sistema.
           </p>
         </div>
 
@@ -965,14 +999,42 @@
         <div class="card faq-card">
           <h3>Qual o próximo passo?</h3>
           <p>
-            Depois do cadastro, o parceiro entra na trilha do portal e passa a acompanhar as próximas etapas e ferramentas.
+            Depois do cadastro, o parceiro entra na trilha do portal, acessa a área principal e acompanha os serviços disponíveis.
           </p>
         </div>
       </div>
 
       <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
         <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-success" target="_blank" rel="noopener">Abrir formulário de cadastro</a>
+        <a href="portal-do-jardineiro.html" class="btn btn-primary">Entrar no Portal do Jardineiro</a>
+        <a href="servicos-disponiveis.html" class="btn btn-soft">Ir para serviços disponíveis</a>
         <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20entrar%20no%20Portal%20do%20Jardineiro%20como%20parceiro." class="btn btn-outline" target="_blank" rel="noopener">Falar com a JS</a>
+      </div>
+
+      <div class="quick-access">
+        <div class="card quick-card">
+          <h3>Portal do Jardineiro</h3>
+          <p>
+            Área central do parceiro para navegar pelas ferramentas e acompanhar a evolução dentro da JS.
+          </p>
+          <a href="portal-do-jardineiro.html" class="btn btn-primary">Acessar portal</a>
+        </div>
+
+        <div class="card quick-card">
+          <h3>Serviços Disponíveis</h3>
+          <p>
+            Página para visualizar oportunidades liberadas pela JS e entrar com mais agilidade no fluxo de trabalho.
+          </p>
+          <a href="servicos-disponiveis.html" class="btn btn-soft">Abrir serviços</a>
+        </div>
+
+        <div class="card quick-card">
+          <h3>Cadastro parceiro</h3>
+          <p>
+            Primeiro formulário oficial para colocar o jardineiro dentro da estrutura e ativar seu perfil no sistema.
+          </p>
+          <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-success" target="_blank" rel="noopener">Fazer cadastro</a>
+        </div>
       </div>
     </div>
   </section>
@@ -983,13 +1045,14 @@
         <h3>O Portal do Jardineiro começa aqui</h3>
         <p>
           Esta é a página de boas-vindas para os jardineiros parceiros da JS. O foco agora é claro:
-          cadastro, entendimento da plataforma, entrada em um sistema organizado e construção de reputação real.
+          cadastro, entendimento da plataforma, entrada em um sistema organizado, acesso ao portal e visualização dos serviços disponíveis.
         </p>
       </div>
 
       <div class="actions">
         <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Quero me cadastrar</a>
-        <a href="index.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)">Voltar ao site</a>
+        <a href="portal-do-jardineiro.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)">Entrar no Portal</a>
+        <a href="servicos-disponiveis.html" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)">Ver serviços disponíveis</a>
         <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Vi%20a%20p%C3%A1gina%20de%20boas-vindas%20do%20Portal%20do%20Jardineiro%20e%20quero%20participar." class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)" target="_blank" rel="noopener">Falar no WhatsApp</a>
       </div>
     </div>
@@ -1006,8 +1069,8 @@
 
       <div>
         <p><a href="index.html">Início</a></p>
-        <p><a href="#como-funciona">Como funciona</a></p>
-        <p><a href="#ferramentas">Ferramentas</a></p>
+        <p><a href="portal-do-jardineiro.html">Portal do Jardineiro</a></p>
+        <p><a href="servicos-disponiveis.html">Serviços Disponíveis</a></p>
         <p><a href="#cadastro">Cadastro</a></p>
       </div>
 
