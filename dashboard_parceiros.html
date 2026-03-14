@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
 
-  <title>Portal do Jardineiro • Dashboard do Parceiro V2 • JS Jardinagem</title>
+  <title>Portal do Jardineiro • Dashboard do Parceiro V3 • JS Jardinagem</title>
   <meta
     name="description"
-    content="Dashboard central do Portal do Jardineiro da JS Jardinagem com acessos rápidos, cadastro de parceiros, novo orçamento, atualização de orçamentos, benefícios, pontuação e serviços disponíveis."
+    content="Dashboard central do Portal do Jardineiro da JS Jardinagem com cadastro de parceiros, novo orçamento, atualização de orçamentos, link para serviços disponíveis, benefícios, pontuação e visão operacional."
   />
 
   <link rel="icon" href="/favicon.ico" />
@@ -186,6 +186,17 @@
     .btn-dark:hover{
       background:#0b1220;
       border-color:#0b1220;
+    }
+
+    .btn-gold{
+      background:linear-gradient(120deg,#f4b400,#d89b00);
+      color:#1f1600;
+      border-color:#d89b00;
+    }
+
+    .btn-gold:hover{
+      filter:brightness(.98);
+      background:linear-gradient(120deg,#e6aa00,#c98f00);
     }
 
     section{padding:52px 0}
@@ -398,7 +409,7 @@
 
     .grid-tools{
       display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-columns:repeat(4,minmax(0,1fr));
       gap:16px;
     }
 
@@ -455,6 +466,52 @@
       margin-top:auto;
       display:grid;
       gap:10px;
+    }
+
+    .highlight-band{
+      background:linear-gradient(120deg,#0f1f3d,#114084 45%, #11804a);
+      color:#fff;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow-strong);
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:center;
+    }
+
+    .highlight-band h3{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.02;
+    }
+
+    .highlight-band p{
+      margin:0;
+      line-height:1.72;
+      font-weight:700;
+      opacity:.98;
+    }
+
+    .highlight-box{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:18px;
+    }
+
+    .highlight-box strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:15px;
+    }
+
+    .highlight-box ul{
+      margin:0;
+      padding-left:18px;
+      line-height:1.7;
+      font-weight:700;
+      font-size:14px;
     }
 
     .benefit-grid{
@@ -660,32 +717,6 @@
       font-weight:700;
     }
 
-    .faq-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-    }
-
-    .faq-card{
-      padding:18px;
-      height:100%;
-    }
-
-    .faq-card h3{
-      margin:0 0 8px;
-      color:var(--pri);
-      font-size:18px;
-      line-height:1.12;
-    }
-
-    .faq-card p{
-      margin:0;
-      color:#475467;
-      line-height:1.68;
-      font-weight:700;
-      font-size:14px;
-    }
-
     .cta-strip{
       background:#fff;
       border:1px solid var(--line);
@@ -774,12 +805,12 @@
       .quick-actions,
       .kpi-grid,
       .grid-tools,
+      .highlight-band,
       .benefit-grid,
       .steps-grid,
       .score-band,
       .service-grid,
       .module-grid,
-      .faq-grid,
       .foot{
         grid-template-columns:1fr;
       }
@@ -813,7 +844,7 @@
 <body>
 
   <div class="topbar">
-    Portal do Jardineiro JS • Dashboard central do parceiro • Ferramentas oficiais em um só lugar
+    Portal do Jardineiro JS • Dashboard central do parceiro • Acesso rápido às ferramentas e aos serviços disponíveis
   </div>
 
   <header>
@@ -822,7 +853,7 @@
         <img src="logo branca limpa.png" alt="JS Jardinagem">
         <div class="brand-box">
           <strong>JS JARDINAGEM</strong>
-          <span>Portal do Jardineiro • Dashboard do Parceiro V2</span>
+          <span>Portal do Jardineiro • Dashboard do Parceiro V3</span>
         </div>
       </div>
 
@@ -830,7 +861,7 @@
         <a href="#inicio">Início</a>
         <a href="#acoes">Ações rápidas</a>
         <a href="#ferramentas">Ferramentas</a>
-        <a href="#beneficios">Benefícios</a>
+        <a href="#disponiveis">Serviços disponíveis</a>
         <a href="#pontuacao">Pontuação</a>
         <a href="#servicos">Serviços</a>
       </nav>
@@ -844,38 +875,38 @@
       <div>
         <h1>Portal do Jardineiro JS</h1>
         <p>
-          Este é o dashboard principal do parceiro dentro da JS Jardinagem. Aqui ficam os
-          acessos estratégicos do sistema, a lógica de evolução do parceiro e a base para as
-          próximas fases da operação digital.
+          Esta é a central do parceiro dentro da JS Jardinagem. Aqui ficam os acessos principais
+          do sistema, os formulários operacionais e agora também a entrada para a área de
+          serviços disponíveis.
         </p>
 
         <div class="pill-row">
           <span class="pill">🌿 Cadastro oficial</span>
           <span class="pill">🧮 Novo orçamento</span>
           <span class="pill">♻️ Atualização de orçamento</span>
+          <span class="pill">📍 Serviços disponíveis</span>
           <span class="pill">🏅 Reputação no portal</span>
-          <span class="pill">🚀 Crescimento dentro da JS</span>
         </div>
 
         <div class="hero-actions">
           <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-success" target="_blank" rel="noopener">Cadastro de parceiros</a>
           <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo orçamento</a>
-          <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-soft" target="_blank" rel="noopener">Atualizar orçamento</a>
+          <a href="serviços-disponiveis.html" class="btn btn-gold">Ver serviços disponíveis</a>
         </div>
       </div>
 
       <div class="hero-side">
-        <h3>O papel desta página</h3>
+        <h3>O que esta V3 resolve</h3>
         <p>
-          Organizar a entrada do jardineiro parceiro no ecossistema JS, centralizando acessos,
-          criando padrão operacional e preparando a evolução futura do portal.
+          Agora o portal já começa a sair do modo apenas institucional e entra em uma lógica
+          mais operacional, levando o parceiro para a área onde ele poderá visualizar oportunidades.
         </p>
         <ul>
-          <li>Centralizar os botões principais</li>
-          <li>Dar clareza ao fluxo do parceiro</li>
-          <li>Mostrar benefícios e pontuação</li>
-          <li>Apresentar os serviços disponíveis na operação</li>
-          <li>Preparar a base para módulos futuros do sistema</li>
+          <li>Centraliza os principais acessos do parceiro</li>
+          <li>Apresenta claramente o fluxo do sistema</li>
+          <li>Cria uma entrada dedicada para serviços disponíveis</li>
+          <li>Prepara a base para o futuro aceite de serviço</li>
+          <li>Fortalece a percepção do portal como plataforma real</li>
         </ul>
       </div>
     </div>
@@ -911,11 +942,11 @@
 
         <div class="quick-card">
           <div class="top">
-            <div class="quick-icon">📲</div>
-            <h3>Falar com a JS</h3>
+            <div class="quick-icon">📍</div>
+            <h3>Ver oportunidades</h3>
           </div>
-          <p>Tire dúvidas, alinhe operação e se posicione melhor dentro do portal.</p>
-          <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20falar%20sobre%20o%20Portal%20do%20Jardineiro." class="btn btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+          <p>Acesse a página separada com os serviços disponíveis dentro da operação.</p>
+          <a href="serviços-disponiveis.html" class="btn btn-gold">Ver serviços</a>
         </div>
       </div>
     </div>
@@ -937,9 +968,9 @@
         </div>
 
         <div class="kpi">
-          <p class="k">Organização</p>
-          <p class="v">Atualização</p>
-          <p class="s">Fluxo contínuo de revisão e melhoria das informações.</p>
+          <p class="k">Acesso operacional</p>
+          <p class="v">Disponíveis</p>
+          <p class="s">Nova porta de entrada para visualizar oportunidades abertas.</p>
         </div>
 
         <div class="kpi">
@@ -957,8 +988,8 @@
         <div>
           <h2>Ferramentas principais do Portal</h2>
           <p>
-            Aqui ficam os acessos centrais da operação atual, com visual mais limpo e lógica
-            mais direta para o parceiro usar no dia a dia.
+            Nesta V3, o painel já reúne não só os formulários principais, mas também a nova entrada
+            para a vitrine operacional de serviços disponíveis.
           </p>
         </div>
       </div>
@@ -1017,6 +1048,55 @@
             </div>
           </div>
         </div>
+
+        <div class="card">
+          <div class="tool">
+            <div class="icon">📍</div>
+            <h3>Serviços disponíveis</h3>
+            <p>
+              Área separada para o parceiro visualizar oportunidades abertas na operação.
+            </p>
+            <div class="chips">
+              <span class="chip">Oportunidades</span>
+              <span class="chip">Painel</span>
+              <span class="chip">Operacional</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn-gold" href="serviços-disponiveis.html">Ver serviços disponíveis</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="disponiveis">
+    <div class="wrap">
+      <div class="highlight-band">
+        <div>
+          <h3>Nova área: Serviços Disponíveis</h3>
+          <p>
+            Os serviços abertos da operação agora ficam em uma área separada. Isso deixa o portal principal
+            mais organizado e ao mesmo tempo cria uma trilha mais profissional para o parceiro:
+            entrar no dashboard, analisar as oportunidades e seguir o fluxo certo do sistema.
+          </p>
+
+          <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+            <a href="serviços-disponiveis.html" class="btn btn-gold">Abrir página de serviços disponíveis</a>
+            <a href="#modulos" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)">Ver próximos módulos</a>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>O que esta área vai representar:</strong>
+          <ul>
+            <li>Visualização das oportunidades abertas</li>
+            <li>Leitura mais clara do tipo de serviço</li>
+            <li>Separação entre dashboard e painel operacional</li>
+            <li>Base para futuro aceite de serviço</li>
+            <li>Mais cara de sistema profissional</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -1028,7 +1108,7 @@
           <h2>Benefícios do parceiro dentro do portal</h2>
           <p>
             O objetivo do portal é aumentar valor para quem opera bem dentro da JS,
-            e não apenas servir como página bonita.
+            e não apenas servir como uma página bonita.
           </p>
         </div>
       </div>
@@ -1085,7 +1165,7 @@
         <div>
           <h2>Como operar dentro do Portal do Jardineiro</h2>
           <p>
-            A entrada foi desenhada para ser simples e direta: entrar, usar, evoluir e ganhar espaço.
+            A entrada foi desenhada para ser simples e direta: entrar, usar, visualizar oportunidades e evoluir.
           </p>
         </div>
       </div>
@@ -1105,8 +1185,8 @@
 
         <div class="card step-card">
           <div class="step-number">3</div>
-          <h3>Construir valor</h3>
-          <p>Mostrar postura, padrão, atenção e participação dentro da JS.</p>
+          <h3>Ver serviços disponíveis</h3>
+          <p>Analisar as oportunidades abertas em uma área separada do portal.</p>
         </div>
 
         <div class="card step-card">
@@ -1156,10 +1236,10 @@
     <div class="wrap">
       <div class="section-title">
         <div>
-          <h2>Serviços disponíveis na operação JS</h2>
+          <h2>Serviços que circulam na operação JS</h2>
           <p>
-            Esta seção ajuda o parceiro a entender a natureza dos serviços que circulam na operação
-            e os tipos de oportunidade que podem surgir.
+            Esta seção ajuda o parceiro a entender a natureza dos serviços que normalmente aparecem
+            no sistema e que podem ser exibidos na área de disponíveis.
           </p>
         </div>
       </div>
@@ -1246,18 +1326,18 @@
         <div>
           <h2>Próximos módulos do portal</h2>
           <p>
-            Esta área mostra o caminho de crescimento do sistema. Mesmo que alguns módulos ainda não estejam
-            abertos, a página já deixa claro para onde o portal está indo.
+            Agora que a página de serviços disponíveis entrou na trilha do sistema, o próximo passo
+            natural é conectar o aceite de serviço e aprofundar a operação digital.
           </p>
         </div>
       </div>
 
       <div class="module-grid">
         <div class="card module">
-          <span class="module-badge">⚡ Próxima fase</span>
+          <span class="module-badge">✅ Já conectado</span>
           <h3>Serviços disponíveis</h3>
           <p>
-            Painel tipo vitrine para o parceiro visualizar os serviços abertos na operação.
+            A área separada já está prevista e ligada ao dashboard principal.
           </p>
         </div>
 
@@ -1292,9 +1372,9 @@
     <div class="wrap">
       <div class="cta-strip">
         <div>
-          <h3>Acessos rápidos do dia</h3>
+          <h3>Acessos principais do dia</h3>
           <p>
-            Se a ideia é usar a página como painel operacional, estes são os três botões que mais precisam ficar fortes.
+            Estes são os botões que mais precisam estar fortes para o parceiro usar o portal de forma prática.
           </p>
         </div>
 
@@ -1302,6 +1382,7 @@
           <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-success" target="_blank" rel="noopener">Cadastro</a>
           <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo orçamento</a>
           <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-soft" target="_blank" rel="noopener">Atualizar orçamento</a>
+          <a href="serviços-disponiveis.html" class="btn btn-gold">Serviços disponíveis</a>
         </div>
       </div>
     </div>
@@ -1310,10 +1391,10 @@
   <section>
     <div class="wrap final-band">
       <div>
-        <h3>O Portal do Jardineiro está tomando forma</h3>
+        <h3>O portal agora já aponta para a operação real</h3>
         <p>
-          Esta V2 já posiciona a página como dashboard central do parceiro. Ela organiza melhor os links,
-          fortalece a percepção do sistema e abre espaço para encaixar as próximas telas sem refazer tudo depois.
+          Esta V3 mantém a força visual da V2, mas já cria a ponte para a página de serviços disponíveis.
+          Isso dá mais cara de plataforma e prepara o caminho para o futuro aceite de serviço.
         </p>
         <div class="small-note">
           Sugestão de arquivo: <strong>dashboard_parceiros.html</strong>
@@ -1321,8 +1402,8 @@
       </div>
 
       <div class="actions">
+        <a href="serviços-disponiveis.html" class="btn btn-gold">Ver serviços disponíveis</a>
         <a href="https://script.google.com/macros/s/AKfycbziGY8wcuC8mcEUjw61jQJ-KjUksecKee6RRkD-izwx03A6BvgNgwZjv3zkKWebHb23/exec" class="btn btn-success" target="_blank" rel="noopener">Quero me cadastrar</a>
-        <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Abrir novo orçamento</a>
         <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Vi%20o%20Portal%20do%20Jardineiro%20e%20quero%20participar." class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)" target="_blank" rel="noopener">Falar no WhatsApp</a>
       </div>
     </div>
@@ -1333,15 +1414,15 @@
       <div>
         <strong>JS Jardinagem</strong>
         <p>
-          Portal do Jardineiro • Dashboard do Parceiro V2 com acessos rápidos, benefícios, pontuação,
-          visão operacional e base de crescimento do sistema.
+          Portal do Jardineiro • Dashboard do Parceiro V3 com acessos rápidos, benefícios,
+          pontuação, visão operacional e entrada para serviços disponíveis.
         </p>
       </div>
 
       <div>
         <p><a href="#inicio">Início</a></p>
         <p><a href="#ferramentas">Ferramentas</a></p>
-        <p><a href="#beneficios">Benefícios</a></p>
+        <p><a href="#disponiveis">Serviços disponíveis</a></p>
         <p><a href="#servicos">Serviços</a></p>
       </div>
 
