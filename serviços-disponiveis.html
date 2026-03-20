@@ -1180,7 +1180,16 @@
       } catch (error) {
         showToast('Não foi possível copiar agora.');
       }
-    }
+    
+    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwczHJhUuMbZng20m7kZt-o9qBlHNlnoCT7PjigVuWT0_6382bOelgxWIKxSolwH5qh0Q/exec';
+
+function buildPegarServicoLink(row) {
+  const params = new URLSearchParams();
+  params.set('page', 'aceite-servico');
+  params.set('id', row.ID_SHORT || '');
+  params.set('cliente', row.CLIENTE || '');
+  return `${WEBAPP_URL}?${params.toString()}`;
+}
 
     function normalizePhoneBR(phone) {
       const digits = String(phone || '').replace(/\D/g, '');
