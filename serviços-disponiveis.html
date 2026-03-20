@@ -1189,11 +1189,8 @@
     }
 
     function buildPegarServicoLink(row) {
-      const params = new URLSearchParams();
-      params.set('page', 'aceite-servico');
-      params.set('id', row.ID_SHORT || '');
-      params.set('cliente', row.CLIENTE || '');
-      return `${WEBAPP_URL}?${params.toString()}`;
+      const id = String(row.ID_SHORT || '').trim();
+      return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
     }
 
     function buildResumo(row) {
@@ -1429,7 +1426,7 @@
                 </a>
               ` : ''}
 
-              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}" target="_blank" rel="noopener">
+              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}">
                 Pegar serviço
               </a>
             </div>
