@@ -463,6 +463,18 @@
       font-weight:900;
     }
 
+    .chip-highlight{
+      background:#fff7df;
+      border-color:#f0de9c;
+      color:#8b6300;
+    }
+
+    .chip-success{
+      background:#ecfdf3;
+      border-color:#abefc6;
+      color:#027a48;
+    }
+
     .service-grid{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
@@ -782,14 +794,14 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V2</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V2.1</span>
           </div>
         </div>
 
         <div class="nav-actions">
           <a href="portal_jardineiro.html" class="btn btn-soft">Portal do Jardineiro</a>
           <a href="index.html" class="btn btn-soft">Index</a>
-          <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Atualizar orçamento</a>
+          <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-primary" target="_blank" rel="noopener">Atualizar orçamento</a>
         </div>
       </div>
     </header>
@@ -818,14 +830,14 @@
           <ul>
             <li>Voltar direto para o Portal do Jardineiro</li>
             <li>Voltar para a página inicial da JS</li>
-            <li>Abrir o link de atualizar orçamento</li>
+            <li>Abrir o link de atualização de orçamento</li>
             <li>Trabalhar os serviços com mais agilidade</li>
           </ul>
 
           <div class="quick-links">
             <a href="portal_jardineiro.html" class="btn btn-soft">Voltar para o Portal do Jardineiro</a>
             <a href="index.html" class="btn btn-soft">Ir para o Index</a>
-            <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Atualizar orçamento</a>
+            <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-primary" target="_blank" rel="noopener">Atualizar orçamento</a>
           </div>
         </div>
       </div>
@@ -857,10 +869,9 @@
             <label for="sortFilter">Ordenar por</label>
             <select id="sortFilter">
               <option value="dateAsc">Data mais próxima</option>
-              <option value="dateDesc">Data mais distante</option>
               <option value="partnerDesc">Maior valor parceiro</option>
-              <option value="hourDesc">Maior ganho por hora</option>
               <option value="priceDesc">Maior preço final</option>
+              <option value="teamDesc">Maior equipe</option>
             </select>
           </div>
 
@@ -885,9 +896,9 @@
           </div>
 
           <div class="card stat">
-            <p class="k">Maior ganho por hora</p>
-            <p class="v" id="statMaiorHora">R$ 0,00</p>
-            <p class="s">Maior ganho por hora entre os serviços exibidos.</p>
+            <p class="k">Maior preço final</p>
+            <p class="v" id="statMaiorPreco">R$ 0,00</p>
+            <p class="s">Maior valor total entre os serviços exibidos.</p>
           </div>
 
           <div class="card stat">
@@ -929,7 +940,7 @@
         <div>
           <p><a href="portal_jardineiro.html">Portal do Jardineiro</a></p>
           <p><a href="index.html">Index</a></p>
-          <p><a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" target="_blank" rel="noopener">Atualizar orçamento</a></p>
+          <p><a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" target="_blank" rel="noopener">Atualizar orçamento</a></p>
         </div>
 
         <div>
@@ -958,6 +969,7 @@
     const ACCESS_PASSWORD = 'JS2026';
     const SESSION_KEY = 'js_servicos_disponiveis_autorizado';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
+    const ACEITE_URL = 'https://script.google.com/macros/s/AKfycbzahzfivnSPFh02GFaZX7BX01QuxhlkgEXopQpbjowmtCxjKT7fWPFQ_ShjG8gWPdITFA/exec';
 
     let allRows = [];
     let filteredRows = [];
@@ -976,7 +988,7 @@
       reloadBtn: document.getElementById('reloadBtn'),
       statTotal: document.getElementById('statTotal'),
       statMaiorParceiro: document.getElementById('statMaiorParceiro'),
-      statMaiorHora: document.getElementById('statMaiorHora'),
+      statMaiorPreco: document.getElementById('statMaiorPreco'),
       statMediaParceiro: document.getElementById('statMediaParceiro'),
       toastWrap: document.getElementById('toastWrap'),
       streetModal: document.getElementById('streetModal'),
@@ -1188,7 +1200,6 @@
         `Horas: ${row.HORAS || '0'}`,
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
         `Valor parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
-        `Ganho por hora: ${row.GANHO_POR_HORA || 'R$ 0,00'}`,
         `Tipo de parceria: ${row.TIPO_PARCERIA || '—'}`,
         `Próxima ação: ${row.PROXIMA_ACAO || '—'}`,
         `Endereço: ${row.ENDERECO_TEXTO || '—'}`,
@@ -1212,12 +1223,32 @@
     }
 
     function buildPegarServicoLink(row) {
-      const base = window.location.origin + window.location.pathname;
-      const params = new URLSearchParams(window.location.search);
-      params.set('page', 'aceite-servico');
+      const params = new URLSearchParams();
       params.set('id', row.ID_SHORT || '');
       params.set('cliente', row.CLIENTE || '');
-      return `${base}?${params.toString()}`;
+      params.set('data_servico', row.DATA_SERVICO || '');
+      params.set('bairro', row.BAIRRO || '');
+      return `${ACEITE_URL}?${params.toString()}`;
+    }
+
+    function buildExtraTags(row) {
+      const tags = [];
+      const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
+      const equipeTotal = parseBRNumber(row.EQUIPE_TOTAL);
+
+      if (valorParceiro >= 1000) {
+        tags.push('<span class="chip chip-highlight">💰 Alto valor</span>');
+      }
+
+      if (equipeTotal >= 4) {
+        tags.push('<span class="chip chip-success">👥 Equipe grande</span>');
+      }
+
+      if (String(row.TIPO_PARCERIA || '').toLowerCase().includes('50%')) {
+        tags.push('<span class="chip">🤝 Parceria JS</span>');
+      }
+
+      return tags.join('');
     }
 
     function applyFilters() {
@@ -1247,15 +1278,11 @@
 
       filteredRows.sort((a, b) => {
         if (sort === 'partnerDesc') return parseBRNumber(b.VALOR_PARCEIRO) - parseBRNumber(a.VALOR_PARCEIRO);
-        if (sort === 'hourDesc') return parseBRNumber(b.GANHO_POR_HORA) - parseBRNumber(a.GANHO_POR_HORA);
         if (sort === 'priceDesc') return parseBRNumber(b.PRECO_FINAL) - parseBRNumber(a.PRECO_FINAL);
+        if (sort === 'teamDesc') return parseBRNumber(b.EQUIPE_TOTAL) - parseBRNumber(a.EQUIPE_TOTAL);
 
         const da = parseDateBR(a.DATA_SERVICO);
         const db = parseDateBR(b.DATA_SERVICO);
-
-        if (sort === 'dateDesc') {
-          return (db ? db.getTime() : 0) - (da ? da.getTime() : 0);
-        }
 
         return (da ? da.getTime() : Number.MAX_SAFE_INTEGER) - (db ? db.getTime() : Number.MAX_SAFE_INTEGER);
       });
@@ -1267,14 +1294,14 @@
     function renderStats(rows) {
       const total = rows.length;
       const maxParceiro = rows.length ? Math.max(...rows.map(r => parseBRNumber(r.VALOR_PARCEIRO))) : 0;
-      const maxHora = rows.length ? Math.max(...rows.map(r => parseBRNumber(r.GANHO_POR_HORA))) : 0;
+      const maxPreco = rows.length ? Math.max(...rows.map(r => parseBRNumber(r.PRECO_FINAL))) : 0;
       const mediaParceiro = rows.length
         ? rows.reduce((sum, r) => sum + parseBRNumber(r.VALOR_PARCEIRO), 0) / rows.length
         : 0;
 
       els.statTotal.textContent = String(total);
       els.statMaiorParceiro.textContent = formatBRL(maxParceiro);
-      els.statMaiorHora.textContent = formatBRL(maxHora);
+      els.statMaiorPreco.textContent = formatBRL(maxPreco);
       els.statMediaParceiro.textContent = formatBRL(mediaParceiro);
     }
 
@@ -1300,7 +1327,7 @@
         const whatsappLink = partnerPhone ? `https://wa.me/${partnerPhone}` : '';
         const precoFinal = formatBRL(parseBRNumber(row.PRECO_FINAL));
         const valorParceiro = formatBRL(parseBRNumber(row.VALOR_PARCEIRO));
-        const ganhoHora = formatBRL(parseBRNumber(row.GANHO_POR_HORA));
+        const extraTags = buildExtraTags(row);
 
         const safeResumo = escapeHtml(buildResumo(row));
         const safeId = escapeHtml(row.ID_SHORT || '');
@@ -1327,6 +1354,7 @@
               <span class="chip">Equipe total: ${escapeHtml(row.EQUIPE_TOTAL || '0')}</span>
               <span class="chip">Horas: ${escapeHtml(row.HORAS || '0')}</span>
               <span class="chip">Responsável: ${escapeHtml(row.RESPONSAVEL || '—')}</span>
+              ${extraTags}
             </div>
 
             <div class="service-grid">
@@ -1346,8 +1374,8 @@
               </div>
 
               <div class="mini">
-                <p class="k">Ganho por hora</p>
-                <p class="v" style="color:#027a48">${ganhoHora}</p>
+                <p class="k">Próxima ação</p>
+                <p class="v">${escapeHtml(row.PROXIMA_ACAO || '—')}</p>
               </div>
 
               <div class="mini">
@@ -1366,8 +1394,8 @@
               </div>
 
               <div class="mini">
-                <p class="k">Próxima ação</p>
-                <p class="v">${escapeHtml(row.PROXIMA_ACAO || '—')}</p>
+                <p class="k">Abrir localização</p>
+                <p class="v">${finalMapsLink ? 'Link disponível' : 'Sem link'}</p>
               </div>
             </div>
 
@@ -1384,7 +1412,7 @@
 
               ${finalMapsLink ? `
                 <a class="btn btn-soft btn-sm" href="${escapeHtml(finalMapsLink)}" target="_blank" rel="noopener">
-                  Abrir localização
+                  Abrir no mapa
                 </a>
               ` : ''}
 
@@ -1402,7 +1430,7 @@
                 </a>
               ` : ''}
 
-              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}">
+              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}" target="_blank" rel="noopener">
                 Pegar serviço
               </a>
             </div>
