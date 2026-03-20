@@ -969,7 +969,6 @@
     const ACCESS_PASSWORD = 'JS2026';
     const SESSION_KEY = 'js_servicos_disponiveis_autorizado';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
-    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwczHJhUuMbZng20m7kZt-o9qBlHNlnoCT7PjigVuWT0_6382bOelgxWIKxSolwH5qh0Q/exec';
 
     let allRows = [];
     let filteredRows = [];
@@ -1190,7 +1189,8 @@
 
     function buildPegarServicoLink(row) {
       const id = String(row.ID_SHORT || '').trim();
-      return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
+      const baseUrl = window.location.href.split('?')[0];
+      return `${baseUrl}?page=aceite-servico&id=${encodeURIComponent(id)}`;
     }
 
     function buildResumo(row) {
