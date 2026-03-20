@@ -969,7 +969,7 @@
     const ACCESS_PASSWORD = 'JS2026';
     const SESSION_KEY = 'js_servicos_disponiveis_autorizado';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
-    const ACEITE_URL = 'https://script.google.com/macros/s/AKfycbzahzfivnSPFh02GFaZX7BX01QuxhlkgEXopQpbjowmtCxjKT7fWPFQ_ShjG8gWPdITFA/exec';
+    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwczHJhUuMbZng20m7kZt-o9qBlHNlnoCT7PjigVuWT0_6382bOelgxWIKxSolwH5qh0Q/exec';
 
     let allRows = [];
     let filteredRows = [];
@@ -1180,21 +1180,20 @@
       } catch (error) {
         showToast('Não foi possível copiar agora.');
       }
-    
-    const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwczHJhUuMbZng20m7kZt-o9qBlHNlnoCT7PjigVuWT0_6382bOelgxWIKxSolwH5qh0Q/exec';
-
-function buildPegarServicoLink(row) {
-  const params = new URLSearchParams();
-  params.set('page', 'aceite-servico');
-  params.set('id', row.ID_SHORT || '');
-  params.set('cliente', row.CLIENTE || '');
-  return `${WEBAPP_URL}?${params.toString()}`;
-}
+    }
 
     function normalizePhoneBR(phone) {
       const digits = String(phone || '').replace(/\D/g, '');
       if (!digits) return '';
       return digits.startsWith('55') ? digits : `55${digits}`;
+    }
+
+    function buildPegarServicoLink(row) {
+      const params = new URLSearchParams();
+      params.set('page', 'aceite-servico');
+      params.set('id', row.ID_SHORT || '');
+      params.set('cliente', row.CLIENTE || '');
+      return `${WEBAPP_URL}?${params.toString()}`;
     }
 
     function buildResumo(row) {
@@ -1229,15 +1228,6 @@ function buildPegarServicoLink(row) {
       els.streetModal.classList.remove('show');
       els.streetModal.setAttribute('aria-hidden', 'true');
       els.streetFrame.src = '';
-    }
-
-    function buildPegarServicoLink(row) {
-      const params = new URLSearchParams();
-      params.set('id', row.ID_SHORT || '');
-      params.set('cliente', row.CLIENTE || '');
-      params.set('data_servico', row.DATA_SERVICO || '');
-      params.set('bairro', row.BAIRRO || '');
-      return `${ACEITE_URL}?${params.toString()}`;
     }
 
     function buildExtraTags(row) {
