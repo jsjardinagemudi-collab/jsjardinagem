@@ -1,235 +1,102 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#114084" />
-  <link rel="icon" href="/favicon.ico" />
-
-  <title>Plantas e manutenção • Academia do Parceiro • JS Jardinagem</title>
-  <meta name="description" content="Trilha prática sobre espécies, leitura do jardim, manutenção preventiva, irrigação, poda, adubação e interpretação do que a planta está mostrando no dia a dia." />
+  <title>Módulo • Plantas e Manutenção • JS</title>
   <style>
-    :root{
-      --pri:#114084; --pri2:#11804a; --pri3:#0d3270; --gold:#d89b00; --gold2:#f4b400;
-      --ink:#0f1411; --muted:#667085; --paper:#fff; --bg:#f3f6f8; --line:#dfe6ec;
-      --soft:#f8fafc; --soft2:#eef4ff; --soft3:#eef9f2; --good:#027a48; --warn:#b54708;
-      --shadow:0 12px 28px rgba(16,24,40,.08); --radius:20px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-    a{text-decoration:none;color:inherit}
-    .wrap{width:min(1180px,92vw);margin:auto}
-    .topbar{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;text-align:center;padding:10px 12px;font-size:14px;font-weight:900}
-    header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid #edf0f2}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--pri),var(--pri2));display:grid;place-items:center;color:#fff;font-weight:1000;box-shadow:var(--shadow)}
-    .brand strong{display:block;color:var(--pri);font-size:18px;line-height:1.05}
-    .brand span{display:block;margin-top:4px;color:#475467;font-size:12px;font-weight:800}
-    .links{display:flex;gap:18px;flex-wrap:wrap;font-weight:900;color:#344054}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:14px;border:1px solid #d6dde3;background:#fff;color:#101828;font-weight:900;transition:.2s ease;cursor:pointer}
-    .btn:hover{transform:translateY(-1px);background:#f8fafc}
-    .btn-primary{background:var(--pri);border-color:var(--pri);color:#fff}
-    .btn-primary:hover{background:var(--pri3);border-color:var(--pri3)}
-    .btn-soft{background:#eef4ff;color:var(--pri);border-color:#d7e7ff}
-    .btn-success{background:linear-gradient(120deg,var(--pri2),#0e9b57);color:#fff;border-color:#0f8f52}
-    .btn-gold{background:linear-gradient(120deg,var(--gold),var(--gold2));color:#1f2937;border-color:#d89b00}
-    .hero{padding:56px 0;background:
-      radial-gradient(circle at top right, rgba(255,255,255,.13), transparent 30%),
-      linear-gradient(120deg, rgba(17,64,132,.97), rgba(17,128,74,.88));color:#fff}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
-    h1{margin:0 0 12px;font-size:clamp(30px,4.6vw,50px);line-height:1.02;letter-spacing:-.02em}
-    .hero p{margin:0;font-size:16px;line-height:1.8;font-weight:700;max-width:820px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.11);font-size:12px;font-weight:900}
-    .hero-side{background:rgba(255,255,255,.96);color:var(--ink);border:1px solid #e5e7eb;border-radius:24px;padding:22px;box-shadow:0 18px 40px rgba(0,0,0,.14)}
-    .hero-side h3{margin:0 0 12px;color:var(--pri);font-size:20px}
-    .hero-side p{margin:0;color:#344054;font-size:14px;line-height:1.72;font-weight:700}
-    .stat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-    .stat div{padding:12px;border-radius:14px;border:1px solid #e5ebf1;background:#f8fafc}
-    .stat strong{display:block;color:var(--pri);font-size:12px;text-transform:uppercase;letter-spacing:.2px;margin-bottom:6px}
-    .stat span{display:block;color:#344054;font-size:17px;font-weight:1000}
-    section{padding:34px 0}
-    .section-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:16px}
-    .section-title h2{margin:0;color:var(--pri);font-size:28px;line-height:1.04}
-    .section-title p{margin:0;max-width:860px;color:var(--muted);font-weight:700;line-height:1.72}
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:20px}
-    .lessons{display:grid;gap:14px}
-    .lesson{border:1px solid #e8edf2;background:#fbfcfd;border-radius:18px;padding:18px}
-    .lesson-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
-    .lesson-num,.mini{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:1000}
-    .lesson-num{background:#eef4ff;color:var(--pri);border:1px solid #d4e3ff}
-    .mini{background:#eef9f2;color:var(--good);border:1px solid #c8ebd4}
-    .lesson h3{margin:0 0 8px;color:var(--pri);font-size:20px}
-    .lesson p{margin:0;color:#475467;font-size:14px;line-height:1.7;font-weight:700}
-    .side-list{display:grid;gap:12px}
-    .side-block{border:1px solid #e8edf2;background:#f8fafc;border-radius:16px;padding:14px}
-    .side-block h3{margin:0 0 8px;color:var(--pri);font-size:18px}
-    .side-block ul{margin:0;padding-left:18px;display:grid;gap:8px}
-    .side-block li{color:#344054;font-size:14px;line-height:1.62;font-weight:700}
-    .checklist{display:grid;gap:10px;list-style:none;padding:0;margin:0}
-    .checklist li{background:#f8fafc;border:1px solid #e7edf3;border-radius:14px;padding:12px 14px;color:#344054;font-size:14px;line-height:1.6;font-weight:700}
-    .band{background:linear-gradient(120deg,var(--pri),var(--pri2));color:#fff;border-radius:24px;box-shadow:0 18px 40px rgba(0,0,0,.14);padding:26px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
-    .band h3{margin:0 0 8px;font-size:28px}
-    .band p{margin:0;max-width:760px;line-height:1.72;font-weight:700}
-    footer{background:#0a1a12;color:#fff;padding:30px 0;margin-top:26px}
-    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
-    .foot strong{display:block;margin-bottom:8px;font-size:18px}
-    .foot p{margin:0 0 8px;color:rgba(255,255,255,.9);line-height:1.7;font-size:14px;font-weight:700}
-    @media(max-width:1020px){
-      .hero-grid,.grid,.foot{grid-template-columns:1fr}
-      .links{display:none}
-    }
+    :root{--pri:#114084;--pri2:#11804a;--paper:#fff;--bg:#f4f6f8;--line:#dbe3ea;--muted:#667085;--shadow:0 10px 28px rgba(17,64,132,.10)}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:#0f1720}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 18px}.top{background:linear-gradient(135deg,#0d3270,#114084);color:#fff}.top .wrap{padding:18px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border-radius:999px;border:none;font-weight:800;text-decoration:none;cursor:pointer}
+    .btn-white{background:#fff;color:#114084}.btn-green{background:#11804a;color:#fff}.btn-soft{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.16)}
+    .hero{padding:24px 0 14px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+    .content{padding:24px}.content h1{margin:0 0 10px;font-size:34px;color:#11356b}.content p{color:#4f5e6f;line-height:1.7}.badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:#eef4ff;color:#174ea6;font-weight:800;border:1px solid #cbd7ff}
+    .sidebar{padding:22px;background:#fbfcfd}.sidebar h3{margin:0 0 12px;color:#11356b}.meter{height:12px;border-radius:999px;background:#e7edf3;overflow:hidden}.meter span{display:block;height:100%;width:65%;background:linear-gradient(90deg,#114084,#11804a)}
+    .list{display:grid;gap:12px;margin-top:18px}.item{padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}.item strong{display:block;margin-bottom:6px;color:#11356b}
+    .footer{padding:0 0 30px}.footer .card{padding:18px}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="topbar">Academia do Parceiro • Plantas e manutenção</div>
-
-  <header>
-    <div class="wrap nav">
-      <div class="brand">
-        <div class="logo">JS</div>
-        <div>
-          <strong>PLANTAS E MANUTENÇÃO</strong>
-          <span>Academia do Parceiro • Portal do Jardineiro</span>
-        </div>
+  <header class="top">
+    <div class="wrap row" style="justify-content:space-between">
+      <strong style="font-size:20px">JS • Academia do Parceiro</strong>
+      <div class="row">
+        <a class="btn btn-soft" href="parceiro-login-v2.html">Login</a>
+        <a class="btn btn-white" href="academia-parceiro-v2.html">Voltar para a academia</a>
       </div>
-
-      <nav class="links">
-        <a href="academia-parceiro.html">Academia</a>
-        <a href="modulo-seguranca-operacional.html">Segurança</a>
-        <a href="modulo-plantas-manutencao.html">Plantas</a>
-        <a href="modulo-uso-maquinarios.html">Maquinários</a>
-      </nav>
-
-      <a href="academia-parceiro.html" class="btn btn-primary">Voltar para academia</a>
     </div>
   </header>
 
-  <section class="hero">
+  <main class="hero">
     <div class="wrap hero-grid">
-      <div>
+      <section class="card content">
+        <span class="badge">Em andamento • +60 pontos</span>
         <h1>Plantas e manutenção</h1>
-        <p>Trilha prática sobre espécies, leitura do jardim, manutenção preventiva, irrigação, poda, adubação e interpretação do que a planta está mostrando no dia a dia.</p>
-
-        <div class="pill-row">
-          <span class="pill">Status: Em andamento</span>
-          <span class="pill">+60 pontos</span>
-          <span class="pill">Emblema botânico em evolução</span>
-        </div>
-
-        <div class="hero-actions">
-          <a href="#conteudo" class="btn btn-gold">Ver conteúdo do módulo</a>
-          <a href="modulo-uso-maquinarios.html" class="btn btn-soft">Próximo módulo: Uso de maquinários</a>
-        </div>
-      </div>
-
-      <div class="hero-side">
-        <h3>Resumo do módulo</h3>
-        <p>Esta página já está pronta para funcionar como módulo individual dentro do Portal do Jardineiro, com estrutura para conteúdo, checklist e conclusão.</p>
-        <div class="stat">
-          <div><strong>Status</strong><span>Em andamento</span></div>
-          <div><strong>Pontuação</strong><span>+60 pontos</span></div>
-          <div><strong>Emblema</strong><span>Emblema botânico em evolução</span></div>
-          <div><strong>Formato</strong><span>Leitura + checklist</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="conteudo">
-    <div class="wrap">
-      <div class="section-title">
-        <div>
-          <h2>Conteúdo do módulo</h2>
-          <p>Você pode transformar cada bloco em vídeo, texto, imagem, PDF ou aula curta hospedada depois. Aqui já está a estrutura completa pronta para copiar e colar.</p>
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="lessons">
-            <article class="lesson">
-              <div class="lesson-top"><span class="lesson-num">Aula 01</span><span class="mini">Essencial</span></div>
-              <h3>Leitura do jardim e da planta</h3>
-              <p>A planta fala por cor, textura, crescimento, folhas queimadas, solo seco ou compactado. O jardineiro que sabe observar evita erro repetido e toma decisões melhores.</p>
-            </article>
-<article class="lesson">
-              <div class="lesson-top"><span class="lesson-num">Aula 02</span><span class="mini">Prática</span></div>
-              <h3>Manutenção inteligente</h3>
-              <p>Nem todo jardim precisa da mesma frequência de poda, água ou adubo. O ideal é analisar espécie, sol, sombra, drenagem, estação do ano e objetivo estético do cliente.</p>
-            </article>
-<article class="lesson">
-              <div class="lesson-top"><span class="lesson-num">Aula 03</span><span class="mini">Revisão</span></div>
-              <h3>Erros comuns que reduzem qualidade</h3>
-              <p>Excesso de poda, irrigação sem critério, adubação mal aplicada, uso incorreto de ferramenta e falta de limpeza ao redor da planta são erros que prejudicam o resultado.</p>
-            </article>
-          </div>
-        </div>
-
-        <aside class="card">
-          <div class="side-list">
-            <div class="side-block">
-              <h3>Checklist de conclusão</h3>
-              <ul class="checklist">
-                <li>Reconhecer sinais básicos de excesso ou falta de água.</li>
-<li>Diferenciar manutenção corretiva de manutenção preventiva.</li>
-<li>Entender quando podar e quando apenas limpar a planta.</li>
-<li>Associar ambiente, espécie e tipo de cuidado.</li>
-              </ul>
-            </div>
-
-            <div class="side-block">
-              <h3>Aplicação prática no campo</h3>
-              <ul>
-                <li>Observar folhas, umidade do solo e brotação nova.</li>
-<li>Evitar rotina automática igual para todo canteiro.</li>
-<li>Tratar cada planta conforme espécie e ambiente.</li>
-<li>Usar poda e adubação com intenção, não só por hábito.</li>
-              </ul>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap band">
-      <div>
-        <h3>Finalização do módulo</h3>
         <p>
-          Este bloco pode virar depois um botão real de “Concluir módulo”, gerando pontos, reputação e emblema para o parceiro. Por enquanto, ele já serve como área visual final para a trilha.
+          Módulo pensado para dar mais noção prática sobre espécies, manutenção, poda, adubação e leitura do ambiente. Ele segue a linha da academia do parceiro com foco em preparo simples e útil para o campo. fileciteturn1file2L21-L36
         </p>
-      </div>
 
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="academia-parceiro.html" class="btn btn-soft">Voltar para academia</a>
-        <a href="modulo-uso-maquinarios.html" class="btn btn-primary">Próximo módulo: Uso de maquinários</a>
-        <a href="https://jardinagemudi.com.br/portal_jardineiro.html" class="btn btn-soft">Portal do Jardineiro</a>
+        <div class="list">
+          <div class="item"><strong>1. Leitura da planta</strong><span>Observar cor, vigor, sinais de praga, folhas queimadas, solo seco, excesso de água e padrão de crescimento.</span></div>
+          <div class="item"><strong>2. Manutenção básica</strong><span>Limpeza de folhas secas, retirada de ervas invasoras, adubação orientada e acabamento visual coerente com o ambiente.</span></div>
+          <div class="item"><strong>3. Poda consciente</strong><span>Nem toda poda é para cortar muito. O parceiro precisa entender forma, época, objetivo e recuperação da planta.</span></div>
+          <div class="item"><strong>4. Irrigação</strong><span>Excesso de água também prejudica. É importante observar drenagem, clima, horário e necessidade real da espécie.</span></div>
+          <div class="item"><strong>5. Erros comuns</strong><span>Poda agressiva, adubo em excesso, irrigação sem critério e uso de ferramenta errada reduzem a qualidade do serviço.</span></div>
+        </div>
+      </section>
+
+      <aside class="card sidebar">
+        <h3>Progresso do módulo</h3>
+        <div class="meter"><span id="barra"></span></div>
+        <p style="margin:10px 0 0;color:#516071"><strong id="txtProgresso">65% concluído</strong></p>
+
+        <div class="list" style="margin-top:18px">
+          <div class="item"><strong>Etapas sugeridas</strong><span>Ler o módulo, revisar exemplos do campo e marcar a conclusão quando estiver seguro para aplicar no dia a dia.</span></div>
+          <div class="item"><strong>Emblema</strong><span id="txtEmblema">Ainda não liberado</span></div>
+        </div>
+
+        <div class="row" style="margin-top:18px">
+          <button class="btn btn-green" id="btnAvancar">Marcar 100% e concluir</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section class="footer">
+    <div class="wrap">
+      <div class="card">
+        <strong style="display:block;margin-bottom:8px;color:#11356b">Expansão futura</strong>
+        <span style="color:#516071;line-height:1.7">Você pode transformar este módulo em fichas por espécie, mini provas, fotos de referência e galeria de erros comuns.</span>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <strong>JS Jardinagem • Plantas e manutenção</strong>
-        <p>HTML individual do módulo da Academia do Parceiro, pronto para uso, edição e futura integração com o sistema do portal.</p>
-      </div>
-      <div>
-        <p><a href="academia-parceiro.html">Academia</a></p>
-        <p><a href="modulo-seguranca-operacional.html">Segurança</a></p>
-        <p><a href="modulo-plantas-manutencao.html">Plantas</a></p>
-      </div>
-      <div>
-        <p><a href="modulo-uso-maquinarios.html">Maquinários</a></p>
-        <p><a href="https://jardinagemudi.com.br/portal_jardineiro.html">Portal</a></p>
-      </div>
-    </div>
-  </footer>
+  <script>
+    const KEY='JS_ACADEMIA_V2';
+    function load(){try{return JSON.parse(localStorage.getItem(KEY))||null}catch(e){return null}}
+    function save(d){localStorage.setItem(KEY,JSON.stringify(d))}
+    function render(){
+      const data=load();
+      if(!data) return;
+      const mod=data.modulos.plantas;
+      document.getElementById('barra').style.width=(mod.progresso||0)+'%';
+      document.getElementById('txtProgresso').textContent=(mod.progresso||0)+'% concluído';
+      document.getElementById('txtEmblema').textContent=mod.emblema?'Liberado':'Ainda não liberado';
+    }
+    document.getElementById('btnAvancar').onclick=()=>{
+      const data=load();
+      if(!data){alert('Abra primeiro a Academia do Parceiro para iniciar o sistema.');return;}
+      data.modulos.plantas.progresso=100;
+      data.modulos.plantas.concluido=true;
+      data.modulos.plantas.emblema=true;
+      save(data);
+      render();
+      alert('Módulo concluído com sucesso.');
+    };
+    render();
+  </script>
 </body>
 </html>
