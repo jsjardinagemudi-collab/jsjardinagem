@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+  <title>Login do Parceiro • Portal do Jardineiro • JS</title>
+  <style>
+    :root{--pri:#114084;--pri2:#11804a;--pri3:#0d3270;--paper:#fff;--bg:#eef2f6;--line:#d8e1ea;--muted:#667085;--shadow:0 14px 40px rgba(17,64,132,.12)}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#e8eef9,#f4f7f9);color:#0f1720}
+    .wrap{max-width:980px;margin:0 auto;padding:26px 18px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch;min-height:calc(100vh - 52px)}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+    .side{padding:30px;background:linear-gradient(145deg,var(--pri3),var(--pri));color:#fff}
+    .side .mark{width:72px;height:72px;border-radius:20px;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:28px;font-weight:900;margin-bottom:18px}
+    .side h1{margin:0 0 12px;font-size:34px;line-height:1.05}
+    .side p{margin:0 0 16px;color:rgba(255,255,255,.86);line-height:1.7}
+    .side ul{padding-left:18px;margin:0;line-height:1.9;color:rgba(255,255,255,.9)}
+    .form-card{padding:28px}
+    h2{margin:0 0 8px;color:#11356b;font-size:30px}
+    .sub{margin:0 0 18px;color:#516071;line-height:1.6}
+    .field{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .field label{font-weight:800;font-size:13px;color:#344054}
+    .field input{width:100%;padding:15px;border:1px solid #ccd7e2;border-radius:16px;font-size:15px;outline:none}
+    .field input:focus{border-color:#7aa0ff;box-shadow:0 0 0 4px rgba(17,64,132,.08)}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:999px;border:none;font-weight:800;cursor:pointer;text-decoration:none}
+    .btn-primary{background:var(--pri);color:#fff}
+    .btn-success{background:var(--pri2);color:#fff}
+    .btn-outline{background:#fff;color:var(--pri);border:1px solid var(--pri)}
+    .info{margin-top:16px;padding:14px 16px;border:1px dashed #c4d1df;border-radius:16px;background:#f8fbff;color:#465366;line-height:1.7}
+    .ok{margin-top:14px;padding:14px;border-radius:16px;background:#ebf8ef;border:1px solid #bfe3cc;color:#116a40;display:none;font-weight:700}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <section class="card side">
+        <div class="mark">JS</div>
+        <h1>Login individual do parceiro</h1>
+        <p>
+          Esta página serve como porta de entrada do sistema V2 da Academia do Parceiro. Ela prepara a lógica para depois conectar com planilha, login real e progresso por usuário.
+        </p>
+        <ul>
+          <li>Cadastro simples com nome e senha</li>
+          <li>Validação local no navegador</li>
+          <li>Acesso rápido para a academia</li>
+          <li>Base pronta para futura integração com Apps Script</li>
+        </ul>
+      </section>
+
+      <section class="card form-card">
+        <h2>Entrar no portal</h2>
+        <p class="sub">Para esta V2, o parceiro pode criar ou validar seu acesso localmente e seguir para os módulos da academia.</p>
+
+        <div class="field">
+          <label for="nome">Nome do parceiro</label>
+          <input id="nome" type="text" placeholder="Ex.: Douglas, Emerson Jardins" />
+        </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" placeholder="Digite sua senha" />
+        </div>
+        <div class="field">
+          <label for="funcao">Função</label>
+          <input id="funcao" type="text" placeholder="Ex.: Jardineiro operacional" />
+        </div>
+
+        <div class="row">
+          <button class="btn btn-success" id="btnCriar">Criar / salvar acesso</button>
+          <button class="btn btn-primary" id="btnEntrar">Entrar na academia</button>
+          <a class="btn btn-outline" href="academia-parceiro-v2.html">Voltar</a>
+        </div>
+
+        <div class="ok" id="okBox">Acesso validado. Redirecionando para a Academia do Parceiro...</div>
+
+        <div class="info">
+          <strong>Como funciona nesta versão:</strong><br>
+          Os dados ficam salvos localmente no navegador pelo <em>localStorage</em>. Quando você migrar para Apps Script, basta trocar esta validação local por leitura e gravação na planilha ou em uma aba de usuários.
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const KEY='JS_ACADEMIA_V2';
+    const DEFAULT={parceiro:{nome:'',senha:'',funcao:''},modulos:{seguranca:{titulo:'Segurança operacional',pontos:80,progresso:100,concluido:true,emblema:true},plantas:{titulo:'Plantas e manutenção',pontos:60,progresso:65,concluido:false,emblema:false},maquinas:{titulo:'Uso de maquinários',pontos:90,progresso:0,concluido:false,emblema:false}}};
+    function load(){try{return JSON.parse(localStorage.getItem(KEY))||DEFAULT}catch(e){return DEFAULT}}
+    function save(data){localStorage.setItem(KEY,JSON.stringify(data))}
+    document.getElementById('btnCriar').onclick=()=>{
+      const nome=document.getElementById('nome').value.trim();
+      const senha=document.getElementById('senha').value.trim();
+      const funcao=document.getElementById('funcao').value.trim();
+      if(!nome||!senha){alert('Preencha nome e senha.');return}
+      const data=load();
+      data.parceiro={nome,senha,funcao};
+      save(data);
+      alert('Acesso salvo localmente com sucesso.');
+    };
+    document.getElementById('btnEntrar').onclick=()=>{
+      const nome=document.getElementById('nome').value.trim();
+      const senha=document.getElementById('senha').value.trim();
+      const data=load();
+      if(!data.parceiro.nome || !data.parceiro.senha){ alert('Primeiro crie ou salve o acesso.'); return; }
+      if(nome !== data.parceiro.nome || senha !== data.parceiro.senha){ alert('Nome ou senha não conferem com o acesso salvo neste navegador.'); return; }
+      document.getElementById('okBox').style.display='block';
+      setTimeout(()=> window.location.href='academia-parceiro-v2.html', 900);
+    };
+  </script>
+</body>
+</html>
