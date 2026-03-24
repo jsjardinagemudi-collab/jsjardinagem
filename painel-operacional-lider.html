@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#114084" />
+
+  <title>Painel Operacional do Líder • Portal do Jardineiro • JS Jardinagem</title>
+  <meta
+    name="description"
+    content="Home operacional individual do parceiro líder da JS Jardinagem com acessos rápidos, execução de serviços, orçamentos, pontuação, emblemas, cursos e progresso dentro do Portal do Jardineiro."
+  />
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --pri3:#0d3270;
+      --ink:#0f1411;
+      --muted:#667085;
+      --paper:#fff;
+      --bg:#f4f7f6;
+      --line:#e7ecef;
+      --soft:#f8fafc;
+      --soft2:#eef4ff;
+      --soft3:#eef9f2;
+      --good:#027a48;
+      --warn:#b54708;
+      --bad:#b42318;
+      --gold:#d89b00;
+      --gold2:#f4b400;
+      --shadow:0 10px 26px rgba(0,0,0,.06);
+      --shadow-strong:0 18px 40px rgba(0,0,0,.12);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .wrap{width:min(1220px,92vw);margin:auto}
+
+    .topbar{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      text-align:center;
+      padding:10px 12px;
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:90;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px) saturate(180%);
+      border-bottom:1px solid #edf0f2;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-badge{
+      width:58px;
+      height:58px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--pri),var(--pri2));
+      color:#fff;
+      font-size:24px;
+      font-weight:1000;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .brand-box strong{
+      display:block;
+      color:var(--pri);
+      font-size:18px;
+      font-weight:1000;
+      line-height:1.05;
+      letter-spacing:.25px;
+      text-transform:uppercase;
+    }
+
+    .brand-box span{
+      display:block;
+      margin-top:4px;
+      color:#475467;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      font-weight:900;
+      color:#344054;
+    }
+
+    .links a:hover{color:var(--pri)}
+
+    .btn{
+      border:1px solid #d6dde3;
+      background:#fff;
+      color:#101828;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      transition:.22s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .btn:hover{transform:translateY(-1px);background:#f8fafc}
+
+    .btn-primary{
+      background:var(--pri);
+      color:#fff;
+      border-color:var(--pri);
+    }
+
+    .btn-primary:hover{
+      background:var(--pri3);
+      border-color:var(--pri3);
+    }
+
+    .btn-success{
+      background:linear-gradient(120deg,var(--pri2),#0e9b57);
+      color:#fff;
+      border-color:#0f8f52;
+    }
+
+    .btn-success:hover{
+      filter:brightness(.98);
+      background:linear-gradient(120deg,var(--pri2),#0e9b57);
+    }
+
+    .btn-soft{
+      background:#eef4ff;
+      color:var(--pri);
+      border-color:#d7e7ff;
+    }
+
+    .btn-soft:hover{background:#e3efff}
+
+    .btn-outline{
+      background:transparent;
+      color:var(--pri);
+      border-color:var(--pri);
+    }
+
+    .btn-outline:hover{background:#eef4ff}
+
+    .btn-gold{
+      background:linear-gradient(120deg,var(--gold),var(--gold2));
+      color:#1f2937;
+      border-color:#d89b00;
+    }
+
+    .btn-gold:hover{filter:brightness(.98)}
+
+    section{padding:42px 0}
+
+    .hero{
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.12), transparent 30%),
+        linear-gradient(120deg, rgba(17,64,132,.96), rgba(17,128,74,.90));
+      color:#fff;
+      padding:56px 0;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,4.2vw,52px);
+      line-height:1.02;
+      letter-spacing:-.02em;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:860px;
+      font-size:16px;
+      line-height:1.75;
+      font-weight:700;
+      opacity:.98;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .hero-side{
+      background:rgba(255,255,255,.97);
+      color:var(--ink);
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:20px;
+      box-shadow:var(--shadow-strong);
+      align-self:start;
+    }
+
+    .mini-profile{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .avatar{
+      width:64px;
+      height:64px;
+      border-radius:20px;
+      background:linear-gradient(135deg,var(--pri),var(--pri2));
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:24px;
+      font-weight:1000;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .mini-profile h3{
+      margin:0;
+      color:var(--pri);
+      font-size:20px;
+      line-height:1.08;
+    }
+
+    .mini-profile p{
+      margin:4px 0 0;
+      color:#475467;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:800;
+    }
+
+    .hero-kpis{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .hero-kpi{
+      border:1px solid #e6edf2;
+      background:#f8fafc;
+      border-radius:14px;
+      padding:12px;
+    }
+
+    .hero-kpi .k{
+      margin:0 0 6px;
+      font-size:11px;
+      text-transform:uppercase;
+      color:#667085;
+      font-weight:1000;
+      letter-spacing:.2px;
+    }
+
+    .hero-kpi .v{
+      margin:0;
+      color:var(--pri);
+      font-size:22px;
+      line-height:1.1;
+      font-weight:1000;
+    }
+
+    .hero-kpi .s{
+      margin:6px 0 0;
+      color:#475467;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      margin-bottom:16px;
+    }
+
+    .section-title h2{
+      margin:0;
+      color:var(--pri);
+      font-size:30px;
+      line-height:1.04;
+      letter-spacing:-.02em;
+    }
+
+    .section-title p{
+      margin:0;
+      max-width:900px;
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.72;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .dashboard-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .dashboard-grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .dash-card,
+    .info-card,
+    .course-card,
+    .badge-card,
+    .oper-card{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height:190px;
+      height:100%;
+    }
+
+    .dash-icon{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#eef4ff,#e7f8ee);
+      font-size:26px;
+    }
+
+    .dash-card h3,
+    .info-card h3,
+    .course-card h3,
+    .badge-card h3,
+    .oper-card h3{
+      margin:0;
+      color:var(--pri);
+      font-size:20px;
+      line-height:1.1;
+    }
+
+    .dash-card p,
+    .info-card p,
+    .course-card p,
+    .badge-card p,
+    .oper-card p{
+      margin:0;
+      color:#475467;
+      font-size:14px;
+      line-height:1.68;
+      font-weight:700;
+    }
+
+    .actions-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .tag-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .tag{
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid #dbe5ec;
+      background:#f2f6fb;
+      color:#344054;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:1000;
+      border:1px solid #dce6ee;
+      background:#f4f8fb;
+      color:#344054;
+    }
+
+    .badge.good{
+      background:#ecfdf3;
+      border-color:#cfead9;
+      color:var(--good);
+    }
+
+    .badge.gold{
+      background:#fff7df;
+      border-color:#f0de9c;
+      color:#8b6300;
+    }
+
+    .badge.blue{
+      background:#eef4ff;
+      border-color:#d7e7ff;
+      color:var(--pri);
+    }
+
+    .kpi-strip{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .kpi{
+      padding:16px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .kpi .k{
+      margin:0 0 6px;
+      color:#667085;
+      font-size:11px;
+      text-transform:uppercase;
+      font-weight:1000;
+      letter-spacing:.2px;
+    }
+
+    .kpi .v{
+      margin:0;
+      color:var(--pri);
+      font-size:28px;
+      line-height:1.05;
+      font-weight:1000;
+    }
+
+    .kpi .s{
+      margin:6px 0 0;
+      color:#475467;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .panel-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+    }
+
+    .panel-main,
+    .panel-side{
+      padding:22px;
+    }
+
+    .panel-head{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .panel-avatar{
+      width:88px;
+      height:88px;
+      border-radius:24px;
+      background:linear-gradient(135deg,var(--pri),var(--pri2));
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:32px;
+      font-weight:1000;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .panel-head h3{
+      margin:0;
+      color:var(--pri);
+      font-size:28px;
+      line-height:1.05;
+    }
+
+    .panel-head p{
+      margin:6px 0 0;
+      color:#475467;
+      font-size:14px;
+      line-height:1.65;
+      font-weight:700;
+    }
+
+    .list-clean{
+      list-style:none;
+      padding:0;
+      margin:16px 0 0;
+      display:grid;
+      gap:10px;
+    }
+
+    .list-clean li{
+      background:#fff;
+      border:1px solid #dbe7ec;
+      border-radius:14px;
+      padding:12px;
+      color:#344054;
+      font-weight:700;
+      font-size:14px;
+      line-height:1.58;
+    }
+
+    .progress-box{
+      margin-top:14px;
+    }
+
+    .progress-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+      font-size:13px;
+      font-weight:900;
+      color:#344054;
+    }
+
+    .bar{
+      width:100%;
+      height:12px;
+      border-radius:999px;
+      background:#dce7ef;
+      overflow:hidden;
+    }
+
+    .bar > span{
+      display:block;
+      height:100%;
+      width:74%;
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      border-radius:999px;
+    }
+
+    .footer-band{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow-strong);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .footer-band h3{
+      margin:0 0 8px;
+      font-size:30px;
+      line-height:1.04;
+    }
+
+    .footer-band p{
+      margin:0;
+      max-width:760px;
+      line-height:1.74;
+      font-weight:700;
+      opacity:.98;
+    }
+
+    .footer-band .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      background:#0a1a12;
+      color:#fff;
+      padding:34px 0;
+      margin-top:42px;
+    }
+
+    .foot{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr;
+      gap:24px;
+    }
+
+    .foot strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:18px;
+    }
+
+    .foot p{
+      margin:0 0 8px;
+      color:rgba(255,255,255,.88);
+      line-height:1.7;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .foot a{color:#fff}
+
+    @media(max-width:1080px){
+      .hero-grid,
+      .dashboard-grid,
+      .dashboard-grid-3,
+      .kpi-strip,
+      .panel-grid,
+      .foot{
+        grid-template-columns:1fr;
+      }
+
+      .links{display:none}
+    }
+
+    @media(max-width:760px){
+      .hero-kpis{
+        grid-template-columns:1fr;
+      }
+
+      .hero-actions,
+      .actions-row{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    Portal do Jardineiro JS • Painel Operacional do Líder • Acessos rápidos para teste e validação
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="brand-badge">JS</div>
+        <div class="brand-box">
+          <strong>JS Jardinagem</strong>
+          <span>Painel Operacional do Líder • Home individual do parceiro</span>
+        </div>
+      </div>
+
+      <nav class="links">
+        <a href="#acessos">Acessos</a>
+        <a href="#meu-painel">Meu painel</a>
+        <a href="#operacao">Operação</a>
+        <a href="#gamificacao">Gamificação</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#suporte">Suporte</a>
+      </nav>
+
+      <a href="https://script.google.com/macros/s/AKfycbz-RWjN87X3Ilpp7VzO2NSb9BPQ65RJwuqavapSdWd8m-dwGp73YyR3rlZm2R_JyoYz/exec" class="btn btn-primary" target="_blank" rel="noopener">
+        Login parceiro
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Seu painel operacional individual dentro da JS.</h1>
+        <p>
+          Esta página foi criada para ser a home do parceiro líder. Aqui ficam reunidos os principais acessos para teste, execução, controle, progresso, reputação, cursos e emblemas, mantendo o padrão oficial do Portal do Jardineiro.
+        </p>
+
+        <div class="pill-row">
+          <span class="pill">📋 Execução e controle</span>
+          <span class="pill">⭐ Pontuação e reputação</span>
+          <span class="pill">🏅 Emblemas e níveis</span>
+          <span class="pill">🎓 Cursos internos</span>
+          <span class="pill">🚀 Home individual do líder</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#acessos" class="btn btn-success">Abrir acessos rápidos</a>
+          <a href="#operacao" class="btn btn-outline">Ver painel operacional</a>
+          <a href="#gamificacao" class="btn btn-soft">Ver progresso</a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="mini-profile">
+          <div class="avatar">AF</div>
+          <div>
+            <h3>Adriano • Líder JS</h3>
+            <p>Perfil em validação • Home operacional individual • Parceiro com visão de liderança</p>
+          </div>
+        </div>
+
+        <div class="hero-kpis">
+          <div class="hero-kpi">
+            <p class="k">Nível atual</p>
+            <p class="v">Ouro</p>
+            <p class="s">Base para liberar novas áreas do portal.</p>
+          </div>
+
+          <div class="hero-kpi">
+            <p class="k">Pontuação</p>
+            <p class="v">1.280</p>
+            <p class="s">Modelo visual de score do parceiro.</p>
+          </div>
+
+          <div class="hero-kpi">
+            <p class="k">Emblemas</p>
+            <p class="v">3</p>
+            <p class="s">Conquistas ativas no perfil.</p>
+          </div>
+
+          <div class="hero-kpi">
+            <p class="k">Próximo nível</p>
+            <p class="v">Elite</p>
+            <p class="s">Meta de evolução dentro do sistema.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="acessos">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Acessos rápidos para teste</h2>
+          <p>
+            Aqui estão concentrados todos os links principais que você passou, para facilitar seus testes enquanto finalizamos os ajustes do portal.
+          </p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card dash-card">
+          <div class="dash-icon">🔐</div>
+          <h3>Login Portal Usuário</h3>
+          <p>
+            Entrada principal para validar acesso individual do parceiro.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbz-RWjN87X3Ilpp7VzO2NSb9BPQ65RJwuqavapSdWd8m-dwGp73YyR3rlZm2R_JyoYz/exec" class="btn btn-primary" target="_blank" rel="noopener">Abrir login</a>
+          </div>
+        </div>
+
+        <div class="card dash-card">
+          <div class="dash-icon">📝</div>
+          <h3>Cadastro de Parceiro</h3>
+          <p>
+            Cadastro de novos parceiros para entrada no ecossistema da JS.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbzB5ijI77f3aqNm10QP4DQDYWmdZ7ScaDSQb3CYmc4aOAGT3YBQU2ZOEtk9JqQVitgI/exec" class="btn btn-primary" target="_blank" rel="noopener">Cadastrar</a>
+          </div>
+        </div>
+
+        <div class="card dash-card">
+          <div class="dash-icon">🧮</div>
+          <h3>Novo orçamento</h3>
+          <p>
+            Abertura de um novo orçamento dentro do fluxo operacional da JS.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Abrir</a>
+          </div>
+        </div>
+
+        <div class="card dash-card">
+          <div class="dash-icon">♻️</div>
+          <h3>Atualização de orçamento</h3>
+          <p>
+            Revisão e atualização de dados sem perder a organização da base.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-soft" target="_blank" rel="noopener">Atualizar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid" style="margin-top:16px;">
+        <div class="card dash-card">
+          <div class="dash-icon">✅</div>
+          <h3>Execução de serviço JS</h3>
+          <p>
+            Área de execução, registro e acompanhamento operacional do serviço.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbylodhPwhpccIWMB55YNqdGbdoDkjM7M_LO0TuP3LORM40sKTXF9anpJfA6BQTCHWvs/exec" class="btn btn-gold" target="_blank" rel="noopener">Abrir execução</a>
+          </div>
+        </div>
+
+        <div class="card dash-card">
+          <div class="dash-icon">👤</div>
+          <h3>Portal individual</h3>
+          <p>
+            Espaço reservado para a futura página individual do parceiro, com dados próprios.
+          </p>
+          <div class="actions-row">
+            <a href="#meu-painel" class="btn btn-outline">Ver conceito</a>
+          </div>
+        </div>
+
+        <div class="card dash-card">
+          <div class="dash-icon">🏅</div>
+          <h3>Pontuação e emblemas</h3>
+          <p>
+            Bloco padrão do sistema para evolução, score e destrave de oportunidades.
+          </p>
+          <div class="actions-row">
+            <a href="#gamificacao" class="btn btn-outline">Abrir</a>
+          </div>
+        </div>
+
+        <div class="card dash-card">
+          <div class="dash-icon">🎓</div>
+          <h3>Cursos internos</h3>
+          <p>
+            Academia do parceiro com capacitação e ganho de pontos dentro do portal.
+          </p>
+          <div class="actions-row">
+            <a href="#cursos" class="btn btn-outline">Ver cursos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#f7f9f8;">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Leitura rápida do líder</h2>
+          <p>
+            Área de visão geral para o parceiro sentir que entrou no seu ambiente pessoal dentro da JS.
+          </p>
+        </div>
+      </div>
+
+      <div class="kpi-strip">
+        <div class="kpi">
+          <p class="k">Serviços executados</p>
+          <p class="v">12</p>
+          <p class="s">Histórico visual para validar o conceito do painel.</p>
+        </div>
+
+        <div class="kpi">
+          <p class="k">Orçamentos ligados ao perfil</p>
+          <p class="v">7</p>
+          <p class="s">Base de leitura rápida do parceiro.</p>
+        </div>
+
+        <div class="kpi">
+          <p class="k">Avaliação média</p>
+          <p class="v">4.9</p>
+          <p class="s">Reputação forte para liberar oportunidades melhores.</p>
+        </div>
+
+        <div class="kpi">
+          <p class="k">Presença no portal</p>
+          <p class="v">Alta</p>
+          <p class="s">Uso ativo ajuda a subir dentro do sistema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="meu-painel">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Meu painel individual</h2>
+          <p>
+            Essa é a ideia da home pessoal do parceiro líder: misturar identidade, progresso, status operacional e próximos passos dentro da plataforma.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <div class="card panel-main">
+          <div class="panel-head">
+            <div class="panel-avatar">AF</div>
+            <div>
+              <h3>Adriano Ferreira</h3>
+              <p>
+                Líder parceiro JS • Perfil em validação • Home individual pensada para centralizar controle, evolução e operação
+              </p>
+
+              <div class="tag-row">
+                <span class="tag">Perfil ativo</span>
+                <span class="tag">Nível Ouro</span>
+                <span class="tag">Score alto</span>
+                <span class="tag">Líder operacional</span>
+                <span class="tag">Em evolução</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-3">
+            <div class="card info-card">
+              <h3>Meu foco atual</h3>
+              <p>
+                Validar a operação do portal de forma simples, com todos os acessos necessários reunidos numa home clara.
+              </p>
+            </div>
+
+            <div class="card info-card">
+              <h3>Minha posição</h3>
+              <p>
+                Parceiro em construção de ambiente premium, com estrutura para liderança, execução e crescimento.
+              </p>
+            </div>
+
+            <div class="card info-card">
+              <h3>Próximo passo</h3>
+              <p>
+                Integrar a leitura real dos dados do parceiro para transformar esta home em painel totalmente individual.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel-side">
+          <h3 style="margin:0 0 10px;color:var(--pri);font-size:22px;line-height:1.08;">Minha evolução</h3>
+          <p style="margin:0;color:#344054;font-weight:700;line-height:1.7;">
+            A lógica oficial do portal continua mantida: o parceiro deve sentir avanço real por reputação, execução, cursos, constância e pontuação.
+          </p>
+
+          <div class="progress-box">
+            <div class="progress-top">
+              <span>Progresso para Nível Elite</span>
+              <span>74%</span>
+            </div>
+            <div class="bar"><span></span></div>
+          </div>
+
+          <ul class="list-clean">
+            <li>✅ Perfil de parceiro líder estruturado</li>
+            <li>✅ Home individual criada para teste operacional</li>
+            <li>🏅 Emblemas continuam como padrão oficial</li>
+            <li>🎓 Cursos internos seguem no centro da proposta</li>
+            <li>🚀 Melhorias futuras devem seguir o propósito do portal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="operacao" style="background:#f7f9f8;">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Painel operacional do parceiro líder</h2>
+          <p>
+            Aqui entra a parte prática do líder: executar, abrir orçamento, revisar orçamento e navegar pelos acessos principais da operação.
+          </p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid-3">
+        <div class="card oper-card">
+          <h3>Execução e controle</h3>
+          <p>
+            Registrar equipe, horas, avanço do serviço e manter o histórico operacional mais organizado.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbylodhPwhpccIWMB55YNqdGbdoDkjM7M_LO0TuP3LORM40sKTXF9anpJfA6BQTCHWvs/exec" class="btn btn-gold" target="_blank" rel="noopener">Executar serviço</a>
+          </div>
+        </div>
+
+        <div class="card oper-card">
+          <h3>Orçamentos</h3>
+          <p>
+            Criar e revisar orçamentos rapidamente sem sair da lógica central do portal.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo</a>
+            <a href="https://script.google.com/macros/s/AKfycbzBT2-XMw69h57CqrbcWZ1t4XEGNzLC363tyxyuUK5tHHRqSyeloIpsd1vRTJGTKkRoTA/exec" class="btn btn-soft" target="_blank" rel="noopener">Atualizar</a>
+          </div>
+        </div>
+
+        <div class="card oper-card">
+          <h3>Acesso do parceiro</h3>
+          <p>
+            Login individual e cadastro para fortalecer a entrada organizada dos parceiros no sistema.
+          </p>
+          <div class="actions-row">
+            <a href="https://script.google.com/macros/s/AKfycbz-RWjN87X3Ilpp7VzO2NSb9BPQ65RJwuqavapSdWd8m-dwGp73YyR3rlZm2R_JyoYz/exec" class="btn btn-primary" target="_blank" rel="noopener">Login</a>
+            <a href="https://script.google.com/macros/s/AKfycbzB5ijI77f3aqNm10QP4DQDYWmdZ7ScaDSQb3CYmc4aOAGT3YBQU2ZOEtk9JqQVitgI/exec" class="btn btn-outline" target="_blank" rel="noopener">Cadastro</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gamificacao">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Pontuação, emblemas e progresso</h2>
+          <p>
+            Esta área foi mantida como padrão oficial do Portal do Jardineiro. O parceiro precisa enxergar claramente que evolui dentro do sistema.
+          </p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid-3">
+        <div class="card badge-card">
+          <h3>Pontuação do parceiro</h3>
+          <p>
+            Pontos sobem com presença, execução, qualidade, atualização de dados, cursos concluídos e boa reputação.
+          </p>
+          <div class="actions-row">
+            <span class="badge blue">Score atual: 1.280</span>
+            <span class="badge good">Ranking em alta</span>
+          </div>
+        </div>
+
+        <div class="card badge-card">
+          <h3>Emblemas ativos</h3>
+          <p>
+            Emblemas devem continuar reforçando reconhecimento visual e desbloqueio de novos níveis no portal.
+          </p>
+          <div class="actions-row">
+            <span class="badge gold">🏅 Operacional</span>
+            <span class="badge gold">🏅 Pontualidade</span>
+            <span class="badge gold">🏅 Perfil validado</span>
+          </div>
+        </div>
+
+        <div class="card badge-card">
+          <h3>Desbloqueios futuros</h3>
+          <p>
+            Quanto melhor a constância e reputação, mais áreas premium e funções fortes podem ser liberadas.
+          </p>
+          <div class="actions-row">
+            <span class="badge">Meta: Nível Elite</span>
+            <span class="badge blue">Acesso premium</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cursos" style="background:#f7f9f8;">
+    <div class="wrap">
+      <div class="section-title">
+        <div>
+          <h2>Cursos internos e academia do parceiro</h2>
+          <p>
+            A academia continua sendo parte central do sistema. Ela fortalece o parceiro, aumenta reputação e gera emblemas.
+          </p>
+        </div>
+      </div>
+
+      <div class="dashboard-grid-3">
+        <div class="card course-card">
+          <h3>Segurança operacional</h3>
+          <p>
+            Curso voltado para postura de campo, prevenção de risco e leitura responsável da operação.
+          </p>
+          <div class="actions-row">
+            <span class="badge good">Concluído</span>
+            <span class="badge gold">+80 pts</span>
+          </div>
+        </div>
+
+        <div class="card course-card">
+          <h3>Plantas e manutenção</h3>
+          <p>
+            Conteúdo sobre espécies, leitura do ambiente, poda, adubação e manutenção correta.
+          </p>
+          <div class="actions-row">
+            <span class="badge blue">Em andamento</span>
+            <span class="badge">65% completo</span>
+          </div>
+        </div>
+
+        <div class="card course-card">
+          <h3>Uso de maquinários</h3>
+          <p>
+            Treinamento técnico com foco em roçadeira, soprador, podador e operação mais profissional.
+          </p>
+          <div class="actions-row">
+            <span class="badge">Pendente</span>
+            <span class="badge gold">+90 pts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="suporte">
+    <div class="wrap">
+      <div class="footer-band">
+        <div>
+          <h3>Essa página agora pode ser sua home de teste.</h3>
+          <p>
+            Ela já reúne os links principais, mantém o propósito do portal e serve como base da futura home real do parceiro líder, com dados individuais, histórico, pontuação, cursos, emblemas e operação.
+          </p>
+        </div>
+
+        <div class="actions">
+          <a href="https://script.google.com/macros/s/AKfycbylodhPwhpccIWMB55YNqdGbdoDkjM7M_LO0TuP3LORM40sKTXF9anpJfA6BQTCHWvs/exec" class="btn btn-gold" target="_blank" rel="noopener">Execução</a>
+          <a href="https://script.google.com/macros/s/AKfycbxZRV1te5J4qm6sx_5A60gheGniP1DNfWdVZnXBGUUrg4Jfq1-QhlZZYmJcC84RDYzLJw/exec" class="btn btn-primary" target="_blank" rel="noopener">Novo orçamento</a>
+          <a href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Estou%20testando%20o%20Painel%20Operacional%20do%20L%C3%ADder%20e%20preciso%20de%20suporte." class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.35)" target="_blank" rel="noopener">Suporte JS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>JS Jardinagem</strong>
+        <p>
+          Painel Operacional do Líder • Home individual do parceiro com acessos rápidos, execução, orçamento, progresso, cursos, emblemas e visão de crescimento dentro do Portal do Jardineiro.
+        </p>
+      </div>
+
+      <div>
+        <p><a href="#acessos">Acessos</a></p>
+        <p><a href="#operacao">Operação</a></p>
+        <p><a href="#gamificacao">Gamificação</a></p>
+        <p><a href="#cursos">Cursos</a></p>
+      </div>
+
+      <div>
+        <p><a href="https://script.google.com/macros/s/AKfycbz-RWjN87X3Ilpp7VzO2NSb9BPQ65RJwuqavapSdWd8m-dwGp73YyR3rlZm2R_JyoYz/exec" target="_blank" rel="noopener">Login parceiro</a></p>
+        <p><a href="https://script.google.com/macros/s/AKfycbzB5ijI77f3aqNm10QP4DQDYWmdZ7ScaDSQb3CYmc4aOAGT3YBQU2ZOEtk9JqQVitgI/exec" target="_blank" rel="noopener">Cadastro parceiro</a></p>
+        <p><a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp JS</a></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
