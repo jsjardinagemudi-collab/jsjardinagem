@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1320" />
+
+  <title>Cruvinel Capital Imóveis • Investimento Inteligente em Leilões</title>
+  <meta
+    name="description"
+    content="Cruvinel Capital Imóveis: aquisição estratégica de imóveis de leilão, valorização, revenda e monetização por locação de temporada."
+  />
+
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0d1a2b;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.12);
+      --text:#eef4ff;
+      --muted:#a9b8d0;
+      --brand:#d4a94f;
+      --brand2:#f3c76b;
+      --green:#29b36b;
+      --cyan:#4db7ff;
+      --red:#ff7c7c;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(212,169,79,.16), transparent 28%),
+        radial-gradient(circle at left 20%, rgba(77,183,255,.10), transparent 25%),
+        linear-gradient(180deg, #07111f 0%, #0b1423 35%, #0e1829 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(16px);
+      background:rgba(7,17,31,.70);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:74px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand-badge{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, #f3c76b 0%, #c7922e 100%);
+      color:#111;
+      font-weight:900;
+      font-size:18px;
+      box-shadow:0 10px 30px rgba(212,169,79,.35);
+    }
+    .brand h1{
+      margin:0;
+      font-size:17px;
+      line-height:1.1;
+      letter-spacing:.2px;
+    }
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:3px;
+      letter-spacing:.3px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .nav a{
+      color:var(--muted);
+      font-size:14px;
+      transition:.2s;
+    }
+    .nav a:hover{color:var(--text)}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:14px;
+      border:1px solid transparent;
+      font-weight:700;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-gold{
+      background:linear-gradient(135deg, var(--brand2), var(--brand));
+      color:#111;
+      box-shadow:0 14px 36px rgba(212,169,79,.28);
+    }
+    .btn-ghost{
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+    }
+
+    .hero{
+      padding:72px 0 38px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hero-copy{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:30px;
+      padding:34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-copy:before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:240px;
+      height:240px;
+      background:radial-gradient(circle, rgba(212,169,79,.25), transparent 65%);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(212,169,79,.12);
+      border:1px solid rgba(212,169,79,.24);
+      color:#ffd98a;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+    }
+    .hero h2{
+      font-size:clamp(34px, 5vw, 60px);
+      line-height:1.02;
+      margin:18px 0 18px;
+      letter-spacing:-1.4px;
+    }
+    .hero h2 span{
+      color:var(--brand2);
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+      max-width:760px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:26px;
+    }
+    .point{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:16px;
+    }
+    .point strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .point span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .hero-side{
+      display:grid;
+      gap:18px;
+    }
+
+    .glass-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+    .metric{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:18px;
+    }
+    .metric .n{
+      font-size:30px;
+      font-weight:900;
+      line-height:1;
+      letter-spacing:-1px;
+      margin-bottom:8px;
+    }
+    .metric .l{
+      font-size:13px;
+      color:var(--muted);
+    }
+    .metric.gold .n{color:var(--brand2)}
+    .metric.green .n{color:#61e39d}
+    .metric.blue .n{color:#7ecbff}
+    .metric.red .n{color:#ff9797}
+
+    .quote{
+      font-size:18px;
+      line-height:1.45;
+      margin:0;
+    }
+    .quote strong{
+      color:var(--brand2);
+    }
+    .quote-foot{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    section{
+      padding:26px 0;
+    }
+
+    .section-head{
+      margin-bottom:18px;
+    }
+    .section-head .tag{
+      color:var(--brand2);
+      font-weight:800;
+      letter-spacing:.3px;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+    .section-head h3{
+      margin:8px 0 10px;
+      font-size:clamp(28px, 4vw, 42px);
+      line-height:1.06;
+      letter-spacing:-1px;
+    }
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:860px;
+      font-size:17px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .card-icon{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      margin-bottom:14px;
+      background:rgba(212,169,79,.14);
+      color:var(--brand2);
+      border:1px solid rgba(212,169,79,.22);
+    }
+    .card h4{
+      margin:0 0 10px;
+      font-size:20px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .process{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+    }
+    .step{
+      position:relative;
+      padding:22px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+    }
+    .step-num{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--brand2), var(--brand));
+      color:#111;
+      font-weight:900;
+      margin-bottom:14px;
+    }
+    .step h4{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:12px;
+    }
+    .list li{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .list i{
+      width:22px;
+      flex:0 0 22px;
+      color:var(--brand2);
+      font-style:normal;
+      font-weight:900;
+    }
+    .list strong{display:block;margin-bottom:3px}
+    .list span{color:var(--muted);font-size:14px}
+
+    .highlight{
+      padding:28px;
+      border-radius:28px;
+      background:
+        linear-gradient(135deg, rgba(212,169,79,.12), rgba(255,255,255,.04)),
+        rgba(255,255,255,.04);
+      border:1px solid rgba(212,169,79,.22);
+      box-shadow:var(--shadow);
+    }
+    .highlight h4{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.08;
+    }
+    .highlight p{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .comparison{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .comparison .box{
+      border-radius:22px;
+      padding:22px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.09);
+    }
+    .comparison .box h4{
+      margin:0 0 10px;
+      font-size:20px;
+    }
+
+    .cta{
+      padding:34px;
+      border-radius:32px;
+      background:
+        radial-gradient(circle at top right, rgba(212,169,79,.18), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+    }
+    .cta h3{
+      margin:0 0 10px;
+      font-size:clamp(28px, 4vw, 44px);
+      line-height:1.04;
+      letter-spacing:-1px;
+    }
+    .cta p{
+      margin:0;
+      color:var(--muted);
+      font-size:17px;
+      max-width:860px;
+    }
+    .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    footer{
+      padding:28px 0 44px;
+    }
+    .footer-box{
+      display:grid;
+      gap:14px;
+      padding:18px 22px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .mini{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+    .mini .mini-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:18px;
+    }
+    .mini .mini-card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:15px;
+      color:#fff;
+    }
+    .mini .mini-card span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    @media (max-width:1100px){
+      .hero-grid,
+      .split,
+      .comparison{
+        grid-template-columns:1fr;
+      }
+      .process{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:860px){
+      .nav{display:none}
+      .grid-3,
+      .metrics,
+      .mini{
+        grid-template-columns:1fr;
+      }
+      .hero-points{
+        grid-template-columns:1fr;
+      }
+      .process{
+        grid-template-columns:1fr;
+      }
+      .hero{
+        padding-top:42px;
+      }
+      .hero-copy,
+      .glass-card,
+      .card,
+      .step,
+      .cta,
+      .highlight{
+        padding:22px;
+        border-radius:22px;
+      }
+      .topbar-inner{
+        min-height:68px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#inicio" class="brand">
+        <div class="brand-badge">CC</div>
+        <div>
+          <h1>Cruvinel Capital Imóveis</h1>
+          <small>Leilões • Valorização • Revenda • Renda de Temporada</small>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#oportunidade">Oportunidade</a>
+        <a href="#modelo">Modelo</a>
+        <a href="#vantagens">Vantagens</a>
+        <a href="#investidores">Investidores</a>
+        <a href="#sociedade">Sociedade</a>
+      </nav>
+
+      <a href="#contato" class="btn btn-gold">Apresentar proposta</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Visão de escala para um conhecimento já validado</div>
+
+          <h2>
+            Transformar a experiência em <span>leilões imobiliários</span>
+            em uma empresa capaz de atrair capital, gerar patrimônio e escalar resultados.
+          </h2>
+
+          <p>
+            A Cruvinel Capital Imóveis nasce da união entre <strong>conhecimento técnico real na compra de imóveis de leilão</strong>
+            e uma <strong>visão empresarial de expansão</strong>. A proposta é simples e poderosa:
+            identificar ativos com alto potencial, adquirir com inteligência, valorizar, monetizar no período de espera
+            e vender com margem.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#modelo" class="btn btn-gold">Ver modelo de negócio</a>
+            <a href="#sociedade" class="btn btn-ghost">Ver visão de sociedade</a>
+          </div>
+
+          <div class="hero-points">
+            <div class="point">
+              <strong>Especialização real</strong>
+              <span>Conhecimento prático em leilões, avaliação, risco, documentação e potencial de valorização.</span>
+            </div>
+            <div class="point">
+              <strong>Escalabilidade</strong>
+              <span>Em vez de atuar caso a caso, criar uma estrutura capaz de operar com investidores e ampliar o volume.</span>
+            </div>
+            <div class="point">
+              <strong>Dois motores de receita</strong>
+              <span>Revenda com margem + geração de caixa via locação por temporada enquanto o ativo amadurece.</span>
+            </div>
+            <div class="point">
+              <strong>Atratividade internacional</strong>
+              <span>Modelo com potencial de apresentação para investidores do Brasil e também de fora do país.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="glass-card">
+            <div class="metrics">
+              <div class="metric gold">
+                <div class="n">30% a 60%</div>
+                <div class="l">Faixa estimada de retorno por operação bem escolhida</div>
+              </div>
+              <div class="metric green">
+                <div class="n">3 a 12 meses</div>
+                <div class="l">Janela estimada de compra, maturação e revenda</div>
+              </div>
+              <div class="metric blue">
+                <div class="n">2 fontes</div>
+                <div class="l">Valorização patrimonial + renda temporária</div>
+              </div>
+              <div class="metric red">
+                <div class="n">1 tese forte</div>
+                <div class="l">Capital inteligente em ativos descontados e selecionados</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <p class="quote">
+              “O que hoje já funciona em escala pessoal pode se tornar uma
+              <strong>empresa estruturada para captação de capital, ganho recorrente e formação de patrimônio.</strong>”
+            </p>
+            <div class="quote-foot">
+              Proposta de posicionamento para apresentação ao Murilo e a futuros investidores.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="oportunidade">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">A oportunidade</div>
+          <h3>Não vender assessoria. Construir um veículo de oportunidade.</h3>
+          <p>
+            A diferença entre um serviço pequeno e um negócio grande está no modelo.
+            Em vez de depender da venda de assessoria para compradores de leilão, a proposta aqui é
+            <strong>captar investidores</strong>, usar a inteligência técnica para selecionar os melhores ativos
+            e operar com foco em margem, segurança e velocidade.
+          </p>
+        </div>
+
+        <div class="comparison">
+          <div class="box">
+            <h4>Modelo comum: assessoria</h4>
+            <ul class="list">
+              <li><i>•</i><div><strong>Receita limitada por serviço</strong><span>Ganha-se por atendimento, análise ou acompanhamento.</span></div></li>
+              <li><i>•</i><div><strong>Escala mais fraca</strong><span>Depende de muitos clientes para crescer de verdade.</span></div></li>
+              <li><i>•</i><div><strong>Menor participação no lucro</strong><span>O grande ganho fica com quem compra o imóvel.</span></div></li>
+            </ul>
+          </div>
+
+          <div class="box" style="border-color:rgba(212,169,79,.25); background:linear-gradient(180deg, rgba(212,169,79,.10), rgba(255,255,255,.04));">
+            <h4>Modelo proposto: capital + operação</h4>
+            <ul class="list">
+              <li><i>•</i><div><strong>Receita maior por operação</strong><span>Participação direta na valorização do ativo.</span></div></li>
+              <li><i>•</i><div><strong>Escala patrimonial</strong><span>Mais capital permite mais aquisições e mais giro.</span></div></li>
+              <li><i>•</i><div><strong>Marca e reputação</strong><span>Criação de uma empresa com posicionamento forte e apelo para investidores.</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modelo">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">Modelo de negócio</div>
+          <h3>Um sistema claro: identificar, comprar, valorizar, monetizar e vender.</h3>
+          <p>
+            O valor do negócio está em unir experiência prática, critério técnico e visão de portfólio.
+            A empresa atua como selecionadora e operadora de oportunidades imobiliárias originadas em leilões.
+          </p>
+        </div>
+
+        <div class="process">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h4>Originação</h4>
+            <p>
+              Mapeamento de imóveis com potencial real de desconto, segurança documental,
+              localização estratégica e forte probabilidade de valorização.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <h4>Seleção técnica</h4>
+            <p>
+              Análise de risco, passivos, ocupação, viabilidade comercial, liquidez da região
+              e expectativa de saída no prazo certo.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <h4>Aquisição inteligente</h4>
+            <p>
+              Compra estruturada com capital próprio, capital de investidores ou sociedade operacional
+              definida no formato mais seguro e eficiente.
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-num">4</div>
+            <h4>Monetização e saída</h4>
+            <p>
+              Enquanto aguarda o momento ideal da venda, o ativo pode gerar caixa por locação de temporada
+              e seguir em valorização até a revenda.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vantagens">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">Vantagens competitivas</div>
+          <h3>Por que esse negócio tem potencial real?</h3>
+          <p>
+            Porque ele não depende apenas de teoria. Ele nasce de uma competência prática já existente,
+            com possibilidade de ganhar estrutura, nome, confiança e escala.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon">01</div>
+            <h4>Especialista no campo</h4>
+            <p>
+              Murilo Cruvinel já conhece o jogo real dos leilões: leitura de oportunidade,
+              risco, região, preço, documentação e potencial de valorização.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">02</div>
+            <h4>Visão de crescimento</h4>
+            <p>
+              A empresa não precisa ficar limitada ao operacional individual.
+              Com estrutura, marca e apresentação certa, pode atrair capital e crescer em volume.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">03</div>
+            <h4>Receita enquanto espera</h4>
+            <p>
+              O imóvel não precisa ficar parado. Em muitos casos, pode gerar fluxo por locação temporária,
+              reduzindo o custo de oportunidade enquanto a venda amadurece.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">04</div>
+            <h4>Potencial de portfólio</h4>
+            <p>
+              Em vez de uma operação isolada, é possível construir um portfólio de ativos
+              com diferentes prazos, perfis de margem e estratégias de saída.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">05</div>
+            <h4>Atratividade para investidores</h4>
+            <p>
+              Investidores buscam retorno, clareza e competência. Esse modelo permite apresentar
+              uma tese objetiva: comprar bem, gerir bem e vender melhor.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">06</div>
+            <h4>Expansão futura</h4>
+            <p>
+              Depois de validado, o negócio pode evoluir para clube de investidores,
+              veículo patrimonial, operação regional ou marca de referência em oportunidades imobiliárias.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="investidores">
+      <div class="container split">
+        <div>
+          <div class="section-head">
+            <div class="tag">Tese para investidores</div>
+            <h3>O que um investidor enxerga nessa proposta?</h3>
+            <p>
+              Acesso a uma operação baseada em ativos reais, com critério de seleção, margem potencial,
+              proteção por patrimônio e possibilidade de renda durante o ciclo de espera.
+            </p>
+          </div>
+
+          <ul class="list">
+            <li>
+              <i>✓</i>
+              <div>
+                <strong>Entrada em ativos descontados</strong>
+                <span>Leilões bem escolhidos podem oferecer assimetria interessante entre preço de entrada e valor de mercado.</span>
+              </div>
+            </li>
+            <li>
+              <i>✓</i>
+              <div>
+                <strong>Operação guiada por especialista</strong>
+                <span>O diferencial não é só ter capital, mas ter alguém que sabe o que está comprando e o que deve evitar.</span>
+              </div>
+            </li>
+            <li>
+              <i>✓</i>
+              <div>
+                <strong>Possibilidade de renda intermediária</strong>
+                <span>Locação por temporada pode ajudar a gerar fluxo enquanto o imóvel aguarda a venda ideal.</span>
+              </div>
+            </li>
+            <li>
+              <i>✓</i>
+              <div>
+                <strong>Potencial de diversificação</strong>
+                <span>O investidor pode participar de uma ou várias operações, conforme perfil, prazo e apetite ao risco.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="highlight">
+          <h4>O ativo trabalha em duas frentes.</h4>
+          <p>
+            Primeiro, pela <strong>valorização patrimonial</strong> entre compra e venda.
+            Segundo, pela <strong>monetização operacional</strong> no período de espera,
+            especialmente em imóveis com perfil adequado para locação de curta temporada.
+            Isso torna a tese ainda mais interessante: o imóvel não é apenas um estoque parado,
+            mas pode se tornar uma máquina de geração de caixa enquanto amadurece para a saída.
+          </p>
+
+          <div class="mini">
+            <div class="mini-card">
+              <strong>Compra abaixo do mercado</strong>
+              <span>Base de margem já começa na aquisição inteligente.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Gestão do risco</strong>
+              <span>Seleção criteriosa e filtro técnico das oportunidades.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Monetização temporária</strong>
+              <span>Receita por locação quando o perfil do ativo permitir.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Saída planejada</strong>
+              <span>Venda no momento certo para maximizar resultado.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sociedade">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">Visão de sociedade</div>
+          <h3>O ponto principal: isso pode virar uma empresa de verdade.</h3>
+          <p>
+            O conhecimento do Murilo já tem valor. O que está faltando é empacotar isso como empresa,
+            posicionamento, oportunidade e expansão. A sociedade nasce forte quando cada um entra com sua maior força:
+            <strong>ele com a precisão operacional e você com a visão de crescimento, apresentação e escala.</strong>
+          </p>
+        </div>
+
+        <div class="split">
+          <div class="card">
+            <div class="card-icon">M</div>
+            <h4>Força do Murilo Cruvinel</h4>
+            <p style="margin-bottom:14px;">
+              Especialista prático em imóveis de leilão, leitura de regiões, preço, risco, liquidez e potencial de valorização.
+            </p>
+            <ul class="list">
+              <li><i>•</i><div><strong>Escolha cirúrgica dos ativos</strong><span>Não é volume por volume; é critério.</span></div></li>
+              <li><i>•</i><div><strong>Conhecimento do campo real</strong><span>Problemas antes, durante e depois da compra.</span></div></li>
+              <li><i>•</i><div><strong>Segurança na decisão</strong><span>Redução de erro em comparação com investidores leigos.</span></div></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">A</div>
+            <h4>Sua força no projeto</h4>
+            <p style="margin-bottom:14px;">
+              Construção de marca, visão de escala, apresentação comercial, plataforma, posicionamento e atração de investidores.
+            </p>
+            <ul class="list">
+              <li><i>•</i><div><strong>Transformar operação em empresa</strong><span>Criar nome, presença, narrativa e estrutura de crescimento.</span></div></li>
+              <li><i>•</i><div><strong>Atrair capital</strong><span>Levar a proposta a investidores locais e até internacionais.</span></div></li>
+              <li><i>•</i><div><strong>Escalar o modelo</strong><span>Sair do individual e pensar em portfólio e recorrência.</span></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">Possíveis estruturas</div>
+          <h3>Existem vários caminhos para estruturar as operações.</h3>
+          <p>
+            A definição ideal depende da parte jurídica, tributária e contábil. Mas estrategicamente,
+            há alguns formatos possíveis para começar a desenhar o negócio.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon">A</div>
+            <h4>Compra no nome do investidor</h4>
+            <p>
+              O investidor entra com o capital e o ativo fica diretamente em seu nome,
+              enquanto a operação e a inteligência são conduzidas pela empresa conforme contrato.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">B</div>
+            <h4>Compra com sócios no ativo</h4>
+            <p>
+              Em muitos contextos, um imóvel pode sim ter mais de um proprietário, desde que a estrutura
+              e o registro sejam feitos da forma correta. Isso exigirá validação jurídica.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">C</div>
+            <h4>Compra via empresa/operação</h4>
+            <p>
+              A empresa pode ser o centro operacional da tese, recebendo investimento,
+              conduzindo a compra e definindo posteriormente a forma de remuneração e distribuição de resultado.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta" id="contato">
+          <h3>Isso não é apenas uma ideia.<br>É um modelo que pode abrir portas grandes.</h3>
+          <p>
+            A Cruvinel Capital Imóveis pode nascer como uma empresa enxuta, sofisticada e altamente estratégica,
+            conectando <strong>capital</strong>, <strong>oportunidade</strong> e <strong>execução especializada</strong>.
+            O próximo passo é transformar essa visão em estrutura: marca, apresentação, operação piloto e captação.
+          </p>
+
+          <div class="cta-actions">
+            <a href="javascript:window.print()" class="btn btn-gold">Salvar / apresentar em PDF</a>
+            <a href="#inicio" class="btn btn-ghost">Voltar ao topo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-box">
+        <div><strong style="color:#fff;">Cruvinel Capital Imóveis</strong> — proposta conceitual de posicionamento empresarial.</div>
+        <div>
+          <strong style="color:#fff;">Observação importante:</strong>
+          esta página é uma apresentação estratégica de negócio. A estrutura final da empresa, a forma de entrada dos investidores,
+          a titularidade dos imóveis, a divisão dos resultados, a captação de capital e a modelagem contratual devem ser definidas com
+          apoio jurídico, contábil e tributário antes de qualquer oferta pública ou operação formal.
+        </div>
+        <div>
+          <strong style="color:#fff;">Posicionamento central:</strong>
+          não vender apenas assessoria. Construir uma empresa que transforma conhecimento em patrimônio, resultado e escala.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
