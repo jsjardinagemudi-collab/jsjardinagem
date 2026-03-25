@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+
+  <title>Brechó Circular • Moda com propósito</title>
+  <meta
+    name="description"
+    content="Loja conceito de roupas e acessórios usados de qualidade, reaproveitando recursos, reduzindo lixo e gerando renda para a comunidade."
+  />
+
+  <style>
+    :root{
+      --bg:#0f1112;
+      --bg2:#171a1c;
+      --card:#1d2124;
+      --soft:#252a2e;
+      --line:rgba(255,255,255,.08);
+      --text:#f5f7f8;
+      --muted:#aab3ba;
+      --green:#2ea66b;
+      --green2:#1f7d50;
+      --gold:#d7af54;
+      --white:#ffffff;
+      --shadow:0 18px 40px rgba(0,0,0,.28);
+      --radius:22px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(46,166,107,.12), transparent 28%),
+        radial-gradient(circle at right center, rgba(215,175,84,.09), transparent 25%),
+        linear-gradient(180deg, #101213 0%, #121516 100%);
+      color:var(--text);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(var(--max), calc(100% - 28px));
+      margin:0 auto;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:700;
+      transition:.25s ease;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--green), var(--green2));
+      color:#fff;
+      box-shadow:0 12px 30px rgba(46,166,107,.24);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+    }
+
+    .btn-outline{
+      border-color:rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+    }
+
+    .btn-outline:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:#dfe5e8;
+      font-size:13px;
+      letter-spacing:.3px;
+    }
+
+    .section{
+      padding:72px 0;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      margin-bottom:26px;
+      flex-wrap:wrap;
+    }
+
+    .eyebrow{
+      color:var(--gold);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    h1,h2,h3,p{margin:0}
+    h1{
+      font-size:clamp(36px, 6vw, 72px);
+      line-height:.96;
+      letter-spacing:-1.8px;
+    }
+
+    h2{
+      font-size:clamp(28px, 3.5vw, 44px);
+      line-height:1.04;
+      letter-spacing:-1px;
+    }
+
+    .lead{
+      font-size:clamp(16px, 2vw, 20px);
+      line-height:1.65;
+      color:var(--muted);
+    }
+
+    .muted{
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    /* HEADER */
+    .header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter:blur(14px);
+      background:rgba(10,12,13,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .header-inner{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, var(--green), #0f5e3a);
+      color:#fff;
+      font-weight:900;
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+
+    .brand-text span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .nav a{
+      color:#dde4e8;
+      font-size:14px;
+      font-weight:700;
+      opacity:.9;
+    }
+
+    .nav a:hover{opacity:1}
+
+    /* HERO */
+    .hero{
+      padding:28px 0 26px;
+    }
+
+    .hero-wrap{
+      display:grid;
+      grid-template-columns:1.15fr .95fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .hero-copy{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        linear-gradient(120deg, rgba(46,166,107,.12), transparent 42%);
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-copy::after{
+      content:"";
+      position:absolute;
+      right:-70px;
+      top:-70px;
+      width:220px;
+      height:220px;
+      background:radial-gradient(circle, rgba(215,175,84,.18), transparent 65%);
+      pointer-events:none;
+    }
+
+    .hero-text{
+      max-width:720px;
+    }
+
+    .hero-text .lead{
+      margin-top:22px;
+      max-width:640px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .point{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .point strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:6px;
+    }
+
+    .point span{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    .hero-visual{
+      min-height:580px;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      position:relative;
+      background:#111;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-visual img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.28) 35%, rgba(0,0,0,.66) 100%);
+      display:flex;
+      align-items:flex-end;
+      padding:24px;
+    }
+
+    .hero-panel{
+      width:min(100%, 460px);
+      background:rgba(12,14,16,.74);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .hero-panel strong{
+      display:block;
+      font-size:18px;
+      margin-bottom:6px;
+    }
+
+    .hero-panel p{
+      color:#d7dee3;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    /* CARDS */
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .img-card{
+      position:relative;
+      min-height:380px;
+      background:#131517;
+    }
+
+    .img-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .img-fallback{
+      height:100%;
+      min-height:380px;
+      display:grid;
+      place-items:center;
+      padding:18px;
+      text-align:center;
+      color:#b8c2c9;
+      background:
+        linear-gradient(135deg, rgba(46,166,107,.15), transparent 50%),
+        linear-gradient(135deg, #202427, #121416);
+      font-weight:700;
+      letter-spacing:.4px;
+    }
+
+    .img-caption{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:end;
+    }
+
+    .img-caption .label{
+      background:rgba(12,14,16,.82);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:14px 15px;
+      max-width:78%;
+    }
+
+    .img-caption .label strong{
+      display:block;
+      font-size:17px;
+      margin-bottom:4px;
+    }
+
+    .img-caption .label span{
+      font-size:13px;
+      color:#d2d8dc;
+      line-height:1.4;
+    }
+
+    .img-caption .pill{
+      background:rgba(46,166,107,.95);
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      padding:10px 12px;
+      border-radius:999px;
+      white-space:nowrap;
+      align-self:flex-start;
+    }
+
+    .product-body{
+      padding:18px;
+    }
+
+    .product-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:start;
+      margin-bottom:10px;
+    }
+
+    .product-top h3{
+      font-size:18px;
+      line-height:1.2;
+    }
+
+    .price{
+      font-size:20px;
+      font-weight:900;
+      color:var(--gold);
+      white-space:nowrap;
+    }
+
+    .product-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:14px 0 18px;
+    }
+
+    .meta{
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.03);
+      color:#d9e0e4;
+      border-radius:999px;
+      font-size:12px;
+      padding:8px 10px;
+      font-weight:700;
+    }
+
+    .product-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* STORY */
+    .story{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    .story-card{
+      padding:28px;
+      min-height:100%;
+    }
+
+    .story-list{
+      display:grid;
+      gap:14px;
+      margin-top:22px;
+    }
+
+    .story-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:14px 0;
+      border-top:1px solid rgba(255,255,255,.07);
+    }
+
+    .story-item:first-child{border-top:0;padding-top:0}
+
+    .num{
+      width:34px;
+      height:34px;
+      flex:0 0 34px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:rgba(46,166,107,.14);
+      color:#8ce1b7;
+      font-weight:900;
+      font-size:13px;
+      border:1px solid rgba(46,166,107,.25);
+    }
+
+    .story-item strong{
+      display:block;
+      margin-bottom:5px;
+    }
+
+    /* CTA */
+    .cta{
+      padding:34px;
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(120deg, rgba(46,166,107,.14), rgba(255,255,255,.03)),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .cta p{
+      max-width:720px;
+      margin-top:10px;
+      color:#d4dbe0;
+      line-height:1.7;
+    }
+
+    /* FOOTER */
+    .footer{
+      padding:34px 0 50px;
+      border-top:1px solid var(--line);
+      margin-top:24px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .footer small{
+      color:var(--muted);
+      display:block;
+      line-height:1.75;
+      font-size:13px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .footer-links a{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:13px;
+      color:#dfe6ea;
+      font-weight:700;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:1100px){
+      .hero-wrap,
+      .story,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .grid-4{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero-visual{
+        min-height:480px;
+      }
+    }
+
+    @media (max-width:760px){
+      .header-inner{
+        min-height:74px;
+      }
+
+      .nav{
+        display:none;
+      }
+
+      .hero-copy{
+        padding:24px;
+        border-radius:24px;
+      }
+
+      .hero-visual{
+        min-height:400px;
+        border-radius:24px;
+      }
+
+      .hero-points{
+        grid-template-columns:1fr;
+      }
+
+      .grid-4,
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+
+      .section{
+        padding:54px 0;
+      }
+
+      .img-card,
+      .img-fallback{
+        min-height:320px;
+      }
+
+      .cta{
+        padding:24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#topo" class="brand">
+        <div class="brand-mark">BC</div>
+        <div class="brand-text">
+          <strong>Brechó Circular</strong>
+          <span>Moda de qualidade • Reuso • Estilo com propósito</span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#colecoes">Coleções</a>
+        <a href="#destaques">Destaques</a>
+        <a href="#proposito">Propósito</a>
+        <a href="#ecovida">EcoVida</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="topo">
+
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="hero-copy">
+          <div class="hero-text">
+            <div class="tag">♻ Moda reaproveitada com curadoria e valor real</div>
+            <h1 style="margin-top:18px;">
+              estilo, qualidade e
+              <br>renda com
+              <br>propósito
+            </h1>
+            <p class="lead">
+              Uma loja criada para resgatar roupas, acessórios e peças de moda com qualidade,
+              devolver valor ao que já existe e transformar consumo em consciência.
+              Menos lixo. Mais estilo. Mais oportunidade para a comunidade.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#destaques" class="btn btn-primary">Ver peças em destaque</a>
+              <a href="#proposito" class="btn btn-outline">Entender a proposta</a>
+            </div>
+
+            <div class="hero-points">
+              <div class="point">
+                <strong>Curadoria de qualidade</strong>
+                <span>Selecionamos peças com potencial real de uso, estilo e revenda.</span>
+              </div>
+              <div class="point">
+                <strong>Consumo mais consciente</strong>
+                <span>Reaproveitar é reduzir descarte e diminuir o excesso de produção.</span>
+              </div>
+              <div class="point">
+                <strong>Modelo com impacto</strong>
+                <span>Pode gerar renda e ainda se conectar com o Instituto EcoVida.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="wall_brecho.jpg" alt="Banner principal do brechó" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="img-fallback" style="display:none;">
+            ESPAÇO PARA A IMAGEM PRINCIPAL
+            <br><br>
+            arquivo sugerido:
+            <br><strong>wall_brecho.jpg</strong>
+          </div>
+
+          <div class="hero-overlay">
+            <div class="hero-panel">
+              <strong>Moda que volta a circular</strong>
+              <p>
+                O valor não está só em vender roupa usada. Está em construir uma marca forte,
+                bonita e inteligente, que une estética, reaproveitamento, comunidade e geração de renda.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="colecoes" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Coleções</div>
+            <h2>categorias para vender com visual forte</h2>
+          </div>
+          <p class="muted" style="max-width:560px;">
+            Essas áreas já ajudam a mostrar ao Savio como a loja pode ser organizada
+            por estilo, público e curadoria visual.
+          </p>
+        </div>
+
+        <div class="grid-4">
+
+          <article class="card img-card">
+            <img src="casual_feminino.jpg" alt="Coleção casual feminino" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="img-fallback" style="display:none;">IMAGEM<br>casual_feminino.jpg</div>
+            <div class="img-caption">
+              <div class="label">
+                <strong>Casual Feminino</strong>
+                <span>Peças versáteis, elegantes e acessíveis para o dia a dia.</span>
+              </div>
+              <div class="pill">Curadoria</div>
+            </div>
+          </article>
+
+          <article class="card img-card">
+            <img src="casual_masculino.jpg" alt="Coleção casual masculino" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="img-fallback" style="display:none;">IMAGEM<br>casual_masculino.jpg</div>
+            <div class="img-caption">
+              <div class="label">
+                <strong>Casual Masculino</strong>
+                <span>Visual limpo, confortável e com peças de qualidade reaproveitada.</span>
+              </div>
+              <div class="pill">Reuso</div>
+            </div>
+          </article>
+
+          <article class="card img-card">
+            <img src="street_masculino.jpg" alt="Coleção street masculino" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="img-fallback" style="display:none;">IMAGEM<br>street_masculino.jpg</div>
+            <div class="img-caption">
+              <div class="label">
+                <strong>Street Masculino</strong>
+                <span>Estilo urbano, personalidade e peças com presença.</span>
+              </div>
+              <div class="pill">Street</div>
+            </div>
+          </article>
+
+          <article class="card img-card">
+            <img src="summer_feminino.jpg" alt="Coleção summer feminino" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="img-fallback" style="display:none;">IMAGEM<br>summer_feminino.jpg</div>
+            <div class="img-caption">
+              <div class="label">
+                <strong>Summer Feminino</strong>
+                <span>Leveza, frescor e moda circular com energia de verão.</span>
+              </div>
+              <div class="pill">Vibe</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="destaques" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Destaques da loja</div>
+            <h2>exemplo visual de produtos à venda</h2>
+          </div>
+          <p class="muted" style="max-width:560px;">
+            Aqui já fica com cara de loja real. Você pode trocar nomes, preços e categorias
+            depois sem mexer na estrutura.
+          </p>
+        </div>
+
+        <div class="grid-3">
+
+          <article class="card">
+            <div class="product-body">
+              <div class="product-top">
+                <h3>Jaqueta Vintage Premium</h3>
+                <div class="price">R$ 129</div>
+              </div>
+              <p class="muted">
+                Peça selecionada em ótimo estado, com presença visual forte e estilo atemporal.
+              </p>
+              <div class="product-meta">
+                <span class="meta">Tamanho M</span>
+                <span class="meta">Peça única</span>
+                <span class="meta">Curadoria especial</span>
+              </div>
+              <div class="product-actions">
+                <a href="#contato" class="btn btn-primary">Tenho interesse</a>
+                <a href="#proposito" class="btn btn-outline">Ver conceito</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="product-body">
+              <div class="product-top">
+                <h3>Camisa Casual de Marca</h3>
+                <div class="price">R$ 89</div>
+              </div>
+              <p class="muted">
+                Produto reaproveitado com qualidade, pronto para novo uso e nova história.
+              </p>
+              <div class="product-meta">
+                <span class="meta">Masculino</span>
+                <span class="meta">Excelente estado</span>
+                <span class="meta">Moda consciente</span>
+              </div>
+              <div class="product-actions">
+                <a href="#contato" class="btn btn-primary">Reservar peça</a>
+                <a href="#colecoes" class="btn btn-outline">Mais coleções</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="product-body">
+              <div class="product-top">
+                <h3>Vestido Leve Summer</h3>
+                <div class="price">R$ 95</div>
+              </div>
+              <p class="muted">
+                Estilo fresco, feminino e com ótimo potencial para girar rápido na loja.
+              </p>
+              <div class="product-meta">
+                <span class="meta">Feminino</span>
+                <span class="meta">Selecionado</span>
+                <span class="meta">Alta saída</span>
+              </div>
+              <div class="product-actions">
+                <a href="#contato" class="btn btn-primary">Quero essa</a>
+                <a href="#ecovida" class="btn btn-outline">Impacto social</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="proposito" class="section">
+      <div class="container story">
+
+        <div class="card story-card">
+          <div class="eyebrow">Nossa proposta</div>
+          <h2>não é só vender roupa usada</h2>
+          <p class="lead" style="margin-top:16px;">
+            É transformar peças esquecidas em nova oportunidade de consumo, estilo, renda e impacto positivo.
+          </p>
+
+          <div class="story-list">
+            <div class="story-item">
+              <div class="num">01</div>
+              <div>
+                <strong>Resgatar valor do que já existe</strong>
+                <p class="muted">Muita roupa boa fica parada, sem uso, perdendo valor. A curadoria devolve utilidade e desejo.</p>
+              </div>
+            </div>
+
+            <div class="story-item">
+              <div class="num">02</div>
+              <div>
+                <strong>Reduzir lixo e excesso de produção</strong>
+                <p class="muted">Ao reaproveitar peças de qualidade, diminuímos descarte e ajudamos a quebrar a lógica do consumo descartável.</p>
+              </div>
+            </div>
+
+            <div class="story-item">
+              <div class="num">03</div>
+              <div>
+                <strong>Gerar renda e movimentar a comunidade</strong>
+                <p class="muted">O brechó pode abrir portas para vendas, consignação, campanhas e novos projetos com impacto local.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card story-card" id="ecovida">
+          <div class="eyebrow">Conexão com o Instituto EcoVida</div>
+          <h2>moda circular também pode virar projeto social</h2>
+          <p class="lead" style="margin-top:16px;">
+            Essa loja pode funcionar como um braço comercial e ambiental conectado ao propósito do EcoVida.
+          </p>
+
+          <div class="story-list">
+            <div class="story-item">
+              <div class="num">A</div>
+              <div>
+                <strong>Campanhas de arrecadação</strong>
+                <p class="muted">Receber roupas, acessórios e itens com potencial de reuso para triagem, curadoria e revenda.</p>
+              </div>
+            </div>
+
+            <div class="story-item">
+              <div class="num">B</div>
+              <div>
+                <strong>Geração de renda consciente</strong>
+                <p class="muted">Uma parte da receita pode fortalecer ações do instituto, projetos comunitários ou oportunidades de trabalho.</p>
+              </div>
+            </div>
+
+            <div class="story-item">
+              <div class="num">C</div>
+              <div>
+                <strong>Marca com causa real</strong>
+                <p class="muted">Isso tira a loja do comum. Ela passa a ter história, posicionamento e valor de marca muito mais forte.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta">
+          <div class="cta-row">
+            <div>
+              <div class="eyebrow">Apresentação comercial</div>
+              <h2>um exemplo pronto para mostrar ao Savio</h2>
+              <p>
+                Esse site já serve como demonstração visual do potencial do projeto.
+                Ele mostra posicionamento, identidade, proposta de valor e caminho para venda real.
+                Depois, podemos transformar isso em uma loja mais completa com catálogo, filtros, páginas de produto, botão de WhatsApp e integração com Instagram.
+              </p>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="#colecoes" class="btn btn-primary">Explorar coleções</a>
+              <a href="#contato" class="btn btn-outline">Falar sobre parceria</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contato" class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:16px;">
+          <div class="brand-mark">BC</div>
+          <div class="brand-text">
+            <strong>Brechó Circular</strong>
+            <span>Moda reaproveitada com propósito</span>
+          </div>
+        </div>
+
+        <small>
+          Loja conceito criada para reaproveitar roupas e acessórios de qualidade,
+          reduzir descarte e gerar renda por meio da moda circular.
+        </small>
+        <small style="margin-top:10px;">
+          Pode ser apresentada como projeto independente ou conectada ao Instituto EcoVida.
+        </small>
+        <small style="margin-top:10px;">
+          © <span id="year"></span> Brechó Circular. Todos os direitos reservados.
+        </small>
+      </div>
+
+      <div class="footer-links">
+        <a href="#topo">Início</a>
+        <a href="#colecoes">Coleções</a>
+        <a href="#destaques">Destaques</a>
+        <a href="#proposito">Propósito</a>
+        <a href="#ecovida">EcoVida</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
