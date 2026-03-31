@@ -11,15 +11,15 @@ body {
     font-family: Arial, sans-serif;
     background: url('wall.png') no-repeat center center fixed;
     background-size: cover;
-    color: #333;
 }
 
 .overlay {
-    background-color: rgba(255, 255, 255, 0.92);
+    background: rgba(255,255,255,0.94);
     min-height: 100vh;
     padding: 20px;
 }
 
+/* HEADER */
 header {
     text-align: center;
     padding: 30px 10px;
@@ -27,20 +27,34 @@ header {
 
 header h1 {
     font-size: 42px;
-    margin: 0;
     color: #d46a92;
+    margin: 0;
 }
 
 header p {
-    font-size: 16px;
     color: #666;
 }
 
+/* EVENTOS */
+.events {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.events span {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #f2f2f2;
+    font-size: 14px;
+}
+
+/* GALERIA */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
 }
 
 .gallery img {
@@ -53,53 +67,66 @@ header p {
     transform: scale(1.05);
 }
 
+/* PREÇO */
 .pricing {
     text-align: center;
-    margin: 30px 0;
+    margin-top: 30px;
 }
 
 .price-box {
-    background: #fff;
-    border-radius: 15px;
+    background: white;
     padding: 20px;
     margin: 10px;
+    border-radius: 15px;
     display: inline-block;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
 .price-box h2 {
-    margin: 0;
     color: #d46a92;
+    margin-bottom: 5px;
 }
 
-.price-box p {
-    margin: 5px 0;
+.price {
+    font-size: 24px;
+    font-weight: bold;
 }
 
+/* CTA */
 .cta {
     text-align: center;
-    margin: 40px 0;
+    margin: 35px 0;
 }
 
 .cta a {
-    text-decoration: none;
-    background: #d46a92;
+    background: #25D366;
     color: white;
-    padding: 15px 30px;
+    text-decoration: none;
+    padding: 16px 30px;
     border-radius: 30px;
     font-size: 18px;
+    display: inline-block;
     transition: 0.3s;
 }
 
 .cta a:hover {
-    background: #b8557a;
+    background: #1ebe5d;
 }
 
+/* URGENCIA */
+.urgency {
+    text-align: center;
+    color: #d46a92;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* FOOTER */
 .footer {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     color: #777;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 </style>
 
@@ -111,8 +138,16 @@ header p {
 
 <header>
     <h1>Lili Biscuits</h1>
-    <p>Velas personalizadas em biscuit • Exclusivas para momentos especiais</p>
+    <p>Velas personalizadas em biscuit • feitas à mão</p>
 </header>
+
+<div class="events">
+    <span>Aniversários</span>
+    <span>Casamentos</span>
+    <span>Debutantes</span>
+    <span>Formaturas</span>
+    <span>Eventos Especiais</span>
+</div>
 
 <section class="gallery">
     <img src="imagem_01.png">
@@ -132,23 +167,29 @@ header p {
     <div class="price-box">
         <h2>Velas Personalizadas</h2>
         <p>A partir de</p>
-        <strong style="font-size:22px;">R$ 60,00</strong>
+        <div class="price">R$ 60</div>
     </div>
 
     <div class="price-box">
         <h2>Pacote Completo</h2>
         <p>Vela + Lembrancinhas VIP</p>
-        <strong style="font-size:22px;">A partir de R$ 480,00</strong>
+        <div class="price">A partir de R$ 480</div>
     </div>
 
 </section>
 
-<section class="cta">
-    <a href="#">Fazer Pedido</a>
-</section>
+<div class="cta">
+    <a href="https://wa.me/5599999999999?text=Olá,%20vim%20pelo%20site%20da%20Lili%20Biscuits%20e%20quero%20fazer%20um%20orçamento.">
+        Fazer Pedido pelo WhatsApp
+    </a>
+</div>
+
+<div class="urgency">
+    Produção limitada por semana • Reserve com antecedência
+</div>
 
 <div class="footer">
-    <p>Aniversários • Casamentos • Debutantes • Formaturas</p>
+    Lili Biscuits © Todos os direitos reservados
 </div>
 
 </div>
