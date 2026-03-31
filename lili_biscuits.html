@@ -14,7 +14,7 @@ body {
 }
 
 .overlay {
-    background: rgba(255,255,255,0.94);
+    background: rgba(255,255,255,0.95);
     min-height: 100vh;
     padding: 20px;
 }
@@ -35,82 +35,87 @@ header p {
     color: #666;
 }
 
-/* EVENTOS */
-.events {
+/* TEMAS */
+.themes {
     text-align: center;
     margin: 20px 0;
 }
 
-.events span {
+.theme-btn {
     display: inline-block;
     margin: 5px;
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 10px 18px;
+    border-radius: 25px;
     background: #f2f2f2;
-    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-btn:hover {
+    background: #d46a92;
+    color: white;
 }
 
 /* GALERIA */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
 }
 
 .gallery img {
     width: 100%;
-    border-radius: 12px;
-    transition: 0.3s;
+    border-radius: 10px;
 }
 
-.gallery img:hover {
-    transform: scale(1.05);
-}
-
-/* PREÇO */
+/* PREÇOS */
 .pricing {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .price-box {
     background: white;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 15px;
+    padding: 18px;
+    margin: 8px;
+    border-radius: 12px;
     display: inline-block;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-.price-box h2 {
-    color: #d46a92;
-    margin-bottom: 5px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
 }
 
 .price {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
+    color: #d46a92;
 }
 
-/* CTA */
-.cta {
+/* BOTÕES */
+.actions {
     text-align: center;
-    margin: 35px 0;
+    margin: 30px 0;
 }
 
-.cta a {
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    padding: 16px 30px;
-    border-radius: 30px;
-    font-size: 18px;
+.btn {
     display: inline-block;
+    margin: 8px;
+    padding: 14px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
     transition: 0.3s;
 }
 
-.cta a:hover {
-    background: #1ebe5d;
+.whatsapp {
+    background: #25D366;
+}
+
+.form {
+    background: #d46a92;
+}
+
+.btn:hover {
+    opacity: 0.85;
 }
 
 /* URGENCIA */
@@ -118,7 +123,6 @@ header p {
     text-align: center;
     color: #d46a92;
     font-size: 14px;
-    margin-top: 10px;
 }
 
 /* FOOTER */
@@ -126,7 +130,7 @@ header p {
     text-align: center;
     font-size: 13px;
     color: #777;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 </style>
 
@@ -138,15 +142,15 @@ header p {
 
 <header>
     <h1>Lili Biscuits</h1>
-    <p>Velas personalizadas em biscuit • feitas à mão</p>
+    <p>Velas personalizadas feitas à mão • cada detalhe único</p>
 </header>
 
-<div class="events">
-    <span>Aniversários</span>
-    <span>Casamentos</span>
-    <span>Debutantes</span>
-    <span>Formaturas</span>
-    <span>Eventos Especiais</span>
+<div class="themes">
+    <div class="theme-btn">Infantil</div>
+    <div class="theme-btn">Luxo</div>
+    <div class="theme-btn">Adulto</div>
+    <div class="theme-btn">Casamento</div>
+    <div class="theme-btn">Debutante</div>
 </div>
 
 <section class="gallery">
@@ -165,31 +169,37 @@ header p {
 <section class="pricing">
 
     <div class="price-box">
-        <h2>Velas Personalizadas</h2>
-        <p>A partir de</p>
-        <div class="price">R$ 60</div>
+        <p>Velas Personalizadas</p>
+        <div class="price">A partir de R$ 60</div>
     </div>
 
     <div class="price-box">
-        <h2>Pacote Completo</h2>
-        <p>Vela + Lembrancinhas VIP</p>
+        <p>Pacote Completo</p>
         <div class="price">A partir de R$ 480</div>
     </div>
 
 </section>
 
-<div class="cta">
-    <a href="https://wa.me/5599999999999?text=Olá,%20vim%20pelo%20site%20da%20Lili%20Biscuits%20e%20quero%20fazer%20um%20orçamento.">
-        Fazer Pedido pelo WhatsApp
+<div class="actions">
+
+    <a class="btn whatsapp" 
+    href="https://wa.me/5599999999999?text=Olá,%20quero%20uma%20vela%20personalizada%20da%20Lili%20Biscuits">
+    Pedido Rápido
     </a>
+
+    <a class="btn form" 
+    href="https://script.google.com/macros/s/SEU-LINK-AQUI/exec" target="_blank">
+    Personalizar Pedido
+    </a>
+
 </div>
 
 <div class="urgency">
-    Produção limitada por semana • Reserve com antecedência
+    Produção limitada semanal • pedidos sob encomenda
 </div>
 
 <div class="footer">
-    Lili Biscuits © Todos os direitos reservados
+    Lili Biscuits © Marca artesanal exclusiva
 </div>
 
 </div>
