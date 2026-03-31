@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lili Biscuits</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('wall.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
+
+.overlay {
+    background-color: rgba(255, 255, 255, 0.92);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    font-size: 42px;
+    margin: 0;
+    color: #d46a92;
+}
+
+header p {
+    font-size: 16px;
+    color: #666;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.pricing {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.price-box {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.price-box h2 {
+    margin: 0;
+    color: #d46a92;
+}
+
+.price-box p {
+    margin: 5px 0;
+}
+
+.cta {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.cta a {
+    text-decoration: none;
+    background: #d46a92;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.cta a:hover {
+    background: #b8557a;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-top: 40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<header>
+    <h1>Lili Biscuits</h1>
+    <p>Velas personalizadas em biscuit • Exclusivas para momentos especiais</p>
+</header>
+
+<section class="gallery">
+    <img src="imagem_01.png">
+    <img src="imagem_02.png">
+    <img src="imagem_03.png">
+    <img src="imagem_04.png">
+    <img src="imagem_05.png">
+    <img src="imagem_06.png">
+    <img src="imagem_07.png">
+    <img src="imagem_08.png">
+    <img src="imagem_09.png">
+    <img src="imagem_10.png">
+</section>
+
+<section class="pricing">
+
+    <div class="price-box">
+        <h2>Velas Personalizadas</h2>
+        <p>A partir de</p>
+        <strong style="font-size:22px;">R$ 60,00</strong>
+    </div>
+
+    <div class="price-box">
+        <h2>Pacote Completo</h2>
+        <p>Vela + Lembrancinhas VIP</p>
+        <strong style="font-size:22px;">A partir de R$ 480,00</strong>
+    </div>
+
+</section>
+
+<section class="cta">
+    <a href="#">Fazer Pedido</a>
+</section>
+
+<div class="footer">
+    <p>Aniversários • Casamentos • Debutantes • Formaturas</p>
+</div>
+
+</div>
+
+</body>
+</html>
