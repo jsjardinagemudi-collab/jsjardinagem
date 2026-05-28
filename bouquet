@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monte Seu Buquê | JS Jardinagem</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f7f7f7;
+color:#333;
+}
+
+header{
+background:#1d4d2f;
+color:white;
+padding:60px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+header p{
+font-size:1.2rem;
+max-width:700px;
+margin:auto;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+}
+
+.section-title{
+font-size:2rem;
+margin-bottom:20px;
+color:#1d4d2f;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+margin-bottom:25px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.options{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.options label{
+padding:12px 18px;
+background:#f2f2f2;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.options input{
+margin-right:5px;
+}
+
+textarea{
+width:100%;
+padding:15px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-top:10px;
+}
+
+.summary{
+background:#1d4d2f;
+color:white;
+padding:25px;
+border-radius:15px;
+position:sticky;
+top:20px;
+}
+
+.summary h2{
+margin-bottom:20px;
+}
+
+.summary p{
+margin-bottom:10px;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:18px;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+background:#25D366;
+color:white;
+font-weight:bold;
+margin-top:20px;
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+.grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+}
+
+footer{
+background:#111;
+color:white;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+@media(max-width:900px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+header h1{
+font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>Monte Seu Buquê</h1>
+
+<p>
+Escolha flores, embalagens e acessórios para criar um presente único.
+Produzido pela JS Jardinagem.
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div>
+
+<div class="card">
+
+<h2 class="section-title">1. Escolha as Flores</h2>
+
+<div class="options">
+
+<label><input type="checkbox" value="Rosas"> Rosas</label>
+<label><input type="checkbox" value="Girassóis"> Girassóis</label>
+<label><input type="checkbox" value="Margaridas"> Margaridas</label>
+<label><input type="checkbox" value="Lírios"> Lírios</label>
+<label><input type="checkbox" value="Tulipas"> Tulipas</label>
+<label><input type="checkbox" value="Astromélias"> Astromélias</label>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">2. Embalagem</h2>
+
+<div class="options">
+
+<label><input type="radio" name="papel" value="Folha Quadrada"> Folha Quadrada</label>
+<label><input type="radio" name="papel" value="Folha Colmeia"> Folha Colmeia</label>
+<label><input type="radio" name="papel" value="Papel Kraft"> Papel Kraft</label>
+<label><input type="radio" name="papel" value="Papel Seda"> Papel Seda</label>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">3. Laço</h2>
+
+<div class="options">
+
+<label><input type="radio" name="laco" value="Laço Bola"> Laço Bola</label>
+<label><input type="radio" name="laco" value="Sem Laço"> Sem Laço</label>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">4. Cartão Personalizado</h2>
+
+<textarea
+id="mensagem"
+rows="6"
+placeholder="Escreva sua mensagem..."></textarea>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="summary">
+
+<h2>Resumo do Pedido</h2>
+
+<p id="floresResumo">Flores: -</p>
+
+<p id="papelResumo">Embalagem: -</p>
+
+<p id="lacoResumo">Laço: -</p>
+
+<p id="msgResumo">Mensagem: -</p>
+
+<button class="btn" onclick="enviarWhats()">
+Enviar pelo WhatsApp
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<h3>JS Jardinagem</h3>
+
+<p>Buquês personalizados e presentes especiais.</p>
+
+</footer>
+
+<script>
+
+const elementos=document.querySelectorAll("input, textarea");
+
+elementos.forEach(el=>{
+el.addEventListener("change", atualizarResumo);
+el.addEventListener("keyup", atualizarResumo);
+});
+
+function atualizarResumo(){
+
+const flores=[...document.querySelectorAll('input[type="checkbox"]:checked')]
+.map(el=>el.value)
+.join(", ");
+
+const papel=document.querySelector('input[name="papel"]:checked');
+const laco=document.querySelector('input[name="laco"]:checked');
+
+const msg=document.getElementById("mensagem").value;
+
+document.getElementById("floresResumo").innerHTML=
+"Flores: "+(flores || "-");
+
+document.getElementById("papelResumo").innerHTML=
+"Embalagem: "+(papel ? papel.value : "-");
+
+document.getElementById("lacoResumo").innerHTML=
+"Laço: "+(laco ? laco.value : "-");
+
+document.getElementById("msgResumo").innerHTML=
+"Mensagem: "+(msg || "-");
+
+}
+
+function enviarWhats(){
+
+const flores=document.getElementById("floresResumo").innerText;
+const papel=document.getElementById("papelResumo").innerText;
+const laco=document.getElementById("lacoResumo").innerText;
+const msg=document.getElementById("msgResumo").innerText;
+
+const texto=
+`Olá! Gostaria de solicitar um buquê.%0A%0A${flores}%0A${papel}%0A${laco}%0A${msg}`;
+
+window.open(
+`https://wa.me/5534999999999?text=${texto}`,
+'_blank'
+);
+
+}
+
+</script>
+
+</body>
+</html>
