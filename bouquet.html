@@ -1,3 +1,4 @@
+<!-- COLE ESTE ARQUIVO COMO /bouquet.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,7 +17,7 @@
     }
 
     header {
-      padding: 22px 8%;
+      padding: 18px 8%;
       background: #fffaf8;
       display: flex;
       justify-content: space-between;
@@ -29,7 +30,7 @@
 
     .logo {
       font-family: Georgia, serif;
-      font-size: 29px;
+      font-size: 28px;
       color: #3b2527;
     }
 
@@ -39,14 +40,17 @@
     }
 
     nav a {
-      margin-left: 22px;
+      margin-left: 20px;
       text-decoration: none;
       color: #5f4749;
       font-size: 15px;
     }
 
+    section {
+      padding: 65px 8%;
+    }
+
     .hero {
-      padding: 70px 8%;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 45px;
@@ -61,30 +65,36 @@
       color: #9b4f5c;
       letter-spacing: 2px;
       font-size: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       text-transform: uppercase;
     }
 
     h1 {
       font-family: Georgia, serif;
-      font-size: 56px;
+      font-size: 54px;
       line-height: 1.1;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
-    h1 span {
+    h1 span, h2 span {
       color: #9b4f5c;
       font-style: italic;
     }
 
     .hero p {
-      font-size: 20px;
+      font-size: 19px;
       color: #6b5658;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(80, 40, 45, 0.18);
     }
 
     .btn {
-      padding: 15px 25px;
+      padding: 14px 22px;
       border-radius: 40px;
       text-decoration: none;
       font-weight: bold;
@@ -107,25 +117,15 @@
       border: 1px solid #9b4f5c;
     }
 
-    .hero img {
-      width: 100%;
-      border-radius: 28px;
-      box-shadow: 0 20px 50px rgba(80, 40, 45, 0.18);
-    }
-
-    section {
-      padding: 75px 8%;
-    }
-
     .section-title {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 40px;
     }
 
     .section-title small {
       color: #9b4f5c;
       font-style: italic;
-      font-size: 20px;
+      font-size: 19px;
     }
 
     h2 {
@@ -136,15 +136,15 @@
 
     .section-title p {
       color: #6b5658;
-      max-width: 760px;
+      max-width: 780px;
       margin: auto;
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 26px;
     }
 
     .card {
@@ -159,6 +159,7 @@
       width: 100%;
       height: 300px;
       object-fit: cover;
+      background: #f8eeee;
     }
 
     .card-content {
@@ -174,7 +175,7 @@
     .price {
       color: #9b4f5c;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 24px;
       margin: 12px 0 18px;
     }
 
@@ -189,7 +190,7 @@
       border: 1px solid #e9c9cc;
       border-radius: 32px;
       padding: 35px;
-      max-width: 1100px;
+      max-width: 1120px;
       margin: auto;
     }
 
@@ -208,6 +209,37 @@
     .builder-block p {
       color: #6b5658;
       margin-bottom: 18px;
+    }
+
+    .preview-box {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      align-items: center;
+      background: #fff3f4;
+      border: 1px solid #efc7cc;
+      border-radius: 28px;
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+
+    .preview-box img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 22px;
+      background: white;
+    }
+
+    .preview-box h3 {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .preview-box p {
+      color: #6b5658;
+      margin-bottom: 10px;
     }
 
     .items {
@@ -292,13 +324,6 @@
       font-size: 15px;
     }
 
-    .map-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 14px 0 18px;
-    }
-
     .total-box {
       background: #3b2527;
       color: white;
@@ -312,38 +337,10 @@
       margin-bottom: 10px;
     }
 
-    .total-box p {
-      color: #f3dfe1;
-      margin-bottom: 18px;
-    }
-
-    .summary {
-      font-size: 14px;
+    .total-box p, .summary {
       color: #f3dfe1;
       margin-bottom: 18px;
       white-space: pre-line;
-    }
-
-    .gift-section {
-      background: #3b2527;
-      color: white;
-      border-radius: 40px;
-      padding: 55px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 35px;
-      align-items: center;
-    }
-
-    .gift-section p {
-      color: #f3dfe1;
-      font-size: 18px;
-      margin-bottom: 24px;
-    }
-
-    .gift-section img {
-      width: 100%;
-      border-radius: 28px;
     }
 
     footer {
@@ -369,24 +366,28 @@
 
     @media (max-width: 850px) {
       nav { display: none; }
-      header { padding: 18px 6%; }
+
+      header { padding: 16px 6%; }
 
       .hero {
         grid-template-columns: 1fr;
-        padding: 45px 6%;
       }
 
-      h1 { font-size: 40px; }
-      .hero p { font-size: 18px; }
-      section { padding: 55px 6%; }
+      h1 { font-size: 39px; }
 
-      .cards, .items, .gift-section, .form-grid {
+      section { padding: 48px 6%; }
+
+      .cards, .items, .form-grid, .preview-box {
         grid-template-columns: 1fr;
       }
 
-      .builder, .gift-section { padding: 24px; }
+      .builder {
+        padding: 22px;
+      }
 
-      .item { grid-template-columns: auto 1fr; }
+      .item {
+        grid-template-columns: auto 1fr;
+      }
 
       .item input[type="number"] {
         grid-column: 2;
@@ -404,8 +405,7 @@
   <nav>
     <a href="#prontos">Buquês prontos</a>
     <a href="#monte">Monte o seu</a>
-    <a href="#cestas">Cestas</a>
-    <a href="#whatsapp">WhatsApp</a>
+    <a href="#entrega">Entrega</a>
   </nav>
 </header>
 
@@ -413,96 +413,59 @@
 
 <section class="hero">
   <div>
-    <div class="tag">Compra e entrega em Uberlândia</div>
+    <div class="tag">Entrega em Uberlândia</div>
     <h1>Buquês para <span>surpreender</span> com carinho.</h1>
-    <p>
-      No Jardim Secreto Bouquets você escolhe um buquê pronto, monta o seu do seu jeito
-      e agenda a entrega em Uberlândia. Envio saindo do Jardim Brasília.
-    </p>
-    <a class="btn btn-primary" href="#monte">Montar meu buquê</a>
-    <a class="btn btn-secondary" href="#prontos">Ver buquês prontos</a>
+    <p>Escolha um modelo pronto ou monte seu buquê. Depois informe endereço, entrega e finalize pelo WhatsApp.</p>
+    <a class="btn btn-primary" href="#prontos">Ver modelos prontos</a>
+    <a class="btn btn-secondary" href="#monte">Montar meu buquê</a>
   </div>
 
-  <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=80" alt="Buquê de flores">
+  <img src="imagens/buque-hero.jpg" alt="Buquê Jardim Secreto">
 </section>
 
 <section id="prontos">
   <div class="section-title">
-    <small>praticidade</small>
+    <small>escolha rápida</small>
     <h2>Buquês prontos</h2>
-    <p>Três opções criadas com flores disponíveis no estoque para vender rápido pelo WhatsApp.</p>
+    <p>Escolha um dos modelos abaixo. Depois você será levado para informar entrega, endereço e frete.</p>
   </div>
 
-  <div class="cards">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=900&q=80" alt="Buquê Amor com rosas">
-      <div class="card-content">
-        <h3>Buquê Amor</h3>
-        <p>Para declarações, romance e momentos especiais.</p>
-        <div class="product-list">
-          Rosas Samurai, Rosa Avalanche, Gypsophila Dynamic Love, Ruscus, embalagem e laço.
-        </div>
-        <div class="price">R$ 149,90</div>
-        <a class="btn btn-primary" target="_blank" href="https://wa.me/5534992142960?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20o%20Buquê%20Amor%20do%20Jardim%20Secreto%20Bouquets.">Comprar Buquê Amor</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=900&q=80" alt="Buquê Amizade com flores coloridas">
-      <div class="card-content">
-        <h3>Buquê Amizade</h3>
-        <p>Leve, colorido e carinhoso para presentear alguém querido.</p>
-        <div class="product-list">
-          Gérbera Mozart, Gérbera P14 Mini, Aster Mariana, Alstroemeria Variado e embalagem.
-        </div>
-        <div class="price">R$ 119,90</div>
-        <a class="btn btn-primary" target="_blank" href="https://wa.me/5534992142960?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20o%20Buquê%20Amizade%20do%20Jardim%20Secreto%20Bouquets.">Comprar Buquê Amizade</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=900&q=80" alt="Buquê Alegria com girassóis">
-      <div class="card-content">
-        <h3>Buquê Alegria</h3>
-        <p>Vibrante, solar e perfeito para aniversários ou surpresa feliz.</p>
-        <div class="product-list">
-          Girassol Mini, Rosa Tropical Sun, Boca de Leão Variada, Eucaflor e embalagem.
-        </div>
-        <div class="price">R$ 129,90</div>
-        <a class="btn btn-primary" target="_blank" href="https://wa.me/5534992142960?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20o%20Buquê%20Alegria%20do%20Jardim%20Secreto%20Bouquets.">Comprar Buquê Alegria</a>
-      </div>
-    </div>
-  </div>
+  <div class="cards" id="cardsProntos"></div>
 </section>
 
 <section id="monte">
   <div class="section-title">
     <small>personalize</small>
-    <h2>Monte seu buquê e agende a entrega</h2>
-    <p>
-      Escolha os itens, informe o endereço exatamente como aparece no Google Maps,
-      selecione a entrega e finalize pelo WhatsApp.
-    </p>
+    <h2>Monte seu buquê</h2>
+    <p>Escolha flores, preenchimentos, embalagem e laço. O preview será atualizado conforme sua escolha.</p>
   </div>
 
   <div class="builder">
 
+    <div class="preview-box">
+      <img id="previewImg" src="imagens/preview-padrao.jpg" alt="Preview do buquê">
+      <div>
+        <h3 id="previewTitulo">Seu buquê</h3>
+        <p id="previewTexto">Escolha um buquê pronto ou monte o seu personalizado.</p>
+        <div class="price" id="previewPreco">R$ 0,00</div>
+      </div>
+    </div>
+
     <div class="builder-block">
       <h3>01. Flores</h3>
-      <p>Escolha até 3 tipos de flores e informe a quantidade de cada uma.</p>
+      <p>Escolha até 3 tipos de flores e informe a quantidade.</p>
       <div class="items" id="flores"></div>
     </div>
 
     <div class="builder-block">
       <h3>02. Preenchimentos</h3>
-      <p>Escolha até 3 opções de preenchimento e informe a quantidade.</p>
+      <p>Escolha até 3 opções de preenchimento.</p>
       <div class="items" id="preenchimentos"></div>
     </div>
 
     <div class="builder-block">
       <h3>03. Embalagem</h3>
-      <p>Escolha o papel para montar o bouquet.</p>
-      <select id="embalagem" onchange="calcularTotal()">
+      <select id="embalagem" onchange="selecionarPersonalizado(); calcularTotal();">
         <option value="0">Selecione uma embalagem</option>
         <option value="2.99">Quadrada cores/estampas — R$ 2,99</option>
         <option value="2.99">Colmeia — R$ 2,99</option>
@@ -513,9 +476,8 @@
 
     <div class="builder-block">
       <h3>04. Laço</h3>
-      <p>Opcional para finalizar o bouquet.</p>
       <label class="item">
-        <input type="checkbox" id="laco" value="5.99" onchange="calcularTotal()">
+        <input type="checkbox" id="laco" value="5.99" onchange="selecionarPersonalizado(); calcularTotal();">
         <div>
           <strong>Laço Bola</strong>
           <span>R$ 5,99</span>
@@ -523,9 +485,18 @@
       </label>
     </div>
 
-    <div class="builder-block">
-      <h3>05. Agendamento da entrega</h3>
-      <p>Informe quando o buquê deve ser entregue.</p>
+    <div class="builder-block" id="entrega">
+      <h3>05. Agendamento, endereço e frete</h3>
+
+      <div class="notice">
+        Para entregar corretamente, copie o endereço exatamente como aparece no Google Maps.
+      </div>
+
+      <a class="btn btn-secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uberl%C3%A2ndia%20MG">
+        Abrir Google Maps
+      </a>
+
+      <br><br>
 
       <div class="form-grid">
         <div class="form-group">
@@ -558,33 +529,15 @@
           <label>Mensagem do cartão</label>
           <textarea id="mensagemCartao" placeholder="Ex: Com carinho, feliz aniversário!"></textarea>
         </div>
-      </div>
-    </div>
 
-    <div class="builder-block">
-      <h3>06. Endereço e entrega</h3>
-
-      <div class="notice">
-        Primeiro abra o Google Maps, procure o endereço de entrega, copie o endereço exatamente como aparece lá
-        e depois cole no campo abaixo.
-      </div>
-
-      <div class="map-actions">
-        <a class="btn btn-secondary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Uberl%C3%A2ndia%20MG">
-          Abrir Google Maps
-        </a>
-      </div>
-
-      <div class="form-grid">
         <div class="form-group full">
           <label>Endereço exato do Google Maps *</label>
           <textarea id="enderecoMaps" placeholder="Cole aqui o endereço completo exatamente como aparece no Google Maps"></textarea>
-          <small>Exemplo: Av. João Naves de Ávila, 2121 - Santa Mônica, Uberlândia - MG, 38408-100</small>
         </div>
 
         <div class="form-group">
           <label>Complemento</label>
-          <input type="text" id="complemento" placeholder="Apto, bloco, casa, referência...">
+          <input type="text" id="complemento" placeholder="Apto, bloco, referência...">
         </div>
 
         <div class="form-group">
@@ -594,7 +547,7 @@
 
         <div class="form-group full">
           <label>Entrega saindo do Jardim Brasília *</label>
-          <select id="entrega" onchange="calcularTotal()">
+          <select id="entregaValor" onchange="calcularTotal()">
             <option value="0">Selecione a faixa de entrega</option>
             <option value="12">Jardim Brasília / bairros próximos — R$ 12,00</option>
             <option value="20">Centro / Fundinho / Martins — R$ 20,00</option>
@@ -603,7 +556,6 @@
             <option value="35">Zona Oeste / bairros médios — R$ 35,00</option>
             <option value="0">Condomínios / bairros afastados — consultar pelo WhatsApp</option>
           </select>
-          <small>Valor estimado. Confirmamos pelo WhatsApp conforme endereço e disponibilidade do Uber.</small>
         </div>
 
         <div class="form-group full">
@@ -623,24 +575,6 @@
   </div>
 </section>
 
-<section id="cestas">
-  <div class="gift-section">
-    <div>
-      <small>presentes especiais</small>
-      <h2>Conheça também nossas cestas</h2>
-      <p>
-        Além dos buquês, temos cestas, presentes personalizados e opções especiais
-        para aniversários, datas românticas e surpresas.
-      </p>
-      <a class="btn btn-primary" target="_blank" href="https://wa.me/5534992142960?text=Olá,%20quero%20conhecer%20a%20linha%20de%20cestas%20e%20presentes%20do%20Jardim%20Secreto%20Bouquets.">
-        Conhecer cestas
-      </a>
-    </div>
-
-    <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=80">
-  </div>
-</section>
-
 </main>
 
 <footer>
@@ -648,16 +582,59 @@
   <p>Buquês, flores e presentes com entrega em Uberlândia.</p>
 </footer>
 
-<a
-  id="whatsapp"
-  class="whatsapp"
-  target="_blank"
-  href="https://wa.me/5534992142960?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20um%20buquê%20do%20Jardim%20Secreto%20Bouquets%20em%20Uberlândia.">
+<a class="whatsapp" target="_blank" href="https://wa.me/5534992142960">
   WhatsApp
 </a>
 
 <script>
   const numeroWhatsApp = "5534992142960";
+
+  let buqueProntoSelecionado = null;
+
+  const buquesProntos = [
+    {
+      nome: "Mini Carinho",
+      preco: 58,
+      imagem: "imagens/buque-01.jpg",
+      descricao: "Simples, delicado e ideal para uma lembrança carinhosa.",
+      itens: "Flores variadas pequenas, folhagem, embalagem simples e laço."
+    },
+    {
+      nome: "Buquê Encanto",
+      preco: 98,
+      imagem: "imagens/buque-02.jpg",
+      descricao: "Bonito, leve e com ótimo custo-benefício.",
+      itens: "Astromélias, folhagens, embalagem kraft ou branca e laço."
+    },
+    {
+      nome: "Buquê Alegria",
+      preco: 148,
+      imagem: "imagens/buque-03.jpg",
+      descricao: "Colorido, vibrante e perfeito para aniversário.",
+      itens: "Flores amarelas, brancas, folhagens, embalagem e laço especial."
+    },
+    {
+      nome: "Buquê Amor",
+      preco: 198,
+      imagem: "imagens/buque-04.jpg",
+      descricao: "Romântico, elegante e ideal para surpreender.",
+      itens: "Rosas, astromélias, folhagens, embalagem premium e laço."
+    },
+    {
+      nome: "Buquê Premium",
+      preco: 298,
+      imagem: "imagens/buque-05.jpg",
+      descricao: "Mais cheio, sofisticado e com acabamento especial.",
+      itens: "Rosas selecionadas, preenchimentos, folhagens nobres e laço premium."
+    },
+    {
+      nome: "Buquê Luxo Jardim Secreto",
+      preco: 488,
+      imagem: "imagens/buque-06.jpg",
+      descricao: "Grande, marcante e para ocasiões realmente especiais.",
+      itens: "Mix premium de rosas, flores especiais, folhagens, embalagem luxo e laço grande."
+    }
+  ];
 
   const flores = [
     ["Aster Mariana 050 cm", 14.99],
@@ -690,6 +667,60 @@
     return document.getElementById(id).value.trim();
   }
 
+  function criarCardsProntos() {
+    const container = document.getElementById("cardsProntos");
+
+    buquesProntos.forEach((b, index) => {
+      const div = document.createElement("div");
+      div.className = "card";
+
+      div.innerHTML = `
+        <img src="${b.imagem}" alt="${b.nome}">
+        <div class="card-content">
+          <h3>${b.nome}</h3>
+          <p>${b.descricao}</p>
+          <div class="product-list">${b.itens}</div>
+          <div class="price">${moeda(b.preco)}</div>
+          <button class="btn btn-primary" onclick="selecionarBuquePronto(${index})">
+            Escolher este buquê
+          </button>
+        </div>
+      `;
+
+      container.appendChild(div);
+    });
+  }
+
+  function selecionarBuquePronto(index) {
+    buqueProntoSelecionado = buquesProntos[index];
+
+    limparPersonalizado();
+
+    document.getElementById("previewImg").src = buqueProntoSelecionado.imagem;
+    document.getElementById("previewTitulo").innerText = buqueProntoSelecionado.nome;
+    document.getElementById("previewTexto").innerText = buqueProntoSelecionado.descricao;
+    document.getElementById("previewPreco").innerText = moeda(buqueProntoSelecionado.preco);
+
+    calcularTotal();
+
+    document.getElementById("entrega").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  function selecionarPersonalizado() {
+    buqueProntoSelecionado = null;
+    document.getElementById("previewTitulo").innerText = "Buquê personalizado";
+    document.getElementById("previewTexto").innerText = "Seu buquê será montado com os itens escolhidos abaixo.";
+    document.getElementById("previewImg").src = "imagens/preview-padrao.jpg";
+  }
+
+  function limparPersonalizado() {
+    document.querySelectorAll(".flor-check, .preench-check").forEach(c => c.checked = false);
+    document.getElementById("embalagem").selectedIndex = 0;
+    document.getElementById("laco").checked = false;
+  }
+
   function criarItens(lista, containerId, grupo) {
     const container = document.getElementById(containerId);
 
@@ -701,12 +732,12 @@
       div.className = "item";
 
       div.innerHTML = `
-        <input type="checkbox" class="${grupo}-check" data-nome="${nome}" data-preco="${preco}" onchange="limitarSelecao('${grupo}'); calcularTotal();">
+        <input type="checkbox" class="${grupo}-check" data-nome="${nome}" data-preco="${preco}" onchange="selecionarPersonalizado(); limitarSelecao('${grupo}'); calcularTotal();">
         <div>
           <strong>${nome}</strong>
           <span>${moeda(preco)}</span>
         </div>
-        <input type="number" class="${grupo}-qtd" min="1" value="1" onchange="calcularTotal()" onkeyup="calcularTotal()">
+        <input type="number" class="${grupo}-qtd" min="1" value="1" onchange="selecionarPersonalizado(); calcularTotal();" onkeyup="selecionarPersonalizado(); calcularTotal();">
       `;
 
       container.appendChild(div);
@@ -750,34 +781,47 @@
   }
 
   function calcularTotal() {
-    const floresCalc = pegarSelecionados("flor", "Flores");
-    const preenchCalc = pegarSelecionados("preench", "Preenchimentos");
+    let subtotalBouquet = 0;
+    let resumo = "";
 
-    const embalagemSelect = document.getElementById("embalagem");
-    const embalagemValor = parseFloat(embalagemSelect.value) || 0;
-    const embalagemTexto = embalagemSelect.options[embalagemSelect.selectedIndex].text;
+    if (buqueProntoSelecionado) {
+      subtotalBouquet = buqueProntoSelecionado.preco;
 
-    const laco = document.getElementById("laco");
-    const lacoValor = laco.checked ? 5.99 : 0;
+      resumo += `Buquê pronto escolhido:\n`;
+      resumo += `- ${buqueProntoSelecionado.nome} = ${moeda(buqueProntoSelecionado.preco)}\n`;
+      resumo += `- Composição: ${buqueProntoSelecionado.itens}\n\n`;
+    } else {
+      const floresCalc = pegarSelecionados("flor", "Flores");
+      const preenchCalc = pegarSelecionados("preench", "Preenchimentos");
 
-    const entregaSelect = document.getElementById("entrega");
+      const embalagemSelect = document.getElementById("embalagem");
+      const embalagemValor = parseFloat(embalagemSelect.value) || 0;
+      const embalagemTexto = embalagemSelect.options[embalagemSelect.selectedIndex].text;
+
+      const laco = document.getElementById("laco");
+      const lacoValor = laco.checked ? 5.99 : 0;
+
+      subtotalBouquet = floresCalc.subtotal + preenchCalc.subtotal + embalagemValor + lacoValor;
+
+      resumo += floresCalc.texto;
+      resumo += preenchCalc.texto;
+
+      if (embalagemValor > 0) {
+        resumo += `Embalagem:\n- ${embalagemTexto}\n\n`;
+      }
+
+      if (laco.checked) {
+        resumo += `Laço:\n- Laço Bola = ${moeda(lacoValor)}\n\n`;
+      }
+
+      document.getElementById("previewPreco").innerText = moeda(subtotalBouquet);
+    }
+
+    const entregaSelect = document.getElementById("entregaValor");
     const entregaValor = parseFloat(entregaSelect.value) || 0;
     const entregaTexto = entregaSelect.options[entregaSelect.selectedIndex].text;
 
-    const subtotalBouquet = floresCalc.subtotal + preenchCalc.subtotal + embalagemValor + lacoValor;
     const total = subtotalBouquet + entregaValor;
-
-    let resumo = "";
-    resumo += floresCalc.texto;
-    resumo += preenchCalc.texto;
-
-    if (embalagemValor > 0) {
-      resumo += `Embalagem:\n- ${embalagemTexto}\n\n`;
-    }
-
-    if (laco.checked) {
-      resumo += `Laço:\n- Laço Bola = ${moeda(lacoValor)}\n\n`;
-    }
 
     if (entregaSelect.selectedIndex > 0) {
       resumo += `Entrega:\n- ${entregaTexto}\n\n`;
@@ -788,7 +832,7 @@
     resumo += `Total estimado: ${moeda(total)}\n`;
 
     if (subtotalBouquet <= 0) {
-      resumo = "Nenhum item selecionado ainda.";
+      resumo = "Nenhum buquê selecionado ainda.";
     }
 
     document.getElementById("total").innerText = moeda(total);
@@ -801,7 +845,7 @@
     const pedido = calcularTotal();
 
     if (pedido.subtotalBouquet <= 0) {
-      alert("Selecione pelo menos uma flor ou item para montar o buquê.");
+      alert("Escolha um buquê pronto ou monte um buquê personalizado.");
       return false;
     }
 
@@ -830,7 +874,7 @@
       return false;
     }
 
-    const entregaSelect = document.getElementById("entrega");
+    const entregaSelect = document.getElementById("entregaValor");
     if (entregaSelect.selectedIndex === 0) {
       alert("Selecione a faixa de entrega.");
       return false;
@@ -844,45 +888,35 @@
 
     const pedido = calcularTotal();
 
-    const dataEntrega = valorCampo("dataEntrega");
-    const periodoEntrega = valorCampo("periodoEntrega");
-    const nomeRecebedor = valorCampo("nomeRecebedor");
-    const telefoneRecebedor = valorCampo("telefoneRecebedor");
-    const mensagemCartao = valorCampo("mensagemCartao");
-    const enderecoMaps = valorCampo("enderecoMaps");
-    const complemento = valorCampo("complemento");
-    const bairro = valorCampo("bairro");
-    const valorUberCliente = valorCampo("valorUberCliente");
-
     let detalhesEntrega = "";
     detalhesEntrega += `Agendamento:\n`;
-    detalhesEntrega += `- Data: ${dataEntrega}\n`;
-    detalhesEntrega += `- Período/horário: ${periodoEntrega}\n`;
-    detalhesEntrega += `- Recebedor: ${nomeRecebedor}\n`;
+    detalhesEntrega += `- Data: ${valorCampo("dataEntrega")}\n`;
+    detalhesEntrega += `- Período/horário: ${valorCampo("periodoEntrega")}\n`;
+    detalhesEntrega += `- Recebedor: ${valorCampo("nomeRecebedor")}\n`;
 
-    if (telefoneRecebedor) {
-      detalhesEntrega += `- Telefone do recebedor: ${telefoneRecebedor}\n`;
+    if (valorCampo("telefoneRecebedor")) {
+      detalhesEntrega += `- Telefone do recebedor: ${valorCampo("telefoneRecebedor")}\n`;
     }
 
-    if (mensagemCartao) {
-      detalhesEntrega += `- Mensagem do cartão: ${mensagemCartao}\n`;
+    if (valorCampo("mensagemCartao")) {
+      detalhesEntrega += `- Mensagem do cartão: ${valorCampo("mensagemCartao")}\n`;
     }
 
     detalhesEntrega += `\nEndereço de entrega:\n`;
-    detalhesEntrega += `- Endereço Google Maps: ${enderecoMaps}\n`;
+    detalhesEntrega += `- Endereço Google Maps: ${valorCampo("enderecoMaps")}\n`;
 
-    if (complemento) {
-      detalhesEntrega += `- Complemento/referência: ${complemento}\n`;
+    if (valorCampo("complemento")) {
+      detalhesEntrega += `- Complemento/referência: ${valorCampo("complemento")}\n`;
     }
 
-    detalhesEntrega += `- Bairro: ${bairro}\n`;
+    detalhesEntrega += `- Bairro: ${valorCampo("bairro")}\n`;
 
-    if (valorUberCliente) {
-      detalhesEntrega += `- Valor do Uber informado pelo cliente: ${valorUberCliente}\n`;
+    if (valorCampo("valorUberCliente")) {
+      detalhesEntrega += `- Valor do Uber informado pelo cliente: ${valorCampo("valorUberCliente")}\n`;
     }
 
     const mensagem =
-      "Olá, vim pelo site e quero finalizar um pedido de buquê personalizado do Jardim Secreto Bouquets em Uberlândia.\n\n" +
+      "Olá, vim pelo site e quero finalizar um pedido do Jardim Secreto Bouquets em Uberlândia.\n\n" +
       pedido.resumo +
       "\n" +
       detalhesEntrega +
@@ -892,6 +926,7 @@
     window.open(url, "_blank");
   }
 
+  criarCardsProntos();
   criarItens(flores, "flores", "flor");
   criarItens(preenchimentos, "preenchimentos", "preench");
   calcularTotal();
