@@ -92,6 +92,7 @@
       border: none;
       cursor: pointer;
       font-size: 15px;
+      margin: 4px;
     }
 
     .btn-primary {
@@ -134,7 +135,7 @@
 
     .section-title p {
       color: #6b5658;
-      max-width: 720px;
+      max-width: 760px;
       margin: auto;
       font-size: 18px;
     }
@@ -237,13 +238,53 @@
       border: 1px solid #e4bfc3;
     }
 
-    select {
+    select, input, textarea {
       width: 100%;
       padding: 15px;
       border-radius: 16px;
       border: 1px solid #e4bfc3;
       background: #fffaf8;
       font-size: 16px;
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+      color: #3b2527;
+    }
+
+    .form-group small {
+      display: block;
+      color: #8b7476;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .notice {
+      background: #fff3f4;
+      border: 1px solid #efc7cc;
+      color: #6b3a40;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      font-size: 15px;
     }
 
     .total-box {
@@ -317,9 +358,7 @@
     @media (max-width: 850px) {
       nav { display: none; }
 
-      header {
-        padding: 18px 6%;
-      }
+      header { padding: 18px 6%; }
 
       .hero {
         grid-template-columns: 1fr;
@@ -334,7 +373,8 @@
 
       .cards,
       .items,
-      .gift-section {
+      .gift-section,
+      .form-grid {
         grid-template-columns: 1fr;
       }
 
@@ -349,6 +389,10 @@
 
       .item input[type="number"] {
         grid-column: 2;
+      }
+
+      .full {
+        grid-column: auto;
       }
     }
   </style>
@@ -373,8 +417,8 @@
     <div class="tag">Compra e entrega em Uberlândia</div>
     <h1>Buquês que <span>emocionam</span> de verdade.</h1>
     <p>
-      Escolha um buquê pronto, monte o seu do seu jeito ou fale conosco pelo WhatsApp.
-      Flores frescas, montagem artesanal e entrega em Uberlândia.
+      Escolha um buquê pronto, monte o seu do seu jeito e agende a entrega.
+      Flores frescas, montagem artesanal e envio saindo do Jardim Brasília.
     </p>
     <a class="btn btn-primary" href="#monte">Montar meu buquê</a>
     <a class="btn btn-secondary" href="#prontos">Ver opções prontas</a>
@@ -426,9 +470,10 @@
 <section id="monte">
   <div class="section-title">
     <small>personalize</small>
-    <h2>Monte seu buquê</h2>
+    <h2>Monte seu buquê e agende a entrega</h2>
     <p>
-      Escolha flores, preenchimentos, embalagem e laço. O valor é calculado automaticamente.
+      Escolha os itens, informe endereço exatamente como aparece no Google Maps,
+      selecione a entrega e finalize pelo WhatsApp.
     </p>
   </div>
 
@@ -470,11 +515,96 @@
       </label>
     </div>
 
+    <div class="builder-block">
+      <h3>05. Agendamento da entrega</h3>
+      <p>Informe quando o buquê deve ser entregue.</p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Data da entrega *</label>
+          <input type="date" id="dataEntrega" onchange="calcularTotal()">
+        </div>
+
+        <div class="form-group">
+          <label>Período / horário *</label>
+          <select id="periodoEntrega" onchange="calcularTotal()">
+            <option value="">Selecione</option>
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noite">Noite</option>
+            <option value="Horário combinado pelo WhatsApp">Horário combinado pelo WhatsApp</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Nome de quem recebe *</label>
+          <input type="text" id="nomeRecebedor" placeholder="Ex: Maria Fernanda">
+        </div>
+
+        <div class="form-group">
+          <label>Telefone de quem recebe</label>
+          <input type="tel" id="telefoneRecebedor" placeholder="Ex: (34) 99999-9999">
+        </div>
+
+        <div class="form-group full">
+          <label>Mensagem do cartão</label>
+          <textarea id="mensagemCartao" placeholder="Ex: Com carinho, feliz aniversário!"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="builder-block">
+      <h3>06. Endereço e entrega</h3>
+
+      <div class="notice">
+        Copie e cole o endereço exatamente como aparece no Google Maps.
+        Exemplo: <strong>Av. João Naves de Ávila, 2121 - Santa Mônica, Uberlândia - MG, 38408-100</strong>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Endereço exato do Google Maps *</label>
+          <textarea id="enderecoMaps" placeholder="Cole aqui o endereço completo exatamente como aparece no Google Maps"></textarea>
+          <small>Isso evita erro de entrega e facilita calcular o Uber.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Complemento</label>
+          <input type="text" id="complemento" placeholder="Apto, bloco, casa, referência...">
+        </div>
+
+        <div class="form-group">
+          <label>Bairro *</label>
+          <input type="text" id="bairro" placeholder="Ex: Santa Mônica">
+        </div>
+
+        <div class="form-group full">
+          <label>Entrega saindo do Jardim Brasília *</label>
+          <select id="entrega" onchange="calcularTotal()">
+            <option value="0">Selecione a faixa de entrega</option>
+            <option value="12">Jardim Brasília / bairros próximos — R$ 12,00</option>
+            <option value="20">Centro / Fundinho / Martins — R$ 20,00</option>
+            <option value="25">Santa Mônica / Tibery / Brasil — R$ 25,00</option>
+            <option value="30">Zona Sul — R$ 30,00</option>
+            <option value="35">Zona Oeste / bairros médios — R$ 35,00</option>
+            <option value="0">Condomínios / bairros afastados — consultar pelo WhatsApp</option>
+          </select>
+          <small>Valor estimado. Podemos confirmar pelo WhatsApp conforme o endereço e disponibilidade do Uber.</small>
+        </div>
+
+        <div class="form-group full">
+          <label>Valor do Uber no app, caso queira informar</label>
+          <input type="text" id="valorUberCliente" placeholder="Ex: R$ 27,90">
+          <small>Opcional. O cliente pode abrir o Uber e informar o valor que aparece para o endereço.</small>
+        </div>
+      </div>
+    </div>
+
     <div class="total-box">
       <h3>Total: <span id="total">R$ 0,00</span></h3>
-      <p>Depois de montar, envie o pedido pelo WhatsApp.</p>
+      <p>Revise o pedido e envie pelo WhatsApp para confirmar disponibilidade, montagem e entrega.</p>
       <div class="summary" id="resumo">Nenhum item selecionado ainda.</div>
-      <button class="btn btn-primary" onclick="enviarWhatsApp()">Enviar pedido pelo WhatsApp</button>
+      <button class="btn btn-primary" onclick="enviarWhatsApp()">Finalizar pedido pelo WhatsApp</button>
     </div>
 
   </div>
@@ -543,10 +673,14 @@
     });
   }
 
+  function valorCampo(id) {
+    return document.getElementById(id).value.trim();
+  }
+
   function criarItens(lista, containerId, grupo) {
     const container = document.getElementById(containerId);
 
-    lista.forEach((item, index) => {
+    lista.forEach((item) => {
       const nome = item[0];
       const preco = item[1];
 
@@ -613,7 +747,12 @@
     const laco = document.getElementById("laco");
     const lacoValor = laco.checked ? 5.99 : 0;
 
-    let total = floresCalc.subtotal + preenchCalc.subtotal + embalagemValor + lacoValor;
+    const entregaSelect = document.getElementById("entrega");
+    const entregaValor = parseFloat(entregaSelect.value) || 0;
+    const entregaTexto = entregaSelect.options[entregaSelect.selectedIndex].text;
+
+    const subtotalBouquet = floresCalc.subtotal + preenchCalc.subtotal + embalagemValor + lacoValor;
+    const total = subtotalBouquet + entregaValor;
 
     let resumo = "";
     resumo += floresCalc.texto;
@@ -627,32 +766,117 @@
       resumo += `Laço:\n- Laço Bola = ${moeda(lacoValor)}\n\n`;
     }
 
-    if (!resumo) {
+    if (entregaSelect.selectedIndex > 0) {
+      resumo += `Entrega:\n- ${entregaTexto}\n\n`;
+    }
+
+    resumo += `Subtotal do buquê: ${moeda(subtotalBouquet)}\n`;
+    resumo += `Entrega estimada: ${moeda(entregaValor)}\n`;
+    resumo += `Total estimado: ${moeda(total)}\n`;
+
+    if (subtotalBouquet <= 0) {
       resumo = "Nenhum item selecionado ainda.";
     }
 
     document.getElementById("total").innerText = moeda(total);
     document.getElementById("resumo").innerText = resumo;
 
-    return { total, resumo };
+    return { total, subtotalBouquet, entregaValor, resumo };
+  }
+
+  function validarPedido() {
+    const pedido = calcularTotal();
+
+    if (pedido.subtotalBouquet <= 0) {
+      alert("Selecione pelo menos uma flor ou item para montar o buquê.");
+      return false;
+    }
+
+    if (!valorCampo("dataEntrega")) {
+      alert("Informe a data da entrega.");
+      return false;
+    }
+
+    if (!valorCampo("periodoEntrega")) {
+      alert("Selecione o período ou horário da entrega.");
+      return false;
+    }
+
+    if (!valorCampo("nomeRecebedor")) {
+      alert("Informe o nome de quem vai receber.");
+      return false;
+    }
+
+    if (!valorCampo("enderecoMaps")) {
+      alert("Cole o endereço exato como aparece no Google Maps.");
+      return false;
+    }
+
+    if (!valorCampo("bairro")) {
+      alert("Informe o bairro da entrega.");
+      return false;
+    }
+
+    const entregaSelect = document.getElementById("entrega");
+    if (entregaSelect.selectedIndex === 0) {
+      alert("Selecione a faixa de entrega.");
+      return false;
+    }
+
+    return true;
   }
 
   function enviarWhatsApp() {
+    if (!validarPedido()) return;
+
     const pedido = calcularTotal();
 
-    if (pedido.total <= 0) {
-      alert("Selecione pelo menos uma opção para montar o bouquet.");
-      return;
+    const dataEntrega = valorCampo("dataEntrega");
+    const periodoEntrega = valorCampo("periodoEntrega");
+    const nomeRecebedor = valorCampo("nomeRecebedor");
+    const telefoneRecebedor = valorCampo("telefoneRecebedor");
+    const mensagemCartao = valorCampo("mensagemCartao");
+    const enderecoMaps = valorCampo("enderecoMaps");
+    const complemento = valorCampo("complemento");
+    const bairro = valorCampo("bairro");
+    const valorUberCliente = valorCampo("valorUberCliente");
+
+    let detalhesEntrega = "";
+    detalhesEntrega += `Agendamento:\n`;
+    detalhesEntrega += `- Data: ${dataEntrega}\n`;
+    detalhesEntrega += `- Período/horário: ${periodoEntrega}\n`;
+    detalhesEntrega += `- Recebedor: ${nomeRecebedor}\n`;
+
+    if (telefoneRecebedor) {
+      detalhesEntrega += `- Telefone do recebedor: ${telefoneRecebedor}\n`;
+    }
+
+    if (mensagemCartao) {
+      detalhesEntrega += `- Mensagem do cartão: ${mensagemCartao}\n`;
+    }
+
+    detalhesEntrega += `\nEndereço de entrega:\n`;
+    detalhesEntrega += `- Endereço Google Maps: ${enderecoMaps}\n`;
+
+    if (complemento) {
+      detalhesEntrega += `- Complemento/referência: ${complemento}\n`;
+    }
+
+    detalhesEntrega += `- Bairro: ${bairro}\n`;
+
+    if (valorUberCliente) {
+      detalhesEntrega += `- Valor do Uber informado pelo cliente: ${valorUberCliente}\n`;
     }
 
     const mensagem =
-      "Olá, vim pelo site e quero montar um bouquet personalizado em Uberlândia.%0A%0A" +
-      encodeURIComponent(pedido.resumo) +
-      "%0ATotal aproximado: " +
-      encodeURIComponent(moeda(pedido.total)) +
-      "%0A%0APode confirmar disponibilidade e entrega?";
+      "Olá, vim pelo site e quero finalizar um pedido de buquê personalizado em Uberlândia.\n\n" +
+      pedido.resumo +
+      "\n" +
+      detalhesEntrega +
+      "\nPode confirmar disponibilidade, montagem, valor final e entrega?";
 
-    window.open("https://wa.me/" + numeroWhatsApp + "?text=" + mensagem, "_blank");
+    const url = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
+    window.open(url, "_blank");
   }
 
   criarItens(flores, "flores", "flor");
