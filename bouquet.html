@@ -406,7 +406,7 @@
     <a class="btn btn-secondary" href="#monte">Montar meu buquê</a>
   </div>
 
-  <img class="hero-photo" src="imagens/hero-bouquet.png" alt="Buquê romântico Jardim Secreto">
+  <img class="hero-photo" src="hero-bouquet.png" alt="Buquê romântico Jardim Secreto">
 </section>
 
 <section id="prontos">
@@ -426,12 +426,12 @@
     <p>O preview abaixo muda quando você escolhe um modelo pronto. No personalizado, ele usa uma imagem padrão de referência.</p>
   </div>
 
-  <img class="guide-img" src="imagens/painel-flores.png" alt="Painel guia com flores disponíveis">
+  <img class="guide-img" src="painel-flores.png" alt="Painel guia com flores disponíveis">
 
   <div class="builder">
 
     <div class="preview-box">
-      <img class="preview-img" id="previewImg" src="imagens/preview-personalizado.png" alt="Preview do pedido">
+      <img class="preview-img" id="previewImg" src="preview-personalizado.png" alt="Preview do pedido">
       <div>
         <h3 id="previewTitulo">Seu buquê</h3>
         <p id="previewTexto">Escolha um modelo pronto ou monte seu buquê personalizado.</p>
@@ -568,7 +568,7 @@
       <a class="btn btn-primary" href="#prontos">Escolher cesta pronta</a>
     </div>
 
-    <img src="imagens/cesta-especial.png" alt="Cesta especial com flores e chocolates">
+    <img src="cesta-especial.png" alt="Cesta especial com flores e chocolates">
   </div>
 </section>
 
@@ -586,12 +586,12 @@
   let buqueProntoSelecionado = null;
 
   const buquesProntos = [
-    { tipo: "buque", nome: "Mini Carinho", preco: 58, imagem: "imagens/buque-mini-carinho.png", descricao: "Simples, delicado e ideal para uma lembrança carinhosa.", itens: "Flores delicadas, folhagem, embalagem simples e laço." },
-    { tipo: "buque", nome: "Buquê Encanto", preco: 98, imagem: "imagens/buque-encanto.png", descricao: "Leve, alegre e com ótimo custo-benefício.", itens: "Flores amarelas e brancas, folhagens, embalagem kraft e laço." },
-    { tipo: "buque", nome: "Buquê Alegria", preco: 148, imagem: "imagens/buque-alegria.png", descricao: "Colorido, vibrante e perfeito para aniversário.", itens: "Flores laranja, brancas, folhagens e laço especial." },
-    { tipo: "buque", nome: "Buquê Amor", preco: 198, imagem: "imagens/buque-amor.png", descricao: "Romântico, elegante e ideal para surpreender.", itens: "Rosas vermelhas e brancas, preenchimento, embalagem premium e laço." },
-    { tipo: "cesta", nome: "Cesta Doce Carinho", preco: 288, imagem: "imagens/cesta-doce-carinho.png", descricao: "Flores, chocolates e acabamento delicado.", itens: "Cesta decorada, flores, bombons, chocolates variados e laço." },
-    { tipo: "buque", nome: "Buquê Luxo Jardim Secreto", preco: 488, imagem: "imagens/buque-luxo.png", descricao: "Grande, marcante e para ocasiões realmente especiais.", itens: "Mix premium de rosas, flores especiais, folhagens, embalagem luxo e laço grande." }
+    { tipo: "buque", nome: "Mini Carinho", preco: 58, imagem: "buque-mini-carinho.png", descricao: "Simples, delicado e ideal para uma lembrança carinhosa.", itens: "Flores delicadas, folhagem, embalagem simples e laço." },
+    { tipo: "buque", nome: "Buquê Encanto", preco: 98, imagem: "buque-encanto.png", descricao: "Leve, alegre e com ótimo custo-benefício.", itens: "Flores amarelas e brancas, folhagens, embalagem kraft e laço." },
+    { tipo: "buque", nome: "Buquê Alegria", preco: 148, imagem: "buque-alegria.png", descricao: "Colorido, vibrante e perfeito para aniversário.", itens: "Flores laranja, brancas, folhagens e laço especial." },
+    { tipo: "buque", nome: "Buquê Amor", preco: 198, imagem: "buque-amor.png", descricao: "Romântico, elegante e ideal para surpreender.", itens: "Rosas vermelhas e brancas, preenchimento, embalagem premium e laço." },
+    { tipo: "cesta", nome: "Cesta Doce Carinho", preco: 288, imagem: "cesta-doce-carinho.png", descricao: "Flores, chocolates e acabamento delicado.", itens: "Cesta decorada, flores, bombons, chocolates variados e laço." },
+    { tipo: "buque", nome: "Buquê Luxo Jardim Secreto", preco: 488, imagem: "buque-luxo.png", descricao: "Grande, marcante e para ocasiões realmente especiais.", itens: "Mix premium de rosas, flores especiais, folhagens, embalagem luxo e laço grande." }
   ];
 
   const flores = [
