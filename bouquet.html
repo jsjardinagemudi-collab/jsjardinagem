@@ -1,315 +1,486 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monte Seu Buquê | JS Jardinagem</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buquês em Uberlândia | Florê & Bloom</title>
 
-<style>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf8;
+      color: #3b2527;
+      line-height: 1.6;
+    }
 
-body{
-background:#f7f7f7;
-color:#333;
-}
+    header {
+      padding: 22px 8%;
+      background: #fffaf8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #f1dada;
+    }
 
-header{
-background:#1d4d2f;
-color:white;
-padding:60px 20px;
-text-align:center;
-}
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      color: #3b2527;
+    }
 
-header h1{
-font-size:3rem;
-margin-bottom:15px;
-}
+    .logo span {
+      color: #9b4f5c;
+      font-style: italic;
+    }
 
-header p{
-font-size:1.2rem;
-max-width:700px;
-margin:auto;
-}
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: #5f4749;
+      font-size: 15px;
+    }
 
-.container{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-}
+    .hero {
+      min-height: 88vh;
+      padding: 70px 8%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
 
-.section-title{
-font-size:2rem;
-margin-bottom:20px;
-color:#1d4d2f;
-}
+    .tag {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid #e4bfc3;
+      border-radius: 30px;
+      color: #9b4f5c;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
 
-.card{
-background:white;
-padding:25px;
-border-radius:15px;
-margin-bottom:25px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 58px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
 
-.options{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
+    h1 span {
+      color: #9b4f5c;
+      font-style: italic;
+    }
 
-.options label{
-padding:12px 18px;
-background:#f2f2f2;
-border-radius:10px;
-cursor:pointer;
-transition:.3s;
-}
+    .hero p {
+      font-size: 20px;
+      color: #6b5658;
+      margin-bottom: 30px;
+      max-width: 560px;
+    }
 
-.options input{
-margin-right:5px;
-}
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-textarea{
-width:100%;
-padding:15px;
-border:1px solid #ddd;
-border-radius:10px;
-margin-top:10px;
-}
+    .btn {
+      padding: 15px 26px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
 
-.summary{
-background:#1d4d2f;
-color:white;
-padding:25px;
-border-radius:15px;
-position:sticky;
-top:20px;
-}
+    .btn-primary {
+      background: #9b4f5c;
+      color: white;
+    }
 
-.summary h2{
-margin-bottom:20px;
-}
+    .btn-secondary {
+      border: 1px solid #9b4f5c;
+      color: #9b4f5c;
+      background: white;
+    }
 
-.summary p{
-margin-bottom:10px;
-}
+    .hero-img img {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(80, 40, 45, 0.18);
+    }
 
-.btn{
-display:block;
-width:100%;
-padding:18px;
-border:none;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
-background:#25D366;
-color:white;
-font-weight:bold;
-margin-top:20px;
-}
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
 
-.btn:hover{
-opacity:.9;
-}
+    .feature {
+      background: white;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid #f1dada;
+      font-size: 15px;
+    }
 
-.grid{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:25px;
-}
+    section {
+      padding: 80px 8%;
+    }
 
-footer{
-background:#111;
-color:white;
-padding:30px;
-text-align:center;
-margin-top:50px;
-}
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
 
-@media(max-width:900px){
+    .section-title small {
+      color: #9b4f5c;
+      font-style: italic;
+      font-size: 20px;
+    }
 
-.grid{
-grid-template-columns:1fr;
-}
+    h2 {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
 
-header h1{
-font-size:2rem;
-}
+    .section-title p {
+      color: #6b5658;
+      max-width: 650px;
+      margin: auto;
+      font-size: 18px;
+    }
 
-}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
 
-</style>
+    .card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid #f1dada;
+      box-shadow: 0 12px 35px rgba(80, 40, 45, 0.08);
+    }
+
+    .card img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card h3 {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #9b4f5c;
+      font-weight: bold;
+      font-size: 20px;
+      margin: 12px 0 18px;
+    }
+
+    .custom-box {
+      background: white;
+      border: 1px solid #e9c9cc;
+      border-radius: 32px;
+      padding: 40px;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 28px 0;
+    }
+
+    .option {
+      padding: 22px;
+      background: #fffaf8;
+      border-radius: 22px;
+      border: 1px solid #f1dada;
+    }
+
+    .option h3 {
+      font-family: Georgia, serif;
+      margin-bottom: 8px;
+    }
+
+    .gift-section {
+      background: #3b2527;
+      color: white;
+      border-radius: 40px;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .gift-section p {
+      color: #f3dfe1;
+      font-size: 18px;
+      margin-bottom: 24px;
+    }
+
+    .gift-section img {
+      width: 100%;
+      border-radius: 28px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 8%;
+      color: #6b5658;
+      border-top: 1px solid #f1dada;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      background: #25d366;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 99;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .features,
+      .cards,
+      .options,
+      .gift-section {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 60px 6%;
+      }
+
+      .custom-box,
+      .gift-section {
+        padding: 28px;
+      }
+
+      .card img {
+        height: 280px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <header>
+    <div class="logo">Florê <span>& Bloom</span></div>
+    <nav>
+      <a href="#prontos">Buquês prontos</a>
+      <a href="#monte">Monte o seu</a>
+      <a href="#cestas">Cestas</a>
+      <a href="#whatsapp">WhatsApp</a>
+    </nav>
+  </header>
 
-<h1>Monte Seu Buquê</h1>
+  <main>
 
-<p>
-Escolha flores, embalagens e acessórios para criar um presente único.
-Produzido pela JS Jardinagem.
-</p>
+    <section class="hero">
+      <div>
+        <div class="tag">Entrega de buquês em Uberlândia</div>
 
-</header>
+        <h1>
+          Compre <span>flores</span><br>
+          e entregue emoção.
+        </h1>
 
-<div class="container">
+        <p>
+          Buquês artesanais, flores frescas e entrega em Uberlândia.
+          Escolha um modelo pronto, monte o seu buquê personalizado
+          ou fale direto pelo WhatsApp.
+        </p>
 
-<div class="grid">
+        <div class="buttons">
+          <a class="btn btn-primary" href="#prontos">Ver buquês prontos</a>
+          <a class="btn btn-secondary" href="#monte">Montar meu buquê</a>
+        </div>
 
-<div>
+        <div class="features">
+          <div class="feature">🌷 Buquês prontos para comprar</div>
+          <div class="feature">🎁 Opções personalizadas</div>
+          <div class="feature">🚚 Entrega em Uberlândia</div>
+        </div>
+      </div>
 
-<div class="card">
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=80" alt="Buquê de flores em tons rosados">
+      </div>
+    </section>
 
-<h2 class="section-title">1. Escolha as Flores</h2>
+    <section id="prontos">
+      <div class="section-title">
+        <small>escolha rápido</small>
+        <h2>Buquês prontos</h2>
+        <p>
+          Opções lindas para quem quer praticidade, beleza e uma entrega especial.
+        </p>
+      </div>
 
-<div class="options">
+      <div class="cards">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=900&q=80" alt="Buquê romântico">
+          <div class="card-content">
+            <h3>Buquê Romântico</h3>
+            <p>Rosas vermelhas e tons suaves para surpreender alguém especial.</p>
+            <div class="price">R$ 189</div>
+            <a class="btn btn-primary" target="_blank" href="https://wa.me/5534999999999?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20o%20Buquê%20Romântico%20em%20Uberlândia.">Comprar pelo WhatsApp</a>
+          </div>
+        </div>
 
-<label><input type="checkbox" value="Rosas"> Rosas</label>
-<label><input type="checkbox" value="Girassóis"> Girassóis</label>
-<label><input type="checkbox" value="Margaridas"> Margaridas</label>
-<label><input type="checkbox" value="Lírios"> Lírios</label>
-<label><input type="checkbox" value="Tulipas"> Tulipas</label>
-<label><input type="checkbox" value="Astromélias"> Astromélias</label>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=900&q=80" alt="Buquê delicado">
+          <div class="card-content">
+            <h3>Buquê Delicado</h3>
+            <p>Flores claras e elegantes para aniversários, carinho e gratidão.</p>
+            <div class="price">R$ 159</div>
+            <a class="btn btn-primary" target="_blank" href="https://wa.me/5534999999999?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20o%20Buquê%20Delicado%20em%20Uberlândia.">Comprar pelo WhatsApp</a>
+          </div>
+        </div>
 
-</div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=80" alt="Buquê especial">
+          <div class="card-content">
+            <h3>Buquê Especial</h3>
+            <p>Uma composição marcante para datas especiais e grandes surpresas.</p>
+            <div class="price">R$ 249</div>
+            <a class="btn btn-primary" target="_blank" href="https://wa.me/5534999999999?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20o%20Buquê%20Especial%20em%20Uberlândia.">Comprar pelo WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section id="monte">
+      <div class="section-title">
+        <small>personalize</small>
+        <h2>Monte seu buquê perfeito</h2>
+        <p>
+          Escolha as cores, flores, tamanho e mensagem. Nós montamos com carinho.
+        </p>
+      </div>
 
-<div class="card">
+      <div class="custom-box">
+        <div class="options">
+          <div class="option">
+            <h3>01. Escolha as cores</h3>
+            <p>Rosa claro, vermelho romance, branco creme, nude, lavanda ou tons mistos.</p>
+          </div>
 
-<h2 class="section-title">2. Embalagem</h2>
+          <div class="option">
+            <h3>02. Escolha as flores</h3>
+            <p>Rosas, girassóis, tulipas, lavandas, folhagens e flores da estação.</p>
+          </div>
 
-<div class="options">
+          <div class="option">
+            <h3>03. Escolha o tamanho</h3>
+            <p>Pequeno, médio, grande ou premium para ocasiões mais especiais.</p>
+          </div>
 
-<label><input type="radio" name="papel" value="Folha Quadrada"> Folha Quadrada</label>
-<label><input type="radio" name="papel" value="Folha Colmeia"> Folha Colmeia</label>
-<label><input type="radio" name="papel" value="Papel Kraft"> Papel Kraft</label>
-<label><input type="radio" name="papel" value="Papel Seda"> Papel Seda</label>
+          <div class="option">
+            <h3>04. Adicione uma mensagem</h3>
+            <p>Inclua um cartão com texto especial para acompanhar o presente.</p>
+          </div>
+        </div>
 
-</div>
+        <a class="btn btn-primary" target="_blank" href="https://wa.me/5534999999999?text=Olá,%20vim%20pelo%20site%20e%20quero%20montar%20um%20buquê%20personalizado%20em%20Uberlândia.">
+          Montar meu buquê pelo WhatsApp
+        </a>
+      </div>
+    </section>
 
-</div>
+    <section id="cestas">
+      <div class="gift-section">
+        <div>
+          <small>presentes especiais</small>
+          <h2>Conheça também nossas cestas</h2>
+          <p>
+            Além dos buquês, temos cestas, presentes personalizados e opções
+            especiais para aniversários, datas românticas e surpresas.
+          </p>
 
-<div class="card">
+          <div class="buttons">
+            <a class="btn btn-primary" target="_blank" href="https://wa.me/5534992142960?text=Olá,%20vim%20pelo%20site%20e%20quero%20conhecer%20a%20linha%20de%20cestas%20e%20presentes.">
+              Conhecer cestas
+            </a>
+            <a class="btn btn-secondary" target="_blank" href="https://wa.me/5534999002398?text=Olá,%20quero%20falar%20sobre%20buquês%20e%20presentes%20em%20Uberlândia.">
+              Falar no WhatsApp
+            </a>
+          </div>
+        </div>
 
-<h2 class="section-title">3. Laço</h2>
+        <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=80" alt="Cesta de presente com flores">
+      </div>
+    </section>
 
-<div class="options">
+  </main>
 
-<label><input type="radio" name="laco" value="Laço Bola"> Laço Bola</label>
-<label><input type="radio" name="laco" value="Sem Laço"> Sem Laço</label>
+  <footer>
+    <div class="logo">Florê <span>& Bloom</span></div>
+    <p>Buquês, flores e presentes com entrega em Uberlândia.</p>
+  </footer>
 
-</div>
-
-</div>
-
-<div class="card">
-
-<h2 class="section-title">4. Cartão Personalizado</h2>
-
-<textarea
-id="mensagem"
-rows="6"
-placeholder="Escreva sua mensagem..."></textarea>
-
-</div>
-
-</div>
-
-<div>
-
-<div class="summary">
-
-<h2>Resumo do Pedido</h2>
-
-<p id="floresResumo">Flores: -</p>
-
-<p id="papelResumo">Embalagem: -</p>
-
-<p id="lacoResumo">Laço: -</p>
-
-<p id="msgResumo">Mensagem: -</p>
-
-<button class="btn" onclick="enviarWhats()">
-Enviar pelo WhatsApp
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-<h3>JS Jardinagem</h3>
-
-<p>Buquês personalizados e presentes especiais.</p>
-
-</footer>
-
-<script>
-
-const elementos=document.querySelectorAll("input, textarea");
-
-elementos.forEach(el=>{
-el.addEventListener("change", atualizarResumo);
-el.addEventListener("keyup", atualizarResumo);
-});
-
-function atualizarResumo(){
-
-const flores=[...document.querySelectorAll('input[type="checkbox"]:checked')]
-.map(el=>el.value)
-.join(", ");
-
-const papel=document.querySelector('input[name="papel"]:checked');
-const laco=document.querySelector('input[name="laco"]:checked');
-
-const msg=document.getElementById("mensagem").value;
-
-document.getElementById("floresResumo").innerHTML=
-"Flores: "+(flores || "-");
-
-document.getElementById("papelResumo").innerHTML=
-"Embalagem: "+(papel ? papel.value : "-");
-
-document.getElementById("lacoResumo").innerHTML=
-"Laço: "+(laco ? laco.value : "-");
-
-document.getElementById("msgResumo").innerHTML=
-"Mensagem: "+(msg || "-");
-
-}
-
-function enviarWhats(){
-
-const flores=document.getElementById("floresResumo").innerText;
-const papel=document.getElementById("papelResumo").innerText;
-const laco=document.getElementById("lacoResumo").innerText;
-const msg=document.getElementById("msgResumo").innerText;
-
-const texto=
-`Olá! Gostaria de solicitar um buquê.%0A%0A${flores}%0A${papel}%0A${laco}%0A${msg}`;
-
-window.open(
-`https://wa.me/5534992142960?text=${texto}`,
-'_blank'
-);
-
-}
-
-</script>
+  <a
+    id="whatsapp"
+    class="whatsapp"
+    target="_blank"
+    href="https://wa.me/5534999999999?text=Olá,%20vim%20pelo%20site%20e%20quero%20comprar%20um%20buquê%20em%20Uberlândia.">
+    WhatsApp
+  </a>
 
 </body>
 </html>
