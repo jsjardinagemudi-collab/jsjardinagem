@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terras e Substratos | Rei do Real Casa e Jardim</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f3e8;
+      color: #24351f;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1f4d2b, #6fa640);
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: .95;
+    }
+
+    .container {
+      width: min(1100px, 94%);
+      margin: 0 auto;
+      padding: 28px 0;
+    }
+
+    .alerta {
+      background: #fff7d6;
+      border-left: 5px solid #d6a800;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      font-size: .95rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,.10);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background: #ddd;
+    }
+
+    .card-body {
+      padding: 16px;
+      flex: 1;
+    }
+
+    .marca {
+      font-size: .8rem;
+      background: #e5f0d9;
+      color: #31591f;
+      padding: 5px 9px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #1f4d2b;
+    }
+
+    .uso {
+      font-size: .92rem;
+      color: #4d5b45;
+      margin-bottom: 12px;
+    }
+
+    .preco {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #b47700;
+      margin-bottom: 12px;
+    }
+
+    .qtd-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .qtd-box button {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: #1f4d2b;
+      color: white;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .qtd-box input {
+      width: 54px;
+      height: 34px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .resumo {
+      margin-top: 30px;
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,.10);
+    }
+
+    .resumo h2 {
+      color: #1f4d2b;
+      margin-bottom: 12px;
+    }
+
+    .linha {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+      gap: 10px;
+    }
+
+    .total {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 14px;
+      color: #b47700;
+    }
+
+    .dados-cliente {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .btn-whats {
+      width: 100%;
+      margin-top: 16px;
+      background: #25d366;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 15px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-whats:hover {
+      filter: brightness(.95);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 14px;
+      color: #52604b;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.6rem; }
+      .card img { height: 150px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Rei do Real Casa e Jardim</h1>
+  <p>Terras, substratos e adubos para vasos, hortas, jardins e gramados</p>
+</header>
+
+<main class="container">
+
+  <div class="alerta">
+    Escolha os produtos, coloque a quantidade e finalize o pedido pelo WhatsApp.
+    Os valores abaixo são exemplos editáveis. Troque pelos preços reais da loja.
+  </div>
+
+  <section class="grid" id="produtos"></section>
+
+  <section class="resumo">
+    <h2>Resumo do pedido</h2>
+    <div id="listaPedido"></div>
+    <div class="total" id="totalPedido">Total: R$ 0,00</div>
+
+    <div class="dados-cliente">
+      <input id="nomeCliente" placeholder="Seu nome" />
+      <input id="telefoneCliente" placeholder="Seu telefone" />
+      <textarea id="enderecoCliente" placeholder="Endereço para entrega ou retirada na loja"></textarea>
+      <textarea id="observacaoCliente" placeholder="Observação: exemplo, preciso para vasos, horta, jardim, gramado..."></textarea>
+    </div>
+
+    <button class="btn-whats" onclick="enviarWhatsApp()">Finalizar pedido pelo WhatsApp</button>
+  </section>
+
+</main>
+
+<footer>
+  Rei do Real Casa e Jardim • Terras e substratos para sua planta crescer melhor
+</footer>
+
+<script>
+  const WHATSAPP_LOJA = "5534999999999"; 
+  // Troque pelo WhatsApp da loja. Exemplo Uberlândia: 5534999999999
+
+  const produtos = [
+    {
+      nome: "Terra Vegetal Calterra 10kg",
+      marca: "Calterra",
+      preco: 24.99,
+      uso: "Indicada para vasos, hortas, jardins e manutenção de plantas.",
+      imagem: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      nome: "Plantio Premium Calterra 20kg",
+      marca: "Calterra",
+      preco: 34.99,
+      uso: "Boa opção para plantio novo, canteiros, vasos grandes e paisagismo.",
+      imagem: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      nome: "Terra Vegetal Terral 25kg",
+      marca: "Terral",
+      preco: 29.99,
+      uso: "Para hortas, pomares, jardins e reposição de matéria orgânica.",
+      imagem: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      nome: "Substrato Plantio Terral 25L",
+      marca: "Terral",
+      preco: 32.99,
+      uso: "Para folhagens, hortaliças, frutíferas e plantas ornamentais.",
+      imagem: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      nome: "Terra Vegetal Mogi Fértil 20kg",
+      marca: "Mogi Fértil",
+      preco: 31.99,
+      uso: "Para enchimento de vasos, manutenção de jardins, gramados e hortas.",
+      imagem: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      nome: "Húmus de Minhoca 20kg",
+      marca: "Adubo Orgânico",
+      preco: 35.99,
+      uso: "Ajuda na nutrição das plantas e melhora a qualidade do solo.",
+      imagem: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80"
+    }
+  ];
+
+  const quantidades = {};
+
+  function formatarMoeda(valor) {
+    return valor.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    });
+  }
+
+  function renderizarProdutos() {
+    const area = document.getElementById("produtos");
+    area.innerHTML = "";
+
+    produtos.forEach((produto, index) => {
+      quantidades[index] = quantidades[index] || 0;
+
+      area.innerHTML += `
+        <div class="card">
+          <img src="${produto.imagem}" alt="${produto.nome}">
+          <div class="card-body">
+            <span class="marca">${produto.marca}</span>
+            <h3>${produto.nome}</h3>
+            <p class="uso">${produto.uso}</p>
+            <div class="preco">${formatarMoeda(produto.preco)}</div>
+
+            <div class="qtd-box">
+              <button onclick="alterarQtd(${index}, -1)">-</button>
+              <input value="${quantidades[index]}" readonly id="qtd-${index}">
+              <button onclick="alterarQtd(${index}, 1)">+</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function alterarQtd(index, valor) {
+    quantidades[index] = Math.max(0, quantidades[index] + valor);
+    document.getElementById(`qtd-${index}`).value = quantidades[index];
+    atualizarPedido();
+  }
+
+  function atualizarPedido() {
+    const lista = document.getElementById("listaPedido");
+    const totalBox = document.getElementById("totalPedido");
+
+    lista.innerHTML = "";
+    let total = 0;
+
+    produtos.forEach((produto, index) => {
+      const qtd = quantidades[index];
+
+      if (qtd > 0) {
+        const subtotal = qtd * produto.preco;
+        total += subtotal;
+
+        lista.innerHTML += `
+          <div class="linha">
+            <span>${qtd}x ${produto.nome}</span>
+            <strong>${formatarMoeda(subtotal)}</strong>
+          </div>
+        `;
+      }
+    });
+
+    if (total === 0) {
+      lista.innerHTML = "<p>Nenhum produto selecionado ainda.</p>";
+    }
+
+    totalBox.innerText = `Total: ${formatarMoeda(total)}`;
+  }
+
+  function enviarWhatsApp() {
+    let itens = "";
+    let total = 0;
+
+    produtos.forEach((produto, index) => {
+      const qtd = quantidades[index];
+
+      if (qtd > 0) {
+        const subtotal = qtd * produto.preco;
+        total += subtotal;
+        itens += `• ${qtd}x ${produto.nome} - ${formatarMoeda(subtotal)}%0A`;
+      }
+    });
+
+    if (total === 0) {
+      alert("Escolha pelo menos um produto.");
+      return;
+    }
+
+    const nome = document.getElementById("nomeCliente").value || "Não informado";
+    const telefone = document.getElementById("telefoneCliente").value || "Não informado";
+    const endereco = document.getElementById("enderecoCliente").value || "Não informado";
+    const observacao = document.getElementById("observacaoCliente").value || "Nenhuma";
+
+    const mensagem =
+      `Olá, Rei do Real Casa e Jardim!%0A%0A` +
+      `Quero fazer um pedido de terras/substratos:%0A%0A` +
+      `${itens}%0A` +
+      `Total: ${formatarMoeda(total)}%0A%0A` +
+      `Nome: ${nome}%0A` +
+      `Telefone: ${telefone}%0A` +
+      `Endereço/retirada: ${endereco}%0A` +
+      `Observação: ${observacao}`;
+
+    window.open(`https://wa.me/${WHATSAPP_LOJA}?text=${mensagem}`, "_blank");
+  }
+
+  renderizarProdutos();
+  atualizarPedido();
+</script>
+
+</body>
+</html>
