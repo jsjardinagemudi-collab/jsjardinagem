@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Terras e Substratos | Rei do Real Casa e Jardim</title>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: Arial, sans-serif;
-      background: #f7f3e8;
-      color: #24351f;
+      background: #f6f2e8;
+      color: #26351f;
       line-height: 1.5;
     }
 
     header {
-      background: linear-gradient(135deg, #1f4d2b, #6fa640);
+      background: linear-gradient(135deg, #194d2c, #76a941);
       color: white;
-      padding: 28px 18px;
+      padding: 34px 18px;
       text-align: center;
     }
 
@@ -33,23 +38,83 @@
     }
 
     .container {
-      width: min(1100px, 94%);
+      width: min(1150px, 94%);
       margin: 0 auto;
-      padding: 28px 0;
+      padding: 26px 0;
     }
 
-    .alerta {
-      background: #fff7d6;
+    .box {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.10);
+    }
+
+    h2 {
+      color: #194d2c;
+      margin-bottom: 12px;
+    }
+
+    .etapas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .opcao-projeto {
+      border: 2px solid #d8e3cf;
+      background: #f9fbf6;
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .opcao-projeto:hover,
+    .opcao-projeto.ativo {
+      border-color: #76a941;
+      background: #eaf5dd;
+      transform: translateY(-2px);
+    }
+
+    .recomendacao {
+      background: #fff8dc;
       border-left: 5px solid #d6a800;
       padding: 14px;
-      border-radius: 10px;
-      margin-bottom: 24px;
-      font-size: .95rem;
+      border-radius: 12px;
+      margin-top: 14px;
+      display: none;
+    }
+
+    .filtros {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .filtros button {
+      border: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #e6ecdf;
+      color: #26351f;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .filtros button.ativo {
+      background: #194d2c;
+      color: white;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
       gap: 18px;
     }
 
@@ -64,9 +129,9 @@
 
     .card img {
       width: 100%;
-      height: 170px;
+      height: 190px;
       object-fit: cover;
-      background: #ddd;
+      background: #e0e0e0;
     }
 
     .card-body {
@@ -75,7 +140,7 @@
     }
 
     .marca {
-      font-size: .8rem;
+      font-size: .78rem;
       background: #e5f0d9;
       color: #31591f;
       padding: 5px 9px;
@@ -85,20 +150,41 @@
       font-weight: bold;
     }
 
-    .card h3 {
-      font-size: 1.1rem;
+    .categoria {
+      font-size: .78rem;
+      background: #f1e2b8;
+      color: #7a5700;
+      padding: 5px 9px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-left: 4px;
       margin-bottom: 8px;
-      color: #1f4d2b;
+      font-weight: bold;
+    }
+
+    .card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+      color: #194d2c;
     }
 
     .uso {
       font-size: .92rem;
       color: #4d5b45;
+      min-height: 72px;
+      margin-bottom: 12px;
+    }
+
+    .destaque {
+      background: #f7f3e8;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: .88rem;
       margin-bottom: 12px;
     }
 
     .preco {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: bold;
       color: #b47700;
       margin-bottom: 12px;
@@ -112,69 +198,66 @@
     }
 
     .qtd-box button {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border: none;
-      background: #1f4d2b;
+      background: #194d2c;
       color: white;
-      border-radius: 8px;
+      border-radius: 9px;
       font-size: 1.2rem;
       cursor: pointer;
     }
 
     .qtd-box input {
-      width: 54px;
-      height: 34px;
+      width: 58px;
+      height: 36px;
       text-align: center;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 9px;
       font-size: 1rem;
     }
 
     .resumo {
-      margin-top: 30px;
-      background: white;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 4px 14px rgba(0,0,0,.10);
-    }
-
-    .resumo h2 {
-      color: #1f4d2b;
-      margin-bottom: 12px;
+      position: sticky;
+      bottom: 0;
+      z-index: 5;
+      border: 2px solid #d6a800;
     }
 
     .linha {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 8px 0;
       gap: 10px;
+      border-bottom: 1px solid #eee;
+      padding: 9px 0;
+      font-size: .95rem;
     }
 
     .total {
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: bold;
-      margin-top: 14px;
       color: #b47700;
+      margin-top: 14px;
     }
 
     .dados-cliente {
-      margin-top: 18px;
       display: grid;
       gap: 10px;
+      margin-top: 16px;
     }
 
-    input, textarea {
+    input,
+    textarea,
+    select {
       width: 100%;
       padding: 13px;
-      border-radius: 10px;
+      border-radius: 11px;
       border: 1px solid #ccc;
       font-size: 1rem;
     }
 
     textarea {
-      min-height: 80px;
+      min-height: 76px;
       resize: vertical;
     }
 
@@ -197,14 +280,23 @@
 
     footer {
       text-align: center;
-      padding: 24px 14px;
+      padding: 28px 14px;
       color: #52604b;
       font-size: .9rem;
     }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.6rem; }
-      .card img { height: 150px; }
+    @media (max-width: 650px) {
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .card img {
+        height: 165px;
+      }
+
+      .resumo {
+        position: relative;
+      }
     }
   </style>
 </head>
@@ -213,28 +305,57 @@
 
 <header>
   <h1>Rei do Real Casa e Jardim</h1>
-  <p>Terras, substratos e adubos para vasos, hortas, jardins e gramados</p>
+  <p>Escolha a terra certa para vasos, hortas, jardins, gramados e paisagismo</p>
 </header>
 
 <main class="container">
 
-  <div class="alerta">
-    Escolha os produtos, coloque a quantidade e finalize o pedido pelo WhatsApp.
-    Os valores abaixo são exemplos editáveis. Troque pelos preços reais da loja.
-  </div>
+  <section class="box">
+    <h2>1. O que você vai plantar?</h2>
+    <p>Escolha uma opção para receber uma recomendação rápida.</p>
 
-  <section class="grid" id="produtos"></section>
+    <div class="etapas">
+      <div class="opcao-projeto" onclick="selecionarProjeto('vasos', this)">🪴 Vasos</div>
+      <div class="opcao-projeto" onclick="selecionarProjeto('jardim', this)">🌿 Jardim</div>
+      <div class="opcao-projeto" onclick="selecionarProjeto('horta', this)">🥬 Horta</div>
+      <div class="opcao-projeto" onclick="selecionarProjeto('gramado', this)">🌱 Gramado</div>
+      <div class="opcao-projeto" onclick="selecionarProjeto('orquideas', this)">🌸 Orquídeas</div>
+      <div class="opcao-projeto" onclick="selecionarProjeto('suculentas', this)">🌵 Suculentas</div>
+    </div>
 
-  <section class="resumo">
-    <h2>Resumo do pedido</h2>
+    <div class="recomendacao" id="recomendacaoBox"></div>
+  </section>
+
+  <section class="box">
+    <h2>2. Escolha os produtos</h2>
+
+    <div class="filtros">
+      <button class="ativo" onclick="filtrarCategoria('todos', this)">Todos</button>
+      <button onclick="filtrarCategoria('terra', this)">Terras</button>
+      <button onclick="filtrarCategoria('substrato', this)">Substratos</button>
+      <button onclick="filtrarCategoria('adubo', this)">Adubação</button>
+      <button onclick="filtrarCategoria('especial', this)">Especiais</button>
+    </div>
+
+    <div class="grid" id="produtos"></div>
+  </section>
+
+  <section class="box resumo">
+    <h2>3. Resumo do pedido</h2>
     <div id="listaPedido"></div>
     <div class="total" id="totalPedido">Total: R$ 0,00</div>
 
     <div class="dados-cliente">
       <input id="nomeCliente" placeholder="Seu nome" />
       <input id="telefoneCliente" placeholder="Seu telefone" />
-      <textarea id="enderecoCliente" placeholder="Endereço para entrega ou retirada na loja"></textarea>
-      <textarea id="observacaoCliente" placeholder="Observação: exemplo, preciso para vasos, horta, jardim, gramado..."></textarea>
+
+      <select id="tipoEntrega">
+        <option value="Retirada na loja">Retirada na loja</option>
+        <option value="Entrega">Entrega</option>
+      </select>
+
+      <textarea id="enderecoCliente" placeholder="Endereço para entrega, se necessário"></textarea>
+      <textarea id="observacaoCliente" placeholder="Observação: exemplo, preciso para 10 vasos, horta pequena, jardim, gramado..."></textarea>
     </div>
 
     <button class="btn-whats" onclick="enviarWhatsApp()">Finalizar pedido pelo WhatsApp</button>
@@ -243,59 +364,162 @@
 </main>
 
 <footer>
-  Rei do Real Casa e Jardim • Terras e substratos para sua planta crescer melhor
+  Rei do Real Casa e Jardim • Terras, substratos, plantas e jardinagem
 </footer>
 
 <script>
-  const WHATSAPP_LOJA = "5534999999999"; 
-  // Troque pelo WhatsApp da loja. Exemplo Uberlândia: 5534999999999
+  const WHATSAPP_LOJA = "5534999999999";
+  // Troque pelo WhatsApp real da loja.
 
   const produtos = [
     {
-      nome: "Terra Vegetal Calterra 10kg",
+      nome: "Terra Vegetal Calterra",
       marca: "Calterra",
+      categoria: "terra",
       preco: 24.99,
-      uso: "Indicada para vasos, hortas, jardins e manutenção de plantas.",
-      imagem: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80"
+      tamanhos: "3kg, 10kg e 20kg",
+      uso: "Indicada para plantio e manutenção de jardins e hortas. Pode ser usada pura ou em misturas.",
+      destaque: "⭐ Boa escolha para vasos, hortas e jardins.",
+      imagem: "https://calterra.com.br/produto/terra-vegetal/",
+      projetos: ["vasos", "jardim", "horta"]
     },
     {
-      nome: "Plantio Premium Calterra 20kg",
+      nome: "Plantio Premium Composto Orgânico",
       marca: "Calterra",
+      categoria: "substrato",
       preco: 34.99,
-      uso: "Boa opção para plantio novo, canteiros, vasos grandes e paisagismo.",
-      imagem: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80"
+      tamanhos: "3kg, 10kg e 20kg",
+      uso: "Indicado para plantio, replantio, canteiros, recuperação de solo e formação de berço.",
+      destaque: "🥇 Recomendado para plantio novo e paisagismo.",
+      imagem: "https://calterra.com.br/produto/substrato-plantio-premium-composto-organico-10kg/",
+      projetos: ["vasos", "jardim", "horta"]
     },
     {
-      nome: "Terra Vegetal Terral 25kg",
-      marca: "Terral",
-      preco: 29.99,
-      uso: "Para hortas, pomares, jardins e reposição de matéria orgânica.",
-      imagem: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      nome: "Substrato Plantio Terral 25L",
-      marca: "Terral",
+      nome: "Gramado, Hortas e Jardins",
+      marca: "Calterra",
+      categoria: "substrato",
       preco: 32.99,
-      uso: "Para folhagens, hortaliças, frutíferas e plantas ornamentais.",
-      imagem: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80"
+      tamanhos: "3kg, 10kg e 20kg",
+      uso: "Indicado para cobertura, formação e recuperação de gramados, hortas e jardins.",
+      destaque: "🌱 Melhor opção para gramado e canteiros.",
+      imagem: "https://calterra.com.br/produto/gramado-hortas-e-jardins/",
+      projetos: ["gramado", "horta", "jardim"]
     },
     {
-      nome: "Terra Vegetal Mogi Fértil 20kg",
-      marca: "Mogi Fértil",
-      preco: 31.99,
-      uso: "Para enchimento de vasos, manutenção de jardins, gramados e hortas.",
-      imagem: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=800&q=80"
+      nome: "Húmus de Minhoca Premium",
+      marca: "Calterra",
+      categoria: "adubo",
+      preco: 19.99,
+      tamanhos: "3kg e 10kg",
+      uso: "Adubo orgânico rico em nutrientes. Ajuda na fertilidade, estrutura e umidade do solo.",
+      destaque: "🌿 Ótimo complemento para fortalecer as plantas.",
+      imagem: "https://calterra.com.br/produto/adubo-organico-premium-humus-de-minhoca-fd-8-unidade-de-3kg/",
+      projetos: ["vasos", "jardim", "horta"]
     },
     {
-      nome: "Húmus de Minhoca 20kg",
-      marca: "Adubo Orgânico",
-      preco: 35.99,
-      uso: "Ajuda na nutrição das plantas e melhora a qualidade do solo.",
-      imagem: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80"
+      nome: "Esterco de Gado Premium",
+      marca: "Calterra",
+      categoria: "adubo",
+      preco: 18.99,
+      tamanhos: "Consultar",
+      uso: "Adubo orgânico para melhorar o solo e ajudar na nutrição das plantas.",
+      destaque: "💪 Bom para preparo de solo e canteiros.",
+      imagem: "https://calterra.com.br/produto/esterco-de-gado-adubo-organico-premium/",
+      projetos: ["horta", "jardim", "gramado"]
+    },
+    {
+      nome: "Composto Premium Orquídeas",
+      marca: "Calterra",
+      categoria: "especial",
+      preco: 27.99,
+      tamanhos: "Consultar",
+      uso: "Substrato específico para cultivo e manutenção de orquídeas.",
+      destaque: "🌸 Escolha certa para orquídeas.",
+      imagem: "https://calterra.com.br/produto/composto-premium-orquideas/",
+      projetos: ["orquideas"]
+    },
+    {
+      nome: "Cactos e Suculentas",
+      marca: "Calterra",
+      categoria: "especial",
+      preco: 24.99,
+      tamanhos: "Consultar",
+      uso: "Substrato indicado para plantas que precisam de boa drenagem.",
+      destaque: "🌵 Ideal para cactos, suculentas e mini jardins.",
+      imagem: "https://calterra.com.br/produto/cactos-e-suculentas/",
+      projetos: ["suculentas", "vasos"]
+    },
+    {
+      nome: "Rosa do Deserto",
+      marca: "Calterra",
+      categoria: "especial",
+      preco: 26.99,
+      tamanhos: "Consultar",
+      uso: "Substrato específico para rosa do deserto, com foco em drenagem e desenvolvimento.",
+      destaque: "🌺 Produto específico para rosa do deserto.",
+      imagem: "https://calterra.com.br/produto/rosa-do-deserto/",
+      projetos: ["vasos"]
+    },
+    {
+      nome: "Composto Samambaias",
+      marca: "Calterra",
+      categoria: "especial",
+      preco: 25.99,
+      tamanhos: "Consultar",
+      uso: "Substrato indicado para samambaias e plantas de folhagem.",
+      destaque: "🌿 Boa opção para plantas de sombra e folhagens.",
+      imagem: "https://calterra.com.br/produto/composto-samambaias/",
+      projetos: ["vasos", "jardim"]
+    },
+    {
+      nome: "Flores e Folhagens",
+      marca: "Calterra",
+      categoria: "substrato",
+      preco: 29.99,
+      tamanhos: "Consultar",
+      uso: "Indicado para flores, folhagens e plantas ornamentais em geral.",
+      destaque: "🌼 Versátil para plantas decorativas.",
+      imagem: "https://calterra.com.br/produto/flores-e-folhagens/",
+      projetos: ["vasos", "jardim"]
     }
   ];
 
+  const recomendacoes = {
+    vasos: {
+      titulo: "🪴 Para vasos",
+      texto: "Use Terra Vegetal ou Plantio Premium. Para fortalecer, adicione Húmus de Minhoca.",
+      melhores: ["Terra Vegetal Calterra", "Plantio Premium Composto Orgânico", "Húmus de Minhoca Premium"]
+    },
+    jardim: {
+      titulo: "🌿 Para jardim",
+      texto: "Use Plantio Premium ou Terra Vegetal. Para melhorar o solo, combine com Húmus ou Esterco.",
+      melhores: ["Plantio Premium Composto Orgânico", "Terra Vegetal Calterra", "Esterco de Gado Premium"]
+    },
+    horta: {
+      titulo: "🥬 Para horta",
+      texto: "Use Terra Vegetal, Gramado/Hortas/Jardins e Húmus de Minhoca para melhorar a nutrição.",
+      melhores: ["Terra Vegetal Calterra", "Gramado, Hortas e Jardins", "Húmus de Minhoca Premium"]
+    },
+    gramado: {
+      titulo: "🌱 Para gramado",
+      texto: "Use Gramado, Hortas e Jardins para cobertura, formação e recuperação do gramado.",
+      melhores: ["Gramado, Hortas e Jardins", "Esterco de Gado Premium", "Plantio Premium Composto Orgânico"]
+    },
+    orquideas: {
+      titulo: "🌸 Para orquídeas",
+      texto: "Use substrato específico para orquídeas. Evite terra comum em excesso.",
+      melhores: ["Composto Premium Orquídeas"]
+    },
+    suculentas: {
+      titulo: "🌵 Para cactos e suculentas",
+      texto: "Use substrato com boa drenagem. Esse tipo de planta não gosta de solo encharcado.",
+      melhores: ["Cactos e Suculentas"]
+    }
+  };
+
   const quantidades = {};
+  let categoriaAtual = "todos";
+  let projetoAtual = "";
 
   function formatarMoeda(valor) {
     return valor.toLocaleString("pt-BR", {
@@ -311,13 +535,32 @@
     produtos.forEach((produto, index) => {
       quantidades[index] = quantidades[index] || 0;
 
+      if (categoriaAtual !== "todos" && produto.categoria !== categoriaAtual) {
+        return;
+      }
+
+      const recomendado = projetoAtual && produto.projetos.includes(projetoAtual)
+        ? "<div class='destaque'>✅ Recomendado para sua escolha</div>"
+        : `<div class="destaque">${produto.destaque}</div>`;
+
       area.innerHTML += `
         <div class="card">
           <img src="${produto.imagem}" alt="${produto.nome}">
           <div class="card-body">
             <span class="marca">${produto.marca}</span>
+            <span class="categoria">${produto.categoria}</span>
+
             <h3>${produto.nome}</h3>
-            <p class="uso">${produto.uso}</p>
+
+            <p class="uso">
+              <strong>Para que serve:</strong><br>
+              ${produto.uso}
+              <br><br>
+              <strong>Tamanhos:</strong> ${produto.tamanhos}
+            </p>
+
+            ${recomendado}
+
             <div class="preco">${formatarMoeda(produto.preco)}</div>
 
             <div class="qtd-box">
@@ -329,6 +572,41 @@
         </div>
       `;
     });
+  }
+
+  function selecionarProjeto(projeto, elemento) {
+    projetoAtual = projeto;
+
+    document.querySelectorAll(".opcao-projeto").forEach(el => {
+      el.classList.remove("ativo");
+    });
+
+    elemento.classList.add("ativo");
+
+    const rec = recomendacoes[projeto];
+    const box = document.getElementById("recomendacaoBox");
+
+    box.style.display = "block";
+    box.innerHTML = `
+      <strong>${rec.titulo}</strong><br>
+      ${rec.texto}
+      <br><br>
+      <strong>Produtos indicados:</strong><br>
+      ${rec.melhores.map(item => "• " + item).join("<br>")}
+    `;
+
+    renderizarProdutos();
+  }
+
+  function filtrarCategoria(categoria, botao) {
+    categoriaAtual = categoria;
+
+    document.querySelectorAll(".filtros button").forEach(btn => {
+      btn.classList.remove("ativo");
+    });
+
+    botao.classList.add("ativo");
+    renderizarProdutos();
   }
 
   function alterarQtd(index, valor) {
@@ -377,7 +655,12 @@
       if (qtd > 0) {
         const subtotal = qtd * produto.preco;
         total += subtotal;
-        itens += `• ${qtd}x ${produto.nome} - ${formatarMoeda(subtotal)}%0A`;
+
+        itens +=
+          `• ${qtd}x ${produto.nome}%0A` +
+          `Categoria: ${produto.categoria}%0A` +
+          `Indicação: ${produto.uso}%0A` +
+          `Subtotal: ${formatarMoeda(subtotal)}%0A%0A`;
       }
     });
 
@@ -388,17 +671,21 @@
 
     const nome = document.getElementById("nomeCliente").value || "Não informado";
     const telefone = document.getElementById("telefoneCliente").value || "Não informado";
+    const tipoEntrega = document.getElementById("tipoEntrega").value;
     const endereco = document.getElementById("enderecoCliente").value || "Não informado";
     const observacao = document.getElementById("observacaoCliente").value || "Nenhuma";
+    const projeto = projetoAtual ? recomendacoes[projetoAtual].titulo : "Não informado";
 
     const mensagem =
       `Olá, Rei do Real Casa e Jardim!%0A%0A` +
-      `Quero fazer um pedido de terras/substratos:%0A%0A` +
-      `${itens}%0A` +
-      `Total: ${formatarMoeda(total)}%0A%0A` +
+      `Quero fazer um pedido de terras e substratos.%0A%0A` +
+      `Projeto escolhido: ${projeto}%0A%0A` +
+      `Produtos:%0A${itens}` +
+      `Total estimado: ${formatarMoeda(total)}%0A%0A` +
       `Nome: ${nome}%0A` +
       `Telefone: ${telefone}%0A` +
-      `Endereço/retirada: ${endereco}%0A` +
+      `Entrega/Retirada: ${tipoEntrega}%0A` +
+      `Endereço: ${endereco}%0A` +
       `Observação: ${observacao}`;
 
     window.open(`https://wa.me/${WHATSAPP_LOJA}?text=${mensagem}`, "_blank");
