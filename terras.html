@@ -14,7 +14,6 @@
       --verde:#2f6b28;
       --verde-claro:#eaf4dc;
       --bege:#f7f0df;
-      --marrom:#6d3f1f;
       --dourado:#c79421;
       --texto:#2b2b1f;
     }
@@ -23,7 +22,7 @@
       font-family: Arial, sans-serif;
       background:var(--bege);
       color:var(--texto);
-      padding-bottom:90px;
+      padding-bottom:95px;
     }
 
     header {
@@ -35,10 +34,11 @@
     }
 
     .logo-texto {
-      font-size:2.25rem;
+      font-family:"Aptos Slab ExtraBold", "Aptos Display", Georgia, serif;
+      font-size:2.35rem;
       font-weight:900;
       letter-spacing:.5px;
-      text-shadow:2px 2px 0 rgba(0,0,0,.18);
+      text-shadow:2px 2px 0 rgba(0,0,0,.20);
       margin-bottom:6px;
     }
 
@@ -235,20 +235,38 @@
 
     .info-grid {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:14px;
     }
 
     .info-card {
       background:#fffaf0;
-      border-radius:14px;
-      padding:14px;
+      border-radius:16px;
+      overflow:hidden;
       border:1px solid #ead9ae;
+      box-shadow:0 3px 10px rgba(0,0,0,.08);
+    }
+
+    .info-card img {
+      width:100%;
+      height:135px;
+      object-fit:cover;
+      background:#eee;
+    }
+
+    .info-card-content {
+      padding:13px;
     }
 
     .info-card h3 {
       color:var(--vermelho);
       margin-bottom:6px;
+      font-size:1.05rem;
+    }
+
+    .info-card p {
+      font-size:.92rem;
+      color:#4c4c3c;
     }
 
     .barra-estimativa {
@@ -369,6 +387,10 @@
       .btn-ver { width:100%; }
 
       .card img { height:145px; }
+
+      .info-card img {
+        height:125px;
+      }
     }
   </style>
 </head>
@@ -384,8 +406,8 @@
 
   <section class="box">
     <div class="aviso">
-      <span class="mineiro">Uai, sô!</span> Tá em dúvida qual terra levar?  
-      Escolha abaixo e veja uma estimativa rapidinho. Depois é só mostrar pro atendente.
+      <span class="mineiro">Uai, sô!</span> Tá em dúvida qual terra levar?
+      Escolha abaixo, faça uma estimativa e mostre pro atendente.
     </div>
 
     <h2>1. O que você procura?</h2>
@@ -463,38 +485,58 @@
   </section>
 
   <section class="box">
-    <h2>4. Dica rápida</h2>
+    <h2>4. Exemplos de uso</h2>
 
     <div class="info-grid">
+
       <div class="info-card">
-        <h3>🪴 Vasos</h3>
-        <p>Terra vegetal + húmus ajuda bem.</p>
+        <img src="imagens/exemplo-vasos.jpg" alt="Exemplo de vasos com terra e plantas">
+        <div class="info-card-content">
+          <h3>🪴 Vasos</h3>
+          <p>Terra vegetal + húmus. Bom pra planta pegar força.</p>
+        </div>
       </div>
 
       <div class="info-card">
-        <h3>🥬 Horta</h3>
-        <p>Vai de terra vegetal, húmus e esterco curtido.</p>
+        <img src="imagens/exemplo-horta.jpg" alt="Exemplo de horta residencial">
+        <div class="info-card-content">
+          <h3>🥬 Horta</h3>
+          <p>Terra vegetal, húmus e esterco curtido. Aí fica bão.</p>
+        </div>
       </div>
 
       <div class="info-card">
-        <h3>🌱 Gramado</h3>
-        <p>Use cobertura fina pra nivelar e recuperar.</p>
+        <img src="imagens/exemplo-gramado.jpg" alt="Exemplo de gramado residencial">
+        <div class="info-card-content">
+          <h3>🌱 Gramado</h3>
+          <p>Cobertura fina ajuda a nivelar e recuperar falhas.</p>
+        </div>
       </div>
 
       <div class="info-card">
-        <h3>🌵 Suculentas</h3>
-        <p>Precisa de substrato que drena bem.</p>
+        <img src="imagens/exemplo-suculentas.jpg" alt="Exemplo de cactos e suculentas">
+        <div class="info-card-content">
+          <h3>🌵 Suculentas</h3>
+          <p>Use substrato drenante. Água parada não combina.</p>
+        </div>
       </div>
 
       <div class="info-card">
-        <h3>🌸 Orquídeas</h3>
-        <p>Use substrato próprio. Terra comum não é ideal.</p>
+        <img src="imagens/exemplo-orquideas.jpg" alt="Exemplo de orquídeas">
+        <div class="info-card-content">
+          <h3>🌸 Orquídeas</h3>
+          <p>Substrato próprio. Terra comum pura não é o ideal.</p>
+        </div>
       </div>
 
       <div class="info-card">
-        <h3>⚪ Acabamento</h3>
-        <p>Pedras, argila e cascas deixam bonito e prático.</p>
+        <img src="imagens/exemplo-acabamento.jpg" alt="Exemplo de acabamento com pedras no jardim">
+        <div class="info-card-content">
+          <h3>⚪ Acabamento</h3>
+          <p>Pedra, argila e casca deixam o jardim bonito demais.</p>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -526,7 +568,7 @@
     <textarea id="obsCliente" placeholder="Quer comprar em maior quantidade, montar jardim ou conhecer plantas diferentes? Chama a gente no WhatsApp ou visite nossa Unidade Casa e Jardim."></textarea>
 
     <div class="chamada-unidade">
-      🌿 Quer mais variedade de plantas, vasos, terras e jardinagem?  
+      🌿 Quer mais variedade de plantas, vasos, terras e jardinagem?
       Conheça nossa Unidade Casa e Jardim.
     </div>
 
