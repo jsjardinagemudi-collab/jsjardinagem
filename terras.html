@@ -108,31 +108,18 @@
 
     .grid {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
       gap:16px;
     }
 
     .card {
       background:white;
       border-radius:16px;
-      overflow:hidden;
       box-shadow:0 4px 14px rgba(0,0,0,.12);
       border:1px solid #ead9ae;
       display:flex;
       flex-direction:column;
-    }
-
-    .card img {
-      width:100%;
-      height:160px;
-      object-fit:contain;
-      background:#fff;
-      padding:10px;
-    }
-
-    .card-body {
       padding:14px;
-      flex:1;
     }
 
     .tag {
@@ -155,14 +142,24 @@
       color:var(--vermelho);
       font-size:1.02rem;
       margin-bottom:7px;
-      min-height:40px;
+      min-height:38px;
     }
 
     .uso {
       font-size:.9rem;
       color:#4c4c3c;
       margin-bottom:10px;
-      min-height:52px;
+      min-height:70px;
+    }
+
+    .codigo {
+      font-size:.82rem;
+      background:#f7f0df;
+      border-radius:9px;
+      padding:7px;
+      margin-bottom:10px;
+      color:#4b3a21;
+      font-weight:bold;
     }
 
     .preco {
@@ -176,6 +173,7 @@
       display:flex;
       align-items:center;
       gap:8px;
+      margin-top:auto;
     }
 
     .qtd button {
@@ -221,36 +219,6 @@
       margin-top:12px;
       font-weight:bold;
       color:#244e20;
-    }
-
-    .info-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:14px;
-    }
-
-    .info-card {
-      background:#fffaf0;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid #ead9ae;
-      box-shadow:0 3px 10px rgba(0,0,0,.08);
-    }
-
-    .info-card img {
-      width:100%;
-      height:135px;
-      object-fit:cover;
-      background:#eee;
-    }
-
-    .info-card-content {
-      padding:13px;
-    }
-
-    .info-card p {
-      font-size:.92rem;
-      color:#4c4c3c;
     }
 
     .barra-estimativa {
@@ -325,15 +293,6 @@
       border:5px solid var(--dourado);
     }
 
-    .modal-img {
-      width:100%;
-      border-radius:16px;
-      margin-bottom:12px;
-      max-height:220px;
-      object-fit:cover;
-      background:#eee;
-    }
-
     .linha {
       display:flex;
       justify-content:space-between;
@@ -366,12 +325,6 @@
       }
 
       .btn-ver { width:100%; }
-
-      .card img { height:145px; }
-
-      .info-card img {
-        height:125px;
-      }
     }
   </style>
 </head>
@@ -390,11 +343,11 @@
 
   <section class="box">
     <div class="aviso">
-      <span class="mineiro">Uai, sô!</span> Tá em dúvida qual terra levar?
-      Escolha abaixo, faça uma estimativa e mostre pro atendente.
+      <span class="mineiro">Uai, sô!</span> Escolha a terra, substrato, pedra ou vaso.
+      A estimativa ajuda o cliente a mostrar direto pro atendente.
     </div>
 
-    <h2>1. O que você procura?</h2>
+    <h2>1. Filtrar produtos</h2>
 
     <div class="filtros">
 
@@ -405,8 +358,9 @@
           <button onclick="setFiltro('categoria','terra',this)">Terra</button>
           <button onclick="setFiltro('categoria','substrato',this)">Substrato</button>
           <button onclick="setFiltro('categoria','adubo',this)">Adubo</button>
-          <button onclick="setFiltro('categoria','acabamento',this)">Acabamento</button>
           <button onclick="setFiltro('categoria','pedra',this)">Pedras</button>
+          <button onclick="setFiltro('categoria','vaso',this)">Vasos</button>
+          <button onclick="setFiltro('categoria','acabamento',this)">Acabamento</button>
         </div>
       </div>
 
@@ -419,23 +373,7 @@
           <button onclick="setFiltro('tipo','jardim',this)">Jardim</button>
           <button onclick="setFiltro('tipo','gramado',this)">Gramado</button>
           <button onclick="setFiltro('tipo','orquideas',this)">Orquídeas</button>
-          <button onclick="setFiltro('tipo','suculentas',this)">Suculentas</button>
-          <button onclick="setFiltro('tipo','rosa',this)">Rosa do Deserto</button>
-        </div>
-      </div>
-
-      <div class="grupo-filtro">
-        <strong>Tamanho</strong>
-        <div class="botoes">
-          <button class="ativo" onclick="setFiltro('volume','todos',this)">Tudo</button>
-          <button onclick="setFiltro('volume','1kg',this)">1kg</button>
-          <button onclick="setFiltro('volume','2kg',this)">2kg</button>
-          <button onclick="setFiltro('volume','3kg',this)">3kg</button>
-          <button onclick="setFiltro('volume','5kg',this)">5kg</button>
-          <button onclick="setFiltro('volume','8l',this)">8L</button>
-          <button onclick="setFiltro('volume','10kg',this)">10kg</button>
-          <button onclick="setFiltro('volume','20kg',this)">20kg</button>
-          <button onclick="setFiltro('volume','25kg',this)">25kg</button>
+          <button onclick="setFiltro('tipo','decoracao',this)">Decoração</button>
         </div>
       </div>
 
@@ -443,7 +381,7 @@
   </section>
 
   <section class="box">
-    <h2>2. Escolha e estime</h2>
+    <h2>2. Lista de produtos</h2>
     <div class="grid" id="produtos"></div>
   </section>
 
@@ -459,62 +397,15 @@
         <option value="10">Saco médio 10L/kg</option>
         <option value="20">Saco 20L/kg</option>
         <option value="25">Saco 25L/kg</option>
+        <option value="30">Saco 30L/kg</option>
+        <option value="40">Saco 40L/kg</option>
+        <option value="45">Saco 45L/kg</option>
       </select>
       <button class="btn btn-ver" onclick="calcularQuantidade()">Calcular</button>
     </div>
 
     <div class="resultado-calc" id="resultadoCalc">
       Coloca a medida aí que a gente te dá uma noção, uai.
-    </div>
-  </section>
-
-  <section class="box">
-    <h2>4. Exemplos de uso</h2>
-
-    <div class="info-grid">
-
-      <div class="info-card">
-        <img src="imagens/exemplo-vasos2.png" alt="Exemplo de vasos com terra e plantas">
-        <div class="info-card-content">
-          <p>Terra vegetal + húmus. Bom pra planta pegar força.</p>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <img src="imagens/exemplo-horta.png" alt="Exemplo de horta residencial">
-        <div class="info-card-content">
-          <p>Terra vegetal, húmus e esterco curtido. Aí fica bão.</p>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <img src="imagens/exemplo-gramado.png" alt="Exemplo de gramado residencial">
-        <div class="info-card-content">
-          <p>Cobertura fina ajuda a nivelar e recuperar falhas.</p>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <img src="imagens/exemplo-suculentas.png" alt="Exemplo de cactos e suculentas">
-        <div class="info-card-content">
-          <p>Use substrato drenante. Água parada não combina.</p>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <img src="imagens/exemplo-orquideas.png" alt="Exemplo de orquídeas">
-        <div class="info-card-content">
-          <p>Substrato próprio. Terra comum pura não é o ideal.</p>
-        </div>
-      </div>
-
-      <div class="info-card">
-        <img src="imagens/exemplo-acabamento.png" alt="Exemplo de acabamento com pedras no jardim">
-        <div class="info-card-content">
-          <p>Pedra, argila e casca deixam o jardim bonito demais.</p>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -532,24 +423,21 @@
 <div class="modal" id="modalResumo">
   <div class="modal-content">
 
-    <img class="modal-img" src="imagens/mostre-ao-atendente.png" alt="Cliente mostrando celular ao atendente">
-
     <h2>Mostre essa tela pro atendente</h2>
 
     <div class="aviso">
-      Prontinho, sô! Agora é só mostrar essa estimativa para o atendente confirmar preço, estoque e te indicar o produto no corredor.
+      Prontinho, sô! O atendente confirma preço, estoque e localização do produto.
     </div>
 
     <div id="listaResumo"></div>
     <div class="preco" id="totalResumo">Total estimado: R$ 0,00</div>
 
-    <textarea id="obsCliente" placeholder="Quer comprar em maior quantidade, montar jardim ou conhecer plantas diferentes? Já escreva aqui sua mensagem no WhatsApp ou visite nossa Unidade Casa e Jardim."></textarea>
+    <textarea id="obsCliente" placeholder="Observações para o atendimento. Ex: compra em quantidade, entrega, indicação de produto ou dúvida."></textarea>
 
     <div class="chamada-unidade">
-      Avenida Paulo Roberto Cunha dos Santos 905 - Jardim Brasília, Uberlândia - MG, 38401-377
+      Rei do Real Casa e Jardim<br>
+      Avenida Paulo Roberto Cunha dos Santos, 905 - Jardim Brasília, Uberlândia - MG
     </div>
-
-    <img class="modal-img" src="imagens/unidade-casa-jardim.png" alt="Unidade Rei do Real Casa e Jardim">
 
     <button class="btn btn-whats" onclick="abrirWhatsApp()">
       WhatsApp Rei do Real Casa e Jardim
@@ -568,222 +456,391 @@
 
   const produtos = [
     {
-      nome:"Terral Húmus de Minhoca",
-      marca:"Terral",
-      categoria:"adubo",
-      tipo:["vasos","horta","jardim"],
-      volume:"3kg",
-      preco:19.99,
-      uso:"Fortalece a planta e melhora a terra.",
-      imagem:"imagens/terral-2_humus.png"
-    },
-    {
-      nome:"Terral Solo 25kg",
-      marca:"Terral",
-      categoria:"terra",
-      tipo:["vasos","jardim","horta"],
-      volume:"25kg",
-      preco:29.99,
-      uso:"Uso geral: vasos, canteiros e jardim.",
-      imagem:"imagens/terral-2_solo25_frente.png"
-    },
-    {
-      nome:"Terral Flor 5kg",
-      marca:"Terral",
+      nome:"TERRALPLANT 20LTS",
+      marca:"TERRAL",
       categoria:"substrato",
       tipo:["vasos","jardim"],
-      volume:"5kg",
-      preco:14.99,
-      uso:"Bom para flores e plantas ornamentais.",
-      imagem:"imagens/terral-2_2_Flor_5kg.png"
+      volume:"20L",
+      preco:29.99,
+      codigo:"7898400870438",
+      uso:"Produto para plantio e preparo de vasos. Código de barras: 7898400870438."
     },
     {
-      nome:"Terral Green 25kg",
-      marca:"Terral",
+      nome:"CONDICIONADOR SOLO 25 KG",
+      marca:"TERRAL",
       categoria:"terra",
-      tipo:["jardim","gramado"],
-      volume:"25kg",
-      preco:32.99,
-      uso:"Para jardim, área verde e gramado.",
-      imagem:"imagens/terral-Green_25kg.png"
+      tipo:["jardim","horta"],
+      volume:"25KG",
+      preco:34.99,
+      codigo:"7898400870483",
+      uso:"Ajuda a melhorar a estrutura do solo. Código de barras: 7898400870483."
     },
     {
-      nome:"Terral Terra Vegetal 2kg",
-      marca:"Terral",
-      categoria:"terra",
-      tipo:["vasos","jardim"],
-      volume:"2kg",
-      preco:8.99,
-      uso:"Boa para vasos pequenos.",
-      imagem:"imagens/terral-2_terra_vegetal_2kg_frente.png"
-    },
-    {
-      nome:"Terral Esterco",
-      marca:"Terral",
-      categoria:"adubo",
-      tipo:["horta","jardim","gramado"],
-      volume:"3kg",
-      preco:18.99,
-      uso:"Ajuda no preparo do solo.",
-      imagem:"imagens/terral-4_Esterco.png"
-    },
-    {
-      nome:"Terral Rosa do Deserto",
-      marca:"Terral",
-      categoria:"substrato",
-      tipo:["rosa","vasos"],
-      volume:"3kg",
-      preco:16.99,
-      uso:"Feito para rosa do deserto.",
-      imagem:"imagens/terral-WhatsApp_Image_2023-04-12_at_17.33.33.png"
-    },
-    {
-      nome:"Terral Orquídeas",
-      marca:"Terral",
-      categoria:"substrato",
-      tipo:["orquideas"],
-      volume:"3kg",
-      preco:18.99,
-      uso:"Substrato próprio para orquídeas.",
-      imagem:"imagens/terral-3_Orquideas_substrato.png"
-    },
-    {
-      nome:"Terral Suculentas 1kg",
-      marca:"Terral",
-      categoria:"substrato",
-      tipo:["suculentas","vasos"],
-      volume:"1kg",
-      preco:9.99,
-      uso:"Drena bem. Ideal para suculentas.",
-      imagem:"imagens/terral-2_Suculenta_1kg_frente.png"
-    },
-    {
-      nome:"Mogi Fértil Vasos e Floreiras",
-      marca:"Mogi Fértil",
-      categoria:"substrato",
-      tipo:["vasos","jardim"],
-      volume:"20kg",
-      preco:29.99,
-      uso:"Para vasos e floreiras maiores.",
-      imagem:"imagens/mogifertil-vasos-v1.png"
-    },
-    {
-      nome:"Mogi Fértil Cactos e Suculentas",
-      marca:"Mogi Fértil",
-      categoria:"substrato",
-      tipo:["suculentas"],
-      volume:"20kg",
-      preco:29.99,
-      uso:"Bom para plantas que não gostam de encharcar.",
-      imagem:"imagens/mogifertil-cactos-e-suculentas.png"
-    },
-    {
-      nome:"Mogi Fértil Rosas do Deserto",
-      marca:"Mogi Fértil",
-      categoria:"substrato",
-      tipo:["rosa"],
-      volume:"20kg",
-      preco:29.99,
-      uso:"Para rosa do deserto.",
-      imagem:"imagens/mogifertil-rosas-do-deserto.png"
-    },
-    {
-      nome:"Mogi Fértil Esterco de Galinha",
-      marca:"Mogi Fértil",
+      nome:"ESTERCO 10 KG",
+      marca:"TERRAL",
       categoria:"adubo",
       tipo:["horta","jardim"],
-      volume:"20kg",
+      volume:"10KG",
       preco:24.99,
-      uso:"Adubo forte para horta e canteiro.",
-      imagem:"imagens/mogifertil-esterco-de-galinha.png"
+      codigo:"7898400870872",
+      uso:"Adubo orgânico para preparo de terra. Código de barras: 7898400870872."
     },
     {
-      nome:"Mogi Fértil Gramados",
-      marca:"Mogi Fértil",
-      categoria:"terra",
-      tipo:["gramado"],
-      volume:"20kg",
-      preco:31.99,
-      uso:"Para cobrir e recuperar gramado.",
-      imagem:"imagens/mogifertil-gramados.png"
+      nome:"BIO BRIC (B2) 10 KG/45L",
+      marca:"TERRAL",
+      categoria:"substrato",
+      tipo:["jardim","vasos"],
+      volume:"10KG / 45L",
+      preco:39.99,
+      codigo:"7898400870858",
+      uso:"Substrato prensado para plantio. Código de barras: 7898400870858."
     },
     {
-      nome:"Mogi Fértil Terra Vegetal",
-      marca:"Mogi Fértil",
-      categoria:"terra",
-      tipo:["vasos","jardim","horta","gramado"],
-      volume:"20kg",
-      preco:29.99,
-      uso:"Terra vegetal para vários usos.",
-      imagem:"imagens/mogifertil-terra-vegetal.png"
-    },
-    {
-      nome:"Calterra Terra Vegetal 3kg",
-      marca:"Calterra",
+      nome:"TERRA VEGETAL 20KG",
+      marca:"CALTERRA",
       categoria:"terra",
       tipo:["vasos","horta","jardim"],
-      volume:"3kg",
+      volume:"20KG",
+      preco:24.99,
+      codigo:"7895098937726",
+      uso:"Terra vegetal para uso geral. Código de barras: 7895098937726."
+    },
+    {
+      nome:"TERRA VEGETAL 10KG",
+      marca:"CALTERRA",
+      categoria:"terra",
+      tipo:["vasos","horta","jardim"],
+      volume:"10KG",
+      preco:16.99,
+      codigo:"736532674883",
+      uso:"Terra vegetal para vasos, hortas e jardim. Código de barras: 736532674883."
+    },
+    {
+      nome:"TERRA VEGETAL 3KG",
+      marca:"CALTERRA",
+      categoria:"terra",
+      tipo:["vasos","horta","jardim"],
+      volume:"3KG",
+      preco:9.99,
+      codigo:"0736532674876",
+      uso:"Terra vegetal para vasos pequenos. Código de barras: 0736532674876."
+    },
+    {
+      nome:"COBERTURA PREMIUM GRAMADO, HORTA E JARDIM 3KG",
+      marca:"CALTERRA",
+      categoria:"terra",
+      tipo:["gramado","horta","jardim"],
+      volume:"3KG",
       preco:12.99,
-      uso:"Pronta para vasos, flores e hortas.",
-      imagem:"imagens/10 - terra vegetal 3kg sem fundo.png"
+      codigo:"7895098937719",
+      uso:"Cobertura para gramado, horta e jardim. Código de barras: 7895098937719."
     },
     {
-      nome:"Calterra Cactos e Suculentas 3kg",
-      marca:"Calterra",
-      categoria:"substrato",
-      tipo:["suculentas"],
-      volume:"3kg",
-      preco:14.99,
-      uso:"Boa drenagem para suculentas.",
-      imagem:"imagens/2 - composto premium cactus e suculentas 3 kg sem fundo.png"
-    },
-    {
-      nome:"Calterra Rosa do Deserto 3kg",
-      marca:"Calterra",
-      categoria:"substrato",
-      tipo:["rosa"],
-      volume:"3kg",
-      preco:14.99,
-      uso:"Especial para rosa do deserto.",
-      imagem:"imagens/9 - rosa do deserto 3kg.png"
-    },
-    {
-      nome:"Calterra Húmus de Minhoca 3kg",
-      marca:"Calterra",
+      nome:"ESTERCO DE GADO 20KG",
+      marca:"CALTERRA",
       categoria:"adubo",
-      tipo:["vasos","horta","jardim"],
-      volume:"3kg",
-      preco:13.99,
-      uso:"Nutre a terra de forma natural.",
-      imagem:"imagens/1 - Adubo orgânico humus de minhoca 3kg sem fundo.png"
+      tipo:["horta","jardim"],
+      volume:"20KG",
+      preco:29.99,
+      codigo:"4260211061184",
+      uso:"Esterco bovino para preparo de solo. Código de barras: 4260211061184."
     },
     {
-      nome:"Calterra Plantio Premium 3kg",
-      marca:"Calterra",
-      categoria:"substrato",
-      tipo:["vasos","jardim","horta"],
-      volume:"3kg",
-      preco:13.99,
-      uso:"Para plantar e replantar.",
-      imagem:"imagens/8 - plantio premium composto organico 3 kg.png"
+      nome:"PEDRA SEIXO BRANCA Nº3 5KG",
+      marca:"CALTERRA",
+      categoria:"pedra",
+      tipo:["decoracao","jardim","vasos"],
+      volume:"5KG",
+      preco:19.99,
+      codigo:"7448070130891",
+      uso:"Pedra decorativa branca para vasos e jardins. Código de barras: 7448070130891."
     },
     {
-      nome:"Calterra Cobertura Premium Gramados 10kg",
-      marca:"Calterra",
+      nome:"PEDRISCO PALHA Nº1 5KG",
+      marca:"CALTERRA",
+      categoria:"pedra",
+      tipo:["decoracao","jardim","vasos"],
+      volume:"5KG",
+      preco:19.99,
+      codigo:"7448070130990",
+      uso:"Pedrisco palha para acabamento. Código de barras: 7448070130990."
+    },
+    {
+      nome:"PEDRISCO PALHA Nº2 5KG",
+      marca:"CALTERRA",
+      categoria:"pedra",
+      tipo:["decoracao","jardim","vasos"],
+      volume:"5KG",
+      preco:19.99,
+      codigo:"7448070130945",
+      uso:"Pedrisco palha para decoração. Código de barras: 7448070130945."
+    },
+    {
+      nome:"PEDRISCO PALHA Nº3 5KG",
+      marca:"CALTERRA",
+      categoria:"pedra",
+      tipo:["decoracao","jardim","vasos"],
+      volume:"5KG",
+      preco:19.99,
+      codigo:"7448070130617",
+      uso:"Pedrisco palha para acabamento de jardim. Código de barras: 7448070130617."
+    },
+    {
+      nome:"TERRA VEGETAL 20KG",
+      marca:"MOGIFERTIL",
       categoria:"terra",
-      tipo:["gramado"],
-      volume:"10kg",
+      tipo:["vasos","horta","jardim"],
+      volume:"20KG",
       preco:24.99,
-      uso:"Para cobrir e nivelar gramado.",
-      imagem:"imagens/05 - cobertura premium - gramados 10 kg.png"
+      codigo:"7898930277158",
+      uso:"Terra vegetal para uso geral. Código de barras: 7898930277158."
+    },
+    {
+      nome:"TERRA VEGETAL 10KG",
+      marca:"MOGIFERTIL",
+      categoria:"terra",
+      tipo:["vasos","horta","jardim"],
+      volume:"10KG",
+      preco:16.99,
+      codigo:"7898734140047",
+      uso:"Terra vegetal para vasos e canteiros. Código de barras: 7898734140047."
+    },
+    {
+      nome:"VASOS E FLOREIRA PREMIUM 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"substrato",
+      tipo:["vasos","jardim"],
+      volume:"20KG",
+      preco:29.99,
+      codigo:"7898734141334",
+      uso:"Substrato para vasos e floreiras. Código de barras: 7898734141334."
+    },
+    {
+      nome:"ROSA DO DESERTO & BROMÉLIA 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"substrato",
+      tipo:["vasos","jardim"],
+      volume:"20KG",
+      preco:29.99,
+      codigo:"7898734140078",
+      uso:"Substrato indicado para rosa do deserto e bromélia. Código de barras: 7898734140078."
+    },
+    {
+      nome:"ESTERCO BOVINO 30LTS",
+      marca:"MOGIFERTIL",
+      categoria:"adubo",
+      tipo:["horta","jardim"],
+      volume:"30L",
+      preco:29.99,
+      codigo:"7898734141327",
+      uso:"Esterco bovino para preparo do solo. Código de barras: 7898734141327."
+    },
+    {
+      nome:"PEDRAS 15KG Nº2",
+      marca:"MOGIFERTIL",
+      categoria:"pedra",
+      tipo:["decoracao","jardim"],
+      volume:"15KG",
+      preco:34.99,
+      codigo:"1000410000002",
+      uso:"Pedra decorativa para jardim. Código de barras: 1000410000002."
+    },
+    {
+      nome:"PEDRAS 15KG Nº3",
+      marca:"MOGIFERTIL",
+      categoria:"pedra",
+      tipo:["decoracao","jardim"],
+      volume:"15KG",
+      preco:34.99,
+      codigo:"1000410000002",
+      uso:"Pedra decorativa para jardim. Código de barras: 1000410000002."
+    },
+    {
+      nome:"ORQUÍDEAS MIX 40LTS",
+      marca:"MOGIFERTIL",
+      categoria:"substrato",
+      tipo:["orquideas"],
+      volume:"40L",
+      preco:39.99,
+      codigo:"7898930277691",
+      uso:"Substrato especial para orquídeas. Código de barras: 7898930277691."
+    },
+    {
+      nome:"PEDRA/AREIA COLORIDA 1KG",
+      marca:"MOGIFERTIL",
+      categoria:"pedra",
+      tipo:["decoracao","vasos"],
+      volume:"1KG",
+      preco:9.99,
+      codigo:"7899547600018",
+      uso:"Pedra ou areia colorida para decoração. Código de barras: 7899547600018."
+    },
+    {
+      nome:"CASCA DE PINUS COM CARVÃO PARA ORQUÍDEA 350GR",
+      marca:"NOVO SOLO",
+      categoria:"substrato",
+      tipo:["orquideas"],
+      volume:"350GR",
+      preco:9.99,
+      codigo:"7898932932031",
+      uso:"Casca de pinus com carvão para orquídeas. Código de barras: 7898932932031."
+    },
+    {
+      nome:"FIBRA DE COCO CHIP 350GR",
+      marca:"NOVO SOLO",
+      categoria:"substrato",
+      tipo:["orquideas","vasos"],
+      volume:"350GR",
+      preco:9.99,
+      codigo:"7898932932093",
+      uso:"Fibra de coco chip para substrato e drenagem. Código de barras: 7898932932093."
+    },
+    {
+      nome:"CASCA DE PINUS 350GR",
+      marca:"NOVO SOLO",
+      categoria:"substrato",
+      tipo:["orquideas","vasos"],
+      volume:"350GR",
+      preco:9.99,
+      codigo:"7898932932031",
+      uso:"Casca de pinus para vasos e orquídeas. Código de barras: 7898932932031."
+    },
+    {
+      nome:"SEIXO DOLOMÍTICO Nº1 15KG",
+      marca:"NOVO SOLO",
+      categoria:"pedra",
+      tipo:["decoracao","jardim"],
+      volume:"15KG",
+      preco:34.99,
+      codigo:"1000410000002",
+      uso:"Seixo decorativo para jardim. Código de barras: 1000410000002."
+    },
+    {
+      nome:"SEIXO DOLOMÍTICO Nº2 15KG",
+      marca:"NOVO SOLO",
+      categoria:"pedra",
+      tipo:["decoracao","jardim"],
+      volume:"15KG",
+      preco:34.99,
+      codigo:"1000410000002",
+      uso:"Seixo decorativo para jardim. Código de barras: 1000410000002."
+    },
+    {
+      nome:"ESFAGNO 50GR VERDE",
+      marca:"NOVO SOLO",
+      categoria:"substrato",
+      tipo:["orquideas","vasos"],
+      volume:"50GR",
+      preco:8.99,
+      codigo:"7898932932406",
+      uso:"Esfagno verde para acabamento e orquídeas. Código de barras: 7898932932406."
+    },
+    {
+      nome:"ESFAGNO 30GR",
+      marca:"NOVO SOLO",
+      categoria:"substrato",
+      tipo:["orquideas","vasos"],
+      volume:"30GR",
+      preco:6.99,
+      codigo:"7898932932406",
+      uso:"Esfagno para orquídeas e vasos. Código de barras: 7898932932406."
+    },
+    {
+      nome:"MUSGO VERDE 50GR",
+      marca:"NOVO SOLO",
+      categoria:"acabamento",
+      tipo:["decoracao","vasos"],
+      volume:"50GR",
+      preco:8.99,
+      codigo:"3471986700005",
+      uso:"Musgo verde para decoração de vasos. Código de barras: 3471986700005."
+    },
+    {
+      nome:"ARGILA TABLETE",
+      marca:"SEM MARCA",
+      categoria:"acabamento",
+      tipo:["decoracao","vasos"],
+      volume:"UNIDADE",
+      preco:9.99,
+      codigo:"7898910670764",
+      uso:"Argila em tablete para uso decorativo. Código de barras: 7898910670764."
+    },
+    {
+      nome:"PALHA CESTA",
+      marca:"FRACIONADO",
+      categoria:"acabamento",
+      tipo:["decoracao"],
+      volume:"UNIDADE",
+      preco:4.99,
+      codigo:"3005018200005",
+      uso:"Palha para cesta e acabamento decorativo. Código de barras: 3005018200005."
+    },
+    {
+      nome:"VASO PEQUENO",
+      marca:"SEM MARCA",
+      categoria:"vaso",
+      tipo:["vasos"],
+      volume:"PEQUENO",
+      preco:9.99,
+      codigo:"5390010400002",
+      uso:"Vaso pequeno para plantas. Código de barras: 5390010400002."
+    },
+    {
+      nome:"VASO GRANDE",
+      marca:"SEM MARCA",
+      categoria:"vaso",
+      tipo:["vasos"],
+      volume:"GRANDE",
+      preco:19.99,
+      codigo:"5390010900007",
+      uso:"Vaso grande para plantas. Código de barras: 5390010900007."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO P",
+      marca:"SEM MARCA",
+      categoria:"vaso",
+      tipo:["orquideas","vasos"],
+      volume:"P",
+      preco:9.99,
+      codigo:"5390010100001",
+      uso:"Vaso redondo pequeno para orquídea. Código de barras: 5390010100001."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO M",
+      marca:"SEM MARCA",
+      categoria:"vaso",
+      tipo:["orquideas","vasos"],
+      volume:"M",
+      preco:12.99,
+      codigo:"5390010600006",
+      uso:"Vaso redondo médio para orquídea. Código de barras: 5390010600006."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO G",
+      marca:"SEM MARCA",
+      categoria:"vaso",
+      tipo:["orquideas","vasos"],
+      volume:"G",
+      preco:15.99,
+      codigo:"5390011300004",
+      uso:"Vaso redondo grande para orquídea. Código de barras: 5390011300004."
+    },
+    {
+      nome:"VASO ORQUÍDEA GRANDE",
+      marca:"SEM MARCA",
+      categoria:"vaso",
+      tipo:["orquideas","vasos"],
+      volume:"GRANDE",
+      preco:19.99,
+      codigo:"5390013500006",
+      uso:"Vaso grande para orquídea. Código de barras: 5390013500006."
     }
   ];
 
   const selecionados = {};
   const filtro = {
     categoria:"todos",
-    tipo:"todos",
-    volume:"todos"
+    tipo:"todos"
   };
 
   function moeda(valor) {
@@ -796,9 +853,7 @@
 
     const filtrados = produtos
       .filter(p => filtro.categoria === "todos" || p.categoria === filtro.categoria)
-      .filter(p => filtro.tipo === "todos" || p.tipo.includes(filtro.tipo))
-      .filter(p => filtro.volume === "todos" || p.volume === filtro.volume)
-      .sort((a,b) => parseInt(a.volume) - parseInt(b.volume));
+      .filter(p => filtro.tipo === "todos" || p.tipo.includes(filtro.tipo));
 
     if (filtrados.length === 0) {
       area.innerHTML = "<p>Nenhum produto encontrado com esses filtros.</p>";
@@ -811,20 +866,22 @@
 
       area.innerHTML += `
         <div class="card">
-          <img src="${p.imagem}" alt="${p.nome}">
-          <div class="card-body">
+          <div>
             <span class="tag">${p.marca}</span>
             <span class="tag">${p.volume}</span>
             <span class="tag preco-tag">${moeda(p.preco)}</span>
+          </div>
 
-            <h3>${p.nome}</h3>
-            <p class="uso">${p.uso}</p>
+          <h3>${p.nome}</h3>
 
-            <div class="qtd">
-              <button onclick="alterarQtd(${index}, -1)">-</button>
-              <input value="${selecionados[index]}" id="qtd-${index}" readonly>
-              <button onclick="alterarQtd(${index}, 1)">+</button>
-            </div>
+          <div class="codigo">Código de barras: ${p.codigo}</div>
+
+          <p class="uso">${p.uso}</p>
+
+          <div class="qtd">
+            <button onclick="alterarQtd(${index}, -1)">-</button>
+            <input value="${selecionados[index]}" id="qtd-${index}" readonly>
+            <button onclick="alterarQtd(${index}, 1)">+</button>
           </div>
         </div>
       `;
@@ -878,7 +935,7 @@
 
         lista.innerHTML += `
           <div class="linha">
-            <span>${qtd}x ${p.nome}</span>
+            <span>${qtd}x ${p.nome}<br><small>Cód: ${p.codigo}</small></span>
             <strong>${moeda(subtotal)}</strong>
           </div>
         `;
@@ -900,9 +957,18 @@
   function abrirWhatsApp() {
     const obs = document.getElementById("obsCliente").value || "";
 
+    let itensTexto = "";
+    produtos.forEach((p, i) => {
+      const qtd = selecionados[i] || 0;
+      if (qtd > 0) {
+        itensTexto += `${qtd}x ${p.nome} - Código: ${p.codigo}%0A`;
+      }
+    });
+
     const mensagem =
       `Olá, Rei do Real Casa e Jardim!%0A%0A` +
-      `Tenho interesse em compra maior, plantas ou jardinagem.%0A%0A` +
+      `Tenho interesse nesses produtos:%0A` +
+      `${itensTexto || "Ainda não selecionei itens."}%0A` +
       `Observação: ${obs}`;
 
     window.open(`https://wa.me/${WHATSAPP_LOJA}?text=${mensagem}`, "_blank");
