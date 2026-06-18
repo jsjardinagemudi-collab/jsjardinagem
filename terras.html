@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guia de Terras | Rei do Real Casa e Jardim</title>
 
+  <!-- Leitor de código de barras pela câmera -->
+  <script src="https://unpkg.com/@zxing/library@latest"></script>
+
+  <!-- Gerador visual de código de barras -->
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
 
@@ -68,9 +74,53 @@
       font-weight:bold;
     }
 
-    .mineiro {
+    .destaque {
       color:var(--verde);
       font-weight:900;
+    }
+
+    .busca-barra{
+      display:grid;
+      grid-template-columns:1fr auto auto;
+      gap:10px;
+      margin:15px 0;
+    }
+
+    .busca-barra input{
+      padding:12px;
+      border:1px solid #cfc2a4;
+      border-radius:10px;
+      font-size:1rem;
+    }
+
+    .btn-camera{
+      background:var(--verde);
+      color:white;
+      border:none;
+      border-radius:10px;
+      padding:12px 15px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .btn-busca{
+      background:var(--vermelho);
+      color:var(--amarelo);
+      border:none;
+      border-radius:10px;
+      padding:12px 15px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .resultado-busca {
+      display:none;
+      background:var(--verde-claro);
+      border-radius:12px;
+      padding:12px;
+      margin-bottom:14px;
+      font-weight:bold;
+      color:var(--verde);
     }
 
     .filtros {
@@ -120,6 +170,13 @@
       display:flex;
       flex-direction:column;
       padding:14px;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .card:hover {
+      transform:translateY(-2px);
+      box-shadow:0 8px 20px rgba(0,0,0,.16);
     }
 
     .tag {
@@ -149,7 +206,7 @@
       font-size:.9rem;
       color:#4c4c3c;
       margin-bottom:10px;
-      min-height:70px;
+      min-height:58px;
     }
 
     .codigo {
@@ -293,6 +350,43 @@
       border:5px solid var(--dourado);
     }
 
+    .modal-barcode {
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      z-index:2000;
+      padding:18px;
+    }
+
+    .modal-barcode-content {
+      background:white;
+      max-width:520px;
+      margin:35px auto;
+      padding:18px;
+      border-radius:18px;
+      text-align:center;
+      border:5px solid var(--dourado);
+    }
+
+    .modal-barcode-content h3 {
+      color:var(--vermelho);
+      margin-bottom:12px;
+    }
+
+    #barcodeSvg {
+      width:100%;
+      max-width:390px;
+      margin:12px auto;
+    }
+
+    #camera-preview {
+      width:100%;
+      border-radius:14px;
+      background:#000;
+      margin-top:10px;
+    }
+
     .linha {
       display:flex;
       justify-content:space-between;
@@ -319,6 +413,10 @@
     }
 
     @media(max-width:650px) {
+      .busca-barra {
+        grid-template-columns:1fr;
+      }
+
       .barra-estimativa {
         flex-direction:column;
         align-items:stretch;
@@ -343,11 +441,24 @@
 
   <section class="box">
     <div class="aviso">
-      <span class="mineiro">Uai, sô!</span> Escolha a terra, substrato, pedra ou vaso.
-      A estimativa ajuda o cliente a mostrar direto pro atendente.
+      <span class="destaque">Guia rápido:</span>
+      escolha o produto, confira a estimativa e mostre ao atendente para confirmar preço e disponibilidade.
     </div>
 
-    <h2>1. Filtrar produtos</h2>
+    <h2>1. Buscar ou filtrar produtos</h2>
+
+    <div class="busca-barra">
+      <input
+        type="text"
+        id="buscarCodigo"
+        placeholder="Digite ou leia o código de barras"
+      >
+
+      <button class="btn-camera" onclick="abrirCamera()">📷 Ler</button>
+      <button class="btn-busca" onclick="buscarPorCodigo()">Buscar</button>
+    </div>
+
+    <div class="resultado-busca" id="resultadoBusca"></div>
 
     <div class="filtros">
 
@@ -387,7 +498,7 @@
 
   <section class="box">
     <h2>3. Calculadora rápida</h2>
-    <p>Pra canteiro, jardim ou cobertura de solo.</p>
+    <p>Para canteiro, jardim ou cobertura de solo.</p>
 
     <div class="calculadora">
       <input id="areaM2" type="number" placeholder="Área em m². Ex: 2">
@@ -405,7 +516,7 @@
     </div>
 
     <div class="resultado-calc" id="resultadoCalc">
-      Coloca a medida aí que a gente te dá uma noção, uai.
+      Informe a medida para receber uma estimativa.
     </div>
   </section>
 
@@ -423,16 +534,16 @@
 <div class="modal" id="modalResumo">
   <div class="modal-content">
 
-    <h2>Mostre essa tela pro atendente</h2>
+    <h2>Mostre essa tela ao atendente</h2>
 
     <div class="aviso">
-      Prontinho, sô! O atendente confirma preço, estoque e localização do produto.
+      O atendente confirma preço, estoque e localização do produto.
     </div>
 
     <div id="listaResumo"></div>
     <div class="preco" id="totalResumo">Total estimado: R$ 0,00</div>
 
-    <textarea id="obsCliente" placeholder="Observações para o atendimento. Ex: compra em quantidade, entrega, indicação de produto ou dúvida."></textarea>
+    <textarea id="obsCliente" placeholder="Observações para atendimento: compra em quantidade, entrega, indicação de produto ou dúvidas."></textarea>
 
     <div class="chamada-unidade">
       Rei do Real Casa e Jardim<br>
@@ -444,6 +555,24 @@
     </button>
 
     <button class="btn btn-fechar" onclick="fecharResumo()">Fechar</button>
+  </div>
+</div>
+
+<div class="modal-barcode" id="modalBarcode">
+  <div class="modal-barcode-content">
+    <h3 id="tituloBarcode"></h3>
+    <svg id="barcodeSvg"></svg>
+    <p id="numeroBarcode"></p>
+    <button class="btn btn-fechar" onclick="fecharBarcode()">Fechar</button>
+  </div>
+</div>
+
+<div class="modal-barcode" id="modalCamera">
+  <div class="modal-barcode-content">
+    <h3>Leitura de código de barras</h3>
+    <p>Aponte a câmera para o código do produto.</p>
+    <video id="camera-preview"></video>
+    <button class="btn btn-fechar" onclick="fecharCamera()">Fechar</button>
   </div>
 </div>
 
@@ -463,7 +592,7 @@
       volume:"20L",
       preco:29.99,
       codigo:"7898400870438",
-      uso:"Produto para plantio e preparo de vasos. Código de barras: 7898400870438."
+      uso:"Plantio e preparo de vasos."
     },
     {
       nome:"CONDICIONADOR SOLO 25 KG",
@@ -473,7 +602,7 @@
       volume:"25KG",
       preco:34.99,
       codigo:"7898400870483",
-      uso:"Ajuda a melhorar a estrutura do solo. Código de barras: 7898400870483."
+      uso:"Ajuda a melhorar a estrutura do solo."
     },
     {
       nome:"ESTERCO 10 KG",
@@ -483,7 +612,7 @@
       volume:"10KG",
       preco:24.99,
       codigo:"7898400870872",
-      uso:"Adubo orgânico para preparo de terra. Código de barras: 7898400870872."
+      uso:"Adubo orgânico para preparo de terra."
     },
     {
       nome:"BIO BRIC (B2) 10 KG/45L",
@@ -493,7 +622,7 @@
       volume:"10KG / 45L",
       preco:39.99,
       codigo:"7898400870858",
-      uso:"Substrato prensado para plantio. Código de barras: 7898400870858."
+      uso:"Substrato prensado para plantio."
     },
     {
       nome:"TERRA VEGETAL 20KG",
@@ -503,7 +632,7 @@
       volume:"20KG",
       preco:24.99,
       codigo:"7895098937726",
-      uso:"Terra vegetal para uso geral. Código de barras: 7895098937726."
+      uso:"Terra vegetal para uso geral."
     },
     {
       nome:"TERRA VEGETAL 10KG",
@@ -513,7 +642,7 @@
       volume:"10KG",
       preco:16.99,
       codigo:"736532674883",
-      uso:"Terra vegetal para vasos, hortas e jardim. Código de barras: 736532674883."
+      uso:"Terra vegetal para vasos, hortas e jardim."
     },
     {
       nome:"TERRA VEGETAL 3KG",
@@ -523,9 +652,9 @@
       volume:"3KG",
       preco:9.99,
       codigo:"0736532674876",
-      uso:"Terra vegetal para vasos pequenos. Código de barras: 0736532674876."
+      uso:"Terra vegetal para vasos pequenos."
     },
-    {
+        {
       nome:"COBERTURA PREMIUM GRAMADO, HORTA E JARDIM 3KG",
       marca:"CALTERRA",
       categoria:"terra",
@@ -533,7 +662,7 @@
       volume:"3KG",
       preco:12.99,
       codigo:"7895098937719",
-      uso:"Cobertura para gramado, horta e jardim. Código de barras: 7895098937719."
+      uso:"Cobertura para gramado, horta e jardim."
     },
     {
       nome:"ESTERCO DE GADO 20KG",
@@ -543,7 +672,7 @@
       volume:"20KG",
       preco:29.99,
       codigo:"4260211061184",
-      uso:"Esterco bovino para preparo de solo. Código de barras: 4260211061184."
+      uso:"Esterco bovino para preparo de solo."
     },
     {
       nome:"PEDRA SEIXO BRANCA Nº3 5KG",
@@ -553,7 +682,7 @@
       volume:"5KG",
       preco:19.99,
       codigo:"7448070130891",
-      uso:"Pedra decorativa branca para vasos e jardins. Código de barras: 7448070130891."
+      uso:"Pedra decorativa branca para vasos e jardins."
     },
     {
       nome:"PEDRISCO PALHA Nº1 5KG",
@@ -563,7 +692,7 @@
       volume:"5KG",
       preco:19.99,
       codigo:"7448070130990",
-      uso:"Pedrisco palha para acabamento. Código de barras: 7448070130990."
+      uso:"Pedrisco palha para acabamento."
     },
     {
       nome:"PEDRISCO PALHA Nº2 5KG",
@@ -573,7 +702,7 @@
       volume:"5KG",
       preco:19.99,
       codigo:"7448070130945",
-      uso:"Pedrisco palha para decoração. Código de barras: 7448070130945."
+      uso:"Pedrisco palha para decoração."
     },
     {
       nome:"PEDRISCO PALHA Nº3 5KG",
@@ -583,7 +712,7 @@
       volume:"5KG",
       preco:19.99,
       codigo:"7448070130617",
-      uso:"Pedrisco palha para acabamento de jardim. Código de barras: 7448070130617."
+      uso:"Pedrisco palha para acabamento de jardim."
     },
     {
       nome:"TERRA VEGETAL 20KG",
@@ -593,7 +722,7 @@
       volume:"20KG",
       preco:24.99,
       codigo:"7898930277158",
-      uso:"Terra vegetal para uso geral. Código de barras: 7898930277158."
+      uso:"Terra vegetal para uso geral."
     },
     {
       nome:"TERRA VEGETAL 10KG",
@@ -603,7 +732,7 @@
       volume:"10KG",
       preco:16.99,
       codigo:"7898734140047",
-      uso:"Terra vegetal para vasos e canteiros. Código de barras: 7898734140047."
+      uso:"Terra vegetal para vasos e canteiros."
     },
     {
       nome:"VASOS E FLOREIRA PREMIUM 20KG",
@@ -613,7 +742,7 @@
       volume:"20KG",
       preco:29.99,
       codigo:"7898734141334",
-      uso:"Substrato para vasos e floreiras. Código de barras: 7898734141334."
+      uso:"Substrato para vasos e floreiras."
     },
     {
       nome:"ROSA DO DESERTO & BROMÉLIA 20KG",
@@ -623,7 +752,7 @@
       volume:"20KG",
       preco:29.99,
       codigo:"7898734140078",
-      uso:"Substrato indicado para rosa do deserto e bromélia. Código de barras: 7898734140078."
+      uso:"Substrato indicado para rosa do deserto e bromélia."
     },
     {
       nome:"ESTERCO BOVINO 30LTS",
@@ -633,7 +762,7 @@
       volume:"30L",
       preco:29.99,
       codigo:"7898734141327",
-      uso:"Esterco bovino para preparo do solo. Código de barras: 7898734141327."
+      uso:"Esterco bovino para preparo do solo."
     },
     {
       nome:"PEDRAS 15KG Nº2",
@@ -643,7 +772,7 @@
       volume:"15KG",
       preco:34.99,
       codigo:"1000410000002",
-      uso:"Pedra decorativa para jardim. Código de barras: 1000410000002."
+      uso:"Pedra decorativa para jardim."
     },
     {
       nome:"PEDRAS 15KG Nº3",
@@ -653,7 +782,7 @@
       volume:"15KG",
       preco:34.99,
       codigo:"1000410000002",
-      uso:"Pedra decorativa para jardim. Código de barras: 1000410000002."
+      uso:"Pedra decorativa para jardim."
     },
     {
       nome:"ORQUÍDEAS MIX 40LTS",
@@ -663,7 +792,7 @@
       volume:"40L",
       preco:39.99,
       codigo:"7898930277691",
-      uso:"Substrato especial para orquídeas. Código de barras: 7898930277691."
+      uso:"Substrato especial para orquídeas."
     },
     {
       nome:"PEDRA/AREIA COLORIDA 1KG",
@@ -673,7 +802,7 @@
       volume:"1KG",
       preco:9.99,
       codigo:"7899547600018",
-      uso:"Pedra ou areia colorida para decoração. Código de barras: 7899547600018."
+      uso:"Pedra ou areia colorida para decoração."
     },
     {
       nome:"CASCA DE PINUS COM CARVÃO PARA ORQUÍDEA 350GR",
@@ -683,7 +812,7 @@
       volume:"350GR",
       preco:9.99,
       codigo:"7898932932031",
-      uso:"Casca de pinus com carvão para orquídeas. Código de barras: 7898932932031."
+      uso:"Casca de pinus com carvão para orquídeas."
     },
     {
       nome:"FIBRA DE COCO CHIP 350GR",
@@ -693,7 +822,7 @@
       volume:"350GR",
       preco:9.99,
       codigo:"7898932932093",
-      uso:"Fibra de coco chip para substrato e drenagem. Código de barras: 7898932932093."
+      uso:"Fibra de coco chip para substrato e drenagem."
     },
     {
       nome:"CASCA DE PINUS 350GR",
@@ -703,7 +832,7 @@
       volume:"350GR",
       preco:9.99,
       codigo:"7898932932031",
-      uso:"Casca de pinus para vasos e orquídeas. Código de barras: 7898932932031."
+      uso:"Casca de pinus para vasos e orquídeas."
     },
     {
       nome:"SEIXO DOLOMÍTICO Nº1 15KG",
@@ -713,7 +842,7 @@
       volume:"15KG",
       preco:34.99,
       codigo:"1000410000002",
-      uso:"Seixo decorativo para jardim. Código de barras: 1000410000002."
+      uso:"Seixo decorativo para jardim."
     },
     {
       nome:"SEIXO DOLOMÍTICO Nº2 15KG",
@@ -723,7 +852,7 @@
       volume:"15KG",
       preco:34.99,
       codigo:"1000410000002",
-      uso:"Seixo decorativo para jardim. Código de barras: 1000410000002."
+      uso:"Seixo decorativo para jardim."
     },
     {
       nome:"ESFAGNO 50GR VERDE",
@@ -733,7 +862,7 @@
       volume:"50GR",
       preco:8.99,
       codigo:"7898932932406",
-      uso:"Esfagno verde para acabamento e orquídeas. Código de barras: 7898932932406."
+      uso:"Esfagno verde para acabamento e orquídeas."
     },
     {
       nome:"ESFAGNO 30GR",
@@ -743,7 +872,7 @@
       volume:"30GR",
       preco:6.99,
       codigo:"7898932932406",
-      uso:"Esfagno para orquídeas e vasos. Código de barras: 7898932932406."
+      uso:"Esfagno para orquídeas e vasos."
     },
     {
       nome:"MUSGO VERDE 50GR",
@@ -753,7 +882,7 @@
       volume:"50GR",
       preco:8.99,
       codigo:"3471986700005",
-      uso:"Musgo verde para decoração de vasos. Código de barras: 3471986700005."
+      uso:"Musgo verde para decoração de vasos."
     },
     {
       nome:"ARGILA TABLETE",
@@ -763,7 +892,7 @@
       volume:"UNIDADE",
       preco:9.99,
       codigo:"7898910670764",
-      uso:"Argila em tablete para uso decorativo. Código de barras: 7898910670764."
+      uso:"Argila em tablete para uso decorativo."
     },
     {
       nome:"PALHA CESTA",
@@ -773,7 +902,7 @@
       volume:"UNIDADE",
       preco:4.99,
       codigo:"3005018200005",
-      uso:"Palha para cesta e acabamento decorativo. Código de barras: 3005018200005."
+      uso:"Palha para cesta e acabamento decorativo."
     },
     {
       nome:"VASO PEQUENO",
@@ -783,7 +912,7 @@
       volume:"PEQUENO",
       preco:9.99,
       codigo:"5390010400002",
-      uso:"Vaso pequeno para plantas. Código de barras: 5390010400002."
+      uso:"Vaso pequeno para plantas."
     },
     {
       nome:"VASO GRANDE",
@@ -793,7 +922,7 @@
       volume:"GRANDE",
       preco:19.99,
       codigo:"5390010900007",
-      uso:"Vaso grande para plantas. Código de barras: 5390010900007."
+      uso:"Vaso grande para plantas."
     },
     {
       nome:"VASO ORQUÍDEA REDONDO P",
@@ -803,7 +932,7 @@
       volume:"P",
       preco:9.99,
       codigo:"5390010100001",
-      uso:"Vaso redondo pequeno para orquídea. Código de barras: 5390010100001."
+      uso:"Vaso redondo pequeno para orquídea."
     },
     {
       nome:"VASO ORQUÍDEA REDONDO M",
@@ -813,7 +942,7 @@
       volume:"M",
       preco:12.99,
       codigo:"5390010600006",
-      uso:"Vaso redondo médio para orquídea. Código de barras: 5390010600006."
+      uso:"Vaso redondo médio para orquídea."
     },
     {
       nome:"VASO ORQUÍDEA REDONDO G",
@@ -823,7 +952,7 @@
       volume:"G",
       preco:15.99,
       codigo:"5390011300004",
-      uso:"Vaso redondo grande para orquídea. Código de barras: 5390011300004."
+      uso:"Vaso redondo grande para orquídea."
     },
     {
       nome:"VASO ORQUÍDEA GRANDE",
@@ -833,7 +962,7 @@
       volume:"GRANDE",
       preco:19.99,
       codigo:"5390013500006",
-      uso:"Vaso grande para orquídea. Código de barras: 5390013500006."
+      uso:"Vaso grande para orquídea."
     }
   ];
 
@@ -843,8 +972,13 @@
     tipo:"todos"
   };
 
+  let leitorCodigo = null;
+
   function moeda(valor) {
-    return valor.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+    return valor.toLocaleString("pt-BR", {
+      style:"currency",
+      currency:"BRL"
+    });
   }
 
   function renderizarProdutos() {
@@ -865,7 +999,7 @@
       selecionados[index] = selecionados[index] || 0;
 
       area.innerHTML += `
-        <div class="card">
+        <div class="card" onclick="mostrarCodigo('${p.nome.replace(/'/g, "\\'")}','${p.codigo}')">
           <div>
             <span class="tag">${p.marca}</span>
             <span class="tag">${p.volume}</span>
@@ -874,11 +1008,14 @@
 
           <h3>${p.nome}</h3>
 
-          <div class="codigo">Código de barras: ${p.codigo}</div>
+          <div class="codigo">
+            Código: ${p.codigo}<br>
+            <small>Clique no item para ampliar o código</small>
+          </div>
 
           <p class="uso">${p.uso}</p>
 
-          <div class="qtd">
+          <div class="qtd" onclick="event.stopPropagation()">
             <button onclick="alterarQtd(${index}, -1)">-</button>
             <input value="${selecionados[index]}" id="qtd-${index}" readonly>
             <button onclick="alterarQtd(${index}, 1)">+</button>
@@ -915,7 +1052,9 @@
       total += qtd * p.preco;
     });
 
-    document.getElementById("miniItens").innerText = `${itens} item${itens !== 1 ? "s" : ""}`;
+    document.getElementById("miniItens").innerText =
+      `${itens} item${itens !== 1 ? "s" : ""}`;
+
     document.getElementById("miniTotal").innerText = moeda(total);
   }
 
@@ -981,7 +1120,7 @@
 
     if (!area || !profundidade || !litrosSaco) {
       document.getElementById("resultadoCalc").innerText =
-        "Preenche a área e a altura primeiro, sô.";
+        "Informe a área e a altura para calcular.";
       return;
     }
 
@@ -989,8 +1128,96 @@
     const sacos = Math.ceil(litrosNecessarios / litrosSaco);
 
     document.getElementById("resultadoCalc").innerHTML =
-      `Vai dar mais ou menos <strong>${litrosNecessarios.toFixed(0)} litros</strong>.<br>` +
-      `Pode separar cerca de <strong>${sacos} saco(s)</strong>. Confirme com o atendente, combinado?`;
+      `Estimativa: <strong>${litrosNecessarios.toFixed(0)} litros</strong> de material.<br>` +
+      `Sugestão: aproximadamente <strong>${sacos} saco(s)</strong>. Confirme com o atendente.`;
+  }
+
+  function mostrarCodigo(nome, codigo) {
+    document.getElementById("tituloBarcode").innerText = nome;
+    document.getElementById("numeroBarcode").innerText = codigo;
+
+    JsBarcode("#barcodeSvg", codigo, {
+      format:"CODE128",
+      displayValue:true,
+      width:2,
+      height:90,
+      margin:10
+    });
+
+    document.getElementById("modalBarcode").style.display = "block";
+  }
+
+  function fecharBarcode() {
+    document.getElementById("modalBarcode").style.display = "none";
+  }
+
+  function buscarPorCodigo() {
+    const codigo = document.getElementById("buscarCodigo").value.trim();
+    const resultadoBox = document.getElementById("resultadoBusca");
+
+    if (!codigo) {
+      resultadoBox.style.display = "block";
+      resultadoBox.innerText = "Digite ou leia um código de barras.";
+      return;
+    }
+
+    const produto = produtos.find(p => p.codigo === codigo);
+
+    if (produto) {
+      resultadoBox.style.display = "block";
+      resultadoBox.innerHTML =
+        `Produto encontrado: <strong>${produto.nome}</strong><br>` +
+        `Preço estimado: <strong>${moeda(produto.preco)}</strong><br>` +
+        `Código: ${produto.codigo}`;
+
+      mostrarCodigo(produto.nome, produto.codigo);
+    } else {
+      resultadoBox.style.display = "block";
+      resultadoBox.innerText =
+        "Código não encontrado. Confirme com um atendente.";
+    }
+  }
+
+  async function abrirCamera() {
+    document.getElementById("modalCamera").style.display = "block";
+
+    const video = document.getElementById("camera-preview");
+
+    try {
+      const codeReader = new ZXing.BrowserMultiFormatReader();
+      leitorCodigo = codeReader;
+
+      codeReader.decodeFromVideoDevice(
+        null,
+        video,
+        (result) => {
+          if (result) {
+            document.getElementById("buscarCodigo").value = result.text;
+            buscarPorCodigo();
+            fecharCamera();
+          }
+        }
+      );
+    } catch (erro) {
+      alert("Não foi possível abrir a câmera. Verifique a permissão do navegador.");
+      fecharCamera();
+    }
+  }
+
+  function fecharCamera() {
+    document.getElementById("modalCamera").style.display = "none";
+
+    if (leitorCodigo) {
+      leitorCodigo.reset();
+      leitorCodigo = null;
+    }
+
+    const video = document.getElementById("camera-preview");
+
+    if (video.srcObject) {
+      video.srcObject.getTracks().forEach(track => track.stop());
+      video.srcObject = null;
+    }
   }
 
   renderizarProdutos();
