@@ -1,6 +1,3 @@
-<!-- HTML COMPLETO ATUALIZADO -->
-<!-- Para o scanner funcionar, publique em HTTPS. No celular, câmera geralmente não abre em arquivo local. -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,7 +24,7 @@
       font-family: Arial, sans-serif;
       background:var(--bege);
       color:var(--texto);
-      padding-bottom:110px;
+      padding-bottom:100px;
     }
 
     .header-logo {
@@ -122,13 +119,6 @@
       color:var(--amarelo);
     }
 
-    .acoes-rapidas {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:10px;
-      margin-top:14px;
-    }
-
     .grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -168,7 +158,7 @@
       background:#f7f0df;
       border-radius:9px;
       padding:7px;
-      margin:10px 0;
+      margin-bottom:10px;
       color:#4b3a21;
       font-weight:bold;
     }
@@ -212,11 +202,6 @@
     .btn-ver {
       background:var(--vermelho);
       color:var(--amarelo);
-    }
-
-    .btn-verde {
-      background:var(--verde);
-      color:white;
     }
 
     .btn-barcode {
@@ -269,7 +254,7 @@
 
     .modal-content {
       background:white;
-      max-width:700px;
+      max-width:650px;
       margin:25px auto;
       border-radius:20px;
       padding:16px;
@@ -296,13 +281,6 @@
 
     .barcode-box svg {
       max-width:100%;
-    }
-
-    #scannerVideo {
-      width:100%;
-      border-radius:14px;
-      background:#111;
-      margin:12px 0;
     }
 
     footer {
@@ -359,20 +337,14 @@
   </section>
 
   <section class="box">
-    <h2>Filtros e busca rápida</h2>
-
-    <div class="acoes-rapidas">
-      <button class="btn btn-verde" onclick="abrirScanner()">📷 Escanear código de barras</button>
-      <button class="btn btn-ver" onclick="limparPedido()">Limpar pedido</button>
-    </div>
+    <h2>Filtros</h2>
 
     <div class="grupo-filtro">
       <strong>Seção</strong>
-      <div class="botoes">
+      <div class="botoes" id="filtroCategoria">
         <button class="ativo" onclick="setFiltro('categoria','todos',this)">Tudo</button>
         <button onclick="setFiltro('categoria','plantas',this)">Plantas</button>
         <button onclick="setFiltro('categoria','terras',this)">Terras</button>
-        <button onclick="setFiltro('categoria','orquideas',this)">Orquídeas</button>
         <button onclick="setFiltro('categoria','vasos',this)">Vasos</button>
       </div>
     </div>
@@ -424,21 +396,6 @@
   </div>
 </div>
 
-<div class="modal" id="modalScanner">
-  <div class="modal-content">
-    <h2>Escanear código de barras</h2>
-    <div class="aviso">
-      Aponte a câmera para o código. Quando encontrar, o produto será adicionado ao pedido.
-    </div>
-
-    <video id="scannerVideo" autoplay muted playsinline></video>
-
-    <input id="codigoManual" placeholder="Ou digite o código manualmente">
-    <button class="btn btn-verde" style="width:100%;margin-top:10px;" onclick="adicionarPorCodigoManual()">Adicionar pelo código</button>
-    <button class="btn btn-fechar" onclick="fecharScanner()">Fechar câmera</button>
-  </div>
-</div>
-
 <footer>
   Rei do Real Casa e Jardim • Página interna de reposição
 </footer>
@@ -447,66 +404,540 @@
   const WHATSAPP_DESTINO = "553499529882";
 
   const produtos = [
-    { nome:"ROSA DO DESERTO", marca:"PLANTAS", categoria:"plantas", codigo:"PLANTA001", descricao:"Planta para reposição. Código interno provisório." },
-    { nome:"SUCULENTAS SORTIDAS", marca:"PLANTAS", categoria:"plantas", codigo:"PLANTA002", descricao:"Suculentas sortidas. Código interno provisório." },
-    { nome:"CACTOS SORTIDOS", marca:"PLANTAS", categoria:"plantas", codigo:"PLANTA003", descricao:"Cactos sortidos. Código interno provisório." },
-    { nome:"ORQUÍDEAS", marca:"PLANTAS", categoria:"plantas", codigo:"PLANTA004", descricao:"Orquídeas para reposição. Código interno provisório." },
-    { nome:"BROMÉLIAS", marca:"PLANTAS", categoria:"plantas", codigo:"PLANTA005", descricao:"Bromélias para reposição. Código interno provisório." },
+    {
+      nome:"PLANTA EXEMPLO - ROSA DO DESERTO",
+      marca:"PLANTAS",
+      categoria:"plantas",
+      codigo:"000000000001",
+      descricao:"Produto exemplo para a seção de plantas."
+    },
+    {
+      nome:"PLANTA EXEMPLO - SUCULENTA",
+      marca:"PLANTAS",
+      categoria:"plantas",
+      codigo:"000000000002",
+      descricao:"Produto exemplo para a seção de plantas."
+    },
 
-    { nome:"TERRALPLANT 20LTS", marca:"TERRAL", categoria:"terras", codigo:"7898400870438", descricao:"Substrato para plantio." },
-    { nome:"CONDICIONADOR SOLO 25 KG", marca:"TERRAL", categoria:"terras", codigo:"7898400870483", descricao:"Condicionador de solo." },
-    { nome:"ESTERCO 10 KG", marca:"TERRAL", categoria:"terras", codigo:"7898400870872", descricao:"Adubo orgânico." },
-    { nome:"BIO BRIC B2 10KG / 45L", marca:"TERRAL", categoria:"terras", codigo:"7898400870858", descricao:"Substrato prensado." },
+    {
+      nome:"TERRALPLANT 20LTS",
+      marca:"TERRAL",
+      categoria:"terras",
+      codigo:"7898400870438",
+      descricao:"Substrato para plantio."
+    },
+    {
+      nome:"CONDICIONADOR SOLO 25 KG",
+      marca:"TERRAL",
+      categoria:"terras",
+      codigo:"7898400870483",
+      descricao:"Condicionador de solo."
+    },
+    {
+      nome:"ESTERCO 10 KG",
+      marca:"TERRAL",
+      categoria:"terras",
+      codigo:"7898400870872",
+      descricao:"Adubo orgânico."
+    },
+    {
+      nome:"BIO BRIC B2 10KG / 45L",
+      marca:"TERRAL",
+      categoria:"terras",
+      codigo:"7898400870858",
+      descricao:"Substrato prensado."
+    },
+    {
+      nome:"TERRA VEGETAL 20KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"7895098937726",
+      descricao:"Terra vegetal para uso geral."
+    },
+    {
+      nome:"TERRA VEGETAL 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"736532674883",
+      descricao:"Terra vegetal para vasos, horta e jardim."
+    },
+    {
+      nome:"TERRA VEGETAL 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"0736532674876",
+      descricao:"Terra vegetal pequena."
+    },
+    {
+      nome:"COBERTURA PREMIUM GRAMADO, HORTA E JARDIM 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"7895098937719",
+      descricao:"Cobertura para gramado, horta e jardim."
+    },
+    {
+      nome:"ESTERCO DE GADO 20KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"4260211061184",
+      descricao:"Esterco bovino."
+    },
+    {
+      nome:"PLANTIO PREMIUM COMPOSTO ORGANICO 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Plantio Premium Composto Organico."
+    },
+    {
+      nome:"PLANTIO PREMIUM COMPOSTO ORGANICO 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Plantio Premium Composto Organico."
+    },
+    {
+      nome:"PLANTIO PREMIUM COMPOSTO ORGANICO 20KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 20kg Plantio Premium Composto Organico."
+    },
+    {
+      nome:"COBERTURA PREMIUM GRAMADO, HORTAS E JARDINS 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Cobertura Premium para gramados, hortas e jardins."
+    },
+    {
+      nome:"COBERTURA PREMIUM GRAMADO, HORTAS E JARDINS 20KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Cobertura Premium para gramados, hortas e jardins."
+    },
+    {
+      nome:"HUMUS DE MINHOCA ADUBO ORGANICO PREMIUM 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Humus de Minhoca."
+    },
+    {
+      nome:"HUMUS DE MINHOCA ADUBO ORGANICO PREMIUM 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Humus de Minhoca."
+    },
+    {
+      nome:"ESTERCO DE GADO ADUBO ORGANICO PREMIUM 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Esterco de Gado."
+    },
+    {
+      nome:"ESTERCO DE GADO ADUBO ORGANICO PREMIUM 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Esterco de Gado."
+    },
+    {
+      nome:"COMPOSTO PREMIUM ORQUIDEAS 1KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 1kg Composto Premium Orquidea."
+    },
+    {
+      nome:"COMPOSTO PREMIUM ORQUIDEAS 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 3kg Composto Premium Orquidea."
+    },
+    {
+      nome:"CACTOS E SUCULENTAS 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Cactos e Suculentas."
+    },
+    {
+      nome:"CACTOS E SUCULENTAS 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Cactos e Suculentas."
+    },
+    {
+      nome:"ROSA DO DESERTO 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Composto Premium Rosa do Deserto."
+    },
+    {
+      nome:"ROSA DO DESERTO 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Composto Premium Rosa do Deserto."
+    },
+    {
+      nome:"COMPOSTO SAMAMBAIAS 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Composto Premium Samambaia."
+    },
+    {
+      nome:"COMPOSTO SAMAMBAIAS 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Composto Premium Samambaias."
+    },
+    {
+      nome:"FLORES E FOLHAGENS 3KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 8 unidades de 3kg Composto Premium Flores e Folhagens."
+    },
+    {
+      nome:"FLORES E FOLHAGENS 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Saco 10kg Composto Premium Flores e Folhagens."
+    },
+    {
+      nome:"SEIXO BRANCO 01 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 01 embalagem grande."
+    },
+    {
+      nome:"SEIXO BRANCO 01 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 01 pacote 5kg."
+    },
+    {
+      nome:"SEIXO BRANCO 01 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 01 pacote 10kg."
+    },
+    {
+      nome:"SEIXO BRANCO 02 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 02 embalagem grande."
+    },
+    {
+      nome:"SEIXO BRANCO 02 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 02 pacote 5kg."
+    },
+    {
+      nome:"SEIXO BRANCO 02 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 02 pacote 10kg."
+    },
+    {
+      nome:"SEIXO BRANCO 03 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 03 embalagem grande."
+    },
+    {
+      nome:"SEIXO BRANCO 03 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 03 pacote 5kg."
+    },
+    {
+      nome:"SEIXO BRANCO 03 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Seixo Branco 03 pacote 10kg."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 01 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 01 pacote 5kg."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 01 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 01 pacote 10kg."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 01 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 01 embalagem grande."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 02 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 02 embalagem grande."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 02 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 02 pacote 5kg."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 02 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 02 pacote 10kg."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 03 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 03 embalagem grande."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 03 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 03 pacote 5kg."
+    },
+    {
+      nome:"PEDRISCO BRANCO TIPO 03 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Branco Tipo 03 pacote 10kg."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 01 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 01 embalagem grande."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 01 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 01 pacote 5kg."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 01 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 01 pacote 10kg."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 02 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 02 embalagem grande."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 02 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 02 pacote 5kg."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 02 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 02 pacote 10kg."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 03 40KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 03 embalagem grande."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 03 5KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 03 pacote 5kg."
+    },
+    {
+      nome:"PEDRISCO PALHA TIPO 03 10KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Pedrisco Palha Tipo 03 pacote 10kg."
+    },
+    {
+      nome:"CASCA DE PINUS DECORATIVA TAMANHO G SACO 40 LITROS",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Casca de Pinus Decorativa tamanho G, saco 40 litros."
+    },
+    {
+      nome:"CASCA DE PINUS DECORATIVA TAMANHO M FARDO 6 UNIDADES DE 1KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 6 unidades de 1kg Casca de Pinus Decorativa tamanho M."
+    },
+    {
+      nome:"CASCA DE PINUS DECORATIVA TAMANHO M SACO 40 LITROS",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Casca de Pinus Decorativa tamanho M, saco 40 litros."
+    },
+    {
+      nome:"CASCA DE PINUS DECORATIVA TAMANHO P FARDO 6 UNIDADES DE 1KG",
+      marca:"CALTERRA",
+      categoria:"terras",
+      codigo:"SEM CODIGO",
+      descricao:"Fardo com 6 unidades de 1kg Casca de Pinus Decorativa tamanho P."
+    },
+    {
+      nome:"TERRA VEGETAL 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898930277158",
+      descricao:"Terra vegetal para uso geral."
+    },
+    {
+      nome:"TERRA VEGETAL 10KG",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898734140047",
+      descricao:"Terra vegetal para vasos e canteiros."
+    },
+    {
+      nome:"VASOS E FLOREIRA PREMIUM 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898734141334",
+      descricao:"Substrato para vasos e floreiras."
+    },
+    {
+      nome:"ROSA DO DESERTO & BROMÉLIA 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898734140078",
+      descricao:"Substrato especial."
+    },
+    {
+      nome:"ORQUÍDEAS MIX 40LTS",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898930277691",
+      descricao:"Substrato para orquídeas."
+    },
+    {
+      nome:"CASCA DE PINUS COM CARVÃO PARA ORQUÍDEA 350GR",
+      marca:"NOVO SOLO",
+      categoria:"terras",
+      codigo:"7898932932031",
+      descricao:"Casca de pinus com carvão."
+    },
+    {
+      nome:"FIBRA DE COCO CHIP 350GR",
+      marca:"NOVO SOLO",
+      categoria:"terras",
+      codigo:"7898932932093",
+      descricao:"Fibra de coco chip."
+    },
+    {
+      nome:"ESFAGNO 50GR VERDE",
+      marca:"NOVO SOLO",
+      categoria:"terras",
+      codigo:"7898932932406",
+      descricao:"Esfagno verde."
+    },
 
-    { nome:"TERRA VEGETAL 20KG", marca:"CALTERRA", categoria:"terras", codigo:"7895098937726", descricao:"Terra vegetal para uso geral." },
-    { nome:"TERRA VEGETAL 10KG", marca:"CALTERRA", categoria:"terras", codigo:"736532674883", descricao:"Terra vegetal para vasos, horta e jardim." },
-    { nome:"TERRA VEGETAL 3KG", marca:"CALTERRA", categoria:"terras", codigo:"0736532674876", descricao:"Terra vegetal pequena." },
-    { nome:"COBERTURA PREMIUM GRAMADO, HORTA E JARDIM 3KG", marca:"CALTERRA", categoria:"terras", codigo:"7895098937719", descricao:"Cobertura para gramado, horta e jardim." },
-    { nome:"ESTERCO DE GADO 20KG", marca:"CALTERRA", categoria:"terras", codigo:"4260211061184", descricao:"Esterco bovino." },
-    { nome:"PLANTIO PREMIUM COMPOSTO ORGÂNICO 3KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Fardo com 8 unidades de 3kg." },
-    { nome:"PLANTIO PREMIUM COMPOSTO ORGÂNICO 10KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Saco 10kg." },
-    { nome:"PLANTIO PREMIUM COMPOSTO ORGÂNICO 20KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Saco 20kg." },
-    { nome:"HÚMUS DE MINHOCA 3KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Adubo orgânico premium." },
-    { nome:"HÚMUS DE MINHOCA 10KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Saco 10kg." },
-    { nome:"CACTOS E SUCULENTAS 3KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Substrato para cactos e suculentas." },
-    { nome:"CACTOS E SUCULENTAS 10KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Substrato para cactos e suculentas." },
-    { nome:"ROSA DO DESERTO 3KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Composto premium rosa do deserto." },
-    { nome:"ROSA DO DESERTO 10KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Composto premium rosa do deserto." },
-    { nome:"FLORES E FOLHAGENS 3KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Composto premium flores e folhagens." },
-    { nome:"FLORES E FOLHAGENS 10KG", marca:"CALTERRA", categoria:"terras", codigo:"SEM CODIGO", descricao:"Composto premium flores e folhagens." },
-
-    { nome:"TERRA VEGETAL 20KG", marca:"MOGIFERTIL", categoria:"terras", codigo:"7898930277158", descricao:"Terra vegetal para uso geral." },
-    { nome:"TERRA VEGETAL 10KG", marca:"MOGIFERTIL", categoria:"terras", codigo:"7898734140047", descricao:"Terra vegetal para vasos e canteiros." },
-    { nome:"VASOS E FLOREIRAS 20KG", marca:"MOGIFERTIL", categoria:"terras", codigo:"7898734141334", descricao:"Substrato para vasos e floreiras." },
-    { nome:"ROSA DO DESERTO E BROMÉLIAS 20KG", marca:"MOGIFERTIL", categoria:"terras", codigo:"7898734140078", descricao:"Substrato especial para rosa do deserto e bromélias." },
-    { nome:"ORQUÍDEAS MIX 40L", marca:"MOGIFERTIL", categoria:"orquideas", codigo:"7898930277691", descricao:"Substrato especial para orquídeas." },
-    { nome:"CACTOS E SUCULENTAS", marca:"MOGIFERTIL", categoria:"terras", codigo:"A DEFINIR", descricao:"Substrato para cactos e suculentas." },
-    { nome:"CONDICIONADOR DE SOLO", marca:"MOGIFERTIL", categoria:"terras", codigo:"A DEFINIR", descricao:"Condicionador de solo." },
-    { nome:"HÚMUS DE MINHOCA", marca:"MOGIFERTIL", categoria:"terras", codigo:"A DEFINIR", descricao:"Húmus para adubação." },
-    { nome:"ESTERCO BOVINO 30L", marca:"MOGIFERTIL", categoria:"terras", codigo:"7898734141327", descricao:"Esterco bovino." },
-
-    { nome:"CASCA DE PINUS COM CARVÃO PARA ORQUÍDEA 350GR", marca:"NOVO SOLO", categoria:"orquideas", codigo:"7898932932031", descricao:"Casca de pinus com carvão." },
-    { nome:"FIBRA DE COCO CHIP 350GR", marca:"NOVO SOLO", categoria:"orquideas", codigo:"7898932932093", descricao:"Fibra de coco chip." },
-    { nome:"ESFAGNO 50GR VERDE", marca:"NOVO SOLO", categoria:"orquideas", codigo:"7898932932406", descricao:"Esfagno verde." },
-    { nome:"CASCA DE PINUS", marca:"MOGIFERTIL", categoria:"orquideas", codigo:"A DEFINIR", descricao:"Casca de pinus para orquídeas." },
-    { nome:"FIBRA DE COCO", marca:"MOGIFERTIL", categoria:"orquideas", codigo:"A DEFINIR", descricao:"Fibra de coco para orquídeas." },
-    { nome:"MUSGO VERDE", marca:"MOGIFERTIL", categoria:"orquideas", codigo:"A DEFINIR", descricao:"Musgo verde para acabamento." },
-    { nome:"ESFAGNO", marca:"MOGIFERTIL", categoria:"orquideas", codigo:"A DEFINIR", descricao:"Esfagno para orquídeas." },
-    { nome:"BOKASHI ORQUÍDEAS", marca:"MOGIFERTIL", categoria:"orquideas", codigo:"A DEFINIR", descricao:"Adubo bokashi para orquídeas." },
-
-    { nome:"VASO PEQUENO", marca:"SEM MARCA", categoria:"vasos", codigo:"5390010400002", descricao:"Vaso pequeno para plantas." },
-    { nome:"VASO GRANDE", marca:"SEM MARCA", categoria:"vasos", codigo:"5390010900007", descricao:"Vaso grande para plantas." },
-    { nome:"VASO ORQUÍDEA REDONDO P", marca:"SEM MARCA", categoria:"vasos", codigo:"5390010100001", descricao:"Vaso redondo pequeno para orquídea." },
-    { nome:"VASO ORQUÍDEA REDONDO M", marca:"SEM MARCA", categoria:"vasos", codigo:"5390010600006", descricao:"Vaso redondo médio para orquídea." },
-    { nome:"VASO ORQUÍDEA REDONDO G", marca:"SEM MARCA", categoria:"vasos", codigo:"5390011300004", descricao:"Vaso redondo grande para orquídea." },
-    { nome:"VASO ORQUÍDEA GRANDE", marca:"SEM MARCA", categoria:"vasos", codigo:"5390013500006", descricao:"Vaso grande para orquídea." }
+    {
+      nome:"VASO PEQUENO",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010400002",
+      descricao:"Vaso pequeno para plantas."
+    },
+    {
+      nome:"VASO GRANDE",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010900007",
+      descricao:"Vaso grande para plantas."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO P",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010100001",
+      descricao:"Vaso redondo pequeno para orquídea."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO M",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010600006",
+      descricao:"Vaso redondo médio para orquídea."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO G",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390011300004",
+      descricao:"Vaso redondo grande para orquídea."
+    },
+    {
+      nome:"VASO ORQUÍDEA GRANDE",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390013500006",
+      descricao:"Vaso grande para orquídea."
+    }
   ];
 
   const selecionados = {};
-  const filtro = { categoria:"todos", marca:"todos" };
-
-  let scannerStream = null;
-  let scannerInterval = null;
+  const filtro = {
+    categoria:"todos",
+    marca:"todos"
+  };
 
   function montarFiltroMarcas() {
     const area = document.getElementById("filtroMarca");
@@ -521,15 +952,17 @@
 
   function setFiltro(tipoFiltro, valor, botao) {
     filtro[tipoFiltro] = valor;
+
     const grupo = botao.parentElement;
     grupo.querySelectorAll("button").forEach(btn => btn.classList.remove("ativo"));
     botao.classList.add("ativo");
+
     renderizarProdutos();
   }
 
   function renderizarProdutos() {
     const area = document.getElementById("produtos");
-    const busca = document.getElementById("busca").value.toLowerCase().trim();
+    const busca = document.getElementById("busca").value.toLowerCase();
 
     area.innerHTML = "";
 
@@ -539,7 +972,7 @@
       .filter(p =>
         p.nome.toLowerCase().includes(busca) ||
         p.marca.toLowerCase().includes(busca) ||
-        p.codigo.toLowerCase().includes(busca)
+        p.codigo.includes(busca)
       );
 
     if (filtrados.length === 0) {
@@ -560,11 +993,11 @@
 
           <h3>${p.nome}</h3>
 
-          <div class="codigo">Código: ${p.codigo}</div>
+          <div class="codigo">Código de barras: ${p.codigo}</div>
 
           <p>${p.descricao}</p>
 
-          <button class="btn btn-barcode" onclick="abrirBarcode('${p.codigo}', '${limparTexto(p.nome)}')">
+          <button class="btn btn-barcode" onclick="abrirBarcode('${p.codigo}', '${p.nome.replace(/'/g, "")}')">
             Ver código de barras
           </button>
 
@@ -578,10 +1011,6 @@
     });
   }
 
-  function limparTexto(texto) {
-    return String(texto).replace(/'/g, "").replace(/"/g, "");
-  }
-
   function alterarQtd(index, valor) {
     selecionados[index] = Math.max(0, (selecionados[index] || 0) + valor);
     const input = document.getElementById(`qtd-${index}`);
@@ -591,7 +1020,10 @@
 
   function atualizarResumoMini() {
     let totalItens = 0;
-    produtos.forEach((p, i) => totalItens += selecionados[i] || 0);
+
+    produtos.forEach((p, i) => {
+      totalItens += selecionados[i] || 0;
+    });
 
     document.getElementById("miniItens").innerText =
       `${totalItens} item${totalItens !== 1 ? "s" : ""} selecionado${totalItens !== 1 ? "s" : ""}`;
@@ -613,7 +1045,6 @@
             <span>
               <strong>${qtd}x ${p.nome}</strong><br>
               Marca: ${p.marca}<br>
-              Seção: ${p.categoria}<br>
               Código: ${p.codigo}
             </span>
           </div>
@@ -621,7 +1052,9 @@
       }
     });
 
-    if (!encontrou) lista.innerHTML = "<p>Nenhum item selecionado ainda.</p>";
+    if (!encontrou) {
+      lista.innerHTML = "<p>Nenhum item selecionado ainda.</p>";
+    }
 
     document.getElementById("modalResumo").style.display = "block";
   }
@@ -653,7 +1086,7 @@
 
       if (qtd > 0) {
         encontrou = true;
-        itensTexto += `- ${qtd}x ${p.nome} | Marca: ${p.marca} | Seção: ${p.categoria} | Código: ${p.codigo}%0A`;
+        itensTexto += `- ${qtd}x ${p.nome} | Marca: ${p.marca} | Código: ${p.codigo}%0A`;
       }
     });
 
@@ -691,95 +1124,12 @@
     } catch (e) {
       document.getElementById("barcodeSvg").innerHTML = "";
       document.getElementById("barcodeNumero").innerText =
-        "Código não numérico/interno: " + codigo;
+        "Não foi possível gerar o código visual. Número: " + codigo;
     }
   }
 
   function fecharBarcode() {
     document.getElementById("modalBarcode").style.display = "none";
-  }
-
-  function limparPedido() {
-    if (!confirm("Tem certeza que deseja limpar o pedido?")) return;
-
-    produtos.forEach((p, i) => selecionados[i] = 0);
-    renderizarProdutos();
-    atualizarResumoMini();
-  }
-
-  async function abrirScanner() {
-    document.getElementById("modalScanner").style.display = "block";
-
-    if (!("BarcodeDetector" in window)) {
-      alert("Seu navegador não tem leitura automática de código. Use o campo manual.");
-      return;
-    }
-
-    try {
-      const video = document.getElementById("scannerVideo");
-      scannerStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" }
-      });
-
-      video.srcObject = scannerStream;
-
-      const detector = new BarcodeDetector({
-        formats: ["ean_13", "ean_8", "code_128", "code_39", "upc_a", "upc_e"]
-      });
-
-      scannerInterval = setInterval(async () => {
-        try {
-          const codigos = await detector.detect(video);
-          if (codigos.length > 0) {
-            const codigo = codigos[0].rawValue;
-            adicionarProdutoPorCodigo(codigo);
-          }
-        } catch (e) {}
-      }, 900);
-
-    } catch (e) {
-      alert("Não foi possível abrir a câmera. Verifique a permissão do navegador.");
-    }
-  }
-
-  function fecharScanner() {
-    document.getElementById("modalScanner").style.display = "none";
-
-    if (scannerInterval) {
-      clearInterval(scannerInterval);
-      scannerInterval = null;
-    }
-
-    if (scannerStream) {
-      scannerStream.getTracks().forEach(track => track.stop());
-      scannerStream = null;
-    }
-  }
-
-  function adicionarPorCodigoManual() {
-    const codigo = document.getElementById("codigoManual").value.trim();
-    if (!codigo) {
-      alert("Digite um código.");
-      return;
-    }
-
-    adicionarProdutoPorCodigo(codigo);
-  }
-
-  function adicionarProdutoPorCodigo(codigo) {
-    const index = produtos.findIndex(p => p.codigo === codigo);
-
-    if (index === -1) {
-      alert("Produto não encontrado para o código: " + codigo);
-      return;
-    }
-
-    selecionados[index] = (selecionados[index] || 0) + 1;
-    atualizarResumoMini();
-    renderizarProdutos();
-
-    alert("Adicionado: " + produtos[index].nome);
-    fecharScanner();
   }
 
   montarFiltroMarcas();
