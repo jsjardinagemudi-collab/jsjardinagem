@@ -654,7 +654,7 @@
       codigo:"0736532674876",
       uso:"Terra vegetal para vasos pequenos."
     },
-        {
+           {
       nome:"COBERTURA PREMIUM GRAMADO, HORTA E JARDIM 3KG",
       marca:"CALTERRA",
       categoria:"terra",
@@ -999,7 +999,7 @@
       selecionados[index] = selecionados[index] || 0;
 
       area.innerHTML += `
-        <div class="card" onclick="mostrarCodigo('${p.nome.replace(/'/g, "\\'")}','${p.codigo}')">
+        <div class="card" onclick="mostrarCodigo('${p.nome.replace(/'/g, "\\'")}','${p.codigo}', ${p.preco})">
           <div>
             <span class="tag">${p.marca}</span>
             <span class="tag">${p.volume}</span>
@@ -1073,8 +1073,11 @@
         total += subtotal;
 
         lista.innerHTML += `
-          <div class="linha">
-            <span>${qtd}x ${p.nome}<br><small>Cód: ${p.codigo}</small></span>
+          <div class="linha" onclick="mostrarCodigo('${p.nome.replace(/'/g, "\\'")}','${p.codigo}', ${p.preco})" style="cursor:pointer;">
+            <span>
+              ${qtd}x ${p.nome}<br>
+              <small>Cód: ${p.codigo} • Clique para ver código</small>
+            </span>
             <strong>${moeda(subtotal)}</strong>
           </div>
         `;
@@ -1132,9 +1135,13 @@
       `Sugestão: aproximadamente <strong>${sacos} saco(s)</strong>. Confirme com o atendente.`;
   }
 
-  function mostrarCodigo(nome, codigo) {
+  function mostrarCodigo(nome, codigo, preco = null) {
     document.getElementById("tituloBarcode").innerText = nome;
-    document.getElementById("numeroBarcode").innerText = codigo;
+
+    const precoTexto = preco !== null ? `Valor: ${moeda(preco)}\n` : "";
+
+    document.getElementById("numeroBarcode").innerText =
+      `${precoTexto}Código: ${codigo}`;
 
     JsBarcode("#barcodeSvg", codigo, {
       format:"CODE128",
@@ -1167,10 +1174,10 @@
       resultadoBox.style.display = "block";
       resultadoBox.innerHTML =
         `Produto encontrado: <strong>${produto.nome}</strong><br>` +
-        `Preço estimado: <strong>${moeda(produto.preco)}</strong><br>` +
+        `Valor: <strong>${moeda(produto.preco)}</strong><br>` +
         `Código: ${produto.codigo}`;
 
-      mostrarCodigo(produto.nome, produto.codigo);
+      mostrarCodigo(produto.nome, produto.codigo, produto.preco);
     } else {
       resultadoBox.style.display = "block";
       resultadoBox.innerText =
@@ -1224,5 +1231,7 @@
   atualizarEstimativa();
 </script>
 
+</body>
+</html>
 </body>
 </html>
