@@ -24,36 +24,17 @@
       font-family: Arial, sans-serif;
       background:var(--bege);
       color:var(--texto);
-      padding-bottom:110px;
+      padding-bottom:100px;
     }
 
-    .header-logo{
+    .header-logo {
       background:#b11f17;
       border-bottom:6px solid var(--dourado);
     }
 
-    .logo-banner{
+    .logo-banner {
       width:100%;
       display:block;
-    }
-
-    .titulo-topo {
-      background:white;
-      text-align:center;
-      padding:18px;
-      border-bottom:1px solid #ead9ae;
-    }
-
-    .titulo-topo h1 {
-      color:var(--vermelho);
-      font-size:2rem;
-      font-weight:900;
-    }
-
-    .titulo-topo p {
-      color:var(--verde);
-      font-weight:bold;
-      margin-top:5px;
     }
 
     .container {
@@ -69,6 +50,12 @@
       margin-bottom:18px;
       box-shadow:0 5px 16px rgba(0,0,0,.10);
       border:1px solid #eee0bd;
+    }
+
+    h1 {
+      color:var(--vermelho);
+      font-size:1.8rem;
+      margin-bottom:8px;
     }
 
     h2 {
@@ -96,13 +83,13 @@
 
     .form-grid {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
       gap:12px;
+      margin-top:12px;
     }
 
-    .filtros {
-      display:grid;
-      gap:12px;
+    .grupo-filtro {
+      margin-top:14px;
     }
 
     .grupo-filtro strong {
@@ -134,7 +121,7 @@
 
     .grid {
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:16px;
     }
 
@@ -159,11 +146,6 @@
       margin:0 4px 7px 0;
     }
 
-    .tag.cat {
-      background:#fff1be;
-      color:#855900;
-    }
-
     .card h3 {
       color:var(--vermelho);
       font-size:1.02rem;
@@ -172,25 +154,40 @@
     }
 
     .codigo {
-      font-size:.84rem;
+      font-size:.82rem;
       background:#f7f0df;
       border-radius:9px;
-      padding:8px;
+      padding:7px;
       margin-bottom:10px;
       color:#4b3a21;
       font-weight:bold;
     }
 
-    .acoes-card {
+    .qtd {
       display:flex;
+      align-items:center;
       gap:8px;
       margin-top:auto;
-      align-items:center;
     }
 
-    .acoes-card input {
-      max-width:90px;
+    .qtd button {
+      width:38px;
+      height:38px;
+      border:none;
+      border-radius:9px;
+      background:var(--vermelho);
+      color:var(--amarelo);
+      font-size:1.3rem;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .qtd input {
+      width:62px;
+      height:38px;
       text-align:center;
+      border:1px solid #d4c79f;
+      border-radius:9px;
       font-weight:bold;
     }
 
@@ -208,9 +205,10 @@
     }
 
     .btn-barcode {
-      background:var(--verde);
-      color:white;
-      flex:1;
+      background:#efe7d4;
+      color:#402b19;
+      margin-bottom:10px;
+      width:100%;
     }
 
     .btn-whats {
@@ -226,7 +224,7 @@
       margin-top:8px;
     }
 
-    .barra-final {
+    .barra {
       position:fixed;
       left:10px;
       right:10px;
@@ -243,9 +241,7 @@
       z-index:999;
     }
 
-    .barra-final strong {
-      color:var(--vermelho);
-    }
+    .barra strong { color:var(--vermelho); }
 
     .modal {
       display:none;
@@ -258,7 +254,7 @@
 
     .modal-content {
       background:white;
-      max-width:680px;
+      max-width:650px;
       margin:25px auto;
       border-radius:20px;
       padding:16px;
@@ -276,13 +272,15 @@
       font-size:.92rem;
     }
 
-    .barcode-area {
+    .barcode-box {
       text-align:center;
       padding:15px;
       background:#fff;
-      border-radius:14px;
-      border:1px solid #eee;
-      margin-top:12px;
+      border-radius:15px;
+    }
+
+    .barcode-box svg {
+      max-width:100%;
     }
 
     footer {
@@ -293,7 +291,7 @@
     }
 
     @media(max-width:650px) {
-      .barra-final {
+      .barra {
         flex-direction:column;
         align-items:stretch;
       }
@@ -306,219 +304,488 @@
 <body>
 
 <header class="header-logo">
-  <img
-    src="imagens/logo-topo-rei-do-real.png"
-    alt="Rei do Real Casa e Jardim"
-    class="logo-banner"
-  >
+  <img src="imagens/logo-topo-rei-do-real.png" alt="Rei do Real Casa e Jardim" class="logo-banner">
 </header>
-
-<div class="titulo-topo">
-  <h1>Reposição</h1>
-  <p>Pedido interno de produtos em falta</p>
-</div>
 
 <main class="container">
 
   <section class="box">
+    <h1>Reposição Rei do Real</h1>
     <div class="aviso">
-      Preencha a loja, seu nome e marque a quantidade dos produtos que estão em falta.
+      Pedido interno para reposição de produtos em falta nas lojas.
     </div>
-
-    <h2>1. Dados do pedido</h2>
 
     <div class="form-grid">
-      <select id="loja">
-        <option value="">Selecione a loja</option>
-        <option value="Tubal">Tubal</option>
-        <option value="Catalão">Catalão</option>
-        <option value="Araguari">Araguari</option>
-        <option value="João Pessoa">João Pessoa</option>
-        <option value="Planalto">Planalto</option>
-        <option value="Atacado">Atacado</option>
-      </select>
-
-      <input id="responsavel" type="text" placeholder="Nome de quem preencheu">
-    </div>
-  </section>
-
-  <section class="box">
-    <h2>2. Filtros</h2>
-
-    <div class="filtros">
-      <div class="grupo-filtro">
-        <strong>Seção</strong>
-        <div class="botoes" id="filtroCategoria">
-          <button class="ativo" onclick="setFiltro('categoria','todos',this)">Tudo</button>
-          <button onclick="setFiltro('categoria','plantas',this)">Plantas</button>
-          <button onclick="setFiltro('categoria','terras',this)">Terras</button>
-          <button onclick="setFiltro('categoria','vasos',this)">Vasos</button>
-        </div>
+      <div>
+        <label><strong>Loja</strong></label>
+        <select id="loja">
+          <option value="">Selecione a loja</option>
+          <option>Tubal</option>
+          <option>Catalão</option>
+          <option>Araguari</option>
+          <option>João Pessoa</option>
+          <option>Planalto</option>
+          <option>Atacado</option>
+        </select>
       </div>
 
-      <div class="grupo-filtro">
-        <strong>Marca</strong>
-        <div class="botoes" id="filtroMarca"></div>
+      <div>
+        <label><strong>Nome de quem preencheu</strong></label>
+        <input id="responsavel" type="text" placeholder="Ex: Adriano">
       </div>
     </div>
   </section>
 
   <section class="box">
-    <h2>3. Produtos para reposição</h2>
+    <h2>Filtros</h2>
+
+    <div class="grupo-filtro">
+      <strong>Seção</strong>
+      <div class="botoes" id="filtroCategoria">
+        <button class="ativo" onclick="setFiltro('categoria','todos',this)">Tudo</button>
+        <button onclick="setFiltro('categoria','plantas',this)">Plantas</button>
+        <button onclick="setFiltro('categoria','terras',this)">Terras</button>
+        <button onclick="setFiltro('categoria','vasos',this)">Vasos</button>
+      </div>
+    </div>
+
+    <div class="grupo-filtro">
+      <strong>Marca</strong>
+      <div class="botoes" id="filtroMarca"></div>
+    </div>
+
+    <div class="grupo-filtro">
+      <strong>Buscar produto</strong>
+      <input id="busca" type="text" placeholder="Digite nome, marca ou código de barras" oninput="renderizarProdutos()">
+    </div>
+  </section>
+
+  <section class="box">
+    <h2>Produtos para reposição</h2>
     <div class="grid" id="produtos"></div>
   </section>
 
 </main>
 
-<div class="barra-final">
+<div class="barra">
   <div>
     <strong>Pedido de reposição</strong><br>
-    <span id="miniItens">0 produtos selecionados</span>
+    <span id="miniItens">0 itens selecionados</span>
   </div>
-
   <button class="btn btn-ver" onclick="abrirResumo()">Ver pedido</button>
 </div>
 
 <div class="modal" id="modalResumo">
   <div class="modal-content">
     <h2>Resumo do pedido</h2>
-
-    <div id="dadosResumo"></div>
     <div id="listaResumo"></div>
 
-    <textarea id="observacao" placeholder="Observação opcional. Ex: urgência, produto zerado, cliente aguardando, etc."></textarea>
+    <textarea id="obs" placeholder="Observações. Ex: produto urgente, mandar caixa fechada, confirmar estoque etc."></textarea>
 
-    <button class="btn btn-whats" onclick="abrirWhatsApp()">Enviar pedido pelo WhatsApp</button>
+    <button class="btn btn-whats" onclick="enviarWhatsApp()">Enviar pedido pelo WhatsApp</button>
     <button class="btn btn-fechar" onclick="fecharResumo()">Fechar</button>
   </div>
 </div>
 
 <div class="modal" id="modalBarcode">
-  <div class="modal-content">
+  <div class="modal-content barcode-box">
     <h2 id="barcodeTitulo">Código de barras</h2>
-
-    <div class="barcode-area">
-      <svg id="barcodeSvg"></svg>
-      <p id="barcodeNumero"></p>
-    </div>
-
+    <svg id="barcodeSvg"></svg>
+    <p id="barcodeNumero"></p>
     <button class="btn btn-fechar" onclick="fecharBarcode()">Fechar</button>
   </div>
 </div>
 
 <footer>
-  Rei do Real Casa e Jardim • Reposição interna
+  Rei do Real Casa e Jardim • Página interna de reposição
 </footer>
 
 <script>
-  const WHATSAPP_REPOSICAO = "553499529882";
+  const WHATSAPP_DESTINO = "553499529882";
 
   const produtos = [
     {
-      nome:"Planta natural pequena",
+      nome:"PLANTA EXEMPLO - ROSA DO DESERTO",
       marca:"PLANTAS",
       categoria:"plantas",
-      codigo:"PLANTA001"
+      codigo:"000000000001",
+      descricao:"Produto exemplo para a seção de plantas."
     },
     {
-      nome:"Planta natural média",
+      nome:"PLANTA EXEMPLO - SUCULENTA",
       marca:"PLANTAS",
       categoria:"plantas",
-      codigo:"PLANTA002"
+      codigo:"000000000002",
+      descricao:"Produto exemplo para a seção de plantas."
     },
-    {
-      nome:"Planta natural grande",
-      marca:"PLANTAS",
-      categoria:"plantas",
-      codigo:"PLANTA003"
-    },
+
     {
       nome:"TERRALPLANT 20LTS",
       marca:"TERRAL",
       categoria:"terras",
-      codigo:"7898400870438"
+      codigo:"7898400870438",
+      descricao:"Substrato para plantio."
     },
     {
       nome:"CONDICIONADOR SOLO 25 KG",
       marca:"TERRAL",
       categoria:"terras",
-      codigo:"7898400870483"
+      codigo:"7898400870483",
+      descricao:"Condicionador de solo."
     },
     {
       nome:"ESTERCO 10 KG",
       marca:"TERRAL",
       categoria:"terras",
-      codigo:"7898400870872"
+      codigo:"7898400870872",
+      descricao:"Adubo orgânico."
     },
     {
       nome:"BIO BRIC B2 10KG / 45L",
       marca:"TERRAL",
       categoria:"terras",
-      codigo:"7898400870858"
+      codigo:"7898400870858",
+      descricao:"Substrato prensado."
     },
     {
       nome:"TERRA VEGETAL 20KG",
       marca:"CALTERRA",
       categoria:"terras",
-      codigo:"7895098937726"
+      codigo:"7895098937726",
+      descricao:"Terra vegetal para uso geral."
     },
     {
       nome:"TERRA VEGETAL 10KG",
       marca:"CALTERRA",
       categoria:"terras",
-      codigo:"736532674883"
+      codigo:"736532674883",
+      descricao:"Terra vegetal para vasos, horta e jardim."
     },
     {
       nome:"TERRA VEGETAL 3KG",
       marca:"CALTERRA",
       categoria:"terras",
-      codigo:"0736532674876"
+      codigo:"0736532674876",
+      descricao:"Terra vegetal pequena."
     },
     {
       nome:"COBERTURA PREMIUM GRAMADO, HORTA E JARDIM 3KG",
       marca:"CALTERRA",
       categoria:"terras",
-      codigo:"7895098937719"
+      codigo:"7895098937719",
+      descricao:"Cobertura para gramado, horta e jardim."
     },
     {
       nome:"ESTERCO DE GADO 20KG",
       marca:"CALTERRA",
       categoria:"terras",
-      codigo:"4260211061184"
-    },
-    {
-      nome:"PEDRA SEIXO BRANCA Nº3 5KG",
-      marca:"CALTERRA",
-      categoria:"terras",
-      codigo:"7448070130891"
-    },
-    {
-      nome:"PEDRISCO PALHA Nº1 5KG",
-      marca:"CALTERRA",
-      categoria:"terras",
-      codigo:"7448070130990"
-    },
-    {
-      nome:"PEDRISCO PALHA Nº2 5KG",
-      marca:"CALTERRA",
-      categoria:"terras",
-      codigo:"7448070130945"
-    },
-    {
-      nome:"PEDRISCO PALHA Nº3 5KG",
-      marca:"CALTERRA",
-      categoria:"terras",
-      codigo:"7448070130617"
+      codigo:"4260211061184",
+      descricao:"Esterco bovino."
     },
     {
       nome:"TERRA VEGETAL 20KG",
       marca:"MOGIFERTIL",
       categoria:"terras",
-      codigo:"7898930277158"
+      codigo:"7898930277158",
+      descricao:"Terra vegetal para uso geral."
     },
     {
       nome:"TERRA VEGETAL 10KG",
       marca:"MOGIFERTIL",
       categoria:"terras",
-      codigo:"7898734140047"
+      codigo:"7898734140047",
+      descricao:"Terra vegetal para vasos e canteiros."
     },
+    {
+      nome:"VASOS E FLOREIRA PREMIUM 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898734141334",
+      descricao:"Substrato para vasos e floreiras."
+    },
+    {
+      nome:"ROSA DO DESERTO & BROMÉLIA 20KG",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898734140078",
+      descricao:"Substrato especial."
+    },
+    {
+      nome:"ORQUÍDEAS MIX 40LTS",
+      marca:"MOGIFERTIL",
+      categoria:"terras",
+      codigo:"7898930277691",
+      descricao:"Substrato para orquídeas."
+    },
+    {
+      nome:"CASCA DE PINUS COM CARVÃO PARA ORQUÍDEA 350GR",
+      marca:"NOVO SOLO",
+      categoria:"terras",
+      codigo:"7898932932031",
+      descricao:"Casca de pinus com carvão."
+    },
+    {
+      nome:"FIBRA DE COCO CHIP 350GR",
+      marca:"NOVO SOLO",
+      categoria:"terras",
+      codigo:"7898932932093",
+      descricao:"Fibra de coco chip."
+    },
+    {
+      nome:"ESFAGNO 50GR VERDE",
+      marca:"NOVO SOLO",
+      categoria:"terras",
+      codigo:"7898932932406",
+      descricao:"Esfagno verde."
+    },
+
+    {
+      nome:"VASO PEQUENO",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010400002",
+      descricao:"Vaso pequeno para plantas."
+    },
+    {
+      nome:"VASO GRANDE",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010900007",
+      descricao:"Vaso grande para plantas."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO P",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010100001",
+      descricao:"Vaso redondo pequeno para orquídea."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO M",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390010600006",
+      descricao:"Vaso redondo médio para orquídea."
+    },
+    {
+      nome:"VASO ORQUÍDEA REDONDO G",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390011300004",
+      descricao:"Vaso redondo grande para orquídea."
+    },
+    {
+      nome:"VASO ORQUÍDEA GRANDE",
+      marca:"SEM MARCA",
+      categoria:"vasos",
+      codigo:"5390013500006",
+      descricao:"Vaso grande para orquídea."
+    }
+  ];
+
+  const selecionados = {};
+  const filtro = {
+    categoria:"todos",
+    marca:"todos"
+  };
+
+  function montarFiltroMarcas() {
+    const area = document.getElementById("filtroMarca");
+    const marcas = [...new Set(produtos.map(p => p.marca))].sort();
+
+    area.innerHTML = `<button class="ativo" onclick="setFiltro('marca','todos',this)">Todas</button>`;
+
+    marcas.forEach(marca => {
+      area.innerHTML += `<button onclick="setFiltro('marca','${marca}',this)">${marca}</button>`;
+    });
+  }
+
+  function setFiltro(tipoFiltro, valor, botao) {
+    filtro[tipoFiltro] = valor;
+
+    const grupo = botao.parentElement;
+    grupo.querySelectorAll("button").forEach(btn => btn.classList.remove("ativo"));
+    botao.classList.add("ativo");
+
+    renderizarProdutos();
+  }
+
+  function renderizarProdutos() {
+    const area = document.getElementById("produtos");
+    const busca = document.getElementById("busca").value.toLowerCase();
+
+    area.innerHTML = "";
+
+    const filtrados = produtos
+      .filter(p => filtro.categoria === "todos" || p.categoria === filtro.categoria)
+      .filter(p => filtro.marca === "todos" || p.marca === filtro.marca)
+      .filter(p =>
+        p.nome.toLowerCase().includes(busca) ||
+        p.marca.toLowerCase().includes(busca) ||
+        p.codigo.includes(busca)
+      );
+
+    if (filtrados.length === 0) {
+      area.innerHTML = "<p>Nenhum produto encontrado.</p>";
+      return;
+    }
+
+    filtrados.forEach(p => {
+      const index = produtos.indexOf(p);
+      selecionados[index] = selecionados[index] || 0;
+
+      area.innerHTML += `
+        <div class="card">
+          <div>
+            <span class="tag">${p.categoria.toUpperCase()}</span>
+            <span class="tag">${p.marca}</span>
+          </div>
+
+          <h3>${p.nome}</h3>
+
+          <div class="codigo">Código de barras: ${p.codigo}</div>
+
+          <p>${p.descricao}</p>
+
+          <button class="btn btn-barcode" onclick="abrirBarcode('${p.codigo}', '${p.nome.replace(/'/g, "")}')">
+            Ver código de barras
+          </button>
+
+          <div class="qtd">
+            <button onclick="alterarQtd(${index}, -1)">-</button>
+            <input value="${selecionados[index]}" id="qtd-${index}" readonly>
+            <button onclick="alterarQtd(${index}, 1)">+</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function alterarQtd(index, valor) {
+    selecionados[index] = Math.max(0, (selecionados[index] || 0) + valor);
+    const input = document.getElementById(`qtd-${index}`);
+    if (input) input.value = selecionados[index];
+    atualizarResumoMini();
+  }
+
+  function atualizarResumoMini() {
+    let totalItens = 0;
+
+    produtos.forEach((p, i) => {
+      totalItens += selecionados[i] || 0;
+    });
+
+    document.getElementById("miniItens").innerText =
+      `${totalItens} item${totalItens !== 1 ? "s" : ""} selecionado${totalItens !== 1 ? "s" : ""}`;
+  }
+
+  function abrirResumo() {
+    const lista = document.getElementById("listaResumo");
+    lista.innerHTML = "";
+
+    let encontrou = false;
+
+    produtos.forEach((p, i) => {
+      const qtd = selecionados[i] || 0;
+
+      if (qtd > 0) {
+        encontrou = true;
+        lista.innerHTML += `
+          <div class="linha">
+            <span>
+              <strong>${qtd}x ${p.nome}</strong><br>
+              Marca: ${p.marca}<br>
+              Código: ${p.codigo}
+            </span>
+          </div>
+        `;
+      }
+    });
+
+    if (!encontrou) {
+      lista.innerHTML = "<p>Nenhum item selecionado ainda.</p>";
+    }
+
+    document.getElementById("modalResumo").style.display = "block";
+  }
+
+  function fecharResumo() {
+    document.getElementById("modalResumo").style.display = "none";
+  }
+
+  function enviarWhatsApp() {
+    const loja = document.getElementById("loja").value;
+    const responsavel = document.getElementById("responsavel").value.trim();
+    const obs = document.getElementById("obs").value.trim();
+
+    if (!loja) {
+      alert("Selecione a loja antes de enviar.");
+      return;
+    }
+
+    if (!responsavel) {
+      alert("Preencha o nome de quem está fazendo o pedido.");
+      return;
+    }
+
+    let itensTexto = "";
+    let encontrou = false;
+
+    produtos.forEach((p, i) => {
+      const qtd = selecionados[i] || 0;
+
+      if (qtd > 0) {
+        encontrou = true;
+        itensTexto += `- ${qtd}x ${p.nome} | Marca: ${p.marca} | Código: ${p.codigo}%0A`;
+      }
+    });
+
+    if (!encontrou) {
+      alert("Selecione pelo menos um produto para reposição.");
+      return;
+    }
+
+    const mensagem =
+      `*Pedido de Reposição - Rei do Real*%0A%0A` +
+      `*Loja:* ${loja}%0A` +
+      `*Preenchido por:* ${responsavel}%0A%0A` +
+      `*Itens solicitados:*%0A` +
+      `${itensTexto}%0A` +
+      `*Observações:* ${obs || "Sem observações."}`;
+
+    window.open(`https://wa.me/${WHATSAPP_DESTINO}?text=${mensagem}`, "_blank");
+  }
+
+  function abrirBarcode(codigo, nome) {
+    document.getElementById("modalBarcode").style.display = "block";
+    document.getElementById("barcodeTitulo").innerText = nome;
+    document.getElementById("barcodeNumero").innerText = codigo;
+
+    try {
+      JsBarcode("#barcodeSvg", codigo, {
+        format: "CODE128",
+        lineColor: "#000",
+        width: 2,
+        height: 90,
+        displayValue: true,
+        fontSize: 18,
+        margin: 10
+      });
+    } catch (e) {
+      document.getElementById("barcodeSvg").innerHTML = "";
+      document.getElementById("barcodeNumero").innerText =
+        "Não foi possível gerar o código visual. Número: " + codigo;
+    }
+  }
+
+  function fecharBarcode() {
+    document.getElementById("modalBarcode").style.display = "none";
+  }
+
+  montarFiltroMarcas();
+  renderizarProdutos();
+  atualizarResumoMini();
+</script>
+
+</body>
+</html>
