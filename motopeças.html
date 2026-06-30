@@ -843,7 +843,7 @@ function enviarWhatsApp() {
     `${i + 1}. ${p.nome}%0ACódigo: ${p.codigo}%0AAplicação: ${p.aplicacao}%0APreço: ${p.preco}`
   ).join("%0A%0A");
 
-  const msg = `Olá, gostaria de cotar/comprar estas peças:%0A%0A${linhas}`;
+  const msg = `Olá, venho através do site do Flavinho e gostaria de cotar/comprar estas peças:%0A%0A${linhas}`;
   window.open(`https://wa.me/${5534998405105}?text=${msg}`, "_blank");
 }
 
