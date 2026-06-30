@@ -1,167 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guia de Terras | Rei do Real Casa e Jardim</title>
-
-  <script src="https://unpkg.com/@zxing/library@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--vermelho:#a7271d;--amarelo:#ffe15a;--verde:#2f6b28;--verde-claro:#eaf4dc;--bege:#f7f0df;--dourado:#c79421;--texto:#2b2b1f}
-    body{font-family:Arial,sans-serif;background:var(--bege);color:var(--texto);padding-bottom:95px}
-    .header-logo{background:#b11f17;border-bottom:6px solid var(--dourado);overflow:hidden;text-align:center}
-    .logo-banner{width:100%;display:block;margin:auto}.logo-texto{font-family:"Aptos Slab ExtraBold","Aptos Display",Georgia,serif;color:var(--amarelo);font-weight:900;font-size:2.2rem;padding:18px;text-shadow:2px 2px 0 rgba(0,0,0,.2)}
-    .container{width:min(1180px,94%);margin:auto;padding:18px 0}.box{background:white;border-radius:18px;padding:17px;margin-bottom:18px;box-shadow:0 5px 16px rgba(0,0,0,.10);border:1px solid #eee0bd}h2{color:var(--vermelho);margin-bottom:8px;font-size:1.25rem}.aviso{background:#fff6d6;border-left:6px solid var(--dourado);padding:13px;border-radius:12px;margin-bottom:14px;font-weight:bold}.destaque{color:var(--verde);font-weight:900}
-    .calculadora{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}.resultado-calc,.resultado-busca{background:var(--verde-claro);border-radius:12px;padding:13px;margin-top:12px;font-weight:bold;color:#244e20}.resultado-busca{display:none;margin-bottom:14px}
-    input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #cfc2a4;font-size:1rem}.busca-barra{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin:15px 0}.btn-camera{background:var(--verde);color:white}.btn-busca,.btn-ver{background:var(--vermelho);color:var(--amarelo)}.btn-whats{background:#25d366;color:white;width:100%;margin-top:10px}.btn-fechar{background:#ddd;width:100%;margin-top:8px}.btn{border:none;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer}
-    .filtros{display:grid;gap:12px;margin-top:12px}.grupo-filtro strong{display:block;margin-bottom:7px;color:var(--verde)}.botoes{display:flex;flex-wrap:wrap;gap:8px}.botoes button{border:none;border-radius:999px;padding:10px 13px;background:#efe7d4;font-weight:bold;cursor:pointer;color:#402b19}.botoes button.ativo{background:var(--vermelho);color:var(--amarelo)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card{background:white;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.12);border:1px solid #ead9ae;display:flex;flex-direction:column;padding:14px;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.16)}.tag{display:inline-block;background:var(--verde-claro);color:var(--verde);padding:5px 8px;border-radius:999px;font-size:.73rem;font-weight:bold;margin:0 4px 7px 0}.tag.preco-tag{background:#fff1be;color:#855900}.card h3{color:var(--vermelho);font-size:1.02rem;margin-bottom:7px;min-height:38px}.uso{font-size:.9rem;color:#4c4c3c;margin-bottom:10px;min-height:50px}.codigo{font-size:.82rem;background:#f7f0df;border-radius:9px;padding:7px;margin-bottom:10px;color:#4b3a21;font-weight:bold}.qtd{display:flex;align-items:center;gap:8px;margin-top:auto}.qtd button{width:36px;height:36px;border:none;border-radius:9px;background:var(--vermelho);color:var(--amarelo);font-size:1.3rem;font-weight:bold;cursor:pointer}.qtd input{width:54px;height:36px;text-align:center;border:1px solid #d4c79f;border-radius:9px;font-weight:bold}
-    .barra-estimativa{position:fixed;left:10px;right:10px;bottom:10px;background:white;border:3px solid var(--dourado);border-radius:18px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.24);z-index:999}.barra-estimativa strong{color:var(--vermelho)}.barra-estimativa .total{color:var(--verde);font-weight:900}.preco{color:var(--verde);font-size:1.25rem;font-weight:900;margin-bottom:10px}
-    .modal,.modal-barcode{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:1000;padding:14px}.modal-barcode{background:rgba(0,0,0,.75);z-index:2000}.modal-content,.modal-barcode-content{background:white;max-width:620px;margin:25px auto;border-radius:20px;padding:16px;max-height:92vh;overflow:auto;border:5px solid var(--dourado)}.modal-barcode-content{max-width:520px;text-align:center}.modal-barcode-content h3{color:var(--vermelho);margin-bottom:12px}#barcodeSvg{width:100%;max-width:390px;margin:12px auto}#camera-preview{width:100%;border-radius:14px;background:#000;margin-top:10px}.linha{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0;gap:10px;font-size:.92rem}.chamada-unidade{background:#fff1be;padding:13px;border-radius:14px;margin:12px 0;font-weight:bold;color:#4d3500}footer{text-align:center;padding:24px;color:#5b6653;font-size:.9rem}
-    @media(max-width:650px){.busca-barra{grid-template-columns:1fr}.barra-estimativa{flex-direction:column;align-items:stretch}.btn-ver{width:100%}.logo-texto{font-size:1.7rem}}
-  </style>
+<meta charset="UTF-8">
+<title>Guia de Terras - Atualização</title>
+<style>
+body{font-family:Arial,sans-serif;margin:30px}
+.btn{padding:10px 16px;margin:6px;border:none;border-radius:8px;background:#a7271d;color:#fff;cursor:pointer}
+input{padding:10px;width:300px}
+</style>
+<script>
+function limparBusca(){
+  const b=document.getElementById('busca');
+  if(b){ b.value=''; b.focus(); }
+  if(window.renderizarProdutos){ renderizarProdutos(); }
+}
+function limparEstimativa(){
+  if(window.selecionados){
+    Object.keys(selecionados).forEach(k=>selecionados[k]=0);
+  }
+  if(window.renderizarProdutos){ renderizarProdutos(); }
+  if(window.atualizarEstimativa){ atualizarEstimativa(); }
+  if(document.getElementById('resultadoCalc')){
+    document.getElementById('resultadoCalc').innerHTML='Informe a medida para receber uma estimativa.';
+  }
+  ['areaM2','profundidadeCm'].forEach(id=>{
+    const e=document.getElementById(id);
+    if(e) e.value='';
+  });
+}
+</script>
 </head>
 <body>
-<header class="header-logo">
-  <img src="imagens/logo-topo-rei-do-real.png" alt="Rei do Real Casa e Jardim" class="logo-banner" onerror="this.style.display='none';document.querySelector('.logo-texto').style.display='block'">
-  <div class="logo-texto" style="display:none">Rei do Real</div>
-</header>
-
-<main class="container">
-  <section class="box">
-    <div class="aviso"><span class="destaque">Guia rápido:</span> confira utilidade, marca, tamanho e valor estimado. Mostre ao atendente para confirmar preço e disponibilidade.</div>
-    <h2>1. Calculadora rápida</h2>
-    <p>Estime a quantidade para canteiro, jardim ou cobertura.</p>
-    <div class="calculadora">
-      <input id="areaM2" type="number" placeholder="Área em m². Ex: 2">
-      <input id="profundidadeCm" type="number" placeholder="Altura em cm. Ex: 5">
-      <select id="litrosPorSaco">
-        <option value="3">Saco pequeno 3L/kg</option><option value="5">Saco 5L/kg</option><option value="8">Saco 8L/kg</option><option value="10">Saco 10L/kg</option><option value="20">Saco 20L/kg</option><option value="25">Saco 25L/kg</option><option value="30">Saco 30L/kg</option><option value="40">Saco 40L/kg</option><option value="45">Saco 45L/kg</option><option value="100">Saco 100L</option>
-      </select>
-      <button class="btn btn-ver" onclick="calcularQuantidade()">Calcular</button>
-    </div>
-    <div class="resultado-calc" id="resultadoCalc">Informe a medida para receber uma estimativa.</div>
-  </section>
-
-  <section class="box">
-    <h2>2. Buscar produto</h2>
-    <div class="busca-barra">
-      <input type="text" id="buscarTexto" placeholder="Buscar por nome, marca, utilidade ou código">
-      <button class="btn-camera" onclick="abrirCamera()">📷 Ler código</button>
-      <button class="btn-busca" onclick="buscarProduto()">Buscar</button>
-    </div>
-    <div class="resultado-busca" id="resultadoBusca"></div>
-
-    <div class="filtros">
-      <div class="grupo-filtro"><strong>Utilidade</strong><div class="botoes" id="filtroUtilidade"></div></div>
-      <div class="grupo-filtro"><strong>Marca</strong><div class="botoes" id="filtroMarca"></div></div>
-      <div class="grupo-filtro"><strong>Tamanho da embalagem</strong><div class="botoes" id="filtroTamanho"></div></div>
-    </div>
-  </section>
-
-  <section class="box">
-    <h2>3. Produtos da lista</h2>
-    <div class="grid" id="produtos"></div>
-  </section>
-</main>
-
-<div class="barra-estimativa">
-  <div><strong>Sua estimativa</strong><br><span id="miniItens">0 itens</span> • <span class="total" id="miniTotal">R$ 0,00</span></div>
-  <button class="btn btn-ver" onclick="abrirResumo()">Mostrar ao atendente</button>
-</div>
-
-<div class="modal" id="modalResumo"><div class="modal-content">
-  <h2>Mostre essa tela ao atendente</h2>
-  <div class="aviso">O atendente confirma preço, estoque e localização no corredor.</div>
-  <div id="listaResumo"></div><div class="preco" id="totalResumo">Total estimado: R$ 0,00</div>
-  <textarea id="obsCliente" placeholder="Observações: compra em quantidade, entrega, indicação de produto ou dúvidas."></textarea>
-  <div class="chamada-unidade">Rei do Real Casa e Jardim<br>Avenida Paulo Roberto Cunha dos Santos, 905 - Jardim Brasília, Uberlândia - MG</div>
-  <button class="btn btn-whats" onclick="abrirWhatsApp()">WhatsApp Rei do Real Casa e Jardim</button>
-  <button class="btn btn-fechar" onclick="fecharResumo()">Fechar</button>
-</div></div>
-
-<div class="modal-barcode" id="modalBarcode"><div class="modal-barcode-content">
-  <h3 id="tituloBarcode"></h3><svg id="barcodeSvg"></svg><p id="numeroBarcode"></p><div id="listaCodigos"></div><button class="btn btn-fechar" onclick="fecharBarcode()">Fechar</button>
-</div></div>
-
-<div class="modal-barcode" id="modalCamera"><div class="modal-barcode-content">
-  <h3>Leitura de código de barras</h3><p>Aponte a câmera para o código do produto.</p><video id="camera-preview"></video><button class="btn btn-fechar" onclick="fecharCamera()">Fechar</button>
-</div></div>
-
-<footer>Rei do Real Casa e Jardim • Guia simples para escolher melhor na loja</footer>
-
-<script>
-const WHATSAPP_LOJA="553499529882";
-const produtos = [
-{"nome":"TERRAL ROSA DO DESERTO PRO 8L","marca":"Terral","utilidade":"Rosa do deserto","tamanho":"8L","preco":39.99,"codigos":["7898400870445"],"uso":"Substrato indicado para rosa do deserto."},
-{"nome":"TERRAL ROSA DO DESERTO PRO 25L","marca":"Terral","utilidade":"Rosa do deserto","tamanho":"25L","preco":74.99,"codigos":["7898400870568"],"uso":"Substrato indicado para rosa do deserto em maior volume."},
-{"nome":"TERRALPLANT 20LTS","marca":"Terral","utilidade":"Plantio geral","tamanho":"20L","preco":29.99,"codigos":["7898400870438"],"uso":"Para plantio e preparo de vasos."},
-{"nome":"TERRALPLANT 40LTS","marca":"Terral","utilidade":"Plantio geral","tamanho":"40L","preco":59.99,"codigos":["7898400870551"],"uso":"Para plantio e preparo em maior volume."},
-{"nome":"TERRAL SUBSTRATO P/PLANTIO TRADICIONAL 25L","marca":"Terral","utilidade":"Plantio geral","tamanho":"25L","preco":39.99,"codigos":["7898400870186"],"uso":"Substrato para plantio tradicional."},
-{"nome":"TERRAL SUBSTRATO P/PLANTIO PRO 8L","marca":"Terral","utilidade":"Plantio geral","tamanho":"8L","preco":34.99,"codigos":["7898400870926"],"uso":"Substrato profissional para plantio."},
-{"nome":"CONDICIONADOR SOLO 25 KG","marca":"Terral","utilidade":"Terra / canteiro","tamanho":"25KG","preco":34.99,"codigos":["7898400870483"],"uso":"Ajuda a melhorar a estrutura do solo."},
-{"nome":"TERRA VEGETAL ADUBADA 5 KG","marca":"Terral","utilidade":"Terra / canteiro","tamanho":"5KG","preco":14.99,"codigos":["7898400871077"],"uso":"Terra adubada para vasos e canteiros."},
-{"nome":"TERRA VEGETAL ADUBADA 15 KG","marca":"Terral","utilidade":"Terra / canteiro","tamanho":"15KG","preco":21.99,"codigos":["7898400870001"],"uso":"Terra adubada para canteiros e jardim."},
-{"nome":"TERRA VEGETAL ADUBADA 25 KG","marca":"Terral","utilidade":"Terra / canteiro","tamanho":"25KG","preco":29.99,"codigos":["7898400870995"],"uso":"Terra adubada para canteiros e jardim."},
-{"nome":"ESTERCO 10 KG/ 20","marca":"Terral","utilidade":"Adubação / horta","tamanho":"10KG","preco":26.99,"codigos":["7898400870872"],"uso":"Adubo orgânico para preparo de terra."},
-{"nome":"ESTERCO 20 KG/35 LT","marca":"Terral","utilidade":"Adubação / horta","tamanho":"20KG","preco":39.99,"codigos":["7898400870865"],"uso":"Adubo orgânico em maior volume."},
-{"nome":"COBERTURA PREMIUM 10KG","marca":"Calterra","utilidade":"Gramado / jardim","tamanho":"10KG","preco":24.99,"codigos":["736532674869"],"uso":"Cobertura para gramado e jardim."},
-{"nome":"COBERTURA PREMIUM 8X3KG","marca":"Calterra","utilidade":"Gramado / jardim","tamanho":"3KG","preco":12.99,"codigos":["7895098937719"],"uso":"Cobertura para gramado, horta e jardim."},
-{"nome":"ESTERCO BOVINO 10KG","marca":"Calterra","utilidade":"Adubação / horta","tamanho":"10KG","preco":24.99,"codigos":["7895098937580"],"uso":"Esterco bovino para preparo de solo."},
-{"nome":"ESTERCO BOVINO 20KG","marca":"Calterra","utilidade":"Adubação / horta","tamanho":"20KG","preco":29.99,"codigos":["4260211061184"],"uso":"Esterco bovino para preparo de solo."},
-{"nome":"ESTERCO BOVINO 8X 3KG","marca":"Calterra","utilidade":"Adubação / horta","tamanho":"3KG","preco":9.99,"codigos":["7895098937603"],"uso":"Esterco bovino em embalagem pequena."},
-{"nome":"HUMUS DE MINHOCA 10KG","marca":"Calterra","utilidade":"Adubação / horta","tamanho":"10KG","preco":24.99,"codigos":["7895098937658"],"uso":"Húmus para fortalecer plantas e solo."},
-{"nome":"PEDRISCO 1 BRANCO 5KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130884","7448070130921","7448070130761"],"uso":"Pedrisco branco para acabamento."},
-{"nome":"PEDRISCO 1 PALHA 5KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130617","7448070130945","7448070130990"],"uso":"Pedrisco palha para acabamento."},
-{"nome":"PEDRISCO 2 BRANCO 5KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130884","7448070130921","7448070130761"],"uso":"Pedrisco branco para acabamento."},
-{"nome":"PEDRISCO 2 PALHA 5KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130617","7448070130945","7448070130990"],"uso":"Pedrisco palha para decoração."},
-{"nome":"PEDRISCO 3 BRANCO 5KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130884","7448070130921","7448070130761"],"uso":"Pedrisco branco para jardim."},
-{"nome":"PEDRISCO 3 PALHA 5KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130617","7448070130945","7448070130990"],"uso":"Pedrisco palha para jardim."},
-{"nome":"PROD ROSA DESERTO 8X3KG","marca":"Calterra","utilidade":"Rosa do deserto","tamanho":"3KG","preco":14.99,"codigos":["7895098937634"],"uso":"Produto específico para rosa do deserto."},
-{"nome":"PROD ROSA DESERTO10KG","marca":"Calterra","utilidade":"Rosa do deserto","tamanho":"10KG","preco":29.99,"codigos":["7895098937672"],"uso":"Produto específico para rosa do deserto."},
-{"nome":"SEIXO 1 BRANCO 5 KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130716","7448070130662","7448070130891"],"uso":"Seixo branco para vasos e jardim."},
-{"nome":"SEIXO 2 BRANCO 5 KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130716","7448070130662","7448070130891"],"uso":"Seixo branco para decoração."},
-{"nome":"SEIXO 3 BRANCO 5 KG","marca":"Calterra","utilidade":"Acabamento / decoração","tamanho":"5KG","preco":19.99,"codigos":["7448070130716","7448070130662","7448070130891"],"uso":"Seixo branco para jardim."},
-{"nome":"TERRA VEGETAL 10KG","marca":"Calterra","utilidade":"Terra / canteiro","tamanho":"10KG","preco":16.99,"codigos":["736532674883"],"uso":"Terra vegetal para vasos e canteiros."},
-{"nome":"TERRA VEGETAL 20KG","marca":"Calterra","utilidade":"Terra / canteiro","tamanho":"20KG","preco":24.99,"codigos":["7895098937726"],"uso":"Terra vegetal para uso geral."},
-{"nome":"TERRA VEGETAL 8X3KG","marca":"Calterra","utilidade":"Terra / canteiro","tamanho":"3KG","preco":9.99,"codigos":["736532674876"],"uso":"Terra vegetal em embalagem pequena."},
-{"nome":"TERRA VEGETAL SC 20 KG","marca":"Mogi Fértil","utilidade":"Terra / canteiro","tamanho":"20KG","preco":24.99,"codigos":["7898930277158","7898930277059"],"uso":"Terra vegetal para uso geral."},
-{"nome":"TERRA VEGETAL SC 10 KG","marca":"Mogi Fértil","utilidade":"Terra / canteiro","tamanho":"10KG","preco":16.99,"codigos":["7898930277172","7898947482033","7898734140047"],"uso":"Terra vegetal para vasos e canteiros."},
-{"nome":"MOGIFERTIL FLORES SC 20 KG","marca":"Mogi Fértil","utilidade":"Uso geral","tamanho":"20KG","preco":24.99,"codigos":["7898930277011"],"uso":"Indicado para flores e plantas ornamentais."},
-{"nome":"VASOS E FLOREIRAS PREMIUM SC 20 KG","marca":"Mogi Fértil","utilidade":"Vasos e floreiras","tamanho":"20KG","preco":29.99,"codigos":["7898930277615","7898734141334"],"uso":"Substrato para vasos e floreiras."},
-{"nome":"VASOS E FLOREIRAS PREMIUM SC 5 KG","marca":"Mogi Fértil","utilidade":"Vasos e floreiras","tamanho":"5KG","preco":14.99,"codigos":["7898930277608"],"uso":"Substrato para vasos e floreiras."},
-{"nome":"ROSAS DO DESERTO & BROMELIAS SC 20 KG","marca":"Mogi Fértil","utilidade":"Rosa do deserto","tamanho":"20KG","preco":29.99,"codigos":["7898930277646","7898734140078"],"uso":"Substrato para rosa do deserto e bromélias."},
-{"nome":"ESTERCO BOVINO SC 30 LTS","marca":"Mogi Fértil","utilidade":"Adubação / horta","tamanho":"30L","preco":29.99,"codigos":["7898930277110","8832010100003","7898734141327"],"uso":"Esterco bovino para preparo do solo."},
-{"nome":"ESTERCO BOVINO SC 5 KG","marca":"Mogi Fértil","utilidade":"Adubação / horta","tamanho":"5KG","preco":9.99,"codigos":["7898930277738","7898734141310"],"uso":"Esterco bovino em embalagem pequena."},
-{"nome":"ESTERCO DE FRANGO SC 5 KG","marca":"Mogi Fértil","utilidade":"Adubação / horta","tamanho":"5KG","preco":9.99,"codigos":["7898930277721"],"uso":"Esterco de frango para horta e canteiro."},
-{"nome":"ESTERCO DE FRANGO SC 20 KG","marca":"Mogi Fértil","utilidade":"Adubação / horta","tamanho":"20KG","preco":29.99,"codigos":["7898936277503"],"uso":"Esterco de frango em maior volume."},
-{"nome":"CASCA DE ARROZ CARB. FARDO C/10 UND X 3 LTS","marca":"Mogi Fértil","utilidade":"Uso geral","tamanho":"3L","preco":9.99,"codigos":["6908930277605","7898930277479","7898930277486"],"uso":"Casca de arroz carbonizada para mistura e cobertura."},
-{"nome":"CASCA DE ARROZ CABONIZADA SC 100 LTS","marca":"Mogi Fértil","utilidade":"Uso geral","tamanho":"100L","preco":29.99,"codigos":["9059900966009","7898930277462"],"uso":"Casca de arroz carbonizada em saco grande."}
-];
-const selecionados={};let filtro={utilidade:"todos",marca:"todos",tamanho:"todos"};let termoBusca="";let leitorCodigo=null;
-const moeda=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-const seguro=s=>String(s).replace(/'/g,"\\'").replace(/\n/g," ");
-function unico(campo){return [...new Set(produtos.map(p=>p[campo]))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR',{numeric:true}));}
-function montarFiltros(){criarBotoes('filtroUtilidade','utilidade',['todos',...unico('utilidade')]);criarBotoes('filtroMarca','marca',['todos',...unico('marca')]);criarBotoes('filtroTamanho','tamanho',['todos',...unico('tamanho')]);}
-function criarBotoes(id,campo,lista){document.getElementById(id).innerHTML=lista.map((x,i)=>`<button class="${i===0?'ativo':''}" onclick="setFiltro('${campo}','${x}',this)">${x==='todos'?'Tudo':x}</button>`).join('');}
-function setFiltro(campo,valor,botao){filtro[campo]=valor;botao.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('ativo'));botao.classList.add('ativo');renderizarProdutos();}
-function buscarProduto(){termoBusca=document.getElementById('buscarTexto').value.trim().toLowerCase();renderizarProdutos();const box=document.getElementById('resultadoBusca');if(!termoBusca){box.style.display='none';return;}const p=produtos.find(p=>[p.nome,p.marca,p.utilidade,p.tamanho,...p.codigos].join(' ').toLowerCase().includes(termoBusca));box.style.display='block';if(p){box.innerHTML=`Produto encontrado: <strong>${p.nome}</strong><br>Valor estimado: <strong>${moeda(p.preco)}</strong><br>Códigos: ${p.codigos.join(' / ')}`;if(p.codigos.includes(document.getElementById('buscarTexto').value.trim())) mostrarCodigo(p.nome,p.codigos,p.preco);}else{box.innerText='Nenhum produto encontrado. Confirme com o atendente.';}}
-function renderizarProdutos(){const area=document.getElementById('produtos');let lista=produtos.filter(p=>filtro.utilidade==='todos'||p.utilidade===filtro.utilidade).filter(p=>filtro.marca==='todos'||p.marca===filtro.marca).filter(p=>filtro.tamanho==='todos'||p.tamanho===filtro.tamanho);if(termoBusca) lista=lista.filter(p=>[p.nome,p.marca,p.utilidade,p.tamanho,...p.codigos].join(' ').toLowerCase().includes(termoBusca));if(!lista.length){area.innerHTML='<p>Nenhum produto encontrado com esses filtros.</p>';return;}area.innerHTML=lista.map(p=>{const i=produtos.indexOf(p);selecionados[i]=selecionados[i]||0;return `<div class="card" onclick="mostrarCodigo('${seguro(p.nome)}',${JSON.stringify(p.codigos).replace(/"/g,'&quot;')},${p.preco})"><div><span class="tag">${p.marca}</span><span class="tag">${p.utilidade}</span><span class="tag">${p.tamanho}</span><span class="tag preco-tag">${moeda(p.preco)}</span></div><h3>${p.nome}</h3><div class="codigo">Código(s): ${p.codigos.join(' / ')}<br><small>Clique para ampliar o código</small></div><p class="uso">${p.uso}</p><div class="qtd" onclick="event.stopPropagation()"><button onclick="alterarQtd(${i},-1)">-</button><input value="${selecionados[i]}" id="qtd-${i}" readonly><button onclick="alterarQtd(${i},1)">+</button></div></div>`}).join('');}
-function alterarQtd(i,v){selecionados[i]=Math.max(0,(selecionados[i]||0)+v);const input=document.getElementById(`qtd-${i}`);if(input)input.value=selecionados[i];atualizarEstimativa();}
-function atualizarEstimativa(){let itens=0,total=0;produtos.forEach((p,i)=>{const q=selecionados[i]||0;itens+=q;total+=q*p.preco});document.getElementById('miniItens').innerText=`${itens} item${itens!==1?'s':''}`;document.getElementById('miniTotal').innerText=moeda(total);}
-function abrirResumo(){const lista=document.getElementById('listaResumo');let total=0;lista.innerHTML='';produtos.forEach((p,i)=>{const q=selecionados[i]||0;if(q>0){const sub=q*p.preco;total+=sub;lista.innerHTML+=`<div class="linha" onclick="mostrarCodigo('${seguro(p.nome)}',${JSON.stringify(p.codigos).replace(/"/g,'&quot;')},${p.preco})" style="cursor:pointer"><span>${q}x ${p.nome}<br><small>Cód: ${p.codigos.join(' / ')} • clique para ver código</small></span><strong>${moeda(sub)}</strong></div>`}});if(!total)lista.innerHTML='<p>Nenhum item selecionado ainda.</p>';document.getElementById('totalResumo').innerText=`Total estimado: ${moeda(total)}`;document.getElementById('modalResumo').style.display='block';}
-function fecharResumo(){document.getElementById('modalResumo').style.display='none';}
-function abrirWhatsApp(){const obs=document.getElementById('obsCliente').value||'';let itens='';produtos.forEach((p,i)=>{const q=selecionados[i]||0;if(q>0)itens+=`${q}x ${p.nome} - Códigos: ${p.codigos.join(' / ')}%0A`;});const msg=`Olá, Rei do Real Casa e Jardim!%0A%0ATenho interesse nesses produtos:%0A${itens||'Ainda não selecionei itens.'}%0AObservação: ${obs}`;window.open(`https://wa.me/${WHATSAPP_LOJA}?text=${msg}`,'_blank');}
-function calcularQuantidade(){const area=parseFloat(document.getElementById('areaM2').value),prof=parseFloat(document.getElementById('profundidadeCm').value),litros=parseFloat(document.getElementById('litrosPorSaco').value);if(!area||!prof||!litros){document.getElementById('resultadoCalc').innerText='Informe área e altura para calcular.';return;}const total=area*prof*10,sacos=Math.ceil(total/litros);document.getElementById('resultadoCalc').innerHTML=`Estimativa: <strong>${total.toFixed(0)} litros</strong> de material.<br>Sugestão: aproximadamente <strong>${sacos} saco(s)</strong>. Confirme com o atendente.`;}
-function mostrarCodigo(nome,codigos,preco){if(!Array.isArray(codigos))codigos=[codigos];document.getElementById('tituloBarcode').innerText=nome;document.getElementById('numeroBarcode').innerText=`Valor estimado: ${moeda(preco)}\nCódigo principal: ${codigos[0]}`;document.getElementById('listaCodigos').innerHTML=codigos.map(c=>`<button class="btn btn-ver" style="margin:4px" onclick="gerarBarcode('${c}')">${c}</button>`).join('');gerarBarcode(codigos[0]);document.getElementById('modalBarcode').style.display='block';}
-function gerarBarcode(codigo){JsBarcode('#barcodeSvg',codigo,{format:'CODE128',displayValue:true,width:2,height:90,margin:10});}
-function fecharBarcode(){document.getElementById('modalBarcode').style.display='none';}
-async function abrirCamera(){document.getElementById('modalCamera').style.display='block';const video=document.getElementById('camera-preview');try{const reader=new ZXing.BrowserMultiFormatReader();leitorCodigo=reader;reader.decodeFromVideoDevice(null,video,result=>{if(result){document.getElementById('buscarTexto').value=result.text;buscarProduto();fecharCamera();}});}catch(e){alert('Não foi possível abrir a câmera. Verifique a permissão do navegador.');fecharCamera();}}
-function fecharCamera(){document.getElementById('modalCamera').style.display='none';if(leitorCodigo){leitorCodigo.reset();leitorCodigo=null;}const video=document.getElementById('camera-preview');if(video.srcObject){video.srcObject.getTracks().forEach(t=>t.stop());video.srcObject=null;}}
-document.getElementById('buscarTexto').addEventListener('input',buscarProduto);montarFiltros();renderizarProdutos();atualizarEstimativa();
-</script>
+<h2>Trecho para adicionar ao seu HTML</h2>
+<p>Adicione estes botões:</p>
+<input id="busca" placeholder="Buscar">
+<button class="btn" onclick="limparBusca()">Limpar busca</button>
+<button class="btn" onclick="limparEstimativa()">Limpar estimativa</button>
+<p>Copie as funções JavaScript deste arquivo para o seu HTML atual.</p>
 </body>
 </html>
