@@ -506,6 +506,131 @@
       word-break:break-word;
     }
 
+
+
+    .finance-panel{
+      border:1px solid #dbe6ff;
+      border-radius:16px;
+      background:linear-gradient(180deg,#ffffff,#f8fbff);
+      padding:16px;
+      display:grid;
+      gap:14px;
+    }
+
+    .finance-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:0;
+      color:var(--pri);
+      font-size:16px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.25px;
+    }
+
+    .finance-title span{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#ecfdf3;
+      border:1px solid #abefc6;
+      color:#027a48;
+      font-size:12px;
+      font-weight:1000;
+      text-transform:none;
+      letter-spacing:0;
+    }
+
+    .finance-summary{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .finance-box{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      padding:13px;
+    }
+
+    .finance-box .k{
+      margin:0 0 6px;
+      color:#667085;
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .finance-box .v{
+      margin:0;
+      color:var(--ink);
+      font-size:17px;
+      line-height:1.2;
+      font-weight:1000;
+    }
+
+    .finance-box.good .v{color:#027a48}
+    .finance-box.warn .v{color:#b54708}
+    .finance-box.pri .v{color:var(--pri)}
+
+    .team-pay-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .pay-card{
+      border:1px solid #e7ecef;
+      border-radius:14px;
+      background:#fff;
+      padding:14px;
+      display:grid;
+      gap:5px;
+    }
+
+    .pay-card small{
+      color:#667085;
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .pay-card strong{
+      color:var(--ink);
+      font-size:14px;
+      line-height:1.35;
+      font-weight:1000;
+    }
+
+    .pay-card b{
+      color:#027a48;
+      font-size:19px;
+      line-height:1.15;
+      margin-top:3px;
+    }
+
+    .pay-card span{
+      color:#475467;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:800;
+    }
+
+    .finance-note{
+      margin:0;
+      color:#475467;
+      line-height:1.55;
+      font-weight:800;
+      font-size:13px;
+    }
+
     .service-actions{
       display:flex;
       gap:10px;
@@ -724,6 +849,8 @@
       .toolbar,
       .stats,
       .service-grid,
+      .finance-summary,
+      .team-pay-grid,
       .foot{
         grid-template-columns:1fr;
       }
@@ -794,7 +921,7 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V2.1</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V2.2</span>
           </div>
         </div>
 
@@ -1193,6 +1320,109 @@
     return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
     }
 
+
+    function firstAvailableNumber(row, keys, fallback = 0) {
+      for (const key of keys) {
+        if (row[key] !== undefined && String(row[key]).trim() !== '') {
+          const num = parseBRNumber(row[key]);
+          if (Number.isFinite(num)) return num;
+        }
+      }
+      return fallback;
+    }
+
+    function calculateFinance(row) {
+      const horas = firstAvailableNumber(row, ['HORAS','QTD_HORAS','HORAS_SERVICO'], 0);
+      const qtdLider = firstAvailableNumber(row, ['QTD_LIDER','LIDER','QUANTIDADE_LIDER'], 0);
+      const qtdJardineiro = firstAvailableNumber(row, ['QTD_JARDINEIRO','JARDINEIRO','QUANTIDADE_JARDINEIRO'], 0);
+      const qtdAuxiliar = firstAvailableNumber(row, ['QTD_AUXILIAR','AUXILIAR','QUANTIDADE_AUXILIAR'], 0);
+
+      const horaLider = firstAvailableNumber(row, ['VALOR_HORA_LIDER','HORA_LIDER','VALOR_LIDER_HORA'], 20);
+      const horaJardineiro = firstAvailableNumber(row, ['VALOR_HORA_JARDINEIRO','HORA_JARDINEIRO','VALOR_JARDINEIRO_HORA'], 20);
+      const horaAuxiliar = firstAvailableNumber(row, ['VALOR_HORA_AUXILIAR','HORA_AUXILIAR','VALOR_AUXILIAR_HORA'], 18);
+
+      const totalLider = firstAvailableNumber(row, ['TOTAL_LIDER','VALOR_TOTAL_LIDER','GANHO_LIDER','VALOR_LIDER'], qtdLider * horas * horaLider);
+      const totalJardineiro = firstAvailableNumber(row, ['TOTAL_JARDINEIRO','VALOR_TOTAL_JARDINEIRO','GANHO_JARDINEIRO','VALOR_JARDINEIRO'], qtdJardineiro * horas * horaJardineiro);
+      const totalAuxiliar = firstAvailableNumber(row, ['TOTAL_AUXILIAR','VALOR_TOTAL_AUXILIAR','GANHO_AUXILIAR','VALOR_AUXILIAR'], qtdAuxiliar * horas * horaAuxiliar);
+
+      const totalEquipe = firstAvailableNumber(row, ['TOTAL_EQUIPE','PAGAMENTO_EQUIPE','VALOR_EQUIPE','MAO_DE_OBRA'], totalLider + totalJardineiro + totalAuxiliar);
+      const precoFinal = parseBRNumber(row.PRECO_FINAL);
+      const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
+      const lucroJs = firstAvailableNumber(row, ['LUCRO_JS','SOBRA_JS','RESULTADO_JS'], precoFinal - valorParceiro - totalEquipe);
+      const percMaoObra = precoFinal > 0 ? (totalEquipe / precoFinal) * 100 : 0;
+
+      return {
+        horas,
+        precoFinal,
+        valorParceiro,
+        totalEquipe,
+        lucroJs,
+        percMaoObra,
+        roles: [
+          { label: 'Líder', emoji: '👤', qtd: qtdLider, horas, valorHora: horaLider, total: totalLider },
+          { label: 'Jardineiro', emoji: '🌿', qtd: qtdJardineiro, horas, valorHora: horaJardineiro, total: totalJardineiro },
+          { label: 'Auxiliar', emoji: '🛠️', qtd: qtdAuxiliar, horas, valorHora: horaAuxiliar, total: totalAuxiliar }
+        ]
+      };
+    }
+
+    function buildFinancePanel(row) {
+      const finance = calculateFinance(row);
+      const rolesHtml = finance.roles.map(role => `
+        <div class="pay-card">
+          <small>${role.emoji} ${escapeHtml(role.label)}</small>
+          <strong>${escapeHtml(role.qtd)} pessoa(s) × ${escapeHtml(role.horas)}h</strong>
+          <b>${formatBRL(role.total)}</b>
+          <span>${formatBRL(role.valorHora)} por hora</span>
+        </div>
+      `).join('');
+
+      return `
+        <div class="finance-panel">
+          <h4 class="finance-title">
+            💰 Distribuição financeira
+            <span>Mão de obra: ${finance.percMaoObra.toFixed(1).replace('.', ',')}% do serviço</span>
+          </h4>
+
+          <div class="finance-summary">
+            <div class="finance-box pri">
+              <p class="k">Valor do serviço</p>
+              <p class="v">${formatBRL(finance.precoFinal)}</p>
+            </div>
+
+            <div class="finance-box good">
+              <p class="k">Parceiro</p>
+              <p class="v">${formatBRL(finance.valorParceiro)}</p>
+            </div>
+
+            <div class="finance-box good">
+              <p class="k">Pagamento equipe</p>
+              <p class="v">${formatBRL(finance.totalEquipe)}</p>
+            </div>
+
+            <div class="finance-box warn">
+              <p class="k">Resultado JS</p>
+              <p class="v">${formatBRL(finance.lucroJs)}</p>
+            </div>
+          </div>
+
+          <div class="team-pay-grid">
+            ${rolesHtml}
+            <div class="pay-card">
+              <small>✅ Total equipe</small>
+              <strong>${escapeHtml(row.EQUIPE_TOTAL || '0')} integrante(s) • ${escapeHtml(finance.horas)}h</strong>
+              <b>${formatBRL(finance.totalEquipe)}</b>
+              <span>Soma dos pagamentos individuais</span>
+            </div>
+          </div>
+
+          <p class="finance-note">
+            Os valores podem vir direto da planilha. Se algum campo de pagamento estiver vazio, o portal calcula automaticamente usando o valor por hora padrão da função.
+          </p>
+        </div>
+      `;
+    }
+
     function buildResumo(row) {
       return [
         `ID: ${row.ID_SHORT || '—'}`,
@@ -1205,6 +1435,11 @@
         `Horas: ${row.HORAS || '0'}`,
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
         `Valor parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
+        `Pagamento equipe: ${formatBRL(calculateFinance(row).totalEquipe)}`,
+        `Líder: ${formatBRL(calculateFinance(row).roles[0].total)}`,
+        `Jardineiro: ${formatBRL(calculateFinance(row).roles[1].total)}`,
+        `Auxiliar: ${formatBRL(calculateFinance(row).roles[2].total)}`,
+        `Resultado JS: ${formatBRL(calculateFinance(row).lucroJs)}`,
         `Tipo de parceria: ${row.TIPO_PARCERIA || '—'}`,
         `Próxima ação: ${row.PROXIMA_ACAO || '—'}`,
         `Endereço: ${row.ENDERECO_TEXTO || '—'}`,
@@ -1324,6 +1559,7 @@
         const precoFinal = formatBRL(parseBRNumber(row.PRECO_FINAL));
         const valorParceiro = formatBRL(parseBRNumber(row.VALOR_PARCEIRO));
         const extraTags = buildExtraTags(row);
+        const financeHtml = buildFinancePanel(row);
 
         const safeResumo = escapeHtml(buildResumo(row));
         const safeId = escapeHtml(row.ID_SHORT || '');
@@ -1352,6 +1588,8 @@
               <span class="chip">Responsável: ${escapeHtml(row.RESPONSAVEL || '—')}</span>
               ${extraTags}
             </div>
+
+            ${financeHtml}
 
             <div class="service-grid">
               <div class="mini">
