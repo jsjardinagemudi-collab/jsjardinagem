@@ -921,7 +921,7 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V2.2</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V2.4</span>
           </div>
         </div>
 
@@ -1332,20 +1332,31 @@
     }
 
     function calculateFinance(row) {
+      const DAILY_RATES = {
+        lider: 240,
+        jardineiro: 170,
+        auxiliar: 120,
+        horasDiaria: 8
+      };
+
       const horas = firstAvailableNumber(row, ['HORAS','QTD_HORAS','HORAS_SERVICO'], 0);
       const qtdLider = firstAvailableNumber(row, ['QTD_LIDER','LIDER','QUANTIDADE_LIDER'], 0);
       const qtdJardineiro = firstAvailableNumber(row, ['QTD_JARDINEIRO','JARDINEIRO','QUANTIDADE_JARDINEIRO'], 0);
       const qtdAuxiliar = firstAvailableNumber(row, ['QTD_AUXILIAR','AUXILIAR','QUANTIDADE_AUXILIAR'], 0);
 
-      const horaLider = firstAvailableNumber(row, ['VALOR_HORA_LIDER','HORA_LIDER','VALOR_LIDER_HORA'], 20);
-      const horaJardineiro = firstAvailableNumber(row, ['VALOR_HORA_JARDINEIRO','HORA_JARDINEIRO','VALOR_JARDINEIRO_HORA'], 20);
-      const horaAuxiliar = firstAvailableNumber(row, ['VALOR_HORA_AUXILIAR','HORA_AUXILIAR','VALOR_AUXILIAR_HORA'], 18);
+      const horaLider = DAILY_RATES.lider / DAILY_RATES.horasDiaria;
+      const horaJardineiro = DAILY_RATES.jardineiro / DAILY_RATES.horasDiaria;
+      const horaAuxiliar = DAILY_RATES.auxiliar / DAILY_RATES.horasDiaria;
 
-      const totalLider = firstAvailableNumber(row, ['TOTAL_LIDER','VALOR_TOTAL_LIDER','GANHO_LIDER','VALOR_LIDER'], qtdLider * horas * horaLider);
-      const totalJardineiro = firstAvailableNumber(row, ['TOTAL_JARDINEIRO','VALOR_TOTAL_JARDINEIRO','GANHO_JARDINEIRO','VALOR_JARDINEIRO'], qtdJardineiro * horas * horaJardineiro);
-      const totalAuxiliar = firstAvailableNumber(row, ['TOTAL_AUXILIAR','VALOR_TOTAL_AUXILIAR','GANHO_AUXILIAR','VALOR_AUXILIAR'], qtdAuxiliar * horas * horaAuxiliar);
+      const valorPessoaLider = horas * horaLider;
+      const valorPessoaJardineiro = horas * horaJardineiro;
+      const valorPessoaAuxiliar = horas * horaAuxiliar;
 
-      const totalEquipe = firstAvailableNumber(row, ['TOTAL_EQUIPE','PAGAMENTO_EQUIPE','VALOR_EQUIPE','MAO_DE_OBRA'], totalLider + totalJardineiro + totalAuxiliar);
+      const totalLider = qtdLider * valorPessoaLider;
+      const totalJardineiro = qtdJardineiro * valorPessoaJardineiro;
+      const totalAuxiliar = qtdAuxiliar * valorPessoaAuxiliar;
+
+      const totalEquipe = totalLider + totalJardineiro + totalAuxiliar;
       const precoFinal = parseBRNumber(row.PRECO_FINAL);
       const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
       const lucroJs = firstAvailableNumber(row, ['LUCRO_JS','SOBRA_JS','RESULTADO_JS'], precoFinal - valorParceiro - totalEquipe);
@@ -1359,9 +1370,36 @@
         lucroJs,
         percMaoObra,
         roles: [
-          { label: 'Líder', emoji: '👤', qtd: qtdLider, horas, valorHora: horaLider, total: totalLider },
-          { label: 'Jardineiro', emoji: '🌿', qtd: qtdJardineiro, horas, valorHora: horaJardineiro, total: totalJardineiro },
-          { label: 'Auxiliar', emoji: '🛠️', qtd: qtdAuxiliar, horas, valorHora: horaAuxiliar, total: totalAuxiliar }
+          {
+            label: 'Líder',
+            emoji: '👤',
+            qtd: qtdLider,
+            horas,
+            diaria: DAILY_RATES.lider,
+            valorHora: horaLider,
+            valorPessoa: valorPessoaLider,
+            total: totalLider
+          },
+          {
+            label: 'Jardineiro',
+            emoji: '🌿',
+            qtd: qtdJardineiro,
+            horas,
+            diaria: DAILY_RATES.jardineiro,
+            valorHora: horaJardineiro,
+            valorPessoa: valorPessoaJardineiro,
+            total: totalJardineiro
+          },
+          {
+            label: 'Auxiliar',
+            emoji: '🛠️',
+            qtd: qtdAuxiliar,
+            horas,
+            diaria: DAILY_RATES.auxiliar,
+            valorHora: horaAuxiliar,
+            valorPessoa: valorPessoaAuxiliar,
+            total: totalAuxiliar
+          }
         ]
       };
     }
@@ -1372,8 +1410,10 @@
         <div class="pay-card">
           <small>${role.emoji} ${escapeHtml(role.label)}</small>
           <strong>${escapeHtml(role.qtd)} pessoa(s) × ${escapeHtml(role.horas)}h</strong>
-          <b>${formatBRL(role.total)}</b>
-          <span>${formatBRL(role.valorHora)} por hora</span>
+          <b>${formatBRL(role.valorPessoa)}</b>
+          <span>Valor por pessoa</span>
+          <span>Hora: ${formatBRL(role.valorHora)} • Diária: ${formatBRL(role.diaria)}</span>
+          <span>Total do cargo: ${formatBRL(role.total)}</span>
         </div>
       `).join('');
 
@@ -1412,12 +1452,12 @@
               <small>✅ Total equipe</small>
               <strong>${escapeHtml(row.EQUIPE_TOTAL || '0')} integrante(s) • ${escapeHtml(finance.horas)}h</strong>
               <b>${formatBRL(finance.totalEquipe)}</b>
-              <span>Soma dos pagamentos individuais</span>
+              <span>Soma dos pagamentos dos cargos</span>
             </div>
           </div>
 
           <p class="finance-note">
-            Os valores podem vir direto da planilha. Se algum campo de pagamento estiver vazio, o portal calcula automaticamente usando o valor por hora padrão da função.
+            Base fixa usada pelo portal: Líder ${formatBRL(240)}/8h, Jardineiro ${formatBRL(180)}/8h e Auxiliar ${formatBRL(120)}/8h. O valor principal de cada cargo mostra quanto cada pessoa recebe pelo serviço.
           </p>
         </div>
       `;
@@ -1436,9 +1476,12 @@
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
         `Valor parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
         `Pagamento equipe: ${formatBRL(calculateFinance(row).totalEquipe)}`,
-        `Líder: ${formatBRL(calculateFinance(row).roles[0].total)}`,
-        `Jardineiro: ${formatBRL(calculateFinance(row).roles[1].total)}`,
-        `Auxiliar: ${formatBRL(calculateFinance(row).roles[2].total)}`,
+        `Líder por pessoa: ${formatBRL(calculateFinance(row).roles[0].valorPessoa)}`,
+        `Líder total cargo: ${formatBRL(calculateFinance(row).roles[0].total)}`,
+        `Jardineiro por pessoa: ${formatBRL(calculateFinance(row).roles[1].valorPessoa)}`,
+        `Jardineiro total cargo: ${formatBRL(calculateFinance(row).roles[1].total)}`,
+        `Auxiliar por pessoa: ${formatBRL(calculateFinance(row).roles[2].valorPessoa)}`,
+        `Auxiliar total cargo: ${formatBRL(calculateFinance(row).roles[2].total)}`,
         `Resultado JS: ${formatBRL(calculateFinance(row).lucroJs)}`,
         `Tipo de parceria: ${row.TIPO_PARCERIA || '—'}`,
         `Próxima ação: ${row.PROXIMA_ACAO || '—'}`,
