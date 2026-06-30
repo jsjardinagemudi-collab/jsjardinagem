@@ -921,7 +921,7 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V2.4</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V3.0</span>
           </div>
         </div>
 
@@ -1097,6 +1097,22 @@
     const SESSION_KEY = 'js_servicos_disponiveis_autorizado';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
     const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz8_yJjs7RvuPGRyBqt0_3PveaOY6inMKiRQnf12zo3cTSQiaHSz3aJze9c53v9Z1QOTg/exec';
+
+    // V3.0 — Configuração central do portal.
+    // Hoje estes valores ficam aqui. Na próxima etapa, podemos puxar tudo de uma aba CONFIG_OPERACIONAL_JS.
+    const CONFIG = {
+      horasDiaria: 8,
+      diarias: {
+        lider: 240,
+        jardineiro: 180,
+        auxiliar: 120
+      },
+      aliases: {
+        lider: ['VALOR_HORA_LIDER','HORA_LIDER','VALOR_LIDER_HORA'],
+        jardineiro: ['VALOR_HORA_JARDINEIRO','HORA_JARDINEIRO','VALOR_JARDINEIRO_HORA'],
+        auxiliar: ['VALOR_HORA_AUXILIAR','HORA_AUXILIAR','VALOR_AUXILIAR_HORA']
+      }
+    };
     
     let allRows = [];
     let filteredRows = [];
@@ -1315,9 +1331,17 @@
       return digits.startsWith('55') ? digits : `55${digits}`;
     }
 
+    function getServiceLookupId(row) {
+      const candidates = [row.ID_SHORT, row.ID_SERVICO, row.CHAVE_SERVICO, row.ID_CALCULO];
+      const clean = candidates
+        .map(v => String(v || '').trim())
+        .find(v => v && !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v));
+      return clean || String(row.ID_SERVICO || row.CHAVE_SERVICO || row.ID_CALCULO || row.ID_SHORT || '').trim();
+    }
+
     function buildPegarServicoLink(row) {
-    const id = String(row.ID_SHORT || '').trim();
-    return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
+      const id = getServiceLookupId(row);
+      return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
     }
 
 
@@ -1333,10 +1357,10 @@
 
     function calculateFinance(row) {
       const DAILY_RATES = {
-        lider: 240,
-        jardineiro: 170,
-        auxiliar: 120,
-        horasDiaria: 8
+        lider: CONFIG.diarias.lider,
+        jardineiro: CONFIG.diarias.jardineiro,
+        auxiliar: CONFIG.diarias.auxiliar,
+        horasDiaria: CONFIG.horasDiaria
       };
 
       const horas = firstAvailableNumber(row, ['HORAS','QTD_HORAS','HORAS_SERVICO'], 0);
@@ -1457,7 +1481,7 @@
           </div>
 
           <p class="finance-note">
-            Base fixa usada pelo portal: Líder ${formatBRL(240)}/8h, Jardineiro ${formatBRL(170)}/8h e Auxiliar ${formatBRL(120)}/8h. O valor principal de cada cargo mostra quanto cada pessoa recebe pelo serviço.
+            Base V3.0 usada pelo portal: Líder ${formatBRL(CONFIG.diarias.lider)}/${CONFIG.horasDiaria}h, Jardineiro ${formatBRL(CONFIG.diarias.jardineiro)}/${CONFIG.horasDiaria}h e Auxiliar ${formatBRL(CONFIG.diarias.auxiliar)}/${CONFIG.horasDiaria}h. O valor principal de cada cargo mostra quanto cada pessoa recebe pelo serviço.
           </p>
         </div>
       `;
@@ -1605,7 +1629,7 @@
         const financeHtml = buildFinancePanel(row);
 
         const safeResumo = escapeHtml(buildResumo(row));
-        const safeId = escapeHtml(row.ID_SHORT || '');
+        const safeId = escapeHtml(getServiceLookupId(row) || '');
         const pegarLink = buildPegarServicoLink(row);
 
         return `
@@ -1707,7 +1731,7 @@
                 </a>
               ` : ''}
 
-              <a class="btn btn-gold btn-sm" href="https://script.google.com/macros/s/AKfycbyKppawEn7eMq-N_Mf9rO15ja2fgj8RZBWToWiBGAYYasoTrnb8Lz0xip2limHaEpFrmg/exec?page=aceite-servico">
+              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}" target="_blank" rel="noopener">
   Pegar serviço
 </a>
             </div>
