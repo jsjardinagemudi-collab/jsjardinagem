@@ -4,713 +4,761 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Loja Oficial | Peças e Acessórios Motocross</title>
+  <title>Peças e Acessórios | Flavim Junior 100</title>
 
   <style>
     :root {
-      --dark: #070707;
-      --black: #111;
-      --orange: #ff5a00;
-      --yellow: #ffd000;
-      --green: #22c55e;
-      --white: #ffffff;
-      --gray: #b8b8b8;
-      --card: rgba(255,255,255,0.08);
-      --glass: rgba(255,255,255,0.12);
-      --border: rgba(255,255,255,0.14);
+      --dark:#050505;
+      --blue:#0057ff;
+      --white:#fff;
+      --gray:#c9c9c9;
+      --card:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.16);
+      --whats:#25D366;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--dark);
+      color:var(--white);
+      overflow-x:hidden;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--dark);
-      color: var(--white);
-      overflow-x: hidden;
+    a{text-decoration:none;color:inherit}
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:100;
+      padding:12px 5%;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .brand{
+      font-weight:950;
+      text-transform:uppercase;
+      font-size:15px;
     }
 
-    header {
-      min-height: 76vh;
+    .brand span{color:var(--blue)}
+
+    .top-actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .top-btn{
+      font-size:12px;
+      font-weight:900;
+      padding:9px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    .top-btn.primary{
+      background:var(--blue);
+      border-color:var(--blue);
+    }
+
+    header{
+      min-height:92vh;
+      display:flex;
+      align-items:flex-end;
+      padding:120px 6% 42px;
       background:
-        linear-gradient(120deg, rgba(0,0,0,.96), rgba(0,0,0,.45)),
-        radial-gradient(circle at top right, rgba(255,90,0,.45), transparent 35%),
-        linear-gradient(135deg, #111, #000);
-      display: flex;
-      align-items: center;
-      padding: 40px 7%;
-      position: relative;
-      overflow: hidden;
+        linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.94) 86%),
+        radial-gradient(circle at right,rgba(0,87,255,.38),transparent 38%),
+        linear-gradient(135deg,#111,#000);
+      position:relative;
+      overflow:hidden;
     }
 
-    header::after {
-      content: "MX";
-      position: absolute;
-      right: -30px;
-      bottom: -80px;
-      font-size: 280px;
-      font-weight: 900;
-      color: rgba(255,255,255,.05);
-      z-index: 0;
+    header::after{
+      content:"PEÇAS MX";
+      position:absolute;
+      right:-45px;
+      bottom:15px;
+      font-size:100px;
+      font-weight:950;
+      color:rgba(255,255,255,.045);
+      pointer-events:none;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 820px;
+    .hero-content{
+      max-width:860px;
+      position:relative;
+      z-index:2;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 10px 18px;
-      border: 1px solid rgba(255,255,255,.25);
-      border-radius: 50px;
-      background: var(--glass);
-      backdrop-filter: blur(12px);
-      margin-bottom: 22px;
-      color: var(--yellow);
-      font-weight: bold;
-      letter-spacing: 1px;
-      font-size: 14px;
+    .badge{
+      display:inline-flex;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(0,87,255,.22);
+      border:1px solid rgba(255,255,255,.18);
+      color:#dbe8ff;
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:1px;
+      margin-bottom:14px;
     }
 
-    h1 {
-      font-size: clamp(40px, 7vw, 88px);
-      line-height: .95;
-      text-transform: uppercase;
-      font-weight: 900;
-      margin-bottom: 20px;
+    h1{
+      font-size:clamp(42px,11vw,86px);
+      line-height:.92;
+      font-weight:950;
+      text-transform:uppercase;
+      margin-bottom:16px;
     }
 
-    h1 span {
-      color: var(--orange);
+    h1 span{color:var(--blue)}
+
+    .subtitle{
+      color:#ededed;
+      font-size:clamp(17px,4.5vw,23px);
+      line-height:1.45;
+      max-width:760px;
+      margin-bottom:20px;
     }
 
-    .subtitle {
-      font-size: 21px;
-      color: #ddd;
-      max-width: 760px;
-      margin-bottom: 32px;
-      line-height: 1.5;
+    .buttons{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:18px;
     }
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:15px 16px;
+      border-radius:15px;
+      font-weight:900;
+      transition:.25s;
+      border:1px solid rgba(255,255,255,.14);
+      min-height:52px;
+      cursor:pointer;
+      font-size:15px;
     }
 
-    .btn {
-      padding: 16px 24px;
-      border-radius: 14px;
-      font-weight: bold;
-      transition: .3s;
-      display: inline-block;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
+    .btn:hover{transform:translateY(-3px);filter:brightness(1.05)}
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--blue),#38bdf8);
+      color:white;
+      border-color:transparent;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--orange), var(--yellow));
-      color: #111;
+    .btn-secondary{
+      background:rgba(255,255,255,.1);
+      color:white;
     }
 
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,.3);
-      background: rgba(255,255,255,.08);
-      color: white;
+    .btn-whats{
+      background:var(--whats);
+      color:white;
+      border-color:transparent;
     }
 
-    .btn-green {
-      background: var(--green);
-      color: white;
+    section{padding:64px 6%}
+
+    .section-title{
+      font-size:clamp(30px,8vw,54px);
+      line-height:1;
+      text-transform:uppercase;
+      margin-bottom:15px;
+      font-weight:950;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      filter: brightness(.95);
+    .section-title span{color:var(--blue)}
+
+    .section-text{
+      color:var(--gray);
+      font-size:17px;
+      line-height:1.7;
+      max-width:900px;
+      margin-bottom:28px;
     }
 
-    section {
-      padding: 70px 7%;
+    .info-grid,.grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
     }
 
-    .section-title {
-      font-size: clamp(30px, 5vw, 54px);
-      margin-bottom: 18px;
-      text-transform: uppercase;
+    .info,.card,.portal-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 20px 50px rgba(0,0,0,.28);
+      transition:.25s;
     }
 
-    .section-title span {
-      color: var(--orange);
+    .info:hover,.card:hover,.portal-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(0,87,255,.75);
     }
 
-    .section-text {
-      color: var(--gray);
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 880px;
-      margin-bottom: 35px;
+    .info h3,.card h3,.portal-card h3{
+      color:#8fb5ff;
+      font-size:21px;
+      margin-bottom:10px;
+      text-transform:uppercase;
     }
 
-    .painel {
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 22px;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    .info p,.card p,.portal-card p{
+      color:#ddd;
+      line-height:1.6;
+      font-size:15px;
     }
 
-    .filtros {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 12px;
-      margin-bottom: 18px;
+    .painel{
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.38);
     }
 
-    input, select {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.1);
-      color: white;
-      font-size: 14px;
-      outline: none;
+    .filtros{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-bottom:16px;
     }
 
-    input::placeholder {
-      color: #ccc;
+    input,select,textarea{
+      width:100%;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.35);
+      color:white;
+      font-size:15px;
+      outline:none;
     }
 
-    select option {
-      color: #111;
+    input::placeholder,textarea::placeholder{color:#999}
+    select option{color:#111}
+    textarea{min-height:100px;resize:vertical}
+
+    .resumo{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
     }
 
-    .resumo {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
+    .pill{
+      background:rgba(0,87,255,.16);
+      border:1px solid rgba(255,255,255,.14);
+      padding:9px 13px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      color:#dbe8ff;
     }
 
-    .pill {
-      background: rgba(255,255,255,.09);
-      border: 1px solid var(--border);
-      padding: 9px 13px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: bold;
-      color: var(--yellow);
+    .layout{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      align-items:start;
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 20px;
-      align-items: start;
+    .produtos-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    .produto-card{
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:9px;
     }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.25);
-      transition: .3s;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 255px;
+    .cat{
+      font-size:12px;
+      font-weight:950;
+      color:#8fb5ff;
+      text-transform:uppercase;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255,90,0,.65);
+    .produto-card h3{
+      font-size:21px;
+      line-height:1.2;
     }
 
-    .cat {
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--yellow);
-      text-transform: uppercase;
-      letter-spacing: .5px;
+    .codigo{
+      display:inline-flex;
+      align-self:flex-start;
+      background:#000;
+      color:#8fb5ff;
+      border:1px solid rgba(0,87,255,.6);
+      border-radius:10px;
+      padding:7px 10px;
+      font-size:13px;
+      font-weight:950;
     }
 
-    .card h3 {
-      font-size: 21px;
-      line-height: 1.2;
+    .marca,.aplicacao{
+      color:#ddd;
+      font-size:14px;
+      line-height:1.5;
     }
 
-    .codigo {
-      display: inline-flex;
-      align-self: flex-start;
-      background: #000;
-      color: var(--orange);
-      border: 1px solid rgba(255,90,0,.5);
-      border-radius: 10px;
-      padding: 7px 10px;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: .5px;
+    .price{
+      color:#38bdf8;
+      font-size:22px;
+      font-weight:950;
+      margin-top:auto;
     }
 
-    .marca, .aplicacao {
-      color: #ddd;
-      font-size: 14px;
-      line-height: 1.5;
+    .acoes{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:8px;
+      margin-top:6px;
     }
 
-    .price {
-      color: var(--orange);
-      font-size: 24px;
-      font-weight: 900;
-      margin-top: auto;
+    aside{
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:0 18px 45px rgba(0,0,0,.32);
     }
 
-    .acoes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 6px;
+    aside h2{
+      font-size:24px;
+      margin-bottom:8px;
     }
 
-    aside {
-      position: sticky;
-      top: 14px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 22px;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.3);
+    .nota{
+      color:var(--gray);
+      font-size:13px;
+      line-height:1.5;
+      margin-bottom:12px;
     }
 
-    aside h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
+    .vazio{
+      background:rgba(0,87,255,.12);
+      border:1px solid rgba(0,87,255,.28);
+      color:#dbe8ff;
+      border-radius:14px;
+      padding:13px;
+      font-size:14px;
+      margin:10px 0;
     }
 
-    .nota {
-      color: var(--gray);
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: 12px;
+    .item-lista{
+      border-bottom:1px dashed rgba(255,255,255,.2);
+      padding:11px 0;
+      font-size:14px;
     }
 
-    .vazio {
-      background: rgba(255,208,0,.1);
-      border: 1px solid rgba(255,208,0,.25);
-      color: #ffe89c;
-      border-radius: 14px;
-      padding: 13px;
-      font-size: 14px;
-      margin: 10px 0;
+    .item-lista strong{display:block;color:white}
+    .item-lista small{color:var(--gray)}
+
+    .form-box{
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:22px;
+      max-width:980px;
     }
 
-    .item-lista {
-      border-bottom: 1px dashed rgba(255,255,255,.2);
-      padding: 11px 0;
-      font-size: 14px;
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
     }
 
-    .item-lista strong {
-      display: block;
-      color: white;
+    label{
+      font-size:13px;
+      color:#dbe8ff;
+      font-weight:950;
+      text-transform:uppercase;
+      display:block;
+      margin-bottom:6px;
     }
 
-    .item-lista small {
-      color: var(--gray);
+    .preview{
+      margin-top:16px;
+      padding:16px;
+      background:rgba(0,0,0,.28);
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius:18px;
+      color:#ddd;
+      font-size:14px;
+      line-height:1.55;
+      white-space:pre-wrap;
     }
 
-    .info-grid {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .info {
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 20px;
-    }
-
-    .info h3 {
-      color: var(--yellow);
-      margin-bottom: 8px;
-      font-size: 19px;
-    }
-
-    .info p {
-      color: #ddd;
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .cta {
-      text-align: center;
+    .cta{
+      text-align:center;
       background:
-        linear-gradient(135deg, rgba(255,90,0,.35), rgba(255,208,0,.18)),
-        #090909;
+        linear-gradient(135deg,rgba(0,87,255,.42),rgba(56,189,248,.14)),
+        #050505;
     }
 
-    .cta h2 {
-      font-size: clamp(34px, 6vw, 68px);
-      text-transform: uppercase;
-      margin-bottom: 18px;
+    .cta h2{
+      font-size:clamp(34px,9vw,66px);
+      text-transform:uppercase;
+      line-height:.98;
+      margin-bottom:16px;
     }
 
-    .cta p {
-      color: #eee;
-      font-size: 20px;
-      max-width: 760px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
+    .cta p{
+      color:#eee;
+      font-size:18px;
+      line-height:1.6;
+      max-width:760px;
+      margin:0 auto 24px;
     }
 
-    footer {
-      padding: 30px 7%;
-      text-align: center;
-      background: #030303;
-      color: #999;
-      font-size: 14px;
+    footer{
+      background:#030303;
+      color:#999;
+      text-align:center;
+      padding:30px 6% 95px;
+      font-size:13px;
+      line-height:1.6;
     }
 
-    .floating-whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      background: #25D366;
-      color: white;
-      padding: 16px 20px;
-      border-radius: 50px;
-      font-weight: bold;
-      z-index: 99;
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    .floating-whatsapp{
+      position:fixed;
+      left:16px;
+      right:16px;
+      bottom:15px;
+      background:var(--whats);
+      color:white;
+      padding:15px 18px;
+      border-radius:999px;
+      font-weight:950;
+      z-index:120;
+      box-shadow:0 10px 34px rgba(0,0,0,.48);
+      text-align:center;
     }
 
-    @media(max-width: 1050px) {
-      .layout {
-        grid-template-columns: 1fr;
+    @media(min-width:820px){
+      .topbar{padding:16px 7%}
+      .brand{font-size:18px}
+      .top-btn{font-size:13px;padding:10px 14px}
+      header{padding:130px 7% 70px}
+      section{padding:84px 7%}
+      .buttons{display:flex;flex-wrap:wrap}
+      .buttons .btn{min-width:190px}
+      .info-grid{grid-template-columns:repeat(3,1fr)}
+      .grid{grid-template-columns:repeat(3,1fr)}
+      .filtros{grid-template-columns:2fr 1fr 1fr auto}
+      .layout{grid-template-columns:1fr 360px}
+      aside{position:sticky;top:90px}
+      .produtos-grid{grid-template-columns:repeat(3,1fr)}
+      .acoes{grid-template-columns:1fr 1fr}
+      .form-grid{grid-template-columns:repeat(2,1fr)}
+      .full{grid-column:1/-1}
+      .floating-whatsapp{
+        left:auto;
+        right:22px;
+        bottom:22px;
+        width:auto;
+        padding:16px 22px;
       }
-
-      aside {
-        position: static;
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .filtros {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
+      footer{padding-bottom:34px}
     }
 
-    @media(max-width: 650px) {
-      header {
-        min-height: auto;
-        padding-top: 80px;
-        padding-bottom: 70px;
-      }
-
-      .subtitle {
-        font-size: 18px;
-      }
-
-      section {
-        padding: 55px 6%;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .filtros {
-        grid-template-columns: 1fr;
-      }
-
-      .acoes {
-        grid-template-columns: 1fr;
-      }
-
-      .floating-whatsapp {
-        left: 18px;
-        right: 18px;
-        text-align: center;
-      }
+    @media(max-width:520px){
+      .top-actions .hide-mobile{display:none}
+      header{min-height:88vh}
     }
   </style>
 </head>
 
 <body>
 
-  <a class="floating-whatsapp" href="https://wa.me/553498405105" target="_blank">
-    Comprar pelo WhatsApp
+<nav class="topbar">
+  <a class="brand" href="https://jardinagemudi.com.br/flavinhomx.html">
+    Flavim <span>Peças MX</span>
   </a>
 
-  <header>
-    <div class="hero-content">
-      <div class="badge">LOJA PARCEIRA • PEÇAS • ACESSÓRIOS • MOTOCROSS</div>
+  <div class="top-actions">
+    <a class="top-btn hide-mobile" href="https://www.instagram.com/eaiflavim" target="_blank">@eaiflavim</a>
+    <a class="top-btn primary" href="https://jardinagemudi.com.br/flavinhomx.html">Home</a>
+  </div>
+</nav>
 
-      <h1>
-        Peças e acessórios<br>
-        para <span>pilotos</span>
-      </h1>
+<a class="floating-whatsapp" href="#catalogo">
+  Cotar peças no WhatsApp
+</a>
 
-      <p class="subtitle">
-        Catálogo oficial do patrocinador do Flavinho Junior 100. Encontre peças, acessórios e itens essenciais para motos, trilha, treino e competição.
-      </p>
+<header>
+  <div class="hero-content">
+    <div class="badge">LAQUILA • PEÇAS • ACESSÓRIOS • REVENDA • MOTOCROSS</div>
 
-      <div class="hero-buttons">
-        <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
-        <a href="#pedido" class="btn btn-secondary">Montar pedido</a>
-      </div>
-    </div>
-  </header>
+    <h1>
+      Peças e acessórios<br>
+      para <span>motos</span>
+    </h1>
 
-  <section>
-    <h2 class="section-title">Loja parceira do <span>Flavinho Junior 100</span></h2>
-
-    <p class="section-text">
-      Esta página foi criada para valorizar o patrocinador e facilitar a venda direta pelo WhatsApp.
-      O cliente pode buscar por código, aplicação, modelo da moto, categoria ou marca, montar uma lista e enviar o pedido em poucos cliques.
+    <p class="subtitle">
+      Catálogo rápido do patrocinador do Flavim Junior 100.
+      Peças para manutenção, reposição, trilha, rua e motocross.
+      Também atendemos revendedores, lojistas e oficinas.
     </p>
 
-    <div class="info-grid">
-      <div class="info">
-        <h3>Venda rápida</h3>
-        <p>O cliente monta o pedido direto na página e envia para atendimento no WhatsApp.</p>
-      </div>
-
-      <div class="info">
-        <h3>Busca inteligente</h3>
-        <p>Pesquisa por nome, código, categoria, marca ou aplicação da moto.</p>
-      </div>
-
-      <div class="info">
-        <h3>Vitrine de patrocinador</h3>
-        <p>A loja ganha uma página com visual forte, moderno e ligada ao projeto do piloto.</p>
-      </div>
+    <div class="buttons">
+      <a href="#catalogo" class="btn btn-primary">Ver peças</a>
+      <a href="#pedido-aberto" class="btn btn-secondary">Pedir peça específica</a>
+      <a href="https://jardinagemudi.com.br/flavinhomx.html" class="btn btn-secondary">Voltar para Home</a>
     </div>
-  </section>
+  </div>
+</header>
 
-  <section id="catalogo">
-    <h2 class="section-title">Catálogo <span>digital</span></h2>
+<section>
+  <h2 class="section-title">Fornecedor direto <span>para quem revende</span></h2>
 
-    <p class="section-text">
-      Escolha as peças, adicione na lista e envie para cotação, separação ou compra pelo WhatsApp.
-    </p>
+  <p class="section-text">
+    Além da venda para consumidor final, essa página também ajuda lojistas,
+    oficinas e revendedores a enviarem pedidos de cotação com mais organização.
+  </p>
 
-    <div class="painel">
-      <div class="filtros">
-        <input id="busca" type="search" placeholder="Buscar por nome, código, modelo ou aplicação. Ex: BIZ 125, filtro, 1102174..." />
+  <div class="info-grid">
+    <div class="info">
+      <h3>Preço para lojista</h3>
+      <p>Condições especiais para revendedores, oficinas e lojas de peças.</p>
+    </div>
 
-        <select id="categoria">
-          <option value="">Todas categorias</option>
+    <div class="info">
+      <h3>Catálogo amplo</h3>
+      <p>Se a peça não estiver na lista, envie moto, modelo, ano e nome da peça.</p>
+    </div>
+
+    <div class="info">
+      <h3>Atendimento manual</h3>
+      <p>Recebemos o pedido pelo WhatsApp e conferimos disponibilidade no catálogo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo">
+  <h2 class="section-title">Peças mais <span>procuradas</span></h2>
+
+  <p class="section-text">
+    Começamos com uma lista prática de peças de manutenção e reposição. Depois podemos
+    aumentar a lista com os códigos oficiais do catálogo do patrocinador.
+  </p>
+
+  <div class="painel">
+    <div class="filtros">
+      <input id="busca" type="search" placeholder="Buscar por nome, moto, modelo, código ou categoria. Ex: CG 160, filtro, pastilha..." />
+
+      <select id="categoria">
+        <option value="">Todas categorias</option>
+      </select>
+
+      <select id="marca">
+        <option value="">Todas marcas</option>
+      </select>
+
+      <button class="btn btn-secondary" onclick="limparFiltros()">Limpar</button>
+    </div>
+
+    <div class="resumo">
+      <span class="pill" id="totalProdutos">0 produtos</span>
+      <span class="pill">Carrinho por WhatsApp</span>
+      <span class="pill">Revenda e lojistas</span>
+      <span class="pill">Consultar disponibilidade</span>
+    </div>
+
+    <div class="layout">
+      <div>
+        <div class="produtos-grid" id="listaProdutos"></div>
+      </div>
+
+      <aside id="pedido">
+        <h2>Lista do pedido</h2>
+        <p class="nota">
+          Adicione as peças e envie para confirmar valor, estoque e prazo.
+        </p>
+
+        <div id="carrinho"></div>
+
+        <button class="btn btn-whats" style="width:100%;" onclick="enviarWhatsApp()">
+          Enviar carrinho no WhatsApp
+        </button>
+
+        <button class="btn btn-secondary" style="margin-top:8px;width:100%;" onclick="limparCarrinho()">
+          Limpar lista
+        </button>
+
+        <p class="nota" style="margin-top:14px;">
+          Atendimento para consumidor, oficina, loja e revendedor.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="pedido-aberto">
+  <h2 class="section-title">Não achou a peça? <span>Peça por aqui</span></h2>
+
+  <p class="section-text">
+    Preencha os dados da moto e a peça desejada. A mensagem será enviada pronta pelo WhatsApp
+    para conferirmos manualmente no catálogo.
+  </p>
+
+  <div class="form-box">
+    <div class="form-grid">
+      <div>
+        <label>Nome</label>
+        <input id="clienteNome" type="text" placeholder="Seu nome">
+      </div>
+
+      <div>
+        <label>Você é</label>
+        <select id="tipoCliente">
+          <option>Consumidor final</option>
+          <option>Revendedor / lojista</option>
+          <option>Oficina mecânica</option>
+          <option>Equipe / piloto</option>
         </select>
-
-        <select id="marca">
-          <option value="">Todas marcas</option>
-        </select>
-
-        <button class="btn btn-secondary" onclick="limparFiltros()">Limpar busca</button>
       </div>
 
-      <div class="resumo">
-        <span class="pill" id="totalProdutos">0 produtos</span>
-        <span class="pill">Pedido pelo WhatsApp</span>
-        <span class="pill">Peças e acessórios</span>
-        <span class="pill">Patrocinador oficial</span>
+      <div>
+        <label>Telefone</label>
+        <input id="clienteTelefone" type="text" placeholder="Seu WhatsApp">
       </div>
 
-      <div class="layout">
-        <div>
-          <div class="grid" id="listaProdutos"></div>
-        </div>
-
-        <aside id="pedido">
-          <h2>Lista do pedido</h2>
-          <p class="nota">
-            Adicione os produtos desejados e envie para a loja confirmar valor, disponibilidade e entrega.
-          </p>
-
-          <div id="carrinho"></div>
-
-          <button class="btn btn-green" onclick="enviarWhatsApp()">Enviar pedido no WhatsApp</button>
-
-          <button class="btn btn-secondary" style="margin-top:8px;width:100%;" onclick="limparCarrinho()">
-            Limpar lista
-          </button>
-
-          <p class="nota" style="margin-top:14px;">
-            Envie seu pedido completo para verificar disponibilidade do produto <b>Entregas no mesmo dia!</b>.
-          </p>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Mais que uma loja, uma <span>estrutura para pilotos</span></h2>
-
-    <div class="info-grid">
-      <div class="info">
-        <h3>Para treino</h3>
-        <p>Itens de manutenção, reposição e preparação para quem precisa manter a moto pronta.</p>
+      <div>
+        <label>Cidade</label>
+        <input id="clienteCidade" type="text" placeholder="Ex: Uberlândia-MG">
       </div>
 
-      <div class="info">
-        <h3>Para competição</h3>
-        <p>Peças selecionadas para reduzir parada, aumentar confiança e melhorar desempenho.</p>
+      <div>
+        <label>Marca da moto</label>
+        <input id="motoMarca" type="text" placeholder="Ex: Honda, Yamaha, Kawasaki...">
       </div>
 
-      <div class="info">
-        <h3>Para o dia a dia</h3>
-        <p>Catálogo prático para balcão, WhatsApp, orçamento e separação rápida de pedidos.</p>
+      <div>
+        <label>Modelo da moto</label>
+        <input id="motoModelo" type="text" placeholder="Ex: CG 160, CRF 230, YZ 250...">
+      </div>
+
+      <div>
+        <label>Ano da moto</label>
+        <input id="motoAno" type="text" placeholder="Ex: 2022">
+      </div>
+
+      <div>
+        <label>Cilindrada</label>
+        <input id="motoCilindrada" type="text" placeholder="Ex: 160cc, 230cc, 250cc">
+      </div>
+
+      <div class="full">
+        <label>Qual peça você procura?</label>
+        <textarea id="pecaDesejada" placeholder="Ex: relação completa, filtro de ar, cabo de embreagem, pastilha, vela, kit cilindro..."></textarea>
+      </div>
+
+      <div class="full">
+        <label>Observações</label>
+        <textarea id="observacoes" placeholder="Quantidade, urgência, atacado, revenda, código da peça, foto enviada depois..."></textarea>
       </div>
     </div>
-  </section>
 
-  <section class="cta">
-    <h2>Precisa de uma peça?</h2>
-    <p>
-      Monte sua lista agora e fale direto com a loja parceira do Flavinho Junior 100.
-      Atendimento rápido para cotação, disponibilidade e compra.
-    </p>
+    <div class="buttons">
+      <button class="btn btn-primary" onclick="montarPedidoAberto()">Gerar mensagem</button>
+      <button class="btn btn-whats" onclick="enviarPedidoAberto()">Enviar no WhatsApp</button>
+    </div>
 
-    <a class="btn btn-primary" href="#catalogo">
-      Escolher peças agora
+    <div id="previewAberto" class="preview">A mensagem do pedido aparecerá aqui.</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Continue no <span>portal</span></h2>
+
+  <div class="grid">
+    <a class="portal-card" href="https://jardinagemudi.com.br/flavinhomx.html">
+      <h3>Home</h3>
+      <p>Voltar para a página principal do Flavim Junior 100.</p>
     </a>
-  </section>
 
-  <footer>
-    Loja parceira • Flavinho Junior 100 • Motocross • Catálogo digital de peças e acessórios
-  </footer>
+    <a class="portal-card" href="mxschool.html">
+      <h3>MX School</h3>
+      <p>Curso de pilotagem com inscrição pelo WhatsApp.</p>
+    </a>
+
+    <a class="portal-card" href="motosmx.html">
+      <h3>Motos MX</h3>
+      <p>Ver motos de motocross à venda.</p>
+    </a>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Quer comprar ou revender?</h2>
+
+  <p>
+    Monte sua lista, envie o pedido e consulte condições especiais para revenda,
+    lojistas, oficinas e pilotos.
+  </p>
+
+  <div class="buttons" style="max-width:720px;margin:0 auto;">
+    <a class="btn btn-whats" href="#catalogo">Montar pedido</a>
+    <a class="btn btn-secondary" href="#pedido-aberto">Pedir peça específica</a>
+  </div>
+</section>
+
+<footer>
+  Loja parceira • Flavim Junior 100 • Peças e acessórios para motos<br>
+  Instagram: @eaiflavim • WhatsApp de peças: 34 98405-105
+</footer>
 
 <script>
-const NUMERO_WHATSAPP = "5534999999999"; // troque pelo WhatsApp da loja
+const NUMERO_WHATSAPP = "553498405105";
 
 const produtos = [
-  {
-    nome: "Biela Completa",
-    codigo: "1210152",
-    categoria: "Motor / Bielas",
-    marca: "TXK",
-    aplicacao: "RD 125, RD 135, RDZ 135, TT 125",
-    preco: "Consultar"
-  },
-  {
-    nome: "Cabo de Acelerador (A)",
-    codigo: "1105279",
-    categoria: "Cabos / Acelerador",
-    marca: "K-CABOS",
-    aplicacao: "Scooter Elite 125",
-    preco: "Consultar"
-  },
-  {
-    nome: "Disco com Pastilha de Freio Dianteiro",
-    codigo: "1105975",
-    categoria: "Freios / Disco com Pastilha",
-    marca: "Referência",
-    aplicacao: "Scooter PCX 150",
-    preco: "Consultar"
-  },
-  {
-    nome: "Filtro de Ar Completo Especial",
-    codigo: "1103993",
-    categoria: "Filtros / Filtro de Ar",
-    marca: "Referência",
-    aplicacao: "CG 125, CG 150 | Esportivo Cônico 45 mm",
-    preco: "Consultar"
-  },
-  {
-    nome: "Kit Cilindro",
-    codigo: "1102174",
-    categoria: "Motor / Kit Cilindro",
-    marca: "Referência",
-    aplicacao: "BIZ 125 | Cilindro + pistão + anel",
-    preco: "Consultar"
-  },
-  {
-    nome: "Kit Transmissão",
-    codigo: "1104966",
-    categoria: "Transmissão / Kit Relação",
-    marca: "DAROM",
-    aplicacao: "BIZ 100 | 428Hx108Lx35Tx15T",
-    preco: "Consultar"
-  },
-  {
-    nome: "Painel de Instrumentos",
-    codigo: "1103320",
-    categoria: "Elétrica / Painel",
-    marca: "Referência",
-    aplicacao: "NXR BROS 150 | Amarelo",
-    preco: "Consultar"
-  },
-  {
-    nome: "Válvula de Admissão e Escape",
-    codigo: "1104492",
-    categoria: "Motor / Válvulas",
-    marca: "Referência",
-    aplicacao: "XRE 190 | Par",
-    preco: "Consultar"
-  },
-  {
-    nome: "Cabo de Embreagem",
-    codigo: "EDITAR",
-    categoria: "Cabos / Embreagem",
-    marca: "A preencher",
-    aplicacao: "Adicionar modelo da moto",
-    preco: "Consultar"
-  },
-  {
-    nome: "Pastilha de Freio",
-    codigo: "EDITAR",
-    categoria: "Freios / Pastilhas",
-    marca: "A preencher",
-    aplicacao: "Adicionar modelo da moto",
-    preco: "Consultar"
-  },
-  {
-    nome: "Filtro de Óleo",
-    codigo: "EDITAR",
-    categoria: "Filtros / Filtro de Óleo",
-    marca: "A preencher",
-    aplicacao: "Adicionar modelo da moto",
-    preco: "Consultar"
-  },
-  {
-    nome: "Retentor de Bengala",
-    codigo: "EDITAR",
-    categoria: "Suspensão / Retentor",
-    marca: "A preencher",
-    aplicacao: "Adicionar modelo da moto",
-    preco: "Consultar"
-  }
+  {nome:"Kit Relação Completo", codigo:"CONSULTAR", categoria:"Transmissão", marca:"Laquila / parceiros", aplicacao:"CG, Titan, Fan, Bros, Biz, Pop, motos diversas", preco:"Consultar"},
+  {nome:"Pastilha de Freio Dianteira", codigo:"CONSULTAR", categoria:"Freios", marca:"Laquila / parceiros", aplicacao:"Honda, Yamaha, Kawasaki, Suzuki e outras", preco:"Consultar"},
+  {nome:"Pastilha de Freio Traseira", codigo:"CONSULTAR", categoria:"Freios", marca:"Laquila / parceiros", aplicacao:"Modelos nacionais e importados", preco:"Consultar"},
+  {nome:"Lona de Freio", codigo:"CONSULTAR", categoria:"Freios", marca:"Laquila / parceiros", aplicacao:"Motos de rua e trabalho", preco:"Consultar"},
+  {nome:"Filtro de Ar", codigo:"CONSULTAR", categoria:"Filtros", marca:"Laquila / parceiros", aplicacao:"CG, Bros, Biz, Pop, CRF, Tornado e outras", preco:"Consultar"},
+  {nome:"Filtro de Óleo", codigo:"CONSULTAR", categoria:"Filtros", marca:"Laquila / parceiros", aplicacao:"Diversos modelos", preco:"Consultar"},
+  {nome:"Vela de Ignição", codigo:"CONSULTAR", categoria:"Elétrica / Ignição", marca:"Laquila / parceiros", aplicacao:"Motos carburadas e injetadas", preco:"Consultar"},
+  {nome:"Cabo de Embreagem", codigo:"CONSULTAR", categoria:"Cabos", marca:"Laquila / parceiros", aplicacao:"CG, Fan, Titan, Bros, Fazer e outras", preco:"Consultar"},
+  {nome:"Cabo de Acelerador", codigo:"CONSULTAR", categoria:"Cabos", marca:"Laquila / parceiros", aplicacao:"Motos nacionais e scooters", preco:"Consultar"},
+  {nome:"Cabo de Freio", codigo:"CONSULTAR", categoria:"Cabos", marca:"Laquila / parceiros", aplicacao:"Motos com freio a tambor", preco:"Consultar"},
+  {nome:"Manete de Embreagem", codigo:"CONSULTAR", categoria:"Comandos", marca:"Laquila / parceiros", aplicacao:"Honda, Yamaha, trilha e rua", preco:"Consultar"},
+  {nome:"Manete de Freio", codigo:"CONSULTAR", categoria:"Comandos", marca:"Laquila / parceiros", aplicacao:"Modelos diversos", preco:"Consultar"},
+  {nome:"Retrovisor", codigo:"CONSULTAR", categoria:"Acessórios", marca:"Laquila / parceiros", aplicacao:"Par ou unidade para modelos diversos", preco:"Consultar"},
+  {nome:"Relação Coroa e Pinhão", codigo:"CONSULTAR", categoria:"Transmissão", marca:"Laquila / parceiros", aplicacao:"Troca parcial ou kit completo", preco:"Consultar"},
+  {nome:"Corrente de Transmissão", codigo:"CONSULTAR", categoria:"Transmissão", marca:"Laquila / parceiros", aplicacao:"428, 520 e outras medidas", preco:"Consultar"},
+  {nome:"Pneu Dianteiro", codigo:"CONSULTAR", categoria:"Pneus", marca:"Laquila / parceiros", aplicacao:"Rua, trilha e motocross", preco:"Consultar"},
+  {nome:"Pneu Traseiro", codigo:"CONSULTAR", categoria:"Pneus", marca:"Laquila / parceiros", aplicacao:"Rua, trilha e motocross", preco:"Consultar"},
+  {nome:"Câmara de Ar", codigo:"CONSULTAR", categoria:"Pneus", marca:"Laquila / parceiros", aplicacao:"Aro 14, 17, 18, 19, 21 e outros", preco:"Consultar"},
+  {nome:"Retentor de Bengala", codigo:"CONSULTAR", categoria:"Suspensão", marca:"Laquila / parceiros", aplicacao:"Motos nacionais, trilha e motocross", preco:"Consultar"},
+  {nome:"Bateria de Moto", codigo:"CONSULTAR", categoria:"Elétrica", marca:"Laquila / parceiros", aplicacao:"Motos de partida elétrica e scooters", preco:"Consultar"}
 ];
 
 let carrinho = [];
@@ -722,54 +770,50 @@ const marca = document.getElementById("marca");
 const totalProdutos = document.getElementById("totalProdutos");
 const carrinhoBox = document.getElementById("carrinho");
 
-function normalizar(txt) {
-  return (txt || "")
-    .toString()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+function normalizar(txt){
+  return (txt || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 }
 
-function unico(arr) {
-  return [...new Set(arr)].sort((a, b) => a.localeCompare(b));
+function unico(arr){
+  return [...new Set(arr)].sort((a,b)=>a.localeCompare(b));
 }
 
-function carregarFiltros() {
-  unico(produtos.map(p => p.categoria)).forEach(c => {
-    const option = document.createElement("option");
-    option.value = c;
-    option.textContent = c;
+function carregarFiltros(){
+  unico(produtos.map(p=>p.categoria)).forEach(c=>{
+    const option=document.createElement("option");
+    option.value=c;
+    option.textContent=c;
     categoria.appendChild(option);
   });
 
-  unico(produtos.map(p => p.marca)).forEach(m => {
-    const option = document.createElement("option");
-    option.value = m;
-    option.textContent = m;
+  unico(produtos.map(p=>p.marca)).forEach(m=>{
+    const option=document.createElement("option");
+    option.value=m;
+    option.textContent=m;
     marca.appendChild(option);
   });
 }
 
-function filtrar() {
-  const q = normalizar(busca.value);
-  const cat = categoria.value;
-  const mar = marca.value;
+function filtrar(){
+  const q=normalizar(busca.value);
+  const cat=categoria.value;
+  const mar=marca.value;
 
-  const filtrados = produtos.filter(p => {
-    const texto = normalizar(`${p.nome} ${p.codigo} ${p.categoria} ${p.marca} ${p.aplicacao}`);
+  const filtrados=produtos.filter(p=>{
+    const texto=normalizar(`${p.nome} ${p.codigo} ${p.categoria} ${p.marca} ${p.aplicacao}`);
     return (!q || texto.includes(q)) &&
-           (!cat || p.categoria === cat) &&
-           (!mar || p.marca === mar);
+           (!cat || p.categoria===cat) &&
+           (!mar || p.marca===mar);
   });
 
   renderProdutos(filtrados);
 }
 
-function renderProdutos(dados) {
-  totalProdutos.textContent = `${dados.length} produto${dados.length !== 1 ? "s" : ""}`;
+function renderProdutos(dados){
+  totalProdutos.textContent=`${dados.length} produto${dados.length!==1?"s":""}`;
 
-  lista.innerHTML = dados.map(p => `
-    <article class="card">
+  lista.innerHTML=dados.map((p,index)=>`
+    <article class="produto-card">
       <span class="cat">${p.categoria}</span>
       <h3>${p.nome}</h3>
       <span class="codigo">Cód. ${p.codigo}</span>
@@ -778,78 +822,134 @@ function renderProdutos(dados) {
       <div class="price">${p.preco}</div>
 
       <div class="acoes">
-        <button class="btn btn-green" onclick="addCarrinho('${p.codigo}', '${p.nome}')">Adicionar</button>
-        <button class="btn btn-secondary" onclick="copiarProduto('${p.codigo}', '${p.nome}')">Copiar</button>
+        <button class="btn btn-whats" onclick="addCarrinho(${index})">Adicionar</button>
+        <button class="btn btn-secondary" onclick="copiarProduto(${index})">Copiar</button>
       </div>
     </article>
   `).join("") || `
     <div class="vazio">
-      Nenhum produto encontrado. Tente buscar por código, modelo da moto, categoria ou nome da peça.
+      Nenhum produto encontrado. Use o formulário de pedido específico para consultar manualmente.
     </div>
   `;
 }
 
-function addCarrinho(codigo, nome) {
-  const p = produtos.find(x => x.codigo === codigo && x.nome === nome);
-  if (!p) return;
+function addCarrinho(index){
+  const filtrados = produtos.filter(p=>{
+    const q=normalizar(busca.value);
+    const cat=categoria.value;
+    const mar=marca.value;
+    const texto=normalizar(`${p.nome} ${p.codigo} ${p.categoria} ${p.marca} ${p.aplicacao}`);
+    return (!q || texto.includes(q)) &&
+           (!cat || p.categoria===cat) &&
+           (!mar || p.marca===mar);
+  });
+
+  const p=filtrados[index];
+  if(!p) return;
 
   carrinho.push(p);
   renderCarrinho();
 }
 
-function renderCarrinho() {
-  if (carrinho.length === 0) {
-    carrinhoBox.innerHTML = `<div class="vazio">Nenhum item adicionado.</div>`;
+function renderCarrinho(){
+  if(carrinho.length===0){
+    carrinhoBox.innerHTML=`<div class="vazio">Nenhum item adicionado.</div>`;
     return;
   }
 
-  carrinhoBox.innerHTML = carrinho.map((p, i) => `
+  carrinhoBox.innerHTML=carrinho.map((p,i)=>`
     <div class="item-lista">
-      <strong>${i + 1}. ${p.nome}</strong>
-      <small>Cód: ${p.codigo} | ${p.aplicacao}</small>
+      <strong>${i+1}. ${p.nome}</strong>
+      <small>${p.categoria} | ${p.aplicacao}</small>
     </div>
   `).join("");
 }
 
-function copiarProduto(codigo, nome) {
-  const p = produtos.find(x => x.codigo === codigo && x.nome === nome);
-  if (!p) return;
+function copiarProduto(index){
+  const p=produtos[index];
+  if(!p) return;
 
-  const texto = `${p.nome} | Código: ${p.codigo} | Aplicação: ${p.aplicacao} | Preço: ${p.preco}`;
-  navigator.clipboard.writeText(texto).then(() => {
-    alert("Produto copiado.");
-  });
+  const texto=`${p.nome} | Código: ${p.codigo} | Aplicação: ${p.aplicacao} | Preço: ${p.preco}`;
+  navigator.clipboard.writeText(texto).then(()=>alert("Produto copiado."));
 }
 
-function limparFiltros() {
-  busca.value = "";
-  categoria.value = "";
-  marca.value = "";
+function limparFiltros(){
+  busca.value="";
+  categoria.value="";
+  marca.value="";
   filtrar();
 }
 
-function limparCarrinho() {
-  carrinho = [];
+function limparCarrinho(){
+  carrinho=[];
   renderCarrinho();
 }
 
-function enviarWhatsApp() {
-  if (carrinho.length === 0) {
+function enviarWhatsApp(){
+  if(carrinho.length===0){
     alert("Adicione pelo menos uma peça.");
     return;
   }
 
-  const linhas = carrinho.map((p, i) =>
-    `${i + 1}. ${p.nome}%0ACódigo: ${p.codigo}%0AAplicação: ${p.aplicacao}%0APreço: ${p.preco}`
-  ).join("%0A%0A");
+  const linhas=carrinho.map((p,i)=>
+    `${i+1}. ${p.nome}
+Categoria: ${p.categoria}
+Código: ${p.codigo}
+Aplicação: ${p.aplicacao}
+Preço: ${p.preco}`
+  ).join("\n\n");
 
-  const msg = `Olá, venho através do site do Flavinho e gostaria de cotar/comprar estas peças:%0A%0A${linhas}`;
-  window.open(`https://wa.me/${5534998405105}?text=${msg}`, "_blank");
+  const msg=`Olá, venho através do site do Flavim Junior 100 e gostaria de cotar/comprar estas peças:
+
+${linhas}
+
+Também gostaria de saber disponibilidade, valor e condição para consumidor/revenda.`;
+
+  window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`,"_blank");
 }
 
-busca.addEventListener("input", filtrar);
-categoria.addEventListener("change", filtrar);
-marca.addEventListener("change", filtrar);
+function campo(id){
+  return document.getElementById(id).value.trim() || "Não informado";
+}
+
+function criarTextoPedidoAberto(){
+  return `Olá, venho através do site do Flavim Junior 100 e gostaria de consultar uma peça.
+
+DADOS DO CLIENTE
+Nome: ${campo("clienteNome")}
+Tipo de cliente: ${campo("tipoCliente")}
+Telefone: ${campo("clienteTelefone")}
+Cidade: ${campo("clienteCidade")}
+
+DADOS DA MOTO
+Marca: ${campo("motoMarca")}
+Modelo: ${campo("motoModelo")}
+Ano: ${campo("motoAno")}
+Cilindrada: ${campo("motoCilindrada")}
+
+PEÇA DESEJADA
+${campo("pecaDesejada")}
+
+OBSERVAÇÕES
+${campo("observacoes")}
+
+Por favor, conferir disponibilidade, valor e condição de compra/revenda.`;
+}
+
+function montarPedidoAberto(){
+  const texto=criarTextoPedidoAberto();
+  document.getElementById("previewAberto").textContent=texto;
+  return texto;
+}
+
+function enviarPedidoAberto(){
+  const texto=montarPedidoAberto();
+  window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(texto)}`,"_blank");
+}
+
+busca.addEventListener("input",filtrar);
+categoria.addEventListener("change",filtrar);
+marca.addEventListener("change",filtrar);
 
 carregarFiltros();
 filtrar();
