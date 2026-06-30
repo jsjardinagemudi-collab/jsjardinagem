@@ -322,7 +322,21 @@
       z-index: 99;
       box-shadow: 0 10px 30px rgba(0,0,0,.4);
     }
+.video-box {
+  margin-top: 30px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: #000;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
 
+.video-box video {
+  width: 100%;
+  display: block;
+  max-height: 680px;
+  background: #000;
+}
     @media(max-width: 700px) {
       .hero {
         padding-top: 80px;
@@ -449,14 +463,12 @@
       </div>
     </div>
 
-    <div class="video-placeholder">
-      <div>
-        <div class="play">▶</div>
-        <h3>Espaço para vídeo oficial do piloto</h3>
-        <p style="color:#ccc; margin-top:10px;">
-          Aqui pode entrar um vídeo de apresentação, melhores momentos ou convite para patrocinadores.
-        </p>
-      </div>
+    <div class="video-box">
+  <video controls playsinline preload="metadata">
+    <source src="flavinho-promo.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo em HTML5.
+  </video>
+</div>
     </div>
   </section>
 
