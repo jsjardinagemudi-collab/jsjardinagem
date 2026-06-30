@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flavinho Junior 100 | Motocross Sponsorship</title>
+
+  <title>Loja Oficial | Peças e Acessórios Motocross</title>
 
   <style>
     :root {
@@ -11,10 +12,12 @@
       --black: #111;
       --orange: #ff5a00;
       --yellow: #ffd000;
+      --green: #22c55e;
       --white: #ffffff;
       --gray: #b8b8b8;
       --card: rgba(255,255,255,0.08);
       --glass: rgba(255,255,255,0.12);
+      --border: rgba(255,255,255,0.14);
     }
 
     * {
@@ -35,10 +38,10 @@
       color: inherit;
     }
 
-    .hero {
-      min-height: 100vh;
+    header {
+      min-height: 76vh;
       background:
-        linear-gradient(120deg, rgba(0,0,0,.95), rgba(0,0,0,.45)),
+        linear-gradient(120deg, rgba(0,0,0,.96), rgba(0,0,0,.45)),
         radial-gradient(circle at top right, rgba(255,90,0,.45), transparent 35%),
         linear-gradient(135deg, #111, #000);
       display: flex;
@@ -48,11 +51,11 @@
       overflow: hidden;
     }
 
-    .hero::after {
-      content: "100";
+    header::after {
+      content: "MX";
       position: absolute;
-      right: -40px;
-      bottom: -90px;
+      right: -30px;
+      bottom: -80px;
       font-size: 280px;
       font-weight: 900;
       color: rgba(255,255,255,.05);
@@ -62,7 +65,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      max-width: 820px;
     }
 
     .badge {
@@ -80,7 +83,7 @@
     }
 
     h1 {
-      font-size: clamp(44px, 8vw, 96px);
+      font-size: clamp(40px, 7vw, 88px);
       line-height: .95;
       text-transform: uppercase;
       font-weight: 900;
@@ -92,9 +95,9 @@
     }
 
     .subtitle {
-      font-size: 22px;
+      font-size: 21px;
       color: #ddd;
-      max-width: 680px;
+      max-width: 760px;
       margin-bottom: 32px;
       line-height: 1.5;
     }
@@ -111,6 +114,9 @@
       font-weight: bold;
       transition: .3s;
       display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
     }
 
     .btn-primary {
@@ -121,18 +127,25 @@
     .btn-secondary {
       border: 1px solid rgba(255,255,255,.3);
       background: rgba(255,255,255,.08);
+      color: white;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: white;
     }
 
     .btn:hover {
       transform: translateY(-3px);
+      filter: brightness(.95);
     }
 
     section {
-      padding: 80px 7%;
+      padding: 70px 7%;
     }
 
     .section-title {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(30px, 5vw, 54px);
       margin-bottom: 18px;
       text-transform: uppercase;
     }
@@ -145,140 +158,212 @@
       color: var(--gray);
       font-size: 18px;
       line-height: 1.7;
-      max-width: 850px;
-      margin-bottom: 40px;
+      max-width: 880px;
+      margin-bottom: 35px;
+    }
+
+    .painel {
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 22px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .filtros {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.1);
+      color: white;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    select option {
+      color: #111;
+    }
+
+    .resumo {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,.09);
+      border: 1px solid var(--border);
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--yellow);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 20px;
+      align-items: start;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
     .card {
       background: var(--card);
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 28px;
+      padding: 22px;
       backdrop-filter: blur(12px);
-      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
       transition: .3s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 255px;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      border-color: rgba(255,90,0,.6);
+      border-color: rgba(255,90,0,.65);
+    }
+
+    .cat {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: .5px;
     }
 
     .card h3 {
-      color: var(--yellow);
-      margin-bottom: 14px;
-      font-size: 22px;
+      font-size: 21px;
+      line-height: 1.2;
     }
 
-    .card p {
-      color: #ddd;
-      line-height: 1.6;
-    }
-
-    .stats {
-      background:
-        linear-gradient(135deg, rgba(255,90,0,.2), rgba(255,208,0,.08)),
-        #0d0d0d;
-    }
-
-    .stat-number {
-      font-size: 46px;
-      font-weight: 900;
+    .codigo {
+      display: inline-flex;
+      align-self: flex-start;
+      background: #000;
       color: var(--orange);
-      margin-bottom: 8px;
+      border: 1px solid rgba(255,90,0,.5);
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .5px;
     }
 
-    .timeline {
-      border-left: 3px solid var(--orange);
-      padding-left: 28px;
-      display: grid;
-      gap: 26px;
-      max-width: 850px;
-    }
-
-    .timeline-item {
-      background: rgba(255,255,255,.06);
-      padding: 22px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.1);
-    }
-
-    .timeline-item strong {
-      color: var(--yellow);
-      display: block;
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-
-    .sponsor {
-      background:
-        radial-gradient(circle at left, rgba(255,90,0,.28), transparent 35%),
-        linear-gradient(135deg, #080808, #151515);
+    .marca, .aplicacao {
+      color: #ddd;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .price {
-      font-size: 34px;
       color: var(--orange);
+      font-size: 24px;
       font-weight: 900;
-      margin: 15px 0;
+      margin-top: auto;
     }
 
-    .package-list {
-      list-style: none;
+    .acoes {
       display: grid;
-      gap: 10px;
-      color: #ddd;
-      margin-top: 16px;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 6px;
     }
 
-    .package-list li::before {
-      content: "✓ ";
+    aside {
+      position: sticky;
+      top: 14px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 22px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.3);
+    }
+
+    aside h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .nota {
+      color: var(--gray);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .vazio {
+      background: rgba(255,208,0,.1);
+      border: 1px solid rgba(255,208,0,.25);
+      color: #ffe89c;
+      border-radius: 14px;
+      padding: 13px;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .item-lista {
+      border-bottom: 1px dashed rgba(255,255,255,.2);
+      padding: 11px 0;
+      font-size: 14px;
+    }
+
+    .item-lista strong {
+      display: block;
+      color: white;
+    }
+
+    .item-lista small {
+      color: var(--gray);
+    }
+
+    .info-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .info {
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .info h3 {
       color: var(--yellow);
-      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 19px;
     }
 
-    .tech-box {
-      background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 28px;
-      padding: 34px;
-      margin-top: 30px;
-    }
-
-    .video-placeholder {
-      min-height: 360px;
-      border-radius: 28px;
-      background:
-        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.85)),
-        radial-gradient(circle, rgba(255,90,0,.45), transparent 45%),
-        #1a1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,.12);
-      margin-top: 30px;
-      padding: 30px;
-    }
-
-    .play {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--orange), var(--yellow));
-      color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 38px;
-      margin: 0 auto 20px;
-      font-weight: bold;
+    .info p {
+      color: #ddd;
+      line-height: 1.6;
+      font-size: 15px;
     }
 
     .cta {
@@ -289,9 +374,9 @@
     }
 
     .cta h2 {
-      font-size: clamp(34px, 6vw, 70px);
+      font-size: clamp(34px, 6vw, 68px);
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .cta p {
@@ -323,9 +408,33 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.4);
     }
 
-    @media(max-width: 700px) {
-      .hero {
+    @media(max-width: 1050px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      aside {
+        position: static;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filtros {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 650px) {
+      header {
+        min-height: auto;
         padding-top: 80px;
+        padding-bottom: 70px;
       }
 
       .subtitle {
@@ -333,7 +442,19 @@
       }
 
       section {
-        padding: 60px 6%;
+        padding: 55px 6%;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filtros {
+        grid-template-columns: 1fr;
+      }
+
+      .acoes {
+        grid-template-columns: 1fr;
       }
 
       .floating-whatsapp {
@@ -348,226 +469,392 @@
 <body>
 
   <a class="floating-whatsapp" href="https://wa.me/5534999999999" target="_blank">
-    Falar sobre patrocínio
+    Comprar pelo WhatsApp
   </a>
 
-  <header class="hero">
+  <header>
     <div class="hero-content">
-      <div class="badge">MOTOCROSS • UBERLÂNDIA • Nº 100</div>
+      <div class="badge">LOJA PARCEIRA • PEÇAS • ACESSÓRIOS • MOTOCROSS</div>
 
       <h1>
-        Flavinho<br>
-        Junior <span>100</span>
+        Peças e acessórios<br>
+        para <span>pilotos</span>
       </h1>
 
       <p class="subtitle">
-        Um piloto em evolução, uma marca em movimento e uma oportunidade real para empresas que querem aparecer com força no esporte, nas redes sociais e nos eventos de motocross.
+        Catálogo oficial do patrocinador do Flavinho Junior 100. Encontre peças, acessórios e itens essenciais para motos, trilha, treino e competição.
       </p>
 
       <div class="hero-buttons">
-        <a href="#patrocinio" class="btn btn-primary">Ver cotas de patrocínio</a>
-        <a href="#midia" class="btn btn-secondary">Conhecer o projeto</a>
+        <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+        <a href="#pedido" class="btn btn-secondary">Montar pedido</a>
       </div>
     </div>
   </header>
 
   <section>
-    <h2 class="section-title">O piloto <span>e a história</span></h2>
+    <h2 class="section-title">Loja parceira do <span>Flavinho Junior 100</span></h2>
+
     <p class="section-text">
-      Flavinho Junior 100 representa garra, velocidade, disciplina e presença. O projeto nasce para transformar a trajetória do piloto em uma vitrine profissional para patrocinadores, conectando esporte, comunidade, conteúdo digital e exposição de marca.
+      Esta página foi criada para valorizar o patrocinador e facilitar a venda direta pelo WhatsApp.
+      O cliente pode buscar por código, aplicação, modelo da moto, categoria ou marca, montar uma lista e enviar o pedido em poucos cliques.
     </p>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Identidade forte</h3>
-        <p>Número 100, visual marcante e presença esportiva preparada para destacar marcas em motos, uniformes, boxes, vídeos e redes sociais.</p>
+    <div class="info-grid">
+      <div class="info">
+        <h3>Venda rápida</h3>
+        <p>O cliente monta o pedido direto na página e envia para atendimento no WhatsApp.</p>
       </div>
 
-      <div class="card">
-        <h3>Conteúdo digital</h3>
-        <p>Produção de vídeos, bastidores, treinos, provas, depoimentos e ativações com patrocinadores.</p>
+      <div class="info">
+        <h3>Busca inteligente</h3>
+        <p>Pesquisa por nome, código, categoria, marca ou aplicação da moto.</p>
       </div>
 
-      <div class="card">
-        <h3>Comunidade local</h3>
-        <p>Conexão direta com o público de Uberlândia, região e apaixonados por motocross.</p>
+      <div class="info">
+        <h3>Vitrine de patrocinador</h3>
+        <p>A loja ganha uma página com visual forte, moderno e ligada ao projeto do piloto.</p>
       </div>
     </div>
   </section>
 
-  <section class="stats">
-    <h2 class="section-title">Por que <span>patrocinar?</span></h2>
+  <section id="catalogo">
+    <h2 class="section-title">Catálogo <span>digital</span></h2>
+
     <p class="section-text">
-      O motocross entrega emoção, impacto visual e alto poder de lembrança. Uma marca bem posicionada nesse ambiente não aparece apenas como anúncio: ela vira parte da história do piloto.
+      Escolha as peças, adicione na lista e envie para cotação, separação ou compra pelo WhatsApp.
     </p>
 
-    <div class="grid">
-      <div class="card">
-        <div class="stat-number">100</div>
-        <p>Número oficial do piloto, fácil de memorizar e forte para campanhas.</p>
+    <div class="painel">
+      <div class="filtros">
+        <input id="busca" type="search" placeholder="Buscar por nome, código, modelo ou aplicação. Ex: BIZ 125, filtro, 1102174..." />
+
+        <select id="categoria">
+          <option value="">Todas categorias</option>
+        </select>
+
+        <select id="marca">
+          <option value="">Todas marcas</option>
+        </select>
+
+        <button class="btn btn-secondary" onclick="limparFiltros()">Limpar busca</button>
       </div>
 
-      <div class="card">
-        <div class="stat-number">360º</div>
-        <p>Exposição em moto, uniforme, redes sociais, boxes, banners e eventos.</p>
+      <div class="resumo">
+        <span class="pill" id="totalProdutos">0 produtos</span>
+        <span class="pill">Pedido pelo WhatsApp</span>
+        <span class="pill">Peças e acessórios</span>
+        <span class="pill">Patrocinador oficial</span>
       </div>
 
-      <div class="card">
-        <div class="stat-number">24/7</div>
-        <p>Marca ativa também fora das pistas, com conteúdo publicado durante toda a temporada.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="midia">
-    <h2 class="section-title">Projeto com <span>tecnologia</span></h2>
-    <p class="section-text">
-      A proposta inclui recursos modernos para impressionar patrocinadores e valorizar a marca apoiadora.
-    </p>
-
-    <div class="tech-box">
-      <div class="grid">
-        <div class="card">
-          <h3>QR Code do piloto</h3>
-          <p>QR Code nos materiais para levar o público direto para página, Instagram, WhatsApp ou campanha do patrocinador.</p>
+      <div class="layout">
+        <div>
+          <div class="grid" id="listaProdutos"></div>
         </div>
 
-        <div class="card">
-          <h3>Mini mídia kit digital</h3>
-          <p>Uma página moderna para apresentar histórico, fotos, vídeos, conquistas, agenda e patrocinadores.</p>
-        </div>
+        <aside id="pedido">
+          <h2>Lista do pedido</h2>
+          <p class="nota">
+            Adicione os produtos desejados e envie para a loja confirmar valor, disponibilidade e entrega.
+          </p>
 
-        <div class="card">
-          <h3>Relatório ao patrocinador</h3>
-          <p>Entrega de registros mensais com fotos, posts, provas, treinos e presença da marca.</p>
-        </div>
+          <div id="carrinho"></div>
 
-        <div class="card">
-          <h3>Vídeos de impacto</h3>
-          <p>Reels, stories e vídeos curtos mostrando treino, evolução, bastidores e agradecimento aos apoiadores.</p>
-        </div>
-      </div>
-    </div>
+          <button class="btn btn-green" onclick="enviarWhatsApp()">Enviar pedido no WhatsApp</button>
 
-    <div class="video-placeholder">
-      <div>
-        <div class="play">▶</div>
-        <h3>Espaço para vídeo oficial do piloto</h3>
-        <p style="color:#ccc; margin-top:10px;">
-          Aqui pode entrar um vídeo de apresentação, melhores momentos ou convite para patrocinadores.
-        </p>
+          <button class="btn btn-secondary" style="margin-top:8px;width:100%;" onclick="limparCarrinho()">
+            Limpar lista
+          </button>
+
+          <p class="nota" style="margin-top:14px;">
+            Troque o número do WhatsApp no código na variável <b>NUMERO_WHATSAPP</b>.
+          </p>
+        </aside>
       </div>
     </div>
   </section>
 
   <section>
-    <h2 class="section-title">Plano de <span>evolução</span></h2>
+    <h2 class="section-title">Mais que uma loja, uma <span>estrutura para pilotos</span></h2>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <strong>Fase 1 — Estruturação da imagem</strong>
-        Criação do visual profissional, página digital, fotos, vídeos e materiais para patrocinadores.
+    <div class="info-grid">
+      <div class="info">
+        <h3>Para treino</h3>
+        <p>Itens de manutenção, reposição e preparação para quem precisa manter a moto pronta.</p>
       </div>
 
-      <div class="timeline-item">
-        <strong>Fase 2 — Treinos e presença digital</strong>
-        Publicações constantes mostrando evolução, rotina, bastidores e exposição dos apoiadores.
+      <div class="info">
+        <h3>Para competição</h3>
+        <p>Peças selecionadas para reduzir parada, aumentar confiança e melhorar desempenho.</p>
       </div>
 
-      <div class="timeline-item">
-        <strong>Fase 3 — Competições e ativações</strong>
-        Participação em provas, divulgação dos resultados e presença da marca nos eventos.
-      </div>
-
-      <div class="timeline-item">
-        <strong>Fase 4 — Expansão regional</strong>
-        Fortalecer o nome Flavinho Junior 100 como atleta e vitrine esportiva para empresas parceiras.
-      </div>
-    </div>
-  </section>
-
-  <section id="patrocinio" class="sponsor">
-    <h2 class="section-title">Cotas de <span>patrocínio</span></h2>
-    <p class="section-text">
-      Os valores podem ser ajustados conforme o objetivo da empresa. A ideia é criar uma relação justa: apoio real para o piloto e retorno visível para o patrocinador.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Apoiador Bronze</h3>
-        <div class="price">R$ 300/mês</div>
-        <ul class="package-list">
-          <li>Logo na página do piloto</li>
-          <li>Menção em stories</li>
-          <li>Agradecimento público mensal</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Patrocinador Prata</h3>
-        <div class="price">R$ 700/mês</div>
-        <ul class="package-list">
-          <li>Logo em destaque na página</li>
-          <li>Posts mensais com marca</li>
-          <li>Aplicação em uniforme ou box</li>
-          <li>Relatório mensal de exposição</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Patrocinador Ouro</h3>
-        <div class="price">R$ 1.500/mês</div>
-        <ul class="package-list">
-          <li>Logo em destaque premium</li>
-          <li>Presença na moto/uniforme</li>
-          <li>Vídeos exclusivos com marca</li>
-          <li>Ativações em eventos</li>
-          <li>Preferência em campanhas especiais</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Para empresas que querem <span>aparecer diferente</span></h2>
-    <p class="section-text">
-      Patrocinar o Flavinho Junior 100 é entrar em um projeto esportivo com cara profissional, apelo visual forte e potencial de crescimento. Não é apenas colocar uma logo: é fazer parte de uma jornada.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Ideal para</h3>
-        <p>Lojas, oficinas, marcas automotivas, alimentação, academias, construtoras, empresas locais e negócios que querem visibilidade regional.</p>
-      </div>
-
-      <div class="card">
-        <h3>Entrega para o patrocinador</h3>
-        <p>Exposição, conteúdo, associação com esporte, energia, superação e presença em eventos.</p>
-      </div>
-
-      <div class="card">
-        <h3>Diferencial</h3>
-        <p>Projeto com página própria, QR Code, mídia kit digital e apresentação profissional desde o início.</p>
+      <div class="info">
+        <h3>Para o dia a dia</h3>
+        <p>Catálogo prático para balcão, WhatsApp, orçamento e separação rápida de pedidos.</p>
       </div>
     </div>
   </section>
 
   <section class="cta">
-    <h2>Vamos acelerar juntos?</h2>
+    <h2>Precisa de uma peça?</h2>
     <p>
-      Sua marca pode estar ao lado do Flavinho Junior 100 dentro e fora das pistas.
-      Entre agora como patrocinador e participe da construção dessa trajetória.
+      Monte sua lista agora e fale direto com a loja parceira do Flavinho Junior 100.
+      Atendimento rápido para cotação, disponibilidade e compra.
     </p>
 
-    <a class="btn btn-primary" href="https://wa.me/5534999999999" target="_blank">
-      Quero patrocinar o Flavinho Junior 100
+    <a class="btn btn-primary" href="#catalogo">
+      Escolher peças agora
     </a>
   </section>
 
   <footer>
-    Flavinho Junior 100 • Motocross • Uberlândia-MG<br>
-    Página de apresentação para patrocinadores.
+    Loja parceira • Flavinho Junior 100 • Motocross • Catálogo digital de peças e acessórios
   </footer>
+
+<script>
+const NUMERO_WHATSAPP = "5534999999999"; // troque pelo WhatsApp da loja
+
+const produtos = [
+  {
+    nome: "Biela Completa",
+    codigo: "1210152",
+    categoria: "Motor / Bielas",
+    marca: "TXK",
+    aplicacao: "RD 125, RD 135, RDZ 135, TT 125",
+    preco: "Consultar"
+  },
+  {
+    nome: "Cabo de Acelerador (A)",
+    codigo: "1105279",
+    categoria: "Cabos / Acelerador",
+    marca: "K-CABOS",
+    aplicacao: "Scooter Elite 125",
+    preco: "Consultar"
+  },
+  {
+    nome: "Disco com Pastilha de Freio Dianteiro",
+    codigo: "1105975",
+    categoria: "Freios / Disco com Pastilha",
+    marca: "Referência",
+    aplicacao: "Scooter PCX 150",
+    preco: "Consultar"
+  },
+  {
+    nome: "Filtro de Ar Completo Especial",
+    codigo: "1103993",
+    categoria: "Filtros / Filtro de Ar",
+    marca: "Referência",
+    aplicacao: "CG 125, CG 150 | Esportivo Cônico 45 mm",
+    preco: "Consultar"
+  },
+  {
+    nome: "Kit Cilindro",
+    codigo: "1102174",
+    categoria: "Motor / Kit Cilindro",
+    marca: "Referência",
+    aplicacao: "BIZ 125 | Cilindro + pistão + anel",
+    preco: "Consultar"
+  },
+  {
+    nome: "Kit Transmissão",
+    codigo: "1104966",
+    categoria: "Transmissão / Kit Relação",
+    marca: "DAROM",
+    aplicacao: "BIZ 100 | 428Hx108Lx35Tx15T",
+    preco: "Consultar"
+  },
+  {
+    nome: "Painel de Instrumentos",
+    codigo: "1103320",
+    categoria: "Elétrica / Painel",
+    marca: "Referência",
+    aplicacao: "NXR BROS 150 | Amarelo",
+    preco: "Consultar"
+  },
+  {
+    nome: "Válvula de Admissão e Escape",
+    codigo: "1104492",
+    categoria: "Motor / Válvulas",
+    marca: "Referência",
+    aplicacao: "XRE 190 | Par",
+    preco: "Consultar"
+  },
+  {
+    nome: "Cabo de Embreagem",
+    codigo: "EDITAR",
+    categoria: "Cabos / Embreagem",
+    marca: "A preencher",
+    aplicacao: "Adicionar modelo da moto",
+    preco: "Consultar"
+  },
+  {
+    nome: "Pastilha de Freio",
+    codigo: "EDITAR",
+    categoria: "Freios / Pastilhas",
+    marca: "A preencher",
+    aplicacao: "Adicionar modelo da moto",
+    preco: "Consultar"
+  },
+  {
+    nome: "Filtro de Óleo",
+    codigo: "EDITAR",
+    categoria: "Filtros / Filtro de Óleo",
+    marca: "A preencher",
+    aplicacao: "Adicionar modelo da moto",
+    preco: "Consultar"
+  },
+  {
+    nome: "Retentor de Bengala",
+    codigo: "EDITAR",
+    categoria: "Suspensão / Retentor",
+    marca: "A preencher",
+    aplicacao: "Adicionar modelo da moto",
+    preco: "Consultar"
+  }
+];
+
+let carrinho = [];
+
+const lista = document.getElementById("listaProdutos");
+const busca = document.getElementById("busca");
+const categoria = document.getElementById("categoria");
+const marca = document.getElementById("marca");
+const totalProdutos = document.getElementById("totalProdutos");
+const carrinhoBox = document.getElementById("carrinho");
+
+function normalizar(txt) {
+  return (txt || "")
+    .toString()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function unico(arr) {
+  return [...new Set(arr)].sort((a, b) => a.localeCompare(b));
+}
+
+function carregarFiltros() {
+  unico(produtos.map(p => p.categoria)).forEach(c => {
+    const option = document.createElement("option");
+    option.value = c;
+    option.textContent = c;
+    categoria.appendChild(option);
+  });
+
+  unico(produtos.map(p => p.marca)).forEach(m => {
+    const option = document.createElement("option");
+    option.value = m;
+    option.textContent = m;
+    marca.appendChild(option);
+  });
+}
+
+function filtrar() {
+  const q = normalizar(busca.value);
+  const cat = categoria.value;
+  const mar = marca.value;
+
+  const filtrados = produtos.filter(p => {
+    const texto = normalizar(`${p.nome} ${p.codigo} ${p.categoria} ${p.marca} ${p.aplicacao}`);
+    return (!q || texto.includes(q)) &&
+           (!cat || p.categoria === cat) &&
+           (!mar || p.marca === mar);
+  });
+
+  renderProdutos(filtrados);
+}
+
+function renderProdutos(dados) {
+  totalProdutos.textContent = `${dados.length} produto${dados.length !== 1 ? "s" : ""}`;
+
+  lista.innerHTML = dados.map(p => `
+    <article class="card">
+      <span class="cat">${p.categoria}</span>
+      <h3>${p.nome}</h3>
+      <span class="codigo">Cód. ${p.codigo}</span>
+      <p class="marca"><b>Marca:</b> ${p.marca}</p>
+      <p class="aplicacao"><b>Aplicação:</b> ${p.aplicacao}</p>
+      <div class="price">${p.preco}</div>
+
+      <div class="acoes">
+        <button class="btn btn-green" onclick="addCarrinho('${p.codigo}', '${p.nome}')">Adicionar</button>
+        <button class="btn btn-secondary" onclick="copiarProduto('${p.codigo}', '${p.nome}')">Copiar</button>
+      </div>
+    </article>
+  `).join("") || `
+    <div class="vazio">
+      Nenhum produto encontrado. Tente buscar por código, modelo da moto, categoria ou nome da peça.
+    </div>
+  `;
+}
+
+function addCarrinho(codigo, nome) {
+  const p = produtos.find(x => x.codigo === codigo && x.nome === nome);
+  if (!p) return;
+
+  carrinho.push(p);
+  renderCarrinho();
+}
+
+function renderCarrinho() {
+  if (carrinho.length === 0) {
+    carrinhoBox.innerHTML = `<div class="vazio">Nenhum item adicionado.</div>`;
+    return;
+  }
+
+  carrinhoBox.innerHTML = carrinho.map((p, i) => `
+    <div class="item-lista">
+      <strong>${i + 1}. ${p.nome}</strong>
+      <small>Cód: ${p.codigo} | ${p.aplicacao}</small>
+    </div>
+  `).join("");
+}
+
+function copiarProduto(codigo, nome) {
+  const p = produtos.find(x => x.codigo === codigo && x.nome === nome);
+  if (!p) return;
+
+  const texto = `${p.nome} | Código: ${p.codigo} | Aplicação: ${p.aplicacao} | Preço: ${p.preco}`;
+  navigator.clipboard.writeText(texto).then(() => {
+    alert("Produto copiado.");
+  });
+}
+
+function limparFiltros() {
+  busca.value = "";
+  categoria.value = "";
+  marca.value = "";
+  filtrar();
+}
+
+function limparCarrinho() {
+  carrinho = [];
+  renderCarrinho();
+}
+
+function enviarWhatsApp() {
+  if (carrinho.length === 0) {
+    alert("Adicione pelo menos uma peça.");
+    return;
+  }
+
+  const linhas = carrinho.map((p, i) =>
+    `${i + 1}. ${p.nome}%0ACódigo: ${p.codigo}%0AAplicação: ${p.aplicacao}%0APreço: ${p.preco}`
+  ).join("%0A%0A");
+
+  const msg = `Olá, gostaria de cotar/comprar estas peças:%0A%0A${linhas}`;
+  window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${msg}`, "_blank");
+}
+
+busca.addEventListener("input", filtrar);
+categoria.addEventListener("change", filtrar);
+marca.addEventListener("change", filtrar);
+
+carregarFiltros();
+filtrar();
+renderCarrinho();
+</script>
 
 </body>
 </html>
