@@ -1383,12 +1383,28 @@
       const totalEquipe = totalLider + totalJardineiro + totalAuxiliar;
       const precoFinal = parseBRNumber(row.PRECO_FINAL);
       const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
-      const material = firstAvailableNumber(row, ['MATERIAL'], 0);
-      const equipamento = firstAvailableNumber(row, ['EQUIPAMENTO_LOCACAO','EQUIPAMENTO','LOCACAO'], 0);
-      const gasolina = firstAvailableNumber(row, ['GASOLINA'], 0);
-      const retiradaLixo = firstAvailableNumber(row, ['RETIRADA_LIXO'], 0);
-      const custoRiscos = firstAvailableNumber(row, ['CUSTO_RISCOS'], 0);
-      const custosOperacionais = material + equipamento + gasolina + retiradaLixo + custoRiscos;
+      const material = firstAvailableNumber(row, ['MATERIAL','CUSTO_MATERIAL'], 0);
+      const equipamento = firstAvailableNumber(row, ['EQUIPAMENTO_LOCACAO','EQUIPAMENTO','LOCACAO','CUSTO_EQUIPAMENTO'], 0);
+
+      const gasolinaDireta = firstAvailableNumber(row, ['GASOLINA','CUSTO_GASOLINA'], 0);
+      const gasolinaLitros = firstAvailableNumber(row, ['GASOLINA_LITROS','LITROS_GASOLINA'], 0);
+      const valorLitroGasolina = firstAvailableNumber(row, ['VALOR_LITRO_GASOLINA','VALOR_LITRO'], 0);
+      const gasolinaCalculada = gasolinaLitros * valorLitroGasolina;
+      const gasolina = gasolinaDireta > 0 ? gasolinaDireta : gasolinaCalculada;
+
+      const retiradaDireta = firstAvailableNumber(row, ['RETIRADA_LIXO','CUSTO_RETIRADA_LIXO'], 0);
+      const viagensCarretinha = firstAvailableNumber(row, ['VIAGENS_CARRETINHA','VIAGENS_RETIRADA','QTD_VIAGENS'], 0);
+      const custoPorViagem = firstAvailableNumber(row, ['CUSTO_POR_VIAGEM','VALOR_VIAGEM_CARRETINHA'], 0);
+      const retiradaCalculada = viagensCarretinha * custoPorViagem;
+      const retiradaLixo = retiradaDireta > 0 ? retiradaDireta : retiradaCalculada;
+
+      const custoRiscos = firstAvailableNumber(row, ['CUSTO_RISCOS','TOTAL_RISCOS_VALOR'], 0);
+      const custoOperacionalPlanilha = firstAvailableNumber(row, ['CUSTO_OPERACIONAL'], 0);
+
+      const materialEquipamento = material + equipamento;
+      const baseOperacional = materialEquipamento > 0 ? materialEquipamento : custoOperacionalPlanilha;
+
+      const custosOperacionais = baseOperacional + gasolina + retiradaLixo + custoRiscos;
       const percMaoObra = precoFinal > 0 ? (totalEquipe / precoFinal) * 100 : 0;
 
       return {
