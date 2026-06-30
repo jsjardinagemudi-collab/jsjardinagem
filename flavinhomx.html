@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flavio Machado “Juninho” | Motocross Uberlândia</title>
+  <title>Flavinho Junior 100 | Motocross Sponsorship</title>
 
   <style>
+    :root {
+      --dark: #070707;
+      --black: #111;
+      --orange: #ff5a00;
+      --yellow: #ffd000;
+      --white: #ffffff;
+      --gray: #b8b8b8;
+      --card: rgba(255,255,255,0.08);
+      --glass: rgba(255,255,255,0.12);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -13,10 +24,10 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #f5f5f5;
-      line-height: 1.6;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
     }
 
     a {
@@ -24,197 +35,311 @@
       color: inherit;
     }
 
-    header {
+    .hero {
       min-height: 100vh;
       background:
-        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)),
-        url("juninho-motocross.jpg") center/cover no-repeat;
+        linear-gradient(120deg, rgba(0,0,0,.95), rgba(0,0,0,.45)),
+        radial-gradient(circle at top right, rgba(255,90,0,.45), transparent 35%),
+        linear-gradient(135deg, #111, #000);
       display: flex;
       align-items: center;
-      padding: 40px 8%;
+      padding: 40px 7%;
+      position: relative;
+      overflow: hidden;
     }
 
-    .hero {
+    .hero::after {
+      content: "100";
+      position: absolute;
+      right: -40px;
+      bottom: -90px;
+      font-size: 280px;
+      font-weight: 900;
+      color: rgba(255,255,255,.05);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
       max-width: 760px;
     }
 
-    .tag {
+    .badge {
       display: inline-block;
-      background: #ff3c00;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 30px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50px;
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      margin-bottom: 22px;
+      color: var(--yellow);
       font-weight: bold;
-      margin-bottom: 20px;
+      letter-spacing: 1px;
       font-size: 14px;
     }
 
     h1 {
-      font-size: clamp(42px, 8vw, 82px);
-      line-height: 1;
-      margin-bottom: 18px;
+      font-size: clamp(44px, 8vw, 96px);
+      line-height: .95;
       text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 20px;
     }
 
     h1 span {
-      color: #ff3c00;
+      color: var(--orange);
     }
 
-    .hero p {
-      font-size: 20px;
+    .subtitle {
+      font-size: 22px;
       color: #ddd;
-      margin-bottom: 30px;
+      max-width: 680px;
+      margin-bottom: 32px;
+      line-height: 1.5;
     }
 
-    .buttons {
+    .hero-buttons {
       display: flex;
-      gap: 15px;
       flex-wrap: wrap;
+      gap: 14px;
     }
 
     .btn {
-      padding: 14px 22px;
-      border-radius: 8px;
+      padding: 16px 24px;
+      border-radius: 14px;
       font-weight: bold;
       transition: .3s;
+      display: inline-block;
     }
 
     .btn-primary {
-      background: #ff3c00;
-      color: white;
+      background: linear-gradient(135deg, var(--orange), var(--yellow));
+      color: #111;
     }
 
     .btn-secondary {
-      border: 1px solid #fff;
-      color: white;
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.08);
     }
 
     .btn:hover {
       transform: translateY(-3px);
-      opacity: .9;
     }
 
     section {
-      padding: 80px 8%;
+      padding: 80px 7%;
     }
 
     .section-title {
-      font-size: 36px;
-      margin-bottom: 20px;
+      font-size: clamp(32px, 5vw, 56px);
+      margin-bottom: 18px;
       text-transform: uppercase;
     }
 
     .section-title span {
-      color: #ff3c00;
+      color: var(--orange);
+    }
+
+    .section-text {
+      color: var(--gray);
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 850px;
+      margin-bottom: 40px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      margin-top: 35px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
     }
 
     .card {
-      background: #181818;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
       padding: 28px;
-      border-radius: 14px;
-      border: 1px solid #2a2a2a;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,90,0,.6);
     }
 
     .card h3 {
-      color: #ff3c00;
-      margin-bottom: 10px;
+      color: var(--yellow);
+      margin-bottom: 14px;
+      font-size: 22px;
     }
 
-    .about {
-      background: #111;
-    }
-
-    .highlight {
-      color: #ff3c00;
-      font-weight: bold;
+    .card p {
+      color: #ddd;
+      line-height: 1.6;
     }
 
     .stats {
-      background: #ff3c00;
-      color: white;
+      background:
+        linear-gradient(135deg, rgba(255,90,0,.2), rgba(255,208,0,.08)),
+        #0d0d0d;
     }
 
-    .stats .card {
-      background: rgba(255,255,255,.12);
-      border: none;
-      text-align: center;
-    }
-
-    .stats h3 {
-      color: white;
-      font-size: 42px;
+    .stat-number {
+      font-size: 46px;
+      font-weight: 900;
+      color: var(--orange);
+      margin-bottom: 8px;
     }
 
     .timeline {
-      border-left: 3px solid #ff3c00;
-      margin-top: 35px;
-      padding-left: 25px;
+      border-left: 3px solid var(--orange);
+      padding-left: 28px;
+      display: grid;
+      gap: 26px;
+      max-width: 850px;
     }
 
     .timeline-item {
-      margin-bottom: 28px;
+      background: rgba(255,255,255,.06);
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.1);
     }
 
-    .timeline-item h3 {
-      color: #ff3c00;
+    .timeline-item strong {
+      color: var(--yellow);
+      display: block;
+      margin-bottom: 8px;
+      font-size: 20px;
     }
 
     .sponsor {
-      background: #f5f5f5;
-      color: #111;
+      background:
+        radial-gradient(circle at left, rgba(255,90,0,.28), transparent 35%),
+        linear-gradient(135deg, #080808, #151515);
     }
 
-    .sponsor .card {
-      background: white;
-      border: 1px solid #ddd;
+    .price {
+      font-size: 34px;
+      color: var(--orange);
+      font-weight: 900;
+      margin: 15px 0;
     }
 
-    .sponsor .card h3 {
-      color: #ff3c00;
-    }
-
-    .testimonial {
-      font-style: italic;
+    .package-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
       color: #ddd;
+      margin-top: 16px;
     }
 
-    .contact {
+    .package-list li::before {
+      content: "✓ ";
+      color: var(--yellow);
+      font-weight: bold;
+    }
+
+    .tech-box {
+      background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 28px;
+      padding: 34px;
+      margin-top: 30px;
+    }
+
+    .video-placeholder {
+      min-height: 360px;
+      border-radius: 28px;
+      background:
+        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.85)),
+        radial-gradient(circle, rgba(255,90,0,.45), transparent 45%),
+        #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      background: #080808;
+      border: 1px solid rgba(255,255,255,.12);
+      margin-top: 30px;
+      padding: 30px;
     }
 
-    .contact p {
-      max-width: 700px;
+    .play {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange), var(--yellow));
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 20px;
+      font-weight: bold;
+    }
+
+    .cta {
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(255,90,0,.35), rgba(255,208,0,.18)),
+        #090909;
+    }
+
+    .cta h2 {
+      font-size: clamp(34px, 6vw, 70px);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      color: #eee;
+      font-size: 20px;
+      max-width: 760px;
       margin: 0 auto 30px;
-      color: #ccc;
+      line-height: 1.6;
     }
 
     footer {
+      padding: 30px 7%;
       text-align: center;
-      padding: 25px;
-      background: #000;
-      color: #aaa;
+      background: #030303;
+      color: #999;
       font-size: 14px;
     }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 30px 6%;
+    .floating-whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      background: #25D366;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      z-index: 99;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    }
+
+    @media(max-width: 700px) {
+      .hero {
+        padding-top: 80px;
+      }
+
+      .subtitle {
+        font-size: 18px;
       }
 
       section {
         padding: 60px 6%;
       }
 
-      .hero p {
-        font-size: 17px;
+      .floating-whatsapp {
+        left: 18px;
+        right: 18px;
+        text-align: center;
       }
     }
   </style>
@@ -222,215 +347,226 @@
 
 <body>
 
-  <header>
-    <div class="hero">
-      <div class="tag">Motocross • Uberlândia-MG</div>
-      <h1>Flavio Machado <span>“Juninho”</span></h1>
-      <p>
-        Piloto de motocross de Uberlândia, movido por disciplina, coragem e paixão pela velocidade.
-        Uma trajetória construída na terra, na superação e na busca por grandes resultados dentro e fora das pistas.
+  <a class="floating-whatsapp" href="https://wa.me/5534999999999" target="_blank">
+    Falar sobre patrocínio
+  </a>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">MOTOCROSS • UBERLÂNDIA • Nº 100</div>
+
+      <h1>
+        Flavinho<br>
+        Junior <span>100</span>
+      </h1>
+
+      <p class="subtitle">
+        Um piloto em evolução, uma marca em movimento e uma oportunidade real para empresas que querem aparecer com força no esporte, nas redes sociais e nos eventos de motocross.
       </p>
 
-      <div class="buttons">
-        <a href="#patrocinio" class="btn btn-primary">Seja um patrocinador</a>
-        <a href="#historia" class="btn btn-secondary">Conheça a história</a>
+      <div class="hero-buttons">
+        <a href="#patrocinio" class="btn btn-primary">Ver cotas de patrocínio</a>
+        <a href="#midia" class="btn btn-secondary">Conhecer o projeto</a>
       </div>
     </div>
   </header>
 
-  <section id="historia" class="about">
-    <h2 class="section-title">A história do <span>piloto</span></h2>
-    <p>
-      Flavio Machado, conhecido nas pistas como <span class="highlight">Juninho</span>, representa a força do motocross
-      de Uberlândia. Desde cedo, sua relação com as motos foi marcada por dedicação, treino constante e vontade de evoluir.
-    </p>
-    <br>
-    <p>
-      O motocross exige preparo físico, mentalidade forte, investimento e uma equipe comprometida. Juninho carrega esses
-      valores em sua caminhada, buscando crescer como atleta e levar o nome de seus parceiros para competições, eventos
-      e ações de visibilidade.
+  <section>
+    <h2 class="section-title">O piloto <span>e a história</span></h2>
+    <p class="section-text">
+      Flavinho Junior 100 representa garra, velocidade, disciplina e presença. O projeto nasce para transformar a trajetória do piloto em uma vitrine profissional para patrocinadores, conectando esporte, comunidade, conteúdo digital e exposição de marca.
     </p>
 
     <div class="grid">
       <div class="card">
-        <h3>Origem</h3>
-        <p>Atleta de Uberlândia-MG, conectado com o esporte, a cidade e a comunidade local.</p>
+        <h3>Identidade forte</h3>
+        <p>Número 100, visual marcante e presença esportiva preparada para destacar marcas em motos, uniformes, boxes, vídeos e redes sociais.</p>
       </div>
 
       <div class="card">
-        <h3>Perfil</h3>
-        <p>Piloto competitivo, disciplinado e focado em evolução técnica nas pistas.</p>
+        <h3>Conteúdo digital</h3>
+        <p>Produção de vídeos, bastidores, treinos, provas, depoimentos e ativações com patrocinadores.</p>
       </div>
 
       <div class="card">
-        <h3>Missão</h3>
-        <p>Representar marcas fortes, gerar visibilidade e crescer no cenário do motocross.</p>
+        <h3>Comunidade local</h3>
+        <p>Conexão direta com o público de Uberlândia, região e apaixonados por motocross.</p>
       </div>
     </div>
   </section>
 
   <section class="stats">
-    <h2 class="section-title">Números para <span>apresentação</span></h2>
+    <h2 class="section-title">Por que <span>patrocinar?</span></h2>
+    <p class="section-text">
+      O motocross entrega emoção, impacto visual e alto poder de lembrança. Uma marca bem posicionada nesse ambiente não aparece apenas como anúncio: ela vira parte da história do piloto.
+    </p>
 
     <div class="grid">
       <div class="card">
-        <h3>+00</h3>
-        <p>Competições disputadas</p>
+        <div class="stat-number">100</div>
+        <p>Número oficial do piloto, fácil de memorizar e forte para campanhas.</p>
       </div>
 
       <div class="card">
-        <h3>+00</h3>
-        <p>Pódios e conquistas</p>
+        <div class="stat-number">360º</div>
+        <p>Exposição em moto, uniforme, redes sociais, boxes, banners e eventos.</p>
       </div>
 
       <div class="card">
-        <h3>+00</h3>
-        <p>Anos de experiência</p>
-      </div>
-
-      <div class="card">
-        <h3>+00</h3>
-        <p>Pessoas alcançadas nas redes</p>
+        <div class="stat-number">24/7</div>
+        <p>Marca ativa também fora das pistas, com conteúdo publicado durante toda a temporada.</p>
       </div>
     </div>
   </section>
 
-  <section id="conquistas">
-    <h2 class="section-title">Conquistas e <span>trajetória</span></h2>
-    <p>
-      Espaço reservado para inserir os principais resultados, participações e momentos importantes da carreira.
+  <section id="midia">
+    <h2 class="section-title">Projeto com <span>tecnologia</span></h2>
+    <p class="section-text">
+      A proposta inclui recursos modernos para impressionar patrocinadores e valorizar a marca apoiadora.
     </p>
+
+    <div class="tech-box">
+      <div class="grid">
+        <div class="card">
+          <h3>QR Code do piloto</h3>
+          <p>QR Code nos materiais para levar o público direto para página, Instagram, WhatsApp ou campanha do patrocinador.</p>
+        </div>
+
+        <div class="card">
+          <h3>Mini mídia kit digital</h3>
+          <p>Uma página moderna para apresentar histórico, fotos, vídeos, conquistas, agenda e patrocinadores.</p>
+        </div>
+
+        <div class="card">
+          <h3>Relatório ao patrocinador</h3>
+          <p>Entrega de registros mensais com fotos, posts, provas, treinos e presença da marca.</p>
+        </div>
+
+        <div class="card">
+          <h3>Vídeos de impacto</h3>
+          <p>Reels, stories e vídeos curtos mostrando treino, evolução, bastidores e agradecimento aos apoiadores.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-placeholder">
+      <div>
+        <div class="play">▶</div>
+        <h3>Espaço para vídeo oficial do piloto</h3>
+        <p style="color:#ccc; margin-top:10px;">
+          Aqui pode entrar um vídeo de apresentação, melhores momentos ou convite para patrocinadores.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Plano de <span>evolução</span></h2>
 
     <div class="timeline">
       <div class="timeline-item">
-        <h3>2026 — Campeonato / Evento</h3>
-        <p>Adicionar colocação, categoria, cidade e resultado alcançado.</p>
+        <strong>Fase 1 — Estruturação da imagem</strong>
+        Criação do visual profissional, página digital, fotos, vídeos e materiais para patrocinadores.
       </div>
 
       <div class="timeline-item">
-        <h3>2025 — Campeonato / Evento</h3>
-        <p>Adicionar destaque, participação especial ou conquista relevante.</p>
+        <strong>Fase 2 — Treinos e presença digital</strong>
+        Publicações constantes mostrando evolução, rotina, bastidores e exposição dos apoiadores.
       </div>
 
       <div class="timeline-item">
-        <h3>2024 — Evolução do projeto</h3>
-        <p>Adicionar marco importante da carreira, mudança de categoria, nova moto ou crescimento técnico.</p>
+        <strong>Fase 3 — Competições e ativações</strong>
+        Participação em provas, divulgação dos resultados e presença da marca nos eventos.
+      </div>
+
+      <div class="timeline-item">
+        <strong>Fase 4 — Expansão regional</strong>
+        Fortalecer o nome Flavinho Junior 100 como atleta e vitrine esportiva para empresas parceiras.
       </div>
     </div>
   </section>
 
   <section id="patrocinio" class="sponsor">
-    <h2 class="section-title">Oportunidade para <span>patrocinadores</span></h2>
-    <p>
-      Apoiar Juninho é associar sua marca a um esporte de impacto, adrenalina, disciplina e forte presença visual.
-      O motocross oferece exposição em motos, uniformes, redes sociais, eventos, vídeos, fotos e ações promocionais.
+    <h2 class="section-title">Cotas de <span>patrocínio</span></h2>
+    <p class="section-text">
+      Os valores podem ser ajustados conforme o objetivo da empresa. A ideia é criar uma relação justa: apoio real para o piloto e retorno visível para o patrocinador.
     </p>
 
     <div class="grid">
       <div class="card">
-        <h3>Patrocínio Master</h3>
-        <p>
-          Maior destaque na moto, uniforme, redes sociais, banners e materiais oficiais do piloto.
-        </p>
+        <h3>Apoiador Bronze</h3>
+        <div class="price">R$ 300/mês</div>
+        <ul class="package-list">
+          <li>Logo na página do piloto</li>
+          <li>Menção em stories</li>
+          <li>Agradecimento público mensal</li>
+        </ul>
       </div>
 
       <div class="card">
-        <h3>Apoio Oficial</h3>
-        <p>
-          Presença da marca em peças digitais, publicações, vídeos e comunicação visual do projeto.
-        </p>
+        <h3>Patrocinador Prata</h3>
+        <div class="price">R$ 700/mês</div>
+        <ul class="package-list">
+          <li>Logo em destaque na página</li>
+          <li>Posts mensais com marca</li>
+          <li>Aplicação em uniforme ou box</li>
+          <li>Relatório mensal de exposição</li>
+        </ul>
       </div>
 
       <div class="card">
-        <h3>Parceiro Local</h3>
-        <p>
-          Ideal para empresas de Uberlândia que desejam fortalecer sua imagem apoiando o esporte regional.
-        </p>
+        <h3>Patrocinador Ouro</h3>
+        <div class="price">R$ 1.500/mês</div>
+        <ul class="package-list">
+          <li>Logo em destaque premium</li>
+          <li>Presença na moto/uniforme</li>
+          <li>Vídeos exclusivos com marca</li>
+          <li>Ativações em eventos</li>
+          <li>Preferência em campanhas especiais</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section>
-    <h2 class="section-title">Contrapartidas para <span>marcas</span></h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Logo na moto</h3>
-        <p>Aplicação da marca em local estratégico para fotos, vídeos e competições.</p>
-      </div>
-
-      <div class="card">
-        <h3>Uniforme personalizado</h3>
-        <p>Exposição da marca em camisa, colete, boné ou materiais de equipe.</p>
-      </div>
-
-      <div class="card">
-        <h3>Redes sociais</h3>
-        <p>Publicações, stories, vídeos de treino, bastidores e agradecimentos aos parceiros.</p>
-      </div>
-
-      <div class="card">
-        <h3>Eventos e ativações</h3>
-        <p>Presença em ações promocionais, fotos com clientes, visita em empresas e eventos locais.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Depoimentos</h2>
-
-    <div class="grid">
-      <div class="card">
-        <p class="testimonial">
-          “Juninho é um piloto dedicado, competitivo e comprometido com sua evolução dentro do esporte.”
-        </p>
-        <br>
-        <strong>Nome do treinador / parceiro</strong>
-      </div>
-
-      <div class="card">
-        <p class="testimonial">
-          “Apoiar o esporte local é uma forma de conectar nossa marca com disciplina, superação e comunidade.”
-        </p>
-        <br>
-        <strong>Nome do patrocinador</strong>
-      </div>
-
-      <div class="card">
-        <p class="testimonial">
-          “O motocross transmite força, coragem e presença. É uma excelente vitrine para marcas parceiras.”
-        </p>
-        <br>
-        <strong>Nome do apoiador</strong>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact">
-    <h2 class="section-title">Vamos acelerar <span>juntos?</span></h2>
-    <p>
-      Sua empresa pode fazer parte da trajetória de Flavio Machado “Juninho” e ganhar visibilidade apoiando
-      um atleta de motocross de Uberlândia.
+    <h2 class="section-title">Para empresas que querem <span>aparecer diferente</span></h2>
+    <p class="section-text">
+      Patrocinar o Flavinho Junior 100 é entrar em um projeto esportivo com cara profissional, apelo visual forte e potencial de crescimento. Não é apenas colocar uma logo: é fazer parte de uma jornada.
     </p>
 
-    <div class="buttons" style="justify-content:center;">
-      <a 
-        href="https://wa.me/5534999999999?text=Olá,%20tenho%20interesse%20em%20conhecer%20as%20opções%20de%20patrocínio%20do%20piloto%20Juninho%20Motocross."
-        class="btn btn-primary"
-        target="_blank">
-        Falar pelo WhatsApp
-      </a>
+    <div class="grid">
+      <div class="card">
+        <h3>Ideal para</h3>
+        <p>Lojas, oficinas, marcas automotivas, alimentação, academias, construtoras, empresas locais e negócios que querem visibilidade regional.</p>
+      </div>
 
-      <a href="#patrocinio" class="btn btn-secondary">
-        Ver opções de patrocínio
-      </a>
+      <div class="card">
+        <h3>Entrega para o patrocinador</h3>
+        <p>Exposição, conteúdo, associação com esporte, energia, superação e presença em eventos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Diferencial</h3>
+        <p>Projeto com página própria, QR Code, mídia kit digital e apresentação profissional desde o início.</p>
+      </div>
     </div>
+  </section>
+
+  <section class="cta">
+    <h2>Vamos acelerar juntos?</h2>
+    <p>
+      Sua marca pode estar ao lado do Flavinho Junior 100 dentro e fora das pistas.
+      Entre agora como patrocinador e participe da construção dessa trajetória.
+    </p>
+
+    <a class="btn btn-primary" href="https://wa.me/5534999999999" target="_blank">
+      Quero patrocinar o Flavinho Junior 100
+    </a>
   </section>
 
   <footer>
-    <p>
-      Flavio Machado “Juninho” • Motocross • Uberlândia-MG
-    </p>
+    Flavinho Junior 100 • Motocross • Uberlândia-MG<br>
+    Página de apresentação para patrocinadores.
   </footer>
 
 </body>
