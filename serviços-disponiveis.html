@@ -1316,7 +1316,7 @@
     }
 
     function buildPegarServicoLink(row) {
-   const idShort = 'S' + Utilities.formatDate(now, tz, 'HHmmss');
+    const id = String(row.ID_SHORT || '').trim();
     return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
     }
 
