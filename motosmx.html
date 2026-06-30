@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motos de Motocross à Venda</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 80px 8%;
+      background: linear-gradient(135deg, #111, #1f1f1f);
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(36px, 7vw, 70px);
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    header h1 span { color: #ff3c00; }
+
+    header p {
+      max-width: 760px;
+      margin: auto;
+      color: #ccc;
+      font-size: 18px;
+    }
+
+    section {
+      padding: 60px 8%;
+    }
+
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    input, select {
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      width: 100%;
+      max-width: 260px;
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .photo {
+      height: 220px;
+      background: #2b2b2b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-weight: bold;
+    }
+
+    .card-content {
+      padding: 22px;
+    }
+
+    .brand {
+      color: #ff3c00;
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      color: #ccc;
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .price {
+      font-size: 26px;
+      color: #ff3c00;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .details span {
+      background: #242424;
+      padding: 9px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      background: #ff3c00;
+      color: white;
+      padding: 13px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      opacity: .9;
+    }
+
+    .notice {
+      margin-top: 45px;
+      background: #151515;
+      border-left: 4px solid #ff3c00;
+      padding: 22px;
+      border-radius: 10px;
+      color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #000;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Motos de <span>Motocross</span></h1>
+    <p>
+      Página modelo para apresentação de motos de motocross à venda.
+      Ideal para pilotos, lojas, equipes e parceiros do esporte.
+    </p>
+  </header>
+
+  <section>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Buscar por modelo, marca ou cilindrada..." />
+
+      <select id="brandFilter">
+        <option value="">Todas as marcas</option>
+        <option value="Honda">Honda</option>
+        <option value="Yamaha">Yamaha</option>
+        <option value="Kawasaki">Kawasaki</option>
+        <option value="KTM">KTM</option>
+        <option value="Husqvarna">Husqvarna</option>
+        <option value="Suzuki">Suzuki</option>
+      </select>
+
+      <select id="ccFilter">
+        <option value="">Todas as cilindradas</option>
+        <option value="85cc">85cc</option>
+        <option value="125cc">125cc</option>
+        <option value="250cc">250cc</option>
+        <option value="450cc">450cc</option>
+      </select>
+    </div>
+
+    <div class="grid" id="bikeGrid">
+
+      <div class="card" data-brand="Honda" data-cc="250cc">
+        <div class="photo">FOTO DA MOTO</div>
+        <div class="card-content">
+          <div class="brand">Honda</div>
+          <h2>CRF 250R</h2>
+          <p class="info">Moto preparada para pista, ideal para treinos e competições.</p>
+          <div class="price">R$ 00.000</div>
+          <div class="details">
+            <span>Ano: 2022</span>
+            <span>Motor: 250cc</span>
+            <span>Partida: Elétrica</span>
+            <span>Status: Disponível</span>
+          </div>
+          <a class="btn" target="_blank" href="https://wa.me/5534999999999?text=Tenho%20interesse%20na%20Honda%20CRF%20250R">
+            Tenho interesse
+          </a>
+        </div>
+      </div>
+
+      <div class="card" data-brand="Yamaha" data-cc="250cc">
+        <div class="photo">FOTO DA MOTO</div>
+        <div class="card-content">
+          <div class="brand">Yamaha</div>
+          <h2>YZ 250F</h2>
+          <p class="info">Modelo forte, leve e muito procurado no motocross.</p>
+          <div class="price">R$ 00.000</div>
+          <div class="details">
+            <span>Ano: 2021</span>
+            <span>Motor: 250cc</span>
+            <span>Uso: Pista</span>
+            <span>Status: Disponível</span>
+          </div>
+          <a class="btn" target="_blank" href="https://wa.me/5534999999999?text=Tenho%20interesse%20na%20Yamaha%20YZ%20250F">
+            Tenho interesse
+          </a>
+        </div>
+      </div>
+
+      <div class="card" data-brand="Kawasaki" data-cc="450cc">
+        <div class="photo">FOTO DA MOTO</div>
+        <div class="card-content">
+          <div class="brand">Kawasaki</div>
+          <h2>KX 450</h2>
+          <p class="info">Moto de alta performance para pilotos experientes.</p>
+          <div class="price">R$ 00.000</div>
+          <div class="details">
+            <span>Ano: 2020</span>
+            <span>Motor: 450cc</span>
+            <span>Categoria: MX</span>
+            <span>Status: Disponível</span>
+          </div>
+          <a class="btn" target="_blank" href="https://wa.me/5534999999999?text=Tenho%20interesse%20na%20Kawasaki%20KX%20450">
+            Tenho interesse
+          </a>
+        </div>
+      </div>
+
+      <div class="card" data-brand="KTM" data-cc="125cc">
+        <div class="photo">FOTO DA MOTO</div>
+        <div class="card-content">
+          <div class="brand">KTM</div>
+          <h2>SX 125</h2>
+          <p class="info">Excelente opção para quem busca leveza e resposta rápida.</p>
+          <div class="price">R$ 00.000</div>
+          <div class="details">
+            <span>Ano: 2019</span>
+            <span>Motor: 125cc</span>
+            <span>Motor: 2 tempos</span>
+            <span>Status: Disponível</span>
+          </div>
+          <a class="btn" target="_blank" href="https://wa.me/5534999999999?text=Tenho%20interesse%20na%20KTM%20SX%20125">
+            Tenho interesse
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      <strong>Observação:</strong>
+      valores, fotos e detalhes técnicos devem ser confirmados diretamente com o vendedor.
+      Esta página é um modelo de vitrine para motos de motocross.
+    </div>
+  </section>
+
+  <footer>
+    <p>Motos de Motocross à Venda • Uberlândia-MG</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const brandFilter = document.getElementById("brandFilter");
+    const ccFilter = document.getElementById("ccFilter");
+    const cards = document.querySelectorAll(".card");
+
+    function filterBikes() {
+      const search = searchInput.value.toLowerCase();
+      const brand = brandFilter.value;
+      const cc = ccFilter.value;
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const cardBrand = card.dataset.brand;
+        const cardCc = card.dataset.cc;
+
+        const matchSearch = text.includes(search);
+        const matchBrand = brand === "" || cardBrand === brand;
+        const matchCc = cc === "" || cardCc === cc;
+
+        card.style.display = matchSearch && matchBrand && matchCc ? "block" : "none";
+      });
+    }
+
+    searchInput.addEventListener("input", filterBikes);
+    brandFilter.addEventListener("change", filterBikes);
+    ccFilter.addEventListener("change", filterBikes);
+  </script>
+
+</body>
+</html>
