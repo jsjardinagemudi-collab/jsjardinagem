@@ -996,7 +996,7 @@
             <label for="sortFilter">Ordenar por</label>
             <select id="sortFilter">
               <option value="dateAsc">Data mais próxima</option>
-              <option value="partnerDesc">Maior valor parceiro</option>
+              <option value="partnerDesc">Maior comissão do parceiro</option>
               <option value="priceDesc">Maior preço final</option>
               <option value="teamDesc">Maior equipe</option>
             </select>
@@ -1017,9 +1017,9 @@
           </div>
 
           <div class="card stat">
-            <p class="k">Maior valor parceiro</p>
+            <p class="k">Maior comissão do parceiro</p>
             <p class="v" id="statMaiorParceiro">R$ 0,00</p>
-            <p class="s">Melhor valor parceiro encontrado na lista filtrada.</p>
+            <p class="s">Melhor comissão do parceiro encontrado na lista filtrada.</p>
           </div>
 
           <div class="card stat">
@@ -1029,7 +1029,7 @@
           </div>
 
           <div class="card stat">
-            <p class="k">Média valor parceiro</p>
+            <p class="k">Média comissão do parceiro</p>
             <p class="v" id="statMediaParceiro">R$ 0,00</p>
             <p class="s">Média dos valores parceiro dos cards filtrados.</p>
           </div>
@@ -1383,7 +1383,12 @@
       const totalEquipe = totalLider + totalJardineiro + totalAuxiliar;
       const precoFinal = parseBRNumber(row.PRECO_FINAL);
       const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
-      const lucroJs = firstAvailableNumber(row, ['LUCRO_JS','SOBRA_JS','RESULTADO_JS'], precoFinal - valorParceiro - totalEquipe);
+      const material = firstAvailableNumber(row, ['MATERIAL'], 0);
+      const equipamento = firstAvailableNumber(row, ['EQUIPAMENTO_LOCACAO','EQUIPAMENTO','LOCACAO'], 0);
+      const gasolina = firstAvailableNumber(row, ['GASOLINA'], 0);
+      const retiradaLixo = firstAvailableNumber(row, ['RETIRADA_LIXO'], 0);
+      const custoRiscos = firstAvailableNumber(row, ['CUSTO_RISCOS'], 0);
+      const custosOperacionais = material + equipamento + gasolina + retiradaLixo + custoRiscos;
       const percMaoObra = precoFinal > 0 ? (totalEquipe / precoFinal) * 100 : 0;
 
       return {
@@ -1391,7 +1396,12 @@
         precoFinal,
         valorParceiro,
         totalEquipe,
-        lucroJs,
+        custosOperacionais,
+        material,
+        equipamento,
+        gasolina,
+        retiradaLixo,
+        custoRiscos,
         percMaoObra,
         roles: [
           {
@@ -1444,7 +1454,7 @@
       return `
         <div class="finance-panel">
           <h4 class="finance-title">
-            💰 Distribuição financeira
+            💰 Ganhos e custos do serviço
             <span>Mão de obra: ${finance.percMaoObra.toFixed(1).replace('.', ',')}% do serviço</span>
           </h4>
 
@@ -1455,7 +1465,7 @@
             </div>
 
             <div class="finance-box good">
-              <p class="k">Parceiro</p>
+              <p class="k">Comissão do parceiro</p>
               <p class="v">${formatBRL(finance.valorParceiro)}</p>
             </div>
 
@@ -1465,8 +1475,8 @@
             </div>
 
             <div class="finance-box warn">
-              <p class="k">Resultado JS</p>
-              <p class="v">${formatBRL(finance.lucroJs)}</p>
+              <p class="k">Custos operacionais</p>
+              <p class="v">${formatBRL(finance.custosOperacionais)}</p>
             </div>
           </div>
 
@@ -1498,7 +1508,7 @@
         `Equipe total: ${row.EQUIPE_TOTAL || '0'}`,
         `Horas: ${row.HORAS || '0'}`,
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
-        `Valor parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
+        `Comissão do parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
         `Pagamento equipe: ${formatBRL(calculateFinance(row).totalEquipe)}`,
         `Líder por pessoa: ${formatBRL(calculateFinance(row).roles[0].valorPessoa)}`,
         `Líder total cargo: ${formatBRL(calculateFinance(row).roles[0].total)}`,
@@ -1506,7 +1516,7 @@
         `Jardineiro total cargo: ${formatBRL(calculateFinance(row).roles[1].total)}`,
         `Auxiliar por pessoa: ${formatBRL(calculateFinance(row).roles[2].valorPessoa)}`,
         `Auxiliar total cargo: ${formatBRL(calculateFinance(row).roles[2].total)}`,
-        `Resultado JS: ${formatBRL(calculateFinance(row).lucroJs)}`,
+        `Custos operacionais: ${formatBRL(calculateFinance(row).custosOperacionais)}`,
         `Tipo de parceria: ${row.TIPO_PARCERIA || '—'}`,
         `Próxima ação: ${row.PROXIMA_ACAO || '—'}`,
         `Endereço: ${row.ENDERECO_TEXTO || '—'}`,
@@ -1670,7 +1680,7 @@
               </div>
 
               <div class="mini">
-                <p class="k">Valor parceiro</p>
+                <p class="k">Comissão do parceiro</p>
                 <p class="v" style="color:#027a48">${valorParceiro}</p>
               </div>
 
