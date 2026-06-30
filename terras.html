@@ -148,6 +148,30 @@ const selecionados={};let filtro={utilidade:"todos",marca:"todos",tamanho:"todos
 const moeda=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const seguro=s=>String(s).replace(/'/g,"\\'").replace(/\n/g," ");
 function unico(campo){return [...new Set(produtos.map(p=>p[campo]))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR',{numeric:true}));}
+  function limparCarrinho(){
+
+    if(!confirm("Deseja limpar toda a estimativa?")){
+        return;
+    }
+
+    produtos.forEach((p,i)=>{
+        selecionados[i]=0;
+
+        const campo=document.getElementById("qtd-"+i);
+        if(campo){
+            campo.value=0;
+        }
+    });
+
+    atualizarEstimativa();
+
+    document.getElementById("listaResumo").innerHTML="";
+    document.getElementById("totalResumo").innerHTML="Total estimado: R$ 0,00";
+
+    document.getElementById("obsCliente").value="";
+
+    fecharResumo();
+}
 function montarFiltros(){criarBotoes('filtroUtilidade','utilidade',['todos',...unico('utilidade')]);criarBotoes('filtroMarca','marca',['todos',...unico('marca')]);criarBotoes('filtroTamanho','tamanho',['todos',...unico('tamanho')]);}
 function criarBotoes(id,campo,lista){document.getElementById(id).innerHTML=lista.map((x,i)=>`<button class="${i===0?'ativo':''}" onclick="setFiltro('${campo}','${x}',this)">${x==='todos'?'Tudo':x}</button>`).join('');}
 function setFiltro(campo,valor,botao){filtro[campo]=valor;botao.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('ativo'));botao.classList.add('ativo');renderizarProdutos();}
