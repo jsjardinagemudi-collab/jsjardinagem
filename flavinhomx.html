@@ -89,26 +89,22 @@
       border-color: var(--blue);
     }
 
-    .hero {
-      min-height: 100vh;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.14), rgba(0,0,0,.93) 86%),
-        url("capa.jpeg") center/cover no-repeat;
-      display: flex;
-      align-items: flex-end;
-      padding: 120px 6% 34px;
-      position: relative;
+ .hero{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.94) 86%),
+      url("capa.jpeg") center center / cover no-repeat;
+}
+
+/* Somente celular */
+@media(max-width:768px){
+
+    .hero{
+        background:
+          linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.94) 86%),
+          url("capa-mobile.jpeg") center top / cover no-repeat;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(0,87,255,.28), transparent 35%),
-        linear-gradient(90deg, rgba(0,0,0,.45), transparent 55%);
-      pointer-events: none;
-    }
+}
 
     .hero-content {
       position: relative;
