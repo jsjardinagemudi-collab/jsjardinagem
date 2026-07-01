@@ -11,18 +11,16 @@
       --dark:#050505;
       --black:#0b0b0b;
       --blue:#0057ff;
-      --blue2:#0033a8;
       --white:#ffffff;
       --gray:#c9c9c9;
-      --muted:#8d8d8d;
       --card:rgba(255,255,255,.08);
-      --glass:rgba(255,255,255,.13);
       --border:rgba(255,255,255,.16);
       --whats:#25D366;
+      --danger:#ef4444;
+      --ok:#22c55e;
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
-
     html{scroll-behavior:smooth}
 
     body{
@@ -101,7 +99,7 @@
     }
 
     .hero-content{
-      max-width:820px;
+      max-width:850px;
       position:relative;
       z-index:2;
     }
@@ -142,7 +140,7 @@
 
     .buttons{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:1fr;
       gap:10px;
       margin-top:18px;
     }
@@ -198,17 +196,17 @@
       color:var(--gray);
       font-size:17px;
       line-height:1.7;
-      max-width:880px;
+      max-width:900px;
       margin-bottom:28px;
     }
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      grid-template-columns:1fr;
       gap:18px;
     }
 
-    .card{
+    .card,.turma-card{
       background:var(--card);
       border:1px solid var(--border);
       border-radius:24px;
@@ -218,22 +216,57 @@
       transition:.25s;
     }
 
-    .card:hover{
+    .card:hover,.turma-card:hover{
       transform:translateY(-5px);
       border-color:rgba(0,87,255,.75);
     }
 
-    .card h3{
+    .card h3,.turma-card h3{
       color:#8fb5ff;
       font-size:22px;
       margin-bottom:10px;
       text-transform:uppercase;
     }
 
-    .card p,.card li{
+    .card p,.card li,.turma-card p{
       color:#ddd;
       line-height:1.6;
       font-size:15px;
+    }
+
+    .turma-card.esgotada{
+      opacity:.72;
+      border-color:rgba(239,68,68,.35);
+    }
+
+    .status{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .status.ok{
+      background:rgba(34,197,94,.16);
+      color:#bbf7d0;
+      border:1px solid rgba(34,197,94,.35);
+    }
+
+    .status.danger{
+      background:rgba(239,68,68,.16);
+      color:#fecaca;
+      border:1px solid rgba(239,68,68,.35);
+    }
+
+    .turma-data{
+      font-size:38px;
+      font-weight:950;
+      color:#38bdf8;
+      margin-bottom:8px;
+      line-height:1;
     }
 
     .stats{
@@ -322,7 +355,6 @@
     }
 
     input::placeholder,textarea::placeholder{color:#8f8f8f}
-
     select option{color:#111}
 
     .form-actions{
@@ -434,6 +466,7 @@
       section{padding:84px 7%}
       .buttons{display:flex;flex-wrap:wrap}
       .buttons .btn{min-width:190px}
+      .grid{grid-template-columns:repeat(3,1fr)}
       .certificado{grid-template-columns:1fr 1fr}
       .form-grid{grid-template-columns:repeat(2,1fr)}
       .full{grid-column:1/-1}
@@ -460,340 +493,6 @@
 <body>
 
   <nav class="topbar">
-    <a class="brand" href="https://jardinagemudi.com.br/flavinhomx.html">
-      Flavim <span>MX School</span>
-    </a>
+    <a class="brand" href="https://jardinagem
 
-    <div class="top-actions">
-      <a class="top-btn hide-mobile" href="https://www.instagram.com/eaiflavim" target="_blank">@eaiflavim</a>
-      <a class="top-btn primary" href="https://jardinagemudi.com.br/flavinhomx.html">Home</a>
-    </div>
-  </nav>
-
-  <a class="floating-whatsapp" href="#inscricao">
-    Fazer inscrição
-  </a>
-
-  <header class="hero">
-    <div class="hero-content">
-      <div class="badge">FLAVIM MX SCHOOL 100 • CURSO DE MOTOCROSS</div>
-
-      <h1>
-        Curso de<br>
-        <span>Pilotagem</span><br>
-        Motocross
-      </h1>
-
-      <p class="subtitle">
-        Treinamento prático e teórico para pilotos que querem evoluir com técnica,
-        segurança, disciplina e mentalidade de pista.
-      </p>
-
-      <div class="buttons">
-        <a href="#inscricao" class="btn btn-primary">Quero me inscrever</a>
-        <a href="#programa" class="btn btn-secondary">Ver conteúdo</a>
-        <a href="https://jardinagemudi.com.br/flavinhomx.html" class="btn btn-secondary">Voltar para Home</a>
-      </div>
-    </div>
-  </header>
-
-  <section>
-    <h2 class="section-title">Aprenda com quem <span>vive a pista</span></h2>
-    <p class="section-text">
-      A Flavim MX School 100 foi criada para formar pilotos com base sólida:
-      postura, controle da moto, curvas, frenagem, aceleração, saltos, leitura de pista e confiança.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Técnica</h3>
-        <p>Correção de postura, domínio da moto, curvas, frenagem e aceleração.</p>
-      </div>
-
-      <div class="card">
-        <h3>Segurança</h3>
-        <p>Orientação para reduzir erros, aumentar controle e pilotar com mais consciência.</p>
-      </div>
-
-      <div class="card">
-        <h3>Evolução real</h3>
-        <p>Treino focado em desenvolvimento prático para iniciante, intermediário e avançado.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats">
-    <h2 class="section-title">Curso <span>intensivo</span></h2>
-
-    <div class="grid">
-      <div class="card">
-        <div class="stat-number">3</div>
-        <p>Dias de curso: sexta, sábado e domingo.</p>
-      </div>
-
-      <div class="card">
-        <div class="stat-number">17, 18 e 19</div>
-        <p>Datas do curso de julho de 2026.</p>
-      </div>
-
-      <div class="card">
-        <div class="stat-number">100%</div>
-        <p>Conteúdo prático e teórico voltado para pilotagem de motocross.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="programa">
-    <h2 class="section-title">Conteúdo do <span>treinamento</span></h2>
-    <p class="section-text">
-      A proposta é entregar um curso direto, forte e aplicável dentro da pista.
-    </p>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Base de pilotagem</h3>
-        <ul>
-          <li>Postura em pé e sentado</li>
-          <li>Controle de embreagem e aceleração</li>
-          <li>Frenagem correta</li>
-          <li>Olhar e leitura de pista</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Técnica de pista</h3>
-        <ul>
-          <li>Entrada e saída de curva</li>
-          <li>Subidas e descidas</li>
-          <li>Canaletas e terrenos irregulares</li>
-          <li>Ritmo e constância</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Mentalidade de piloto</h3>
-        <ul>
-          <li>Disciplina</li>
-          <li>Foco</li>
-          <li>Superação</li>
-          <li>Preparação para treinos e provas</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="certificado">
-      <div>
-        <h2 class="section-title">Certificado <span>oficial</span></h2>
-        <p class="section-text">
-          Ao final do curso, o aluno recebe certificado de participação,
-          reforçando a seriedade da formação e a evolução dentro do motocross.
-        </p>
-
-        <div class="buttons">
-          <a href="#inscricao" class="btn btn-primary">Garantir vaga</a>
-          <a href="certificado.jpeg" target="_blank" class="btn btn-secondary">Ver certificado</a>
-        </div>
-      </div>
-
-      <img src="certificado.jpeg" alt="Certificado Flavim MX School 100">
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">Para quem é o <span>curso?</span></h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Iniciantes</h3>
-        <p>Para quem está começando e quer aprender do jeito certo desde o início.</p>
-      </div>
-
-      <div class="card">
-        <h3>Intermediários</h3>
-        <p>Para pilotos que já andam, mas querem corrigir erros e ganhar confiança.</p>
-      </div>
-
-      <div class="card">
-        <h3>Pilotos em evolução</h3>
-        <p>Para quem quer treinar melhor, competir melhor e evoluir com orientação.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="inscricao" class="form-section">
-    <h2 class="section-title">Inscrição <span>pelo WhatsApp</span></h2>
-    <p class="section-text">
-      Preencha os dados abaixo. A página monta uma mensagem pronta para enviar direto para o WhatsApp do Flavim.
-    </p>
-
-    <div class="form-box">
-      <div class="form-grid">
-        <div>
-          <label>Nome do aluno</label>
-          <input id="nome" type="text" placeholder="Ex: João Silva">
-        </div>
-
-        <div>
-          <label>Idade</label>
-          <input id="idade" type="number" placeholder="Ex: 16">
-        </div>
-
-        <div>
-          <label>Telefone do aluno ou responsável</label>
-          <input id="telefone" type="text" placeholder="Ex: (34) 99999-9999">
-        </div>
-
-        <div>
-          <label>Cidade</label>
-          <input id="cidade" type="text" placeholder="Ex: Uberlândia-MG">
-        </div>
-
-        <div>
-          <label>Nível de pilotagem</label>
-          <select id="nivel">
-            <option value="">Selecione</option>
-            <option>Iniciante</option>
-            <option>Intermediário</option>
-            <option>Avançado</option>
-            <option>Nunca pilotei motocross</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Possui moto?</label>
-          <select id="moto">
-            <option value="">Selecione</option>
-            <option>Sim, tenho moto própria</option>
-            <option>Não tenho moto</option>
-            <option>Vou confirmar</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Modelo/cilindrada da moto</label>
-          <input id="modeloMoto" type="text" placeholder="Ex: CRF 230, YZ 250, KX 100...">
-        </div>
-
-        <div>
-          <label>Possui equipamentos?</label>
-          <select id="equipamentos">
-            <option value="">Selecione</option>
-            <option>Sim, tenho equipamento completo</option>
-            <option>Tenho parte dos equipamentos</option>
-            <option>Não tenho equipamentos</option>
-          </select>
-        </div>
-
-        <div class="full">
-          <label>Objetivo no curso</label>
-          <textarea id="objetivo" placeholder="Ex: Quero aprender base, melhorar curva, perder medo de salto, treinar para prova..."></textarea>
-        </div>
-
-        <div class="full">
-          <label>Observação importante</label>
-          <textarea id="obs" placeholder="Ex: Lesão, dificuldade, dúvida, nome do responsável, disponibilidade de horário..."></textarea>
-        </div>
-      </div>
-
-      <div class="form-actions">
-        <button class="btn btn-primary" onclick="montarMensagem()">Gerar mensagem</button>
-        <button class="btn btn-whats" onclick="enviarWhatsApp()">Enviar inscrição no WhatsApp</button>
-      </div>
-
-      <div id="preview" class="preview">A mensagem da inscrição aparecerá aqui.</div>
-    </div>
-  </section>
-
-  <section class="nav-pages">
-    <h2 class="section-title">Continue no <span>portal</span></h2>
-
-    <div class="portal-grid">
-      <a class="portal-card" href="https://jardinagemudi.com.br/flavinhomx.html">
-        <h3>Home</h3>
-        <p>Voltar para a página principal do Flavim Junior 100.</p>
-      </a>
-
-      <a class="portal-card" href="motosmx.html">
-        <h3>Motos MX</h3>
-        <p>Ver motos de motocross à venda.</p>
-      </a>
-
-      <a class="portal-card" href="motopeças.html">
-        <h3>Peças</h3>
-        <p>Catálogo de peças e acessórios do patrocinador.</p>
-      </a>
-
-      <a class="portal-card" href="https://www.instagram.com/eaiflavim" target="_blank">
-        <h3>Instagram</h3>
-        <p>Acompanhar treinos, bastidores e competições.</p>
-      </a>
-    </div>
-  </section>
-
-  <section class="cta">
-    <h2>Pronto para evoluir?</h2>
-    <p>
-      A pista ensina, mas orientação certa acelera o crescimento.
-      Faça sua inscrição na Flavim MX School 100.
-    </p>
-
-    <div class="buttons" style="max-width:720px;margin:0 auto;">
-      <a class="btn btn-whats" href="#inscricao">Preencher inscrição</a>
-      <a class="btn btn-secondary" href="https://jardinagemudi.com.br/flavinhomx.html">Voltar para Home</a>
-    </div>
-  </section>
-
-  <footer>
-    Flavim MX School 100 • Curso de Pilotagem de Motocross<br>
-    Disciplina • Técnica • Foco • Superação<br>
-    Instagram: @eaiflavim • WhatsApp: 34 9243-0960
-  </footer>
-
-<script>
-  const NUMERO_WHATSAPP = "553492430960";
-
-  function valor(id) {
-    return document.getElementById(id).value.trim() || "Não informado";
-  }
-
-  function criarTextoMensagem() {
-    return `Olá, Flavim! Quero fazer minha inscrição no curso Flavim MX School 100.
-
-DADOS DO ALUNO
-Nome: ${valor("nome")}
-Idade: ${valor("idade")}
-Telefone: ${valor("telefone")}
-Cidade: ${valor("cidade")}
-
-EXPERIÊNCIA
-Nível de pilotagem: ${valor("nivel")}
-Possui moto: ${valor("moto")}
-Modelo/cilindrada da moto: ${valor("modeloMoto")}
-Equipamentos: ${valor("equipamentos")}
-
-OBJETIVO NO CURSO
-${valor("objetivo")}
-
-OBSERVAÇÃO
-${valor("obs")}
-
-Gostaria de confirmar disponibilidade de vaga, valor e próximos passos.`;
-  }
-
-  function montarMensagem() {
-    const texto = criarTextoMensagem();
-    document.getElementById("preview").textContent = texto;
-    return texto;
-  }
-
-  function enviarWhatsApp() {
-    const texto = montarMensagem();
-    const url = `https://wa.me/${553492430960}?text=${encodeURIComponent(texto)}`;
-    window.open(url, "_blank");
-  }
-</script>
-
-</body>
-</html>
+      
