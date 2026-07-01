@@ -9,27 +9,16 @@
   <style>
     :root {
       --dark: #050505;
-      --black: #0b0b0b;
       --blue: #0057ff;
-      --blue2: #0033a8;
       --white: #ffffff;
       --gray: #c9c9c9;
-      --muted: #8d8d8d;
       --card: rgba(255,255,255,0.08);
-      --glass: rgba(255,255,255,0.13);
       --border: rgba(255,255,255,0.16);
       --whats: #25D366;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -38,10 +27,7 @@
       overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .topbar {
       position: fixed;
@@ -50,7 +36,7 @@
       width: 100%;
       z-index: 100;
       padding: 12px 5%;
-      background: rgba(0,0,0,.68);
+      background: rgba(0,0,0,.72);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,.08);
       display: flex;
@@ -59,15 +45,12 @@
     }
 
     .brand {
-      font-weight: 900;
-      letter-spacing: .5px;
+      font-weight: 950;
       text-transform: uppercase;
       font-size: 15px;
     }
 
-    .brand span {
-      color: var(--blue);
-    }
+    .brand span { color: var(--blue); }
 
     .top-actions {
       display: flex;
@@ -77,7 +60,7 @@
 
     .top-btn {
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 900;
       padding: 9px 11px;
       border-radius: 999px;
       background: rgba(255,255,255,.09);
@@ -89,22 +72,27 @@
       border-color: var(--blue);
     }
 
- .hero{
-    background:
-      linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.94) 86%),
-      url("capa.jpeg") center center / cover no-repeat;
-}
-
-/* Somente celular */
-@media(max-width:768px){
-
-    .hero{
-        background:
-          linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.94) 86%),
-          url("capa-mobile.jpeg") center top / cover no-repeat;
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.92) 88%),
+        url("capa.jpeg") center center / cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 6% 34px;
+      position: relative;
+      overflow: hidden;
     }
 
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(0,87,255,.22), transparent 35%),
+        linear-gradient(90deg, rgba(0,0,0,.45), transparent 55%);
+      pointer-events: none;
+    }
 
     .hero-content {
       position: relative;
@@ -136,9 +124,7 @@
       margin-bottom: 14px;
     }
 
-    h1 span {
-      color: var(--blue);
-    }
+    h1 span { color: var(--blue); }
 
     .subtitle {
       color: #ededed;
@@ -192,9 +178,7 @@
       border-color: transparent;
     }
 
-    section {
-      padding: 64px 6%;
-    }
+    section { padding: 64px 6%; }
 
     .section-title {
       font-size: clamp(30px, 8vw, 54px);
@@ -204,9 +188,7 @@
       font-weight: 950;
     }
 
-    .section-title span {
-      color: var(--blue);
-    }
+    .section-title span { color: var(--blue); }
 
     .section-text {
       color: var(--gray);
@@ -332,13 +314,9 @@
       line-height: .95;
     }
 
-    .sponsor-name span {
-      color: var(--blue);
-    }
+    .sponsor-name span { color: var(--blue); }
 
-    .media {
-      background: #080808;
-    }
+    .media { background: #080808; }
 
     .video-box {
       margin-top: 24px;
@@ -354,6 +332,61 @@
       display: block;
       max-height: 680px;
       background: #000;
+    }
+
+    .gallery-preview {
+      background:
+        radial-gradient(circle at top right, rgba(0,87,255,.22), transparent 38%),
+        #080808;
+    }
+
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .gallery-thumb {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      min-height: 260px;
+      background: #111;
+      box-shadow: 0 20px 50px rgba(0,0,0,.32);
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: .35s;
+    }
+
+    .gallery-thumb:hover img { transform: scale(1.06); }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 22px;
+      background: linear-gradient(transparent, rgba(0,0,0,.88));
+    }
+
+    .gallery-caption strong {
+      display: block;
+      color: white;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .gallery-caption span {
+      color: #cfcfcf;
+      font-size: 14px;
     }
 
     .timeline {
@@ -423,86 +456,17 @@
       box-shadow: 0 10px 34px rgba(0,0,0,.48);
       text-align: center;
     }
-    .gallery-preview {
-  background:
-    radial-gradient(circle at top right, rgba(0,87,255,.22), transparent 38%),
-    #080808;
-}
-
-.gallery-strip {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.gallery-thumb {
-  position: relative;
-  overflow: hidden;
-  border-radius: 24px;
-  border: 1px solid var(--border);
-  min-height: 260px;
-  background: #111;
-  box-shadow: 0 20px 50px rgba(0,0,0,.32);
-}
-
-.gallery-thumb img {
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  object-fit: cover;
-  display: block;
-  transition: .35s;
-}
-
-.gallery-thumb:hover img {
-  transform: scale(1.06);
-}
-
-.gallery-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 22px;
-  background: linear-gradient(transparent, rgba(0,0,0,.88));
-}
-
-.gallery-caption strong {
-  display: block;
-  color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.gallery-caption span {
-  color: #cfcfcf;
-  font-size: 14px;
-}
-
-@media(min-width:820px) {
-  .gallery-strip {
-    grid-template-columns: 1.3fr 1fr 1fr;
-  }
-}
 
     @media(min-width: 820px) {
-      .topbar {
-        padding: 16px 7%;
-      }
-
-      .brand {
-        font-size: 18px;
-      }
-
-      .top-btn {
-        font-size: 13px;
-        padding: 10px 14px;
-      }
+      .topbar { padding: 16px 7%; }
+      .brand { font-size: 18px; }
+      .top-btn { font-size: 13px; padding: 10px 14px; }
 
       .hero {
         padding: 130px 7% 70px;
-        background-position: center;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.92) 88%),
+          url("capa.jpeg") center center / cover no-repeat;
       }
 
       .hero-buttons {
@@ -510,25 +474,21 @@
         flex-wrap: wrap;
       }
 
-      .hero-buttons .btn {
-        min-width: 190px;
-      }
+      .hero-buttons .btn { min-width: 190px; }
 
-      section {
-        padding: 84px 7%;
-      }
+      section { padding: 84px 7%; }
 
-      .portal-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .portal-grid { grid-template-columns: repeat(4, 1fr); }
 
-      .quick-stats {
-        max-width: 720px;
-      }
+      .quick-stats { max-width: 720px; }
 
       .sponsor-box {
         grid-template-columns: 1.2fr .8fr;
         padding: 36px;
+      }
+
+      .gallery-strip {
+        grid-template-columns: 1.3fr 1fr 1fr;
       }
 
       .floating-whatsapp {
@@ -539,24 +499,34 @@
         padding: 16px 22px;
       }
 
-      footer {
-        padding-bottom: 34px;
-      }
+      footer { padding-bottom: 34px; }
     }
 
     @media(max-width: 520px) {
-      .top-actions .hide-mobile {
-        display: none;
-      }
+      .top-actions .hide-mobile { display: none; }
 
       .hero {
-        min-height: 92vh;
-        background-position: center top;
+        min-height: 100vh;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.92) 82%),
+          url("capa-mobile.jpeg") center top / cover no-repeat;
+        padding: 145px 6% 95px;
       }
 
-      .portal-grid {
-        grid-template-columns: 1fr;
+      .badge {
+        font-size: 11px;
+        padding: 8px 11px;
       }
+
+      h1 {
+        font-size: clamp(38px, 13vw, 58px);
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .portal-grid { grid-template-columns: 1fr; }
 
       .quick-stats {
         grid-template-columns: 1fr 1fr;
@@ -588,10 +558,7 @@
     <div class="hero-content">
       <div class="badge">PILOTO • INSTRUTOR • MOTOCROSS • Nº 100</div>
 
-      <h1>
-        Flavim<br>
-        Junior <span>100</span>
-      </h1>
+      <h1>Flavim<br>Junior <span>100</span></h1>
 
       <p class="subtitle">
         Disciplina, técnica, foco e superação dentro e fora das pistas.
@@ -605,23 +572,12 @@
         <a href="motosmx.html" class="btn btn-secondary">Motos MX</a>
         <a href="patrocinio.html" class="btn btn-secondary">Patrocínio</a>
         <a href="galeria.html" class="btn btn-secondary">Galeria</a>
-  </div>
+      </div>
 
       <div class="quick-stats">
-        <div class="stat">
-          <strong>100</strong>
-          <span>Número oficial</span>
-        </div>
-
-        <div class="stat">
-          <strong>11,5 mil</strong>
-          <span>Seguidores</span>
-        </div>
-
-        <div class="stat">
-          <strong>MX</strong>
-          <span>Escola de pilotagem</span>
-        </div>
+        <div class="stat"><strong>100</strong><span>Número oficial</span></div>
+        <div class="stat"><strong>11,5 mil</strong><span>Seguidores</span></div>
+        <div class="stat"><strong>MX</strong><span>Escola de pilotagem</span></div>
       </div>
     </div>
   </header>
@@ -636,74 +592,42 @@
 
     <div class="portal-grid">
       <a class="portal-card" href="#piloto">
-        <div>
-          <div class="portal-icon">🏁</div>
-          <h3>O piloto</h3>
-          <p>História, presença nas pistas, identidade e evolução do Flavim Junior 100.</p>
-        </div>
+        <div><div class="portal-icon">🏁</div><h3>O piloto</h3><p>História, presença nas pistas, identidade e evolução do Flavim Junior 100.</p></div>
         <span class="portal-link">Conhecer</span>
       </a>
 
       <a class="portal-card" href="patrocinio.html">
-        <div>
-          <div class="portal-icon">🏆</div>
-          <h3>Patrocínio</h3>
-          <p>Espaço para marcas que querem aparecer com força no motocross.</p>
-        </div>
+        <div><div class="portal-icon">🏆</div><h3>Patrocínio</h3><p>Espaço para marcas que querem aparecer com força no motocross.</p></div>
         <span class="portal-link">Ser apoiador</span>
       </a>
 
       <a class="portal-card" href="motopeças.html">
-        <div>
-          <div class="portal-icon">🛠️</div>
-          <h3>Peças</h3>
-          <p>Catálogo de peças e acessórios da loja patrocinadora.</p>
-        </div>
+        <div><div class="portal-icon">🛠️</div><h3>Peças</h3><p>Catálogo de peças e acessórios da loja patrocinadora.</p></div>
         <span class="portal-link">Entrar na loja</span>
       </a>
 
       <a class="portal-card" href="mxschool.html">
-        <div>
-          <div class="portal-icon">🎓</div>
-          <h3>MX School</h3>
-          <p>Curso de pilotagem, técnica, foco e evolução para pilotos.</p>
-        </div>
+        <div><div class="portal-icon">🎓</div><h3>MX School</h3><p>Curso de pilotagem, técnica, foco e evolução para pilotos.</p></div>
         <span class="portal-link">Fazer inscrição</span>
       </a>
 
       <a class="portal-card" href="motosmx.html">
-        <div>
-          <div class="portal-icon">🏍️</div>
-          <h3>Motos MX</h3>
-          <p>Página de motos de motocross à venda e oportunidades.</p>
-        </div>
+        <div><div class="portal-icon">🏍️</div><h3>Motos MX</h3><p>Página de motos de motocross à venda e oportunidades.</p></div>
         <span class="portal-link">Ver motos</span>
       </a>
 
-    <a class="portal-card" href="galeria.html">
-        <div>
-          <div class="portal-icon">🎥</div>
-          <h3>Galeria</h3>
-          <p>Vídeos, treinos, bastidores, saltos e rotina nas pistas.</p>
-        </div>
+      <a class="portal-card" href="galeria.html">
+        <div><div class="portal-icon">🎥</div><h3>Galeria</h3><p>Vídeos, treinos, bastidores, saltos e rotina nas pistas.</p></div>
         <span class="portal-link">Assistir</span>
       </a>
 
       <a class="portal-card" href="https://www.instagram.com/eaiflavim" target="_blank">
-        <div>
-          <div class="portal-icon">📲</div>
-          <h3>Instagram</h3>
-          <p>Acompanhe @eaiflavim, rotina, treinos e competições.</p>
-        </div>
+        <div><div class="portal-icon">📲</div><h3>Instagram</h3><p>Acompanhe @eaiflavim, rotina, treinos e competições.</p></div>
         <span class="portal-link">Seguir perfil</span>
       </a>
 
       <a class="portal-card" href="https://wa.me/553492430960" target="_blank">
-        <div>
-          <div class="portal-icon">💬</div>
-          <h3>Contato</h3>
-          <p>Fale direto pelo WhatsApp para cursos, patrocínio e parcerias.</p>
-        </div>
+        <div><div class="portal-icon">💬</div><h3>Contato</h3><p>Fale direto pelo WhatsApp para cursos, patrocínio e parcerias.</p></div>
         <span class="portal-link">Chamar agora</span>
       </a>
     </div>
@@ -718,37 +642,10 @@
     </p>
 
     <div class="portal-grid">
-      <div class="portal-card">
-        <div>
-          <div class="portal-icon">⚡</div>
-          <h3>Identidade forte</h3>
-          <p>Número 100, visual marcante e nome fácil de memorizar.</p>
-        </div>
-      </div>
-
-      <div class="portal-card">
-        <div>
-          <div class="portal-icon">🎬</div>
-          <h3>Conteúdo</h3>
-          <p>Treinos, bastidores, vídeos curtos e presença ativa nas redes.</p>
-        </div>
-      </div>
-
-      <div class="portal-card">
-        <div>
-          <div class="portal-icon">🎓</div>
-          <h3>Instrutor</h3>
-          <p>Curso de pilotagem com certificado e método próprio.</p>
-        </div>
-      </div>
-
-      <div class="portal-card">
-        <div>
-          <div class="portal-icon">🤝</div>
-          <h3>Parceiros</h3>
-          <p>Projeto preparado para dar retorno visual aos patrocinadores.</p>
-        </div>
-      </div>
+      <div class="portal-card"><div><div class="portal-icon">⚡</div><h3>Identidade forte</h3><p>Número 100, visual marcante e nome fácil de memorizar.</p></div></div>
+      <div class="portal-card"><div><div class="portal-icon">🎬</div><h3>Conteúdo</h3><p>Treinos, bastidores, vídeos curtos e presença ativa nas redes.</p></div></div>
+      <div class="portal-card"><div><div class="portal-icon">🎓</div><h3>Instrutor</h3><p>Curso de pilotagem com certificado e método próprio.</p></div></div>
+      <div class="portal-card"><div><div class="portal-icon">🤝</div><h3>Parceiros</h3><p>Projeto preparado para dar retorno visual aos patrocinadores.</p></div></div>
     </div>
   </section>
 
@@ -756,11 +653,7 @@
     <div class="sponsor-box">
       <div>
         <div class="sponsor-label">Patrocinador oficial</div>
-
-        <h2 class="sponsor-name">
-          La<span>quila</span>
-        </h2>
-
+        <h2 class="sponsor-name">La<span>quila</span></h2>
         <p class="section-text" style="margin-bottom:0;">
           Uma marca conectada ao mundo das duas rodas, presente no projeto
           Flavim Junior 100 com exposição em página, imagem oficial, boné,
@@ -773,8 +666,8 @@
           Ver loja do patrocinador
         </a>
 
-       <a class="btn btn-secondary" href="patrocinio.html" style="width:100%;">
-        Quero patrocinar
+        <a class="btn btn-secondary" href="patrocinio.html" style="width:100%;">
+          Quero patrocinar
         </a>
       </div>
     </div>
@@ -790,72 +683,59 @@
 
     <div class="video-box">
       <video controls playsinline preload="metadata">
-        <source src="flavinho-promo-2.mp4" type="video/mp4">
+        <source src="flavinho-promo.mp4" type="video/mp4">
         Seu navegador não suporta vídeo em HTML5.
       </video>
     </div>
   </section>
-<section class="gallery-preview">
-  <h2 class="section-title">Última corrida em <span>Quirinópolis</span></h2>
 
-  <p class="section-text">
-    Registros da etapa dos dias 27 e 28 de junho, valendo pontos para o Campeonato Goiano de Motocross.
-  </p>
+  <section class="gallery-preview">
+    <h2 class="section-title">Última corrida em <span>Quirinópolis</span></h2>
 
-  <div class="gallery-strip">
-    <a class="gallery-thumb" href="galeria.html">
-      <img src="imagens/air-flow.jpeg" alt="Flavim Junior 100 em salto">
-      <div class="gallery-caption">
-        <strong>Ação na pista</strong>
-        <span>Saltos, velocidade e controle.</span>
-      </div>
-    </a>
+    <p class="section-text">
+      Registros da etapa dos dias 27 e 28 de junho, valendo pontos para o Campeonato Goiano de Motocross.
+    </p>
 
-    <a class="gallery-thumb" href="galeria.html">
-      <img src="imagens/podium.jpeg" alt="Pódio motocross">
-      <div class="gallery-caption">
-        <strong>Pódio</strong>
-        <span>Resultado e presença no campeonato.</span>
-      </div>
-    </a>
+    <div class="gallery-strip">
+      <a class="gallery-thumb" href="galeria.html">
+        <img src="imagens/air-flow.jpeg" alt="Flavim Junior 100 em salto">
+        <div class="gallery-caption">
+          <strong>Ação na pista</strong>
+          <span>Saltos, velocidade e controle.</span>
+        </div>
+      </a>
 
-    <a class="gallery-thumb" href="galeria.html">
-      <img src="imagens/primeiro.jpeg" alt="Flavim primeiro lugar">
-      <div class="gallery-caption">
-        <strong>Conquista</strong>
-        <span>Autoridade dentro da modalidade.</span>
-      </div>
-    </a>
-  </div>
+      <a class="gallery-thumb" href="galeria.html">
+        <img src="imagens/podium.jpeg" alt="Pódio motocross">
+        <div class="gallery-caption">
+          <strong>Pódio</strong>
+          <span>Resultado e presença no campeonato.</span>
+        </div>
+      </a>
 
-  <div class="hero-buttons" style="margin-top:22px;">
-    <a href="galeria.html" class="btn btn-primary">Ver galeria completa</a>
-    <a href="https://www.instagram.com/eaiflavim" target="_blank" class="btn btn-secondary">Ver Instagram</a>
-  </div>
-</section>
+      <a class="gallery-thumb" href="galeria.html">
+        <img src="imagens/primeiro.jpeg" alt="Flavim primeiro lugar">
+        <div class="gallery-caption">
+          <strong>Conquista</strong>
+          <span>Autoridade dentro da modalidade.</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="hero-buttons" style="margin-top:22px;">
+      <a href="galeria.html" class="btn btn-primary">Ver galeria completa</a>
+      <a href="https://www.instagram.com/eaiflavim" target="_blank" class="btn btn-secondary">Ver Instagram</a>
+    </div>
+  </section>
+
   <section>
     <h2 class="section-title">Caminho de <span>crescimento</span></h2>
 
     <div class="timeline">
-      <div class="timeline-item">
-        <strong>1. Piloto e imagem oficial</strong>
-        Fortalecer a identidade Flavim Junior 100 com fotos, vídeos, página e redes sociais.
-      </div>
-
-      <div class="timeline-item">
-        <strong>2. Escola de motocross</strong>
-        Divulgar cursos, agenda, certificado e inscrições da Flavim MX School 100.
-      </div>
-
-      <div class="timeline-item">
-        <strong>3. Loja e patrocinadores</strong>
-        Direcionar público para peças, acessórios, motos e marcas parceiras.
-      </div>
-
-      <div class="timeline-item">
-        <strong>4. Portal de motocross</strong>
-        Transformar o site em uma central completa de conteúdo, venda e patrocínio.
-      </div>
+      <div class="timeline-item"><strong>1. Piloto e imagem oficial</strong>Fortalecer a identidade Flavim Junior 100 com fotos, vídeos, página e redes sociais.</div>
+      <div class="timeline-item"><strong>2. Escola de motocross</strong>Divulgar cursos, agenda, certificado e inscrições da Flavim MX School 100.</div>
+      <div class="timeline-item"><strong>3. Loja e patrocinadores</strong>Direcionar público para peças, acessórios, motos e marcas parceiras.</div>
+      <div class="timeline-item"><strong>4. Portal de motocross</strong>Transformar o site em uma central completa de conteúdo, venda e patrocínio.</div>
     </div>
   </section>
 
