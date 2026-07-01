@@ -9,7 +9,6 @@
   <style>
     :root {
       --dark:#050505;
-      --black:#0b0b0b;
       --blue:#0057ff;
       --white:#ffffff;
       --gray:#c9c9c9;
@@ -17,7 +16,7 @@
       --border:rgba(255,255,255,.16);
       --whats:#25D366;
       --danger:#ef4444;
-      --ok:#22c55e;
+      --success:#22c55e;
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
@@ -99,7 +98,7 @@
     }
 
     .hero-content{
-      max-width:850px;
+      max-width:840px;
       position:relative;
       z-index:2;
     }
@@ -133,7 +132,7 @@
       color:#ededed;
       font-size:clamp(17px,4.5vw,23px);
       line-height:1.45;
-      max-width:760px;
+      max-width:780px;
       margin-bottom:20px;
       text-shadow:0 8px 22px rgba(0,0,0,.75);
     }
@@ -180,6 +179,13 @@
       border-color:transparent;
     }
 
+    .btn-disabled{
+      background:rgba(239,68,68,.18);
+      color:#fecaca;
+      border-color:rgba(239,68,68,.35);
+      cursor:not-allowed;
+    }
+
     section{padding:64px 6%}
 
     .section-title{
@@ -206,7 +212,7 @@
       gap:18px;
     }
 
-    .card,.turma-card{
+    .card{
       background:var(--card);
       border:1px solid var(--border);
       border-radius:24px;
@@ -216,27 +222,22 @@
       transition:.25s;
     }
 
-    .card:hover,.turma-card:hover{
+    .card:hover{
       transform:translateY(-5px);
       border-color:rgba(0,87,255,.75);
     }
 
-    .card h3,.turma-card h3{
+    .card h3{
       color:#8fb5ff;
       font-size:22px;
       margin-bottom:10px;
       text-transform:uppercase;
     }
 
-    .card p,.card li,.turma-card p{
+    .card p,.card li{
       color:#ddd;
       line-height:1.6;
       font-size:15px;
-    }
-
-    .turma-card.esgotada{
-      opacity:.72;
-      border-color:rgba(239,68,68,.35);
     }
 
     .status{
@@ -249,30 +250,16 @@
       margin-bottom:12px;
     }
 
-    .status.ok{
+    .status.open{
       background:rgba(34,197,94,.16);
       color:#bbf7d0;
       border:1px solid rgba(34,197,94,.35);
     }
 
-    .status.danger{
+    .status.closed{
       background:rgba(239,68,68,.16);
       color:#fecaca;
       border:1px solid rgba(239,68,68,.35);
-    }
-
-    .turma-data{
-      font-size:38px;
-      font-weight:950;
-      color:#38bdf8;
-      margin-bottom:8px;
-      line-height:1;
-    }
-
-    .stats{
-      background:
-        radial-gradient(circle at top right,rgba(0,87,255,.24),transparent 38%),
-        linear-gradient(180deg,#080808,#020202);
     }
 
     .stat-number{
@@ -280,6 +267,12 @@
       font-weight:950;
       color:var(--blue);
       margin-bottom:8px;
+    }
+
+    .stats{
+      background:
+        radial-gradient(circle at top right,rgba(0,87,255,.24),transparent 38%),
+        linear-gradient(180deg,#080808,#020202);
     }
 
     ul{
@@ -376,9 +369,7 @@
       white-space:pre-wrap;
     }
 
-    .nav-pages{
-      background:#080808;
-    }
+    .nav-pages{background:#080808}
 
     .portal-grid{
       display:grid;
@@ -493,6 +484,376 @@
 <body>
 
   <nav class="topbar">
-    <a class="brand" href="https://jardinagem
+    <a class="brand" href="https://jardinagemudi.com.br/flavinhomx.html">
+      Flavim <span>MX School</span>
+    </a>
 
-      
+    <div class="top-actions">
+      <a class="top-btn hide-mobile" href="https://www.instagram.com/eaiflavim" target="_blank">@eaiflavim</a>
+      <a class="top-btn primary" href="https://jardinagemudi.com.br/flavinhomx.html">Home</a>
+    </div>
+  </nav>
+
+  <a class="floating-whatsapp" href="#inscricao">
+    Garantir vaga da nova turma
+  </a>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">ITUMBIARA • MX SCHOOL 100 • NOVA TURMA ABERTA</div>
+
+      <h1>
+        Curso de<br>
+        <span>Pilotagem</span><br>
+        Motocross
+      </h1>
+
+      <p class="subtitle">
+        Os próximos cursos serão realizados em Itumbiara. A turma dos dias
+        17, 18 e 19 de julho está esgotada. Nova turma aberta para
+        10, 11 e 12 de julho com apenas 6 vagas disponíveis.
+      </p>
+
+      <div class="buttons">
+        <a href="#turmas" class="btn btn-primary">Ver turmas</a>
+        <a href="#inscricao" class="btn btn-whats">Garantir vaga</a>
+        <a href="https://jardinagemudi.com.br/flavinhomx.html" class="btn btn-secondary">Voltar para Home</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="turmas" class="stats">
+    <h2 class="section-title">Próximas <span>turmas</span></h2>
+
+    <p class="section-text">
+      Atenção às datas: a primeira turma já lotou. A nova turma está aberta com poucas vagas.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="status open">Aberta</span>
+        <div class="stat-number">10, 11 e 12</div>
+        <h3>Julho</h3>
+        <p><b>Local:</b> Itumbiara</p>
+        <p><b>Vagas disponíveis:</b> 6</p>
+        <p>Nova turma aberta para quem quer evoluir na pilotagem.</p>
+        <div class="buttons">
+          <a href="#inscricao" class="btn btn-whats">Quero essa turma</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="status closed">Esgotada</span>
+        <div class="stat-number">17, 18 e 19</div>
+        <h3>Julho</h3>
+        <p><b>Local:</b> Itumbiara</p>
+        <p><b>Status:</b> vagas esgotadas</p>
+        <p>Turma fechada. Entre em contato para lista de espera.</p>
+        <div class="buttons">
+          <a href="#inscricao" class="btn btn-disabled">Lista de espera</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="status open">3 dias</span>
+        <div class="stat-number">100%</div>
+        <h3>Treinamento</h3>
+        <p>Conteúdo prático e teórico para evolução real dentro da pista.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Aprenda com quem <span>vive a pista</span></h2>
+    <p class="section-text">
+      A Flavim MX School 100 foi criada para formar pilotos com base sólida:
+      postura, controle da moto, curvas, frenagem, aceleração, saltos,
+      leitura de pista e confiança.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Técnica</h3>
+        <p>Correção de postura, domínio da moto, curvas, frenagem e aceleração.</p>
+      </div>
+
+      <div class="card">
+        <h3>Segurança</h3>
+        <p>Orientação para reduzir erros, aumentar controle e pilotar com mais consciência.</p>
+      </div>
+
+      <div class="card">
+        <h3>Evolução real</h3>
+        <p>Treino focado em desenvolvimento prático para iniciante, intermediário e avançado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="programa">
+    <h2 class="section-title">Conteúdo do <span>treinamento</span></h2>
+    <p class="section-text">
+      A proposta é entregar um curso direto, forte e aplicável dentro da pista.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Base de pilotagem</h3>
+        <ul>
+          <li>Postura em pé e sentado</li>
+          <li>Controle de embreagem e aceleração</li>
+          <li>Frenagem correta</li>
+          <li>Olhar e leitura de pista</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Técnica de pista</h3>
+        <ul>
+          <li>Entrada e saída de curva</li>
+          <li>Subidas e descidas</li>
+          <li>Canaletas e terrenos irregulares</li>
+          <li>Ritmo e constância</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Mentalidade de piloto</h3>
+        <ul>
+          <li>Disciplina</li>
+          <li>Foco</li>
+          <li>Superação</li>
+          <li>Preparação para treinos e provas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="certificado">
+      <div>
+        <h2 class="section-title">Certificado <span>oficial</span></h2>
+        <p class="section-text">
+          Ao final do curso, o aluno recebe certificado de participação,
+          reforçando a seriedade da formação e a evolução dentro do motocross.
+        </p>
+
+        <div class="buttons">
+          <a href="#inscricao" class="btn btn-primary">Garantir vaga</a>
+          <a href="certificado.jpeg" target="_blank" class="btn btn-secondary">Ver certificado</a>
+        </div>
+      </div>
+
+      <img src="certificado.jpeg" alt="Certificado Flavim MX School 100">
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Para quem é o <span>curso?</span></h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Iniciantes</h3>
+        <p>Para quem está começando e quer aprender do jeito certo desde o início.</p>
+      </div>
+
+      <div class="card">
+        <h3>Intermediários</h3>
+        <p>Para pilotos que já andam, mas querem corrigir erros e ganhar confiança.</p>
+      </div>
+
+      <div class="card">
+        <h3>Pilotos em evolução</h3>
+        <p>Para quem quer treinar melhor, competir melhor e evoluir com orientação.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscricao" class="form-section">
+    <h2 class="section-title">Inscrição <span>pelo WhatsApp</span></h2>
+    <p class="section-text">
+      Preencha os dados abaixo. A página monta uma mensagem pronta para enviar direto para o WhatsApp do Flavim.
+    </p>
+
+    <div class="form-box">
+      <div class="form-grid">
+        <div class="full">
+          <label>Escolha a turma</label>
+          <select id="turma">
+            <option>Turma 10, 11 e 12 de julho - Itumbiara - 6 vagas disponíveis</option>
+            <option>Lista de espera - Turma 17, 18 e 19 de julho - Itumbiara - ESGOTADA</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Nome do aluno</label>
+          <input id="nome" type="text" placeholder="Ex: João Silva">
+        </div>
+
+        <div>
+          <label>Idade</label>
+          <input id="idade" type="number" placeholder="Ex: 16">
+        </div>
+
+        <div>
+          <label>Telefone do aluno ou responsável</label>
+          <input id="telefone" type="text" placeholder="Ex: (34) 99999-9999">
+        </div>
+
+        <div>
+          <label>Cidade</label>
+          <input id="cidade" type="text" placeholder="Ex: Itumbiara, Uberlândia...">
+        </div>
+
+        <div>
+          <label>Nível de pilotagem</label>
+          <select id="nivel">
+            <option value="">Selecione</option>
+            <option>Iniciante</option>
+            <option>Intermediário</option>
+            <option>Avançado</option>
+            <option>Nunca pilotei motocross</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Possui moto?</label>
+          <select id="moto">
+            <option value="">Selecione</option>
+            <option>Sim, tenho moto própria</option>
+            <option>Não tenho moto</option>
+            <option>Vou confirmar</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Modelo/cilindrada da moto</label>
+          <input id="modeloMoto" type="text" placeholder="Ex: CRF 230, YZ 250, KX 100...">
+        </div>
+
+        <div>
+          <label>Possui equipamentos?</label>
+          <select id="equipamentos">
+            <option value="">Selecione</option>
+            <option>Sim, tenho equipamento completo</option>
+            <option>Tenho parte dos equipamentos</option>
+            <option>Não tenho equipamentos</option>
+          </select>
+        </div>
+
+        <div class="full">
+          <label>Objetivo no curso</label>
+          <textarea id="objetivo" placeholder="Ex: Quero aprender base, melhorar curva, perder medo de salto, treinar para prova..."></textarea>
+        </div>
+
+        <div class="full">
+          <label>Observação importante</label>
+          <textarea id="obs" placeholder="Ex: Lesão, dificuldade, dúvida, nome do responsável, disponibilidade de horário..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="montarMensagem()">Gerar mensagem</button>
+        <button class="btn btn-whats" onclick="enviarWhatsApp()">Enviar inscrição no WhatsApp</button>
+      </div>
+
+      <div id="preview" class="preview">A mensagem da inscrição aparecerá aqui.</div>
+    </div>
+  </section>
+
+  <section class="nav-pages">
+    <h2 class="section-title">Continue no <span>portal</span></h2>
+
+    <div class="portal-grid">
+      <a class="portal-card" href="https://jardinagemudi.com.br/flavinhomx.html">
+        <h3>Home</h3>
+        <p>Voltar para a página principal do Flavim Junior 100.</p>
+      </a>
+
+      <a class="portal-card" href="motosmx.html">
+        <h3>Motos MX</h3>
+        <p>Ver motos de motocross à venda.</p>
+      </a>
+
+      <a class="portal-card" href="motopeças.html">
+        <h3>Peças</h3>
+        <p>Catálogo de peças e acessórios do patrocinador.</p>
+      </a>
+
+      <a class="portal-card" href="https://www.instagram.com/eaiflavim" target="_blank">
+        <h3>Instagram</h3>
+        <p>Acompanhar treinos, bastidores e competições.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Garanta sua vaga</h2>
+    <p>
+      A turma dos dias 17, 18 e 19 já esgotou. A nova turma dos dias
+      10, 11 e 12 de julho ainda tem 6 vagas disponíveis.
+    </p>
+
+    <div class="buttons" style="max-width:720px;margin:0 auto;">
+      <a class="btn btn-whats" href="#inscricao">Preencher inscrição</a>
+      <a class="btn btn-secondary" href="https://jardinagemudi.com.br/flavinhomx.html">Voltar para Home</a>
+    </div>
+  </section>
+
+  <footer>
+    Flavim MX School 100 • Curso de Pilotagem de Motocross<br>
+    Próximas turmas em Itumbiara • 10, 11 e 12 de julho com 6 vagas disponíveis<br>
+    Instagram: @eaiflavim • WhatsApp: 34 9243-0960
+  </footer>
+
+<script>
+  const NUMERO_WHATSAPP = "553492430960";
+
+  function valor(id) {
+    return document.getElementById(id).value.trim() || "Não informado";
+  }
+
+  function criarTextoMensagem() {
+    return `Olá, Flavim! Quero fazer minha inscrição no curso Flavim MX School 100.
+
+TURMA ESCOLHIDA
+${valor("turma")}
+
+LOCAL DO CURSO
+Itumbiara
+
+DADOS DO ALUNO
+Nome: ${valor("nome")}
+Idade: ${valor("idade")}
+Telefone: ${valor("telefone")}
+Cidade: ${valor("cidade")}
+
+EXPERIÊNCIA
+Nível de pilotagem: ${valor("nivel")}
+Possui moto: ${valor("moto")}
+Modelo/cilindrada da moto: ${valor("modeloMoto")}
+Equipamentos: ${valor("equipamentos")}
+
+OBJETIVO NO CURSO
+${valor("objetivo")}
+
+OBSERVAÇÃO
+${valor("obs")}
+
+Gostaria de confirmar disponibilidade da vaga, valor e próximos passos.`;
+  }
+
+  function montarMensagem() {
+    const texto = criarTextoMensagem();
+    document.getElementById("preview").textContent = texto;
+    return texto;
+  }
+
+  function enviarWhatsApp() {
+    const texto = montarMensagem();
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
+    window.open(url, "_blank");
+  }
+</script>
+
+</body>
+</html>
