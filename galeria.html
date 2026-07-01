@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria | Flavim Junior 100</title>
+
+  <style>
+    :root{
+      --dark:#050505;
+      --blue:#0057ff;
+      --white:#fff;
+      --gray:#c9c9c9;
+      --card:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.16);
+      --whats:#25D366;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--dark);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:100;
+      padding:12px 5%;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .brand{
+      font-weight:950;
+      text-transform:uppercase;
+      font-size:15px;
+    }
+
+    .brand span{color:var(--blue)}
+
+    .top-actions{
+      display:flex;
+      gap:8px;
+    }
+
+    .top-btn{
+      font-size:12px;
+      font-weight:900;
+      padding:9px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    .top-btn.primary{
+      background:var(--blue);
+      border-color:var(--blue);
+    }
+
+    header{
+      min-height:92vh;
+      display:flex;
+      align-items:flex-end;
+      padding:120px 6% 42px;
+      background:
+        linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.94) 86%),
+        radial-gradient(circle at right,rgba(0,87,255,.38),transparent 38%),
+        url("imagens/air-flow.jpeg") center/cover no-repeat;
+      position:relative;
+      overflow:hidden;
+    }
+
+    header::after{
+      content:"GALERIA MX";
+      position:absolute;
+      right:-45px;
+      bottom:15px;
+      font-size:95px;
+      font-weight:950;
+      color:rgba(255,255,255,.045);
+    }
+
+    .hero-content{
+      max-width:900px;
+      position:relative;
+      z-index:2;
+    }
+
+    .badge{
+      display:inline-flex;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(0,87,255,.22);
+      border:1px solid rgba(255,255,255,.18);
+      color:#dbe8ff;
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:1px;
+      margin-bottom:14px;
+    }
+
+    h1{
+      font-size:clamp(42px,11vw,86px);
+      line-height:.92;
+      font-weight:950;
+      text-transform:uppercase;
+      margin-bottom:16px;
+      text-shadow:0 10px 30px rgba(0,0,0,.75);
+    }
+
+    h1 span{color:var(--blue)}
+
+    .subtitle{
+      color:#ededed;
+      font-size:clamp(17px,4.5vw,23px);
+      line-height:1.45;
+      max-width:780px;
+      margin-bottom:20px;
+    }
+
+    .buttons{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:15px 16px;
+      border-radius:15px;
+      font-weight:900;
+      transition:.25s;
+      border:1px solid rgba(255,255,255,.14);
+      min-height:52px;
+      cursor:pointer;
+      font-size:15px;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--blue),#38bdf8);
+      color:white;
+      border-color:transparent;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.1);
+      color:white;
+    }
+
+    .btn-whats{
+      background:var(--whats);
+      color:white;
+      border-color:transparent;
+    }
+
+    section{padding:64px 6%}
+
+    .section-title{
+      font-size:clamp(30px,8vw,54px);
+      line-height:1;
+      text-transform:uppercase;
+      margin-bottom:15px;
+      font-weight:950;
+    }
+
+    .section-title span{color:var(--blue)}
+
+    .section-text{
+      color:var(--gray);
+      font-size:17px;
+      line-height:1.7;
+      max-width:900px;
+      margin-bottom:28px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .stat{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:18px;
+      text-align:center;
+    }
+
+    .stat strong{
+      display:block;
+      color:#38bdf8;
+      font-size:28px;
+      font-weight:950;
+    }
+
+    .stat span{
+      font-size:12px;
+      text-transform:uppercase;
+      color:#ddd;
+      font-weight:900;
+    }
+
+    .filters{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .filter-btn{
+      padding:12px 15px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      color:white;
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .filter-btn.active{
+      background:var(--blue);
+      border-color:var(--blue);
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .item{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,.28);
+      cursor:pointer;
+      transition:.25s;
+    }
+
+    .item:hover{
+      transform:translateY(-5px);
+      border-color:rgba(0,87,255,.75);
+    }
+
+    .item img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .item-content{
+      padding:18px;
+    }
+
+    .item-content h3{
+      font-size:20px;
+      margin-bottom:6px;
+      text-transform:uppercase;
+    }
+
+    .item-content p{
+      color:#ccc;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .tag{
+      display:inline-flex;
+      color:#8fb5ff;
+      font-weight:950;
+      font-size:12px;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .video-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+
+    .video-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,.28);
+    }
+
+    .video-card video{
+      width:100%;
+      display:block;
+      background:#000;
+      max-height:520px;
+    }
+
+    .video-card div{
+      padding:16px;
+    }
+
+    .video-card h3{
+      font-size:18px;
+      margin-bottom:6px;
+    }
+
+    .video-card p{
+      color:#ccc;
+      font-size:14px;
+    }
+
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:999;
+      background:rgba(0,0,0,.92);
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .modal.active{display:flex}
+
+    .modal img{
+      max-width:100%;
+      max-height:86vh;
+      border-radius:18px;
+      border:1px solid var(--border);
+    }
+
+    .close{
+      position:fixed;
+      top:18px;
+      right:18px;
+      background:var(--blue);
+      color:white;
+      border:none;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:950;
+      cursor:pointer;
+      z-index:1000;
+    }
+
+    .cta{
+      text-align:center;
+      background:
+        linear-gradient(135deg,rgba(0,87,255,.42),rgba(56,189,248,.14)),
+        #050505;
+    }
+
+    .cta h2{
+      font-size:clamp(34px,9vw,66px);
+      text-transform:uppercase;
+      line-height:.98;
+      margin-bottom:16px;
+    }
+
+    .cta p{
+      color:#eee;
+      font-size:18px;
+      line-height:1.6;
+      max-width:760px;
+      margin:0 auto 24px;
+    }
+
+    footer{
+      background:#030303;
+      color:#999;
+      text-align:center;
+      padding:30px 6% 95px;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .floating-whatsapp{
+      position:fixed;
+      left:16px;
+      right:16px;
+      bottom:15px;
+      background:var(--whats);
+      color:white;
+      padding:15px 18px;
+      border-radius:999px;
+      font-weight:950;
+      z-index:120;
+      box-shadow:0 10px 34px rgba(0,0,0,.48);
+      text-align:center;
+    }
+
+    @media(min-width:820px){
+      .topbar{padding:16px 7%}
+      .brand{font-size:18px}
+      .top-btn{font-size:13px;padding:10px 14px}
+      header{padding:130px 7% 70px}
+      section{padding:84px 7%}
+      .buttons{display:flex;flex-wrap:wrap}
+      .buttons .btn{min-width:190px}
+      .gallery-grid{grid-template-columns:repeat(3,1fr)}
+      .video-grid{grid-template-columns:repeat(3,1fr)}
+      .stats{grid-template-columns:repeat(4,1fr);max-width:900px}
+      .floating-whatsapp{
+        left:auto;
+        right:22px;
+        bottom:22px;
+        width:auto;
+        padding:16px 22px;
+      }
+      footer{padding-bottom:34px}
+    }
+
+    @media(max-width:520px){
+      .top-actions .hide-mobile{display:none}
+      header{min-height:92vh;background-position:center top}
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="topbar">
+  <a class="brand" href="https://jardinagemudi.com.br/flavinhomx.html">
+    Flavim <span>Galeria</span>
+  </a>
+
+  <div class="top-actions">
+    <a class="top-btn hide-mobile" href="https://www.instagram.com/eaiflavim" target="_blank">@eaiflavim</a>
+    <a class="top-btn primary" href="https://jardinagemudi.com.br/flavinhomx.html">Home</a>
+  </div>
+</nav>
+
+<a class="floating-whatsapp" href="https://wa.me/553492430960" target="_blank">
+  Falar com Flavim
+</a>
+
+<header>
+  <div class="hero-content">
+    <div class="badge">QUIRINÓPOLIS-GO • 27 E 28 DE JUNHO • CAMPEONATO GOIANO</div>
+
+    <h1>
+      Galeria<br>
+      <span>Flavim Junior 100</span>
+    </h1>
+
+    <p class="subtitle">
+      Fotos e vídeos da última corrida em Quirinópolis-GO, etapa valendo pontos
+      para o Campeonato Goiano de Motocross.
+    </p>
+
+    <div class="buttons">
+      <a href="#fotos" class="btn btn-primary">Ver fotos</a>
+      <a href="#videos" class="btn btn-secondary">Ver vídeos</a>
+      <a href="https://jardinagemudi.com.br/flavinhomx.html" class="btn btn-secondary">Voltar para Home</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong>27-28</strong><span>Junho</span></div>
+      <div class="stat"><strong>GO</strong><span>Quirinópolis</span></div>
+      <div class="stat"><strong>321</strong><span>Etapa corrida</span></div>
+      <div class="stat"><strong>MX</strong><span>Campeonato Goiano</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="fotos">
+  <h2 class="section-title">Fotos em <span>destaque</span></h2>
+  <p class="section-text">
+    Clique em qualquer imagem para abrir em tela cheia. Os arquivos estão usando a pasta
+    <b>imagens/</b>.
+  </p>
+
+  <div class="filters">
+    <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filter-btn" onclick="filtrar('acao', this)">Ação</button>
+    <button class="filter-btn" onclick="filtrar('podium', this)">Pódio</button>
+    <button class="filter-btn" onclick="filtrar('identidade', this)">Identidade</button>
+  </div>
+
+  <div class="gallery-grid">
+    <article class="item" data-cat="acao" onclick="abrirModal('imagens/air-flow.jpeg')">
+      <img src="imagens/air-flow.jpeg" alt="Flavim no salto">
+      <div class="item-content">
+        <span class="tag">Ação</span>
+        <h3>Salto em alto nível</h3>
+        <p>Momento de impacto na pista, mostrando técnica e controle.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="identidade" onclick="abrirModal('imagens/capa.jpeg')">
+      <img src="imagens/capa.jpeg" alt="Capa Flavim Junior 100">
+      <div class="item-content">
+        <span class="tag">Identidade</span>
+        <h3>Capa oficial</h3>
+        <p>Imagem principal do projeto Flavim Junior 100.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="identidade" onclick="abrirModal('imagens/certificado.jpeg')">
+      <img src="imagens/certificado.jpeg" alt="Certificado MX School">
+      <div class="item-content">
+        <span class="tag">MX School</span>
+        <h3>Certificado</h3>
+        <p>Material oficial da Flavim MX School 100.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="acao" onclick="abrirModal('imagens/chegada.jpeg')">
+      <img src="imagens/chegada.jpeg" alt="Chegada motocross">
+      <div class="item-content">
+        <span class="tag">Corrida</span>
+        <h3>Chegada</h3>
+        <p>Etapa de Quirinópolis valendo pontos para o campeonato.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="acao" onclick="abrirModal('imagens/down-air.jpeg')">
+      <img src="imagens/down-air.jpeg" alt="Flavim descendo salto">
+      <div class="item-content">
+        <span class="tag">Ação</span>
+        <h3>Controle no ar</h3>
+        <p>Foto forte para mostrar técnica e presença na pista.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="acao" onclick="abrirModal('imagens/dust.jpeg')">
+      <img src="imagens/dust.jpeg" alt="Poeira motocross">
+      <div class="item-content">
+        <span class="tag">Ação</span>
+        <h3>Poeira e velocidade</h3>
+        <p>Motocross raiz: pista, terra, velocidade e foco.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="identidade" onclick="abrirModal('imagens/face.jpeg')">
+      <img src="imagens/face.jpeg" alt="Rosto Flavim Junior">
+      <div class="item-content">
+        <span class="tag">Piloto</span>
+        <h3>Flavim Junior</h3>
+        <p>Imagem pessoal do piloto e instrutor.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="podium" onclick="abrirModal('imagens/podium.jpeg')">
+      <img src="imagens/podium.jpeg" alt="Pódio">
+      <div class="item-content">
+        <span class="tag">Pódio</span>
+        <h3>Resultado</h3>
+        <p>Registro de premiação e presença no campeonato.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="podium" onclick="abrirModal('imagens/primeiro.jpeg')">
+      <img src="imagens/primeiro.jpeg" alt="Primeiro lugar">
+      <div class="item-content">
+        <span class="tag">Resultado</span>
+        <h3>Primeiro lugar</h3>
+        <p>Conquista, autoridade e prova de desempenho.</p>
+      </div>
+    </article>
+
+    <article class="item" data-cat="acao" onclick="abrirModal('imagens/moto.jpeg')">
+      <img src="imagens/moto.jpeg" alt="Moto Flavim">
+      <div class="item-content">
+        <span class="tag">Moto</span>
+        <h3>Moto #100</h3>
+        <p>A identidade do piloto também aparece na máquina.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="videos">
+  <h2 class="section-title">Vídeos da <span>corrida</span></h2>
+  <p class="section-text">
+    Os vídeos ficam soltos na mesma pasta do HTML. Use nomes como
+    <b>video-1.mp4</b>, <b>video-2.mp4</b> e assim por diante.
+  </p>
+
+  <div class="video-grid">
+    <div class="video-card">
+      <video controls playsinline preload="metadata" poster="imagens/video-1.jpeg">
+        <source src="video-1.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Vídeo 01</h3>
+        <p>Trecho da corrida em Quirinópolis-GO.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls playsinline preload="metadata" poster="imagens/video-2.jpeg">
+        <source src="video-2.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Vídeo 02</h3>
+        <p>Disputa na pista e ritmo de prova.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls playsinline preload="metadata" poster="imagens/video-4.jpeg">
+        <source src="video-4.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Vídeo 04</h3>
+        <p>Momento de ação na etapa do campeonato.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls playsinline preload="metadata" poster="imagens/video-7.jpeg">
+        <source src="video-7.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Vídeo 07</h3>
+        <p>Passagem forte na pista de terra.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls playsinline preload="metadata" poster="imagens/video-9.jpeg">
+        <source src="video-9.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Vídeo 09</h3>
+        <p>Controle, técnica e aceleração.</p>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <video controls playsinline preload="metadata" poster="imagens/video-11.jpeg">
+        <source src="video-11.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Vídeo 11</h3>
+        <p>Registro final da etapa em Quirinópolis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Quer acompanhar mais?</h2>
+  <p>
+    Siga o Flavim Junior 100 no Instagram e acompanhe treinos, cursos,
+    competições e bastidores do motocross.
+  </p>
+
+  <div class="buttons" style="max-width:720px;margin:0 auto;">
+    <a class="btn btn-primary" href="https://www.instagram.com/eaiflavim" target="_blank">Seguir no Instagram</a>
+    <a class="btn btn-secondary" href="https://jardinagemudi.com.br/flavinhomx.html">Voltar para Home</a>
+  </div>
+</section>
+
+<footer>
+  Galeria • Flavim Junior 100 • Quirinópolis-GO • 27 e 28 de junho<br>
+  Campeonato Goiano de Motocross • Instagram: @eaiflavim
+</footer>
+
+<div class="modal" id="modal" onclick="fecharModal()">
+  <button class="close" onclick="fecharModal()">Fechar</button>
+  <img id="modalImg" src="" alt="Imagem ampliada">
+</div>
+
+<script>
+  function abrirModal(src){
+    document.getElementById("modalImg").src = src;
+    document.getElementById("modal").classList.add("active");
+  }
+
+  function fecharModal(){
+    document.getElementById("modal").classList.remove("active");
+  }
+
+  function filtrar(categoria, botao){
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    botao.classList.add("active");
+
+    document.querySelectorAll(".item").forEach(item => {
+      const cat = item.dataset.cat;
+      item.style.display = categoria === "todos" || cat === categoria ? "block" : "none";
+    });
+  }
+</script>
+
+</body>
+</html>
