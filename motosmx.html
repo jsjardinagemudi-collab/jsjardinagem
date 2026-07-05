@@ -271,6 +271,30 @@
       color:#777;
       font-weight:950;
       text-transform:uppercase;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .item-number{
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:rgba(0,0,0,.74);
+      border:1px solid rgba(255,255,255,.22);
+      color:#fff;
+      border-radius:999px;
+      padding:7px 11px;
+      font-size:12px;
+      font-weight:950;
+      z-index:2;
+      letter-spacing:.5px;
     }
 
     .bike-content{padding:22px}
@@ -546,7 +570,7 @@
 
   <div class="map-grid">
     <div class="map-card">
-      <strong>4</strong>
+      <strong>5</strong>
       <h3>Sudeste</h3>
       <p>MG, SP, RJ e ES</p>
     </div>
@@ -575,10 +599,11 @@
   <h2 class="section-title">Motos em <span>destaque</span></h2>
 
   <div class="filters">
-    <input type="text" id="searchInput" placeholder="Buscar por modelo, marca, cidade ou cilindrada..." />
+    <input type="text" id="searchInput" placeholder="Buscar por item, modelo, marca, cidade ou cilindrada..." />
 
     <select id="brandFilter">
       <option value="">Todas as marcas</option>
+      <option value="Powerhusky">Powerhusky</option>
       <option value="Honda">Honda</option>
       <option value="Yamaha">Yamaha</option>
       <option value="Kawasaki">Kawasaki</option>
@@ -606,8 +631,44 @@
 
   <div class="grid" id="bikeGrid">
 
-    <div class="bike-card" data-brand="Honda" data-cc="250cc" data-region="Sudeste">
-      <div class="photo">Foto da moto</div>
+    <!--
+      PADRÃO DE IMAGENS:
+      Primeira moto: moto-01.jpeg
+      Próxima moto: moto-02.jpeg
+      Depois continuar a sequência: moto-03.jpeg, moto-04.jpeg...
+    -->
+
+    <div class="bike-card" data-item="001" data-brand="Powerhusky" data-cc="" data-region="Sudeste">
+      <div class="photo">
+        <span class="item-number">ITEM 001</span>
+        <img src="moto-01.jpeg" alt="Moto Powerhusky 2024 item 001">
+      </div>
+      <div class="bike-content">
+        <div class="brand-name">Powerhusky • Contato: Flavim</div>
+        <h2>Powerhusky 88</h2>
+        <p class="info-text">Moto anunciada com 24 horas de uso. Informações disponíveis até o momento: ano 2024 e valor pedido de R$ 55.000 na mão.</p>
+        <div class="price">R$ 55.000</div>
+
+        <div class="details">
+          <span>Item: 001</span>
+          <span>Ano: 2024</span>
+          <span>Uso: 24 horas</span>
+          <span>Status: Disponível</span>
+        </div>
+
+        <div class="social">
+          <button onclick="curtir(this)">👍 Curtir <span>0</span></button>
+          <button onclick="comentar(this)">💬 Comentários</button>
+        </div>
+
+        <div class="comment">Informações, fotos extras, localização e negociação devem ser confirmadas diretamente com o Flavim.</div>
+
+        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 001 - Powerhusky 88 - Ano 2024 - 24 horas de uso - R$ 55.000')">Tenho interesse</a>
+      </div>
+    </div>
+
+    <div class="bike-card" data-item="002" data-brand="Honda" data-cc="250cc" data-region="Sudeste">
+      <div class="photo"><span class="item-number">ITEM 002</span>Foto da moto</div>
       <div class="bike-content">
         <div class="brand-name">Honda • Uberlândia-MG</div>
         <h2>CRF 250R</h2>
@@ -632,8 +693,8 @@
       </div>
     </div>
 
-    <div class="bike-card" data-brand="Yamaha" data-cc="250cc" data-region="Sudeste">
-      <div class="photo">Foto da moto</div>
+    <div class="bike-card" data-item="003" data-brand="Yamaha" data-cc="250cc" data-region="Sudeste">
+      <div class="photo"><span class="item-number">ITEM 003</span>Foto da moto</div>
       <div class="bike-content">
         <div class="brand-name">Yamaha • São Paulo-SP</div>
         <h2>YZ 250F</h2>
@@ -658,8 +719,8 @@
       </div>
     </div>
 
-    <div class="bike-card" data-brand="Kawasaki" data-cc="450cc" data-region="Centro-Oeste">
-      <div class="photo">Foto da moto</div>
+    <div class="bike-card" data-item="004" data-brand="Kawasaki" data-cc="450cc" data-region="Centro-Oeste">
+      <div class="photo"><span class="item-number">ITEM 004</span>Foto da moto</div>
       <div class="bike-content">
         <div class="brand-name">Kawasaki • Goiânia-GO</div>
         <h2>KX 450</h2>
@@ -684,8 +745,8 @@
       </div>
     </div>
 
-    <div class="bike-card" data-brand="KTM" data-cc="125cc" data-region="Sul">
-      <div class="photo">Foto da moto</div>
+    <div class="bike-card" data-item="005" data-brand="KTM" data-cc="125cc" data-region="Sul">
+      <div class="photo"><span class="item-number">ITEM 005</span>Foto da moto</div>
       <div class="bike-content">
         <div class="brand-name">KTM • Curitiba-PR</div>
         <h2>SX 125</h2>
@@ -806,10 +867,12 @@
 
 <script>
   const numerosEquipe = [
-    "5534992142960",
-    "553492430960",
-    "553499924481"
+    "5534992142960", // Adriano
+    "553492430960", // Flavim
+    "553499924481"  // Mateus
   ];
+
+  const numeroFlavim = "553492430960";
 
   const searchInput = document.getElementById("searchInput");
   const brandFilter = document.getElementById("brandFilter");
@@ -865,7 +928,7 @@ ${moto}
 
 Gostaria de receber mais fotos, valor atualizado, localização e detalhes da moto.`;
 
-    abrirWhatsApp(numerosEquipe[1], texto);
+    abrirWhatsApp(numeroFlavim, texto);
   }
 
   function campo(id){
