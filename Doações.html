@@ -3,548 +3,853 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Contribuir • EcoVida</title>
+<title>Doações • Instituto EcoVida</title>
 
+<meta name="description" content="Contribua com o Instituto EcoVida. Doações via PIX, planos mensais, parceiros institucionais e apoio à reciclagem, comunidade e cuidado ambiental.">
+<meta name="theme-color" content="#114084">
 
 <style>
 :root{
-  --pri:#114084;
-  --pri2:#11804a;
+  --azul:#114084;
+  --azul-escuro:#0d3270;
+  --verde:#11804a;
+  --verde-claro:#e8f5ee;
   --bg:#f6f7f6;
+  --texto:#263238;
+  --cinza:#667085;
+  --branco:#ffffff;
+  --sombra:0 14px 35px rgba(0,0,0,.09);
+  --radius:18px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  font-family:system-ui,Segoe UI,Roboto,sans-serif;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   background:var(--bg);
+  color:var(--texto);
+  line-height:1.6;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  max-width:100%;
+  display:block;
 }
 
 .wrap{
-  width:min(900px,92vw);
+  width:min(1100px,92vw);
   margin:auto;
-  padding:60px 0;
+}
+
+header{
+  background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.logo{
+  font-weight:900;
+  color:var(--azul);
+  font-size:20px;
+}
+
+.logo span{
+  color:var(--verde);
+}
+
+.menu{
+  display:flex;
+  gap:16px;
+  font-size:14px;
+  color:var(--cinza);
+}
+
+.menu a:hover{
+  color:var(--azul);
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  padding:14px 18px;
+  border-radius:12px;
+  font-weight:800;
+  text-decoration:none;
+  transition:.2s ease;
+  border:none;
+  cursor:pointer;
+  text-align:center;
+}
+
+.btn-primary{
+  background:var(--azul);
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:var(--azul-escuro);
+  transform:translateY(-2px);
+}
+
+.btn-green{
+  background:var(--verde);
+  color:#fff;
+}
+
+.btn-green:hover{
+  filter:brightness(.92);
+  transform:translateY(-2px);
+}
+
+.btn-outline{
+  border:2px solid var(--azul);
+  color:var(--azul);
+  background:#fff;
+}
+
+.btn-outline:hover{
+  box-shadow:var(--sombra);
+  transform:translateY(-2px);
+}
+
+.hero{
+  padding:70px 0 40px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:32px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  background:var(--verde-claro);
+  color:var(--azul);
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:16px;
 }
 
 h1{
-  color:var(--pri);
-  margin-bottom:10px;
+  font-size:clamp(38px,6vw,72px);
+  line-height:.95;
+  color:var(--azul);
+  letter-spacing:-2px;
+  margin-bottom:18px;
+}
+
+h2{
+  font-size:clamp(28px,4vw,44px);
+  color:var(--azul);
+  line-height:1.08;
+  margin-bottom:12px;
+}
+
+h3{
+  color:var(--azul);
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+p{
+  color:var(--cinza);
+}
+
+.hero p{
+  font-size:18px;
+  max-width:720px;
+  margin-bottom:22px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .card{
   background:#fff;
   padding:24px;
-  border-radius:16px;
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
-  margin-bottom:20px;
+  border-radius:var(--radius);
+  box-shadow:var(--sombra);
+  border:1px solid rgba(17,64,132,.08);
 }
 
-.btn{
-  display:flex;
+.hero-img{
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:var(--sombra);
+}
+
+section{
+  padding:46px 0;
+}
+
+.section-title{
+  max-width:760px;
+  margin-bottom:24px;
+}
+
+.eyebrow{
+  color:var(--verde);
+  text-transform:uppercase;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+
+.impact-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.impact{
+  text-align:center;
+}
+
+.impact strong{
+  display:block;
+  font-size:28px;
+  color:var(--azul);
+  margin-bottom:4px;
+}
+
+.pix-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
   align-items:center;
-  justify-content:center;
-  width:100%;
-  padding:14px 18px;
-  border-radius:12px;
-  font-weight:700;
-  text-decoration:none;
-  transition:0.2s ease;
 }
 
-.btn-primary{
-  background:#114084;
-  color:#fff;
+.pix-img{
+  border-radius:18px;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
 }
 
-.btn-primary:hover{
-  background:#0d3270;
-  transform:translateY(-2px);
+.qr{
+  max-width:230px;
+  margin:18px auto;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
+.copy-btn{
+  padding:11px 14px;
+  border-radius:10px;
+  border:1px solid var(--azul);
+  background:#fff;
+  color:var(--azul);
+  font-weight:800;
+  cursor:pointer;
+  margin-top:10px;
 }
 
-.btn-primary{
-  background:var(--pri);
-  color:#fff;
+.copy-btn:hover{
+  background:#f4f7fb;
 }
 
-.btn-outline{
-  border:2px solid var(--pri);
-  color:var(--pri);
-}
-  @media (max-width: 900px){
-  .card{
-    grid-template-columns:1fr !important;
-  }
-}
-.plans-grid{
-  margin-top:18px;
+.use-grid,
+.plans-grid,
+.inst-grid,
+.gallery,
+.testimonials{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
 }
 
-
-.plan-list,
-.inst-list{
-  flex-grow:1;
+.use-card{
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  border:1px solid rgba(17,64,132,.08);
+  box-shadow:var(--sombra);
 }
 
-
-
-.plan-top h3{
-  margin:8px 0 4px;
-  color:#114084;
-  font-size:22px;
+.icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  background:var(--verde-claro);
+  border-radius:14px;
+  font-size:24px;
+  margin-bottom:14px;
 }
 
-.plan-badge{
-  display:flex;
-  padding:6px 10px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:12px;
-  background:#e8f5ee;
-  border:1px solid #cfe9da;
-  color:#114084;
-}
-
-.plan-badge.featured{
-  background:#114084;
-  border-color:#114084;
-  color:#fff;
-}
-
-.plan-list{
-  margin:12px 0 16px;
-  padding-left:18px;
-  line-height:1.7;
-  color:#475467;
-}
-/* ====== FIX DEFINITIVO: alinhamento dos botões ====== */
-
-/* no grid, cards não devem ter margin-bottom (senão bagunça altura visual) */
-.plans-grid .card,
-.inst-grid .card{
-  margin-bottom: 0;
-}
-
-/* todos os cards do grid terão a MESMA borda (invisível) */
-.plans-grid .card,
-.inst-grid .card{
-  border: 2px solid transparent;
-}
-
-/* destaque sem alterar altura */
-.plan-featured,
-.inst-featured{
-  border-color: var(--pri);
-  box-shadow: 0 18px 40px rgba(0,0,0,.12);
-}
-/* Botões de planos/parceiros: centralizados e encaixados no card */
-.plan-btn,
-.inst-btn{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  margin: 0 !important;          /* remove qualquer margin lateral */
-  padding: 14px 18px !important; /* tamanho padrão */
-}
-
-/* garante que o card não tenha alinhamento diferente */
-.plan.card,
-.inst.card{
-  box-sizing: border-box !important;
-}
-
-/* card vira coluna e força botão no fundo */
-.plan.card,
-.inst.card{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 24px; /* usa só o padding do card (remove duplicidade) */
-}
-
-/* remove padding duplicado que você tinha em .plan/.inst */
 .plan,
 .inst{
-  padding: 0;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  border:2px solid transparent;
 }
 
-/* padroniza topo para ter mesma “altura” */
+.featured{
+  border-color:var(--azul);
+}
+
 .plan-top,
 .inst-top{
-  min-height: 120px;
+  min-height:120px;
 }
 
-/* lista empurra o botão para baixo */
-.plan-list,
-.inst-list{
-  flex: 1;
-  margin: 12px 0 16px;
-}
-
-/* botão sempre alinhado e com tamanho igual */
-.plan-btn,
-.inst-btn{
-  margin-top: auto;
-  width: 100%;
-  text-align: center;
-  display: block;     /* importante */
-  padding: 14px 18px; /* padrão igual */
-  line-height: 1.1;
-  border-radius: 12px;
-}
-
-
-
-@media (max-width:900px){
-  .plans-grid{grid-template-columns:1fr;}
-  .plan-featured{transform:none;}
-}
-  .inst-grid{
-  margin-top:18px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-
-
-
-.inst-top h3{
-  margin:8px 0 4px;
-  color:#114084;
-  font-size:22px;
-}
-
+.plan-badge,
 .inst-badge{
-  display:inline-block;
+  display:inline-flex;
   padding:6px 10px;
   border-radius:999px;
   font-weight:900;
   font-size:12px;
-  background:#e8f5ee;
+  background:var(--verde-claro);
   border:1px solid #cfe9da;
-  color:#114084;
+  color:var(--azul);
+  margin-bottom:8px;
 }
 
-.inst-badge.featured{
-  background:#114084;
-  border-color:#114084;
+.plan-badge.featured-badge,
+.inst-badge.featured-badge{
+  background:var(--azul);
   color:#fff;
-}
-
-.inst-list{
-  margin:12px 0 16px;
-  padding-left:18px;
-  line-height:1.7;
-  color:#475467;
-}
-
-
-}
-
-
-
-
-@media (max-width:900px){
-  .inst-grid{grid-template-columns:1fr;}
-  .inst-featured{transform:none;}
-}
-.inst-grid{
-  align-items: stretch;
-}
-
-
-
-.inst-top{
-  min-height: 120px; /* padroniza a parte de cima */
-}
-
-.inst-list{
-  flex:1;
-}
-/* FIX FINAL: alinhar botões dos Planos Mensais */
-
-.plans-grid{
-  align-items: stretch !important;
-}
-
-.plans-grid > .plan.card{
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* garante que a lista “cresça” e empurre o botão */
-.plans-grid > .plan.card > .plan-list{
-  flex: 1 1 auto !important;
-  margin-bottom: 16px !important;
-}
-
-/* botão sempre no fundo */
-.plans-grid > .plan.card > .plan-btn{
-  margin-top: auto !important;
-  display: block !important;
-  width: 100% !important;
-}
-
-/* (opcional) padroniza o topo para reduzir variação */
-.plans-grid > .plan.card > .plan-top{
-  min-height: 120px !important;
-}
-.plan.card,
-.inst.card{
-  display:flex !important;
-  flex-direction:column !important;
+  border-color:var(--azul);
 }
 
 .plan-list,
 .inst-list{
-  flex:1 !important;
+  flex:1;
+  margin:14px 0 18px;
+  padding-left:20px;
+  color:var(--cinza);
+  line-height:1.7;
 }
 
-.plan-btn,
-.inst-btn{
-  margin-top:auto !important;
+.plan .btn,
+.inst .btn{
+  margin-top:auto;
+  width:100%;
 }
 
+.gallery img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  border-radius:18px;
+  box-shadow:var(--sombra);
+  background:#e5e7eb;
+}
 
+.quote{
+  font-style:italic;
+  color:#475467;
+}
 
+.author{
+  margin-top:14px;
+  font-weight:900;
+  color:var(--azul);
+}
 
-  
+.transparency{
+  background:linear-gradient(135deg,var(--azul),var(--verde));
+  color:#fff;
+  border-radius:26px;
+  padding:32px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
+}
+
+.transparency h2,
+.transparency p{
+  color:#fff;
+}
+
+.transparency p{
+  opacity:.9;
+}
+
+footer{
+  background:#0d3270;
+  color:rgba(255,255,255,.82);
+  padding:34px 0;
+  margin-top:40px;
+}
+
+footer strong{
+  color:#fff;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:24px;
+}
+
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+.whatsapp-fixo{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:50;
+  background:#25d366;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:999px;
+  font-weight:900;
+  box-shadow:0 14px 34px rgba(0,0,0,.22);
+}
+
+@media(max-width:900px){
+  .menu{
+    display:none;
+  }
+
+  .hero-grid,
+  .pix-grid,
+  .transparency,
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .impact-grid,
+  .use-grid,
+  .plans-grid,
+  .inst-grid,
+  .gallery,
+  .testimonials{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:42px;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .gallery img{
+    height:220px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-  <p style="margin-top:20px;font-size:14px;color:#667085;">
-  Transparência: O EcoVida é um projeto vinculado à JS Jardinagem LTDA.
-  CNPJ: 61.617.926/0001-15
-</p>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="ecovida.html">Instituto <span>EcoVida</span></a>
 
+    <nav class="menu">
+      <a href="#pix">PIX</a>
+      <a href="#planos">Planos</a>
+      <a href="#parceiros">Parceiros</a>
+      <a href="#transparencia">Transparência</a>
+      <a href="apoiadores.html">Apoiadores</a>
+    </nav>
 
-<div class="wrap">
-
-<h1>Contribua com o EcoVida</h1>
-<a class="btn btn-primary" href="#parceiro-institucional">Parceiro institucional</a>
-<p>Seu apoio ajuda a manter rotas de coleta, organizar espaços públicos e gerar oportunidade de recomeço.</p>
-
-  <div class="card">
-  <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
-
-  <!-- LADO ESQUERDO (imagem emocional) -->
-  <div>
-    <img src="imagen doacao pix.png"
-         alt="Apoie o Projeto EcoVida"
-         style="width:100%;border-radius:16px;box-shadow:0 12px 28px rgba(0,0,0,.12);">
+    <a class="btn btn-primary" href="#pix">❤️ Doar agora</a>
   </div>
+</header>
 
-  <!-- LADO DIREITO (PIX) -->
-  <div>
+<main>
 
-    <h3>Doação via PIX</h3>
-    <p>
-      Contribua com qualquer valor para fortalecer o Projeto EcoVida.
-      Seu apoio ajuda a manter rotas de coleta e ampliar o impacto social.
-    </p>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge">♻️ Doação • Reciclagem • Impacto social</div>
+      <h1>Cada doação é uma semente de transformação.</h1>
+      <p>
+        Sua contribuição ajuda o Instituto EcoVida a manter rotas de coleta,
+        organizar espaços públicos, apoiar colaboradores e construir uma cidade
+        mais limpa, humana e sustentável.
+      </p>
 
-    <div style="margin:20px 0;text-align:center;">
-      <img src="QR Code PIX EcoVida1.jpg"
-           alt="QR Code PIX"
-           style="max-width:220px;width:100%;border-radius:12px;">
+      <div class="actions">
+        <a class="btn btn-green" href="#pix">❤️ Quero transformar vidas</a>
+        <a class="btn btn-outline" href="#planos">Ver planos mensais</a>
+        <a class="btn btn-outline" href="apoiadores.html">Ver apoiadores</a>
+      </div>
     </div>
 
-    <p><strong>Nome:</strong> JS JARDINAGEM E MANUTENCAO</p>
-    <p><strong>Chave PIX:</strong> 1ff079a6-eeb1-4ea3-84fe-cdc3ede4b487</p>
-
-    <button onclick="navigator.clipboard.writeText('1ff079a6-eeb1-4ea3-84fe-cdc3ede4b487')"
-      style="padding:10px 14px;border-radius:10px;border:1px solid #114084;background:#fff;color:#114084;font-weight:700;cursor:pointer;">
-      Copiar chave PIX
-    </button>
-
+    <div class="hero-img">
+      <img src="doacoes-01.jpeg" alt="Apoie o Instituto EcoVida">
+    </div>
   </div>
+</section>
 
-</div>
-
-  </div>
-
-  <p style="margin-top:14px;color:#667085;font-size:14px;">
-    Após a contribuição, envie o comprovante pelo WhatsApp para registrarmos seu apoio.
-  </p>
-  <a class="btn btn-primary plan-btn"
-           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20RAIZ%20(R%2449%2Fm%C3%AAs).%20Me%20envia%20as%20instru%C3%A7%C3%B5es%20do%20PIX%20mensal%2C%20por%20favor."
-           target="_blank" rel="noopener">
-          Envie seu comprovante aqui
-        </a>
-</div>
-<section style="padding-top:10px;">
+<section id="impacto">
   <div class="wrap">
-    <h2 class="section-title" style="margin-top:0;">Planos mensais EcoVida</h2>
-    <p class="muted" style="margin-top:-4px;">
-      Apoio recorrente para manter a rota ativa, organizar espaços públicos e ampliar oportunidades de recomeço.
-    </p>
+    <div class="impact-grid">
+      <div class="card impact">
+        <strong>18.250 kg</strong>
+        <p>materiais reciclados</p>
+      </div>
+      <div class="card impact">
+        <strong>42</strong>
+        <p>pontos de coleta</p>
+      </div>
+      <div class="card impact">
+        <strong>320</strong>
+        <p>famílias impactadas</p>
+      </div>
+      <div class="card impact">
+        <strong>147</strong>
+        <p>voluntários e apoiadores</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pix">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Doação rápida</div>
+      <h2>Contribua via PIX</h2>
+      <p>
+        Doe qualquer valor. Após contribuir, envie o comprovante pelo WhatsApp
+        para registrarmos seu apoio.
+      </p>
+    </div>
+
+    <div class="card pix-grid">
+      <div>
+        <img class="pix-img" src="doacoes-02.jpeg" alt="Doação EcoVida">
+      </div>
+
+      <div>
+        <h3>Doação via PIX</h3>
+        <p>
+          Sua doação ajuda a manter rotas de coleta, ampliar o impacto social
+          e organizar novas ações ambientais.
+        </p>
+
+        <img class="qr" src="QR Code PIX EcoVida1.jpg" alt="QR Code PIX EcoVida">
+
+        <p><strong>Nome:</strong> JS JARDINAGEM E MANUTENCAO</p>
+        <p><strong>Chave PIX:</strong> 1ff079a6-eeb1-4ea3-84fe-cdc3ede4b487</p>
+
+        <button class="copy-btn" onclick="copiarPix()">
+          Copiar chave PIX
+        </button>
+
+        <div class="actions" style="margin-top:18px;">
+          <a class="btn btn-primary"
+             href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Fiz%20uma%20doa%C3%A7%C3%A3o%20e%20quero%20enviar%20o%20comprovante."
+             target="_blank" rel="noopener">
+            Enviar comprovante
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="uso">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Para onde vai sua contribuição</div>
+      <h2>Sua doação vira ação prática.</h2>
+      <p>O apoio recebido fortalece a estrutura básica do projeto e permite que as ações aconteçam com mais frequência.</p>
+    </div>
+
+    <div class="use-grid">
+      <div class="use-card"><div class="icon">🚛</div><h3>Coletas</h3><p>Combustível, deslocamento e organização das rotas.</p></div>
+      <div class="use-card"><div class="icon">🌱</div><h3>Mudas</h3><p>Compra e plantio de mudas em ações ambientais.</p></div>
+      <div class="use-card"><div class="icon">🧤</div><h3>EPIs</h3><p>Luvas, sacos, ferramentas e equipamentos de segurança.</p></div>
+      <div class="use-card"><div class="icon">🥤</div><h3>Apoio aos voluntários</h3><p>Água, alimentação e suporte durante ações externas.</p></div>
+      <div class="use-card"><div class="icon">📚</div><h3>Educação ambiental</h3><p>Materiais, cartazes, folders e campanhas educativas.</p></div>
+      <div class="use-card"><div class="icon">👨‍👩‍👧</div><h3>Apoio social</h3><p>Encaminhamento, acolhimento e fortalecimento comunitário.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Apoio recorrente</div>
+      <h2>Planos mensais EcoVida</h2>
+      <p>Apoie todo mês e ajude a manter o projeto vivo, organizado e em crescimento.</p>
+    </div>
 
     <div class="plans-grid">
-      <!-- PLANO 1 -->
       <div class="plan card">
         <div class="plan-top">
           <span class="plan-badge">SEMENTE</span>
           <h3>R$ 19 / mês</h3>
-          <p class="muted">Para quem quer apoiar com consistência.</p>
+          <p>Para quem quer apoiar com consistência.</p>
         </div>
         <ul class="plan-list">
           <li>✅ Apoio mensal ao EcoVida</li>
           <li>✅ Ajuda a manter rotas de coleta</li>
-          <li>✅ Impacto real, todo mês</li>
+          <li>✅ Impacto real todo mês</li>
         </ul>
-
-        <a class="btn btn-primary plan-btn"
-           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20SEMENTE%20(R%2419%2Fm%C3%AAs).%20Me%20envia%20as%20instru%C3%A7%C3%B5es%20do%20PIX%20mensal%2C%20por%20favor."
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20SEMENTE%20(R%2419%2Fm%C3%AAs)."
            target="_blank" rel="noopener">
           Assinar este plano
         </a>
       </div>
 
-      <!-- PLANO 2 (RECOMENDADO) -->
-      <div class="plan card plan-featured">
+      <div class="plan card featured">
         <div class="plan-top">
-          <span class="plan-badge featured">RECOMENDADO</span>
+          <span class="plan-badge featured-badge">RECOMENDADO</span>
           <h3>R$ 49 / mês</h3>
-          <p class="muted">O melhor custo-benefício para manter o projeto vivo.</p>
+          <p>O melhor custo-benefício para manter o projeto vivo.</p>
         </div>
         <ul class="plan-list">
           <li>✅ Apoio mensal consistente</li>
           <li>✅ Ajuda a organizar pontos e praças</li>
           <li>✅ Fortalece a operação e expansão</li>
         </ul>
-
-        <a class="btn btn-primary plan-btn"
-           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20RAIZ%20(R%2449%2Fm%C3%AAs).%20Me%20envia%20as%20instru%C3%A7%C3%B5es%20do%20PIX%20mensal%2C%20por%20favor."
+        <a class="btn btn-green"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20RAIZ%20(R%2449%2Fm%C3%AAs)."
            target="_blank" rel="noopener">
           Assinar este plano
         </a>
       </div>
 
-      <!-- PLANO 3 -->
       <div class="plan card">
         <div class="plan-top">
           <span class="plan-badge">CIDADE VIVA</span>
           <h3>R$ 99 / mês</h3>
-          <p class="muted">Para quem quer acelerar o impacto.</p>
+          <p>Para quem quer acelerar o impacto.</p>
         </div>
         <ul class="plan-list">
           <li>✅ Apoio mensal forte</li>
           <li>✅ Ajuda a ampliar equipe e rotas</li>
           <li>✅ Mais limpeza urbana e dignidade</li>
         </ul>
-
-        <a class="btn btn-primary plan-btn"
-           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20CIDADE%20VIVA%20(R%2499%2Fm%C3%AAs).%20Me%20envia%20as%20instru%C3%A7%C3%B5es%20do%20PIX%20mensal%2C%20por%20favor."
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20assinar%20o%20Plano%20CIDADE%20VIVA%20(R%2499%2Fm%C3%AAs)."
            target="_blank" rel="noopener">
           Assinar este plano
         </a>
       </div>
     </div>
-
-    <div class="card" style="margin-top:18px;padding:16px 18px;">
-      <strong>Como funciona o apoio mensal</strong>
-      <p class="muted" style="margin:8px 0 0;">
-        Você escolhe um plano e recebe as instruções para fazer o PIX mensal.
-        Se preferir, você pode enviar o comprovante todo mês pelo WhatsApp para registrarmos seu apoio.
-      </p>
-    </div>
   </div>
 </section>
-<section id="parceiro-institucional" style="padding-top:10px;">
+
+<section id="parceiros">
   <div class="wrap">
-    <h2 class="section-title" style="margin-top:0;">Parceiro institucional</h2>
-    <p class="muted" style="margin-top:-4px;">
-      Para empresas, condomínios e comércios que querem apoiar o EcoVida de forma contínua e fortalecer impacto social e urbano.
-    </p>
+    <div class="section-title">
+      <div class="eyebrow">Empresas, comércios e condomínios</div>
+      <h2>Parceiro institucional</h2>
+      <p>
+        Para quem quer apoiar o EcoVida de forma contínua e fortalecer impacto social,
+        ambiental e urbano.
+      </p>
+    </div>
 
     <div class="inst-grid">
-      <!-- BRONZE -->
       <div class="inst card">
         <div class="inst-top">
           <span class="inst-badge">BRONZE</span>
           <h3>R$ 250 / mês</h3>
-          <p class="muted">Apoio inicial para manter rotas e organização.</p>
+          <p>Apoio inicial para manter rotas e organização.</p>
         </div>
-
         <ul class="inst-list">
-          <li>✅ Nome do parceiro na página “Apoiadores”</li>
-          <li>✅ Certificado digital de apoio (mensal)</li>
-          <li>✅ Prioridade para virar ponto parceiro (rota/avaliação)</li>
+          <li>✅ Nome na página de apoiadores</li>
+          <li>✅ Certificado digital de apoio</li>
+          <li>✅ Prioridade para virar ponto parceiro</li>
         </ul>
-
-        <a class="btn btn-primary inst-btn"
-          href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Sou%20uma%20empresa%20e%20quero%20ser%20Parceiro%20Institucional%20BRONZE%20(R%24250%2Fm%C3%AAs).%20Podem%20me%20passar%20os%20detalhes%20e%20pr%C3%B3ximos%20passos%3F"
-          target="_blank" rel="noopener">
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20ser%20Parceiro%20Institucional%20BRONZE."
+           target="_blank" rel="noopener">
           Quero ser parceiro
         </a>
       </div>
 
-      <!-- PRATA (RECOMENDADO) -->
-      <div class="inst card inst-featured">
+      <div class="inst card featured">
         <div class="inst-top">
-          <span class="inst-badge featured">RECOMENDADO</span>
+          <span class="inst-badge featured-badge">RECOMENDADO</span>
           <h3>R$ 500 / mês</h3>
-          <p class="muted">Para apoiar e já gerar impacto visível com consistência.</p>
+          <p>Para gerar impacto visível com consistência.</p>
         </div>
-
         <ul class="inst-list">
           <li>✅ Tudo do Bronze</li>
-          <li>✅ Logo do parceiro na página “Apoiadores”</li>
-          <li>✅ 1 post/menção trimestral (Instagram EcoVida/JS)*</li>
+          <li>✅ Logo na página de apoiadores</li>
+          <li>✅ 1 menção trimestral nas redes*</li>
         </ul>
-
-        <a class="btn btn-primary inst-btn"
-          href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20ser%20Parceiro%20Institucional%20PRATA%20(R%24500%2Fm%C3%AAs).%20Podem%20me%20enviar%20uma%20proposta%20e%20orientar%20como%20funciona%3F"
-          target="_blank" rel="noopener">
+        <a class="btn btn-green"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20ser%20Parceiro%20Institucional%20PRATA."
+           target="_blank" rel="noopener">
           Quero ser parceiro
         </a>
       </div>
 
-      <!-- OURO -->
       <div class="inst card">
         <div class="inst-top">
           <span class="inst-badge">OURO</span>
           <h3>R$ 1.000 / mês</h3>
-          <p class="muted">Apoio forte para expansão do projeto e novas rotas.</p>
+          <p>Apoio forte para expansão do projeto.</p>
         </div>
-
         <ul class="inst-list">
           <li>✅ Tudo do Prata</li>
-          <li>✅ Selo “Apoiador EcoVida” (arquivo para usar em redes)</li>
-          <li>✅ Relatório simples semestral de impacto (texto + fotos)</li>
+          <li>✅ Selo “Apoiador EcoVida”</li>
+          <li>✅ Relatório semestral de impacto</li>
         </ul>
-
-        <a class="btn btn-primary inst-btn"
-          href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Tenho%20interesse%20no%20Parceiro%20Institucional%20OURO%20(R%241.000%2Fm%C3%AAs).%20Podem%20agendar%20uma%20conversa%20e%20enviar%20a%20proposta%3F"
-          target="_blank" rel="noopener">
+        <a class="btn btn-primary"
+           href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Tenho%20interesse%20no%20Parceiro%20Institucional%20OURO."
+           target="_blank" rel="noopener">
           Agendar conversa
         </a>
       </div>
     </div>
 
-    <div class="card" style="margin-top:18px;padding:16px 18px;">
-      <strong>Importante</strong>
-      <p class="muted" style="margin:8px 0 0;">
-        *As contrapartidas (menções e materiais) são combinadas caso a caso, sempre com foco em transparência e bom senso.
-        O principal é manter o EcoVida funcionando com dignidade e impacto real.
-      </p>
+    <p style="margin-top:16px;font-size:14px;color:#667085;">
+      *As contrapartidas são combinadas caso a caso, sempre com foco em transparência, bom senso e impacto real.
+    </p>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Impacto em imagens</div>
+      <h2>Galeria EcoVida</h2>
+      <p>Substitua as imagens abaixo pelas fotos reais do projeto usando a sequência indicada.</p>
+    </div>
+
+    <div class="gallery">
+      <img src="doacoes-03.jpeg" alt="Ação EcoVida 01">
+      <img src="doacoes-04.jpeg" alt="Ação EcoVida 02">
+      <img src="doacoes-05.jpeg" alt="Ação EcoVida 03">
+      <img src="doacoes-06.jpeg" alt="Ação EcoVida 04">
+      <img src="doacoes-07.jpeg" alt="Ação EcoVida 05">
+      <img src="doacoes-08.jpeg" alt="Ação EcoVida 06">
     </div>
   </div>
 </section>
 
+<section id="depoimentos">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Quem apoia acredita</div>
+      <h2>Depoimentos</h2>
+    </div>
 
-<a href="ecovida.html">← Voltar para EcoVida</a>
+    <div class="testimonials">
+      <div class="card">
+        <p class="quote">“Conheci o EcoVida e percebi que pequenas ações podem transformar uma comunidade inteira.”</p>
+        <p class="author">Apoiador EcoVida</p>
+      </div>
 
-</div>
+      <div class="card">
+        <p class="quote">“Minha empresa decidiu apoiar porque o projeto une sustentabilidade, cuidado urbano e impacto social.”</p>
+        <p class="author">Parceiro institucional</p>
+      </div>
+
+      <div class="card">
+        <p class="quote">“A reciclagem virou uma ponte para organizar a cidade e criar novas oportunidades.”</p>
+        <p class="author">Voluntário do projeto</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="transparencia">
+  <div class="wrap">
+    <div class="transparency">
+      <div>
+        <div class="eyebrow" style="color:#fff;">Transparência</div>
+        <h2>Prestação de contas e apoiadores</h2>
+        <p>
+          Mensalmente, o EcoVida pode divulgar arrecadação, despesas, ações realizadas,
+          fotos do impacto e lista de apoiadores autorizados.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-outline" href="apoiadores.html">Ver apoiadores</a>
+        <a class="btn btn-green" href="ecovida.html">Voltar ao EcoVida</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <strong>Instituto EcoVida</strong>
+      <p>Reciclagem, comunidade, apoio social, limpeza urbana e cuidado com a natureza.</p>
+      <p style="margin-top:10px;">Transparência: projeto vinculado à JS Jardinagem LTDA.</p>
+      <p>CNPJ: 61.617.926/0001-15</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="ecovida.html">EcoVida</a>
+      <a href="#pix">Doar via PIX</a>
+      <a href="#planos">Planos mensais</a>
+      <a href="#parceiros">Parceiros</a>
+      <a href="apoiadores.html">Apoiadores</a>
+      <a href="https://www.instagram.com/ecovidajs/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/5534992142960" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-fixo"
+   href="https://wa.me/5534992142960?text=Ol%C3%A1%20EcoVida!%20Quero%20apoiar%20o%20projeto."
+   target="_blank" rel="noopener">
+  WhatsApp
+</a>
+
+<script>
+function copiarPix(){
+  const chavePix = "1ff079a6-eeb1-4ea3-84fe-cdc3ede4b487";
+
+  navigator.clipboard.writeText(chavePix).then(function(){
+    alert("Chave PIX copiada com sucesso!");
+  }).catch(function(){
+    alert("Não foi possível copiar automaticamente. Chave PIX: " + chavePix);
+  });
+}
+</script>
 
 </body>
 </html>
-
