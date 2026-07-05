@@ -261,10 +261,11 @@
     }
 
     .photo{
-      height:220px;
+      height:auto;
+      aspect-ratio:4/5;
       background:
         radial-gradient(circle at center,rgba(0,87,255,.28),transparent 45%),
-        #151515;
+        #080808;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -273,13 +274,70 @@
       text-transform:uppercase;
       position:relative;
       overflow:hidden;
+      cursor:pointer;
     }
 
     .photo img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;
+      object-position:center;
       display:block;
+      background:#050505;
+    }
+
+    .photo::after{
+      content:"Clique para ampliar";
+      position:absolute;
+      right:10px;
+      bottom:10px;
+      background:rgba(0,0,0,.72);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:11px;
+      font-weight:900;
+      text-transform:none;
+      opacity:.88;
+      pointer-events:none;
+    }
+
+    .image-modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.92);
+      z-index:999;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .image-modal.active{display:flex}
+
+    .image-modal img{
+      max-width:96vw;
+      max-height:88vh;
+      object-fit:contain;
+      border-radius:18px;
+      box-shadow:0 20px 80px rgba(0,0,0,.75);
+      background:#050505;
+    }
+
+    .modal-close{
+      position:fixed;
+      top:18px;
+      right:18px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.24);
+      color:white;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      font-size:25px;
+      font-weight:900;
+      cursor:pointer;
     }
 
     .item-number{
@@ -512,6 +570,11 @@
 <a class="floating-whatsapp" href="#vender">
   Anunciar ou comprar moto
 </a>
+
+<div class="image-modal" id="imageModal" onclick="fecharZoom(event)">
+  <button class="modal-close" type="button" onclick="fecharZoom(event)">×</button>
+  <img id="modalImage" src="" alt="Foto ampliada da moto">
+</div>
 
 <header>
   <div class="hero-content">
@@ -1008,6 +1071,37 @@ Gostaria de enviar fotos e saber os próximos passos para anunciar.`;
       }, index * 700);
     });
   }
+
+  document.querySelectorAll('.photo img').forEach(img => {
+    img.addEventListener('click', () => abrirZoom(img.src, img.alt));
+  });
+
+  function abrirZoom(src, alt){
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = src;
+    modalImage.alt = alt || 'Foto ampliada da moto';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fecharZoom(event){
+    if(event && event.target && event.target.id === 'modalImage') return;
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.getElementById('modalImage').src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape'){
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.getElementById('modalImage').src = '';
+      document.body.style.overflow = '';
+    }
+  });
+
 </script>
 
 </body>
