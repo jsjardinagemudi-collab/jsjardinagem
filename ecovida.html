@@ -71,14 +71,18 @@
 
     .hero{
       background:
-        linear-gradient(135deg,rgba(7,20,13,.90),rgba(31,122,58,.82)),
-        url("ecovida-capa.jpeg") center/cover no-repeat;
+        linear-gradient(135deg,rgba(7,20,13,.92),rgba(31,122,58,.70)),
+        url("imagens/capa-ecovida.jpeg") center center / cover no-repeat;
       color:white;
       padding:90px 22px;
+      min-height:720px;
+      display:flex;
+      align-items:center;
     }
 
     .hero-inner{
       max-width:1180px;
+      width:100%;
       margin:auto;
       display:grid;
       grid-template-columns:1.2fr .8fr;
@@ -143,8 +147,8 @@
     }
 
     .impact-box{
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.26);
+      background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.28);
       border-radius:24px;
       padding:26px;
       backdrop-filter:blur(8px);
@@ -273,6 +277,7 @@
       color:white;
       text-align:center;
       padding:70px 22px;
+      max-width:none;
     }
 
     .cta h2{
@@ -298,14 +303,23 @@
     }
 
     @media(max-width:850px){
+      .hero{
+        background:
+          linear-gradient(180deg,rgba(7,20,13,.78),rgba(7,20,13,.96)),
+          url("imagens/capa-ecovida-mobile.jpeg") center top / cover no-repeat;
+        min-height:780px;
+        padding:70px 20px;
+        align-items:flex-end;
+      }
+
       .hero-inner,
       .grid,
       .materials{
         grid-template-columns:1fr;
       }
 
-      .hero{
-        padding:70px 20px;
+      .impact-box{
+        margin-top:12px;
       }
 
       .donation{
@@ -314,6 +328,10 @@
 
       .menu{
         font-size:.88rem;
+      }
+
+      .btn{
+        width:100%;
       }
     }
   </style>
@@ -350,7 +368,7 @@
         </p>
 
         <div class="buttons">
-          <a class="btn btn-main" href="doacao.html">Quero fazer uma doação</a>
+          <a class="btn btn-main" href="doaco.html">Quero fazer uma doação</a>
           <a class="btn btn-outline" href="#doacoes">Ver materiais necessários</a>
         </div>
       </div>
