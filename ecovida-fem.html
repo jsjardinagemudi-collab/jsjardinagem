@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoVida Fem | Acolhimento e Recomeço</title>
+
+  <style>
+    :root{
+      --pink:#a83268;
+      --rose:#f7dbe8;
+      --green:#1f7a3a;
+      --blue:#114084;
+      --dark:#120711;
+      --white:#fff;
+      --light:#fff7fb;
+      --gray:#665866;
+      --shadow:0 14px 38px rgba(0,0,0,.12);
+      --border:rgba(168,50,104,.18);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--light);
+      color:var(--dark);
+      line-height:1.6;
+    }
+
+    a{text-decoration:none;color:inherit}
+
+    header{
+      background:#fff;
+      position:sticky;
+      top:0;
+      z-index:10;
+      box-shadow:0 2px 18px rgba(0,0,0,.08);
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      padding:16px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .logo{
+      font-weight:950;
+      color:var(--pink);
+      font-size:1.25rem;
+    }
+
+    .menu{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      font-weight:800;
+      font-size:.94rem;
+    }
+
+    .menu a:hover{color:var(--pink)}
+
+    .hero{
+      background:
+        linear-gradient(135deg,rgba(18,7,17,.94),rgba(168,50,104,.84)),
+        url("ecovida-fem-01.jpeg") center/cover no-repeat;
+      color:white;
+      padding:90px 22px;
+    }
+
+    .hero-inner{
+      max-width:1180px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .tag{
+      display:inline-block;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.28);
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.2rem,5vw,4.5rem);
+      line-height:1;
+      font-weight:950;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:1.18rem;
+      margin-bottom:18px;
+      max-width:760px;
+    }
+
+    .bold{
+      font-weight:950;
+      color:#ffe1ef;
+    }
+
+    .box{
+      background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:26px;
+      padding:28px;
+      backdrop-filter:blur(8px);
+    }
+
+    .box h2{font-size:1.5rem;margin-bottom:12px}
+    .box ul{padding-left:20px;font-weight:800}
+
+    .buttons{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 22px;
+      border-radius:14px;
+      font-weight:950;
+      text-align:center;
+      transition:.2s;
+    }
+
+    .btn-main{
+      background:#fff;
+      color:var(--pink);
+    }
+
+    .btn-pink{
+      background:var(--pink);
+      color:white;
+    }
+
+    .btn-outline{
+      border:2px solid rgba(255,255,255,.75);
+      color:#fff;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    section{
+      max-width:1180px;
+      margin:auto;
+      padding:70px 22px;
+    }
+
+    .center{text-align:center}
+
+    h2{
+      font-size:clamp(1.8rem,3vw,3rem);
+      line-height:1.1;
+      font-weight:950;
+      margin-bottom:16px;
+    }
+
+    .subtitle{
+      color:var(--gray);
+      max-width:880px;
+      margin:0 auto 34px;
+      font-size:1.08rem;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h3{
+      color:var(--pink);
+      font-size:1.32rem;
+      margin-bottom:10px;
+      font-weight:950;
+    }
+
+    .card ul{
+      padding-left:18px;
+      color:#4d3e4d;
+      margin-top:10px;
+    }
+
+    .highlight{
+      background:linear-gradient(135deg,var(--pink),var(--blue));
+      color:white;
+      border-radius:32px;
+      padding:48px;
+      box-shadow:var(--shadow);
+    }
+
+    .highlight h2{color:white}
+
+    .highlight p{
+      font-size:1.12rem;
+      margin-bottom:16px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .step{
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .num{
+      width:48px;
+      height:48px;
+      background:var(--pink);
+      color:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      margin-bottom:14px;
+    }
+
+    .contact{
+      background:var(--dark);
+      color:white;
+      text-align:center;
+      padding:70px 22px;
+    }
+
+    .contact h2{color:white}
+
+    .contact p{
+      max-width:780px;
+      margin:0 auto 24px;
+      font-size:1.12rem;
+    }
+
+    footer{
+      background:#070307;
+      color:white;
+      text-align:center;
+      padding:34px 22px;
+    }
+
+    footer a{color:#ffd6ea;font-weight:900}
+
+    @media(max-width:900px){
+      .hero-inner,
+      .grid,
+      .steps{
+        grid-template-columns:1fr;
+      }
+
+      .hero{padding:70px 20px}
+      .highlight{padding:34px 24px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">🌷 EcoVida Fem</div>
+    <nav class="menu">
+      <a href="ecovida.html">EcoVida</a>
+      <a href="#missao">Missão</a>
+      <a href="#sede">Sede</a>
+      <a href="#apoio">Como apoiar</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <span class="tag">Acolhimento • proteção • recomeço</span>
+        <h1>EcoVida Fem: um lugar seguro para recomeçar.</h1>
+
+        <p>
+          O EcoVida Fem nasce como uma frente dedicada ao acolhimento de jovens mulheres
+          em situação de vulnerabilidade, dependência química e exploração.
+        </p>
+
+        <p class="bold">
+          A proposta é oferecer abrigo, proteção, rotina, orientação, trabalho digno
+          e um caminho real de reconstrução.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-main" href="https://wa.me/5534992142960">Quero apoiar o EcoVida Fem</a>
+          <a class="btn btn-outline" href="#sede">Tenho imóvel ou terreno</a>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>Precisamos construir essa base</h2>
+        <ul>
+          <li>Casa para acolhimento</li>
+          <li>Sítio, chácara ou terreno</li>
+          <li>Estrutura segura e reservada</li>
+          <li>Alimentos e itens de higiene</li>
+          <li>Equipe de apoio e voluntários</li>
+          <li>Parcerias com saúde, educação e trabalho</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="missao" class="center">
+    <h2>Uma frente de cuidado para mulheres que precisam de saída real</h2>
+    <p class="subtitle">
+      Muitas jovens mulheres permanecem em situações de exploração porque não encontram
+      um lugar seguro para sair, dormir, se alimentar, se reorganizar e reconstruir a vida.
+      O EcoVida Fem quer criar esse caminho com responsabilidade, proteção e dignidade.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🏠 Acolhimento seguro</h3>
+        <p>Um espaço reservado para moradia temporária, descanso, alimentação e proteção.</p>
+      </div>
+
+      <div class="card">
+        <h3>💚 Recuperação e cuidado</h3>
+        <p>Apoio emocional, espiritual, familiar e encaminhamento para rede profissional de saúde.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌱 Trabalho e autonomia</h3>
+        <p>Oficinas, jardinagem, reciclagem, cozinha, limpeza, artesanato e geração de renda.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sede">
+    <div class="highlight">
+      <h2>Estamos buscando uma sede para o EcoVida Fem</h2>
+      <p>
+        Procuramos uma casa, sítio, chácara ou terreno que possa se tornar uma base
+        de acolhimento feminino. Pode ser um imóvel parado há muito tempo, uma casa
+        à venda, um espaço rural ou uma área que precise ganhar propósito social.
+      </p>
+      <p>
+        A sede precisa permitir segurança, privacidade, rotina organizada, espaço para
+        alimentação, descanso, atividades e acompanhamento das mulheres acolhidas.
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-main" href="https://wa.me/5534992142960">Tenho uma possibilidade de sede</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="apoio" class="center">
+    <h2>Como você pode apoiar</h2>
+    <p class="subtitle">
+      O EcoVida Fem precisa de parceiros sérios. Cada apoio pode ajudar uma mulher a
+      sair da rua, recuperar dignidade e começar uma nova etapa.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🏡 Imóvel ou terreno</h3>
+        <ul>
+          <li>Casa parada</li>
+          <li>Sítio ou chácara</li>
+          <li>Terreno com estrutura</li>
+          <li>Imóvel à venda há muito tempo</li>
+          <li>Parceria, comodato ou venda social</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🛏️ Estrutura da casa</h3>
+        <ul>
+          <li>Camas e colchões</li>
+          <li>Roupas de cama</li>
+          <li>Geladeira e fogão</li>
+          <li>Armários</li>
+          <li>Itens de cozinha</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🧼 Higiene e cuidado</h3>
+        <ul>
+          <li>Produtos de higiene</li>
+          <li>Roupas femininas</li>
+          <li>Absorventes</li>
+          <li>Toalhas</li>
+          <li>Produtos de limpeza</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🥘 Alimentação</h3>
+        <ul>
+          <li>Cestas básicas</li>
+          <li>Arroz, feijão e óleo</li>
+          <li>Carnes e legumes</li>
+          <li>Água e bebidas</li>
+          <li>Refeições prontas</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>👩‍🏫 Formação</h3>
+        <ul>
+          <li>Cursos profissionalizantes</li>
+          <li>Oficinas de renda</li>
+          <li>Aulas e mentoria</li>
+          <li>Apoio jurídico</li>
+          <li>Apoio psicológico profissional</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🤝 Parcerias</h3>
+        <ul>
+          <li>Empresas apoiadoras</li>
+          <li>Clínicas e profissionais</li>
+          <li>Igrejas e grupos sociais</li>
+          <li>Condomínios</li>
+          <li>Voluntários</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="center">Primeiros passos do projeto</h2>
+    <p class="subtitle center">
+      A construção será feita com responsabilidade, rede de apoio e organização.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Encontrar a sede</h3>
+        <p>Buscar uma casa, sítio ou terreno que possa receber a base EcoVida Fem.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Montar estrutura</h3>
+        <p>Preparar quartos, cozinha, higiene, segurança e rotina de funcionamento.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Formar rede</h3>
+        <p>Unir profissionais, voluntários, empresas, saúde, assistência e comunidade.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Acolher com dignidade</h3>
+        <p>Oferecer proteção, rotina, cuidado, trabalho e acompanhamento adequado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <h2>Essa causa precisa de gente séria ao lado.</h2>
+    <p>
+      Se você tem um imóvel, terreno, sítio, material, alimento, conhecimento ou vontade
+      de ajudar, entre em contato. O EcoVida Fem será construído com coragem,
+      responsabilidade e ação.
+    </p>
+
+    <div class="buttons" style="justify-content:center;">
+      <a class="btn btn-main" href="https://wa.me/5534992142960">Falar pelo WhatsApp</a>
+      <a class="btn btn-outline" href="doacoes.html">Ver página de doações</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>EcoVida Fem</strong> — Acolhimento, proteção e recomeço</p>
+  <p>Uma frente do Instituto EcoVida • Uberlândia e região</p>
+  <p>
+    WhatsApp:
+    <a href="https://wa.me/5534992142960">(34) 99214-2960</a>
+  </p>
+</footer>
+
+</body>
+</html>
