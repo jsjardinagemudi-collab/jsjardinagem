@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Instituto EcoVida: reciclagem, limpeza urbana, apoio social, pontos de coleta, voluntariado e ações comunitárias em Uberlândia."
+  >
+
   <title>Instituto EcoVida | Ação, Reciclagem e Comunidade</title>
 
   <style>
     :root{
-      --green:#1f7a3a;
-      --green2:#38b66b;
+      --green:#167a3a;
+      --green-dark:#0d5728;
+      --green-light:#e9f8ee;
       --blue:#114084;
+      --blue-dark:#092653;
+      --turquoise:#26a69a;
+      --purple:#42156b;
+      --pink:#d63384;
+      --orange:#e88127;
       --dark:#07140d;
-      --light:#f4fff7;
       --white:#ffffff;
-      --gray:#5f6f66;
-      --border:rgba(31,122,58,.18);
-      --shadow:0 14px 40px rgba(0,0,0,.12);
+      --light:#f4fff7;
+      --gray:#5c6c62;
+      --gray-light:#eef5f0;
+      --border:rgba(22,122,58,.17);
+      --shadow:0 15px 42px rgba(0,0,0,.12);
+      --shadow-soft:0 9px 26px rgba(0,0,0,.08);
+      --max-width:1180px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
 
     body{
       font-family:Arial, Helvetica, sans-serif;
@@ -27,163 +54,287 @@
       line-height:1.6;
     }
 
-    a{text-decoration:none;color:inherit}
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea{
+      font:inherit;
+    }
 
     header{
-      background:var(--white);
+      background:rgba(255,255,255,.97);
       position:sticky;
       top:0;
-      z-index:10;
-      box-shadow:0 2px 18px rgba(0,0,0,.08);
+      z-index:50;
+      box-shadow:0 3px 18px rgba(0,0,0,.08);
+      backdrop-filter:blur(12px);
     }
 
     .nav{
-      max-width:1180px;
+      max-width:var(--max-width);
       margin:auto;
-      padding:16px 22px;
+      padding:15px 22px;
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:18px;
-      flex-wrap:wrap;
     }
 
     .logo{
-      font-weight:900;
+      display:flex;
+      align-items:center;
+      gap:9px;
       color:var(--green);
       font-size:1.25rem;
+      font-weight:950;
+      white-space:nowrap;
+    }
+
+    .logo span{
+      color:var(--blue);
     }
 
     .menu{
       display:flex;
-      gap:14px;
+      justify-content:flex-end;
+      align-items:center;
       flex-wrap:wrap;
-      font-weight:700;
-      font-size:.95rem;
+      gap:13px;
+      font-size:.89rem;
+      font-weight:900;
     }
 
     .menu a{
-      color:var(--dark);
-      opacity:.85;
+      transition:.2s;
     }
 
-    .menu a:hover{color:var(--green)}
+    .menu a:hover{
+      color:var(--green);
+    }
+
+    .menu-highlight{
+      background:var(--green);
+      color:#fff !important;
+      padding:9px 14px;
+      border-radius:999px;
+      box-shadow:0 8px 20px rgba(22,122,58,.22);
+    }
+
+    .menu-highlight:hover{
+      background:var(--green-dark);
+      transform:translateY(-1px);
+    }
 
     .hero{
-      background:
-        linear-gradient(135deg,rgba(7,20,13,.92),rgba(31,122,58,.70)),
-        url("imagens/capa-ecovida.jpeg") center center / cover no-repeat;
-      color:white;
-      padding:90px 22px;
-      min-height:720px;
+      min-height:700px;
       display:flex;
       align-items:center;
+      padding:90px 22px;
+      color:#fff;
+      background:
+        linear-gradient(
+          105deg,
+          rgba(3,18,9,.96) 0%,
+          rgba(7,44,22,.92) 47%,
+          rgba(17,64,132,.74) 100%
+        ),
+        url("capa-ecovida.jpeg") center center / cover no-repeat;
     }
 
     .hero-inner{
-      max-width:1180px;
       width:100%;
+      max-width:var(--max-width);
       margin:auto;
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:36px;
+      grid-template-columns:1.12fr .88fr;
+      gap:44px;
       align-items:center;
     }
 
     .tag{
       display:inline-block;
-      background:rgba(255,255,255,.14);
+      padding:8px 15px;
       border:1px solid rgba(255,255,255,.28);
-      padding:8px 14px;
       border-radius:999px;
-      font-weight:800;
-      margin-bottom:18px;
+      background:rgba(255,255,255,.12);
+      font-weight:900;
+      margin-bottom:19px;
+      backdrop-filter:blur(8px);
     }
 
     h1{
-      font-size:clamp(2.2rem,5vw,4.7rem);
-      line-height:1;
-      margin-bottom:20px;
-      font-weight:950;
-    }
-
-    .hero p{
-      font-size:1.22rem;
       max-width:760px;
+      font-size:clamp(2.6rem,5.7vw,5.4rem);
+      line-height:.96;
+      letter-spacing:-1.8px;
+      font-weight:950;
       margin-bottom:22px;
     }
 
-    .strong{
-      font-weight:900;
-      color:#d9ffd8;
+    h1 strong{
+      color:#85e89e;
+    }
+
+    .hero p{
+      max-width:750px;
+      font-size:1.18rem;
+      margin-bottom:17px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .hero .strong{
+      color:#c9ffd5;
+      font-weight:950;
+    }
+
+    .hero-card{
+      padding:30px;
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:28px;
+      background:rgba(255,255,255,.12);
+      box-shadow:0 22px 55px rgba(0,0,0,.24);
+      backdrop-filter:blur(12px);
+    }
+
+    .hero-card-label{
+      display:inline-block;
+      background:#fff;
+      color:var(--green);
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:950;
+      text-transform:uppercase;
+      margin-bottom:15px;
+    }
+
+    .hero-card h2{
+      color:#fff;
+      font-size:1.75rem;
+      margin-bottom:12px;
+    }
+
+    .hero-card ul{
+      list-style:none;
+      display:grid;
+      gap:11px;
+      margin-top:19px;
+    }
+
+    .hero-card li{
+      padding:12px 14px;
+      border-radius:13px;
+      background:rgba(255,255,255,.1);
+      font-weight:800;
     }
 
     .buttons{
       display:flex;
-      gap:14px;
       flex-wrap:wrap;
-      margin-top:28px;
+      gap:13px;
+      margin-top:27px;
     }
 
     .btn{
-      display:inline-block;
-      padding:15px 22px;
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
+      padding:15px 21px;
       border-radius:14px;
-      font-weight:900;
       text-align:center;
+      font-weight:950;
+      line-height:1.25;
       transition:.2s;
     }
 
-    .btn-main{
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-green{
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(22,122,58,.25);
+    }
+
+    .btn-green:hover{
+      background:var(--green-dark);
+    }
+
+    .btn-blue{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(17,64,132,.22);
+    }
+
+    .btn-blue:hover{
+      background:var(--blue-dark);
+    }
+
+    .btn-white{
       background:#fff;
       color:var(--green);
     }
 
-    .btn-main:hover{transform:translateY(-2px)}
+    .btn-outline-white{
+      border:2px solid rgba(255,255,255,.78);
+      color:#fff;
+      background:transparent;
+    }
 
-    .btn-outline{
-      border:2px solid rgba(255,255,255,.75);
+    .btn-outline-green{
+      border:2px solid var(--green);
+      color:var(--green);
+      background:#fff;
+    }
+
+    .btn-pink{
+      background:var(--pink);
       color:#fff;
     }
 
-    .impact-box{
-      background:rgba(255,255,255,.13);
-      border:1px solid rgba(255,255,255,.28);
-      border-radius:24px;
-      padding:26px;
-      backdrop-filter:blur(8px);
-    }
-
-    .impact-box h2{
-      font-size:1.45rem;
-      margin-bottom:12px;
-    }
-
-    .impact-box ul{
-      padding-left:20px;
-      font-weight:700;
-    }
-
     section{
-      max-width:1180px;
+      max-width:var(--max-width);
       margin:auto;
-      padding:70px 22px;
+      padding:72px 22px;
     }
 
-    .center{text-align:center}
+    .section-full{
+      max-width:none;
+    }
+
+    .center{
+      text-align:center;
+    }
 
     h2{
-      font-size:clamp(1.8rem,3vw,3rem);
-      line-height:1.1;
-      margin-bottom:18px;
+      color:var(--green-dark);
+      font-size:clamp(1.9rem,3.7vw,3.3rem);
+      line-height:1.08;
+      letter-spacing:-.6px;
       font-weight:950;
+      margin-bottom:17px;
     }
 
     .subtitle{
+      max-width:900px;
+      margin:0 auto 37px;
       color:var(--gray);
-      font-size:1.1rem;
-      max-width:850px;
-      margin:0 auto 34px;
+      font-size:1.08rem;
     }
 
     .grid{
@@ -192,146 +343,585 @@
       gap:22px;
     }
 
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:start;
+    }
+
     .card{
-      background:var(--white);
+      background:#fff;
+      padding:27px;
       border:1px solid var(--border);
-      border-radius:22px;
-      padding:26px;
+      border-radius:23px;
+      box-shadow:var(--shadow-soft);
+      transition:.2s;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
       box-shadow:var(--shadow);
+    }
+
+    .card-icon{
+      width:52px;
+      height:52px;
+      margin-bottom:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:15px;
+      background:var(--green-light);
+      font-size:1.55rem;
     }
 
     .card h3{
       color:var(--green);
-      font-size:1.35rem;
+      font-size:1.25rem;
+      line-height:1.2;
+      font-weight:950;
       margin-bottom:10px;
-      font-weight:900;
     }
 
-    .card p{color:#415046}
+    .card p{
+      color:#415047;
+    }
 
-    .donation{
-      background:linear-gradient(135deg,var(--green),var(--blue));
+    .card .btn{
+      width:100%;
+      margin-top:20px;
+    }
+
+    .action-section{
+      background:
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255,255,255,.11),
+          transparent 28%
+        ),
+        linear-gradient(
+          135deg,
+          #07140d,
+          #0e5128 50%,
+          #114084
+        );
       color:#fff;
-      border-radius:32px;
+      padding:80px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .action-inner{
+      max-width:var(--max-width);
+      margin:auto;
+    }
+
+    .action-top{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:42px;
+      align-items:center;
+      margin-bottom:43px;
+    }
+
+    .action-section h2{
+      color:#fff;
+    }
+
+    .action-section p{
+      color:rgba(255,255,255,.9);
+      font-size:1.1rem;
+      margin-bottom:15px;
+    }
+
+    .commitment{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      padding:9px 15px;
+      margin-bottom:18px;
+      border-radius:999px;
+      background:var(--orange);
+      color:#fff;
+      font-weight:950;
+      text-transform:uppercase;
+      font-size:.83rem;
+    }
+
+    .action-details{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:26px;
+    }
+
+    .action-detail{
+      padding:19px;
+      border:1px solid rgba(255,255,255,.19);
+      border-radius:18px;
+      background:rgba(255,255,255,.09);
+    }
+
+    .action-detail strong{
+      display:block;
+      color:#a7efb8;
+      font-size:1.08rem;
+      margin-bottom:5px;
+    }
+
+    .action-detail span{
+      color:rgba(255,255,255,.86);
+    }
+
+    .map-frame{
+      overflow:hidden;
+      border-radius:27px;
+      background:#fff;
+      border:6px solid rgba(255,255,255,.15);
+      box-shadow:0 25px 65px rgba(0,0,0,.34);
+    }
+
+    .map-frame img{
+      width:100%;
+      min-height:360px;
+      max-height:570px;
+      object-fit:cover;
+    }
+
+    .map-caption{
+      padding:18px 21px;
+      background:#fff;
+      color:var(--dark);
+    }
+
+    .map-caption strong{
+      display:block;
+      color:var(--green);
+      font-size:1.13rem;
+    }
+
+    .safety-notice{
+      margin-top:25px;
+      padding:19px 21px;
+      border-radius:17px;
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.17);
+      color:rgba(255,255,255,.9);
+      font-size:.96rem;
+    }
+
+    .safety-notice strong{
+      color:#d3ffdc;
+    }
+
+    .portal-section{
+      background:#fff;
+      border-radius:30px;
+      padding:42px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+    }
+
+    .partners-banner{
       padding:48px;
+      color:#fff;
+      border-radius:30px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--green),
+          var(--blue)
+        );
       box-shadow:var(--shadow);
     }
 
-    .donation h2{
+    .partners-banner h2{
       color:#fff;
-      font-size:clamp(2rem,4vw,4rem);
     }
 
-    .donation p{
-      font-size:1.18rem;
-      margin-bottom:20px;
+    .partners-banner p{
+      max-width:850px;
+      margin-bottom:16px;
+      font-size:1.1rem;
+      color:rgba(255,255,255,.91);
+    }
+
+    .support-list{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:17px;
+      margin-top:27px;
+    }
+
+    .support-item{
+      padding:20px;
+      border-radius:17px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.17);
+    }
+
+    .support-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:#d5ffde;
+    }
+
+    .form-section{
+      background:var(--gray-light);
+      padding:78px 22px;
+    }
+
+    .form-inner{
+      max-width:var(--max-width);
+      margin:auto;
+      display:grid;
+      grid-template-columns:.88fr 1.12fr;
+      gap:38px;
+      align-items:start;
+    }
+
+    .form-intro{
+      position:sticky;
+      top:115px;
+    }
+
+    .form-intro p{
+      color:var(--gray);
+      margin-bottom:17px;
+      font-size:1.06rem;
+    }
+
+    .form-benefits{
+      display:grid;
+      gap:12px;
+      margin-top:23px;
+    }
+
+    .form-benefit{
+      padding:14px 16px;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow-soft);
+      font-weight:800;
+      color:#37473d;
+    }
+
+    .form-box{
+      background:#fff;
+      padding:34px;
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+
+    form{
+      display:grid;
+      gap:17px;
+    }
+
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:6px;
+      color:var(--green-dark);
+      font-weight:900;
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      padding:14px;
+      border:1px solid rgba(22,122,58,.24);
+      border-radius:12px;
+      background:#fff;
+      color:var(--dark);
+      outline:none;
+      transition:.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--green);
+      box-shadow:0 0 0 4px rgba(22,122,58,.1);
+    }
+
+    textarea{
+      min-height:115px;
+      resize:vertical;
+    }
+
+    .form-box button{
+      width:100%;
+    }
+
+    .privacy{
+      padding:14px;
+      border-radius:13px;
+      background:var(--green-light);
+      color:#31523b;
+      font-size:.89rem;
     }
 
     .materials{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:14px;
-      margin:26px 0;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:11px;
+      margin-top:28px;
     }
 
     .material{
-      background:rgba(255,255,255,.15);
-      border:1px solid rgba(255,255,255,.25);
-      padding:16px;
-      border-radius:16px;
+      padding:11px 16px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:999px;
+      box-shadow:var(--shadow-soft);
+      color:var(--green-dark);
       font-weight:900;
-      text-align:center;
     }
 
     .steps{
-      counter-reset:step;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
     }
 
     .step{
-      display:grid;
-      grid-template-columns:70px 1fr;
-      gap:18px;
-      margin-bottom:20px;
-      background:white;
-      border-radius:22px;
-      padding:22px;
+      background:#fff;
+      padding:24px;
       border:1px solid var(--border);
-      box-shadow:var(--shadow);
+      border-radius:21px;
+      box-shadow:var(--shadow-soft);
     }
 
-    .num{
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      background:var(--green);
-      color:white;
+    .step-number{
+      width:47px;
+      height:47px;
       display:flex;
       align-items:center;
       justify-content:center;
+      margin-bottom:14px;
+      border-radius:50%;
+      background:var(--green);
+      color:#fff;
       font-weight:950;
-      font-size:1.3rem;
     }
 
-    .cta{
-      background:var(--dark);
-      color:white;
-      text-align:center;
-      padding:70px 22px;
+    .step h3{
+      color:var(--green-dark);
+      margin-bottom:7px;
+    }
+
+    .fem-section{
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+      color:#fff;
+      padding:74px 22px;
+    }
+
+    .fem-inner{
+      max-width:var(--max-width);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr .78fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .fem-section h2{
+      color:#fff;
+    }
+
+    .fem-section p{
+      color:rgba(255,255,255,.91);
+      font-size:1.1rem;
+      margin-bottom:16px;
+    }
+
+    .fem-box{
+      padding:27px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:23px;
+      background:rgba(255,255,255,.11);
+    }
+
+    .fem-box strong{
+      display:block;
+      color:#ffd7ea;
+      font-size:1.25rem;
+      margin-bottom:8px;
+    }
+
+    .contact{
       max-width:none;
+      padding:74px 22px;
+      text-align:center;
+      background:var(--dark);
+      color:#fff;
     }
 
-    .cta h2{
-      color:white;
+    .contact-inner{
+      max-width:var(--max-width);
+      margin:auto;
     }
 
-    .cta p{
-      max-width:760px;
-      margin:0 auto 28px;
-      font-size:1.15rem;
+    .contact h2{
+      color:#fff;
+    }
+
+    .contact p{
+      max-width:820px;
+      margin:0 auto;
+      color:rgba(255,255,255,.88);
+      font-size:1.1rem;
     }
 
     footer{
-      background:#031008;
-      color:white;
-      padding:36px 22px;
+      padding:37px 22px;
       text-align:center;
+      background:#030b06;
+      color:#fff;
+    }
+
+    footer p{
+      margin:3px 0;
     }
 
     footer a{
-      color:#b6ffc3;
-      font-weight:800;
+      color:#b8f6c6;
+      font-weight:900;
     }
 
-    @media(max-width:850px){
-      .hero{
-        background:
-          linear-gradient(180deg,rgba(7,20,13,.78),rgba(7,20,13,.96)),
-          url("imagens/capa-ecovida-mobile.jpeg") center top / cover no-repeat;
-        min-height:780px;
-        padding:70px 20px;
-        align-items:flex-end;
-      }
+    .footer-links{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:14px;
+      margin:18px 0;
+    }
 
+    @media(max-width:1000px){
       .hero-inner,
-      .grid,
-      .materials{
+      .action-top,
+      .form-inner,
+      .fem-inner{
         grid-template-columns:1fr;
       }
 
-      .impact-box{
-        margin-top:12px;
+      .form-intro{
+        position:static;
       }
 
-      .donation{
-        padding:34px 24px;
+      .support-list{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:900px){
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
       }
 
       .menu{
-        font-size:.88rem;
+        justify-content:flex-start;
+      }
+
+      .grid,
+      .steps,
+      .action-details{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+        padding:70px 20px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(3,18,9,.92),
+            rgba(7,44,22,.9)
+          ),
+          url("capa-ecovida-mobile.jpeg") center top / cover no-repeat;
+      }
+
+      .portal-section,
+      .partners-banner{
+        padding:31px 23px;
+      }
+
+      .map-frame img{
+        min-height:auto;
+      }
+    }
+
+    @media(max-width:620px){
+      .nav{
+        padding:13px 16px;
+      }
+
+      .menu{
+        gap:8px 11px;
+        font-size:.81rem;
+      }
+
+      .menu-highlight{
+        padding:8px 11px !important;
+      }
+
+      h1{
+        font-size:2.6rem;
+      }
+
+      section{
+        padding:58px 18px;
+      }
+
+      .hero p{
+        font-size:1.04rem;
+      }
+
+      .buttons{
+        flex-direction:column;
       }
 
       .btn{
         width:100%;
+      }
+
+      .form-row{
+        grid-template-columns:1fr;
+      }
+
+      .form-box{
+        padding:23px 18px;
+      }
+
+      .action-section,
+      .form-section,
+      .fem-section{
+        padding:59px 18px;
+      }
+
+      .partners-banner{
+        border-radius:22px;
+      }
+
+      .map-caption{
+        padding:15px;
       }
     }
   </style>
@@ -341,173 +931,812 @@
 
 <header>
   <div class="nav">
-    <div class="logo">♻️ Instituto EcoVida</div>
-    <nav class="menu">
-      <a href="index.html">JS Jardinagem</a>
-      <a href="#proposito">Propósito</a>
-      <a href="#doacoes">Doações</a>
-      <a href="#acao">Ação</a>
-      <a href="#contato">Contato</a>
+
+    <a class="logo" href="#inicio">
+      ♻️ Instituto <span>EcoVida</span>
+    </a>
+
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#acao">Primeira ação</a>
+      <a href="#cadastros">Cadastros</a>
+      <a href="#parceiros">Parceiros</a>
+      <a href="#materiais">Materiais</a>
+      <a href="doacao.html">Doações</a>
+      <a href="ecovida-fem.html">EcoVida Fem</a>
+
+      <a
+        class="menu-highlight"
+        href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Participar
+      </a>
     </nav>
+
   </div>
 </header>
 
 <main>
 
-  <section class="hero">
+  <section class="hero section-full" id="inicio">
     <div class="hero-inner">
+
       <div>
-        <span class="tag">Projeto chegando forte • ação real • comunidade viva</span>
-        <h1>EcoVida é ação, cuidado e transformação.</h1>
+        <span class="tag">
+          Reciclagem • comunidade • apoio humano
+        </span>
+
+        <h1>
+          Um projeto forte,
+          <strong>com compromisso e ação.</strong>
+        </h1>
+
         <p>
-          O Instituto EcoVida está nascendo com força para unir reciclagem,
-          limpeza, apoio social, segurança comunitária e cuidado com os espaços públicos.
+          O Instituto EcoVida aproxima moradores, condomínios,
+          empresas, voluntários e colaboradores em ações práticas
+          de reciclagem, limpeza urbana, cuidado ambiental,
+          inclusão e apoio social.
         </p>
+
         <p class="strong">
-          Não é só uma ideia. É um projeto de rua, de bairro, de presença e de atitude.
+          Nossa primeira ação organizada começa no bairro Santa Maria,
+          aos domingos, a partir das 23 horas.
         </p>
 
         <div class="buttons">
-          <a class="btn btn-main" href="doacao.html">Quero fazer uma doação</a>
-          <a class="btn btn-outline" href="#doacoes">Ver materiais necessários</a>
+          <a class="btn btn-white" href="#acao">
+            Conhecer a primeira ação
+          </a>
+
+          <a
+            class="btn btn-outline-white"
+            href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ser voluntário
+          </a>
+
+          <a class="btn btn-outline-white" href="doacao.html">
+            Fazer uma doação
+          </a>
         </div>
       </div>
 
-      <div class="impact-box">
-        <h2>Estamos montando a base de ação</h2>
+      <aside class="hero-card">
+        <span class="hero-card-label">
+          EcoVida em movimento
+        </span>
+
+        <h2>Primeiro compromisso semanal</h2>
+
+        <p>
+          Uma ação contínua para cuidar do bairro,
+          recolher materiais recicláveis e ampliar
+          a sensação de presença e cuidado no período noturno.
+        </p>
+
         <ul>
-          <li>Cestas e pontos de coleta</li>
-          <li>Sacos de lixo e materiais de limpeza</li>
-          <li>Vassouras, pás, luvas e EPIs</li>
-          <li>Apoio para manutenção dos ambientes</li>
-          <li>Presença e segurança noturna comunitária</li>
+          <li>📅 Domingos</li>
+          <li>🕚 A partir das 23 horas</li>
+          <li>📍 Bairro Santa Maria – Uberlândia</li>
+          <li>♻️ Limpeza e coleta organizada</li>
+          <li>🌙 Presença comunitária noturna</li>
         </ul>
-      </div>
+      </aside>
+
     </div>
   </section>
 
-  <section id="proposito" class="center">
-    <h2>Um projeto para cuidar da cidade e das pessoas</h2>
+  <section class="action-section section-full" id="acao">
+    <div class="action-inner">
+
+      <div class="action-top">
+
+        <div>
+          <span class="commitment">
+            Primeiro compromisso EcoVida
+          </span>
+
+          <h2>
+            Domingos, a partir das 23h, no bairro Santa Maria
+          </h2>
+
+          <p>
+            A primeira ação fixa do EcoVida será realizada semanalmente
+            na região do bairro Santa Maria, em Uberlândia.
+          </p>
+
+          <p>
+            A equipe fará a limpeza de pontos organizados,
+            a coleta e separação inicial de materiais recicláveis
+            e a observação das condições dos espaços atendidos.
+          </p>
+
+          <p>
+            A presença noturna também ajuda a demonstrar que o ambiente
+            está sendo acompanhado, cuidado e valorizado pela comunidade.
+          </p>
+
+          <div class="action-details">
+
+            <div class="action-detail">
+              <strong>Limpeza organizada</strong>
+              <span>
+                Recolhimento de resíduos em pontos previamente definidos.
+              </span>
+            </div>
+
+            <div class="action-detail">
+              <strong>Coleta de recicláveis</strong>
+              <span>
+                Separação responsável de papelão, plástico,
+                metal, alumínio e outros materiais aceitos.
+              </span>
+            </div>
+
+            <div class="action-detail">
+              <strong>Cuidado noturno</strong>
+              <span>
+                Presença comunitária, observação e comunicação
+                responsável sobre situações que precisem de atenção.
+              </span>
+            </div>
+
+          </div>
+
+          <div class="buttons">
+            <a
+              class="btn btn-white"
+              href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Participar da ação
+            </a>
+
+            <a class="btn btn-outline-white" href="#cadastro-parceiro">
+              Cadastrar ponto de apoio
+            </a>
+          </div>
+        </div>
+
+        <div class="map-frame">
+          <img
+            src="mapa-santamaria.jpeg"
+            alt="Mapa da área da primeira ação do Instituto EcoVida no bairro Santa Maria"
+          >
+
+          <div class="map-caption">
+            <strong>Área inicial: bairro Santa Maria</strong>
+            O mapa indicará os pontos prioritários de limpeza,
+            coleta e apoio da primeira etapa do projeto.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="safety-notice">
+        <strong>Atuação responsável:</strong>
+        o EcoVida não substitui Polícia Militar, Guarda Municipal,
+        Corpo de Bombeiros, atendimento médico ou assistência social.
+        Situações de risco, violência ou emergência devem ser encaminhadas
+        imediatamente aos serviços públicos responsáveis. A participação
+        nas ações noturnas deverá ser organizada previamente e restrita
+        a adultos autorizados pela coordenação.
+      </div>
+
+    </div>
+  </section>
+
+  <section id="cadastros" class="center">
+
+    <h2>Portal de cadastros EcoVida</h2>
+
     <p class="subtitle">
-      O EcoVida conecta moradores, empresas, condomínios, comerciantes,
-      voluntários e apoiadores para transformar espaços esquecidos em ambientes
-      mais limpos, seguros e vivos.
+      Escolha o formulário correspondente. Os cadastros ajudam o projeto
+      a organizar locais, voluntários, apoiadores e pessoas que buscam orientação.
     </p>
 
-    <div class="grid">
-      <div class="card">
-        <h3>♻️ Reciclagem</h3>
-        <p>Organização de pontos de coleta e incentivo ao descarte correto de materiais.</p>
+    <div class="portal-section">
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="card-icon">📍</div>
+
+          <h3>Ponto de coleta</h3>
+
+          <p>
+            Para condomínios, comércios, escolas, igrejas,
+            empresas ou moradores que desejam cadastrar um local.
+          </p>
+
+          <a
+            class="btn btn-green"
+            href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cadastrar local
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🙋</div>
+
+          <h3>Participação e voluntariado</h3>
+
+          <p>
+            Para voluntários, colaboradores, apoiadores
+            e pessoas que desejam participar das ações.
+          </p>
+
+          <a
+            class="btn btn-blue"
+            href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Quero participar
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">💚</div>
+
+          <h3>Cadastro social</h3>
+
+          <p>
+            Para quem busca orientação, acolhimento
+            ou deseja indicar uma pessoa em situação de necessidade.
+          </p>
+
+          <a
+            class="btn btn-outline-green"
+            href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buscar apoio
+          </a>
+        </article>
+
       </div>
 
-      <div class="card">
-        <h3>🧹 Limpeza</h3>
-        <p>Ações práticas para manter praças, ruas, pontos de apoio e ambientes comunitários.</p>
-      </div>
-
-      <div class="card">
-        <h3>🌙 Segurança noturna</h3>
-        <p>Presença comunitária, iluminação, cuidado e apoio para tornar os espaços mais seguros.</p>
-      </div>
     </div>
   </section>
 
-  <section id="doacoes">
-    <div class="donation">
-      <h2>Precisamos de colaboração agora.</h2>
+  <section id="parceiros">
+
+    <div class="partners-banner">
+
+      <h2>
+        Parceiros ajudam o bairro e fortalecem uma rede de cuidado
+      </h2>
+
       <p>
-        Para o EcoVida crescer com força, precisamos de apoio direto com materiais
-        que serão usados nas ações de limpeza, reciclagem, organização e manutenção
-        dos ambientes.
+        Condomínios, empresas, lojas, igrejas e moradores podem
+        oferecer um ponto de apoio, ajudar com materiais,
+        separar recicláveis ou colaborar com a continuidade das ações.
       </p>
 
-      <div class="materials">
-        <div class="material">Cestas</div>
-        <div class="material">Sacos de lixo</div>
-        <div class="material">Vassouras</div>
-        <div class="material">Pás</div>
-        <div class="material">Luvas</div>
-        <div class="material">Carrinhos</div>
-        <div class="material">Lixeiras</div>
-        <div class="material">Iluminação</div>
+      <p>
+        Conforme a estrutura e a capacidade da rede, os pontos parceiros
+        poderão receber ações programadas de limpeza, orientação ambiental
+        e acompanhamento comunitário do entorno.
+      </p>
+
+      <div class="support-list">
+
+        <div class="support-item">
+          <strong>Limpeza do entorno</strong>
+          Ações programadas em ruas e pontos próximos aos parceiros.
+        </div>
+
+        <div class="support-item">
+          <strong>Coleta contínua</strong>
+          Organização de recicláveis e definição de rotinas de retirada.
+        </div>
+
+        <div class="support-item">
+          <strong>Presença comunitária</strong>
+          Mais observação, movimento e sensação de cuidado no período noturno.
+        </div>
+
       </div>
-
-      <p>
-        Toda colaboração ajuda a colocar o projeto em movimento e manter os espaços
-        mais limpos, organizados e seguros.
-      </p>
 
       <div class="buttons">
-        <a class="btn btn-main" href="doacao.html">Apoiar com doação</a>
-        <a class="btn btn-outline" href="https://wa.me/5534992142960">Falar pelo WhatsApp</a>
+        <a class="btn btn-white" href="#cadastro-parceiro">
+          Quero ser ponto parceiro
+        </a>
+
+        <a class="btn btn-outline-white" href="doacao.html">
+          Ver formas de colaboração
+        </a>
       </div>
+
+    </div>
+
+  </section>
+
+  <section
+    class="form-section section-full"
+    id="cadastro-parceiro"
+  >
+    <div class="form-inner">
+
+      <div class="form-intro">
+
+        <h2>Cadastro rápido de parceria e apoio</h2>
+
+        <p>
+          Preencha os dados básicos do condomínio, empresa,
+          comércio, instituição ou local que deseja colaborar.
+        </p>
+
+        <p>
+          Ao enviar, uma mensagem organizada será aberta no WhatsApp
+          do EcoVida para dar continuidade ao contato.
+        </p>
+
+        <div class="form-benefits">
+          <div class="form-benefit">
+            📍 Cadastrar um ponto de apoio ou coleta
+          </div>
+
+          <div class="form-benefit">
+            ♻️ Organizar coleta contínua de recicláveis
+          </div>
+
+          <div class="form-benefit">
+            🧹 Solicitar avaliação para limpeza do entorno
+          </div>
+
+          <div class="form-benefit">
+            🤝 Oferecer materiais, estrutura ou parceria
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-box">
+
+        <form onsubmit="enviarParceriaWhatsApp(event)">
+
+          <div class="form-row">
+
+            <div>
+              <label for="nomeResponsavel">
+                Nome do responsável
+              </label>
+
+              <input
+                id="nomeResponsavel"
+                type="text"
+                required
+                placeholder="Nome completo"
+              >
+            </div>
+
+            <div>
+              <label for="telefone">
+                Telefone
+              </label>
+
+              <input
+                id="telefone"
+                type="tel"
+                required
+                placeholder="DDD + número"
+              >
+            </div>
+
+          </div>
+
+          <div>
+            <label for="organizacao">
+              Condomínio, empresa ou instituição
+            </label>
+
+            <input
+              id="organizacao"
+              type="text"
+              required
+              placeholder="Nome do local ou organização"
+            >
+          </div>
+
+          <div>
+            <label for="tipoLocal">
+              Tipo de local
+            </label>
+
+            <select id="tipoLocal" required>
+              <option value="">Selecione</option>
+              <option value="Condomínio">Condomínio</option>
+              <option value="Empresa">Empresa</option>
+              <option value="Comércio">Comércio</option>
+              <option value="Escola">Escola</option>
+              <option value="Igreja ou instituição religiosa">
+                Igreja ou instituição religiosa
+              </option>
+              <option value="Associação ou projeto social">
+                Associação ou projeto social
+              </option>
+              <option value="Residência ou morador">
+                Residência ou morador
+              </option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="endereco">
+              Endereço completo
+            </label>
+
+            <input
+              id="endereco"
+              type="text"
+              required
+              placeholder="Rua, número, bairro e cidade"
+            >
+          </div>
+
+          <div>
+            <label for="tipoApoio">
+              Como deseja participar?
+            </label>
+
+            <select id="tipoApoio" required>
+              <option value="">Selecione</option>
+              <option value="Cadastrar ponto de coleta">
+                Cadastrar ponto de coleta
+              </option>
+              <option value="Oferecer ponto de apoio">
+                Oferecer ponto de apoio
+              </option>
+              <option value="Organizar coleta semanal">
+                Organizar coleta semanal
+              </option>
+              <option value="Apoiar limpeza do entorno">
+                Apoiar limpeza do entorno
+              </option>
+              <option value="Doar materiais ou ferramentas">
+                Doar materiais ou ferramentas
+              </option>
+              <option value="Apoiar alimentação das equipes">
+                Apoiar alimentação das equipes
+              </option>
+              <option value="Apoio financeiro ou institucional">
+                Apoio financeiro ou institucional
+              </option>
+              <option value="Outra forma de apoio">
+                Outra forma de apoio
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label for="horario">
+              Melhor horário para contato
+            </label>
+
+            <input
+              id="horario"
+              type="text"
+              placeholder="Exemplo: manhã, tarde ou após as 18h"
+            >
+          </div>
+
+          <div>
+            <label for="observacoes">
+              Observações
+            </label>
+
+            <textarea
+              id="observacoes"
+              placeholder="Explique brevemente como o local pode colaborar ou qual apoio está buscando."
+            ></textarea>
+          </div>
+
+          <div class="privacy">
+            Os dados serão usados somente para organizar o contato
+            e avaliar a possível parceria com o Instituto EcoVida.
+          </div>
+
+          <button class="btn btn-green" type="submit">
+            Enviar cadastro pelo WhatsApp
+          </button>
+
+        </form>
+
+      </div>
+
     </div>
   </section>
 
-  <section id="acao">
-    <h2 class="center">Como a ação começa</h2>
+  <section id="materiais" class="center">
+
+    <h2>Materiais que podem entrar na rede</h2>
+
+    <p class="subtitle">
+      A aceitação depende das condições do material,
+      da capacidade de armazenamento e dos parceiros disponíveis.
+      Materiais específicos devem ser confirmados antes da entrega.
+    </p>
+
+    <div class="materials">
+      <span class="material">Papel</span>
+      <span class="material">Papelão</span>
+      <span class="material">Plástico</span>
+      <span class="material">Metal</span>
+      <span class="material">Alumínio</span>
+      <span class="material">Vidro</span>
+      <span class="material">Óleo usado</span>
+      <span class="material">Eletrônicos*</span>
+      <span class="material">Sacos de lixo</span>
+      <span class="material">Vassouras</span>
+      <span class="material">Luvas</span>
+      <span class="material">Ferramentas</span>
+    </div>
+
+    <div class="buttons" style="justify-content:center;">
+      <a class="btn btn-green" href="doacao.html">
+        Ver página de doações
+      </a>
+    </div>
+
+  </section>
+
+  <section class="fem-section section-full">
+    <div class="fem-inner">
+
+      <div>
+        <h2>Conheça o EcoVida Feminino</h2>
+
+        <p>
+          Uma frente dedicada à construção de acolhimento,
+          proteção, capacitação e novas oportunidades para
+          mulheres em situação de vulnerabilidade.
+        </p>
+
+        <p>
+          O projeto busca parceiros, voluntários, profissionais,
+          alimentos, materiais e uma sede adequada para desenvolver
+          uma estrutura séria de apoio.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-white" href="ecovida-fem.html">
+            Acessar EcoVida Feminino
+          </a>
+
+          <a class="btn btn-outline-white" href="doacao.html">
+            Apoiar o projeto
+          </a>
+        </div>
+      </div>
+
+      <aside class="fem-box">
+        <strong>Nenhuma vida está perdida</strong>
+
+        Toda mulher merece respeito, proteção
+        e uma oportunidade real para construir uma nova história.
+      </aside>
+
+    </div>
+  </section>
+
+  <section>
+
+    <h2 class="center">Como a rede funciona</h2>
+
     <p class="subtitle center">
-      O EcoVida cresce por etapas simples, com organização, presença e colaboração.
+      Um processo simples para transformar colaboração em ação prática.
     </p>
 
     <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <div>
-          <h3>Mapeamos os pontos de cuidado</h3>
-          <p>Identificamos locais que precisam de limpeza, coleta, organização ou presença comunitária.</p>
-        </div>
-      </div>
 
-      <div class="step">
-        <div class="num">2</div>
-        <div>
-          <h3>Reunimos materiais e apoiadores</h3>
-          <p>Recebemos doações de cestas, sacos, vassouras, equipamentos e apoio financeiro.</p>
-        </div>
-      </div>
+      <article class="step">
+        <div class="step-number">1</div>
 
-      <div class="step">
-        <div class="num">3</div>
-        <div>
-          <h3>Executamos ações práticas</h3>
-          <p>Organizamos mutirões, manutenção dos ambientes e pontos de coleta com orientação clara.</p>
-        </div>
-      </div>
+        <h3>Cadastre</h3>
 
-      <div class="step">
-        <div class="num">4</div>
-        <div>
-          <h3>Fortalecemos segurança e presença</h3>
-          <p>A proposta também inclui mais cuidado noturno, presença comunitária e proteção dos espaços.</p>
-        </div>
-      </div>
+        <p>
+          Registre um ponto, participe como voluntário
+          ou apresente uma parceria.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">2</div>
+
+        <h3>Organize</h3>
+
+        <p>
+          A equipe avalia o local, a necessidade
+          e a melhor forma de atuação.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">3</div>
+
+        <h3>Conecte</h3>
+
+        <p>
+          Moradores, parceiros, colaboradores
+          e recursos são aproximados.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-number">4</div>
+
+        <h3>Entre em ação</h3>
+
+        <p>
+          Limpeza, coleta, apoio social
+          e cuidado comunitário saem do papel.
+        </p>
+      </article>
+
     </div>
+
   </section>
 
-  <section class="cta">
-    <h2>O EcoVida está chegando forte.</h2>
-    <p>
-      Agora é hora de transformar intenção em ação. Quem colabora ajuda a limpar,
-      organizar, proteger e dar vida nova aos ambientes da nossa comunidade.
-    </p>
-    <a class="btn btn-main" href="doacao.html">Entrar como apoiador</a>
+  <section class="contact section-full" id="contato">
+    <div class="contact-inner">
+
+      <h2>Vamos fortalecer o bairro Santa Maria?</h2>
+
+      <p>
+        Cadastre um ponto, participe das ações,
+        faça uma doação ou apresente uma parceria.
+        O EcoVida cresce com organização, continuidade e pessoas comprometidas.
+      </p>
+
+      <div class="buttons" style="justify-content:center;">
+
+        <a
+          class="btn btn-green"
+          href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cadastro de voluntários
+        </a>
+
+        <a class="btn btn-white" href="#cadastro-parceiro">
+          Cadastro de parceiro
+        </a>
+
+        <a
+          class="btn btn-outline-white"
+          href="https://wa.me/5534992142960?text=Ol%C3%A1.%20Gostaria%20de%20conversar%20sobre%20o%20Instituto%20EcoVida."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Falar pelo WhatsApp
+        </a>
+
+      </div>
+
+    </div>
   </section>
 
 </main>
 
-<footer id="contato">
-  <p><strong>Instituto EcoVida</strong> — Projeto da JS Jardinagem</p>
-  <p>Uberlândia e região • CNPJ: 61.617.926/0001-15</p>
+<footer>
+
   <p>
-    WhatsApp:
-    <a href="https://wa.me/5534992142960">(34) 99214-2960</a>
+    <strong>Instituto EcoVida</strong>
   </p>
+
   <p>
-    Instagram:
-    <a href="https://www.instagram.com/ecovidajs/" target="_blank">@ecovidajs</a>
+    Reciclagem, comunidade, apoio social,
+    limpeza urbana e cuidado com a natureza.
   </p>
+
+  <p>
+    CNPJ: 61.617.926/0001-15 — JS JARDINAGEM LTDA
+  </p>
+
+  <div class="footer-links">
+    <a href="#acao">Primeira ação</a>
+    <a href="#cadastros">Cadastros</a>
+    <a href="#cadastro-parceiro">Parcerias</a>
+    <a href="doacao.html">Doações</a>
+    <a href="ecovida-fem.html">EcoVida Feminino</a>
+
+    <a
+      href="https://www.instagram.com/ecovidajs/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram
+    </a>
+
+    <a
+      href="https://wa.me/5534992142960"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      WhatsApp
+    </a>
+  </div>
+
+  <p>
+    © <span id="anoAtual"></span> Instituto EcoVida
+  </p>
+
 </footer>
+
+<script>
+  function obterValor(id){
+    const elemento = document.getElementById(id);
+
+    if(!elemento){
+      return "";
+    }
+
+    return elemento.value.trim();
+  }
+
+  function enviarParceriaWhatsApp(event){
+    event.preventDefault();
+
+    const nomeResponsavel = obterValor("nomeResponsavel");
+    const telefone = obterValor("telefone");
+    const organizacao = obterValor("organizacao");
+    const tipoLocal = obterValor("tipoLocal");
+    const endereco = obterValor("endereco");
+    const tipoApoio = obterValor("tipoApoio");
+    const horario = obterValor("horario");
+    const observacoes = obterValor("observacoes");
+
+    const mensagem =
+`Olá, Instituto EcoVida.
+
+Gostaria de cadastrar um ponto de parceria ou apoio.
+
+RESPONSÁVEL
+Nome: ${nomeResponsavel}
+Telefone: ${telefone}
+
+LOCAL / ORGANIZAÇÃO
+Nome: ${organizacao}
+Tipo de local: ${tipoLocal}
+Endereço: ${endereco}
+
+FORMA DE PARTICIPAÇÃO
+${tipoApoio}
+
+Melhor horário para contato:
+${horario || "Não informado"}
+
+Observações:
+${observacoes || "Nenhuma observação adicional"}
+
+Autorizo o contato do Instituto EcoVida para conversar sobre esta possível parceria.`;
+
+    const numero = "5534992142960";
+
+    const url =
+      "https://wa.me/" +
+      numero +
+      "?text=" +
+      encodeURIComponent(mensagem);
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  document.getElementById("anoAtual").textContent =
+    new Date().getFullYear();
+</script>
 
 </body>
 </html>
