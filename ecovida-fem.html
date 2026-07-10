@@ -2,24 +2,48 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="EcoVida Feminino: acolhimento, proteção, apoio, capacitação e reconstrução de vida para mulheres em situação de vulnerabilidade."
+  />
+
   <title>EcoVida Feminino | Acolher, Fortalecer e Transformar</title>
 
   <style>
     :root{
       --purple:#42156b;
+      --purple-dark:#2b0d47;
       --pink:#d63384;
+      --pink-light:#fff0f7;
       --green:#167a3a;
+      --green-dark:#0f5d2b;
       --light:#fff7f2;
       --cream:#fff1df;
       --dark:#17051c;
-      --white:#fff;
+      --white:#ffffff;
       --gray:#5f5265;
+      --gray-light:#f5eef5;
       --shadow:0 16px 42px rgba(0,0,0,.14);
+      --shadow-soft:0 10px 28px rgba(0,0,0,.09);
       --border:rgba(66,21,107,.16);
+      --max-width:1180px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
 
     body{
       font-family:Arial, Helvetica, sans-serif;
@@ -28,59 +52,111 @@
       line-height:1.6;
     }
 
-    a{text-decoration:none;color:inherit}
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea{
+      font:inherit;
+    }
 
     header{
       background:#fff;
       position:sticky;
       top:0;
-      z-index:20;
+      z-index:50;
       box-shadow:0 3px 18px rgba(0,0,0,.08);
     }
 
     .nav{
-      max-width:1180px;
+      max-width:var(--max-width);
       margin:auto;
       padding:16px 22px;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:16px;
-      flex-wrap:wrap;
+      gap:18px;
     }
 
     .logo{
       font-weight:950;
       color:var(--purple);
-      font-size:1.25rem;
+      font-size:1.28rem;
+      white-space:nowrap;
     }
 
-    .logo span{color:var(--pink)}
+    .logo span{
+      color:var(--pink);
+    }
 
     .menu{
       display:flex;
+      align-items:center;
+      justify-content:flex-end;
       gap:14px;
       flex-wrap:wrap;
       font-weight:900;
-      font-size:.92rem;
+      font-size:.91rem;
     }
 
-    .menu a:hover{color:var(--pink)}
+    .menu a{
+      transition:.2s;
+    }
+
+    .menu a:hover{
+      color:var(--pink);
+    }
+
+    .menu-voluntario{
+      background:var(--pink);
+      color:#fff !important;
+      padding:10px 15px;
+      border-radius:999px;
+      box-shadow:0 8px 20px rgba(214,51,132,.25);
+    }
+
+    .menu-voluntario:hover{
+      background:#b8266d;
+      transform:translateY(-1px);
+    }
 
     .hero{
       background:
-        linear-gradient(90deg,rgba(255,247,242,.96) 0%,rgba(255,247,242,.90) 46%,rgba(255,247,242,.45) 70%),
-        url("pepa.jpeg") right center / cover no-repeat;
-      min-height:720px;
+        radial-gradient(
+          circle at 85% 30%,
+          rgba(214,51,132,.12),
+          transparent 34%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(255,247,242,1) 0%,
+          rgba(255,247,242,.98) 55%,
+          rgba(255,240,247,.94) 100%
+        );
+      min-height:680px;
       display:flex;
       align-items:center;
       padding:80px 22px;
+      overflow:hidden;
     }
 
     .hero-inner{
-      max-width:1180px;
+      max-width:var(--max-width);
       margin:auto;
       width:100%;
+      display:grid;
+      grid-template-columns:1.04fr .96fr;
+      gap:50px;
+      align-items:center;
     }
 
     .hero-content{
@@ -95,15 +171,17 @@
       border-radius:999px;
       font-weight:950;
       margin-bottom:18px;
+      box-shadow:0 8px 20px rgba(66,21,107,.2);
     }
 
     h1{
-      font-size:clamp(2.4rem,6vw,5rem);
-      line-height:.95;
+      font-size:clamp(2.5rem,5.7vw,5rem);
+      line-height:.97;
       font-weight:950;
       color:var(--purple);
-      margin-bottom:20px;
+      margin-bottom:22px;
       text-transform:uppercase;
+      letter-spacing:-1.5px;
     }
 
     h1 strong{
@@ -112,9 +190,9 @@
     }
 
     .hero p{
-      font-size:1.18rem;
-      margin-bottom:18px;
-      max-width:650px;
+      font-size:1.16rem;
+      margin-bottom:17px;
+      max-width:670px;
     }
 
     .hero .strong{
@@ -122,37 +200,119 @@
       font-weight:950;
     }
 
+    .hero-image-wrap{
+      position:relative;
+      min-height:490px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .hero-image-shape{
+      position:absolute;
+      width:470px;
+      height:470px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+      border-radius:42% 58% 55% 45% / 44% 42% 58% 56%;
+      transform:rotate(-5deg);
+      opacity:.96;
+      box-shadow:0 28px 65px rgba(66,21,107,.27);
+    }
+
+    .hero-image{
+      position:relative;
+      z-index:2;
+      width:min(440px,100%);
+      border-radius:32px;
+      box-shadow:0 24px 58px rgba(0,0,0,.24);
+      border:7px solid rgba(255,255,255,.92);
+      object-fit:cover;
+    }
+
+    .hero-label{
+      position:absolute;
+      z-index:3;
+      right:0;
+      bottom:20px;
+      background:#fff;
+      color:var(--purple);
+      border-radius:18px;
+      padding:16px 20px;
+      max-width:280px;
+      font-weight:950;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+    }
+
+    .hero-label span{
+      color:var(--pink);
+    }
+
     .buttons{
       display:flex;
       gap:14px;
       flex-wrap:wrap;
-      margin-top:26px;
+      margin-top:27px;
     }
 
     .btn{
-      display:inline-block;
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      gap:8px;
       padding:15px 22px;
       border-radius:14px;
       font-weight:950;
       text-align:center;
       transition:.2s;
+      line-height:1.25;
     }
 
-    .btn:hover{transform:translateY(-2px)}
+    .btn:hover{
+      transform:translateY(-2px);
+    }
 
     .btn-pink{
       background:var(--pink);
       color:white;
+      box-shadow:0 10px 24px rgba(214,51,132,.25);
+    }
+
+    .btn-pink:hover{
+      background:#b92770;
     }
 
     .btn-purple{
       background:var(--purple);
       color:white;
+      box-shadow:0 10px 24px rgba(66,21,107,.22);
+    }
+
+    .btn-purple:hover{
+      background:var(--purple-dark);
     }
 
     .btn-green{
       background:var(--green);
       color:white;
+      box-shadow:0 10px 24px rgba(22,122,58,.22);
+    }
+
+    .btn-green:hover{
+      background:var(--green-dark);
+    }
+
+    .btn-white{
+      background:#fff;
+      color:var(--purple);
     }
 
     .btn-outline{
@@ -161,26 +321,39 @@
       background:white;
     }
 
-    section{
-      max-width:1180px;
-      margin:auto;
-      padding:70px 22px;
+    .btn-outline-white{
+      border:2px solid rgba(255,255,255,.86);
+      color:#fff;
+      background:transparent;
     }
 
-    .center{text-align:center}
+    section{
+      max-width:var(--max-width);
+      margin:auto;
+      padding:72px 22px;
+    }
+
+    .section-full{
+      max-width:none;
+    }
+
+    .center{
+      text-align:center;
+    }
 
     h2{
-      font-size:clamp(1.8rem,3.5vw,3.2rem);
+      font-size:clamp(1.9rem,3.5vw,3.25rem);
       line-height:1.08;
       font-weight:950;
       color:var(--purple);
-      margin-bottom:16px;
+      margin-bottom:17px;
+      letter-spacing:-.6px;
     }
 
     .subtitle{
       color:var(--gray);
       max-width:900px;
-      margin:0 auto 36px;
+      margin:0 auto 37px;
       font-size:1.08rem;
     }
 
@@ -193,14 +366,21 @@
     .grid-2{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:24px;
+      gap:28px;
+      align-items:start;
     }
 
     .card{
       background:white;
       border:1px solid var(--border);
       border-radius:24px;
-      padding:26px;
+      padding:27px;
+      box-shadow:var(--shadow-soft);
+      transition:.2s;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
       box-shadow:var(--shadow);
     }
 
@@ -209,12 +389,105 @@
       font-size:1.28rem;
       margin-bottom:10px;
       font-weight:950;
+      line-height:1.2;
+    }
+
+    .card p{
+      color:#4d3e4d;
     }
 
     .card ul{
       padding-left:18px;
       color:#4d3e4d;
       margin-top:10px;
+    }
+
+    .pepa-section{
+      background:
+        linear-gradient(
+          135deg,
+          #2c0d45,
+          #5a176f 48%,
+          #a82164
+        );
+      color:#fff;
+      padding:78px 22px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .pepa-section::before{
+      content:"";
+      position:absolute;
+      width:440px;
+      height:440px;
+      right:-150px;
+      top:-170px;
+      border-radius:50%;
+      background:rgba(255,255,255,.07);
+    }
+
+    .pepa-section::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      left:-130px;
+      bottom:-180px;
+      border-radius:50%;
+      background:rgba(255,255,255,.06);
+    }
+
+    .pepa-inner{
+      max-width:var(--max-width);
+      margin:auto;
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:46px;
+      align-items:center;
+    }
+
+    .pepa-photo{
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:0 28px 65px rgba(0,0,0,.32);
+      border:6px solid rgba(255,255,255,.16);
+      background:#fff;
+    }
+
+    .pepa-photo img{
+      width:100%;
+      height:100%;
+      min-height:430px;
+      object-fit:cover;
+    }
+
+    .pepa-content h2{
+      color:#fff;
+    }
+
+    .pepa-content p{
+      font-size:1.12rem;
+      margin-bottom:16px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .pepa-quote{
+      margin:25px 0;
+      padding:22px 24px;
+      background:rgba(255,255,255,.11);
+      border-left:6px solid #ff69ae;
+      border-radius:18px;
+      font-weight:950;
+      font-size:1.23rem;
+      color:#fff;
+    }
+
+    .pepa-note{
+      font-size:.94rem !important;
+      opacity:.79;
     }
 
     .banner{
@@ -225,7 +498,9 @@
       box-shadow:var(--shadow);
     }
 
-    .banner h2{color:white}
+    .banner h2{
+      color:white;
+    }
 
     .banner p{
       font-size:1.12rem;
@@ -235,12 +510,87 @@
     .quote{
       background:var(--cream);
       border-left:8px solid var(--pink);
-      padding:28px;
+      padding:29px;
       border-radius:22px;
-      font-size:1.25rem;
+      font-size:1.26rem;
       font-weight:900;
       color:var(--purple);
       box-shadow:var(--shadow);
+    }
+
+    .volunteer-section{
+      background:
+        linear-gradient(
+          135deg,
+          rgba(22,122,58,.97),
+          rgba(15,93,43,.98)
+        );
+      color:#fff;
+      padding:76px 22px;
+    }
+
+    .volunteer-inner{
+      max-width:var(--max-width);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    .volunteer-section h2{
+      color:#fff;
+    }
+
+    .volunteer-section p{
+      font-size:1.12rem;
+      margin-bottom:16px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .volunteer-list{
+      display:grid;
+      gap:13px;
+      margin-top:24px;
+    }
+
+    .volunteer-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:rgba(255,255,255,.1);
+      padding:14px 16px;
+      border-radius:15px;
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .volunteer-item strong{
+      display:block;
+    }
+
+    .volunteer-box{
+      background:#fff;
+      color:var(--dark);
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 24px 60px rgba(0,0,0,.25);
+    }
+
+    .volunteer-box h3{
+      color:var(--green);
+      font-size:1.6rem;
+      line-height:1.2;
+      margin-bottom:13px;
+    }
+
+    .volunteer-box p{
+      color:var(--gray);
+      font-size:1rem;
+    }
+
+    .volunteer-box .btn{
+      width:100%;
+      margin-top:14px;
     }
 
     .steps{
@@ -254,7 +604,12 @@
       border-radius:22px;
       padding:24px;
       border:1px solid var(--border);
-      box-shadow:var(--shadow);
+      box-shadow:var(--shadow-soft);
+    }
+
+    .step h3{
+      color:var(--purple);
+      margin-bottom:8px;
     }
 
     .num{
@@ -284,11 +639,15 @@
     }
 
     label{
+      display:block;
       font-weight:900;
       color:var(--purple);
+      margin-bottom:6px;
     }
 
-    input, select, textarea{
+    input,
+    select,
+    textarea{
       width:100%;
       padding:14px;
       border-radius:12px;
@@ -296,9 +655,22 @@
       font-size:1rem;
       font-family:Arial, Helvetica, sans-serif;
       background:#fff;
+      color:var(--dark);
+      outline:none;
+      transition:.2s;
     }
 
-    textarea{min-height:110px;resize:vertical}
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--pink);
+      box-shadow:0 0 0 4px rgba(214,51,132,.1);
+    }
+
+    textarea{
+      min-height:115px;
+      resize:vertical;
+    }
 
     .notice{
       background:#fff1f7;
@@ -313,33 +685,75 @@
       background:var(--dark);
       color:white;
       max-width:none;
-      padding:70px 22px;
+      padding:72px 22px;
     }
 
     .contact-inner{
-      max-width:1180px;
+      max-width:var(--max-width);
       margin:auto;
       text-align:center;
     }
 
-    .contact h2{color:white}
+    .contact h2{
+      color:white;
+    }
+
+    .contact p{
+      max-width:860px;
+      margin:0 auto;
+      color:rgba(255,255,255,.88);
+      font-size:1.1rem;
+    }
 
     footer{
       background:#070307;
       color:white;
       text-align:center;
-      padding:34px 22px;
+      padding:36px 22px;
     }
 
-    footer a{color:#ffd6ea;font-weight:900}
+    footer p{
+      margin:3px 0;
+    }
+
+    footer a{
+      color:#ffd6ea;
+      font-weight:900;
+    }
+
+    @media(max-width:1000px){
+      .hero-inner,
+      .pepa-inner,
+      .volunteer-inner{
+        grid-template-columns:1fr;
+      }
+
+      .hero-content{
+        max-width:none;
+      }
+
+      .hero-image-wrap{
+        min-height:auto;
+      }
+
+      .hero-image-shape{
+        width:400px;
+        height:400px;
+      }
+
+      .hero-label{
+        right:5%;
+      }
+    }
 
     @media(max-width:900px){
-      .hero{
-        background:
-          linear-gradient(180deg,rgba(255,247,242,.97) 0%,rgba(255,247,242,.90) 58%,rgba(255,247,242,.72) 100%),
-          url("pepa-mobile.jpeg") center top / cover no-repeat;
-        min-height:auto;
-        padding:70px 20px;
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .menu{
+        justify-content:flex-start;
       }
 
       .grid,
@@ -348,10 +762,101 @@
         grid-template-columns:1fr;
       }
 
-      .banner{padding:34px 24px}
+      .banner{
+        padding:34px 24px;
+      }
+
+      .hero{
+        min-height:auto;
+        padding:62px 20px;
+      }
+
+      .hero-inner{
+        gap:35px;
+      }
+
+      .pepa-section,
+      .volunteer-section{
+        padding:62px 20px;
+      }
+
+      .pepa-photo img{
+        min-height:auto;
+      }
+    }
+
+    @media(max-width:620px){
+      .nav{
+        padding:13px 16px;
+      }
 
       .menu{
-        font-size:.86rem;
+        gap:9px;
+        font-size:.82rem;
+      }
+
+      .menu a{
+        padding:5px 0;
+      }
+
+      .menu-voluntario{
+        padding:8px 12px !important;
+      }
+
+      h1{
+        font-size:2.45rem;
+      }
+
+      .hero p{
+        font-size:1.04rem;
+      }
+
+      .buttons{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      section{
+        padding:57px 18px;
+      }
+
+      .hero-image-shape{
+        width:305px;
+        height:305px;
+      }
+
+      .hero-image{
+        border-width:4px;
+        border-radius:22px;
+      }
+
+      .hero-label{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        margin-top:-20px;
+        z-index:4;
+        max-width:95%;
+      }
+
+      .hero-image-wrap{
+        flex-direction:column;
+      }
+
+      .form-box{
+        padding:23px 18px;
+      }
+
+      .pepa-photo{
+        border-width:4px;
+        border-radius:22px;
+      }
+
+      .banner{
+        border-radius:24px;
       }
     }
   </style>
@@ -361,13 +866,26 @@
 
 <header>
   <div class="nav">
-    <div class="logo">EcoVida <span>Feminino</span></div>
-    <nav class="menu">
+    <a class="logo" href="ecovida.html">
+      EcoVida <span>Feminino</span>
+    </a>
+
+    <nav class="menu" aria-label="Navegação principal">
       <a href="ecovida.html">EcoVida</a>
       <a href="#proposito">Propósito</a>
+      <a href="#pepa">Pepa</a>
       <a href="#familiares">Família</a>
+      <a href="#sede">Sede</a>
       <a href="#apoio">Apoiar</a>
-      <a href="#contato">Contato</a>
+
+      <a
+        class="menu-voluntario"
+        href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ser voluntário
+      </a>
     </nav>
   </div>
 </header>
@@ -376,8 +894,11 @@
 
   <section class="hero">
     <div class="hero-inner">
+
       <div class="hero-content">
-        <span class="tag">Acolher • Fortalecer • Transformar</span>
+        <span class="tag">
+          Acolher • Fortalecer • Transformar
+        </span>
 
         <h1>
           Nenhuma mulher
@@ -385,253 +906,628 @@
         </h1>
 
         <p>
-          Como muitas outras jovens, <span class="strong">Pepa precisa de uma oportunidade para recomeçar.</span>
-          O EcoVida Feminino nasce para construir um caminho de acolhimento para mulheres que desejam
-          reconstruir suas vidas com segurança, respeito e novas oportunidades.
+          Como muitas outras jovens,
+          <span class="strong">
+            Pepa representa uma vida que merece uma oportunidade para recomeçar.
+          </span>
+          O EcoVida Feminino nasce para construir um caminho de acolhimento
+          para mulheres que desejam reconstruir suas vidas com segurança,
+          respeito e novas oportunidades.
         </p>
 
         <p>
-          Nosso propósito é criar uma rede real de proteção, moradia temporária, alimentação,
-          apoio emocional, fortalecimento comunitário, capacitação e geração de renda.
+          Nosso propósito é criar uma rede real de proteção, moradia temporária,
+          alimentação, fortalecimento comunitário, encaminhamento profissional,
+          capacitação e geração de renda.
         </p>
 
         <div class="buttons">
-          <a class="btn btn-pink" href="doacao.html">Fazer uma doação</a>
-          <a class="btn btn-purple" href="#familiares">Buscar ajuda para uma filha</a>
-          <a class="btn btn-green" href="#sede">Tenho imóvel ou terreno</a>
+          <a class="btn btn-pink" href="doacao.html">
+            Fazer uma doação
+          </a>
+
+          <a class="btn btn-purple" href="#familiares">
+            Buscar orientação para uma filha
+          </a>
+
+          <a class="btn btn-green" href="#sede">
+            Tenho imóvel ou terreno
+          </a>
         </div>
       </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-image-shape"></div>
+
+        <img
+          class="hero-image"
+          src="imagens/pepa-web.jpeg"
+          alt="Imagem da campanha EcoVida Feminino com mensagem de acolhimento e recomeço"
+        >
+
+        <div class="hero-label">
+          <span>Nenhuma vida está perdida.</span><br>
+          Toda mulher merece uma nova história.
+        </div>
+      </div>
+
     </div>
   </section>
 
   <section id="proposito" class="center">
     <h2>Toda mulher merece uma nova oportunidade</h2>
+
     <p class="subtitle">
-      O EcoVida Feminino é uma frente do Instituto EcoVida voltada para mulheres em vulnerabilidade,
-      rua, dependência, abandono, exploração ou risco social. A missão é oferecer um caminho possível,
-      humano e organizado para o recomeço.
+      O EcoVida Feminino é uma frente do Instituto EcoVida voltada para
+      mulheres em situação de vulnerabilidade, rua, dependência, abandono,
+      exploração ou risco social. A missão é construir um caminho possível,
+      humano, protegido e organizado para o recomeço.
     </p>
 
     <div class="grid">
-      <div class="card">
+
+      <article class="card">
         <h3>🏠 Um local seguro</h3>
-        <p>Moradia temporária, ambiente protegido, rotina organizada e acolhimento com dignidade.</p>
-      </div>
+        <p>
+          Moradia temporária, ambiente protegido, rotina organizada
+          e acolhimento com dignidade.
+        </p>
+      </article>
 
-      <div class="card">
-        <h3>💚 Apoio emocional</h3>
-        <p>Escuta, fortalecimento comunitário, apoio familiar e encaminhamento para rede profissional.</p>
-      </div>
+      <article class="card">
+        <h3>💚 Escuta e orientação</h3>
+        <p>
+          Fortalecimento comunitário, aproximação familiar e encaminhamento
+          para profissionais e serviços responsáveis.
+        </p>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <h3>🥘 Alimentação e higiene</h3>
-        <p>Comida, banho, roupas, cobertores, itens de higiene e cuidados básicos para recomeçar.</p>
-      </div>
+        <p>
+          Comida, banho, roupas, cobertores, itens de higiene
+          e cuidados básicos para iniciar uma nova etapa.
+        </p>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <h3>📚 Capacitação</h3>
-        <p>Oficinas, cursos, jardinagem, reciclagem, limpeza, cozinha, artesanato e geração de renda.</p>
-      </div>
+        <p>
+          Oficinas, cursos, jardinagem, reciclagem, limpeza,
+          cozinha, artesanato e geração de renda.
+        </p>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <h3>🌱 Caminho real</h3>
-        <p>Não é apenas ajuda emergencial. É construção de uma nova história com acompanhamento.</p>
+        <p>
+          Não é apenas ajuda emergencial. É a construção gradual
+          de uma vida com estrutura, responsabilidade e autonomia.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>🤝 Rede de proteção</h3>
+        <p>
+          Famílias, voluntários, empresas, profissionais,
+          doadores e comunidade trabalhando juntos.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="pepa-section section-full" id="pepa">
+    <div class="pepa-inner">
+
+      <div class="pepa-photo">
+        <img
+          src="imagens/pepa-web.jpeg"
+          alt="Campanha EcoVida Feminino simbolizando força, acolhimento e recomeço"
+        >
       </div>
 
-      <div class="card">
-        <h3>🤝 Rede de proteção</h3>
-        <p>Famílias, voluntários, empresas, profissionais, doadores e comunidade trabalhando juntos.</p>
+      <div class="pepa-content">
+        <span class="tag">
+          Uma imagem que representa muitas histórias
+        </span>
+
+        <h2>Pepa como força para esse processo</h2>
+
+        <p>
+          Pepa representa a urgência de olhar para mulheres que muitas vezes
+          são vistas apenas pela situação em que se encontram, e não pela
+          história, pelo sofrimento e pelo potencial que ainda carregam.
+        </p>
+
+        <p>
+          Sua imagem se torna um chamado para que a sociedade pare de julgar
+          de longe e comece a construir oportunidades reais de acolhimento,
+          proteção, tratamento responsável, aprendizado e reintegração.
+        </p>
+
+        <div class="pepa-quote">
+          “Eu mereço amor, respeito e uma oportunidade para recomeçar.”
+        </div>
+
+        <p>
+          O EcoVida Feminino não promete soluções fáceis. O propósito é reunir
+          pessoas sérias para construir um caminho seguro, humano e possível.
+        </p>
+
+        <p class="pepa-note">
+          A imagem é utilizada como símbolo da campanha e da necessidade de
+          acolhimento, sempre preservando dignidade, respeito e responsabilidade.
+        </p>
+
+        <div class="buttons">
+          <a
+            class="btn btn-white"
+            href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Quero ser voluntário
+          </a>
+
+          <a class="btn btn-outline-white" href="doacao.html">
+            Apoiar com uma doação
+          </a>
+        </div>
       </div>
+
     </div>
   </section>
 
   <section>
     <div class="quote">
-      “O futuro começa quando alguém decide estender a mão.”
+      “O futuro começa quando alguém decide estender a mão,
+      sem retirar da outra pessoa o direito de reconstruir a própria vida.”
     </div>
   </section>
 
   <section id="sede">
     <div class="banner">
       <h2>Precisamos de uma sede para acolhimento feminino</h2>
+
       <p>
-        Buscamos uma casa, sítio, chácara ou terreno que possa se tornar a base do EcoVida Feminino.
-        Pode ser um imóvel parado, uma casa à venda há muito tempo, um espaço rural ou uma área
-        que precise ganhar um propósito social.
+        Buscamos uma casa, sítio, chácara ou terreno que possa se tornar
+        a base do EcoVida Feminino. Pode ser um imóvel parado, uma casa
+        à venda há muito tempo, um espaço rural ou uma área que precise
+        ganhar um propósito social.
       </p>
+
       <p>
-        A sede precisa permitir segurança, privacidade, alimentação, descanso, oficinas,
-        acompanhamento e reconstrução da vida com responsabilidade.
+        A sede deverá permitir segurança, privacidade, alimentação,
+        descanso, oficinas, convivência e encaminhamento das mulheres
+        acolhidas para a rede profissional e pública necessária.
+      </p>
+
+      <p>
+        Também estudamos possibilidades de cessão, comodato, aluguel social,
+        parceria institucional, compra planejada ou doação.
       </p>
 
       <div class="buttons">
-        <a class="btn btn-outline" href="https://wa.me/5534998780560?text=Tenho%20um%20im%C3%B3vel%20ou%20terreno%20para%20conversar%20sobre%20o%20EcoVida%20Feminino.">
-          Ceder imóvel ou terreno
+        <a
+          class="btn btn-white"
+          href="https://wa.me/5534998780560?text=Ol%C3%A1.%20Tenho%20uma%20possibilidade%20de%20casa%2C%20s%C3%ADtio%2C%20ch%C3%A1cara%20ou%20terreno%20para%20conversar%20sobre%20o%20EcoVida%20Feminino."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Apresentar imóvel ou terreno
+        </a>
+
+        <a
+          class="btn btn-outline-white"
+          href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ajudar como voluntário
         </a>
       </div>
     </div>
   </section>
 
+  <section class="volunteer-section section-full" id="voluntarios">
+    <div class="volunteer-inner">
+
+      <div>
+        <h2>O EcoVida Feminino precisa de voluntários responsáveis</h2>
+
+        <p>
+          Procuramos pessoas dispostas a colaborar com tempo,
+          conhecimento, organização e presença. O voluntariado deverá
+          respeitar regras, limites, privacidade e a proteção das mulheres.
+        </p>
+
+        <p>
+          Não é necessário ter experiência em todas as áreas.
+          O primeiro passo é realizar o cadastro e informar como você
+          pode ajudar.
+        </p>
+
+        <div class="volunteer-list">
+
+          <div class="volunteer-item">
+            <span>🤝</span>
+            <div>
+              <strong>Acolhimento e organização</strong>
+              Apoio em atividades, recepção, logística e rotina do projeto.
+            </div>
+          </div>
+
+          <div class="volunteer-item">
+            <span>📚</span>
+            <div>
+              <strong>Cursos e capacitação</strong>
+              Oficinas, aulas, artesanato, educação, currículo e preparação profissional.
+            </div>
+          </div>
+
+          <div class="volunteer-item">
+            <span>⚖️</span>
+            <div>
+              <strong>Profissionais e serviços</strong>
+              Psicologia, assistência social, saúde, direito e orientação,
+              dentro das qualificações e regras de cada profissão.
+            </div>
+          </div>
+
+          <div class="volunteer-item">
+            <span>🌱</span>
+            <div>
+              <strong>Trabalho e geração de renda</strong>
+              Jardinagem, reciclagem, cozinha, limpeza, produção e oportunidades de trabalho.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <aside class="volunteer-box">
+        <h3>Cadastre-se como voluntário</h3>
+
+        <p>
+          Preencha o cadastro com seus dados, disponibilidade,
+          experiência e forma de colaboração.
+        </p>
+
+        <p>
+          Após o envio, a equipe poderá avaliar onde sua participação
+          será mais adequada e segura.
+        </p>
+
+        <a
+          class="btn btn-green"
+          href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Abrir cadastro de voluntário
+        </a>
+      </aside>
+
+    </div>
+  </section>
+
   <section id="familiares">
     <div class="grid-2">
+
       <div>
         <h2>Questionário para familiares que buscam suas filhas</h2>
+
         <p class="subtitle" style="margin:0 0 24px;">
-          Este espaço é para mães, pais, irmãos, avós ou responsáveis que procuram ajuda para uma mulher
-          em situação de vulnerabilidade. O preenchimento ajuda o EcoVida a entender o caso e organizar
+          Este espaço é para mães, pais, irmãos, avós ou responsáveis
+          que procuram orientação para uma mulher em situação de vulnerabilidade.
+          O preenchimento ajuda o EcoVida a entender o caso e organizar
           um primeiro contato com cuidado.
         </p>
 
         <div class="notice">
-          Importante: este formulário não substitui emergência médica, policial ou assistência social.
-          Em risco imediato, procure os serviços públicos de urgência da sua cidade.
+          <strong>Importante:</strong> este formulário não é um atendimento
+          de emergência e não substitui serviços médicos, policiais,
+          assistência social, conselho tutelar ou outros serviços públicos.
+          Em situação de risco imediato, procure os serviços de urgência
+          da sua cidade.
         </div>
       </div>
 
       <div class="form-box">
         <form onsubmit="enviarWhatsApp(event)">
+
           <div>
-            <label>Nome do familiar responsável</label>
-            <input id="familiar" type="text" required placeholder="Seu nome completo">
+            <label for="familiar">
+              Nome do familiar responsável
+            </label>
+
+            <input
+              id="familiar"
+              type="text"
+              required
+              placeholder="Seu nome completo"
+            >
           </div>
 
           <div>
-            <label>Telefone para contato</label>
-            <input id="telefone" type="text" required placeholder="DDD + número">
+            <label for="telefone">
+              Telefone para contato
+            </label>
+
+            <input
+              id="telefone"
+              type="tel"
+              required
+              placeholder="DDD + número"
+            >
           </div>
 
           <div>
-            <label>Nome da mulher/jovem que precisa de apoio</label>
-            <input id="nomeMulher" type="text" required placeholder="Nome ou apelido">
+            <label for="nomeMulher">
+              Nome da mulher que precisa de orientação
+            </label>
+
+            <input
+              id="nomeMulher"
+              type="text"
+              required
+              placeholder="Nome ou apelido"
+            >
           </div>
 
           <div>
-            <label>Idade aproximada</label>
-            <input id="idade" type="text" placeholder="Ex: 18, 22, 30">
+            <label for="idade">
+              Idade aproximada
+            </label>
+
+            <input
+              id="idade"
+              type="text"
+              placeholder="Exemplo: 18, 22 ou 30 anos"
+            >
           </div>
 
           <div>
-            <label>Situação principal</label>
+            <label for="situacao">
+              Situação principal
+            </label>
+
             <select id="situacao">
-              <option>Rua ou abandono</option>
-              <option>Dependência química</option>
-              <option>Exploração ou prostituição</option>
-              <option>Violência ou risco</option>
-              <option>Desaparecida / família procurando</option>
-              <option>Outra situação</option>
+              <option value="Rua ou abandono">
+                Rua ou abandono
+              </option>
+
+              <option value="Dependência química">
+                Dependência química
+              </option>
+
+              <option value="Exploração ou prostituição">
+                Exploração ou prostituição
+              </option>
+
+              <option value="Violência ou risco">
+                Violência ou risco
+              </option>
+
+              <option value="Desaparecida ou família procurando">
+                Desaparecida ou família procurando
+              </option>
+
+              <option value="Outra situação">
+                Outra situação
+              </option>
             </select>
           </div>
 
           <div>
-            <label>Último local conhecido</label>
-            <input id="local" type="text" placeholder="Bairro, cidade ou referência">
+            <label for="local">
+              Último local conhecido
+            </label>
+
+            <input
+              id="local"
+              type="text"
+              placeholder="Bairro, cidade ou referência"
+            >
           </div>
 
           <div>
-            <label>Ela aceita ajuda?</label>
+            <label for="aceita">
+              Ela demonstra aceitar ajuda?
+            </label>
+
             <select id="aceita">
-              <option>Não sei</option>
-              <option>Sim</option>
-              <option>Talvez</option>
-              <option>Ainda não aceita</option>
+              <option value="Não sei">Não sei</option>
+              <option value="Sim">Sim</option>
+              <option value="Talvez">Talvez</option>
+              <option value="Ainda não aceita">
+                Ainda não aceita
+              </option>
             </select>
           </div>
 
           <div>
-            <label>Resumo do caso</label>
-            <textarea id="resumo" placeholder="Conte brevemente o que está acontecendo"></textarea>
+            <label for="resumo">
+              Resumo do caso
+            </label>
+
+            <textarea
+              id="resumo"
+              placeholder="Conte brevemente o que está acontecendo. Evite inserir documentos, senhas ou informações excessivamente sensíveis."
+            ></textarea>
           </div>
 
-          <button class="btn btn-pink" type="submit">Enviar pelo WhatsApp</button>
+          <button class="btn btn-pink" type="submit">
+            Enviar informações pelo WhatsApp
+          </button>
+
         </form>
       </div>
+
     </div>
   </section>
 
   <section id="apoio" class="center">
     <h2>Como você pode ajudar</h2>
+
     <p class="subtitle">
-      Cada doação, parceria ou gesto de solidariedade ajuda a transformar vidas.
+      Cada doação, parceria, indicação ou gesto de solidariedade
+      pode ajudar a construir uma estrutura real de acolhimento.
     </p>
 
     <div class="grid">
-      <div class="card">
+
+      <article class="card">
         <h3>💝 Fazer uma doação</h3>
-        <p>Qualquer valor ajuda na construção da estrutura, alimentação, higiene e acolhimento.</p>
-      </div>
+        <p>
+          Valores e materiais ajudam na construção da estrutura,
+          alimentação, higiene, transporte e atividades.
+        </p>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <h3>🏡 Ceder imóvel ou terreno</h3>
-        <p>Casa, sítio, chácara, terreno ou imóvel parado podem virar uma base de acolhimento.</p>
-      </div>
+        <p>
+          Casa, sítio, chácara, terreno ou imóvel parado
+          podem se tornar uma base de acolhimento.
+        </p>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <h3>🙋 Ser voluntário</h3>
-        <p>Seu tempo, conhecimento, escuta, profissão ou talento podem fazer diferença.</p>
-      </div>
+        <p>
+          Seu tempo, conhecimento, profissão ou talento
+          podem fazer diferença dentro de uma função organizada.
+        </p>
 
-      <div class="card">
+        <div class="buttons">
+          <a
+            class="btn btn-green"
+            href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fazer cadastro
+          </a>
+        </div>
+      </article>
+
+      <article class="card">
         <h3>🥘 Alimentação</h3>
-        <p>Cestas básicas, refeições, água, alimentos, frutas, legumes e itens de cozinha.</p>
-      </div>
+        <p>
+          Cestas básicas, refeições, água, alimentos,
+          frutas, legumes e itens de cozinha.
+        </p>
+      </article>
 
-      <div class="card">
+      <article class="card">
         <h3>🧼 Higiene e roupas</h3>
-        <p>Absorventes, sabonetes, shampoo, toalhas, roupas femininas, cobertores e calçados.</p>
-      </div>
+        <p>
+          Absorventes, sabonetes, shampoo, toalhas,
+          roupas femininas, cobertores e calçados.
+        </p>
+      </article>
 
-      <div class="card">
-        <h3>📚 Capacitação</h3>
-        <p>Cursos, oficinas, mentorias, vagas de trabalho, apoio jurídico e apoio psicológico.</p>
-      </div>
+      <article class="card">
+        <h3>📚 Capacitação e trabalho</h3>
+        <p>
+          Cursos, oficinas, mentorias, vagas de trabalho,
+          apoio jurídico e serviços profissionais.
+        </p>
+      </article>
+
     </div>
   </section>
 
   <section>
     <h2 class="center">Primeiros passos do EcoVida Feminino</h2>
+
     <p class="subtitle center">
-      A construção será feita com organização, responsabilidade e rede de apoio.
+      A construção será feita com organização, responsabilidade,
+      proteção e uma rede séria de apoio.
     </p>
 
     <div class="steps">
-      <div class="step">
+
+      <article class="step">
         <div class="num">1</div>
         <h3>Encontrar a sede</h3>
-        <p>Casa, sítio, chácara ou terreno para acolhimento feminino.</p>
-      </div>
+        <p>
+          Casa, sítio, chácara ou terreno
+          para estruturar o acolhimento feminino.
+        </p>
+      </article>
 
-      <div class="step">
+      <article class="step">
         <div class="num">2</div>
-        <h3>Montar estrutura</h3>
-        <p>Quartos, cozinha, banho, roupas, alimentação e segurança.</p>
-      </div>
+        <h3>Montar a estrutura</h3>
+        <p>
+          Quartos, cozinha, banho, roupas,
+          alimentação, privacidade e segurança.
+        </p>
+      </article>
 
-      <div class="step">
+      <article class="step">
         <div class="num">3</div>
-        <h3>Formar rede</h3>
-        <p>Voluntários, famílias, empresas, saúde, assistência e comunidade.</p>
-      </div>
+        <h3>Formar a rede</h3>
+        <p>
+          Voluntários, famílias, empresas,
+          profissionais, saúde e assistência.
+        </p>
+      </article>
 
-      <div class="step">
+      <article class="step">
         <div class="num">4</div>
         <h3>Acolher com dignidade</h3>
-        <p>Proteção, rotina, escuta, capacitação e caminho de recomeço.</p>
-      </div>
+        <p>
+          Proteção, rotina, escuta,
+          capacitação e caminho de autonomia.
+        </p>
+      </article>
+
     </div>
   </section>
 
   <section class="contact" id="contato">
     <div class="contact-inner">
-      <h2>Essa causa precisa de gente séria ao lado.</h2>
+
+      <h2>Essa causa precisa de pessoas sérias ao lado</h2>
+
       <p>
-        Se você pode doar, ceder um espaço, ser voluntário, indicar uma família ou ajudar uma mulher
-        a recomeçar, fale com o Instituto EcoVida Feminino.
+        Você pode doar, ceder um espaço, cadastrar-se como voluntário,
+        indicar uma oportunidade de trabalho ou ajudar uma família
+        a encontrar orientação.
       </p>
 
       <div class="buttons" style="justify-content:center;">
-        <a class="btn btn-pink" href="https://wa.me/5534998780560">Falar pelo WhatsApp</a>
-        <a class="btn btn-outline" href="doacao.html">Página de doações</a>
-        <a class="btn btn-outline" href="ecovida.html">Conheça o EcoVida</a>
+
+        <a
+          class="btn btn-pink"
+          href="https://wa.me/5534998780560?text=Ol%C3%A1.%20Gostaria%20de%20conversar%20sobre%20o%20EcoVida%20Feminino."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Falar pelo WhatsApp
+        </a>
+
+        <a
+          class="btn btn-green"
+          href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cadastro de voluntários
+        </a>
+
+        <a class="btn btn-outline-white" href="doacao.html">
+          Página de doações
+        </a>
+
+        <a class="btn btn-outline-white" href="ecovida.html">
+          Conheça o EcoVida
+        </a>
+
       </div>
     </div>
   </section>
@@ -639,51 +1535,87 @@
 </main>
 
 <footer>
-  <p><strong>Instituto EcoVida Feminino</strong></p>
-  <p>Acolher • Fortalecer • Transformar</p>
+  <p>
+    <strong>Instituto EcoVida Feminino</strong>
+  </p>
+
+  <p>
+    Acolher • Fortalecer • Transformar
+  </p>
+
   <p>
     WhatsApp:
-    <a href="https://wa.me/5534998780560">(34) 9 9878-0560</a>
+    <a
+      href="https://wa.me/5534998780560"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      (34) 9 9878-0560
+    </a>
   </p>
+
   <p>
     Instagram:
-    <a href="https://instagram.com/instituto.ecovida">@instituto.ecovida</a>
+    <a
+      href="https://instagram.com/instituto.ecovida"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      @instituto.ecovida
+    </a>
   </p>
 </footer>
 
 <script>
+  function obterValor(id){
+    const elemento = document.getElementById(id);
+
+    if(!elemento){
+      return "";
+    }
+
+    return elemento.value.trim();
+  }
+
   function enviarWhatsApp(event){
     event.preventDefault();
 
-    const familiar = document.getElementById("familiar").value;
-    const telefone = document.getElementById("telefone").value;
-    const nomeMulher = document.getElementById("nomeMulher").value;
-    const idade = document.getElementById("idade").value;
-    const situacao = document.getElementById("situacao").value;
-    const local = document.getElementById("local").value;
-    const aceita = document.getElementById("aceita").value;
-    const resumo = document.getElementById("resumo").value;
+    const familiar = obterValor("familiar");
+    const telefone = obterValor("telefone");
+    const nomeMulher = obterValor("nomeMulher");
+    const idade = obterValor("idade");
+    const situacao = obterValor("situacao");
+    const local = obterValor("local");
+    const aceita = obterValor("aceita");
+    const resumo = obterValor("resumo");
 
     const mensagem =
-`Olá, EcoVida Feminino. Quero pedir orientação para um caso familiar.
+`Olá, EcoVida Feminino. Gostaria de solicitar orientação para um caso familiar.
 
-Nome do familiar: ${familiar}
+DADOS DO FAMILIAR
+Nome: ${familiar}
 Telefone: ${telefone}
 
-Nome da mulher/jovem: ${nomeMulher}
-Idade aproximada: ${idade}
-
+DADOS DA MULHER
+Nome ou apelido: ${nomeMulher}
+Idade aproximada: ${idade || "Não informada"}
 Situação principal: ${situacao}
-Último local conhecido: ${local}
-Ela aceita ajuda? ${aceita}
+Último local conhecido: ${local || "Não informado"}
+Demonstra aceitar ajuda? ${aceita}
 
-Resumo do caso:
-${resumo}`;
+RESUMO
+${resumo || "Não informado"}
+
+Entendo que este contato não substitui atendimento médico, policial, assistência social ou serviço de emergência.`;
 
     const numero = "5534998780560";
-    const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+    const url =
+      "https://wa.me/" +
+      numero +
+      "?text=" +
+      encodeURIComponent(mensagem);
 
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
   }
 </script>
 
