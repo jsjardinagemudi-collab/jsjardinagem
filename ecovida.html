@@ -567,6 +567,59 @@
       color:#d5ffde;
     }
 
+    .sustain-section{
+      background:linear-gradient(180deg,#f4fff7,#ffffff);
+    }
+
+    .sustain-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+      margin-top:32px;
+    }
+
+    .sustain-card{
+      background:#fff;
+      padding:28px;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .sustain-card h3{
+      color:var(--green-dark);
+      font-size:1.32rem;
+      margin-bottom:10px;
+    }
+
+    .sustain-card p{
+      color:#415047;
+      margin-bottom:12px;
+    }
+
+    .sustain-card ul{
+      padding-left:20px;
+      color:#415047;
+      display:grid;
+      gap:7px;
+    }
+
+    .plan-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-top:14px;
+    }
+
+    .plan-badge{
+      padding:9px 12px;
+      border-radius:999px;
+      background:var(--green-light);
+      color:var(--green-dark);
+      font-weight:900;
+      border:1px solid var(--border);
+    }
+
     .form-section{
       background:var(--gray-light);
       padding:78px 22px;
@@ -842,7 +895,8 @@
 
       .grid,
       .steps,
-      .action-details{
+      .action-details,
+      .sustain-grid{
         grid-template-columns:1fr;
       }
 
@@ -940,6 +994,7 @@
       <a href="#acao">Primeira ação</a>
       <a href="#cadastros">Cadastros</a>
       <a href="#parceiros">Parceiros</a>
+      <a href="#sustentacao">Como o projeto se mantém</a>
       <a href="#materiais">Materiais</a>
       <a href="doacao.html">Doações</a>
       <a href="ecovida-fem.html">EcoVida Fem</a>
@@ -981,7 +1036,7 @@
 
         <p class="strong">
           Nossa primeira ação organizada começa no bairro Santa Maria,
-          aos domingos, a partir das 23 horas.
+          aos domingos, a partir das 20 horas.
         </p>
 
         <div class="buttons">
@@ -1019,7 +1074,7 @@
 
         <ul>
           <li>📅 Domingos</li>
-          <li>🕚 A partir das 23 horas</li>
+          <li>🕗 A partir das 20 horas</li>
           <li>📍 Bairro Santa Maria – Uberlândia</li>
           <li>♻️ Limpeza e coleta organizada</li>
           <li>🌙 Presença comunitária noturna</li>
@@ -1040,7 +1095,7 @@
           </span>
 
           <h2>
-            Domingos, a partir das 23h, no bairro Santa Maria
+            Domingos, a partir das 20h, no bairro Santa Maria
           </h2>
 
           <p>
@@ -1256,6 +1311,119 @@
           Ver formas de colaboração
         </a>
       </div>
+
+    </div>
+
+  </section>
+
+  <section class="sustain-section" id="sustentacao">
+
+    <div class="center">
+      <h2>Como o EcoVida gera recursos para continuar</h2>
+
+      <p class="subtitle">
+        O projeto combina impacto social com receitas organizadas,
+        para não depender apenas de doações e conseguir manter equipes,
+        materiais, transporte e novas ações nos bairros.
+      </p>
+    </div>
+
+    <div class="sustain-grid">
+
+      <article class="sustain-card">
+        <div class="card-icon">🧹</div>
+        <h3>Limpeza comunitária recorrente</h3>
+        <p>
+          Condomínios, empresas, comércios e moradores podem apoiar
+          mensalmente ações programadas de limpeza, coleta de recicláveis
+          e cuidado do entorno.
+        </p>
+        <ul>
+          <li>Rotinas organizadas por região</li>
+          <li>Melhoria visual do entorno</li>
+          <li>Relato simples das ações realizadas</li>
+          <li>Participação de parceiros locais</li>
+        </ul>
+        <a class="btn btn-green" href="#cadastro-parceiro">
+          Solicitar avaliação de parceria
+        </a>
+      </article>
+
+      <article class="sustain-card">
+        <div class="card-icon">🛠️</div>
+        <h3>Prestação de serviços</h3>
+        <p>
+          O EcoVida também conecta oportunidades de trabalho em jardinagem,
+          limpeza, pequenos reparos, elétrica e serviços de apoio.
+        </p>
+        <p>
+          Para serviços profissionais de jardinagem, orçamento e manutenção,
+          acesse a página da JS Jardinagem.
+        </p>
+        <div class="buttons">
+          <a
+            class="btn btn-blue"
+            href="https://jardinagemudi.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Conhecer a JS Jardinagem
+          </a>
+
+          <a
+            class="btn btn-outline-green"
+            href="https://jardinagemudi.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solicitar serviços
+          </a>
+        </div>
+      </article>
+
+      <article class="sustain-card">
+        <div class="card-icon">🤝</div>
+        <h3>Empresa Amiga EcoVida</h3>
+        <p>
+          Empresas e condomínios podem contribuir de forma recorrente
+          e fortalecer ações ambientais, sociais e comunitárias.
+        </p>
+
+        <div class="plan-badges">
+          <span class="plan-badge">Bronze — R$ 150/mês</span>
+          <span class="plan-badge">Prata — R$ 300/mês</span>
+          <span class="plan-badge">Ouro — R$ 600/mês</span>
+        </div>
+
+        <ul style="margin-top:16px;">
+          <li>Selo de parceiro EcoVida</li>
+          <li>Divulgação no site e nas ações</li>
+          <li>Participação em campanhas comunitárias</li>
+          <li>Prioridade na organização de ações próximas</li>
+        </ul>
+
+        <a class="btn btn-green" href="#cadastro-parceiro">
+          Quero ser Empresa Amiga
+        </a>
+      </article>
+
+      <article class="sustain-card">
+        <div class="card-icon">🌳</div>
+        <h3>Adote uma praça ou espaço público</h3>
+        <p>
+          Empresas, grupos e moradores podem apoiar a manutenção programada
+          de uma praça, canteiro, rua ou outro espaço de interesse coletivo.
+        </p>
+        <ul>
+          <li>Limpeza e organização periódica</li>
+          <li>Educação ambiental no entorno</li>
+          <li>Identificação do parceiro apoiador</li>
+          <li>Prestação simples das ações realizadas</li>
+        </ul>
+        <a class="btn btn-blue" href="#cadastro-parceiro">
+          Apresentar um espaço
+        </a>
+      </article>
 
     </div>
 
@@ -1649,6 +1817,8 @@
     <a href="#acao">Primeira ação</a>
     <a href="#cadastros">Cadastros</a>
     <a href="#cadastro-parceiro">Parcerias</a>
+    <a href="#sustentacao">Sustentação do projeto</a>
+    <a href="https://jardinagemudi.com.br/" target="_blank" rel="noopener noreferrer">JS Jardinagem</a>
     <a href="doacao.html">Doações</a>
     <a href="ecovida-fem.html">EcoVida Feminino</a>
 
