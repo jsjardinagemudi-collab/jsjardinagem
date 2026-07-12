@@ -93,15 +93,15 @@
     .logo{
       display:flex;
       align-items:center;
-      gap:9px;
-      color:var(--green);
-      font-size:1.25rem;
-      font-weight:950;
-      white-space:nowrap;
+      flex:0 0 auto;
+      line-height:0;
     }
 
-    .logo span{
-      color:var(--blue);
+    .logo img{
+      width:230px;
+      height:66px;
+      object-fit:contain;
+      object-position:left center;
     }
 
     .menu{
@@ -927,6 +927,11 @@
         padding:13px 16px;
       }
 
+      .logo img{
+        width:190px;
+        height:55px;
+      }
+
       .menu{
         gap:8px 11px;
         font-size:.81rem;
@@ -986,8 +991,13 @@
 <header>
   <div class="nav">
 
-    <a class="logo" href="#inicio">
-      ♻️ Instituto <span>EcoVida</span>
+    <a class="logo" href="#inicio" aria-label="Instituto EcoVida — voltar ao início">
+      <img
+        src="imagens/logo-ecovida-horizontal.jpeg"
+        alt="Instituto EcoVida"
+        width="230"
+        height="66"
+      >
     </a>
 
     <nav class="menu" aria-label="Navegação principal">
