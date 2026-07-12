@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Plastico</title>
+  <g fill="none" stroke="#26A69A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#114084;}</style>
+    <path d="M25 10h14v8l5 6v31H20V24l5-6v-8Z"/>
+<path class="accent" d="M25 18h14M25 31h14M25 42h14"/>
+  </g>
+</svg>

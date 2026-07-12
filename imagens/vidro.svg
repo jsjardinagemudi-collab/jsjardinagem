@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Vidro</title>
+  <g fill="none" stroke="#26A69A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#114084;}</style>
+    <path d="M22 9h20l-4 17v29H26V26L22 9Z"/>
+<path class="accent" d="M24 18h16M26 34h12M26 44h12"/>
+  </g>
+</svg>

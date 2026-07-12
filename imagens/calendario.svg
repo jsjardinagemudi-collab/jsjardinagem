@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Calendario</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <rect x="11" y="15" width="42" height="38" rx="7"/>
+<path class="accent" d="M11 25h42M21 10v10M43 10v10"/>
+<path d="M21 34h6M36 34h7M21 43h6M36 43h7"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Aluminio</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="M22 9h20l3 8-3 38H22l-3-38 3-8Z"/>
+<path class="accent" d="M21 17h23"/>
+<path class="accent" d="M27 28h10l-5 8h8l-12 12 3-9h-8l4-11Z"/>
+  </g>
+</svg>

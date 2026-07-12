@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Educacao</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="m8 24 24-11 24 11-24 11L8 24Z"/>
+<path class="accent" d="M17 30v13c8 6 22 6 30 0V30"/>
+<path class="accent" d="M56 24v18"/>
+  </g>
+</svg>

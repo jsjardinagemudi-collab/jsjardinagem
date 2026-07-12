@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Vassoura</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="M40 8 26 42"/>
+<path class="accent" d="m20 39 14 6-5 11H10l10-17Z"/>
+<path d="M18 46h14M15 51h15"/>
+  </g>
+</svg>

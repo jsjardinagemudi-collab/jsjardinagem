@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Lixeira</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M19 19h26l-2 36H21l-2-36Z"/>
+<path class="accent" d="M15 19h34M25 19l2-7h10l2 7M27 28v18M37 28v18"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Limpeza</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="M39 9 25 43"/>
+<path class="accent" d="m20 41 14 6-5 9H11l9-15Z"/>
+<path d="M43 17h10M48 12v10M46 30h8M50 26v8"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Igreja</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M32 7v12M26 13h12"/>
+<path d="m14 30 18-13 18 13v26H14V30Z"/>
+<path class="accent" d="M28 56V42h8v14M22 34h6M36 34h6"/>
+  </g>
+</svg>

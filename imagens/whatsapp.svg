@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Whatsapp</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M51 30a19 19 0 0 1-28 17L12 51l4-11a19 19 0 1 1 35-10Z"/>
+<path class="accent" d="M24 22c2 9 8 15 17 18l4-5-6-4-3 3c-4-2-7-5-9-9l3-3-4-6-2 6Z"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Ponto Apoio</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="m10 29 22-17 22 17v27H10V29Z"/>
+<path class="accent" d="M24 56V42h16v14"/>
+<path d="M32 23c5-7 14-1 9 5l-9 9-9-9c-5-6 4-12 9-5Z"/>
+  </g>
+</svg>

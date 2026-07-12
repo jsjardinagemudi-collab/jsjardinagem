@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Inclusao</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <circle cx="32" cy="20" r="7"/>
+<path d="M18 52c1-13 6-21 14-21s13 8 14 21"/>
+<path class="accent" d="M8 32h12M44 32h12M12 26l-4 6 4 6M52 26l4 6-4 6"/>
+  </g>
+</svg>

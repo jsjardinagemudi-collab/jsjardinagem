@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Documento</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="M18 8h21l9 9v39H18V8Z"/>
+<path class="accent" d="M39 8v10h9M25 28h16M25 36h16M25 44h11"/>
+  </g>
+</svg>

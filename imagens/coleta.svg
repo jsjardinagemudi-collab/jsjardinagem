@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Coleta</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M32 56s16-13 16-29a16 16 0 1 0-32 0c0 16 16 29 16 29Z"/>
+<path class="accent" d="m24 29 5-8 5 8M29 21h8l4 7M41 28l-4 7h-9"/>
+  </g>
+</svg>

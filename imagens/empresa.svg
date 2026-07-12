@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Empresa</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <rect x="14" y="10" width="36" height="46" rx="4"/>
+<path class="accent" d="M22 20h6M36 20h6M22 29h6M36 29h6M22 38h6M36 38h6"/>
+<path d="M27 56V46h10v10"/>
+  </g>
+</svg>

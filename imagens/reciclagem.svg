@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Reciclagem</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="m28 9 7 11h-8l-4 7-8-5 7-13h6Z"/>
+<path d="m49 25-7 11-4-7h-8v-9h15l4 5Z"/>
+<path d="m17 43 13 1-4 7 4 7H20l-7-12 4-3Z"/>
+  </g>
+</svg>

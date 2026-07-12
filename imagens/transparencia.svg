@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Transparencia</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="M18 8h22l8 8v40H18V8Z"/>
+<path class="accent" d="M40 8v9h8M24 27h16M24 35h12"/>
+<circle class="accent" cx="39" cy="45" r="7"/>
+<path class="accent" d="m44 50 5 5"/>
+  </g>
+</svg>

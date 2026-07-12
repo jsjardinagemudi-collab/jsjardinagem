@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Familia</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <circle cx="22" cy="22" r="6"/>
+<circle cx="42" cy="22" r="6"/>
+<circle class="accent" cx="32" cy="31" r="5"/>
+<path d="M10 52c1-12 5-20 12-20 4 0 7 3 10 7 3-4 6-7 10-7 7 0 11 8 12 20"/>
+  </g>
+</svg>

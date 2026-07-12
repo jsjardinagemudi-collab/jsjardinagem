@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Seguranca Feminina</title>
+  <g fill="none" stroke="#D63384" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#114084;}</style>
+    <path d="M32 8 50 15v14c0 12-7 21-18 27-11-6-18-15-18-27V15l18-7Z"/>
+<circle class="accent" cx="32" cy="25" r="6"/>
+<path class="accent" d="M23 43c1-8 4-12 9-12s8 4 9 12"/>
+  </g>
+</svg>

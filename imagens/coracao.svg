@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Coracao</title>
+  <g fill="none" stroke="#D63384" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M32 53 13 35c-8-8-2-22 9-22 5 0 8 3 10 7 2-4 5-7 10-7 11 0 17 14 9 22L32 53Z"/>
+<path class="accent" d="M24 31h6l3-6 4 12 3-6h5"/>
+  </g>
+</svg>

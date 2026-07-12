@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Oleo</title>
+  <g fill="none" stroke="#26A69A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M32 8s13 15 13 27a13 13 0 0 1-26 0C19 23 32 8 32 8Z"/>
+<path class="accent" d="M25 39c3 4 7 5 11 3"/>
+<path class="accent" d="M46 15h7v11h-7"/>
+  </g>
+</svg>

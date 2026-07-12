@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Mapa</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#26A69A;}</style>
+    <path d="m10 15 14-6 16 6 14-6v40l-14 6-16-6-14 6V15Z"/>
+<path class="accent" d="M24 9v40M40 15v40"/>
+<circle class="accent" cx="32" cy="30" r="5"/>
+  </g>
+</svg>

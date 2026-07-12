@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Localizacao</title>
+  <g fill="none" stroke="#114084" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M32 56s17-14 17-31a17 17 0 1 0-34 0c0 17 17 31 17 31Z"/>
+<circle class="accent" cx="32" cy="25" r="6"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Folha</title>
+  <g fill="none" stroke="#167A3A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <style>.accent{stroke:#66BB6A;}</style>
+    <path d="M12 44C14 21 29 10 53 11c1 23-10 38-33 40"/>
+<path class="accent" d="M18 50c8-11 17-19 29-26"/>
+  </g>
+</svg>
