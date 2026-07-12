@@ -262,7 +262,7 @@
 
     .photo{
       height:auto;
-      aspect-ratio:4/5;
+      aspect-ratio:3/2;
       background:
         radial-gradient(circle at center,rgba(0,87,255,.28),transparent 45%),
         #080808;
@@ -679,6 +679,7 @@
       <option value="">Todas cilindradas</option>
       <option value="85cc">85cc</option>
       <option value="125cc">125cc</option>
+      <option value="230cc">230cc</option>
       <option value="250cc">250cc</option>
       <option value="450cc">450cc</option>
     </select>
@@ -770,116 +771,77 @@
       <div class="bike-content">
         <div class="brand-name">Honda • Contato: Flavim</div>
         <h2>Honda CRF 250</h2>
-        <p class="info-text">CRF 250 2021 nacional, com revisão em dia, 2 pneus novos e 2 jogos de plásticos. Uma moto forte para quem busca desempenho e confiança na pista.</p>
-        <div class="price">Consultar valor</div>
-
+        <p class="info-text">CRF 250 nacional, ano 2021, com revisão em dia, dois pneus novos e dois jogos de plásticos.</p>
+        <div class="price">R$ 21.500</div>
         <div class="details">
-          <span>Item: 003</span>
-          <span>Ano: 2021</span>
-          <span>Motor: 250cc</span>
-          <span>Origem: Nacional</span>
-          <span>Pneus: 2 novos</span>
-          <span>Revisão: Em dia</span>
-          <span>Plásticos: 2 jogos</span>
-          <span>Status: Disponível</span>
+          <span>Item: 003</span><span>Ano: 2021</span><span>Motor: 250cc</span><span>Origem: Nacional</span>
+          <span>Pneus: 2 novos</span><span>Revisão: Em dia</span><span>Plásticos: 2 jogos</span><span>Status: Disponível</span>
         </div>
-
-        <div class="social">
-          <button onclick="curtir(this)">👍 Curtir <span>0</span></button>
-          <button onclick="comentar(this)">💬 Comentários</button>
-        </div>
-
-        <div class="comment">Informações, fotos extras, localização, documento e negociação devem ser confirmadas diretamente com o Flavim.</div>
-
-        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 003 - Honda CRF 250 2021 Nacional - R$ 21.500 - 2 pneus novos - Revisão em dia - 2 jogos de plásticos')">Tenho interesse</a>
+        <div class="social"><button onclick="curtir(this)">👍 Curtir <span>0</span></button><button onclick="comentar(this)">💬 Detalhes</button></div>
+        <div class="comment">Informações, fotos extras, localização, documentos e negociação devem ser confirmados diretamente com o Flavim.</div>
+        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 003 - Honda CRF 250 2021 Nacional - R$ 21.500 - 2 pneus novos - Revisão em dia - 2 jogos de plásticos'); return false;">Tenho interesse</a>
       </div>
     </div>
 
     <div class="bike-card" data-item="004" data-brand="Yamaha" data-cc="450cc" data-region="Sudeste">
       <div class="photo">
         <span class="item-number">ITEM 004</span>
-        <img src="imagens/moto-4.jpeg" alt="Yamaha YZF 450 2023 item 004">
+        <img src="imagens/moto-04.jpeg" alt="Yamaha YZF 450 2023 item 004">
       </div>
       <div class="bike-content">
         <div class="brand-name">Yamaha • Contato: Flavim</div>
         <h2>Yamaha YZF 450</h2>
-        <p class="info-text">Moto de único dono, muito bem conservada, com apenas 3 corridas. Usada somente para treinos aos domingos, totalmente revisada, com 51 horas de uso e totalmente original.</p>
+        <p class="info-text">Moto de único dono, muito bem conservada, com apenas três corridas. Utilizada somente para treinos aos domingos, totalmente revisada, com 51 horas de uso e original.</p>
         <div class="price">R$ 65.000</div>
-
         <div class="details">
-          <span>Item: 004</span>
-          <span>Ano: 2023</span>
-          <span>Motor: 450cc</span>
-          <span>Uso: 51 horas</span>
-          <span>Condição: Único dono</span>
-          <span>Revisão: Completa</span>
-          <span>Uso: Apenas treinos</span>
-          <span>Status: Disponível</span>
+          <span>Item: 004</span><span>Ano: 2023</span><span>Motor: 450cc</span><span>Uso: 51 horas</span>
+          <span>Condição: Único dono</span><span>Revisão: Completa</span><span>Uso: Apenas treinos</span><span>Status: Disponível</span>
         </div>
-
-        <div class="social">
-          <button onclick="curtir(this)">👍 Curtir <span>0</span></button>
-          <button onclick="comentar(this)">💬 Detalhes</button>
-        </div>
-
-        <div class="comment">Acessórios: protetor de radiador Works Connection, controle de largada Zeta, coroa trimetal Super Sprox e capa de banco Cinco. Informações e negociação devem ser confirmadas diretamente com o Flavim.</div>
-
-        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 004 - Yamaha YZF 450 - Ano 2023 - 51 horas - Único dono - R$ 65.000')">Tenho interesse</a>
+        <div class="social"><button onclick="curtir(this)">👍 Curtir <span>0</span></button><button onclick="comentar(this)">💬 Detalhes</button></div>
+        <div class="comment">Acessórios: protetor de radiador Works Connection, controle de largada Zeta, coroa trimetal Super Sprox e capa de banco Cinco.</div>
+        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 004 - Yamaha YZF 450 - Ano 2023 - 51 horas - Único dono - R$ 65.000'); return false;">Tenho interesse</a>
       </div>
     </div>
 
-    <div class="bike-card" data-item="005" data-brand="Kawasaki" data-cc="450cc" data-region="Centro-Oeste">
-      <div class="photo"><span class="item-number">ITEM 005</span>Foto da moto</div>
+    <div class="bike-card" data-item="005" data-brand="Suzuki" data-cc="85cc" data-region="Sudeste">
+      <div class="photo">
+        <span class="item-number">ITEM 005</span>
+        <img src="imagens/moto-05.jpeg" alt="Suzuki RM 85cc Extra 2008 item 005">
+      </div>
       <div class="bike-content">
-        <div class="brand-name">Kawasaki • Goiânia-GO</div>
-        <h2>KX 450</h2>
-        <p class="info-text">Moto de alta performance para pilotos experientes.</p>
-        <div class="price">R$ 00.000</div>
-
+        <div class="brand-name">Suzuki • Contato: Flavim</div>
+        <h2>Suzuki RM 85cc Extra</h2>
+        <p class="info-text">Suzuki RM 85cc Extra, ano 2008, equipada com cano e ponteira Pro Circuit. Moto bem cuidada, pronta para treinos e provas.</p>
+        <div class="price">R$ 19.000</div>
         <div class="details">
-          <span>Ano: 2020</span>
-          <span>Motor: 450cc</span>
-          <span>Categoria: MX</span>
-          <span>Status: Disponível</span>
+          <span>Item: 005</span><span>Ano: 2008</span><span>Motor: 85cc</span><span>Motor: 2 tempos</span>
+          <span>Partida: Pedal</span><span>Escape: Pro Circuit</span><span>Condição: Bem cuidada</span><span>Status: Disponível</span>
         </div>
-
-        <div class="social">
-          <button onclick="curtir(this)">👍 Curtir <span>15</span></button>
-          <button onclick="comentar(this)">💬 Comentários</button>
-        </div>
-
-        <div class="comment">Comentário exemplo: 450cc exige experiência e bom preparo físico.</div>
-
-        <a class="btn btn-primary" href="#" onclick="interesseMoto('Kawasaki KX 450 - Goiânia-GO')">Tenho interesse</a>
+        <div class="social"><button onclick="curtir(this)">👍 Curtir <span>0</span></button><button onclick="comentar(this)">💬 Detalhes</button></div>
+        <div class="comment">Excelente opção para a categoria 85cc. Informações e negociação devem ser confirmadas diretamente com o Flavim.</div>
+        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 005 - Suzuki RM 85cc Extra - Ano 2008 - Cano e ponteira Pro Circuit - R$ 19.000'); return false;">Tenho interesse</a>
       </div>
     </div>
 
-    <div class="bike-card" data-item="006" data-brand="KTM" data-cc="125cc" data-region="Sul">
-      <div class="photo"><span class="item-number">ITEM 006</span>Foto da moto</div>
+    <div class="bike-card" data-item="006" data-brand="Honda" data-cc="230cc" data-region="Sudeste">
+      <div class="photo">
+        <span class="item-number">ITEM 006</span>
+        <img src="imagens/moto-06.jpeg" alt="Honda CRF 230 2007 item 006">
+      </div>
       <div class="bike-content">
-        <div class="brand-name">KTM • Curitiba-PR</div>
-        <h2>SX 125</h2>
-        <p class="info-text">Excelente opção para quem busca leveza e resposta rápida.</p>
-        <div class="price">R$ 00.000</div>
-
+        <div class="brand-name">Honda • Monte Alegre de Minas-MG</div>
+        <h2>Honda CRF 230</h2>
+        <p class="info-text">CRF nacional ano 2007, com motor de Tornado 300, pneus bons, roupa original e nota.</p>
+        <div class="price">R$ 10.000</div>
         <div class="details">
-          <span>Ano: 2019</span>
-          <span>Motor: 125cc</span>
-          <span>Motor: 2 tempos</span>
-          <span>Status: Disponível</span>
+          <span>Item: 006</span><span>Ano: 2007</span><span>Cilindrada: 230cc</span><span>Motor: Tornado 300</span>
+          <span>Partida: Pedal</span><span>Pneus: Bons</span><span>Documento: Tem nota</span><span>Status: Disponível</span>
         </div>
-
-        <div class="social">
-          <button onclick="curtir(this)">👍 Curtir <span>7</span></button>
-          <button onclick="comentar(this)">💬 Comentários</button>
-        </div>
-
-        <div class="comment">Comentário exemplo: ótima escola para técnica de pilotagem.</div>
-
-        <a class="btn btn-primary" href="#" onclick="interesseMoto('KTM SX 125 - Curitiba-PR')">Tenho interesse</a>
+        <div class="social"><button onclick="curtir(this)">👍 Curtir <span>0</span></button><button onclick="comentar(this)">💬 Detalhes</button></div>
+        <div class="comment">Vendedor informado no anúncio: Adriano Alves. Informações finais e negociação devem ser confirmadas pelo contato da equipe.</div>
+        <a class="btn btn-primary" href="#" onclick="interesseMoto('ITEM 006 - Honda CRF 230 - Ano 2007 - Motor Tornado 300 - Monte Alegre de Minas-MG - R$ 10.000'); return false;">Tenho interesse</a>
       </div>
     </div>
-
   </div>
 
   <div class="notice">
