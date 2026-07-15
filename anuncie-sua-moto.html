@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Planos para anunciar motos de motocross na vitrine Flavim MX.">
+  <meta name="theme-color" content="#050505">
+  <title>Anuncie sua Moto | Flavim MX</title>
+  <style>
+    :root{
+      --dark:#050505;--dark-2:#0b0b0d;--blue:#0057ff;--cyan:#38bdf8;
+      --white:#fff;--gray:#bfc3cc;--card:rgba(255,255,255,.075);
+      --border:rgba(255,255,255,.14);--green:#25d366;--yellow:#f4c430;
+      --shadow:0 22px 60px rgba(0,0,0,.34)
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .topbar{position:fixed;inset:0 0 auto;z-index:100;min-height:66px;padding:11px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(0,0,0,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .brand{font-size:15px;font-weight:950;text-transform:uppercase;letter-spacing:.3px}.brand span{color:var(--blue)}
+    .top-actions{display:flex;gap:8px}.top-btn{padding:10px 13px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.08);font-size:12px;font-weight:900}.top-btn.primary{background:var(--blue);border-color:var(--blue)}
+    .hero{min-height:88vh;padding:125px 6% 70px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 83% 35%,rgba(0,87,255,.38),transparent 28%),linear-gradient(135deg,#101014,#020202 62%)}
+    .hero:before{content:"ANUNCIE";position:absolute;right:-18px;bottom:-30px;font-size:clamp(100px,20vw,260px);font-weight:950;color:rgba(255,255,255,.035);line-height:1;pointer-events:none}
+    .hero-content{max-width:880px;position:relative;z-index:2}.eyebrow{display:inline-flex;padding:9px 14px;border:1px solid rgba(56,189,248,.35);border-radius:999px;background:rgba(0,87,255,.18);color:#dcecff;font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:17px}
+    h1{font-size:clamp(44px,10vw,94px);line-height:.92;text-transform:uppercase;font-weight:950;letter-spacing:-2px;margin-bottom:20px}h1 span,.section-title span{color:var(--blue)}
+    .lead{max-width:760px;font-size:clamp(18px,3vw,23px);line-height:1.55;color:#ececec}.hero-note{margin-top:15px;color:var(--gray);line-height:1.55}
+    .actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}.btn{min-height:52px;padding:15px 19px;border-radius:14px;border:1px solid var(--border);display:inline-flex;justify-content:center;align-items:center;text-align:center;font-weight:900;cursor:pointer;transition:.22s;color:#fff}.btn:hover{transform:translateY(-3px);filter:brightness(1.07)}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));border-color:transparent}.btn-secondary{background:rgba(255,255,255,.09)}.btn-whats{background:var(--green);border-color:var(--green)}
+    section{padding:72px 6%}.light-section{background:linear-gradient(180deg,#0a0a0d,#050505)}.section-title{font-size:clamp(32px,7vw,58px);text-transform:uppercase;line-height:1;font-weight:950;margin-bottom:15px}.section-text{max-width:850px;color:var(--gray);font-size:17px;line-height:1.7;margin-bottom:30px}
+    .steps,.plans,.extras,.trust-grid{display:grid;grid-template-columns:1fr;gap:17px}.step,.plan,.extra,.trust-card,.form-box,.faq details{background:var(--card);border:1px solid var(--border);border-radius:23px;box-shadow:var(--shadow)}
+    .step,.extra,.trust-card{padding:24px}.step strong{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--blue);font-size:20px;margin-bottom:17px}.step h3,.extra h3,.trust-card h3{font-size:20px;text-transform:uppercase;margin-bottom:9px}.step p,.extra p,.trust-card p{color:var(--gray);line-height:1.65}
+    .plan{padding:28px;position:relative;display:flex;flex-direction:column}.plan.featured{border-color:var(--blue);background:linear-gradient(160deg,rgba(0,87,255,.22),rgba(255,255,255,.075))}.tag{position:absolute;right:18px;top:18px;padding:7px 10px;border-radius:999px;background:var(--blue);font-size:11px;font-weight:950;text-transform:uppercase}.plan-name{font-size:14px;color:#a9c8ff;font-weight:900;text-transform:uppercase;letter-spacing:.8px}.price{font-size:43px;font-weight:950;margin:13px 0 5px}.price small{font-size:14px;color:var(--gray)}.plan-desc{color:var(--gray);line-height:1.55;min-height:50px}.features{list-style:none;margin:22px 0;display:grid;gap:12px;flex:1}.features li{color:#e9e9ec;line-height:1.45;padding-left:26px;position:relative}.features li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:950}.plan .btn{width:100%}
+    .commission{margin-top:18px;padding:26px;border-radius:23px;border:1px solid rgba(244,196,48,.35);background:linear-gradient(135deg,rgba(244,196,48,.12),rgba(255,255,255,.055));display:grid;gap:18px}.commission h3{font-size:clamp(25px,5vw,38px);text-transform:uppercase}.commission p{color:#ddd;line-height:1.65}.commission strong{color:var(--yellow)}
+    .extra-price{display:inline-block;margin-top:16px;font-size:23px;font-weight:950;color:#a9c8ff}
+    .notice{margin-top:24px;padding:19px 21px;border-left:4px solid var(--blue);background:rgba(0,87,255,.1);border-radius:0 15px 15px 0;color:#d9e7ff;line-height:1.65}
+    .form-box{padding:27px}.form-grid{display:grid;grid-template-columns:1fr;gap:15px}.field label{display:block;font-weight:900;font-size:13px;margin-bottom:8px;color:#e8e8e8}.field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid var(--border);border-radius:13px;background:#111216;color:#fff;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.15)}.field textarea{min-height:105px;resize:vertical}.form-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.form-message{display:none;margin-top:14px;color:#adf3c6;font-weight:800}
+    .faq{display:grid;gap:12px}.faq details{padding:19px 21px}.faq summary{font-weight:900;cursor:pointer;list-style:none}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";float:right;color:var(--blue);font-size:23px}.faq details[open] summary:after{content:"−"}.faq p{padding-top:13px;color:var(--gray);line-height:1.65}
+    .cta{text-align:center;background:radial-gradient(circle at center,rgba(0,87,255,.3),transparent 56%),#08080a}.cta .section-text{margin-left:auto;margin-right:auto}.cta .actions{justify-content:center}
+    footer{padding:35px 6%;text-align:center;color:#9699a2;border-top:1px solid rgba(255,255,255,.08);font-size:14px;line-height:1.7}
+    .whats-float{position:fixed;right:17px;bottom:17px;z-index:90;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--green);box-shadow:0 12px 35px rgba(37,211,102,.35);font-size:25px;font-weight:950}
+    @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}.plans{grid-template-columns:repeat(3,1fr)}.extras,.trust-grid{grid-template-columns:repeat(3,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}.field.full{grid-column:1/-1}.commission{grid-template-columns:1.4fr .8fr;align-items:center}.top-btn{font-size:13px}.hero{padding-left:8%}section{padding-left:8%;padding-right:8%}}
+    @media(max-width:600px){.topbar{padding:10px 4%}.top-actions .top-btn:first-child{display:none}.hero{min-height:82vh;padding:110px 6% 55px}h1{letter-spacing:-1px}.actions,.actions .btn,.form-actions .btn{width:100%}.tag{position:static;align-self:flex-start;margin-bottom:13px}.price{font-size:38px}}
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Navegação principal">
+    <a class="brand" href="flavinhomx.html">Flavim Junior <span>100</span></a>
+    <div class="top-actions">
+      <a class="top-btn" href="motosmx.html#motos">Ver motos</a>
+      <a class="top-btn primary" href="#planos">Planos de anúncio</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Vitrine especializada em motocross</span>
+      <h1>Anuncie sua <span>moto</span></h1>
+      <p class="lead">Apresente sua moto com visual profissional e alcance pessoas que realmente acompanham o motocross.</p>
+      <p class="hero-note">Escolha o formato de divulgação, envie os dados e nossa equipe organiza o anúncio antes da publicação.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#planos">Conhecer os planos</a>
+        <a class="btn btn-secondary" href="#cadastro">Enviar minha moto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Como <span>funciona</span></h2>
+      <p class="section-text">Um processo simples para transformar as informações da sua moto em um anúncio claro e atrativo.</p>
+      <div class="steps">
+        <article class="step"><strong>1</strong><h3>Envie os dados</h3><p>Informe modelo, ano, valor, localização, condições e envie fotos reais da moto.</p></article>
+        <article class="step"><strong>2</strong><h3>Escolha o plano</h3><p>Selecione publicação básica, apresentação profissional ou venda assistida.</p></article>
+        <article class="step"><strong>3</strong><h3>Receba contatos</h3><p>O anúncio entra na vitrine e os interessados são direcionados para a negociação.</p></article>
+      </div>
+    </section>
+
+    <section class="light-section" id="planos">
+      <h2 class="section-title">Planos para <span>anunciar</span></h2>
+      <p class="section-text">Valores transparentes. Escolha o nível de apresentação e divulgação ideal para sua moto.</p>
+      <div class="plans">
+        <article class="plan">
+          <div class="plan-name">Anúncio básico</div>
+          <div class="price">R$ 49 <small>/ 30 dias</small></div>
+          <p class="plan-desc">Para quem já possui boas fotos e quer entrar na vitrine.</p>
+          <ul class="features"><li>Card da moto no site</li><li>Descrição com informações principais</li><li>Filtros por marca, cilindrada e região</li><li>Botão de interesse pelo WhatsApp</li><li>Publicação por 30 dias</li></ul>
+          <button class="btn btn-secondary" type="button" onclick="selecionarPlano('Anúncio básico — R$ 49')">Escolher básico</button>
+        </article>
+
+        <article class="plan featured">
+          <span class="tag">Mais escolhido</span>
+          <div class="plan-name">Anúncio profissional</div>
+          <div class="price">R$ 99 <small>/ 60 dias</small></div>
+          <p class="plan-desc">Uma apresentação completa para valorizar a moto e gerar mais interesse.</p>
+          <ul class="features"><li>Tudo do plano básico</li><li>Tratamento e padronização das fotos</li><li>Card profissional personalizado</li><li>Texto comercial organizado</li><li>Divulgação inicial nos Stories</li><li>Publicação por 60 dias</li></ul>
+          <button class="btn btn-primary" type="button" onclick="selecionarPlano('Anúncio profissional — R$ 99')">Escolher profissional</button>
+        </article>
+
+        <article class="plan">
+          <div class="plan-name">Venda assistida</div>
+          <div class="price">3% <small>sobre a venda</small></div>
+          <p class="plan-desc">Para quem deseja apoio da equipe durante o processo comercial.</p>
+          <ul class="features"><li>Anúncio profissional incluído</li><li>Atendimento inicial aos interessados</li><li>Organização de propostas</li><li>Apoio na comunicação e negociação</li><li>Comissão somente após a venda</li><li>Comissão mínima de R$ 500</li></ul>
+          <button class="btn btn-secondary" type="button" onclick="selecionarPlano('Venda assistida — 3% após a venda')">Solicitar atendimento</button>
+        </article>
+      </div>
+
+      <div class="commission">
+        <div><h3>Venda assistida</h3><p>A comissão de <strong>3%</strong> é aplicada quando a equipe participa do atendimento e do fechamento. Exemplo: em uma venda de R$ 24.000, a comissão é de R$ 720.</p></div>
+        <a class="btn btn-whats" href="#cadastro" onclick="definirPlano('Venda assistida — 3% após a venda')">Quero apoio na venda</a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Mais <span>visibilidade</span></h2>
+      <p class="section-text">Serviços opcionais para reforçar a divulgação do anúncio.</p>
+      <div class="extras">
+        <article class="extra"><h3>Destaque no site</h3><p>A moto aparece em posição privilegiada na vitrine durante sete dias.</p><span class="extra-price">+ R$ 30</span></article>
+        <article class="extra"><h3>Site + Stories</h3><p>Destaque no site acompanhado de divulgação adicional nos Stories.</p><span class="extra-price">+ R$ 60</span></article>
+        <article class="extra"><h3>Reels personalizado</h3><p>Vídeo curto preparado para apresentar a moto nas redes sociais.</p><span class="extra-price">A partir de R$ 150</span></article>
+      </div>
+      <div class="notice"><strong>Importante:</strong> a publicação está sujeita à análise. Fotos, preço, condições, propriedade, documentos e demais informações são de responsabilidade do anunciante.</div>
+    </section>
+
+    <section class="light-section">
+      <h2 class="section-title">Confiança em <span>primeiro lugar</span></h2>
+      <div class="trust-grid">
+        <article class="trust-card"><h3>Informação clara</h3><p>Os dados são organizados no mesmo padrão para facilitar a comparação entre anúncios.</p></article>
+        <article class="trust-card"><h3>Contato responsável</h3><p>A equipe pode confirmar a identidade do anunciante antes de liberar selos de verificação.</p></article>
+        <article class="trust-card"><h3>Negociação segura</h3><p>Comprador e vendedor devem conferir presencialmente a moto, os documentos e a confirmação do pagamento.</p></article>
+      </div>
+    </section>
+
+    <section id="cadastro">
+      <h2 class="section-title">Enviar minha <span>moto</span></h2>
+      <p class="section-text">Preencha as informações principais. Ao continuar, uma mensagem organizada será aberta no WhatsApp da equipe.</p>
+      <form class="form-box" id="adForm" onsubmit="enviarAnuncio(event)">
+        <div class="form-grid">
+          <div class="field"><label for="nome">Nome do anunciante *</label><input id="nome" required autocomplete="name" placeholder="Seu nome"></div>
+          <div class="field"><label for="telefone">Telefone *</label><input id="telefone" required inputmode="tel" autocomplete="tel" placeholder="(34) 99999-9999"></div>
+          <div class="field"><label for="cidade">Cidade e estado *</label><input id="cidade" required placeholder="Ex.: Uberlândia-MG"></div>
+          <div class="field"><label for="plano">Plano desejado *</label><select id="plano" required><option value="">Selecione</option><option>Anúncio básico — R$ 49</option><option>Anúncio profissional — R$ 99</option><option>Venda assistida — 3% após a venda</option><option>Quero orientação da equipe</option></select></div>
+          <div class="field"><label for="marca">Marca *</label><input id="marca" required placeholder="Ex.: Honda, Yamaha, Kawasaki"></div>
+          <div class="field"><label for="modelo">Modelo *</label><input id="modelo" required placeholder="Ex.: KX 250"></div>
+          <div class="field"><label for="ano">Ano *</label><input id="ano" required inputmode="numeric" maxlength="4" placeholder="Ex.: 2017"></div>
+          <div class="field"><label for="valor">Valor pedido *</label><input id="valor" required placeholder="Ex.: R$ 24.000"></div>
+          <div class="field"><label for="proposta">Negociação</label><select id="proposta"><option>Preço anunciado</option><option>Aceita proposta</option><option>Aceita troca</option><option>Aceita proposta ou troca</option></select></div>
+          <div class="field"><label for="destaque">Divulgação adicional</label><select id="destaque"><option>Nenhuma</option><option>Destaque no site — R$ 30</option><option>Site + Stories — R$ 60</option><option>Reels personalizado — consultar</option></select></div>
+          <div class="field full"><label for="descricao">Informações da moto</label><textarea id="descricao" placeholder="Horas de uso, manutenção, pneus, acessórios, documentação e outros detalhes."></textarea></div>
+        </div>
+        <div class="form-actions"><button class="btn btn-whats" type="submit">Continuar pelo WhatsApp</button><a class="btn btn-secondary" href="motosmx.html#motos">Ver motos anunciadas</a></div>
+        <p class="form-message" id="formMessage" role="status">Mensagem preparada. Abrindo o WhatsApp…</p>
+      </form>
+    </section>
+
+    <section class="light-section">
+      <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+      <div class="faq">
+        <details><summary>O anúncio entra no site imediatamente?</summary><p>Não. A equipe confere as informações e pode solicitar fotos ou dados adicionais antes da publicação.</p></details>
+        <details><summary>O pagamento do anúncio garante a venda?</summary><p>Não. O serviço aumenta a apresentação e a exposição da moto, mas não existe garantia de prazo ou conclusão da venda.</p></details>
+        <details><summary>Quem define o preço da moto?</summary><p>O proprietário define o valor. A equipe pode sugerir ajustes de apresentação ou posicionamento, mas a decisão final permanece com o anunciante.</p></details>
+        <details><summary>Quando é cobrada a comissão da venda assistida?</summary><p>Somente quando a venda for concluída com participação da equipe. A comissão é de 3%, respeitando o mínimo de R$ 500.</p></details>
+        <details><summary>Posso alterar ou retirar o anúncio?</summary><p>Sim. O anunciante pode solicitar correções ou retirada. O período já utilizado e os serviços de produção executados não são reembolsáveis.</p></details>
+        <details><summary>A Flavim MX recebe o pagamento da moto?</summary><p>Não neste formato. O pagamento e a transferência são realizados diretamente entre comprador e vendedor, após todas as conferências necessárias.</p></details>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2 class="section-title">Sua moto merece um anúncio <span>profissional</span></h2>
+      <p class="section-text">Envie os dados e descubra a melhor forma de colocar sua moto diante do público certo.</p>
+      <div class="actions"><a class="btn btn-primary" href="#cadastro">Começar meu anúncio</a><a class="btn btn-secondary" href="motosmx.html#motos">Voltar para as motos</a></div>
+    </section>
+  </main>
+
+  <footer>Flavim MX • Flavim Junior 100<br>Instagram: @eaiflavim • Valores e condições sujeitos à confirmação antes da contratação.</footer>
+  <a class="whats-float" href="#cadastro" aria-label="Anunciar moto pelo WhatsApp">✆</a>
+
+  <script>
+    const numeroEquipe = '553492430960';
+    function definirPlano(plano){document.getElementById('plano').value=plano;}
+    function selecionarPlano(plano){definirPlano(plano);document.getElementById('cadastro').scrollIntoView({behavior:'smooth'});}
+    function valor(id){return document.getElementById(id).value.trim()||'Não informado';}
+    function enviarAnuncio(event){
+      event.preventDefault();
+      const mensagem=`Olá! Quero anunciar uma moto na Flavim MX.\n\nPLANO\n${valor('plano')}\n\nANUNCIANTE\nNome: ${valor('nome')}\nTelefone: ${valor('telefone')}\nCidade/Estado: ${valor('cidade')}\n\nMOTO\nMarca: ${valor('marca')}\nModelo: ${valor('modelo')}\nAno: ${valor('ano')}\nValor pedido: ${valor('valor')}\nNegociação: ${valor('proposta')}\n\nDIVULGAÇÃO ADICIONAL\n${valor('destaque')}\n\nINFORMAÇÕES\n${valor('descricao')}\n\nQuero receber as orientações para enviar as fotos e concluir o anúncio.`;
+      document.getElementById('formMessage').style.display='block';
+      window.open(`https://wa.me/${numeroEquipe}?text=${encodeURIComponent(mensagem)}`,'_blank');
+    }
+  </script>
+</body>
+</html>
