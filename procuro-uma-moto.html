@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cadastre a moto de motocross que você procura e envie suas preferências para a equipe Flavim MX.">
+  <meta name="theme-color" content="#050505">
+  <title>Procuro uma Moto | Flavim MX</title>
+  <style>
+    :root{
+      --dark:#050505;--dark2:#0b0b0e;--blue:#0057ff;--cyan:#38bdf8;
+      --white:#fff;--gray:#c4c7cf;--card:rgba(255,255,255,.075);
+      --border:rgba(255,255,255,.15);--whats:#25d366;--danger:#ffca58;
+      --shadow:0 22px 60px rgba(0,0,0,.35)
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .topbar{position:fixed;inset:0 0 auto;z-index:100;min-height:66px;padding:11px 5%;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(0,0,0,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .brand{font-size:15px;font-weight:950;text-transform:uppercase}.brand span{color:var(--blue)}
+    .top-actions{display:flex;align-items:center;gap:8px}.top-btn{padding:10px 13px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,.08);font-size:12px;font-weight:900}.top-btn.primary{background:var(--blue);border-color:var(--blue)}
+    .hero{min-height:85vh;padding:120px 6% 62px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 32%,rgba(0,87,255,.38),transparent 30%),linear-gradient(135deg,#111116,#020202 64%)}
+    .hero:after{content:"PROCURA";position:absolute;right:-25px;bottom:-22px;font-size:clamp(100px,20vw,250px);font-weight:950;line-height:1;color:rgba(255,255,255,.035);pointer-events:none}
+    .hero-content{max-width:900px;position:relative;z-index:2}.badge{display:inline-flex;padding:9px 14px;border-radius:999px;border:1px solid rgba(56,189,248,.35);background:rgba(0,87,255,.18);color:#dcecff;font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:17px}
+    h1{font-size:clamp(43px,10vw,90px);line-height:.93;text-transform:uppercase;font-weight:950;letter-spacing:-2px;margin-bottom:20px}h1 span,.section-title span{color:var(--blue)}
+    .lead{max-width:780px;color:#ededed;font-size:clamp(18px,3vw,23px);line-height:1.55}.hero-note{max-width:760px;margin-top:13px;color:var(--gray);line-height:1.6}
+    .actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:25px}.btn{min-height:52px;padding:15px 19px;border-radius:14px;border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-weight:900;cursor:pointer;transition:.22s}.btn:hover{transform:translateY(-3px);filter:brightness(1.06)}.btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));border-color:transparent}.btn-secondary{background:rgba(255,255,255,.09)}.btn-whats{background:var(--whats);border-color:var(--whats)}
+    section{padding:70px 6%}.section-alt{background:linear-gradient(180deg,#0b0b0e,#050505)}.section-title{font-size:clamp(31px,7vw,56px);line-height:1;text-transform:uppercase;font-weight:950;margin-bottom:15px}.section-text{max-width:870px;color:var(--gray);font-size:17px;line-height:1.7;margin-bottom:28px}
+    .steps,.benefits{display:grid;grid-template-columns:1fr;gap:16px}.step,.benefit,.form-box,.notice,.faq details{background:var(--card);border:1px solid var(--border);border-radius:23px;box-shadow:var(--shadow)}.step,.benefit{padding:23px}.step strong{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--blue);font-size:20px;margin-bottom:15px}.step h3,.benefit h3{font-size:19px;text-transform:uppercase;margin-bottom:9px}.step p,.benefit p{color:var(--gray);line-height:1.65}
+    .form-box{padding:clamp(20px,4vw,34px)}.form-intro{display:flex;align-items:flex-start;gap:13px;padding:16px;border-radius:15px;background:rgba(0,87,255,.11);border:1px solid rgba(0,87,255,.25);margin-bottom:23px;color:#dbe8ff;line-height:1.55}.form-intro strong{font-size:21px;color:var(--cyan)}
+    .form-grid{display:grid;grid-template-columns:1fr;gap:15px}.field label{display:block;margin-bottom:7px;color:#e8eeff;font-size:13px;font-weight:900;text-transform:uppercase}.required{color:var(--cyan)}
+    .field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid var(--border);border-radius:13px;background:#101116;color:#fff;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,.16)}.field textarea{min-height:105px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#82858d}.field select option{color:#111}
+    .check-row{display:flex;align-items:flex-start;gap:10px;margin-top:18px;color:#c9cbd2;line-height:1.5;font-size:14px}.check-row input{width:18px;height:18px;flex:0 0 auto;margin-top:2px;accent-color:var(--blue)}.form-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:21px}.message-status{display:none;margin-top:15px;color:#a9f2c1;font-weight:900}.error-status{display:none;margin-top:15px;color:#ffd58a;font-weight:900}
+    .notice{padding:22px;border-color:rgba(255,202,88,.28);background:rgba(255,202,88,.07)}.notice h3{color:var(--danger);margin-bottom:9px;text-transform:uppercase}.notice p{color:#ddd;line-height:1.65}.notice ul{margin:13px 0 0 19px;color:#ccc;line-height:1.7}
+    .faq{display:grid;gap:12px}.faq details{padding:19px 21px}.faq summary{cursor:pointer;font-weight:900;list-style:none}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";float:right;color:var(--blue);font-size:22px}.faq details[open] summary:after{content:"−"}.faq p{padding-top:13px;color:var(--gray);line-height:1.65}
+    .cta{text-align:center;background:radial-gradient(circle at center,rgba(0,87,255,.3),transparent 58%),#08080a}.cta .section-text{margin-left:auto;margin-right:auto}.cta .actions{justify-content:center}
+    footer{padding:34px 6% 90px;text-align:center;color:#9699a2;border-top:1px solid rgba(255,255,255,.08);font-size:14px;line-height:1.7}.floating{position:fixed;left:16px;right:16px;bottom:15px;z-index:90;padding:15px 18px;border-radius:999px;background:var(--whats);text-align:center;font-weight:950;box-shadow:0 12px 34px rgba(0,0,0,.5)}
+    @media(min-width:780px){.topbar{padding:14px 7%}.brand{font-size:18px}.hero{padding-left:8%}section{padding:82px 8%}.steps{grid-template-columns:repeat(3,1fr)}.benefits{grid-template-columns:repeat(3,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}.field.full{grid-column:1/-1}.floating{left:auto;right:22px;bottom:22px;width:auto;padding:16px 22px}footer{padding-bottom:34px}}
+    @media(max-width:560px){.top-actions .hide-mobile{display:none}.hero{min-height:81vh;padding:108px 6% 52px}h1{letter-spacing:-1px}.actions,.actions .btn,.form-actions .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Navegação principal">
+    <a class="brand" href="flavinhomx.html">Flavim <span>Motos MX</span></a>
+    <div class="top-actions">
+      <a class="top-btn hide-mobile" href="anuncie-sua-moto.html">Anunciar</a>
+      <a class="top-btn primary" href="motosmx.html#motos">Ver motos</a>
+    </div>
+  </nav>
+
+  <a class="floating" href="#cadastro">Cadastrar minha procura</a>
+
+  <header class="hero">
+    <div class="hero-content">
+      <span class="badge">Cadastro de compradores • Flavim MX</span>
+      <h1>Qual moto você <span>procura?</span></h1>
+      <p class="lead">Conte para a equipe o modelo, a faixa de preço e a região desejada. Quando surgir uma oportunidade compatível, já saberemos como entrar em contato.</p>
+      <p class="hero-note">O cadastro é gratuito e não representa reserva, promessa de oferta ou obrigação de compra.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#cadastro">Cadastrar minha procura</a>
+        <a class="btn btn-secondary" href="motosmx.html#motos">Ver motos disponíveis</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Como <span>funciona</span></h2>
+      <p class="section-text">Seu pedido ajuda a equipe a identificar oportunidades com mais precisão.</p>
+      <div class="steps">
+        <article class="step"><strong>1</strong><h3>Informe o que busca</h3><p>Escolha marca, cilindrada, orçamento, ano e região de interesse.</p></article>
+        <article class="step"><strong>2</strong><h3>Envie pelo WhatsApp</h3><p>O formulário organiza os dados em uma mensagem pronta para a equipe.</p></article>
+        <article class="step"><strong>3</strong><h3>Receba oportunidades</h3><p>Quando uma moto compatível aparecer, a equipe poderá apresentar o anúncio.</p></article>
+      </div>
+    </section>
+
+    <section class="section-alt" id="cadastro">
+      <h2 class="section-title">Cadastrar minha <span>procura</span></h2>
+      <p class="section-text">Preencha somente as informações necessárias. Você poderá conversar com a equipe antes de qualquer negociação.</p>
+
+      <form class="form-box" id="searchForm" onsubmit="enviarProcura(event)" novalidate>
+        <div class="form-intro"><strong>✓</strong><span><b>Cadastro gratuito.</b> Os dados serão preparados no seu aparelho e enviados somente quando você confirmar a abertura do WhatsApp.</span></div>
+        <div class="form-grid">
+          <div class="field"><label for="nome">Nome <span class="required">*</span></label><input id="nome" required autocomplete="name" placeholder="Seu nome"></div>
+          <div class="field"><label for="telefone">WhatsApp <span class="required">*</span></label><input id="telefone" required autocomplete="tel" inputmode="tel" placeholder="(34) 99999-9999"></div>
+          <div class="field"><label for="cidade">Sua cidade/estado <span class="required">*</span></label><input id="cidade" required placeholder="Ex.: Uberlândia-MG"></div>
+          <div class="field"><label for="prazo">Quando pretende comprar?</label><select id="prazo"><option>Assim que encontrar a moto certa</option><option>Nos próximos 30 dias</option><option>Nos próximos 3 meses</option><option>Sem prazo definido</option></select></div>
+
+          <div class="field"><label for="marca">Marca preferida</label><select id="marca"><option>Qualquer marca</option><option>Honda</option><option>Yamaha</option><option>Kawasaki</option><option>KTM</option><option>Husqvarna</option><option>Suzuki</option><option>Powerhusky</option><option>Outra</option></select></div>
+          <div class="field"><label for="modelo">Modelo desejado</label><input id="modelo" placeholder="Ex.: KX 250, CRF 250, YZ 450F"></div>
+          <div class="field"><label for="cilindrada">Cilindrada</label><select id="cilindrada"><option>Qualquer cilindrada</option><option>50cc / 65cc</option><option>85cc</option><option>125cc</option><option>230cc</option><option>250cc</option><option>300cc</option><option>450cc</option><option>Outra</option></select></div>
+          <div class="field"><label for="motor">Tipo de motor</label><select id="motor"><option>Indiferente</option><option>2 tempos</option><option>4 tempos</option></select></div>
+
+          <div class="field"><label for="anoMin">Ano mínimo</label><input id="anoMin" inputmode="numeric" maxlength="4" placeholder="Ex.: 2018"></div>
+          <div class="field"><label for="orcamento">Orçamento máximo <span class="required">*</span></label><input id="orcamento" required inputmode="decimal" placeholder="Ex.: R$ 30.000"></div>
+          <div class="field"><label for="negociacao">Forma pretendida</label><select id="negociacao"><option>Pagamento à vista</option><option>Quero avaliar proposta</option><option>Tenho moto para oferecer na troca</option><option>Ainda estou decidindo</option></select></div>
+          <div class="field"><label for="documentacao">Documentação</label><select id="documentacao"><option>Precisa ter nota ou documento</option><option>Avalio cada oportunidade</option><option>Quero orientação da equipe</option></select></div>
+
+          <div class="field"><label for="regiao">Região preferida <span class="required">*</span></label><select id="regiao" required><option value="">Selecione</option><option>Sudeste</option><option>Centro-Oeste</option><option>Sul</option><option>Nordeste</option><option>Norte</option><option>Qualquer região do Brasil</option></select></div>
+          <div class="field"><label for="distancia">Deslocamento</label><select id="distancia"><option>Somente perto da minha cidade</option><option>Até 200 km</option><option>Até 500 km</option><option>Avalio qualquer distância</option></select></div>
+
+          <div class="field full"><label for="estados">Estados ou cidades de preferência</label><input id="estados" placeholder="Ex.: MG, GO, DF e interior de SP"></div>
+          <div class="field full"><label for="detalhes">Outras preferências</label><textarea id="detalhes" placeholder="Horas de uso, partida, acessórios, condição, aceita moto preparada etc."></textarea></div>
+        </div>
+
+        <label class="check-row"><input id="consentimento" type="checkbox" required><span>Autorizo o envio dessas informações à equipe Flavim MX para receber contato sobre motos compatíveis. <span class="required">*</span></span></label>
+
+        <div class="form-actions">
+          <button class="btn btn-whats" type="submit">Enviar procura pelo WhatsApp</button>
+          <button class="btn btn-secondary" type="button" onclick="limparFormulario()">Limpar formulário</button>
+        </div>
+        <p class="message-status" id="messageStatus" role="status">Mensagem preparada. Abrindo o WhatsApp…</p>
+        <p class="error-status" id="errorStatus" role="alert">Confira os campos obrigatórios destacados antes de continuar.</p>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="section-title">Por que cadastrar sua <span>procura?</span></h2>
+      <div class="benefits">
+        <article class="benefit"><h3>Busca direcionada</h3><p>A equipe entende a faixa de preço, categoria e localização que fazem sentido para você.</p></article>
+        <article class="benefit"><h3>Novas oportunidades</h3><p>Sua procura pode ser lembrada quando uma moto compatível entrar na vitrine.</p></article>
+        <article class="benefit"><h3>Contato organizado</h3><p>Você recebe o link do anúncio e decide se deseja pedir mais informações.</p></article>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="notice">
+        <h3>Negocie com segurança</h3>
+        <p>O cadastro serve para aproximar interessados e oportunidades. Antes de comprar:</p>
+        <ul><li>confira a moto, identidade do vendedor e documentação;</li><li>confirme valores e condições diretamente com o responsável;</li><li>não envie documentos pessoais completos pelo formulário;</li><li>não realize pagamentos sem as conferências necessárias.</li></ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+      <div class="faq">
+        <details><summary>O cadastro tem algum custo?</summary><p>Não. Cadastrar a moto procurada é gratuito.</p></details>
+        <details><summary>O cadastro garante que encontrarei uma moto?</summary><p>Não. Ele registra suas preferências para facilitar o contato quando surgir uma oportunidade compatível.</p></details>
+        <details><summary>Meus dados ficam salvos nesta página?</summary><p>Este HTML não possui banco de dados. A mensagem é preparada no navegador e só é enviada quando você continuar pelo WhatsApp.</p></details>
+        <details><summary>Posso alterar minha procura depois?</summary><p>Sim. Basta enviar uma nova mensagem para a equipe informando as mudanças desejadas.</p></details>
+        <details><summary>A equipe garante a condição da moto?</summary><p>Não automaticamente. As informações precisam ser confirmadas com o vendedor e a moto deve ser conferida antes da negociação.</p></details>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2 class="section-title">A moto certa pode ser a <span>próxima</span></h2>
+      <p class="section-text">Cadastre sua preferência ou consulte agora as motos disponíveis na vitrine.</p>
+      <div class="actions"><a class="btn btn-primary" href="#cadastro">Cadastrar minha procura</a><a class="btn btn-secondary" href="motosmx.html#motos">Ver motos disponíveis</a></div>
+    </section>
+  </main>
+
+  <footer>Flavim MX • Flavim Junior 100<br><a href="motosmx.html#motos">Motos disponíveis</a> • <a href="anuncie-sua-moto.html">Anunciar uma moto</a> • Instagram: <a href="https://www.instagram.com/eaiflavim" target="_blank" rel="noopener">@eaiflavim</a></footer>
+
+  <script>
+    const numeroFlavim = '553492430960';
+    const form = document.getElementById('searchForm');
+    const messageStatus = document.getElementById('messageStatus');
+    const errorStatus = document.getElementById('errorStatus');
+
+    function campo(id){
+      const element = document.getElementById(id);
+      return element && element.value.trim() ? element.value.trim() : 'Não informado';
+    }
+
+    function enviarProcura(event){
+      event.preventDefault();
+      messageStatus.style.display = 'none';
+      errorStatus.style.display = 'none';
+
+      if(!form.checkValidity()){
+        errorStatus.style.display = 'block';
+        form.reportValidity();
+        return;
+      }
+
+      const mensagem = `Olá! Quero cadastrar a moto que estou procurando na Flavim MX.\n\nCOMPRADOR INTERESSADO\nNome: ${campo('nome')}\nWhatsApp: ${campo('telefone')}\nCidade/Estado: ${campo('cidade')}\nPrazo para comprar: ${campo('prazo')}\n\nMOTO PROCURADA\nMarca: ${campo('marca')}\nModelo: ${campo('modelo')}\nCilindrada: ${campo('cilindrada')}\nMotor: ${campo('motor')}\nAno mínimo: ${campo('anoMin')}\nOrçamento máximo: ${campo('orcamento')}\nForma pretendida: ${campo('negociacao')}\nDocumentação: ${campo('documentacao')}\n\nLOCALIZAÇÃO\nRegião: ${campo('regiao')}\nDistância: ${campo('distancia')}\nEstados/cidades: ${campo('estados')}\n\nOUTRAS PREFERÊNCIAS\n${campo('detalhes')}\n\nAutorizo o contato da equipe quando surgir uma oportunidade compatível.`;
+
+      messageStatus.style.display = 'block';
+      window.open(`https://wa.me/${numeroFlavim}?text=${encodeURIComponent(mensagem)}`, '_blank');
+    }
+
+    function limparFormulario(){
+      form.reset();
+      messageStatus.style.display = 'none';
+      errorStatus.style.display = 'none';
+      document.getElementById('nome').focus();
+    }
+  </script>
+</body>
+</html>
