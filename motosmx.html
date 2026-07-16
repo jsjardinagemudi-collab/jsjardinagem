@@ -514,6 +514,32 @@
       box-shadow:0 24px 70px rgba(0,0,0,.34);
     }
 
+    .buyer-promo{
+      background:
+        radial-gradient(circle at 8% 20%,rgba(37,211,102,.16),transparent 34%),
+        linear-gradient(135deg,rgba(255,255,255,.07),rgba(0,87,255,.2));
+      border:1px solid rgba(56,189,248,.38);
+      border-radius:28px;
+      padding:clamp(25px,5vw,45px);
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+    }
+
+    .buyer-promo .section-text{margin-bottom:20px}
+
+    .buyer-label{
+      display:inline-flex;
+      padding:8px 12px;
+      margin-bottom:14px;
+      border-radius:999px;
+      background:rgba(37,211,102,.15);
+      border:1px solid rgba(37,211,102,.35);
+      color:#c9f9d9;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+    }
+
     .seller-promo .section-text{margin-bottom:20px}
 
     .seller-benefits{
@@ -621,6 +647,7 @@
 
   <div class="top-actions">
     <a class="top-btn hide-mobile" href="https://www.instagram.com/eaiflavim" target="_blank">@eaiflavim</a>
+    <a class="top-btn hide-mobile" href="procuro-uma-moto.html">Procuro uma moto</a>
     <a class="top-btn hide-mobile" href="anuncie-sua-moto.html">Anunciar</a>
     <a class="top-btn primary" href="https://jardinagemudi.com.br/flavinhomx.html">Home</a>
   </div>
@@ -651,6 +678,7 @@
 
     <div class="buttons">
       <a href="#motos" class="btn btn-primary">Ver motos</a>
+      <a href="procuro-uma-moto.html" class="btn btn-secondary">Não encontrou? Cadastre sua procura</a>
       <a href="anuncie-sua-moto.html" class="btn btn-whats">Anunciar minha moto</a>
       <a href="https://jardinagemudi.com.br/flavinhomx.html" class="btn btn-secondary">Voltar para Home</a>
     </div>
@@ -754,7 +782,11 @@
 
   <div class="results-bar" aria-live="polite">
     <span class="results-count" id="resultsCount">7 motos encontradas</span>
-    <button class="clear-filters" type="button" onclick="clearFilters()">Limpar filtros</button>
+    <div>
+      <a class="clear-filters" href="procuro-uma-moto.html">Não encontrou? Cadastre sua procura</a>
+      <span aria-hidden="true"> • </span>
+      <button class="clear-filters" type="button" onclick="clearFilters()">Limpar filtros</button>
+    </div>
   </div>
 
   <div class="grid" id="bikeGrid">
@@ -934,6 +966,25 @@
   </div>
 </section>
 
+<section id="comprador">
+  <div class="buyer-promo">
+    <span class="buyer-label">Para compradores</span>
+    <h2 class="section-title">Não encontrou a moto <span>certa?</span></h2>
+    <p class="section-text">
+      Cadastre gratuitamente a marca, o modelo, o orçamento e a região que você procura. Quando surgir uma oportunidade compatível, a equipe já saberá como entrar em contato.
+    </p>
+    <div class="seller-benefits">
+      <span>Cadastro gratuito</span>
+      <span>Busca por perfil e orçamento</span>
+      <span>Contato sobre oportunidades</span>
+    </div>
+    <div class="buttons">
+      <a class="btn btn-primary" href="procuro-uma-moto.html">Cadastrar a moto que procuro</a>
+      <a class="btn btn-secondary" href="procuro-uma-moto.html#cadastro">Ir direto ao formulário</a>
+    </div>
+  </div>
+</section>
+
 <section id="vender">
   <div class="seller-promo">
     <div class="badge">PARA VENDEDORES</div>
@@ -961,6 +1012,7 @@
 
   <div class="buttons" style="max-width:720px;margin:0 auto;">
     <a class="btn btn-primary" href="#motos">Ver motos</a>
+    <a class="btn btn-secondary" href="procuro-uma-moto.html">Cadastrar minha procura</a>
     <a class="btn btn-whats" href="anuncie-sua-moto.html">Anunciar minha moto</a>
     <a class="btn btn-secondary" href="https://jardinagemudi.com.br/flavinhomx.html">Voltar para Home</a>
   </div>
@@ -968,7 +1020,7 @@
 
 <footer>
   Motos MX • Flavim Junior 100 • Compra e venda de motos de motocross<br>
-  Instagram: <a href="https://www.instagram.com/eaiflavim" target="_blank" rel="noopener">@eaiflavim</a> • <a href="anuncie-sua-moto.html">Anuncie sua moto</a>
+  Instagram: <a href="https://www.instagram.com/eaiflavim" target="_blank" rel="noopener">@eaiflavim</a> • <a href="procuro-uma-moto.html">Procuro uma moto</a> • <a href="anuncie-sua-moto.html">Anuncie sua moto</a>
 </footer>
 
 <script>
