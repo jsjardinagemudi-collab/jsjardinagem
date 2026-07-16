@@ -631,6 +631,52 @@
       font-size:13px;
     }
 
+    .participation-box{
+      border:1px solid #d8e6ff;
+      background:linear-gradient(135deg,#f8fbff,#f3fff7);
+      border-radius:16px;
+      padding:15px;
+      display:grid;
+      gap:10px;
+    }
+
+    .participation-box h4{
+      margin:0;
+      color:var(--pri);
+      font-size:15px;
+      font-weight:1000;
+    }
+
+    .participation-box p{
+      margin:0;
+      color:#475467;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:750;
+    }
+
+    .participation-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .btn-interest{
+      background:#eef4ff;
+      color:var(--pri);
+      border:1px solid #bdd4ff;
+    }
+
+    .btn-interest:hover{background:#e4efff}
+
+    .btn-leader{
+      background:linear-gradient(120deg,var(--pri2),#0f9b57);
+      color:#fff;
+      border-color:#0f8f52;
+    }
+
+    .btn-leader:hover{filter:brightness(.98)}
+
     .service-actions{
       display:flex;
       gap:10px;
@@ -874,6 +920,10 @@
         flex-direction:column;
       }
 
+      .participation-actions{
+        grid-template-columns:1fr;
+      }
+
       .street-frame{
         min-height:360px;
       }
@@ -921,7 +971,7 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V3.0</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V4.0</span>
           </div>
         </div>
 
@@ -938,9 +988,9 @@
         <div>
           <h1>Serviços Disponíveis</h1>
           <p>
-            Esta página lê a aba <strong>DASH_SERVICOS_DISPONIVEIS_JS</strong> publicada e mostra
-            os serviços disponíveis em um formato mais operacional, com ações rápidas para mapa,
-            Street View, cópia de resumo e captura do serviço.
+            Esta página mostra as oportunidades abertas e permite duas formas de participação:
+            o profissional pode <strong>reservar uma vaga</strong> como integrante ou, sendo líder,
+            pode <strong>assumir a responsabilidade e montar a equipe</strong>.
           </p>
 
           <div class="hero-pills">
@@ -948,7 +998,8 @@
             <span class="pill">🚗 Ver Street View</span>
             <span class="pill">🆔 Copiar ID</span>
             <span class="pill">📋 Copiar resumo</span>
-            <span class="pill">🤝 Pegar serviço</span>
+            <span class="pill">🙋 Reservar vaga</span>
+            <span class="pill">👷 Montar equipe</span>
           </div>
         </div>
 
@@ -958,7 +1009,8 @@
             <li>Voltar direto para o Portal do Jardineiro</li>
             <li>Voltar para a página inicial da JS</li>
             <li>Abrir o link de atualização de orçamento</li>
-            <li>Trabalhar os serviços com mais agilidade</li>
+            <li>Reservar vaga como jardineiro, auxiliar ou especialista</li>
+            <li>Assumir como líder e confirmar a equipe executora</li>
           </ul>
 
           <div class="quick-links">
@@ -1060,7 +1112,7 @@
           <strong>JS Jardinagem</strong>
           <p>
             Painel de serviços disponíveis conectado ao banco publicado da operação,
-            já preparado para aceite de serviço.
+            preparado para reserva de vagas, formação de equipe e aceite por liderança.
           </p>
         </div>
 
@@ -1339,9 +1391,14 @@
       return clean || String(row.ID_SERVICO || row.CHAVE_SERVICO || row.ID_CALCULO || row.ID_SHORT || '').trim();
     }
 
-    function buildPegarServicoLink(row) {
+    function buildInteresseServicoLink(row) {
       const id = getServiceLookupId(row);
-      return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}`;
+      return `${WEBAPP_URL}?page=interesse-servico&id=${encodeURIComponent(id)}&acao=reservar`;
+    }
+
+    function buildLiderServicoLink(row) {
+      const id = getServiceLookupId(row);
+      return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}&acao=lider`;
     }
 
 
@@ -1656,7 +1713,8 @@
 
         const safeResumo = escapeHtml(buildResumo(row));
         const safeId = escapeHtml(getServiceLookupId(row) || '');
-        const pegarLink = buildPegarServicoLink(row);
+        const interesseLink = buildInteresseServicoLink(row);
+        const liderLink = buildLiderServicoLink(row);
 
         return `
           <article class="card service-card">
@@ -1726,6 +1784,22 @@
               </div>
             </div>
 
+            <div class="participation-box">
+              <h4>Como você quer participar deste serviço?</h4>
+              <p>
+                Reserve uma vaga para demonstrar interesse como integrante da equipe.
+                Líderes podem assumir o serviço, revisar os interessados e confirmar ou completar a equipe.
+              </p>
+              <div class="participation-actions">
+                <a class="btn btn-interest" href="${escapeHtml(interesseLink)}" target="_blank" rel="noopener">
+                  🙋 Tenho interesse / Reservar vaga
+                </a>
+                <a class="btn btn-leader" href="${escapeHtml(liderLink)}" target="_blank" rel="noopener">
+                  👷 Sou líder / Montar equipe
+                </a>
+              </div>
+            </div>
+
             <div class="service-actions">
               <button class="btn btn-soft btn-sm" type="button" data-copy-id="${safeId}">Copiar ID</button>
 
@@ -1757,9 +1831,7 @@
                 </a>
               ` : ''}
 
-              <a class="btn btn-gold btn-sm" href="${escapeHtml(pegarLink)}" target="_blank" rel="noopener">
-  Pegar serviço
-</a>
+
             </div>
           </article>
         `;
