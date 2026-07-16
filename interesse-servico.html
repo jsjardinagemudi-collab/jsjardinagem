@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#114084">
+  <title>Reservar vaga no serviço • Plataforma JS</title>
+
+  <style>
+    :root{
+      --pri:#114084;
+      --pri2:#11804a;
+      --pri3:#0d3270;
+      --bg:#f4f7f6;
+      --paper:#ffffff;
+      --ink:#101828;
+      --muted:#667085;
+      --line:#dfe7e3;
+      --soft:#eef4ff;
+      --good:#027a48;
+      --warn:#b54708;
+      --bad:#b42318;
+      --shadow:0 18px 40px rgba(16,24,40,.10);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      background:
+        radial-gradient(circle at top right,rgba(17,128,74,.09),transparent 28%),
+        radial-gradient(circle at top left,rgba(17,64,132,.09),transparent 30%),
+        var(--bg);
+      color:var(--ink);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    button,input,select,textarea{font:inherit}
+    a{text-decoration:none;color:inherit}
+
+    .hero{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+      padding:34px 18px 44px;
+    }
+
+    .wrap{
+      width:min(960px,calc(100% - 24px));
+      margin:auto;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,5vw,48px);
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:760px;
+      line-height:1.65;
+      font-weight:700;
+      color:rgba(255,255,255,.94);
+    }
+
+    main{
+      margin-top:-24px;
+      padding-bottom:42px;
+    }
+
+    .card{
+      background:var(--paper);
+      border:1px solid rgba(17,64,132,.09);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin-bottom:16px;
+    }
+
+    .card h2{
+      margin:0 0 7px;
+      color:var(--pri);
+      font-size:22px;
+    }
+
+    .sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.55;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .mini{
+      border:1px solid var(--line);
+      background:#f8fafc;
+      border-radius:15px;
+      padding:14px;
+    }
+
+    .mini .k{
+      margin:0 0 6px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+    }
+
+    .mini .v{
+      margin:0;
+      font-size:15px;
+      font-weight:900;
+      line-height:1.45;
+      word-break:break-word;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .field{grid-column:span 12}
+    .c6{grid-column:span 6}
+    .c4{grid-column:span 4}
+
+    label{
+      display:block;
+      margin:0 0 7px;
+      color:#344054;
+      font-weight:900;
+      font-size:13px;
+    }
+
+    input,select,textarea{
+      width:100%;
+      min-height:52px;
+      border:1px solid #d6e0e7;
+      border-radius:14px;
+      background:#fff;
+      color:var(--ink);
+      padding:13px 14px;
+      outline:none;
+    }
+
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+
+    input:focus,select:focus,textarea:focus{
+      border-color:var(--pri);
+      box-shadow:0 0 0 4px rgba(17,64,132,.08);
+    }
+
+    input[readonly]{
+      background:#f8fafc;
+      color:#475467;
+      font-weight:800;
+    }
+
+    .role-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .role-option{
+      position:relative;
+    }
+
+    .role-option input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .role-option span{
+      min-height:88px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      gap:6px;
+      cursor:pointer;
+      transition:.18s ease;
+      font-weight:900;
+    }
+
+    .role-option span small{
+      color:var(--muted);
+      font-weight:700;
+      line-height:1.4;
+    }
+
+    .role-option input:checked + span{
+      border-color:var(--pri);
+      background:var(--soft);
+      box-shadow:0 0 0 4px rgba(17,64,132,.07);
+      color:var(--pri);
+    }
+
+    .notice{
+      padding:14px 16px;
+      border:1px solid #d7e7ff;
+      border-radius:14px;
+      background:#f6f9ff;
+      color:#344054;
+      line-height:1.55;
+      font-size:13px;
+      font-weight:750;
+      margin-top:14px;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      min-height:50px;
+      border:0;
+      border-radius:14px;
+      padding:12px 18px;
+      font-weight:900;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .btn-primary{
+      background:linear-gradient(120deg,var(--pri),var(--pri2));
+      color:#fff;
+    }
+
+    .btn-soft{
+      background:var(--soft);
+      color:var(--pri);
+      border:1px solid #d7e7ff;
+    }
+
+    .btn:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+    }
+
+    .msg{
+      display:none;
+      margin-top:15px;
+      border-radius:14px;
+      padding:14px 16px;
+      font-weight:900;
+      line-height:1.55;
+    }
+
+    .msg.show{display:block}
+    .msg.success{background:#ecfdf3;border:1px solid #abefc6;color:var(--good)}
+    .msg.error{background:#fff1f0;border:1px solid #f0c7c3;color:var(--bad)}
+    .msg.warn{background:#fff7ed;border:1px solid #f3d2a6;color:var(--warn)}
+
+    .loading{
+      padding:20px;
+      text-align:center;
+      color:var(--muted);
+      font-weight:900;
+    }
+
+    .hidden{display:none!important}
+
+    @media(max-width:760px){
+      .service-grid,.role-grid{grid-template-columns:1fr}
+      .c6,.c4{grid-column:span 12}
+      .actions{flex-direction:column}
+      .btn{width:100%}
+      .card{padding:17px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1>Reservar vaga no serviço</h1>
+      <p>
+        Registre seu interesse em participar da equipe. A reserva não confirma automaticamente
+        sua participação: o líder responsável revisará os interessados e confirmará a equipe.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>Resumo do serviço</h2>
+      <p class="sub">Os dados são carregados automaticamente pelo identificador enviado na URL.</p>
+
+      <div id="loadingServico" class="loading">Buscando serviço...</div>
+
+      <div id="resumoServico" class="service-grid hidden">
+        <div class="mini">
+          <p class="k">ID</p>
+          <p class="v" id="vId">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Cliente</p>
+          <p class="v" id="vCliente">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Data</p>
+          <p class="v" id="vData">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Bairro</p>
+          <p class="v" id="vBairro">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Descrição</p>
+          <p class="v" id="vDescricao">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Horas</p>
+          <p class="v" id="vHoras">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Equipe necessária</p>
+          <p class="v" id="vEquipe">—</p>
+        </div>
+        <div class="mini">
+          <p class="k">Status</p>
+          <p class="v" id="vStatus">—</p>
+        </div>
+      </div>
+
+      <div id="msgBusca" class="msg"></div>
+    </section>
+
+    <section class="card hidden" id="secFormulario">
+      <h2>Seus dados e função desejada</h2>
+      <p class="sub">
+        Informe como deseja participar. O líder poderá confirmar sua reserva, manter você na lista
+        de espera ou escolher outro profissional conforme a composição necessária.
+      </p>
+
+      <form id="formInteresse">
+        <div class="grid">
+          <div class="field c6">
+            <label for="nome">Nome completo *</label>
+            <input id="nome" name="nome" type="text" required placeholder="Ex.: João da Silva">
+          </div>
+
+          <div class="field c6">
+            <label for="telefone">WhatsApp *</label>
+            <input id="telefone" name="telefone" type="tel" required placeholder="(34) 99999-9999">
+          </div>
+
+          <div class="field c6">
+            <label for="cidade">Cidade</label>
+            <input id="cidade" name="cidade" type="text" value="Uberlândia">
+          </div>
+
+          <div class="field c6">
+            <label for="bairroProfissional">Bairro onde mora</label>
+            <input id="bairroProfissional" name="bairroProfissional" type="text" placeholder="Ex.: Santa Mônica">
+          </div>
+
+          <div class="field">
+            <label>Função desejada *</label>
+            <div class="role-grid">
+              <label class="role-option">
+                <input type="radio" name="cargo" value="Líder" required>
+                <span>
+                  👷 Líder
+                  <small>Tenho experiência para coordenar a execução e montar a equipe.</small>
+                </span>
+              </label>
+
+              <label class="role-option">
+                <input type="radio" name="cargo" value="Jardineiro" required>
+                <span>
+                  🌿 Jardineiro
+                  <small>Quero reservar uma vaga como profissional executor.</small>
+                </span>
+              </label>
+
+              <label class="role-option">
+                <input type="radio" name="cargo" value="Auxiliar" required>
+                <span>
+                  🛠️ Auxiliar
+                  <small>Quero apoiar a equipe na execução do serviço.</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field c6">
+            <label for="experiencia">Experiência principal</label>
+            <select id="experiencia" name="experiencia">
+              <option value="">Selecione</option>
+              <option value="Jardinagem">Jardinagem</option>
+              <option value="Elétrica">Elétrica</option>
+              <option value="Marido de aluguel">Marido de aluguel</option>
+              <option value="Limpeza">Limpeza</option>
+              <option value="Pintura">Pintura</option>
+              <option value="Hidráulica">Hidráulica</option>
+              <option value="Serviços gerais">Serviços gerais</option>
+            </select>
+          </div>
+
+          <div class="field c6">
+            <label for="disponibilidade">Disponibilidade *</label>
+            <select id="disponibilidade" name="disponibilidade" required>
+              <option value="">Selecione</option>
+              <option value="Confirmada para data e horário">Confirmada para a data e horário</option>
+              <option value="Preciso confirmar horário">Preciso confirmar o horário</option>
+              <option value="Disponível somente parte do período">Disponível somente parte do período</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="observacao">Observações</label>
+            <textarea id="observacao" name="observacao" placeholder="Informe experiência, ferramentas disponíveis, transporte, restrições ou qualquer informação importante."></textarea>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Como funciona:</strong> sua manifestação será registrada como
+          <strong>Interessado</strong>. Quando um líder assumir o serviço, ele verá os profissionais
+          disponíveis por função e poderá confirmar a equipe.
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="btnEnviar" type="submit">Reservar minha vaga</button>
+          <a class="btn btn-soft" href="?page=servicos-disponiveis">Voltar aos serviços</a>
+        </div>
+
+        <div id="msgSalvar" class="msg"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    let servicoAtual = null;
+
+    const ID_DA_URL_TEMPLATE = '<?= ID_URL ?>';
+    const parametros = new URLSearchParams(window.location.search);
+    const idDaUrl = String(ID_DA_URL_TEMPLATE || parametros.get('id') || '').trim();
+
+    const el = {
+      loadingServico: document.getElementById('loadingServico'),
+      resumoServico: document.getElementById('resumoServico'),
+      secFormulario: document.getElementById('secFormulario'),
+      msgBusca: document.getElementById('msgBusca'),
+      msgSalvar: document.getElementById('msgSalvar'),
+      form: document.getElementById('formInteresse'),
+      btnEnviar: document.getElementById('btnEnviar'),
+      vId: document.getElementById('vId'),
+      vCliente: document.getElementById('vCliente'),
+      vData: document.getElementById('vData'),
+      vBairro: document.getElementById('vBairro'),
+      vDescricao: document.getElementById('vDescricao'),
+      vHoras: document.getElementById('vHoras'),
+      vEquipe: document.getElementById('vEquipe'),
+      vStatus: document.getElementById('vStatus')
+    };
+
+    function texto(v){ return String(v || '').trim(); }
+
+    function mostrarMensagem(target,mensagem,tipo){
+      target.className = 'msg show ' + tipo;
+      target.textContent = mensagem;
+    }
+
+    function limparMensagem(target){
+      target.className = 'msg';
+      target.textContent = '';
+    }
+
+    function preencherResumo(servico){
+      servicoAtual = servico;
+
+      el.vId.textContent = servico.ID_BUSCA || servico.ID_SHORT || servico.ID_SERVICO || '—';
+      el.vCliente.textContent = servico.CLIENTE || '—';
+      el.vData.textContent = servico.DATA_SERVICO || '—';
+      el.vBairro.textContent = servico.BAIRRO || '—';
+      el.vDescricao.textContent = servico.DESCRICAO || '—';
+      el.vHoras.textContent = servico.HORAS ? servico.HORAS + 'h' : '—';
+      el.vEquipe.textContent =
+        `${servico.QTD_LIDER || 0} líder • ${servico.QTD_JARDINEIRO || 0} jardineiro(s) • ${servico.QTD_AUXILIAR || 0} auxiliar(es)`;
+      el.vStatus.textContent = servico.STATUS || '—';
+
+      el.loadingServico.classList.add('hidden');
+      el.resumoServico.classList.remove('hidden');
+      el.secFormulario.classList.remove('hidden');
+    }
+
+    function carregarServico(){
+      limparMensagem(el.msgBusca);
+
+      if(!idDaUrl){
+        el.loadingServico.classList.add('hidden');
+        mostrarMensagem(el.msgBusca,'ID do serviço não informado na URL.','error');
+        return;
+      }
+
+      if(typeof google === 'undefined' || !google.script || !google.script.run){
+        el.loadingServico.classList.add('hidden');
+        mostrarMensagem(el.msgBusca,'Abra esta página pelo Web App do Google Apps Script.','error');
+        return;
+      }
+
+      google.script.run
+        .withSuccessHandler(function(resp){
+          if(!resp || !resp.ok){
+            el.loadingServico.classList.add('hidden');
+            mostrarMensagem(el.msgBusca,(resp && resp.message) || 'Serviço não encontrado.','error');
+            return;
+          }
+
+          preencherResumo(resp.servico);
+
+          if(resp.disponivel){
+            mostrarMensagem(el.msgBusca,'Serviço disponível para manifestação de interesse.','success');
+          }else{
+            mostrarMensagem(el.msgBusca,'O serviço foi encontrado, mas pode já estar em formação de equipe. Sua manifestação ainda pode ser registrada para análise.','warn');
+          }
+        })
+        .withFailureHandler(function(err){
+          el.loadingServico.classList.add('hidden');
+          mostrarMensagem(el.msgBusca,(err && err.message) || 'Erro ao carregar o serviço.','error');
+        })
+        .buscarServicoParaInteresse(idDaUrl);
+    }
+
+    el.form.addEventListener('submit',function(event){
+      event.preventDefault();
+      limparMensagem(el.msgSalvar);
+
+      if(!servicoAtual){
+        mostrarMensagem(el.msgSalvar,'O serviço ainda não foi carregado.','error');
+        return;
+      }
+
+      if(!el.form.reportValidity()) return;
+
+      const cargoSelecionado = document.querySelector('input[name="cargo"]:checked');
+
+      const payload = {
+        idBusca: servicoAtual.ID_BUSCA || idDaUrl,
+        idShort: servicoAtual.ID_SHORT || '',
+        idServico: servicoAtual.ID_SERVICO || '',
+        cliente: servicoAtual.CLIENTE || '',
+        dataServico: servicoAtual.DATA_SERVICO || '',
+        nome: texto(document.getElementById('nome').value),
+        telefone: texto(document.getElementById('telefone').value),
+        cidade: texto(document.getElementById('cidade').value),
+        bairroProfissional: texto(document.getElementById('bairroProfissional').value),
+        cargo: cargoSelecionado ? cargoSelecionado.value : '',
+        experiencia: texto(document.getElementById('experiencia').value),
+        disponibilidade: texto(document.getElementById('disponibilidade').value),
+        observacao: texto(document.getElementById('observacao').value)
+      };
+
+      el.btnEnviar.disabled = true;
+      el.btnEnviar.textContent = 'Registrando...';
+
+      google.script.run
+        .withSuccessHandler(function(resp){
+          el.btnEnviar.disabled = false;
+          el.btnEnviar.textContent = 'Reservar minha vaga';
+
+          if(!resp || !resp.ok){
+            mostrarMensagem(el.msgSalvar,(resp && resp.message) || 'Não foi possível registrar o interesse.','error');
+            return;
+          }
+
+          mostrarMensagem(
+            el.msgSalvar,
+            resp.message || 'Sua manifestação de interesse foi registrada com sucesso.',
+            'success'
+          );
+
+          el.form.reset();
+          document.getElementById('cidade').value = 'Uberlândia';
+        })
+        .withFailureHandler(function(err){
+          el.btnEnviar.disabled = false;
+          el.btnEnviar.textContent = 'Reservar minha vaga';
+          mostrarMensagem(el.msgSalvar,(err && err.message) || 'Erro ao registrar o interesse.','error');
+        })
+        .registrarInteresseServico(payload);
+    });
+
+    window.addEventListener('load',carregarServico);
+  </script>
+</body>
+</html>
