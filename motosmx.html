@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Motos de motocross anunciadas na vitrine Flavim MX. Encontre oportunidades ou anuncie sua moto com apresentação profissional." />
+  <meta name="theme-color" content="#050505" />
   <title>Motos MX | Flavim Junior 100</title>
 
   <style>
@@ -235,6 +237,32 @@
       border:1px solid var(--border);
       border-radius:24px;
       padding:18px;
+    }
+
+    .results-bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:-6px 0 20px;
+      color:var(--gray);
+      font-size:14px;
+    }
+
+    .results-count{
+      color:#dbe8ff;
+      font-weight:900;
+    }
+
+    .clear-filters{
+      appearance:none;
+      border:0;
+      background:transparent;
+      color:#8fb5ff;
+      font-weight:900;
+      cursor:pointer;
+      padding:7px 0;
     }
 
     input,select,textarea{
@@ -476,6 +504,35 @@
       line-height:1.6;
     }
 
+    .seller-promo{
+      background:
+        radial-gradient(circle at 90% 20%,rgba(56,189,248,.2),transparent 34%),
+        linear-gradient(135deg,rgba(0,87,255,.28),rgba(255,255,255,.055));
+      border:1px solid rgba(0,87,255,.5);
+      border-radius:28px;
+      padding:clamp(25px,5vw,45px);
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+    }
+
+    .seller-promo .section-text{margin-bottom:20px}
+
+    .seller-benefits{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin:22px 0;
+    }
+
+    .seller-benefits span{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      color:#e8efff;
+      font-weight:800;
+    }
+
+    .seller-benefits span::before{content:"✓";color:var(--whats);font-weight:950}
+
     .cta{
       text-align:center;
       background:
@@ -534,6 +591,7 @@
       .grid{grid-template-columns:repeat(3,1fr)}
       .map-grid{grid-template-columns:repeat(4,1fr)}
       .form-grid{grid-template-columns:repeat(2,1fr)}
+      .seller-benefits{grid-template-columns:repeat(3,1fr)}
       .full{grid-column:1/-1}
       .floating-whatsapp{
         left:auto;
@@ -563,12 +621,13 @@
 
   <div class="top-actions">
     <a class="top-btn hide-mobile" href="https://www.instagram.com/eaiflavim" target="_blank">@eaiflavim</a>
+    <a class="top-btn hide-mobile" href="anuncie-sua-moto.html">Anunciar</a>
     <a class="top-btn primary" href="https://jardinagemudi.com.br/flavinhomx.html">Home</a>
   </div>
 </nav>
 
-<a class="floating-whatsapp" href="#vender">
-  Anunciar ou comprar moto
+<a class="floating-whatsapp" href="anuncie-sua-moto.html">
+  Anunciar minha moto
 </a>
 
 <div class="image-modal" id="imageModal" onclick="fecharZoom(event)">
@@ -592,7 +651,7 @@
 
     <div class="buttons">
       <a href="#motos" class="btn btn-primary">Ver motos</a>
-      <a href="#vender" class="btn btn-secondary">Anunciar minha moto</a>
+      <a href="anuncie-sua-moto.html" class="btn btn-whats">Anunciar minha moto</a>
       <a href="https://jardinagemudi.com.br/flavinhomx.html" class="btn btn-secondary">Voltar para Home</a>
     </div>
   </div>
@@ -602,8 +661,8 @@
   <h2 class="section-title">Mais que classificados, <span>uma vitrine MX</span></h2>
 
   <p class="section-text">
-    A ideia é criar uma página com credibilidade: filtros, interessados, curtidas,
-    comentários e localização por região. Isso ajuda o comprador a enxergar as melhores oportunidades.
+    Anúncios organizados para facilitar a busca, a comparação e o contato entre pessoas interessadas em motocross.
+    Consulte os detalhes de cada moto e fale com a equipe antes de negociar.
   </p>
 
   <div class="grid">
@@ -613,8 +672,8 @@
     </div>
 
     <div class="info">
-      <h3>Anúncio rápido</h3>
-      <p>O vendedor preenche os dados e envia a moto para análise pelo WhatsApp.</p>
+      <h3>Apresentação profissional</h3>
+      <p>Fotos, informações e características são apresentadas em um padrão claro para valorizar cada oportunidade.</p>
     </div>
 
     <div class="info">
@@ -628,7 +687,7 @@
   <h2 class="section-title">Mapa de <span>oportunidades</span></h2>
 
   <p class="section-text">
-    Mapa visual por região. Depois podemos transformar isso em mapa real com Google Maps.
+    Consulte a quantidade atual de motos anunciadas em cada região do país.
   </p>
 
   <div class="map-grid">
@@ -639,13 +698,13 @@
     </div>
 
     <div class="map-card">
-      <strong>2</strong>
+      <strong>0</strong>
       <h3>Centro-Oeste</h3>
       <p>GO, DF, MT e MS</p>
     </div>
 
     <div class="map-card">
-      <strong>1</strong>
+      <strong>0</strong>
       <h3>Sul</h3>
       <p>PR, SC e RS</p>
     </div>
@@ -691,6 +750,11 @@
       <option value="Sul">Sul</option>
       <option value="Nordeste">Nordeste</option>
     </select>
+  </div>
+
+  <div class="results-bar" aria-live="polite">
+    <span class="results-count" id="resultsCount">7 motos encontradas</span>
+    <button class="clear-filters" type="button" onclick="clearFilters()">Limpar filtros</button>
   </div>
 
   <div class="grid" id="bikeGrid">
@@ -871,71 +935,21 @@
 </section>
 
 <section id="vender">
-  <h2 class="section-title">Anunciar minha <span>moto</span></h2>
-
-  <p class="section-text">
-    Preencha os dados abaixo. A página monta uma mensagem pronta para enviar para a equipe.
-  </p>
-
-  <div class="form-box">
-    <div class="form-grid">
-      <div>
-        <label>Nome do vendedor</label>
-        <input id="nome" type="text" placeholder="Seu nome">
-      </div>
-
-      <div>
-        <label>WhatsApp</label>
-        <input id="telefone" type="text" placeholder="Seu telefone">
-      </div>
-
-      <div>
-        <label>Cidade/Estado</label>
-        <input id="cidade" type="text" placeholder="Ex: Uberlândia-MG">
-      </div>
-
-      <div>
-        <label>Marca</label>
-        <input id="marcaMoto" type="text" placeholder="Ex: Honda, Yamaha, KTM...">
-      </div>
-
-      <div>
-        <label>Modelo</label>
-        <input id="modelo" type="text" placeholder="Ex: CRF 250R">
-      </div>
-
-      <div>
-        <label>Ano</label>
-        <input id="ano" type="text" placeholder="Ex: 2022">
-      </div>
-
-      <div>
-        <label>Cilindrada</label>
-        <input id="cilindrada" type="text" placeholder="Ex: 250cc">
-      </div>
-
-      <div>
-        <label>Valor desejado</label>
-        <input id="valor" type="text" placeholder="Ex: R$ 35.000">
-      </div>
-
-      <div class="full">
-        <label>Descrição da moto</label>
-        <textarea id="descricao" placeholder="Estado geral, peças, preparação, manutenção, motivo da venda..."></textarea>
-      </div>
-
-      <div class="full">
-        <label>Observações</label>
-        <textarea id="obs" placeholder="Tem nota? Documento? Aceita troca? Envia fotos depois?"></textarea>
-      </div>
+  <div class="seller-promo">
+    <div class="badge">PARA VENDEDORES</div>
+    <h2 class="section-title">Quer anunciar sua <span>moto?</span></h2>
+    <p class="section-text">
+      Conheça os formatos de anúncio, serviços de divulgação e venda assistida. A página explica os valores e prepara o envio dos dados pelo WhatsApp.
+    </p>
+    <div class="seller-benefits">
+      <span>Card profissional</span>
+      <span>Público do motocross</span>
+      <span>Planos transparentes</span>
     </div>
-
     <div class="buttons">
-      <button class="btn btn-primary" onclick="montarMensagemVenda()">Gerar mensagem</button>
-      <button class="btn btn-whats" onclick="enviarParaTodos()">Enviar para equipe</button>
+      <a class="btn btn-whats" href="anuncie-sua-moto.html">Conhecer planos e anunciar</a>
+      <a class="btn btn-secondary" href="anuncie-sua-moto.html#cadastro">Ir direto ao cadastro</a>
     </div>
-
-    <div id="preview" class="preview">A mensagem aparecerá aqui.</div>
   </div>
 </section>
 
@@ -947,22 +961,17 @@
 
   <div class="buttons" style="max-width:720px;margin:0 auto;">
     <a class="btn btn-primary" href="#motos">Ver motos</a>
+    <a class="btn btn-whats" href="anuncie-sua-moto.html">Anunciar minha moto</a>
     <a class="btn btn-secondary" href="https://jardinagemudi.com.br/flavinhomx.html">Voltar para Home</a>
   </div>
 </section>
 
 <footer>
   Motos MX • Flavim Junior 100 • Compra e venda de motos de motocross<br>
-  Instagram: @eaiflavim
+  Instagram: <a href="https://www.instagram.com/eaiflavim" target="_blank" rel="noopener">@eaiflavim</a> • <a href="anuncie-sua-moto.html">Anuncie sua moto</a>
 </footer>
 
 <script>
-  const numerosEquipe = [
-    "5534992142960", // Adriano
-    "553492430960", // Flavim
-    "553499924481"  // Mateus
-  ];
-
   const numeroFlavim = "553492430960";
 
   const searchInput = document.getElementById("searchInput");
@@ -970,12 +979,15 @@
   const ccFilter = document.getElementById("ccFilter");
   const regionFilter = document.getElementById("regionFilter");
   const cards = document.querySelectorAll(".bike-card");
+  const resultsCount = document.getElementById("resultsCount");
 
   function filterBikes(){
     const search = searchInput.value.toLowerCase();
     const brand = brandFilter.value;
     const cc = ccFilter.value;
     const region = regionFilter.value;
+
+    let visible = 0;
 
     cards.forEach(card => {
       const text = card.innerText.toLowerCase();
@@ -988,8 +1000,21 @@
       const matchCc = cc === "" || cardCc === cc;
       const matchRegion = region === "" || cardRegion === region;
 
-      card.style.display = matchSearch && matchBrand && matchCc && matchRegion ? "block" : "none";
+      const show = matchSearch && matchBrand && matchCc && matchRegion;
+      card.style.display = show ? "block" : "none";
+      if(show) visible++;
     });
+
+    resultsCount.textContent = `${visible} ${visible === 1 ? "moto encontrada" : "motos encontradas"}`;
+  }
+
+  function clearFilters(){
+    searchInput.value = "";
+    brandFilter.value = "";
+    ccFilter.value = "";
+    regionFilter.value = "";
+    filterBikes();
+    searchInput.focus();
   }
 
   searchInput.addEventListener("input", filterBikes);
@@ -1020,52 +1045,6 @@ ${moto}
 Gostaria de receber mais fotos, valor atualizado, localização e detalhes da moto.`;
 
     abrirWhatsApp(numeroFlavim, texto);
-  }
-
-  function campo(id){
-    return document.getElementById(id).value.trim() || "Não informado";
-  }
-
-  function criarMensagemVenda(){
-    return `Olá! Quero anunciar uma moto no site Flavim Junior 100.
-
-DADOS DO VENDEDOR
-Nome: ${campo("nome")}
-WhatsApp: ${campo("telefone")}
-Cidade/Estado: ${campo("cidade")}
-
-DADOS DA MOTO
-Marca: ${campo("marcaMoto")}
-Modelo: ${campo("modelo")}
-Ano: ${campo("ano")}
-Cilindrada: ${campo("cilindrada")}
-Valor desejado: ${campo("valor")}
-
-DESCRIÇÃO
-${campo("descricao")}
-
-OBSERVAÇÕES
-${campo("obs")}
-
-Gostaria de enviar fotos e saber os próximos passos para anunciar.`;
-  }
-
-  function montarMensagemVenda(){
-    const texto = criarMensagemVenda();
-    document.getElementById("preview").textContent = texto;
-    return texto;
-  }
-
-  function enviarParaTodos(){
-    const texto = montarMensagemVenda();
-
-    alert("Serão abertas 3 conversas no WhatsApp: Adriano, Flavim e Mateus. Confirme o envio em cada uma.");
-
-    numerosEquipe.forEach((numero, index) => {
-      setTimeout(() => {
-        abrirWhatsApp(numero, texto);
-      }, index * 700);
-    });
   }
 
   document.querySelectorAll('.photo img').forEach(img => {
