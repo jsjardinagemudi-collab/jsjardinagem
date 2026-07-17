@@ -573,6 +573,89 @@
       font-weight:1000;
     }
 
+
+    .service-summary{
+      display:grid;
+      gap:14px;
+    }
+
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+
+    .summary-box{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+      padding:13px;
+    }
+
+    .summary-box .k{
+      margin:0 0 6px;
+      color:#667085;
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.2px;
+    }
+
+    .summary-box .v{
+      margin:0;
+      color:var(--ink);
+      font-size:16px;
+      line-height:1.35;
+      font-weight:1000;
+      word-break:break-word;
+    }
+
+    .summary-box.good .v{color:#027a48}
+    .summary-box.warn .v{color:#b54708}
+    .summary-box.pri .v{color:var(--pri)}
+
+    .details-toggle-wrap{
+      display:flex;
+      justify-content:center;
+      padding-top:2px;
+    }
+
+    .btn-details{
+      width:min(420px,100%);
+      background:#eef4ff;
+      border-color:#bdd4ff;
+      color:var(--pri);
+    }
+
+    .btn-details:hover{
+      background:#e4efff;
+    }
+
+    .btn-details .arrow{
+      display:inline-block;
+      transition:transform .22s ease;
+    }
+
+    .btn-details[aria-expanded="true"] .arrow{
+      transform:rotate(180deg);
+    }
+
+    .service-details{
+      display:grid;
+      gap:16px;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transform:translateY(-6px);
+      transition:max-height .45s ease, opacity .25s ease, transform .25s ease;
+    }
+
+    .service-details.open{
+      max-height:5000px;
+      opacity:1;
+      transform:translateY(0);
+    }
+
     .finance-panel{
       border:1px solid #dbe6ff;
       border-radius:16px;
@@ -963,6 +1046,7 @@
       .finance-summary,
       .team-pay-grid,
       .transfer-hero,
+      .summary-grid,
       .foot{
         grid-template-columns:1fr;
       }
@@ -1038,7 +1122,7 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V4.1</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V4.2</span>
           </div>
         </div>
 
@@ -1609,7 +1693,46 @@
       };
     }
 
-    function buildFinancePanel(row) {
+    function buildTransferHero(row) {
+      const finance = calculateFinance(row);
+
+      const origemTransferencia = finance.transferenciaInformada > 0
+        ? 'Valor oficial informado pela planilha'
+        : 'Calculado pelo portal: comissão + equipe + verbas operacionais';
+
+      return `
+        <div class="transfer-hero">
+          <div>
+            <p class="eyebrow">💰 Total previsto para receber e administrar</p>
+            <p class="amount">${formatBRL(finance.totalTransferencia)}</p>
+            <p class="caption">
+              ${origemTransferencia}. Parte deste valor é destinada à equipe e às despesas do serviço.
+            </p>
+          </div>
+
+          <div class="transfer-breakdown">
+            <div class="transfer-mini">
+              <small>Ganho próprio estimado</small>
+              <strong>${formatBRL(finance.ganhoProprioEstimado)}</strong>
+            </div>
+            <div class="transfer-mini">
+              <small>Valor sob gestão</small>
+              <strong>${formatBRL(finance.valorSobGestao)}</strong>
+            </div>
+            <div class="transfer-mini">
+              <small>Comissão do parceiro</small>
+              <strong>${formatBRL(finance.valorParceiro)}</strong>
+            </div>
+            <div class="transfer-mini">
+              <small>Pagamento como líder</small>
+              <strong>${formatBRL(finance.valorLiderNoServico)}</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildFinanceDetails(row) {
       const finance = calculateFinance(row);
 
       const rolesHtml = finance.roles.map(role => `
@@ -1623,42 +1746,8 @@
         </div>
       `).join('');
 
-      const origemTransferencia = finance.transferenciaInformada > 0
-        ? 'Valor oficial informado pela planilha'
-        : 'Calculado pelo portal: comissão + equipe + verbas operacionais';
-
       return `
         <div class="finance-panel">
-          <div class="transfer-hero">
-            <div>
-              <p class="eyebrow">💰 Total previsto para receber e administrar</p>
-              <p class="amount">${formatBRL(finance.totalTransferencia)}</p>
-              <p class="caption">
-                ${origemTransferencia}. Esse total não representa lucro integral:
-                parte dele é destinada à equipe e às despesas do serviço.
-              </p>
-            </div>
-
-            <div class="transfer-breakdown">
-              <div class="transfer-mini">
-                <small>Ganho próprio estimado</small>
-                <strong>${formatBRL(finance.ganhoProprioEstimado)}</strong>
-              </div>
-              <div class="transfer-mini">
-                <small>Valor sob gestão</small>
-                <strong>${formatBRL(finance.valorSobGestao)}</strong>
-              </div>
-              <div class="transfer-mini">
-                <small>Comissão do parceiro</small>
-                <strong>${formatBRL(finance.valorParceiro)}</strong>
-              </div>
-              <div class="transfer-mini">
-                <small>Pagamento como líder</small>
-                <strong>${formatBRL(finance.valorLiderNoServico)}</strong>
-              </div>
-            </div>
-          </div>
-
           <h4 class="finance-title">
             💼 Composição financeira do serviço
             <span>Mão de obra: ${finance.percMaoObra.toFixed(1).replace('.', ',')}% do serviço</span>
@@ -1888,7 +1977,9 @@
         const precoFinal = formatBRL(parseBRNumber(row.PRECO_FINAL));
         const valorParceiro = formatBRL(parseBRNumber(row.VALOR_PARCEIRO));
         const extraTags = buildExtraTags(row);
-        const financeHtml = buildFinancePanel(row);
+        const finance = calculateFinance(row);
+        const transferHeroHtml = buildTransferHero(row);
+        const financeDetailsHtml = buildFinanceDetails(row);
 
         const safeResumo = escapeHtml(buildResumo(row));
         const safeId = escapeHtml(getServiceLookupId(row) || '');
@@ -1919,61 +2010,101 @@
               ${extraTags}
             </div>
 
-            ${financeHtml}
+            <div class="service-summary">
+              ${transferHeroHtml}
 
-            <div class="service-grid">
-              <div class="mini">
-                <p class="k">Descrição</p>
-                <p class="v">${escapeHtml(row.DESCRICAO || '—')}</p>
+              <div class="summary-grid">
+                <div class="summary-box pri">
+                  <p class="k">Descrição</p>
+                  <p class="v">${escapeHtml(row.DESCRICAO || '—')}</p>
+                </div>
+
+                <div class="summary-box">
+                  <p class="k">Equipe e duração</p>
+                  <p class="v">${escapeHtml(row.EQUIPE_TOTAL || '0')} pessoa(s) • ${escapeHtml(row.HORAS || '0')}h</p>
+                </div>
+
+                <div class="summary-box good">
+                  <p class="k">Ganho próprio estimado</p>
+                  <p class="v">${formatBRL(finance.ganhoProprioEstimado)}</p>
+                </div>
+
+                <div class="summary-box warn">
+                  <p class="k">Verba para materiais</p>
+                  <p class="v">${formatBRL(finance.verbaMateriais)}</p>
+                </div>
               </div>
 
-              <div class="mini">
-                <p class="k">Preço final</p>
-                <p class="v">${precoFinal}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Total a receber</p>
-                <p class="v" style="color:#027a48">${formatBRL(calculateFinance(row).totalTransferencia)}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Verba para materiais</p>
-                <p class="v" style="color:#b54708">${formatBRL(calculateFinance(row).verbaMateriais)}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Comissão do parceiro</p>
-                <p class="v" style="color:#027a48">${valorParceiro}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Próxima ação</p>
-                <p class="v">${escapeHtml(row.PROXIMA_ACAO || '—')}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Qtd. líder</p>
-                <p class="v">${escapeHtml(row.QTD_LIDER || '0')}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Qtd. jardineiro</p>
-                <p class="v">${escapeHtml(row.QTD_JARDINEIRO || '0')}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Qtd. auxiliar</p>
-                <p class="v">${escapeHtml(row.QTD_AUXILIAR || '0')}</p>
-              </div>
-
-              <div class="mini">
-                <p class="k">Abrir localização</p>
-                <p class="v">${finalMapsLink ? 'Link disponível' : 'Sem link'}</p>
+              <div class="details-toggle-wrap">
+                <button
+                  class="btn btn-details"
+                  type="button"
+                  data-toggle-details="${index}"
+                  aria-expanded="false"
+                  aria-controls="service-details-${index}"
+                >
+                  <span data-toggle-label>Mostrar mais informações</span>
+                  <span class="arrow">⌄</span>
+                </button>
               </div>
             </div>
 
-            <div class="participation-box">
+            <div class="service-details" id="service-details-${index}">
+              ${financeDetailsHtml}
+
+              <div class="service-grid">
+                <div class="mini">
+                  <p class="k">Descrição completa</p>
+                  <p class="v">${escapeHtml(row.DESCRICAO || '—')}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Preço final</p>
+                  <p class="v">${precoFinal}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Total a receber</p>
+                  <p class="v" style="color:#027a48">${formatBRL(finance.totalTransferencia)}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Verba para materiais</p>
+                  <p class="v" style="color:#b54708">${formatBRL(finance.verbaMateriais)}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Comissão do parceiro</p>
+                  <p class="v" style="color:#027a48">${valorParceiro}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Próxima ação</p>
+                  <p class="v">${escapeHtml(row.PROXIMA_ACAO || '—')}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Qtd. líder</p>
+                  <p class="v">${escapeHtml(row.QTD_LIDER || '0')}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Qtd. jardineiro</p>
+                  <p class="v">${escapeHtml(row.QTD_JARDINEIRO || '0')}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Qtd. auxiliar</p>
+                  <p class="v">${escapeHtml(row.QTD_AUXILIAR || '0')}</p>
+                </div>
+
+                <div class="mini">
+                  <p class="k">Localização</p>
+                  <p class="v">${finalMapsLink ? 'Link disponível' : 'Sem link'}</p>
+                </div>
+              </div>
+
+              <div class="participation-box">
               <h4>Como você quer participar deste serviço?</h4>
               <p>
                 Reserve uma vaga para demonstrar interesse como integrante da equipe.
@@ -2022,6 +2153,7 @@
 
 
             </div>
+            </div>
           </article>
         `;
       }).join('');
@@ -2030,6 +2162,24 @@
     }
 
     function bindCardActions(rows) {
+      document.querySelectorAll('[data-toggle-details]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const index = btn.getAttribute('data-toggle-details');
+          const details = document.getElementById(`service-details-${index}`);
+          if (!details) return;
+
+          const isOpen = details.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+
+          const label = btn.querySelector('[data-toggle-label]');
+          if (label) {
+            label.textContent = isOpen
+              ? 'Ocultar informações'
+              : 'Mostrar mais informações';
+          }
+        });
+      });
+
       document.querySelectorAll('[data-copy-id]').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.getAttribute('data-copy-id') || '';
