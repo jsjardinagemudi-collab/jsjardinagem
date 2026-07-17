@@ -508,6 +508,71 @@
 
 
 
+    .transfer-hero{
+      border-radius:18px;
+      padding:20px;
+      background:linear-gradient(135deg,#0f7a45,#0a5f38);
+      color:#fff;
+      box-shadow:0 14px 30px rgba(2,122,72,.18);
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:center;
+    }
+
+    .transfer-hero .eyebrow{
+      margin:0 0 7px;
+      font-size:11px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.35px;
+      opacity:.9;
+    }
+
+    .transfer-hero .amount{
+      margin:0;
+      font-size:clamp(30px,4vw,44px);
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .transfer-hero .caption{
+      margin:9px 0 0;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:800;
+      opacity:.96;
+    }
+
+    .transfer-breakdown{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .transfer-mini{
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(255,255,255,.1);
+      border-radius:13px;
+      padding:12px;
+    }
+
+    .transfer-mini small{
+      display:block;
+      font-size:10px;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.25px;
+      opacity:.88;
+      margin-bottom:4px;
+    }
+
+    .transfer-mini strong{
+      font-size:17px;
+      line-height:1.15;
+      font-weight:1000;
+    }
+
     .finance-panel{
       border:1px solid #dbe6ff;
       border-radius:16px;
@@ -897,6 +962,7 @@
       .service-grid,
       .finance-summary,
       .team-pay-grid,
+      .transfer-hero,
       .foot{
         grid-template-columns:1fr;
       }
@@ -920,7 +986,8 @@
         flex-direction:column;
       }
 
-      .participation-actions{
+      .participation-actions,
+      .transfer-breakdown{
         grid-template-columns:1fr;
       }
 
@@ -971,7 +1038,7 @@
           <div class="brand-logo">JS</div>
           <div>
             <strong>JS JARDINAGEM</strong>
-            <span>Portal do Jardineiro • Serviços Disponíveis V4.0</span>
+            <span>Portal do Jardineiro • Serviços Disponíveis V4.1</span>
           </div>
         </div>
 
@@ -1048,6 +1115,7 @@
             <label for="sortFilter">Ordenar por</label>
             <select id="sortFilter">
               <option value="dateAsc">Data mais próxima</option>
+              <option value="transferDesc">Maior valor a receber</option>
               <option value="partnerDesc">Maior comissão do parceiro</option>
               <option value="priceDesc">Maior preço final</option>
               <option value="teamDesc">Maior equipe</option>
@@ -1075,9 +1143,9 @@
           </div>
 
           <div class="card stat">
-            <p class="k">Maior preço final</p>
-            <p class="v" id="statMaiorPreco">R$ 0,00</p>
-            <p class="s">Maior valor total entre os serviços exibidos.</p>
+            <p class="k">Maior valor a receber</p>
+            <p class="v" id="statMaiorTransferencia">R$ 0,00</p>
+            <p class="s">Maior transferência prevista para o líder executar o serviço.</p>
           </div>
 
           <div class="card stat">
@@ -1183,7 +1251,7 @@
       reloadBtn: document.getElementById('reloadBtn'),
       statTotal: document.getElementById('statTotal'),
       statMaiorParceiro: document.getElementById('statMaiorParceiro'),
-      statMaiorPreco: document.getElementById('statMaiorPreco'),
+      statMaiorTransferencia: document.getElementById('statMaiorTransferencia'),
       statMediaParceiro: document.getElementById('statMediaParceiro'),
       toastWrap: document.getElementById('toastWrap'),
       streetModal: document.getElementById('streetModal'),
@@ -1462,6 +1530,28 @@
       const baseOperacional = materialEquipamento > 0 ? materialEquipamento : custoOperacionalPlanilha;
 
       const custosOperacionais = baseOperacional + gasolina + retiradaLixo + custoRiscos;
+      const verbaMateriais = material;
+      const verbaEquipamentos = equipamento;
+      const verbaOperacional = custosOperacionais;
+
+      const transferenciaInformada = firstAvailableNumber(
+        row,
+        ['VALOR_TRANSFERENCIA_PARCEIRO','TOTAL_TRANSFERENCIA_PARCEIRO','VALOR_A_RECEBER_PARCEIRO'],
+        0
+      );
+
+      const transferenciaCalculada =
+        valorParceiro +
+        totalEquipe +
+        verbaOperacional;
+
+      const totalTransferencia = transferenciaInformada > 0
+        ? transferenciaInformada
+        : transferenciaCalculada;
+
+      const valorLiderNoServico = totalLider;
+      const ganhoProprioEstimado = valorParceiro + valorLiderNoServico;
+      const valorSobGestao = totalEquipe + verbaOperacional;
       const percMaoObra = precoFinal > 0 ? (totalEquipe / precoFinal) * 100 : 0;
 
       return {
@@ -1475,6 +1565,14 @@
         gasolina,
         retiradaLixo,
         custoRiscos,
+        verbaMateriais,
+        verbaEquipamentos,
+        verbaOperacional,
+        totalTransferencia,
+        transferenciaInformada,
+        ganhoProprioEstimado,
+        valorLiderNoServico,
+        valorSobGestao,
         percMaoObra,
         roles: [
           {
@@ -1513,6 +1611,7 @@
 
     function buildFinancePanel(row) {
       const finance = calculateFinance(row);
+
       const rolesHtml = finance.roles.map(role => `
         <div class="pay-card">
           <small>${role.emoji} ${escapeHtml(role.label)}</small>
@@ -1524,10 +1623,44 @@
         </div>
       `).join('');
 
+      const origemTransferencia = finance.transferenciaInformada > 0
+        ? 'Valor oficial informado pela planilha'
+        : 'Calculado pelo portal: comissão + equipe + verbas operacionais';
+
       return `
         <div class="finance-panel">
+          <div class="transfer-hero">
+            <div>
+              <p class="eyebrow">💰 Total previsto para receber e administrar</p>
+              <p class="amount">${formatBRL(finance.totalTransferencia)}</p>
+              <p class="caption">
+                ${origemTransferencia}. Esse total não representa lucro integral:
+                parte dele é destinada à equipe e às despesas do serviço.
+              </p>
+            </div>
+
+            <div class="transfer-breakdown">
+              <div class="transfer-mini">
+                <small>Ganho próprio estimado</small>
+                <strong>${formatBRL(finance.ganhoProprioEstimado)}</strong>
+              </div>
+              <div class="transfer-mini">
+                <small>Valor sob gestão</small>
+                <strong>${formatBRL(finance.valorSobGestao)}</strong>
+              </div>
+              <div class="transfer-mini">
+                <small>Comissão do parceiro</small>
+                <strong>${formatBRL(finance.valorParceiro)}</strong>
+              </div>
+              <div class="transfer-mini">
+                <small>Pagamento como líder</small>
+                <strong>${formatBRL(finance.valorLiderNoServico)}</strong>
+              </div>
+            </div>
+          </div>
+
           <h4 class="finance-title">
-            💰 Ganhos e custos do serviço
+            💼 Composição financeira do serviço
             <span>Mão de obra: ${finance.percMaoObra.toFixed(1).replace('.', ',')}% do serviço</span>
           </h4>
 
@@ -1543,13 +1676,45 @@
             </div>
 
             <div class="finance-box good">
-              <p class="k">Pagamento equipe</p>
+              <p class="k">Pagamento da equipe</p>
               <p class="v">${formatBRL(finance.totalEquipe)}</p>
             </div>
 
             <div class="finance-box warn">
-              <p class="k">Custos operacionais</p>
-              <p class="v">${formatBRL(finance.custosOperacionais)}</p>
+              <p class="k">Verbas operacionais</p>
+              <p class="v">${formatBRL(finance.verbaOperacional)}</p>
+            </div>
+          </div>
+
+          <div class="finance-summary">
+            <div class="finance-box good">
+              <p class="k">Verba para materiais</p>
+              <p class="v">${formatBRL(finance.verbaMateriais)}</p>
+            </div>
+
+            <div class="finance-box">
+              <p class="k">Equipamentos / locação</p>
+              <p class="v">${formatBRL(finance.verbaEquipamentos)}</p>
+            </div>
+
+            <div class="finance-box">
+              <p class="k">Gasolina</p>
+              <p class="v">${formatBRL(finance.gasolina)}</p>
+            </div>
+
+            <div class="finance-box">
+              <p class="k">Retirada de resíduos</p>
+              <p class="v">${formatBRL(finance.retiradaLixo)}</p>
+            </div>
+
+            <div class="finance-box">
+              <p class="k">Reserva para riscos</p>
+              <p class="v">${formatBRL(finance.custoRiscos)}</p>
+            </div>
+
+            <div class="finance-box pri">
+              <p class="k">Total sob responsabilidade</p>
+              <p class="v">${formatBRL(finance.valorSobGestao)}</p>
             </div>
           </div>
 
@@ -1564,13 +1729,18 @@
           </div>
 
           <p class="finance-note">
-            Base V3.0 usada pelo portal: Líder ${formatBRL(CONFIG.diarias.lider)}/${CONFIG.horasDiaria}h, Jardineiro ${formatBRL(CONFIG.diarias.jardineiro)}/${CONFIG.horasDiaria}h e Auxiliar ${formatBRL(CONFIG.diarias.auxiliar)}/${CONFIG.horasDiaria}h. O valor principal de cada cargo mostra quanto cada pessoa recebe pelo serviço.
+            O líder recebe e administra o valor total indicado. A verba para materiais,
+            equipamentos, gasolina, retirada de resíduos, riscos e pagamentos da equipe
+            deve ser usada exclusivamente na execução do serviço. O ganho próprio estimado
+            considera a comissão do parceiro somada ao pagamento do cargo de líder.
           </p>
         </div>
       `;
     }
 
     function buildResumo(row) {
+      const finance = calculateFinance(row);
+
       return [
         `ID: ${row.ID_SHORT || '—'}`,
         `Data: ${row.DATA_SERVICO || '—'}`,
@@ -1581,15 +1751,21 @@
         `Equipe total: ${row.EQUIPE_TOTAL || '0'}`,
         `Horas: ${row.HORAS || '0'}`,
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
-        `Comissão do parceiro: ${row.VALOR_PARCEIRO || 'R$ 0,00'}`,
-        `Pagamento equipe: ${formatBRL(calculateFinance(row).totalEquipe)}`,
-        `Líder por pessoa: ${formatBRL(calculateFinance(row).roles[0].valorPessoa)}`,
-        `Líder total cargo: ${formatBRL(calculateFinance(row).roles[0].total)}`,
-        `Jardineiro por pessoa: ${formatBRL(calculateFinance(row).roles[1].valorPessoa)}`,
-        `Jardineiro total cargo: ${formatBRL(calculateFinance(row).roles[1].total)}`,
-        `Auxiliar por pessoa: ${formatBRL(calculateFinance(row).roles[2].valorPessoa)}`,
-        `Auxiliar total cargo: ${formatBRL(calculateFinance(row).roles[2].total)}`,
-        `Custos operacionais: ${formatBRL(calculateFinance(row).custosOperacionais)}`,
+        `TOTAL A RECEBER E ADMINISTRAR: ${formatBRL(finance.totalTransferencia)}`,
+        `Ganho próprio estimado: ${formatBRL(finance.ganhoProprioEstimado)}`,
+        `Comissão do parceiro: ${formatBRL(finance.valorParceiro)}`,
+        `Pagamento como líder: ${formatBRL(finance.valorLiderNoServico)}`,
+        `Pagamento total da equipe: ${formatBRL(finance.totalEquipe)}`,
+        `Verba para materiais: ${formatBRL(finance.verbaMateriais)}`,
+        `Equipamentos / locação: ${formatBRL(finance.verbaEquipamentos)}`,
+        `Gasolina: ${formatBRL(finance.gasolina)}`,
+        `Retirada de resíduos: ${formatBRL(finance.retiradaLixo)}`,
+        `Reserva para riscos: ${formatBRL(finance.custoRiscos)}`,
+        `Total de verbas operacionais: ${formatBRL(finance.verbaOperacional)}`,
+        `Total sob responsabilidade do líder: ${formatBRL(finance.valorSobGestao)}`,
+        `Líder por pessoa: ${formatBRL(finance.roles[0].valorPessoa)}`,
+        `Jardineiro por pessoa: ${formatBRL(finance.roles[1].valorPessoa)}`,
+        `Auxiliar por pessoa: ${formatBRL(finance.roles[2].valorPessoa)}`,
         `Tipo de parceria: ${row.TIPO_PARCERIA || '—'}`,
         `Próxima ação: ${row.PROXIMA_ACAO || '—'}`,
         `Endereço: ${row.ENDERECO_TEXTO || '—'}`,
@@ -1658,6 +1834,7 @@
       });
 
       filteredRows.sort((a, b) => {
+        if (sort === 'transferDesc') return calculateFinance(b).totalTransferencia - calculateFinance(a).totalTransferencia;
         if (sort === 'partnerDesc') return parseBRNumber(b.VALOR_PARCEIRO) - parseBRNumber(a.VALOR_PARCEIRO);
         if (sort === 'priceDesc') return parseBRNumber(b.PRECO_FINAL) - parseBRNumber(a.PRECO_FINAL);
         if (sort === 'teamDesc') return parseBRNumber(b.EQUIPE_TOTAL) - parseBRNumber(a.EQUIPE_TOTAL);
@@ -1675,14 +1852,16 @@
     function renderStats(rows) {
       const total = rows.length;
       const maxParceiro = rows.length ? Math.max(...rows.map(r => parseBRNumber(r.VALOR_PARCEIRO))) : 0;
-      const maxPreco = rows.length ? Math.max(...rows.map(r => parseBRNumber(r.PRECO_FINAL))) : 0;
+      const maxTransferencia = rows.length
+        ? Math.max(...rows.map(r => calculateFinance(r).totalTransferencia))
+        : 0;
       const mediaParceiro = rows.length
         ? rows.reduce((sum, r) => sum + parseBRNumber(r.VALOR_PARCEIRO), 0) / rows.length
         : 0;
 
       els.statTotal.textContent = String(total);
       els.statMaiorParceiro.textContent = formatBRL(maxParceiro);
-      els.statMaiorPreco.textContent = formatBRL(maxPreco);
+      els.statMaiorTransferencia.textContent = formatBRL(maxTransferencia);
       els.statMediaParceiro.textContent = formatBRL(mediaParceiro);
     }
 
@@ -1751,6 +1930,16 @@
               <div class="mini">
                 <p class="k">Preço final</p>
                 <p class="v">${precoFinal}</p>
+              </div>
+
+              <div class="mini">
+                <p class="k">Total a receber</p>
+                <p class="v" style="color:#027a48">${formatBRL(calculateFinance(row).totalTransferencia)}</p>
+              </div>
+
+              <div class="mini">
+                <p class="k">Verba para materiais</p>
+                <p class="v" style="color:#b54708">${formatBRL(calculateFinance(row).verbaMateriais)}</p>
               </div>
 
               <div class="mini">
