@@ -779,6 +779,29 @@
       font-size:13px;
     }
 
+    .service-date{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      margin:10px 0 8px;
+      padding:10px 14px;
+      border:1px solid #b9d2ff;
+      border-radius:13px;
+      background:linear-gradient(135deg,#eef4ff,#f8fbff);
+      color:var(--pri);
+      box-shadow:0 5px 14px rgba(17,64,132,.08);
+      font-size:15px;
+      font-weight:1000;
+    }
+
+    .service-date small{
+      color:#667085;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+    }
+
     .money-overview{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
@@ -1528,10 +1551,18 @@
 
     function parseDateBR(value) {
       if (!value) return null;
-      const m = String(value).trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-      if (!m) return null;
-      const [, d, mo, y] = m;
-      return new Date(Number(y), Number(mo) - 1, Number(d));
+      const raw = String(value).trim();
+      const br = raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+      if (br) {
+        const [, d, mo, y] = br;
+        return new Date(Number(y), Number(mo) - 1, Number(d));
+      }
+      const iso = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+      if (iso) {
+        const [, y, mo, d] = iso;
+        return new Date(Number(y), Number(mo) - 1, Number(d));
+      }
+      return null;
     }
 
     function formatDateLong(value) {
@@ -1605,12 +1636,16 @@
       return digits.startsWith('55') ? digits : `55${digits}`;
     }
 
+    function getIdCalculo(row) {
+      return String(row.ID_CALCULO || '').trim();
+    }
+
     function getServiceLookupId(row) {
-      const candidates = [row.ID_SHORT, row.ID_SERVICO, row.CHAVE_SERVICO, row.ID_CALCULO];
+      const candidates = [row.ID_CALCULO, row.ID_SERVICO, row.CHAVE_SERVICO, row.ID_SHORT];
       const clean = candidates
         .map(v => String(v || '').trim())
         .find(v => v && !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v));
-      return clean || String(row.ID_SERVICO || row.CHAVE_SERVICO || row.ID_CALCULO || row.ID_SHORT || '').trim();
+      return clean || String(row.ID_CALCULO || row.ID_SERVICO || row.CHAVE_SERVICO || row.ID_SHORT || '').trim();
     }
 
     function buildInteresseServicoLink(row) {
@@ -1662,11 +1697,10 @@
       const totalEquipe = totalLider + totalJardineiro + totalAuxiliar;
       const precoFinal = parseBRNumber(row.PRECO_FINAL);
       const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
-      const valorImposto = firstAvailableNumber(
-        row,
-        ['VALOR_IMPOSTO','IMPOSTO','RESERVA_IMPOSTO','IMPOSTOS'],
-        0
-      );
+      // O imposto é sempre 6% do valor total e sai antes da divisão do lucro.
+      const aliquotaImposto = 0.06;
+      const valorImposto = Math.max(precoFinal * aliquotaImposto, 0);
+      const valorLiquidoAposImposto = Math.max(precoFinal - valorImposto, 0);
       const material = firstAvailableNumber(row, ['MATERIAL','CUSTO_MATERIAL'], 0);
       const equipamento = firstAvailableNumber(row, ['EQUIPAMENTO_LOCACAO','EQUIPAMENTO','LOCACAO','CUSTO_EQUIPAMENTO'], 0);
 
@@ -1713,8 +1747,12 @@
         ['COMISSAO_JS','VALOR_COMISSAO_JS','COMISSAO_RETIDA_JS','RESULTADO_JS'],
         0
       );
-      const comissaoJsCalculada = Math.max(precoFinal - totalTransferencia - valorImposto, 0);
-      const comissaoJs = comissaoJsInformada > 0 ? comissaoJsInformada : comissaoJsCalculada;
+      const comissaoJsCalculada = Math.max(valorLiquidoAposImposto - totalTransferencia, 0);
+      // A comissão é calculada sobre o saldo já líquido de imposto. Um valor
+      // informado na planilha nunca pode ultrapassar esse saldo disponível.
+      const comissaoJs = comissaoJsInformada > 0
+        ? Math.min(comissaoJsInformada, Math.max(valorLiquidoAposImposto - totalTransferencia, 0))
+        : comissaoJsCalculada;
 
       const valorLiderNoServico = totalLider;
       const ganhoProprioEstimado = valorParceiro + valorLiderNoServico;
@@ -1726,6 +1764,8 @@
         precoFinal,
         valorParceiro,
         valorImposto,
+        aliquotaImposto,
+        valorLiquidoAposImposto,
         comissaoJs,
         comissaoJsInformada,
         totalEquipe,
@@ -1800,9 +1840,9 @@
             <span>Valor que permanece com a JS.</span>
           </div>
           <div class="money-overview-card tax">
-            <small>Reserva para imposto</small>
+            <small>Imposto (6% do total)</small>
             <strong>${formatBRL(finance.valorImposto)}</strong>
-            <span>Valor separado para obrigações fiscais.</span>
+            <span>Descontado antes da repartição do lucro.</span>
           </div>
         </div>
         <p class="decision-note"><strong>Em resumo:</strong> ao assumir como líder, você administra ${formatBRL(finance.totalTransferencia)}. Consulte “Ver mais detalhes” antes de aceitar para conferir equipe, materiais e demais custos.</p>
@@ -1847,8 +1887,13 @@
             </div>
 
             <div class="finance-box">
-              <p class="k">Reserva para imposto</p>
+              <p class="k">Imposto — 6% do total</p>
               <p class="v">${formatBRL(finance.valorImposto)}</p>
+            </div>
+
+            <div class="finance-box pri">
+              <p class="k">Saldo após imposto</p>
+              <p class="v">${formatBRL(finance.valorLiquidoAposImposto)}</p>
             </div>
 
             <div class="finance-box good">
@@ -1923,7 +1968,7 @@
       const finance = calculateFinance(row);
 
       return [
-        `ID: ${row.ID_SHORT || '—'}`,
+        `ID_CALCULO: ${getIdCalculo(row) || '—'}`,
         `Data: ${row.DATA_SERVICO || '—'}`,
         `Cliente: ${row.CLIENTE || '—'}`,
         `Bairro: ${row.BAIRRO || '—'}`,
@@ -1934,7 +1979,8 @@
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
         `TOTAL A RECEBER E ADMINISTRAR: ${formatBRL(finance.totalTransferencia)}`,
         `Comissão retida pela JS: ${formatBRL(finance.comissaoJs)}`,
-        `Reserva para imposto: ${formatBRL(finance.valorImposto)}`,
+        `Imposto (6% do total, descontado antes da divisão): ${formatBRL(finance.valorImposto)}`,
+        `Saldo após imposto: ${formatBRL(finance.valorLiquidoAposImposto)}`,
         `Ganho próprio estimado: ${formatBRL(finance.ganhoProprioEstimado)}`,
         `Comissão do parceiro: ${formatBRL(finance.valorParceiro)}`,
         `Pagamento como líder: ${formatBRL(finance.valorLiderNoServico)}`,
@@ -2076,7 +2122,7 @@
         const financeDetailsHtml = buildFinanceDetails(row);
 
         const safeResumo = escapeHtml(buildResumo(row));
-        const safeId = escapeHtml(getServiceLookupId(row) || '');
+        const safeIdCalculo = escapeHtml(getIdCalculo(row) || '');
         const interesseLink = buildInteresseServicoLink(row);
         const liderLink = buildLiderServicoLink(row);
 
@@ -2084,11 +2130,15 @@
           <article class="card service-card">
             <div class="service-top">
               <div>
-                <div class="service-id">ID ${safeId || '—'}</div>
+                <div class="service-id">ID_CALCULO: ${safeIdCalculo || '—'}</div>
                 <h3>${escapeHtml(row.CLIENTE || 'Serviço sem cliente')}</h3>
+                <div class="service-date">
+                  <span>📅</span>
+                  <small>Data do serviço</small>
+                  <strong>${escapeHtml(formatDateLong(row.DATA_SERVICO))}</strong>
+                </div>
                 <p class="service-sub">
                   <strong>${escapeHtml(row.BAIRRO || 'Bairro não informado')}</strong> •
-                  ${escapeHtml(formatDateLong(row.DATA_SERVICO))} •
                   ${escapeHtml(row.ENDERECO_TEXTO || 'Endereço não informado')}
                 </p>
               </div>
@@ -2206,7 +2256,7 @@
             </div>
 
             <div class="service-actions">
-              <button class="btn btn-soft btn-sm" type="button" data-copy-id="${safeId}">Copiar ID</button>
+              <button class="btn btn-soft btn-sm" type="button" data-copy-id="${safeIdCalculo}">Copiar ID_CALCULO</button>
 
               <button
                 class="btn btn-soft btn-sm"
