@@ -1284,7 +1284,7 @@
           <strong>JS Jardinagem</strong>
           <p>
             Painel de serviços disponíveis conectado ao banco publicado da operação,
-            preparado para reserva de vagas, formação de equipe e aceite por liderança.
+            com solicitações de reserva e aceite confirmadas manualmente pela JS via WhatsApp.
           </p>
         </div>
 
@@ -1321,6 +1321,7 @@
     const SESSION_KEY = 'js_servicos_disponiveis_autorizado';
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Ksrg7iVCFEH-eNZKwzAEalV6iN5NN2srX65ORIfJv6jPZkgf6WbIua5sJrWfcS8aQL4wfGnDvIOq/pub?gid=1879002658&single=true&output=csv';
     const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz8_yJjs7RvuPGRyBqt0_3PveaOY6inMKiRQnf12zo3cTSQiaHSz3aJze9c53v9Z1QOTg/exec';
+    const WHATSAPP_JS = '5534992142960';
 
     // V3.0 — Configuração central do portal.
     // Hoje estes valores ficam aqui. Na próxima etapa, podemos puxar tudo de uma aba CONFIG_OPERACIONAL_JS.
@@ -1575,14 +1576,27 @@
       return clean || String(row.ID_CALCULO || row.ID_SERVICO || row.CHAVE_SERVICO || row.ID_SHORT || '').trim();
     }
 
-    function buildInteresseServicoLink(row) {
-      const id = getServiceLookupId(row);
-      return `${WEBAPP_URL}?page=interesse-servico&id=${encodeURIComponent(id)}&acao=reservar`;
-    }
-
-    function buildLiderServicoLink(row) {
-      const id = getServiceLookupId(row);
-      return `${WEBAPP_URL}?page=aceite-servico&id=${encodeURIComponent(id)}&acao=lider`;
+    function buildWhatsAppServicoLink(row, tipo) {
+      const finance = calculateFinance(row);
+      const isLider = tipo === 'lider';
+      const linhas = [
+        isLider
+          ? 'Olá, JS Jardinagem! Quero aceitar este serviço como líder.'
+          : 'Olá, JS Jardinagem! Quero reservar uma vaga neste serviço.',
+        '',
+        `ID_CALCULO: ${getIdCalculo(row) || 'Não informado'}`,
+        `Data: ${formatDateLong(row.DATA_SERVICO)}`,
+        `Bairro: ${row.BAIRRO || 'Não informado'}`,
+        `Serviço: ${row.DESCRICAO || 'Não informado'}`,
+        `Equipe prevista: ${row.EQUIPE_TOTAL || '0'} pessoa(s)`,
+        isLider
+          ? `Valor para organizar o serviço: ${formatBRL(finance.totalTransferencia)}`
+          : 'Função desejada: [Jardineiro ou Auxiliar]',
+        '',
+        'Meu nome: ',
+        'Aguardo a confirmação da JS.'
+      ];
+      return `https://wa.me/${WHATSAPP_JS}?text=${encodeURIComponent(linhas.join('\n'))}`;
     }
 
 
@@ -2050,8 +2064,8 @@
 
         const safeResumo = escapeHtml(buildResumo(row));
         const safeIdCalculo = escapeHtml(getIdCalculo(row) || '');
-        const interesseLink = buildInteresseServicoLink(row);
-        const liderLink = buildLiderServicoLink(row);
+        const interesseLink = buildWhatsAppServicoLink(row, 'reserva');
+        const liderLink = buildWhatsAppServicoLink(row, 'lider');
 
         return `
           <article class="card service-card">
@@ -2169,15 +2183,15 @@
               <div class="participation-box">
               <h4>Como você quer participar deste serviço?</h4>
               <p>
-                Reserve uma vaga para demonstrar interesse como integrante da equipe.
-                Líderes podem assumir o serviço, revisar os interessados e confirmar ou completar a equipe.
+                Envie a mensagem pronta para a JS. A reserva ou o aceite só será válido
+                depois da confirmação pelo WhatsApp.
               </p>
               <div class="participation-actions">
                 <a class="btn btn-interest" href="${escapeHtml(interesseLink)}" target="_blank" rel="noopener">
-                  🙋 Tenho interesse / Reservar vaga
+                  🙋 Reservar vaga pelo WhatsApp
                 </a>
                 <a class="btn btn-leader" href="${escapeHtml(liderLink)}" target="_blank" rel="noopener">
-                  👷 Sou líder / Montar equipe
+                  👷 Aceitar como líder pelo WhatsApp
                 </a>
               </div>
             </div>
