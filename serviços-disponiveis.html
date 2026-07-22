@@ -779,6 +779,75 @@
       font-size:13px;
     }
 
+    .money-overview{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .money-overview-card{
+      min-height:132px;
+      border:1px solid #dce3ea;
+      border-radius:16px;
+      background:#fff;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:9px;
+    }
+
+    .money-overview-card.main{
+      color:#fff;
+      border-color:#0f8f52;
+      background:linear-gradient(135deg,var(--pri2),#0f9b57);
+      box-shadow:0 12px 24px rgba(17,128,74,.18);
+    }
+
+    .money-overview-card.client{border-top:4px solid var(--pri)}
+    .money-overview-card.js{border-top:4px solid var(--gold)}
+    .money-overview-card.tax{border-top:4px solid #98a2b3}
+
+    .money-overview-card small{
+      color:#667085;
+      font-size:11px;
+      line-height:1.35;
+      font-weight:1000;
+      text-transform:uppercase;
+      letter-spacing:.25px;
+    }
+
+    .money-overview-card.main small,
+    .money-overview-card.main span{color:#fff}
+
+    .money-overview-card strong{
+      color:var(--dark);
+      font-size:clamp(22px,2.4vw,30px);
+      line-height:1;
+      font-weight:1000;
+    }
+
+    .money-overview-card.main strong{color:#fff}
+
+    .money-overview-card span{
+      color:#667085;
+      font-size:12px;
+      line-height:1.4;
+      font-weight:750;
+    }
+
+    .decision-note{
+      margin:0;
+      padding:12px 14px;
+      border-left:4px solid var(--pri);
+      border-radius:0 12px 12px 0;
+      background:#f4f7fb;
+      color:#344054;
+      font-size:13px;
+      line-height:1.55;
+      font-weight:800;
+    }
+
     .participation-box{
       border:1px solid #d8e6ff;
       background:linear-gradient(135deg,#f8fbff,#f3fff7);
@@ -1046,6 +1115,7 @@
       .finance-summary,
       .team-pay-grid,
       .transfer-hero,
+      .money-overview,
       .summary-grid,
       .foot{
         grid-template-columns:1fr;
@@ -1592,6 +1662,11 @@
       const totalEquipe = totalLider + totalJardineiro + totalAuxiliar;
       const precoFinal = parseBRNumber(row.PRECO_FINAL);
       const valorParceiro = parseBRNumber(row.VALOR_PARCEIRO);
+      const valorImposto = firstAvailableNumber(
+        row,
+        ['VALOR_IMPOSTO','IMPOSTO','RESERVA_IMPOSTO','IMPOSTOS'],
+        0
+      );
       const material = firstAvailableNumber(row, ['MATERIAL','CUSTO_MATERIAL'], 0);
       const equipamento = firstAvailableNumber(row, ['EQUIPAMENTO_LOCACAO','EQUIPAMENTO','LOCACAO','CUSTO_EQUIPAMENTO'], 0);
 
@@ -1633,6 +1708,14 @@
         ? transferenciaInformada
         : transferenciaCalculada;
 
+      const comissaoJsInformada = firstAvailableNumber(
+        row,
+        ['COMISSAO_JS','VALOR_COMISSAO_JS','COMISSAO_RETIDA_JS','RESULTADO_JS'],
+        0
+      );
+      const comissaoJsCalculada = Math.max(precoFinal - totalTransferencia - valorImposto, 0);
+      const comissaoJs = comissaoJsInformada > 0 ? comissaoJsInformada : comissaoJsCalculada;
+
       const valorLiderNoServico = totalLider;
       const ganhoProprioEstimado = valorParceiro + valorLiderNoServico;
       const valorSobGestao = totalEquipe + verbaOperacional;
@@ -1642,6 +1725,9 @@
         horas,
         precoFinal,
         valorParceiro,
+        valorImposto,
+        comissaoJs,
+        comissaoJsInformada,
         totalEquipe,
         custosOperacionais,
         material,
@@ -1696,39 +1782,30 @@
     function buildTransferHero(row) {
       const finance = calculateFinance(row);
 
-      const origemTransferencia = finance.transferenciaInformada > 0
-        ? 'Valor oficial informado pela planilha'
-        : 'Calculado pelo portal: comissão + equipe + verbas operacionais';
-
       return `
-        <div class="transfer-hero">
-          <div>
-            <p class="eyebrow">💰 Total previsto para receber e administrar</p>
-            <p class="amount">${formatBRL(finance.totalTransferencia)}</p>
-            <p class="caption">
-              ${origemTransferencia}. Parte deste valor é destinada à equipe e às despesas do serviço.
-            </p>
+        <div class="money-overview">
+          <div class="money-overview-card client">
+            <small>Cliente paga pelo serviço</small>
+            <strong>${formatBRL(finance.precoFinal)}</strong>
+            <span>Valor total cobrado do cliente.</span>
           </div>
-
-          <div class="transfer-breakdown">
-            <div class="transfer-mini">
-              <small>Ganho próprio estimado</small>
-              <strong>${formatBRL(finance.ganhoProprioEstimado)}</strong>
-            </div>
-            <div class="transfer-mini">
-              <small>Valor sob gestão</small>
-              <strong>${formatBRL(finance.valorSobGestao)}</strong>
-            </div>
-            <div class="transfer-mini">
-              <small>Comissão do parceiro</small>
-              <strong>${formatBRL(finance.valorParceiro)}</strong>
-            </div>
-            <div class="transfer-mini">
-              <small>Pagamento como líder</small>
-              <strong>${formatBRL(finance.valorLiderNoServico)}</strong>
-            </div>
+          <div class="money-overview-card main">
+            <small>Parceiro recebe para organizar</small>
+            <strong>${formatBRL(finance.totalTransferencia)}</strong>
+            <span>Dinheiro repassado para equipe, operação e ganho do parceiro.</span>
+          </div>
+          <div class="money-overview-card js">
+            <small>Comissão retida pela JS</small>
+            <strong>${formatBRL(finance.comissaoJs)}</strong>
+            <span>Valor que permanece com a JS.</span>
+          </div>
+          <div class="money-overview-card tax">
+            <small>Reserva para imposto</small>
+            <strong>${formatBRL(finance.valorImposto)}</strong>
+            <span>Valor separado para obrigações fiscais.</span>
           </div>
         </div>
+        <p class="decision-note"><strong>Em resumo:</strong> ao assumir como líder, você administra ${formatBRL(finance.totalTransferencia)}. Consulte “Ver mais detalhes” antes de aceitar para conferir equipe, materiais e demais custos.</p>
       `;
     }
 
@@ -1757,6 +1834,21 @@
             <div class="finance-box pri">
               <p class="k">Valor do serviço</p>
               <p class="v">${formatBRL(finance.precoFinal)}</p>
+            </div>
+
+            <div class="finance-box pri">
+              <p class="k">Repasse total ao parceiro</p>
+              <p class="v">${formatBRL(finance.totalTransferencia)}</p>
+            </div>
+
+            <div class="finance-box warn">
+              <p class="k">Comissão retida pela JS</p>
+              <p class="v">${formatBRL(finance.comissaoJs)}</p>
+            </div>
+
+            <div class="finance-box">
+              <p class="k">Reserva para imposto</p>
+              <p class="v">${formatBRL(finance.valorImposto)}</p>
             </div>
 
             <div class="finance-box good">
@@ -1841,6 +1933,8 @@
         `Horas: ${row.HORAS || '0'}`,
         `Preço final: ${row.PRECO_FINAL || 'R$ 0,00'}`,
         `TOTAL A RECEBER E ADMINISTRAR: ${formatBRL(finance.totalTransferencia)}`,
+        `Comissão retida pela JS: ${formatBRL(finance.comissaoJs)}`,
+        `Reserva para imposto: ${formatBRL(finance.valorImposto)}`,
         `Ganho próprio estimado: ${formatBRL(finance.ganhoProprioEstimado)}`,
         `Comissão do parceiro: ${formatBRL(finance.valorParceiro)}`,
         `Pagamento como líder: ${formatBRL(finance.valorLiderNoServico)}`,
@@ -2024,15 +2118,6 @@
                   <p class="v">${escapeHtml(row.EQUIPE_TOTAL || '0')} pessoa(s) • ${escapeHtml(row.HORAS || '0')}h</p>
                 </div>
 
-                <div class="summary-box good">
-                  <p class="k">Ganho próprio estimado</p>
-                  <p class="v">${formatBRL(finance.ganhoProprioEstimado)}</p>
-                </div>
-
-                <div class="summary-box warn">
-                  <p class="k">Verba para materiais</p>
-                  <p class="v">${formatBRL(finance.verbaMateriais)}</p>
-                </div>
               </div>
 
               <div class="details-toggle-wrap">
@@ -2043,7 +2128,7 @@
                   aria-expanded="false"
                   aria-controls="service-details-${index}"
                 >
-                  <span data-toggle-label>Mostrar mais informações</span>
+                  <span data-toggle-label>Ver mais detalhes</span>
                   <span class="arrow">⌄</span>
                 </button>
               </div>
@@ -2174,8 +2259,8 @@
           const label = btn.querySelector('[data-toggle-label]');
           if (label) {
             label.textContent = isOpen
-              ? 'Ocultar informações'
-              : 'Mostrar mais informações';
+              ? 'Ocultar detalhes'
+              : 'Ver mais detalhes';
           }
         });
       });
