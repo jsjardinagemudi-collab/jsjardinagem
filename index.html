@@ -361,6 +361,39 @@
       font-size:14px;
     }
 
+    .section-kicker{
+      display:inline-block;
+      margin-bottom:8px;
+      color:var(--pri2);
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .service-card{
+      padding:20px;
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .service-card h3{margin:0;color:var(--pri);font-size:19px}
+    .service-card p{margin:0;color:#475467;line-height:1.55}
+    .service-card ul{margin:0;padding-left:18px;color:#475467;line-height:1.65}
+    .service-card .btn{margin-top:auto;align-self:flex-start}
+
+    .portal-strip{
+      margin-top:32px;
+      padding:22px;
+      border:1px solid #dce6f5;
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .portal-strip .hub-grid{grid-template-columns:repeat(2,1fr)}
+
     .hub-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -681,6 +714,7 @@
       .hero-inner{grid-template-columns:1fr; padding:40px 0}
       .grid{grid-template-columns:1fr;}
       .hub-grid{grid-template-columns:1fr;}
+      .portal-strip .hub-grid{grid-template-columns:1fr}
       .ecovida-head{grid-template-columns:1fr}
       .ecovida-links{grid-template-columns:1fr}
       .foot{grid-template-columns:1fr;}
@@ -740,7 +774,8 @@
       </button>
 
       <nav class="links" id="site-menu">
-        <a href="implantacao-padrao-js.html">Manuteção Profissional</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#planos">Planos</a>
         <a href="parceiros.html">Portal do Jardineiro</a>       
         <a href="carreira.html">Emprego</a>
         <a href="ecovida.html">EcoVida</a>
@@ -758,12 +793,10 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div>
-        <h1>Jardinagem e Manutenção para sua casa ou condomínio.</h1>
+        <h1>Jardinagem profissional, do serviço pontual à manutenção contínua.</h1>
         <p>
-          Cuidar do verde é cuidar das pessoas. A JS nasce do propósito de melhorar o ambiente visual da cidade,
-          começando pelo cuidado com os jardins e os espaços onde a vida acontece todos os dias.
-          <br><br>
-          A JS atua para valorizar espaços e contribuir para uma cidade mais organizada, viva e consciente.
+          Escolha somente o que precisa: corte e acabamento, podas, limpeza, revitalização,
+          implantação ou um plano periódico para casas, condomínios e empresas em Uberlândia.
         </p>
 
         <div class="cta">
@@ -780,9 +813,9 @@
         </div>
 
         <div class="hero-shortcuts">
-          <a href="implantacao-padrao-js.html">Implantação do padrão JS</a>
-          <a href="https://script.google.com/macros/s/AKfycbwraWYMvrDuqKBNuuSnvCn1_r7h7uSB-RnHTK2XJVNsumUtvckmN0agtyZORWqFRtCBqg/exec">Login Parceiro</a>
-          <a href="https://jardinagemudi.com.br/servi%C3%A7os-disponiveis.html" target="_blank" rel="noopener">Serviços Disponíveis</a>
+          <a href="#servicos">Escolher um serviço</a>
+          <a href="#planos">Conhecer os planos</a>
+          <a href="marido-de-aluguel.html">Marido de aluguel</a>
           <a href="ecovida.html">Conheça o EcoVida</a>
         </div>
       </div>
@@ -812,88 +845,28 @@
 
   <section class="examples" id="servicos">
     <div class="wrap">
-      <h2 class="section-title">Serviços</h2>
+      <span class="section-kicker">Contrate de forma simples</span>
+      <h2 class="section-title">Serviços separados por necessidade</h2>
+      <p class="muted">Você pode solicitar um serviço pontual ou combinar vários itens em um único orçamento.</p>
 
       <div class="service-hub">
-        <h3>Modalidades de Serviço (atalhos)</h3>
-        <p>
-          Escolha o tipo de solução que combina com a situação do seu condomínio ou empresa.
-          Cada modalidade tem uma página com explicação clara, escopo e como funciona.
-        </p>
+        <h3>O que você precisa resolver?</h3>
+        <p>Escolha uma opção para iniciar a conversa pelo WhatsApp com o pedido já identificado.</p>
 
         <div class="hub-grid">
-          <a class="hub-card" href="implantacao-padrao-js.html">
-            <div class="hub-top">
-              <div>
-                <span class="hub-tag">Serviço Inicial</span>
-              </div>
-              <div class="hub-icon">JS</div>
-            </div>
-            <div class="hub-body">
-              <h4>Implantação do Padrão Profissional JS</h4>
-              <p class="hub-desc">
-                A primeira intervenção que organiza, melhora a estética e deixa o ambiente pronto para manutenção dentro do padrão JS.
-              </p>
-              <ul class="hub-bullets">
-                <li>Corte e acabamento do gramado</li>
-                <li>Limpeza e organização dos canteiros</li>
-                <li>Poda leve (altura acessível) + limpeza final</li>
-              </ul>
-            </div>
-            <div class="hub-actions">
-              <span class="btn btn-primary">Ver detalhes</span>
-              <span class="btn btn-outline">Abrir página</span>
-            </div>
-          </a>
-
-          <a class="hub-card" href="parceiros.html">
-            <div class="hub-top">
-              <div>
-                <span class="hub-tag">Plataforma de conexão entre serviços e trabalhadores</span>
-              </div>
-              <div class="hub-icon">PJ</div>
-            </div>
-            <div class="hub-body">
-              <h4>Portal do Jardineiro</h4>
-              <p class="hub-desc">
-                Área individual do parceiro para acessar horas registradas, extrato, pagamentos e histórico de serviços.
-              </p>
-              <ul class="hub-bullets">
-                <li>Login com telefone e senha</li>
-                <li>Resumo individual</li>
-                <li>Extrato detalhado</li>
-              </ul>
-            </div>
-            <div class="hub-actions">
-              <span class="btn btn-primary">Entrar no painel</span>
-              <span class="btn btn-outline">Abrir página</span>
-            </div>
-          </a>
-
-          <a class="hub-card" href="https://jardinagemudi.com.br/servi%C3%A7os-disponiveis.html" target="_blank" rel="noopener">
-            <div class="hub-top">
-              <div>
-                <span class="hub-tag">Serviços Abertos</span>
-              </div>
-              <div class="hub-icon">+</div>
-            </div>
-            <div class="hub-body">
-              <h4>Serviços Disponíveis</h4>
-              <p class="hub-desc">
-                Visualize serviços em aberto e acompanhe oportunidades operacionais dentro do fluxo atual da JS.
-              </p>
-              <ul class="hub-bullets">
-                <li>Serviços ativos disponíveis</li>
-                <li>Consulta rápida</li>
-                <li>Mais agilidade para parceiros</li>
-              </ul>
-            </div>
-            <div class="hub-actions">
-              <span class="btn btn-primary">Ver serviços</span>
-              <span class="btn btn-outline">Abrir página</span>
-            </div>
-          </a>
+          <article class="card service-card"><span class="hub-tag">Gramados</span><h3>Corte, roçada e bordas</h3><p>Para recuperar o acabamento e manter o crescimento sob controle.</p><ul><li>Corte ou roçada</li><li>Acabamento das bordas</li><li>Varrição e sopragem</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20corte%2C%20ro%C3%A7ada%20e%20bordas.">Pedir orçamento</a></article>
+          <article class="card service-card"><span class="hub-tag">Podas</span><h3>Podas e organização</h3><p>Correção de plantas, arbustos e árvores, conforme avaliação técnica.</p><ul><li>Podas baixas</li><li>Podas em altura</li><li>Retirada de resíduos sob consulta</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20poda.">Pedir orçamento</a></article>
+          <article class="card service-card"><span class="hub-tag">Renovação</span><h3>Revitalização do jardim</h3><p>Para áreas cansadas, falhas no gramado ou canteiros que precisam de renovação.</p><ul><li>Adubação</li><li>Recuperação de gramados</li><li>Plantio e organização de canteiros</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20revitaliza%C3%A7%C3%A3o%20do%20jardim.">Pedir orçamento</a></article>
+          <article class="card service-card"><span class="hub-tag">Primeiro atendimento</span><h3>Implantação do Padrão JS</h3><p>Uma intervenção completa para organizar o espaço antes da manutenção periódica.</p><ul><li>Diagnóstico do local</li><li>Execução por prioridades</li><li>Preparação para a rotina</li></ul><a class="btn btn-primary" href="implantacao-padrao-js.html">Ver como funciona</a></article>
+          <article class="card service-card"><span class="hub-tag">Recorrência</span><h3>Manutenção periódica</h3><p>Visitas planejadas para manter o jardim cuidado ao longo do mês.</p><ul><li>Casas e condomínios</li><li>Empresas e comércios</li><li>Cronograma conforme o espaço</li></ul><a class="btn btn-primary" href="#planos">Ver planos por perfil</a></article>
+          <article class="card service-card"><span class="hub-tag">Serviços gerais</span><h3>Marido de aluguel</h3><p>Pequenos reparos e manutenção para casa, condomínio ou empresa.</p><ul><li>Elétrica e instalações</li><li>Montagens e ajustes</li><li>Avaliação pelo WhatsApp</li></ul><a class="btn btn-primary" href="marido-de-aluguel.html">Conhecer o serviço</a></article>
         </div>
+      </div>
+
+      <div style="margin-top:44px">
+        <span class="section-kicker">Manutenção recorrente</span>
+        <h2 class="section-title">Planos por perfil de espaço</h2>
+        <p class="muted">As faixas abaixo servem como referência inicial. O valor final depende da área, frequência e serviços incluídos.</p>
       </div>
 
       <p class="nota-valores">
@@ -902,7 +875,7 @@
 
       <p class="muted">Valores apenas para referência.</p>
 
-      <div class="grid">
+      <div class="grid" id="planos">
         <div class="card example-card">
           <figure>
             <img src="edificio-simples.jpg" alt="Condomínio pequeno — jardins compactos" />
@@ -972,6 +945,16 @@
           </div>
         </div>
       </div>
+
+      <div class="portal-strip">
+        <span class="section-kicker">Área do profissional</span>
+        <h2 class="section-title">Portal do Jardineiro</h2>
+        <p class="muted">Acessos de trabalho ficam separados dos serviços oferecidos aos clientes.</p>
+        <div class="hub-grid">
+          <a class="hub-card" href="parceiros.html"><div class="hub-top"><span class="hub-tag">Parceiros</span><div class="hub-icon">PJ</div></div><div class="hub-body"><h4>Conheça o Portal</h4><p class="hub-desc">Entenda como funciona a conexão entre profissionais e serviços.</p></div><div class="hub-actions"><span class="btn btn-primary">Abrir Portal</span></div></a>
+          <a class="hub-card" href="https://jardinagemudi.com.br/servi%C3%A7os-disponiveis.html"><div class="hub-top"><span class="hub-tag">Oportunidades</span><div class="hub-icon">+</div></div><div class="hub-body"><h4>Serviços disponíveis</h4><p class="hub-desc">Consulte oportunidades abertas, valores e informações operacionais.</p></div><div class="hub-actions"><span class="btn btn-primary">Ver serviços</span></div></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -999,17 +982,17 @@
           </p>
 
           <div class="ecovida-links">
-            <a href="reciclaveis.html" class="eco-link-card">
+            <a href="ecovida-projetos.html" class="eco-link-card">
               <strong>Recicláveis na rota</strong>
               <span>Plástico, papel e metal — com separação e destino correto.</span>
             </a>
 
-            <a href="pracas.html" class="eco-link-card">
+            <a href="ecovida.html#cadastros" class="eco-link-card">
               <strong>Praças mais cuidadas</strong>
               <span>Limpeza e organização de espaços públicos com constância.</span>
             </a>
 
-            <a href="transparencia.html" class="eco-link-card">
+            <a href="ecovida-transparencia.html" class="eco-link-card">
               <strong>Transparência</strong>
               <span>Alinhamento do ponto, rota e boas práticas.</span>
             </a>
@@ -1037,7 +1020,7 @@
                 Pedir orçamento
               </a>
 
-              <a class="btn btn-outline" href="Doações.html">
+              <a class="btn btn-outline" href="doacao.html">
                 Doações
               </a>
             </div>
@@ -1083,6 +1066,7 @@
          href="https://script.google.com/macros/s/AKfycbzB5ijI77f3aqNm10QP4DQDYWmdZ7ScaDSQb3CYmc4aOAGT3YBQU2ZOEtk9JqQVitgI/exec"
          style="margin-top:16px;display:inline-flex">
         Assinatura no Portal
+      </a>
     </div>
   </section>
 
