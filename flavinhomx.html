@@ -262,8 +262,26 @@
     }
 
     .portal-icon {
-      font-size: 34px;
-      margin-bottom: 12px;
+      width: 92px;
+      height: 92px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portal-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 10px 18px rgba(0,87,255,.24));
+      transition: transform .25s ease, filter .25s ease;
+    }
+
+    .portal-card:hover .portal-icon img {
+      transform: scale(1.06);
+      filter: drop-shadow(0 12px 22px rgba(0,87,255,.42));
     }
 
     .portal-card h3 {
@@ -591,44 +609,44 @@
     </p>
 
     <div class="portal-grid">
-      <a class="portal-card" href="#piloto">
-        <div><div class="portal-icon">🏁</div><h3>O piloto</h3><p>História, presença nas pistas, identidade e evolução do Flavim Junior 100.</p></div>
-        <span class="portal-link">Conhecer</span>
-      </a>
-
-      <a class="portal-card" href="patrocinio.html">
-        <div><div class="portal-icon">🏆</div><h3>Patrocínio</h3><p>Espaço para marcas que querem aparecer com força no motocross.</p></div>
-        <span class="portal-link">Ser apoiador</span>
-      </a>
-
-      <a class="portal-card" href="motopeças.html">
-        <div><div class="portal-icon">🛠️</div><h3>Peças</h3><p>Catálogo de peças e acessórios da loja patrocinadora.</p></div>
-        <span class="portal-link">Entrar na loja</span>
-      </a>
-
-      <a class="portal-card" href="mxschool.html">
-        <div><div class="portal-icon">🎓</div><h3>MX School</h3><p>Curso de pilotagem, técnica, foco e evolução para pilotos.</p></div>
-        <span class="portal-link">Fazer inscrição</span>
-      </a>
-
       <a class="portal-card" href="motosmx.html">
-        <div><div class="portal-icon">🏍️</div><h3>Motos MX</h3><p>Página de motos de motocross à venda e oportunidades.</p></div>
+        <div><div class="portal-icon"><img src="imagens/01-motos-venda.png" alt="Ícone Motos à venda"></div><h3>Motos à venda</h3><p>Confira motos de motocross anunciadas e oportunidades disponíveis.</p></div>
         <span class="portal-link">Ver motos</span>
       </a>
 
+      <a class="portal-card" href="mxschool.html">
+        <div><div class="portal-icon"><img src="imagens/02-mx-school.png" alt="Ícone MX School"></div><h3>MX School</h3><p>Curso de pilotagem, técnica, foco e evolução para pilotos.</p></div>
+        <span class="portal-link">Fazer inscrição</span>
+      </a>
+
+      <a class="portal-card" href="motopeças.html">
+        <div><div class="portal-icon"><img src="imagens/03-motopecas.png" alt="Ícone Motopeças"></div><h3>Motopeças</h3><p>Peças, acessórios e equipamentos para o mundo do motocross.</p></div>
+        <span class="portal-link">Entrar na loja</span>
+      </a>
+
+      <a class="portal-card" href="patrocinio.html">
+        <div><div class="portal-icon"><img src="imagens/04-patrocinio.png" alt="Ícone Patrocínio"></div><h3>Patrocínio</h3><p>Espaço para marcas que querem aparecer com força no motocross.</p></div>
+        <span class="portal-link">Ser apoiador</span>
+      </a>
+
       <a class="portal-card" href="galeria.html">
-        <div><div class="portal-icon">🎥</div><h3>Galeria</h3><p>Vídeos, treinos, bastidores, saltos e rotina nas pistas.</p></div>
+        <div><div class="portal-icon"><img src="imagens/05-galeria.png" alt="Ícone Galeria"></div><h3>Galeria</h3><p>Vídeos, treinos, bastidores, saltos e rotina nas pistas.</p></div>
         <span class="portal-link">Assistir</span>
       </a>
 
-      <a class="portal-card" href="https://www.instagram.com/eaiflavim" target="_blank">
-        <div><div class="portal-icon">📲</div><h3>Instagram</h3><p>Acompanhe @eaiflavim, rotina, treinos e competições.</p></div>
-        <span class="portal-link">Seguir perfil</span>
+      <a class="portal-card" href="procuro-uma-moto.html">
+        <div><div class="portal-icon"><img src="imagens/06-procuro-moto.png" alt="Ícone Procuro uma moto"></div><h3>Procuro uma moto</h3><p>Cadastre o modelo que procura e encontre oportunidades por região.</p></div>
+        <span class="portal-link">Procurar moto</span>
       </a>
 
-      <a class="portal-card" href="https://wa.me/553492430960" target="_blank">
-        <div><div class="portal-icon">💬</div><h3>Contato</h3><p>Fale direto pelo WhatsApp para cursos, patrocínio e parcerias.</p></div>
-        <span class="portal-link">Chamar agora</span>
+      <a class="portal-card" href="anuncie-sua-moto.html">
+        <div><div class="portal-icon"><img src="imagens/07-anuncie-moto.png" alt="Ícone Anuncie sua moto"></div><h3>Anuncie sua moto</h3><p>Divulgue sua moto para compradores interessados no universo MX.</p></div>
+        <span class="portal-link">Criar anúncio</span>
+      </a>
+
+      <a class="portal-card" href="#piloto">
+        <div><div class="portal-icon"><img src="imagens/08-flavim-100.png" alt="Ícone Flavim Junior 100"></div><h3>Flavim Junior 100</h3><p>Conheça a história, a presença nas pistas e a evolução do piloto número 100.</p></div>
+        <span class="portal-link">Conhecer</span>
       </a>
     </div>
   </section>
