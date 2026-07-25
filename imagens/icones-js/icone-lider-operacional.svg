@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Líder Operacional">
+  <rect x="2" y="2" width="92" height="92" rx="24" fill="#eef7f7"/>
+  <circle cx="72" cy="24" r="8" fill="#f2b300"/>
+  <g transform="translate(20 20) scale(2.34)" fill="none" stroke="#114084" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 21h10M9 21v-5H6l3-5H7l5-8 5 8h-2l3 5h-3v5M12 3v18"/>
+  </g>
+</svg>

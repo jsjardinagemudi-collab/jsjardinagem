@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Aceitar como líder">
+  <rect x="2" y="2" width="92" height="92" rx="24" fill="#eef7f7"/>
+  <circle cx="72" cy="24" r="8" fill="#f2b300"/>
+  <g transform="translate(20 20) scale(2.34)" fill="none" stroke="#149c55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 21c0-4 3-6 7-6 2 0 3.5.4 5 1.3M16 19l2 2 4-5M9 3l3-2 3 2"/>
+  </g>
+</svg>

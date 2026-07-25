@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Segurança e técnica">
+  <rect x="2" y="2" width="92" height="92" rx="24" fill="#eef7f7"/>
+  <circle cx="72" cy="24" r="8" fill="#f2b300"/>
+  <g transform="translate(20 20) scale(2.34)" fill="none" stroke="#114084" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3l8 3v6c0 5-3.4 8-8 10-4.6-2-8-5-8-10V6l8-3Zm-3 9 2 2 4-5"/>
+  </g>
+</svg>
