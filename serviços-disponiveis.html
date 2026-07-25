@@ -1564,12 +1564,12 @@
       return digits.startsWith('55') ? digits : `55${digits}`;
     }
 
-    function getIdCalculo(row) {
-      return String(row.ID_CALCULO || '').trim();
+    function getIdShort(row) {
+      return String(row.ID_SHORT || '').trim();
     }
 
     function getServiceLookupId(row) {
-      const candidates = [row.ID_CALCULO, row.ID_SERVICO, row.CHAVE_SERVICO, row.ID_SHORT];
+      const candidates = [row.ID_SHORT, row.ID_SERVICO, row.CHAVE_SERVICO, row.ID_CALCULO];
       const clean = candidates
         .map(v => String(v || '').trim())
         .find(v => v && !/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(v));
@@ -1584,7 +1584,7 @@
           ? 'Olá, JS Jardinagem! Quero aceitar este serviço como líder.'
           : 'Olá, JS Jardinagem! Quero reservar uma vaga neste serviço.',
         '',
-        `ID_CALCULO: ${getIdCalculo(row) || 'Não informado'}`,
+        `ID_SHORT: ${getIdShort(row) || 'Não informado'}`,
         `Data: ${formatDateLong(row.DATA_SERVICO)}`,
         `Bairro: ${row.BAIRRO || 'Não informado'}`,
         `Serviço: ${row.DESCRICAO || 'Não informado'}`,
@@ -1909,7 +1909,7 @@
       const finance = calculateFinance(row);
 
       return [
-        `ID_CALCULO: ${getIdCalculo(row) || '—'}`,
+        `ID_SHORT: ${getIdShort(row) || '—'}`,
         `Data: ${row.DATA_SERVICO || '—'}`,
         `Cliente: ${row.CLIENTE || '—'}`,
         `Bairro: ${row.BAIRRO || '—'}`,
@@ -2063,7 +2063,7 @@
         const financeDetailsHtml = buildFinanceDetails(row);
 
         const safeResumo = escapeHtml(buildResumo(row));
-        const safeIdCalculo = escapeHtml(getIdCalculo(row) || '');
+        const safeIdShort = escapeHtml(getIdShort(row) || '');
         const interesseLink = buildWhatsAppServicoLink(row, 'reserva');
         const liderLink = buildWhatsAppServicoLink(row, 'lider');
 
@@ -2071,7 +2071,7 @@
           <article class="card service-card">
             <div class="service-top">
               <div>
-                <div class="service-id">ID_CALCULO: ${safeIdCalculo || '—'}</div>
+                <div class="service-id">ID_SHORT: ${safeIdShort || '—'}</div>
                 <h3>${escapeHtml(row.CLIENTE || 'Serviço sem cliente')}</h3>
                 <div class="service-date">
                   <span>📅</span>
@@ -2197,7 +2197,7 @@
             </div>
 
             <div class="service-actions">
-              <button class="btn btn-soft btn-sm" type="button" data-copy-id="${safeIdCalculo}">Copiar ID_CALCULO</button>
+              <button class="btn btn-soft btn-sm" type="button" data-copy-id="${safeIdShort}">Copiar ID_SHORT</button>
 
               <button
                 class="btn btn-soft btn-sm"
