@@ -444,6 +444,29 @@
       gap:12px;
     }
 
+    .js-icon{
+      width:52px;
+      height:52px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .service-icon{
+      width:58px;
+      height:58px;
+      padding:8px;
+      border-radius:15px;
+      background:linear-gradient(135deg,#eef4ff,#eefaf3);
+      border:1px solid #dce8f4;
+    }
+
+    .service-card-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
     .service-card h3{margin:0;color:var(--pri);font-size:19px}
     .service-card p{margin:0;color:#475467;line-height:1.55}
     .service-card ul{margin:0;padding-left:18px;color:#475467;line-height:1.65}
@@ -517,6 +540,36 @@
       color:#fff;
       font-weight:900;
       box-shadow:0 10px 18px rgba(17,64,132,.18);
+      flex:0 0 auto;
+    }
+
+    .hub-icon.icon-image{
+      width:50px;
+      height:50px;
+      padding:6px;
+      background:linear-gradient(135deg,#eef4ff,#eefaf3);
+      border:1px solid #dce8f4;
+      box-shadow:none;
+    }
+
+    .hub-icon.icon-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .career-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:0 0 12px;
+      color:var(--pri);
+    }
+
+    .career-title img{
+      width:58px;
+      height:58px;
+      object-fit:contain;
       flex:0 0 auto;
     }
 
@@ -951,12 +1004,12 @@
         <p>Escolha uma opção para iniciar a conversa pelo WhatsApp com o pedido já identificado.</p>
 
         <div class="hub-grid">
-          <article class="card service-card"><span class="hub-tag">Gramados</span><h3>Corte, roçada e bordas</h3><p>Para recuperar o acabamento e manter o crescimento sob controle.</p><ul><li>Corte ou roçada</li><li>Acabamento das bordas</li><li>Varrição e sopragem</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20corte%2C%20ro%C3%A7ada%20e%20bordas.">Pedir orçamento</a></article>
-          <article class="card service-card"><span class="hub-tag">Podas</span><h3>Podas e organização</h3><p>Correção de plantas, arbustos e árvores, conforme avaliação técnica.</p><ul><li>Podas baixas</li><li>Podas em altura</li><li>Retirada de resíduos sob consulta</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20poda.">Pedir orçamento</a></article>
-          <article class="card service-card"><span class="hub-tag">Renovação</span><h3>Revitalização do jardim</h3><p>Para áreas cansadas, falhas no gramado ou canteiros que precisam de renovação.</p><ul><li>Adubação</li><li>Recuperação de gramados</li><li>Plantio e organização de canteiros</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20revitaliza%C3%A7%C3%A3o%20do%20jardim.">Pedir orçamento</a></article>
-          <article class="card service-card"><span class="hub-tag">Primeiro atendimento</span><h3>Implantação do Padrão JS</h3><p>Uma intervenção completa para organizar o espaço antes da manutenção periódica.</p><ul><li>Diagnóstico do local</li><li>Execução por prioridades</li><li>Preparação para a rotina</li></ul><a class="btn btn-primary" href="implantacao-padrao-js.html">Ver como funciona</a></article>
-          <article class="card service-card"><span class="hub-tag">Recorrência</span><h3>Manutenção periódica</h3><p>Visitas planejadas para manter o jardim cuidado ao longo do mês.</p><ul><li>Casas e condomínios</li><li>Empresas e comércios</li><li>Cronograma conforme o espaço</li></ul><a class="btn btn-primary" href="#planos">Ver planos por perfil</a></article>
-          <article class="card service-card"><span class="hub-tag">Serviços gerais</span><h3>Marido de aluguel</h3><p>Pequenos reparos e manutenção para casa, condomínio ou empresa.</p><ul><li>Elétrica e instalações</li><li>Montagens e ajustes</li><li>Avaliação pelo WhatsApp</li></ul><a class="btn btn-primary" href="marido-de-aluguel.html">Conhecer o serviço</a></article>
+          <article class="card service-card"><div class="service-card-head"><span class="hub-tag">Gramados</span><img class="js-icon service-icon" src="imagens/icones-js/icone-tecnica-maquinarios.svg" alt="" aria-hidden="true"></div><h3>Corte, roçada e bordas</h3><p>Para recuperar o acabamento e manter o crescimento sob controle.</p><ul><li>Corte ou roçada</li><li>Acabamento das bordas</li><li>Varrição e sopragem</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20corte%2C%20ro%C3%A7ada%20e%20bordas.">Pedir orçamento</a></article>
+          <article class="card service-card"><div class="service-card-head"><span class="hub-tag">Podas</span><img class="js-icon service-icon" src="imagens/icones-js/icone-conhecimento-plantas.svg" alt="" aria-hidden="true"></div><h3>Podas e organização</h3><p>Correção de plantas, arbustos e árvores, conforme avaliação técnica.</p><ul><li>Podas baixas</li><li>Podas em altura</li><li>Retirada de resíduos sob consulta</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20poda.">Pedir orçamento</a></article>
+          <article class="card service-card"><div class="service-card-head"><span class="hub-tag">Renovação</span><img class="js-icon service-icon" src="imagens/icones-js/icone-crescimento-js.svg" alt="" aria-hidden="true"></div><h3>Revitalização do jardim</h3><p>Para áreas cansadas, falhas no gramado ou canteiros que precisam de renovação.</p><ul><li>Adubação</li><li>Recuperação de gramados</li><li>Plantio e organização de canteiros</li></ul><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5534992142960?text=Ol%C3%A1%20JS!%20Quero%20or%C3%A7amento%20para%20revitaliza%C3%A7%C3%A3o%20do%20jardim.">Pedir orçamento</a></article>
+          <article class="card service-card"><div class="service-card-head"><span class="hub-tag">Primeiro atendimento</span><img class="js-icon service-icon" src="imagens/icones-js/icone-ecossistema-js.svg" alt="" aria-hidden="true"></div><h3>Implantação do Padrão JS</h3><p>Uma intervenção completa para organizar o espaço antes da manutenção periódica.</p><ul><li>Diagnóstico do local</li><li>Execução por prioridades</li><li>Preparação para a rotina</li></ul><a class="btn btn-primary" href="implantacao-padrao-js.html">Ver como funciona</a></article>
+          <article class="card service-card"><div class="service-card-head"><span class="hub-tag">Recorrência</span><img class="js-icon service-icon" src="imagens/icones-js/icone-calendario.svg" alt="" aria-hidden="true"></div><h3>Manutenção periódica</h3><p>Visitas planejadas para manter o jardim cuidado ao longo do mês.</p><ul><li>Casas e condomínios</li><li>Empresas e comércios</li><li>Cronograma conforme o espaço</li></ul><a class="btn btn-primary" href="#planos">Ver planos por perfil</a></article>
+          <article class="card service-card"><div class="service-card-head"><span class="hub-tag">Serviços gerais</span><img class="js-icon service-icon" src="imagens/icones-js/icone-ferramentas-operacionais.svg" alt="" aria-hidden="true"></div><h3>Marido de aluguel</h3><p>Pequenos reparos e manutenção para casa, condomínio ou empresa.</p><ul><li>Elétrica e instalações</li><li>Montagens e ajustes</li><li>Avaliação pelo WhatsApp</li></ul><a class="btn btn-primary" href="marido-de-aluguel.html">Conhecer o serviço</a></article>
         </div>
       </div>
 
@@ -1048,8 +1101,8 @@
         <h2 class="section-title">Portal do Jardineiro</h2>
         <p class="muted">Acessos de trabalho ficam separados dos serviços oferecidos aos clientes.</p>
         <div class="hub-grid">
-          <a class="hub-card" href="parceiros.html"><div class="hub-top"><span class="hub-tag">Parceiros</span><div class="hub-icon">PJ</div></div><div class="hub-body"><h4>Conheça o Portal</h4><p class="hub-desc">Entenda como funciona a conexão entre profissionais e serviços.</p></div><div class="hub-actions"><span class="btn btn-primary">Abrir Portal</span></div></a>
-          <a class="hub-card" href="servi%C3%A7os-disponiveis.html"><div class="hub-top"><span class="hub-tag">Ao vivo agora</span><div class="hub-icon">+</div></div><div class="hub-body"><h4>Serviços disponíveis</h4><p class="hub-desc">Veja oportunidades abertas, datas, valores, equipe necessária e o valor destinado ao parceiro.</p></div><div class="hub-actions"><span class="btn btn-live">Ver serviços agora</span></div></a>
+          <a class="hub-card" href="parceiros.html"><div class="hub-top"><span class="hub-tag">Parceiros</span><div class="hub-icon icon-image"><img src="imagens/icones-js/icone-portal-jardineiro.svg" alt="" aria-hidden="true"></div></div><div class="hub-body"><h4>Conheça o Portal</h4><p class="hub-desc">Entenda como funciona a conexão entre profissionais e serviços.</p></div><div class="hub-actions"><span class="btn btn-primary">Abrir Portal</span></div></a>
+          <a class="hub-card" href="servi%C3%A7os-disponiveis.html"><div class="hub-top"><span class="hub-tag">Ao vivo agora</span><div class="hub-icon icon-image"><img src="imagens/icones-js/icone-servicos-disponiveis.svg" alt="" aria-hidden="true"></div></div><div class="hub-body"><h4>Serviços disponíveis</h4><p class="hub-desc">Veja oportunidades abertas, datas, valores, equipe necessária e o valor destinado ao parceiro.</p></div><div class="hub-actions"><span class="btn btn-live">Ver serviços agora</span></div></a>
         </div>
       </div>
     </div>
@@ -1138,17 +1191,17 @@
 
       <div class="grid" style="margin-top:24px">
         <div class="card" style="padding:18px">
-          <h3>🌱 Auxiliar de Jardinagem</h3>
+          <h3 class="career-title"><img src="imagens/icones-js/icone-auxiliar-jardinagem.svg" alt="" aria-hidden="true"><span>Auxiliar de Jardinagem</span></h3>
           <p class="muted">Ideal para quem está começando ou quer aprender na prática. Trabalho em equipe e evolução progressiva.</p>
         </div>
 
         <div class="card" style="padding:18px">
-          <h3>🌿 Jardineiro Operacional</h3>
+          <h3 class="career-title"><img src="imagens/icones-js/icone-jardineiro-operacional.svg" alt="" aria-hidden="true"><span>Jardineiro Operacional</span></h3>
           <p class="muted">Para quem já tem experiência com manutenção, podas e organização. Mais responsabilidade e estabilidade.</p>
         </div>
 
         <div class="card" style="padding:18px">
-          <h3>🌳 Líder Operacional</h3>
+          <h3 class="career-title"><img src="imagens/icones-js/icone-lider-operacional.svg" alt="" aria-hidden="true"><span>Líder Operacional</span></h3>
           <p class="muted">Para profissionais que lideram equipe e organizam serviços. Ganhos proporcionais e crescimento com a empresa.</p>
         </div>
       </div>
