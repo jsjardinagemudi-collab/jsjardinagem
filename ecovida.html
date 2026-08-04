@@ -66,10 +66,12 @@
     .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
     .service{position:relative;min-height:420px;display:flex;align-items:flex-end;overflow:hidden;background:#123;color:#fff}
     .service:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(5,30,16,.95) 100%);z-index:1}
-    .service:nth-child(1){background:url("imagens/poster-5.jpeg") center/cover no-repeat}
-    .service:nth-child(2){background:linear-gradient(150deg,#1a8b49,#0b542d)}
-    .service:nth-child(3){background:linear-gradient(150deg,#2261a6,#0b315e)}
-    .service:nth-child(4){background:linear-gradient(150deg,#68ae31,#28651f)}
+    .service:nth-child(1){background:#0b542d url("imagens/atuacao-coleta-reciclaveis.jpg") center/cover no-repeat}
+    .service:nth-child(2){background:#167a3a url("imagens/atuacao-apoio-social.jpg") center/cover no-repeat}
+    .service:nth-child(3){background:#114084 url("imagens/atuacao-trabalho-capacitacao.jpg") center/cover no-repeat}
+    .service:nth-child(4){background:#4f9428 url("imagens/atuacao-acoes-comunitarias.jpg") center/cover no-repeat}
+    .service-featured{outline:4px solid var(--lime);outline-offset:-4px}
+    .service-link{display:inline-flex;margin-top:18px;color:#fff;font-size:.82rem;font-weight:900;border-bottom:2px solid var(--lime)}
     .service-content{position:relative;z-index:2;padding:28px;width:100%}
     .service-icon{width:58px;height:58px;display:grid;place-items:center;background:#fff;margin-bottom:22px}
     .service-icon img{width:38px;height:38px;object-fit:contain}.service h3{font-size:1.42rem;line-height:1.15}.service p{font-size:.9rem;color:#d7e4dc;margin-top:10px}
@@ -162,7 +164,7 @@
     <section class="about" id="sobre">
       <div class="container about-grid">
         <div class="about-media"><img src="imagens/poster-5.jpeg" alt="Proposta comunitária do Instituto EcoVida para o Santa Maria" loading="lazy"><div class="about-badge"><strong>Juntos</strong><span>pelo cuidado com o Santa Maria</span></div></div>
-        <div><span class="eyebrow">Quem somos</span><h2 class="section-title">Um projeto ambiental com propósito social.</h2><p class="section-copy">O EcoVida organiza pessoas, recicláveis e parceiros para melhorar bairros e criar oportunidades reais.</p>
+        <div><span class="eyebrow">Quem somos</span><h2 class="section-title">Um projeto ambiental com propósito social.</h2><p class="section-copy">O EcoVida organiza pessoas, recicláveis e parceiros para melhorar bairros e criar oportunidades reais. Depois do cadastro, nossa equipe entra em contato e inclui o ponto na rota de coleta mais próxima.</p>
           <ul class="check-list"><li>Coleta com organização</li><li>Trabalho e capacitação</li><li>Apoio social conectado à ação</li><li>Parcerias com moradores e empresas</li></ul>
           <a class="btn btn-green" href="ecovida-sobre.html">Conheça o Instituto</a>
         </div>
@@ -171,9 +173,9 @@
 
     <section class="work" id="atuacao">
       <div class="container">
-        <div class="work-head"><div><span class="eyebrow">Nossa atuação</span><h2 class="section-title">Soluções simples para desafios reais.</h2></div><p class="section-copy">Cada frente fortalece o território, valoriza pessoas e amplia o impacto coletivo.</p></div>
+        <div class="work-head"><div><span class="eyebrow">Nossa atuação</span><h2 class="section-title">A coleta organizada começa com o cadastro.</h2></div><p class="section-copy">Cadastre seu local. O EcoVida entra em contato, confirma os materiais e inclui o ponto na rota mais próxima.</p></div>
         <div class="services">
-          <article class="service"><div class="service-content"><div class="service-icon"><img src="imagens/coleta.svg" alt=""></div><h3>Coleta de recicláveis</h3><p>Pontos organizados e conexão com a rede local.</p></div></article>
+          <article class="service service-featured"><div class="service-content"><div class="service-icon"><img src="imagens/coleta.svg" alt=""></div><h3>Coleta de recicláveis</h3><p>Cadastre o local para receber nosso contato e entrar na rota mais próxima.</p><a class="service-link" href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec" target="_blank" rel="noopener noreferrer">Cadastrar ponto →</a></div></article>
           <article class="service"><div class="service-content"><div class="service-icon"><img src="imagens/acolhimento.svg" alt=""></div><h3>Apoio social</h3><p>Cadastro, orientação e oportunidades com dignidade.</p></div></article>
           <article class="service"><div class="service-content"><div class="service-icon"><img src="imagens/capacitacao.svg" alt=""></div><h3>Trabalho e capacitação</h3><p>Desenvolvimento prático e conexão com serviços.</p></div></article>
           <article class="service"><div class="service-content"><div class="service-icon"><img src="imagens/arvore.svg" alt=""></div><h3>Ações comunitárias</h3><p>Limpeza, cuidado e valorização de espaços públicos.</p></div></article>
@@ -185,7 +187,7 @@
       <div class="container action-grid">
         <div><span class="eyebrow">Convite aos moradores</span><h2 class="section-title">Vamos unir o Santa Maria para cuidar da praça.</h2><p class="section-copy">Queremos reunir moradores, comerciantes e apoiadores para captar recursos e financiar uma equipe de limpeza. A proposta inicial é realizar a ação no domingo à noite e, com apoio contínuo, chegar a duas vezes por semana.</p>
           <div class="action-points"><div class="action-point"><b><img src="imagens/cadastro-social.svg" alt=""></b><div><strong>Reunir a comunidade</strong><span>Organizar ideias, prioridades e apoiadores do bairro.</span></div></div><div class="action-point"><b><img src="imagens/acolhimento.svg" alt=""></b><div><strong>Gerar oportunidade</strong><span>Contratar e remunerar pessoas em situação de rua para o trabalho, com orientação, segurança e dignidade.</span></div></div><div class="action-point"><b><img src="imagens/coleta.svg" alt=""></b><div><strong>Cuidar e prestar contas</strong><span>Realizar a limpeza e divulgar com clareza os recursos arrecadados e utilizados.</span></div></div></div>
-          <div class="hero-actions"><a class="btn btn-green" href="https://wa.me/5534992142960?text=Ol%C3%A1%2C%20sou%20morador(a)%20ou%20apoiador(a)%20do%20Santa%20Maria%20e%20quero%20entrar%20no%20grupo%20para%20ajudar%20a%20organizar%20a%20limpeza%20da%20pra%C3%A7a." target="_blank" rel="noopener noreferrer">Entrar no grupo Santa Maria</a><a class="btn btn-green" href="#parceiro">Quero apoiar a ação</a></div>
+          <div class="hero-actions"><a class="btn btn-green" href="https://chat.whatsapp.com/LvkvzybBG5v5rKF49t1kHG" target="_blank" rel="noopener noreferrer">Entrar no grupo Santa Maria</a><a class="btn btn-green" href="#parceiro">Quero apoiar a ação</a></div>
           <div class="notice"><strong>Proposta em construção:</strong> a ação ainda depende da união dos moradores, da formação da equipe e da captação dos recursos. O trabalho será remunerado e organizado com critérios de segurança. O EcoVida complementa a mobilização comunitária e não substitui os serviços públicos.</div>
         </div>
         <div class="poster"><img src="imagens/poster-5.jpeg" alt="Mapa da área inicial do EcoVida no bairro Santa Maria" loading="lazy"></div>
@@ -194,9 +196,9 @@
 
     <section class="join" id="participar">
       <div class="container join-grid">
-        <div><span class="eyebrow">Faça parte</span><h2 class="section-title">Uma rede cresce quando cada pessoa encontra seu lugar.</h2><p class="section-copy">Escolha a opção certa e envie seu cadastro.</p></div>
+        <div><span class="eyebrow">Faça parte</span><h2 class="section-title">Organize a coleta de recicláveis do seu local.</h2><p class="section-copy">Cadastre o ponto. Entraremos em contato para orientar a separação e incluir o endereço na rota mais próxima.</p></div>
         <div class="cards">
-          <article class="join-card"><img src="imagens/coleta.svg" alt=""><h3>Ponto de coleta</h3><p>Cadastre um comércio, condomínio, escola ou residência.</p><a class="btn btn-green" href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec" target="_blank" rel="noopener noreferrer">Cadastrar local</a></article>
+          <article class="join-card"><img src="imagens/coleta.svg" alt=""><h3>Ponto de coleta</h3><p>Cadastre comércio, condomínio, escola ou residência. Após o cadastro, confirmamos o ponto e organizamos sua entrada na rota.</p><a class="btn btn-green" href="https://script.google.com/macros/s/AKfycby8M4yRnvZxhiUHvlGEiVU6tmRsHNakQpXlq5nVmS6Vuq14kKbP-6W3fJCcO9Xmiz90/exec" target="_blank" rel="noopener noreferrer">Cadastrar local</a></article>
           <article class="join-card"><img src="imagens/acolhimento.svg" alt=""><h3>Voluntariado</h3><p>Participe das ações e fortaleça a comunidade.</p><a class="btn btn-green" href="https://script.google.com/macros/s/AKfycbxnUdakV_E-vx_XBfcfZ_DyPsBscNNLqHiHtHvRcXqYJbA1VIYETaranx9fb-hBGEXt/exec" target="_blank" rel="noopener noreferrer">Quero participar</a></article>
           <article class="join-card"><img src="imagens/cadastro-social.svg" alt=""><h3>Cadastro social</h3><p>Busque orientação ou indique alguém que precise de apoio.</p><a class="btn btn-green" href="https://script.google.com/macros/s/AKfycby9XUDvhui26iig554Ak_-EhrPToRMzWBP4n4VjqB_Htitt4Cl3YfvAT12GuCCwJZerHg/exec" target="_blank" rel="noopener noreferrer">Buscar apoio</a></article>
         </div>
