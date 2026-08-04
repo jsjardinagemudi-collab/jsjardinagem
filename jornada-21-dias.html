@@ -932,7 +932,7 @@
         </span>
       </a>
 
-      <nav class="nav-links" aria-label="Navegação principal"><a href="ecovida-kids.html">Início</a><a href="animais.html">Animais</a><a href="plantas.html">Plantas</a><a href="descobertas.html">Descobertas</a>
+      <nav class="nav-links" aria-label="Navegação principal"><a href="ecovida-kids.html">Início</a><a href="animais.html">Animais</a><a href="plantas.html">Plantas</a><a href="descobertas.html">Descobertas</a><a href="diario.html">Diário</a>
         <a href="#metodo">Método</a>
         <a href="#jornada">21 dias</a>
         <a href="#pais">Pais e filhos</a>
@@ -1143,9 +1143,12 @@
             <label for="nextStep">O que queremos repetir ou melhorar?</label>
             <textarea id="nextStep" placeholder="Registre uma ideia para o próximo encontro..."></textarea>
 
+            <label for="memoryPhoto">Foto da lembrança</label>
+            <input id="memoryPhoto" type="file" accept="image/*">
+            <img id="journeyPhotoPreview" class="photo-preview" alt="Prévia da lembrança" hidden>
             <div class="journal-actions">
               <button class="btn btn-primary" type="button" onclick="saveJournal()"><svg class="icon"><use href="#i-save"></use></svg> Salvar anotações</button>
-              <button class="btn btn-secondary" type="button" onclick="clearJournal()"><svg class="icon"><use href="#i-trash"></use></svg> Limpar</button>
+              <button class="btn btn-secondary" type="button" onclick="clearJournal()"><svg class="icon"><use href="#i-trash"></use></svg> Limpar</button><a class="btn btn-secondary" href="diario.html">📖 Ver diário completo</a>
             </div>
           </div>
         </div>
@@ -1252,6 +1255,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/diario-db.js"></script>
   <script>
 
     function icon(name) {
@@ -1588,15 +1592,34 @@
       } catch {}
     }
 
-    function saveJournal() {
-      const data = {
-        learning: document.getElementById("learning").value,
-        feeling: document.getElementById("feeling").value,
-        nextStep: document.getElementById("nextStep").value
-      };
-
-      localStorage.setItem(journalKey, JSON.stringify(data));
-      alert("Anotações salvas neste aparelho.");
+    async function saveJournal() {
+      const learningValue = document.getElementById("learning").value.trim();
+      const feelingValue = document.getElementById("feeling").value.trim();
+      const nextValue = document.getElementById("nextStep").value.trim();
+      if (!learningValue && !feelingValue && !nextValue) {
+        alert("Escreva pelo menos uma lembrança antes de salvar.");
+        return;
+      }
+      const file = document.getElementById("memoryPhoto")?.files?.[0];
+      const photo = file ? await fileToDataURL(file) : "";
+      await addDiaryEntry({
+        experienceDate: new Date().toISOString().slice(0,10),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        title: "Página da Jornada EcoVida Kids",
+        learning: learningValue,
+        feeling: feelingValue,
+        nextStep: nextValue,
+        photo
+      });
+      localStorage.setItem(journalKey, JSON.stringify({
+        learning: learningValue,
+        feeling: feelingValue,
+        nextStep: nextValue
+      }));
+      alert("Nova página salva no Diário da Jornada.");
+      document.getElementById("memoryPhoto").value = "";
+      const pv=document.getElementById("journeyPhotoPreview"); if(pv){pv.hidden=true;pv.removeAttribute("src");}
     }
 
     function clearJournal() {
@@ -1609,6 +1632,8 @@
       document.getElementById("nextStep").value = "";
     }
 
+    const journeyPhotoInput=document.getElementById("memoryPhoto");
+    if(journeyPhotoInput){journeyPhotoInput.addEventListener("change",async()=>{const f=journeyPhotoInput.files[0],pv=document.getElementById("journeyPhotoPreview");if(f&&pv){pv.src=await fileToDataURL(f);pv.hidden=false;}});}
     renderDays();
     loadJournal();
   </script>
