@@ -53,6 +53,69 @@
       display: block;
     }
 
+    /* Sistema de ícones EcoVida Kids */
+    .icon {
+      width: 1.25em;
+      height: 1.25em;
+      flex: 0 0 auto;
+      display: inline-block;
+      vertical-align: -0.2em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-fill {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    .icon-badge {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #F2FBF3, #DFF3E3);
+      color: var(--verde-escuro);
+      border: 1px solid #CFE8D4;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+    }
+
+    .icon-badge .icon {
+      width: 27px;
+      height: 27px;
+    }
+
+    .activity-title {
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .activity-title .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .brand-mark .icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .tag .icon,
+    .btn .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .complete-btn .icon {
+      width: 18px;
+      height: 18px;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -347,13 +410,6 @@
     }
 
     .principle-icon {
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: var(--verde-suave);
-      font-size: 1.45rem;
       margin-bottom: 14px;
     }
 
@@ -508,6 +564,10 @@
     .complete-btn {
       margin-top: 16px;
       width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       padding: 11px 14px;
       border: 1px solid var(--borda);
       background: #F8FBF9;
@@ -745,6 +805,119 @@
 </head>
 
 <body>
+
+  <!-- Biblioteca de ícones vetoriais EcoVida Kids -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="i-sprout" viewBox="0 0 24 24">
+      <path d="M12 21v-9"/>
+      <path d="M12 13C8.5 13 6 10.5 6 7c3.5 0 6 2.5 6 6Z"/>
+      <path d="M12 10c0-3.5 2.5-6 6-6 0 3.5-2.5 6-6 6Z"/>
+    </symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24">
+      <path d="M12 22v-7"/>
+      <path d="M8 22h8"/>
+      <path d="M12 3a5 5 0 0 0-4.7 3.3A4.5 4.5 0 0 0 8.5 15h7a4.5 4.5 0 0 0 1.2-8.7A5 5 0 0 0 12 3Z"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="6.5"/>
+      <path d="m16 16 5 5"/>
+      <path d="M9 9h4M11 7v4"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>
+    </symbol>
+    <symbol id="i-hands" viewBox="0 0 24 24">
+      <path d="m8 12 3 3a2.2 2.2 0 0 0 3.1 0l4.2-4.2"/>
+      <path d="m4.5 9.5 4.3-4.3a2.4 2.4 0 0 1 3.4 0l.8.8"/>
+      <path d="m19.5 9.5-4.3-4.3a2.4 2.4 0 0 0-3.4 0L11 6"/>
+      <path d="M3 11.5 8.5 17a3 3 0 0 0 4.2 0l.3-.3"/>
+      <path d="m21 11.5-5.5 5.5"/>
+    </symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24">
+      <path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 0-4H12a2 2 0 0 1 0-4h4a5 5 0 0 0 0-10h-4Z"/>
+      <circle cx="7.5" cy="10" r=".8" class="icon-fill"/>
+      <circle cx="9.5" cy="6.8" r=".8" class="icon-fill"/>
+      <circle cx="13.5" cy="6.2" r=".8" class="icon-fill"/>
+      <circle cx="16.5" cy="9" r=".8" class="icon-fill"/>
+    </symbol>
+    <symbol id="i-recycle" viewBox="0 0 24 24">
+      <path d="m10 4 2-2 3 5"/>
+      <path d="M12 2 9 7"/>
+      <path d="m19 10 3 1-3 5"/>
+      <path d="M22 11h-6"/>
+      <path d="m7 20-1 3-5-3"/>
+      <path d="M6 23 9 18"/>
+      <path d="M8.5 6H6a3 3 0 0 0-2.6 1.5L2 10"/>
+      <path d="m20 14-1.4 2.5A3 3 0 0 1 16 18h-3"/>
+      <path d="m5 18-1.4-2.5A3 3 0 0 1 3.6 12L5 10"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9L12 2.5Z"/>
+    </symbol>
+    <symbol id="i-family" viewBox="0 0 24 24">
+      <circle cx="8" cy="7" r="3"/>
+      <circle cx="17" cy="9" r="2.4"/>
+      <path d="M2.5 21v-2.5A5.5 5.5 0 0 1 8 13h0a5.5 5.5 0 0 1 5.5 5.5V21"/>
+      <path d="M14.5 14.5A4.5 4.5 0 0 1 21 18.5V21"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="m10 8 6 4-6 4V8Z"/>
+    </symbol>
+    <symbol id="i-print" viewBox="0 0 24 24">
+      <path d="M7 8V3h10v5"/>
+      <rect x="5" y="14" width="14" height="7" rx="1"/>
+      <path d="M5 17H3V10h18v7h-2"/>
+      <path d="M17 12h.01"/>
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="12" cy="12" r="5"/>
+      <circle cx="12" cy="12" r="1.5"/>
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24">
+      <path d="M21 3C12 3 5 7 5 14a6 6 0 0 0 6 6c7 0 10-8 10-17Z"/>
+      <path d="M5 21c3-6 7-10 13-13"/>
+    </symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24">
+      <path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.3-4A8 8 0 1 1 21 12Z"/>
+      <path d="M8 12h.01M12 12h.01M16 12h.01"/>
+    </symbol>
+    <symbol id="i-game" viewBox="0 0 24 24">
+      <rect x="3" y="7" width="18" height="11" rx="5"/>
+      <path d="M8 10v5M5.5 12.5h5"/>
+      <circle cx="16" cy="11.5" r=".8" class="icon-fill"/>
+      <circle cx="18.5" cy="14" r=".8" class="icon-fill"/>
+    </symbol>
+    <symbol id="i-prayer" viewBox="0 0 24 24">
+      <path d="M8 4v7l-2 3"/>
+      <path d="M16 4v7l2 3"/>
+      <path d="M8 11 6.5 8.5A1.7 1.7 0 0 0 3.5 10L6 15l4 3v3"/>
+      <path d="M16 11l1.5-2.5a1.7 1.7 0 0 1 3 1.5L18 15l-4 3v3"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="m8 12 2.5 2.5L16.5 8"/>
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24">
+      <path d="M20 6v5h-5"/>
+      <path d="M4 18v-5h5"/>
+      <path d="M18.5 10A7 7 0 0 0 6 6.5L4 9"/>
+      <path d="M5.5 14A7 7 0 0 0 18 17.5L20 15"/>
+    </symbol>
+    <symbol id="i-save" viewBox="0 0 24 24">
+      <path d="M5 3h12l2 2v16H5V3Z"/>
+      <path d="M8 3v6h8V3"/>
+      <path d="M8 21v-7h8v7"/>
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16"/>
+      <path d="M9 7V4h6v3"/>
+      <path d="m7 7 1 14h8l1-14"/>
+      <path d="M10 11v6M14 11v6"/>
+    </symbol>
+  </svg>
+
   <div class="topbar">
     Uma jornada de presença, natureza, valores e descobertas em família.
   </div>
@@ -752,7 +925,7 @@
   <header>
     <div class="container nav">
       <a href="#inicio" class="brand" aria-label="EcoVida Kids">
-        <span class="brand-mark">🌱</span>
+        <span class="brand-mark"><svg class="icon"><use href="#i-sprout"></use></svg></span>
         <span>
           EcoVida Kids
           <small>Aprender vivendo</small>
@@ -774,7 +947,7 @@
       <div class="container">
         <div class="hero-grid">
           <div>
-            <span class="tag">🌿 Educação familiar ao ar livre</span>
+            <span class="tag"><svg class="icon"><use href="#i-leaf"></use></svg> Educação familiar ao ar livre</span>
             <h1>21 dias para <span>aprender, conectar e crescer</span> em família.</h1>
             <p>
               Uma experiência prática criada para aproximar pais e filhos por meio da natureza,
@@ -782,8 +955,8 @@
             </p>
 
             <div class="hero-actions">
-              <a href="#jornada" class="btn btn-primary">▶ Iniciar os 21 dias</a>
-              <button type="button" class="btn btn-secondary" onclick="window.print()">🖨 Imprimir material</button>
+              <a href="#jornada" class="btn btn-primary"><svg class="icon"><use href="#i-play"></use></svg> Iniciar os 21 dias</a>
+              <button type="button" class="btn btn-secondary" onclick="window.print()"><svg class="icon"><use href="#i-print"></use></svg> Imprimir material</button>
             </div>
 
             <div class="stats">
@@ -821,49 +994,49 @@
 
         <div class="principles">
           <article class="principle">
-            <div class="principle-icon">🌳</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-tree"></use></svg></div>
             <h3>Natureza</h3>
             <p>Observar plantas, animais, água, terra, céu e ciclos naturais.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">🔎</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-search"></use></svg></div>
             <h3>Curiosidade</h3>
             <p>Fazer perguntas, comparar, investigar e aprender sem medo de errar.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">❤️</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-heart"></use></svg></div>
             <h3>Emoções</h3>
             <p>Nomear sentimentos, criar confiança e fortalecer a comunicação.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">🤝</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-hands"></use></svg></div>
             <h3>Serviço</h3>
             <p>Participar de pequenas tarefas e perceber que todos podem contribuir.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">🎨</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-palette"></use></svg></div>
             <h3>Criatividade</h3>
             <p>Desenhar, construir, imaginar, contar histórias e encontrar soluções.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">♻️</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-recycle"></use></svg></div>
             <h3>Consciência</h3>
             <p>Cuidar da água, separar resíduos e respeitar todos os seres vivos.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">⭐</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-star"></use></svg></div>
             <h3>Valores</h3>
             <p>Praticar respeito, coragem, honestidade, gratidão e responsabilidade.</p>
           </article>
 
           <article class="principle">
-            <div class="principle-icon">👨‍👦</div>
+            <div class="principle-icon icon-badge"><svg class="icon"><use href="#i-family"></use></svg></div>
             <h3>Vínculo</h3>
             <p>Criar memórias e fortalecer a presença verdadeira entre adulto e criança.</p>
           </article>
@@ -890,7 +1063,7 @@
         <div class="progress-shell">
           <div class="progress-meta">
             <span id="progressText">0 de 21 dias concluídos</span>
-            <button type="button" class="btn btn-secondary" onclick="resetProgress()">Reiniciar progresso</button>
+            <button type="button" class="btn btn-secondary" onclick="resetProgress()"><svg class="icon"><use href="#i-refresh"></use></svg> Reiniciar progresso</button>
           </div>
           <div class="progress-bar" aria-label="Progresso da jornada">
             <div class="progress-fill" id="progressFill"></div>
@@ -971,8 +1144,8 @@
             <textarea id="nextStep" placeholder="Registre uma ideia para o próximo encontro..."></textarea>
 
             <div class="journal-actions">
-              <button class="btn btn-primary" type="button" onclick="saveJournal()">Salvar anotações</button>
-              <button class="btn btn-secondary" type="button" onclick="clearJournal()">Limpar</button>
+              <button class="btn btn-primary" type="button" onclick="saveJournal()"><svg class="icon"><use href="#i-save"></use></svg> Salvar anotações</button>
+              <button class="btn btn-secondary" type="button" onclick="clearJournal()"><svg class="icon"><use href="#i-trash"></use></svg> Limpar</button>
             </div>
           </div>
         </div>
@@ -1080,6 +1253,11 @@
   </footer>
 
   <script>
+
+    function icon(name) {
+      return `<svg class="icon" aria-hidden="true"><use href="#i-${name}"></use></svg>`;
+    }
+
     const days = [
       {
         title: "Meu lugar no mundo",
@@ -1323,37 +1501,37 @@
 
             <div class="day-body">
               <div class="activity-block">
-                <strong>🎯 Objetivo</strong>
+                <strong class="activity-title">${icon("target")} Objetivo</strong>
                 <p>${day.objective}</p>
               </div>
 
               <div class="activity-block">
-                <strong>🌿 Experiência prática</strong>
+                <strong class="activity-title">${icon("leaf")} Experiência prática</strong>
                 <p>${day.activity}</p>
               </div>
 
               <div class="activity-block">
-                <strong>💬 Perguntas para conversar</strong>
+                <strong class="activity-title">${icon("chat")} Perguntas para conversar</strong>
                 <ul>${day.questions.map(q => `<li>${q}</li>`).join("")}</ul>
               </div>
 
               <div class="activity-block">
-                <strong>🎲 Brincadeira</strong>
+                <strong class="activity-title">${icon("game")} Brincadeira</strong>
                 <p>${day.play}</p>
               </div>
 
               <div class="activity-block">
-                <strong>⭐ Valor do dia</strong>
+                <strong class="activity-title">${icon("star")} Valor do dia</strong>
                 <p>${day.value}</p>
               </div>
 
               <div class="activity-block">
-                <strong>🙏 Reflexão</strong>
+                <strong class="activity-title">${icon("prayer")} Reflexão</strong>
                 <p>${day.reflection}</p>
               </div>
 
               <button type="button" class="complete-btn" onclick="toggleComplete(event, ${dayNumber})">
-                ${completed ? "✓ Dia concluído" : "Marcar como concluído"}
+                ${completed ? `${icon("check")} Dia concluído` : `${icon("check")} Marcar como concluído`}
               </button>
             </div>
           </article>
